@@ -1,0 +1,55 @@
+# CHIA + GCP 入门集群（WSL2 控制端 + 1 台 Compute Engine 工作节点）
+#
+# 此文件不保存任何令牌。运行前只需在 WSL 中设置：
+#   export GOOGLE_APPLICATION_CREDENTIALS=/mnt/c/Users/11345/AppData/Roaming/gcloud/application_default_credentials.json
+#
+# 首次运行请先执行：chia up --dry-run gcp-cluster.yaml
+
+cluster_name: micro-hackathon-gcp
+
+# CHIA 通过 SSH 管理 head；这里的 head 是本机 WSL Ubuntu。
+provider:
+    head_ip: 127.0.0.1
+
+auth:
+    ssh_user: sakura_02
+    ssh_private_key: /home/sakura_02/.ssh/chia_gcp_ed25519
+
+gcp_nodes:
+    project: project-842e7b1d-4f04-40b2-9b0
+    zone: us-central1-a
+    gcp_worker:
+        machine_type: e2-small
+        count: 1
+        image: projects/ubuntu-os-cloud/global/images/family/ubuntu-2204-lts
+        disk_size_gb: 24
+        spot: false
+        ssh_user: chia
+        ssh_public_key: /home/sakura_02/.ssh/chia_gcp_ed25519.pub
+        ssh_private_key: /home/sakura_02/.ssh/chia_gcp_ed25519
+
+available_node_types:
+    head_worker:
+        resources: {"head_worker": 1}
+        num_workers: 1
+        compatible_ips: ["127.0.0.1"]
+        worker_env_commands:
+            - source /home/sakura_02/miniconda3/etc/profile.d/conda.sh && conda activate chia_env
+
+    gcp_worker:
+        resources: {"gcp_worker": 1}
+        num_workers: 1
+        compatible_ips: ["@gcp_worker:0"]
+        worker_env_commands:
+            - source /home/chia/miniconda3/etc/profile.d/conda.sh && conda activate chia_env
+
+head_env_commands:
+    - source /home/sakura_02/miniconda3/etc/profile.d/conda.sh && conda activate chia_env
+
+head_start_ray_commands:
+    - ray stop
+    - ray start --head --port=6379 --include-dashboard=True --dashboard-agent-listen-port=0 --resources='{"head":1}'
+
+worker_start_ray_commands:
+    - ray stop
+    - ray start --address=$RAY_HEAD_IP:6379 --dashboard-agent-listen-port=0
