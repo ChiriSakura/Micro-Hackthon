@@ -15,7 +15,8 @@ def _eval_overall_sparsity(sparsity_mask, attn_mask):
     attn_mask = attn_mask * (attn_mask.permute(0, 1, 3, 2))
 
     length = attn_mask.shape[-1]
-    attn_mask = attn_mask * torch.tril(torch.ones((length, length)), diagonal=0).cuda()
+    causal_mask = torch.tril(torch.ones((length, length), device=attn_mask.device), diagonal=0)
+    attn_mask = attn_mask * causal_mask
 
     scaling_factor = attn_mask.mean(dim=(1, 2, 3))
     sparsity_per_seq = (sparsity_mask.float() * attn_mask).mean(dim=(1, 2, 3))
@@ -41,6 +42,8 @@ def gen_sparsity_mask_xm(attention_scores, attn_mask, threshold_0, threshold_1):
 
     original_shape = attention_scores.shape
     token_len = original_shape[-1]
+    if token_len % m != 0:
+        raise ValueError(f"X:M requires sequence length divisible by {m}, got {token_len}")
     s = token_len // m
     reshaped_scores = attention_scores.view(*original_shape[:-1], s, m)
     sum_m = torch.sum(reshaped_scores, dim=-1, keepdim=True).expand_as(reshaped_scores)
@@ -81,6 +84,10 @@ def gen_sparsity_mask_nm(attention_scores, attn_mask, m, n):
 
     original_shape = attention_scores.shape
     token_len = original_shape[-1]
+    if m <= 0 or n <= 0 or n > m:
+        raise ValueError(f"N:M requires 0 < n <= m, got n={n}, m={m}")
+    if token_len % m != 0:
+        raise ValueError(f"N:M requires sequence length divisible by m={m}, got {token_len}")
     s = token_len // m
     reshaped_scores = attention_scores.view(*original_shape[:-1], s, m)
     _, indices = torch.topk(reshaped_scores, n, dim=-1, largest=True)
@@ -136,6 +143,10 @@ def gen_sparsity_mask_topk(attention_scores, attn_mask, topk):
     global mean_len
     global all_sparisity
 
+    if topk <= 0 or topk > attention_scores.shape[-1]:
+        raise ValueError(
+            f"topk must be in [1, {attention_scores.shape[-1]}], got {topk}"
+        )
     attention_scores = F.softmax(attention_scores + attn_mask, dim=-1)
     sparsity_mask = torch.full_like(attention_scores, False, dtype=torch.bool)
     index = torch.topk(attention_scores, topk, dim=-1, largest=True)[1]
@@ -205,8 +216,9 @@ def prune_attn_scores(attn_scores, attn_mask, threshold_0 = 1.0, threshold_1 = 0
         case "salo":
             return gen_sparsity_mask_salo(attn_scores, attn_mask)
         case _:
-            print("Please set sparse_method: xm, nm, sanger, salo or topk")
-            exit()
+            raise ValueError(
+                f"Unsupported sparse_method={sparse_method!r}; expected xm, nm, sanger, salo, or topk"
+            )
 
 
 def quant_qk_matmul(quant_methed, query_layer, key_layer, quant_matmul=None):

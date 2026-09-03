@@ -40,6 +40,7 @@ from transformers.utils import logging
 from transformers.models.bloom.configuration_bloom import BloomConfig
 
 from models.utils.quant_utils import build_quant_matmul
+from models.utils.runtime_config import load_dynax_config
 from models.utils.sparse_attention import quant_qk_matmul, prune_attn_scores
 
 
@@ -290,8 +291,7 @@ class BloomAttention(nn.Module):
         # change view to [batch_size, num_heads, q_length, kv_length]
         attn_weights = attention_scores.view(batch_size, self.num_heads, q_length, -1)
 
-        with open("configs/config.json", 'r', encoding='utf-8') as file:
-            config_data  = json.load(file)
+        config_data = load_dynax_config()
         is_sparse = config_data["is_sparse"]
         is_quant = config_data["is_quant"]
         sparse_methed = config_data["sparse_methed"]
@@ -304,12 +304,12 @@ class BloomAttention(nn.Module):
         topk = config_data["topk"]
         if (is_sparse):
             batch_size, head_num, seqlen, seqlen = attn_weights.shape
-            temp_mask = torch.zeros(batch_size, 1, 1, seqlen)
+            temp_mask = torch.zeros(batch_size, 1, 1, seqlen, device=attn_weights.device)
             if(is_quant):
                 if(quant_methed == "1_4_6bit"):
-                    quant_attention = quant_qk_matmul(quant_methed, query_layer, key_layer, build_quant_matmul(w=bits_w)) * self.inv_norm_factor + alibi
+                    quant_attention = quant_qk_matmul(quant_methed, query_layer, key_layer, build_quant_matmul(w=6)) * self.inv_norm_factor + alibi
                 elif(quant_methed == "1_2_4bit"):
-                    quant_attention = quant_qk_matmul(quant_methed, query_layer, key_layer, build_quant_matmul(w=bits_w)) * self.inv_norm_factor + alibi
+                    quant_attention = quant_qk_matmul(quant_methed, query_layer, key_layer, build_quant_matmul(w=4)) * self.inv_norm_factor + alibi
                 else:
                     print("Please set quant_methed: 1_4_6bit or 1_2_4bit")
                     exit()
@@ -318,7 +318,17 @@ class BloomAttention(nn.Module):
             if attention_mask is not None:  # no matter the length, we just slice it
                 causal_mask = attention_mask[:, :, :, : key_layer.shape[-1]]
                 quant_attention=quant_attention+causal_mask
-            sparsity_mask = prune_attn_scores(quant_attention+attn_bias, temp_mask.cuda(), threshold_0, threshold_1, m, n, topk, threshold, sparse_methed)
+            sparsity_mask = prune_attn_scores(
+                quant_attention,
+                temp_mask,
+                threshold_0,
+                threshold_1,
+                m,
+                n,
+                topk,
+                threshold,
+                sparse_methed,
+            )
             attn_weights += sparsity_mask
 
 

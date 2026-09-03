@@ -9,17 +9,18 @@ from datasets import load_dataset
 
 import gc
 def cleanup():
-	torch.cuda.empty_cache()
+	if torch.cuda.is_available():
+		torch.cuda.empty_cache()
 	gc.collect()
 
 def get_dataset(tokenizer, nsamples=128, seqlen=2048, dataset='wiki', seed=0):
 
     if(dataset == 'wiki') :
         testdata = load_dataset('wikitext', 'wikitext-2-raw-v1', split='test')
-        testenc = tokenizer("\n\n".join(testdata['text']), return_tensors='pt')
+        testenc = tokenizer("\n\n".join(testdata['text']), return_tensors='pt', verbose=False)
     elif(dataset == 'ptb') :
         testdata = load_dataset("ptb_text_only", "penn_treebank", split="validation")
-        testenc = tokenizer("\n\n".join(testdata['sentence']), return_tensors='pt')
+        testenc = tokenizer("\n\n".join(testdata['sentence']), return_tensors='pt', verbose=False)
     elif(dataset == 'c4') :
         valdata = load_dataset('allenai/c4', 'allenai--c4', data_files={'validation': 'en/c4-validation.00000-of-00008.json.gz'}, split='validation')
         random.seed(seed)
@@ -47,7 +48,7 @@ def get_dataset(tokenizer, nsamples=128, seqlen=2048, dataset='wiki', seed=0):
         
     return testenc
 
-def perplexity(model, tokenizer, seqlen=2048, dataset='wiki', framework="pytorch"):
+def perplexity(model, tokenizer, seqlen=2048, dataset='wiki', framework="pytorch", max_samples=None):
     random.seed(0)
     np.random.seed(0)
     torch.manual_seed(0)
@@ -60,34 +61,45 @@ def perplexity(model, tokenizer, seqlen=2048, dataset='wiki', framework="pytorch
 
     model.seqlen = seqlen
     nsamples = testenc.numel() // model.seqlen
+    if max_samples is not None:
+        if max_samples <= 0:
+            raise ValueError(f"max_samples must be positive, got {max_samples}")
+        nsamples = min(nsamples, max_samples)
 
     print("nsamples: " + str(nsamples))
     
+    model.to(device)
     model.eval()
     nlls = []
+    token_count = 0
 
 
     for i in tqdm(range(nsamples)):
-        batch = testenc[:, (i * model.seqlen) : ((i + 1) * model.seqlen)]
+        batch = testenc[:, (i * model.seqlen) : ((i + 1) * model.seqlen)].to(device)
 
         # outputs = model(batch)
         if batch.size(1) < seqlen:
             break  # Skip incomplete batch
         with torch.no_grad():
-            outputs = model(batch)
+            outputs = model(batch, use_cache=False)
         
         logits = outputs.logits[0]
         shift_logits = logits[:-1, :]
 
        
-        shift_labels = testenc[:, (i * model.seqlen) : ((i + 1) * model.seqlen)][
-            :, 1:]
+        shift_labels = batch[:, 1:]
         loss_fct = torch.nn.CrossEntropyLoss()
         loss = loss_fct(
-            shift_logits.view(-1, shift_logits.size(-1)).cuda(),
-            shift_labels.view(-1).cuda(),
+            shift_logits.reshape(-1, shift_logits.size(-1)),
+            shift_labels.reshape(-1),
         )
-        neg_log_likelihood = loss.float() * model.seqlen
+        sample_tokens = shift_labels.numel()
+        neg_log_likelihood = loss.float() * sample_tokens
         nlls.append(neg_log_likelihood)
-    ppl = torch.exp(torch.stack(nlls).sum() / (nsamples * model.seqlen))
+        token_count += sample_tokens
+    if not nlls:
+        raise ValueError(
+            f"Dataset contains no complete sequence of length {seqlen}; choose a shorter sequence length"
+        )
+    ppl = torch.exp(torch.stack(nlls).sum() / token_count)
     return ppl

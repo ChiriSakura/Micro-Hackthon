@@ -44,26 +44,134 @@ Critic Agent
 工作区结构：
 
 ```text
-MICRO_Hackthon/
+Micro-Hackthon/
 ├── chia/                       # CHIA 源码，可编辑安装
-├── DynaX/                      # DynaX 上游源码
+├── DynaX/                      # DynaX 源码及算法 smoke tests
+├── slurm/                      # Torch 集群环境、CPU/GPU smoke test 脚本
 ├── MICRO_A3_Proposal.pdf       # 实验提案
 ├── FAST_实验执行计划.md         # 本文档
-└── FAST/                       # 后续创建：集成与实验工程
+└── FAST/                       # 已创建：五 Agent 集成与实验工程
 ```
 
-当前环境：
+当前实际执行环境：
 
-- Windows Conda 环境：`C:\Users\11345\.conda\envs\chia_env`
-- Python：3.10.19
-- CHIA：chialoops 1.0.1，以 editable 模式安装
-- google-cloud-compute：1.51.0
-- DynaX：已克隆，当前提交为 `be22dda622c98a4b04721048fec2c75fed066453`
-- 本地 GPU：NVIDIA GeForce RTX 3060 Laptop，6 GB 显存
-- GCP 项目：`project-842e7b1d-4f04-40b2-9b0`
-- GCP CLI、ADC、quota project 和 Compute Engine API 已配置
+- 代码工作区：`/home/gz2522/Micro-Hackthon`
+- 大文件根目录：`/scratch/gz2522/gz2522/tmp/micro-hackthon`
+- 登录节点 Python：3.12.14；隔离环境使用 Python 3.12。
+- 算法环境：PyTorch 2.5.1+cu121、CUDA runtime 12.1、Transformers 4.48.3、Datasets 3.2.0、PEFT 0.14.0、Accelerate 1.2.1、NumPy 1.26.4。
+- Slurm 项目账户：`torch_pr_674_tandon_advanced`。
+- 已验证 GPU：NVIDIA A100-SXM4-80GB 与 NVIDIA L40S 46 GB，驱动 580.82.07。
+- 仓库 HEAD：`23a0cddda8ebcd69acc5489ad97c8abb0ce96608`；本轮 DynaX 修复仍在工作区，尚未提交。
+- Deploy Key 已配置为仓库专用只读密钥。
 
-目前没有创建用于 FAST 实验的云端 VM，也没有修改 DynaX 上游源码。
+此前记录的 Windows Conda、RTX 3060 Laptop 和 GCP 项目仍可作为外部资源，但本轮验证实际在 NYU Torch Slurm 集群完成；目前没有创建用于 FAST 实验的云端 VM。
+
+### 2.1 本轮执行进展（2026-09-03）
+
+阶段 0 的算法基线已从“无法导入/无法执行”推进到以下状态：
+
+1. 仓库已通过只读 GitHub Deploy Key 克隆到当前工作区。
+2. 所有 DynaX Python 文件通过 `compileall` 语法检查。
+3. DynaX 稀疏 attention 核心在 A100 上通过 GPU smoke test。
+4. tiny Llama 与 tiny BLOOM 均完成 Dense 前向、X:M 前向、loss 计算和一次反向传播。
+5. Hugging Face tiny Llama、WikiText 数据加载和受限样本 perplexity 流程已跑通。
+6. 训练、评估和 LoRA merge 五个 CLI 入口可在隔离环境中成功导入。
+7. DynaX smoke tests 已固化为正式 pytest golden suite；CPU suite 与 CUDA suite 均已通过。
+8. 已创建 `FAST/` 五 Agent 控制框架，并完成 deterministic 单候选闭环与缓存验证。
+9. 当前没有遗留的 Slurm 作业。
+
+关键 Slurm 证据：
+
+| Job ID | 资源 | 验证内容 | 状态 | 用时 |
+|---|---|---|---|---|
+| `16902825` | A100 80 GB | X:M、N:M、Top-K、Sanger、SALO、量化 QK 核心路径 | `COMPLETED (0:0)` | 11 秒 |
+| `16903641` | CPU | tiny Llama/BLOOM Dense、X:M、loss、backward | `COMPLETED (0:0)` | 19 秒 |
+| `16903776` | CPU | HF tiny Llama + WikiText，2 个长度 64 样本 | `COMPLETED (0:0)` | 39 秒 |
+| `16903825` | CPU | train/eval/merge CLI 单进程导入检查 | `COMPLETED (0:0)` | 21 秒 |
+| `16904851` | CPU | 正式 pytest golden suite | `COMPLETED (0:0)`，10 passed、2 deselected | 22 秒 |
+| `16904852` | L40S 46 GB | 正式 pytest CUDA suite：mask CPU/GPU golden 一致性、tiny Llama/BLOOM CUDA 前向与 backward | `COMPLETED (0:0)`，2 passed、10 deselected | 45 秒 |
+| `16905470` | CPU | 首次 FAST 环境创建 | `FAILED (1:0)`；计算节点默认 Python 3.9，不满足 CHIA ≥3.10 | 46 秒 |
+| `16905518` | CPU | Python 3.12 FAST 环境、单元测试、首次 Ray 启动 | `FAILED (1:0)`；依赖安装和 9 tests 通过，scratch 路径使 Ray socket 超过 107 字节 | 4 分 43 秒 |
+| `16905643` | CPU | FAST 9 tests + 五节点 CHIA/Ray task graph | `COMPLETED (0:0)`；`functional_passed=true` | 42 秒 |
+
+FAST 框架本地测试为 `9 passed`，并已连续执行同一候选两次；第二次报告显示 Kernel、Compiler、µArch、Evaluator、Critic 五阶段全部命中缓存。作业 `16905643` 进一步证明五个 `ChiaFunction` 可作为真实 Ray task graph 执行。Ray 的临时 socket 已改用节点本地短路径 `/tmp`，数据库和报告仍保存到 scratch。当前这些结果验证的是控制流、门限和记录机制，使用的是 deterministic adapter，不代表 DynaX 性能或精度结论。
+
+核心测试观测值：
+
+| 方法 | 合成输入上的保留比例 |
+|---|---:|
+| X:M | 0.131836 |
+| N:M（16:64） | 0.250000 |
+| Top-K（8/64） | 0.125000 |
+| SALO | 0.170898 |
+| Sanger（阈值 `1e-4`） | 1.000000 |
+
+X:M 的逐行保留数量满足 8 或 16，N:M 和 Top-K 的基数检查准确通过。Sanger 在本次随机合成输入和阈值下没有产生稀疏性，这只是 smoke test 观测，不能作为方法效果结论。
+
+tiny 模型端到端结果：
+
+| 模型 | 参数量 | Dense loss | X:M loss | X:M backward loss |
+|---|---:|---:|---:|---:|
+| Llama | 90,432 | 4.841329 | 4.838814 | 4.838814 |
+| BLOOM | 108,416 | 4.860696 | 4.860834 | 4.860834 |
+
+固定随机种子为 `20260903`。CPU tiny-model smoke test 的两次独立运行得到相同结果。HF tiny Llama 在 WikiText 上的 smoke perplexity 为 `32102.001953125`；由于使用随机 tiny 权重和两个样本，该数值只证明加载及评估链路可执行，不代表模型质量。
+
+本轮新增的可复用入口：
+
+- `DynaX/smoke_sparse_attention.py`：核心稀疏算法验证。
+- `DynaX/smoke_tiny_models.py`：tiny Llama/BLOOM 端到端验证。
+- `DynaX/models/utils/runtime_config.py`：支持用 `DYNAX_CONFIG_PATH` 选择候选专属配置。
+- `DynaX/tests/` 与 `DynaX/pytest.ini`：正式 golden suite，覆盖运行时配置、Dense/N:M/X:M、非法配置、tiny Llama/BLOOM 与可选 CUDA 路径。
+- `slurm/setup_dynax_env.slurm`：在 scratch 创建固定版本环境。
+- `slurm/dynax_gpu_smoke.slurm`：GPU 核心验证。
+- `slurm/dynax_tiny_model_cpu_smoke.slurm` 和 `slurm/dynax_tiny_model_smoke.slurm`：CPU/GPU 模型级验证。
+- `slurm/dynax_tiny_eval_cpu.slurm`：真实模型与数据集加载 smoke test。
+- `slurm/dynax_pytest_cpu.slurm` 和 `slurm/dynax_pytest_gpu.slurm`：在 CPU/GPU 分区执行正式 suite 并保存 JUnit 报告。
+- `slurm/setup_fast_env.slurm`：在 scratch 创建 Python 3.12 的 CHIA/FAST 隔离环境。
+- `slurm/fast_chia_smoke.slurm`：执行 FAST 单元测试和真实的五节点 CHIA/Ray task graph。
+- `FAST/fast/`：五 Agent schema、Agent 实现、adapter 边界、CHIA node、SQLite 内容哈希缓存和本地 CLI。
+- `FAST/configs/chia/fast-gcp.yaml.example`：不含凭据的 GCP CPU worker 模板。
+
+运行产物位置：
+
+```text
+/scratch/gz2522/gz2522/tmp/micro-hackthon/
+├── env/dynax-py312/
+├── env/fast-py312/
+├── cache/huggingface/
+└── runs/
+    ├── core_16902825/result.json
+    ├── e2e_cpu_16903641/result.json
+    ├── pytest_cpu_16904851/junit.xml
+    ├── pytest_gpu_16904852/junit.xml
+    ├── fast_framework_smoke/{fast.db,report.json}
+    └── fast_chia_smoke_16905643/{junit.xml,report.json}
+```
+
+本轮修复内容：
+
+- 修复 `train_llama.py` 和 `train_bloom.py` 的 `else if` 语法错误。
+- 删除未定义 `model_path` 的重复 tokenizer 加载，补充 `train_num` 参数。
+- 将 checkpoint 恢复参数移动到 `trainer.train()` 的正确位置。
+- 修复 BLOOM attention 中未定义的 `attn_bias` 和 `bits_w`。
+- 移除 DynaX Python 路径中的硬编码 `.cuda()`，统一按张量或模型设备执行。
+- 修正 perplexity 的 batch 设备、label 设备和实际 token 分母。
+- 为评估增加 `max_samples`，支持低成本 smoke test。
+- 评估和 LoRA merge 捕获异常后会重新抛出，避免失败被报告为成功。
+- 为 N:M、X:M、Top-K 增加基本参数与形状检查。
+- 显式继承 `GenerationMixin`，保持后续 Transformers 兼容性。
+
+仍未完成或不能过度宣称的内容：
+
+- 早期模型级 tiny GPU 作业曾因项目账户 `QOSGrpGRES` 配额被阻塞并取消；随后正式 CUDA suite 已在 L40S 上完成，因此模型级 CUDA 前向与 backward 现已有自动化证据。
+- 尚未下载或运行 Llama-3-8B、BLOOM-7B1，也未产生可用于论文结论的 perplexity/accuracy 数据。
+- 模型级量化 attention 尚未完成端到端验证。
+- 稀疏统计仍依赖进程内全局计数器；当前通过候选独立运行目录隔离，但尚未重构为显式结果对象。
+- X:M 的 `n1=16`、`n2=8`、`m=64` 仍为实现内常量。
+- 正式 pytest golden suite 已建立，CPU suite 与模型级 CUDA suite 均通过；尚未覆盖目标规模模型与长序列。
+- FAST 已有 schema 版本、配置哈希、SQLite 缓存和本地单候选控制闭环，但完整 manifest 与真实 DynaX/Verilator adapter 尚未完成。
+- Chisel/Verilator 工程仍未开始，当前 µArch Agent 只验证“未认证模板必须被拒绝”的控制门限。
 
 ## 3. 初步审计结论
 
@@ -71,16 +179,19 @@ MICRO_Hackthon/
 
 DynaX 提供了动态 X:M 稀疏注意力的训练、评估和部分硬件实现，但暂时不能直接作为自动化设计空间探索的可靠基线。
 
-已发现的问题包括：
+首次审计问题及当前状态：
 
-- `train_llama.py` 和 `train_bloom.py` 存在非法 Python 语法 `else if`。
-- 训练脚本引用未定义的 `model_path` 和未注册的 `args.train_num`。
-- 部分代码硬编码 `.cuda()`，CPU 模式和多设备执行容易发生张量设备冲突。
-- 稀疏注意力实现使用共享全局计数器和共享日志文件，不支持多个候选安全并行运行。
-- X:M 实现中存在固定的 `n1=16`、`n2=8`、`m=64`，与外部配置不完全一致。
-- 模型在 attention forward 中反复读取共享的 `configs/config.json`，并行 DSE 时会产生配置竞争。
-- 部分评估脚本捕获异常后仍可能以成功状态退出，使编排器误判实验结果。
-- 需要重点检查自定义 attention 在推理时是否错误地持续启用 dropout。
+| 问题 | 当前状态 |
+|---|---|
+| `train_llama.py` 和 `train_bloom.py` 使用非法语法 `else if` | 已修复并通过语法检查 |
+| 训练脚本引用未定义的 `model_path` 和未注册的 `args.train_num` | 已修复 |
+| 多处硬编码 `.cuda()`，造成 CPU 和多设备冲突 | 已移除；CPU 模型链路和 GPU 核心链路已验证 |
+| 模型反复读取共享 `configs/config.json` | 已支持 `DYNAX_CONFIG_PATH`；runner 使用候选独立副本 |
+| 评估和 merge 捕获异常后仍以成功状态退出 | 已改为重新抛出异常 |
+| BLOOM attention 引用未定义 `attn_bias` 和 `bits_w` | 已修复，并通过 tiny BLOOM 前向和 backward |
+| 稀疏 attention 使用共享全局计数器和日志 | 待重构；当前仅通过独立进程和运行目录隔离 |
+| X:M 固定 `n1=16`、`n2=8`、`m=64`，与外部配置不完全一致 | 待参数化 |
+| 自定义 attention 的训练/推理 dropout 语义 | 已在 `eval()`、dropout=0 的 smoke test 覆盖；仍需针对非零 dropout 写正式测试 |
 
 ### 3.2 DynaX 硬件实现
 
@@ -104,7 +215,11 @@ DynaX 提供了动态 X:M 稀疏注意力的训练、评估和部分硬件实现
 - Verilator 与综合结果反馈。
 - 子模块并行评估。
 
-FAST 仍需自行实现 Kernel、Compiler、µArch、Evaluator、Critic 五类角色的数据协议和控制逻辑。
+FAST 必须在项目侧实现 Kernel、Compiler、µArch、Evaluator、Critic 五类角色的数据协议和控制逻辑，而不是修改 CHIA 上游核心来硬编码本项目流程。
+
+当前已完成第一版五 Agent 控制框架：五类角色使用版本化、JSON-safe 的类型协议，CHIA driver 仅作为控制平面而不计为第六个 Agent；`ChiaFunction` 节点通过逻辑资源标签在执行时映射到本地、Slurm 所在节点或 GCP worker。该版本已经验证门限、Critic 证据约束和完整报告缓存，但 deterministic adapter 只用于验证编排，不能作为论文实验结果。
+
+CHIA 仓库已确认原生提供 `gcp_nodes` 创建/销毁、GCP 集群 YAML、ADC/SSH 两层认证与异构 Ray worker 资源路由。新增的 `fast-gcp.yaml.example` 已通过 CHIA `load_config` 解析验证。因此后续 GCP 接入不需要改写五个 Agent，只需替换 backend adapter 和集群资源映射。实际 GCP 实例尚未创建，镜像/环境安装、费用告警和自动关机仍需在 provisioning 前完成。
 
 ### 3.4 基础设施约束
 
@@ -410,6 +525,17 @@ runs/<experiment_id>/<candidate_id>/
 
 ## 8. 资源使用方案
 
+### NYU Torch Slurm 集群
+
+本轮算法基线实际使用该集群完成。约定如下：
+
+- 使用项目账户 `torch_pr_674_tandon_advanced`。
+- CPU 设置与 smoke test 使用 `cpu_short`。
+- GPU 候选分区为 `h200_tandon,l40s_public,h100_tandon,a100_tandon`。
+- 环境、Hugging Face 缓存、模型和实验产物统一放置在 `/scratch/gz2522/gz2522/tmp/micro-hackthon`。
+- 代码保留在 `/home/gz2522/Micro-Hackthon`，不在 home 下保存大模型和虚拟环境。
+- 遇到 `QOSGrpGRES` 时不得绕过调度器；保留 CPU smoke 结果，等待项目 GPU 配额释放后再提交。
+
 ### 本地机器
 
 用于：
@@ -464,6 +590,7 @@ runs/<experiment_id>/<candidate_id>/
 | Critic 产生无证据建议 | 无法证明跨层反馈价值 | 每条建议必须引用指标和归因字段 |
 | 直接运行昂贵后端 | 快速耗尽预算 | 使用 L0–L4 多保真门控和 Top-K 晋级 |
 | GCP 无免费 GPU | 无法运行完整模型 | 本地小模型开发，另行安排大显存 GPU |
+| Slurm 项目 GPU 配额占满 | GPU 模型级 smoke 延迟 | 先完成 CPU 端到端与 GPU 核心验证，待 `QOSGrpGRES` 释放后补跑 |
 | FireSim 不在 GCP 上 | 基础设施不匹配 | 将 AWS FireSim 作为独立最终阶段 |
 | Hammer 缺少许可证/PDK | 无法获得签核 PPA | 使用开源代理值并明确实验限制 |
 
@@ -486,26 +613,27 @@ runs/<experiment_id>/<candidate_id>/
 
 下一轮实施按以下顺序进行：
 
-1. 创建 `FAST/` 工程骨架及实验 schema。
-2. 为 DynaX 创建工作分支，修复阻断运行的问题。
-3. 建立 tiny 模型 Dense 与 X:M smoke test。
-4. 加入独立运行目录、manifest、退出码和可复现性记录。
-5. 建立 Chisel 工程并首先验证一个最小模块。
-6. 在本地端到端闭环稳定后，再启动 GCP CPU 实例。
+1. 审查本轮 DynaX 修改，为其创建独立工作分支并提交可回滚的阶段 0 基线。
+2. CPU 与 CUDA 正式 pytest golden suite 已完成；下一步把 JUnit、GPU 型号与配置哈希收入完整 manifest。
+3. 重构稀疏统计全局变量，并把稀疏率、索引和日志作为显式结果写入候选目录。
+4. tiny Llama/BLOOM 模型级 CUDA 前向与 backward 已完成；下一步扩展到选定的公开基线模型与序列长度。
+5. 使用同一公开小模型和固定 WikiText 样本比较 Dense 与 X:M perplexity，而不是使用随机 tiny 权重得出质量结论。
+6. `FAST/` 工程骨架、实验 schema、配置哈希、缓存与五 Agent deterministic 闭环已完成；下一步实现真实 DynaX adapter 和完整 manifest。
+7. 建立 Chisel 工程并首先验证一个最小模块。
+8. 本地与 Slurm 单候选闭环稳定后，再决定是否启动 GCP CPU 实例。
 
-第一阶段完成前不执行大模型下载、大规模云端搜索或 FireSim 部署。
+阶段 0 尚未完全验收前，不执行大模型下载、大规模云端搜索或 FireSim 部署。
 
 ## 12. 第一阶段完成定义
 
 满足以下条件后，项目才进入云端 DSE：
 
-- [ ] DynaX Python 源码通过语法检查。
-- [ ] Dense 与 X:M tiny 模型测试通过。
-- [ ] CPU/GPU 设备处理一致，没有硬编码设备依赖。
-- [ ] 每个候选拥有独立配置、日志和结果目录。
-- [ ] 所有失败都有非零退出码和结构化错误。
+- [x] DynaX Python 源码通过语法检查。
+- [x] Dense 与 X:M tiny 模型测试通过（CPU 前向和 backward）。
+- [x] 已移除硬编码 `.cuda()`；CPU 模型链路、A100 核心链路和 L40S 模型级 CUDA suite 均通过。
+- [x] 当前 Slurm runner 为每个候选使用独立配置、日志和结果目录。
+- [ ] 所有失败都有非零退出码和结构化错误（非零退出已完成，结构化错误 JSON 尚未完成）。
 - [ ] 至少一个 Chisel 模块通过软件 golden test。
 - [ ] Verilator 可以由脚本非交互运行。
 - [ ] FAST 单候选闭环能够生成完整 manifest。
 - [ ] 云端费用、并发和自动关机策略已经配置。
-

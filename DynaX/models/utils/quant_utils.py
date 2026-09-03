@@ -33,12 +33,12 @@ def calc_max_quant_value(bits):
 def quantize(input, scale, bits):
     """Do linear quantization to input according to a scale and number of bits"""
     thresh = calc_max_quant_value(bits)
-    return input.mul(scale.cuda()).round().clamp(-thresh, thresh)
+    return input.mul(scale.to(input.device)).round().clamp(-thresh, thresh)
 
 
 def dequantize(input, scale):
     """linear dequantization according to some scale"""
-    return input.div(scale.cuda())
+    return input.div(scale.to(input.device))
 
 
 # TODO(ofir) future work, implement a layer that uses this function that gives a more comfortable

@@ -28,6 +28,7 @@ def merge_lora_to_LLM(model_name_or_path, adapter_name_or_path, save_path):
 
     except Exception as e:
         print(f"An error occurred: {e}")
+        raise
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Merge LoRA adapter with a pre-trained language model.")

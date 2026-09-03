@@ -1,0 +1,47 @@
+# FAST GCP CPU worker template. It contains no project IDs or credentials.
+# Required environment: HEAD_IP, FAST_SSH_USER, GCP_PROJECT,
+# GCP_PRIVATE_KEY_PATH. Run `chia up --dry-run` before provisioning.
+
+cluster_name: fast-gcp
+
+provider:
+    head_ip: ${HEAD_IP}
+
+auth:
+    ssh_user: ${FAST_SSH_USER}
+    ssh_private_key: ${GCP_PRIVATE_KEY_PATH}
+
+gcp_nodes:
+    project: ${GCP_PROJECT}
+    zone: us-central1-a
+    fast_cpu_worker:
+        machine_type: c3-standard-8
+        count: 1
+        image: projects/ubuntu-os-cloud/global/images/family/ubuntu-2204-lts
+        disk_size_gb: 50
+        spot: true
+        ssh_user: ${FAST_SSH_USER}
+        ssh_private_key: ${GCP_PRIVATE_KEY_PATH}
+
+available_node_types:
+    fast_head:
+        resources: {"fast_head": 1}
+        num_workers: 1
+        compatible_ips: ["${HEAD_IP}"]
+        worker_env_commands: ["source ~/.bashrc && conda activate fast_env"]
+
+    fast_cpu_worker:
+        resources: {"fast_cpu": 8, "fast_chisel": 1, "fast_verilator": 4}
+        num_workers: 1
+        compatible_ips: ["@fast_cpu_worker:0"]
+        worker_env_commands: ["source ~/.bashrc && conda activate fast_env"]
+
+head_env_commands: ["source ~/.bashrc && conda activate fast_env"]
+
+head_start_ray_commands:
+    - ray stop
+    - ray start --head --port=6379 --dashboard-agent-listen-port=0 --resources='{"fast_head":1}'
+
+worker_start_ray_commands:
+    - ray stop
+    - ray start --address=$RAY_HEAD_IP:6379 --dashboard-agent-listen-port=0

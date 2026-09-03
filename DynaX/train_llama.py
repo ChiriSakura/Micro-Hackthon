@@ -35,8 +35,6 @@ def load_and_tokenize_dataset(dataset_name, tokenizer, train_num):
     if(dataset_name == "wiki"):
         train_dataset = load_dataset('wikitext', 'wikitext-2-raw-v1', split='train')
         validation_dataset = load_dataset('wikitext', 'wikitext-2-raw-v1', split='validation')
-        tokenizer = AutoTokenizer.from_pretrained(model_path)
-        tokenizer.pad_token = tokenizer.eos_token
         def tokenize_function(examples):
             return tokenizer(
                 examples["text"],
@@ -47,11 +45,9 @@ def load_and_tokenize_dataset(dataset_name, tokenizer, train_num):
         tokenized_train_dataset = train_dataset.map(tokenize_function, batched=True, remove_columns='text')
         tokenized_validation_dataset = validation_dataset.map(tokenize_function, batched=True, remove_columns='text')
 
-    else if(dataset_name == "ptb"):
+    elif(dataset_name == "ptb"):
         train_dataset = load_dataset("ptb_text_only", "penn_treebank", split="train")
         validation_dataset = load_dataset("ptb_text_only", "penn_treebank", split="validation")
-        tokenizer = AutoTokenizer.from_pretrained(model_path)
-        tokenizer.pad_token = tokenizer.eos_token
         def tokenize_function(examples):
             return tokenizer(
                 examples["sentence"],
@@ -62,11 +58,9 @@ def load_and_tokenize_dataset(dataset_name, tokenizer, train_num):
         tokenized_train_dataset = train_dataset.map(tokenize_function, batched=True, remove_columns='sentence')
         tokenized_validation_dataset = validation_dataset.map(tokenize_function, batched=True, remove_columns='sentence')
 
-    else if(dataset_name == "c4"):
+    elif(dataset_name == "c4"):
         train_dataset = load_dataset('allenai/c4', 'allenai--c4', data_files={'train': 'en/c4-train.00000-of-01024.json.gz'}, split='train')
         validation_dataset = load_dataset('allenai/c4', 'allenai--c4', data_files={'validation': 'en/c4-validation.00000-of-00008.json.gz'}, split='validation')
-        tokenizer = AutoTokenizer.from_pretrained(model_path)
-        tokenizer.pad_token = tokenizer.eos_token
         def tokenize_function(examples):
             return tokenizer(
                 examples["text"],
@@ -77,6 +71,13 @@ def load_and_tokenize_dataset(dataset_name, tokenizer, train_num):
         tokenized_train_dataset = train_dataset.map(tokenize_function, batched=True, remove_columns='text')
         tokenized_validation_dataset = validation_dataset.map(tokenize_function, batched=True, remove_columns='text')
 
+    else:
+        raise ValueError(f"Unsupported dataset: {dataset_name}")
+
+    if train_num is not None:
+        tokenized_train_dataset = tokenized_train_dataset.select(
+            range(min(train_num, len(tokenized_train_dataset)))
+        )
     return tokenized_train_dataset, tokenized_validation_dataset
 
 def main(args):
@@ -95,12 +96,12 @@ def main(args):
         task_type=TaskType.CAUSAL_LM,
         r=8,
         lora_alpha=16,
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj"],
+        target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
         lora_dropout=0.05,
         bias="none",
     )
 
-    model.add_adapter(lora_config)
+    model = get_peft_model(model, lora_config)
 
     latest_checkpoint = None
     if os.path.exists(args.out_model_path):
@@ -127,7 +128,6 @@ def main(args):
         max_steps=-1,
         save_steps=1000,
         logging_steps=200,
-        resume_from_checkpoint=latest_checkpoint,
     )
 
     trainer = Trainer(
@@ -138,7 +138,7 @@ def main(args):
         data_collator=DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False),
     )
 
-    trainer.train()
+    trainer.train(resume_from_checkpoint=latest_checkpoint)
     trainer.save_model(args.out_model_path)
 
     eval_results = trainer.evaluate()
@@ -153,6 +153,8 @@ if __name__ == "__main__":
     parser.add_argument("--train_batch_size", type=int, default=train_batch_size)
     parser.add_argument("--eval_batch_size", type=int, default=eval_batch_size)
     parser.add_argument("--epochs", type=int, default=epochs)
+    parser.add_argument("--train_num", type=int, default=None,
+                        help="Optional number of tokenized training examples for a smoke run.")
     args = parser.parse_args()
 
     main(args)

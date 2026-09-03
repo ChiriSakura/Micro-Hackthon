@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fast-codesign"
+version = "0.1.0"
+description = "CHIA-based five-agent co-design loop for dynamic sparse attention"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+chia = ["chialoops==1.0.1"]
+test = ["pytest>=8,<9"]
+
+[project.scripts]
+fast-smoke = "fast.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["fast*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

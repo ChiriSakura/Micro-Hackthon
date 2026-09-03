@@ -19,8 +19,7 @@
 # limitations under the License.
 
 
-import os
-import math, json
+import math
 from typing import List, Optional, Tuple, Union
 
 import torch
@@ -31,6 +30,7 @@ from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss, MSELoss
 
 from transformers.activations import ACT2FN
 from transformers.cache_utils import Cache, DynamicCache, StaticCache
+from transformers.generation import GenerationMixin
 from transformers.modeling_attn_mask_utils import AttentionMaskConverter
 from transformers.modeling_outputs import (
     BaseModelOutputWithPast,
@@ -52,6 +52,7 @@ from transformers.utils import (
 from transformers.models.llama.configuration_llama import LlamaConfig
 
 from models.utils.quant_utils import build_quant_matmul
+from models.utils.runtime_config import load_dynax_config
 from models.utils.sparse_attention import quant_qk_matmul, prune_attn_scores
 
 
@@ -262,8 +263,7 @@ def scaled_dot_product_attention(query, key, value, attn_mask=None, dropout_p=0.
 
     attn_weight = query @ key.transpose(-2, -1) * scale_factor 
 
-    with open("configs/config.json", 'r', encoding='utf-8') as file:
-        config_data  = json.load(file)
+    config_data = load_dynax_config()
     is_sparse = config_data["is_sparse"]
     is_quant = config_data["is_quant"]
     sparse_methed = config_data["sparse_methed"]
@@ -276,7 +276,7 @@ def scaled_dot_product_attention(query, key, value, attn_mask=None, dropout_p=0.
     topk = config_data["topk"]
     if (is_sparse):
         batch_size, head_num, seqlen, seqlen = attn_weight.shape
-        temp_mask = torch.zeros(batch_size, 1, 1, seqlen)
+        temp_mask = torch.zeros(batch_size, 1, 1, seqlen, device=query.device)
         if(is_quant):
             if(quant_methed == "1_4_6bit"):
                 quant_attention = quant_qk_matmul(quant_methed, query, key.transpose(-2, -1), build_quant_matmul(w=6)) * scale_factor
@@ -287,7 +287,17 @@ def scaled_dot_product_attention(query, key, value, attn_mask=None, dropout_p=0.
                 exit()
         else:
             quant_attention = attn_weight
-        sparsity_mask = prune_attn_scores(quant_attention+attn_bias, temp_mask.cuda(), threshold_0, threshold_1, m, n, topk, threshold, sparse_methed)
+        sparsity_mask = prune_attn_scores(
+            quant_attention + attn_bias,
+            temp_mask,
+            threshold_0,
+            threshold_1,
+            m,
+            n,
+            topk,
+            threshold,
+            sparse_methed,
+        )
         attn_weight += sparsity_mask
 
     attn_weight += attn_bias
@@ -999,7 +1009,7 @@ class LlamaModel(LlamaPreTrainedModel):
             use_cache = False
 
         if inputs_embeds is None:
-            inputs_embeds = self.embed_tokens(input_ids.cuda())
+            inputs_embeds = self.embed_tokens(input_ids.to(self.embed_tokens.weight.device))
 
         return_legacy_cache = False
         if use_cache and not isinstance(past_key_values, Cache):  # kept for BC (non `Cache` `past_key_values` inputs)
@@ -1164,7 +1174,7 @@ class LlamaModel(LlamaPreTrainedModel):
         return causal_mask
 
 
-class LlamaForCausalLM(LlamaPreTrainedModel):
+class LlamaForCausalLM(LlamaPreTrainedModel, GenerationMixin):
     _tied_weights_keys = ["lm_head.weight"]
 
     def __init__(self, config):
