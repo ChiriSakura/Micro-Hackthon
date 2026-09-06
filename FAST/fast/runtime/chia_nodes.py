@@ -11,6 +11,7 @@ from chia.base.ChiaFunction import ChiaFunction
 
 from fast.agents import CompilerAgent, CriticAgent, EvaluatorAgent, KernelAgent, UArchAgent
 from fast.adapters.base import EvaluationAdapter, KernelAdapter
+from fast.adapters.synthesis import SynthesisResult, YosysSynthesisAdapter
 from fast.schemas.models import (
     CompilerSchedule,
     Critique,
@@ -67,3 +68,21 @@ RESOURCE_LABELS = {
     "evaluator": {"fast_verilator": 1.0},
     "critic": {"fast_head": 0.01},
 }
+
+
+# 综合不属于五个 Agent 中的任何一个：它是 Evaluator 的一个证据来源，
+# 但资源画像完全不同——CPU 密集、单模块之间彼此独立、一次几秒到几分钟。
+# 所以它是自己的节点，可以并行铺开到任意 worker 上。
+#
+# `resources={"synthesis": 1}` 让集群配置决定它落在哪里：本地 Ray、
+# Slurm 计算节点，或 GCP worker。节点自己不知道也不需要知道。
+@ChiaFunction(num_cpus=4, max_retries=1, resources={"synthesis": 1})
+def synthesis_node(
+    adapter: YosysSynthesisAdapter,
+    verilog: str,
+    top_module: str,
+) -> SynthesisResult:
+    """综合一个模块，返回工具量出来的单元面积。"""
+    from pathlib import Path
+
+    return adapter.synthesize(Path(verilog), top_module)

@@ -1,0 +1,514 @@
+<title>__TITLE__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap">
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-0: #f4f6f9;
+    --surface-1: #ffffff;
+    --surface-2: #eef1f6;
+    --border:    #dbe1ea;
+    --grid:      #e8ecf3;
+    --text-primary:   #0d1117;
+    --text-secondary: #4a5567;
+    --text-muted:     #77839a;
+    --series-1: #2a78d6;
+    --series-2: #eb6834;
+    --dominated: #a9a7a0;
+    --seq-100: #cde2fb; --seq-200: #9ec5f4; --seq-300: #6da7ec; --seq-400: #3987e5;
+    --seq-500: #256abf; --seq-600: #184f95; --seq-700: #0d366b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-0: #0e1116;
+      --surface-1: #171b22;
+      --surface-2: #1e232c;
+      --border:    #2b323d;
+      --grid:      #232932;
+      --text-primary:   #eef2f8;
+      --text-secondary: #a7b2c4;
+      --text-muted:     #6f7c92;
+      --series-1: #3987e5;
+      --series-2: #d95926;
+      --dominated: #6b6a63;
+    }
+  }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --surface-0: #0e1116;
+    --surface-1: #171b22;
+    --surface-2: #1e232c;
+    --border:    #2b323d;
+    --grid:    #232932;
+    --text-primary:   #eef2f8;
+    --text-secondary: #a7b2c4;
+    --text-muted:     #6f7c92;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --dominated: #6b6a63;
+  }
+
+  body { margin: 0; }
+  .viz-root {
+    background: var(--surface-0);
+    color: var(--text-primary);
+    font: 14px/1.55 "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-variant-numeric: tabular-nums;
+    padding: 32px 24px 64px;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--series-1); margin: 0 0 10px;
+  }
+  header h1 {
+    font-size: clamp(26px, 3.4vw, 34px); font-weight: 600; letter-spacing: -0.025em;
+    line-height: 1.15; margin: 0 0 10px; text-wrap: balance;
+  }
+  header p.lede { margin: 0; color: var(--text-secondary); max-width: 66ch; font-size: 15px; }
+  .meta {
+    margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px 26px;
+  }
+  .meta div { min-width: 0; }
+  .meta dt {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px;
+  }
+  .meta dd {
+    margin: 0; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12.5px;
+    color: var(--text-secondary); overflow-wrap: anywhere;
+  }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 26px 0 18px; }
+  .controls label { color: var(--text-secondary); font-size: 12.5px; margin-right: 4px; }
+  .controls select {
+    font: inherit; font-size: 13px; color: var(--text-primary); background: var(--surface-1);
+    border: 1px solid var(--border); border-radius: 6px; padding: 6px 9px; max-width: 100%;
+  }
+  .controls select:focus-visible { outline: 2px solid var(--series-1); outline-offset: 2px; }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-bottom: 26px; }
+  .tile { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .tile .k {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10.5px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted);
+  }
+  .tile .v { font-size: 30px; font-weight: 600; letter-spacing: -0.03em; margin-top: 8px; line-height: 1.05; }
+  .tile .s {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12px; color: var(--text-secondary); margin-top: 5px; overflow-wrap: anywhere;
+  }
+
+  .card {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px 18px 12px; margin-bottom: 20px;
+  }
+  .card .stage {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 6px;
+  }
+  .card h2 { font-size: 16.5px; font-weight: 600; letter-spacing: -0.012em; margin: 0 0 4px; }
+  .card p.sub { font-size: 12.5px; color: var(--text-secondary); margin: 0 0 14px; max-width: 80ch; }
+  .scroll { overflow-x: auto; }
+  svg { display: block; max-width: 100%; }
+  svg text {
+    fill: var(--text-secondary); font-size: 11px;
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  svg text.value { fill: var(--text-primary); font-size: 11px; font-weight: 500; }
+  svg text.axis-title { fill: var(--text-muted); font-size: 11px; }
+  .gridline { stroke: var(--grid); stroke-width: 1; }
+  .axis { stroke: var(--border); stroke-width: 1; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; margin: 0 0 12px; font-size: 12.5px; color: var(--text-secondary); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  .ramp { display: inline-flex; align-items: center; gap: 6px; }
+  .ramp i { width: 20px; height: 10px; display: inline-block; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+  th, td { padding: 7px 10px; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { color: var(--text-muted); font-weight: 560; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; }
+  tbody tr.front td { font-weight: 600; }
+  tbody tr.failed td { color: var(--text-muted); }
+  td.mono, th.mono { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+  tbody tr:hover td { background: var(--surface-2); }
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--series-1); margin-right: 6px; vertical-align: middle; }
+
+  .tip {
+    position: fixed; pointer-events: none; z-index: 20; opacity: 0; transition: opacity .1s;
+    background: var(--surface-1); color: var(--text-primary); border: 1px solid var(--border);
+    border-radius: 7px; padding: 9px 11px; font-size: 12px; box-shadow: 0 6px 20px rgba(13,17,23,.16);
+    max-width: 260px;
+  }
+  .tip b { font-weight: 600; font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .tip .row { display: flex; justify-content: space-between; gap: 14px; color: var(--text-secondary); }
+  .tip .row span:last-child { color: var(--text-primary); font-variant-numeric: tabular-nums; }
+  footer {
+    color: var(--text-muted); font-size: 12px; margin-top: 30px; padding-top: 16px;
+    border-top: 1px solid var(--border); max-width: 78ch;
+  }
+  @media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
+</style>
+
+<div class="viz-root">
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">DynaX &middot; kernel-stage measurement</p>
+      <h1 id="title">__TITLE__</h1>
+      <p class="lede" id="lede"></p>
+      <dl class="meta" id="meta"></dl>
+    </header>
+
+    <div class="controls">
+      <label for="runsel">Run</label>
+      <select id="runsel"></select>
+    </div>
+
+    <div class="tiles" id="tiles"></div>
+
+    <section class="card">
+      <p class="stage">Design-space frontier</p>
+      <h2>Sparsity versus quality loss</h2>
+      <p class="sub">Each point is one attention configuration measured against the same dense baseline on the
+        same token windows. Up and to the right is worse quality at more sparsity; the frontier holds the
+        configurations nothing else beats on both axes at once.</p>
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--series-1)"></i>On the Pareto frontier</span>
+        <span><i class="swatch" style="background:var(--dominated)"></i>Dominated</span>
+      </div>
+      <div class="scroll"><svg id="pareto" role="img" aria-label="Sparsity versus perplexity loss"></svg></div>
+    </section>
+
+    <section class="card">
+      <p class="stage">Accuracy cost</p>
+      <h2>Quality loss by configuration</h2>
+      <p class="sub">Relative perplexity increase over the dense baseline. Lower is better; negative means the
+        pruned model scored slightly better than dense on this sample.</p>
+      <div class="scroll"><svg id="lossbar" role="img" aria-label="Relative perplexity loss by method"></svg></div>
+    </section>
+
+    <section class="card">
+      <p class="stage">Measured mask density</p>
+      <h2>Achieved sparsity by configuration</h2>
+      <p class="sub">Fraction of attention scores actually pruned, measured on the emitted mask rather than
+        assumed from the method's nominal ratio.</p>
+      <div class="scroll"><svg id="sparsebar" role="img" aria-label="Achieved sparsity by method"></svg></div>
+    </section>
+
+    <section class="card" id="heatcard">
+      <p class="stage">Per-layer behaviour</p>
+      <h2>Retained fraction per decoder layer</h2>
+      <p class="sub">Mean fraction of attention scores kept, per layer. A flat row is a static budget; variation
+        across layers is the dynamic behaviour the hardware has to absorb.</p>
+      <div class="legend"><span class="ramp">Kept 0%<i style="background:var(--seq-100)"></i><i style="background:var(--seq-200)"></i><i style="background:var(--seq-300)"></i><i style="background:var(--seq-400)"></i><i style="background:var(--seq-500)"></i><i style="background:var(--seq-600)"></i><i style="background:var(--seq-700)"></i>higher</span></div>
+      <div class="scroll"><svg id="heat" role="img" aria-label="Retained fraction per layer"></svg></div>
+    </section>
+
+    <section class="card">
+      <p class="stage">Full record</p>
+      <h2>Measurements</h2>
+      <p class="sub">Every number the charts are drawn from. Bold rows are on the Pareto frontier.</p>
+      <div class="scroll"><table id="table"></table></div>
+    </section>
+
+    <footer id="footer"></footer>
+  </div>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const tip = document.getElementById('tip');
+const fmtPct = (v, d = 2) => (v * 100).toFixed(d) + '%';
+const SEQ = ['--seq-100','--seq-200','--seq-300','--seq-400','--seq-500','--seq-600','--seq-700'];
+
+function showTip(evt, html) {
+  tip.innerHTML = html;
+  tip.style.opacity = '1';
+  const pad = 14, r = tip.getBoundingClientRect();
+  let x = evt.clientX + pad, y = evt.clientY + pad;
+  if (x + r.width > window.innerWidth - 8) x = evt.clientX - r.width - pad;
+  if (y + r.height > window.innerHeight - 8) y = evt.clientY - r.height - pad;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+}
+const hideTip = () => { tip.style.opacity = '0'; };
+
+function el(tag, attrs = {}, text) {
+  const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+function bind(node, html) {
+  node.addEventListener('mousemove', (e) => showTip(e, html));
+  node.addEventListener('mouseleave', hideTip);
+  node.style.cursor = 'default';
+}
+function tipRows(pairs) {
+  return pairs.map(([k, v]) => `<div class="row"><span>${k}</span><span>${v}</span></div>`).join('');
+}
+
+function niceTicks(min, max, count) {
+  const span = (max - min) || 1;
+  const raw = span / count;
+  const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw) || mag * 10;
+  const out = [];
+  for (let v = Math.floor(min / step) * step; v <= max + step * 1e-9; v += step) out.push(v);
+  return out;
+}
+
+function drawPareto(run) {
+  const svg = document.getElementById('pareto');
+  svg.innerHTML = '';
+  const rows = run.rows.filter(r => r.status === 'passed' && r.method !== 'dense' && r.relative_loss != null);
+  if (!rows.length) return;
+  const W = Math.max(560, Math.min(1080, svg.parentNode.clientWidth || 900)), H = 400;
+  const m = { t: 18, r: 26, b: 52, l: 62 };
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+
+  const xs = rows.map(r => r.sparsity * 100), ys = rows.map(r => r.relative_loss * 100);
+  const xTicks = niceTicks(Math.min(...xs) - 3, Math.max(...xs) + 3, 5);
+  const yTicks = niceTicks(Math.min(0, Math.min(...ys)) - 1, Math.max(...ys) + 2, 5);
+  const x0 = xTicks[0], x1 = xTicks[xTicks.length - 1], y0 = yTicks[0], y1 = yTicks[yTicks.length - 1];
+  const X = v => m.l + (v - x0) / (x1 - x0) * (W - m.l - m.r);
+  const Y = v => H - m.b - (v - y0) / (y1 - y0) * (H - m.t - m.b);
+
+  for (const t of yTicks) {
+    svg.appendChild(el('line', { x1: m.l, x2: W - m.r, y1: Y(t), y2: Y(t), class: 'gridline' }));
+    svg.appendChild(el('text', { x: m.l - 9, y: Y(t) + 4, 'text-anchor': 'end' }, t.toFixed(0) + '%'));
+  }
+  for (const t of xTicks) {
+    svg.appendChild(el('text', { x: X(t), y: H - m.b + 18, 'text-anchor': 'middle' }, t.toFixed(0) + '%'));
+  }
+  svg.appendChild(el('line', { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, class: 'axis' }));
+  svg.appendChild(el('text', { x: (m.l + W - m.r) / 2, y: H - 8, 'text-anchor': 'middle', class: 'axis-title' },
+    'Attention scores pruned'));
+  svg.appendChild(el('text', { x: 14, y: (m.t + H - m.b) / 2, 'text-anchor': 'middle', class: 'axis-title',
+    transform: `rotate(-90 14 ${(m.t + H - m.b) / 2})` }, 'Perplexity increase vs dense'));
+
+  const front = rows.filter(r => run.pareto.includes(r.method)).sort((a, b) => a.sparsity - b.sparsity);
+  if (front.length > 1) {
+    svg.appendChild(el('polyline', {
+      points: front.map(r => `${X(r.sparsity * 100)},${Y(r.relative_loss * 100)}`).join(' '),
+      fill: 'none', stroke: 'var(--series-1)', 'stroke-width': 2, 'stroke-opacity': 0.45,
+    }));
+  }
+  for (const r of rows) {
+    const onFront = run.pareto.includes(r.method);
+    const cx = X(r.sparsity * 100), cy = Y(r.relative_loss * 100);
+    svg.appendChild(el('circle', { cx, cy, r: 7.5, fill: 'var(--surface-1)' }));
+    const dot = el('circle', {
+      cx, cy, r: 5.5, fill: onFront ? 'var(--series-1)' : 'var(--dominated)',
+      stroke: 'var(--surface-1)', 'stroke-width': 2,
+    });
+    bind(dot, `<b>${r.method}</b>${tipRows([
+      ['Perplexity', r.perplexity.toFixed(4)],
+      ['Δ vs dense', (r.relative_loss * 100).toFixed(2) + '%'],
+      ['Sparsity', fmtPct(r.sparsity)],
+      ['Index entropy', r.entropy.toFixed(3)],
+      ['Block occupancy', r.occupancy.toFixed(3)],
+      ['Kept per row', r.row_kept_min != null ? `${r.row_kept_min.toFixed(0)}–${r.row_kept_max.toFixed(0)}` : '—'],
+    ])}`);
+    svg.appendChild(dot);
+    const above = cy > m.t + 26;
+    svg.appendChild(el('text', {
+      x: cx, y: above ? cy - 12 : cy + 20, 'text-anchor': 'middle',
+      class: onFront ? 'value' : '',
+    }, r.method));
+  }
+}
+
+function drawBars(id, run, pick, format, label, colorFn) {
+  const svg = document.getElementById(id);
+  svg.innerHTML = '';
+  const rows = run.rows.filter(r => r.status === 'passed' && pick(r) != null)
+    .slice().sort((a, b) => pick(a) - pick(b));
+  if (!rows.length) return;
+  const rowH = 27, m = { t: 10, r: 74, b: 34, l: 108 };
+  const W = Math.max(560, Math.min(1080, svg.parentNode.clientWidth || 900));
+  const H = m.t + m.b + rows.length * rowH;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+
+  const values = rows.map(pick);
+  const ticks = niceTicks(Math.min(0, ...values), Math.max(...values), 5);
+  const v0 = Math.min(0, ticks[0]), v1 = ticks[ticks.length - 1];
+  const X = v => m.l + (v - v0) / (v1 - v0) * (W - m.l - m.r);
+
+  for (const t of ticks) {
+    svg.appendChild(el('line', { x1: X(t), x2: X(t), y1: m.t, y2: H - m.b, class: 'gridline' }));
+    svg.appendChild(el('text', { x: X(t), y: H - m.b + 17, 'text-anchor': 'middle' }, format(t)));
+  }
+  svg.appendChild(el('text', { x: (m.l + W - m.r) / 2, y: H - 4, 'text-anchor': 'middle', class: 'axis-title' }, label));
+  const zero = X(0);
+  svg.appendChild(el('line', { x1: zero, x2: zero, y1: m.t, y2: H - m.b, class: 'axis' }));
+
+  rows.forEach((r, i) => {
+    const v = pick(r);
+    const y = m.t + i * rowH + 4, h = rowH - 10;
+    const left = Math.min(zero, X(v)), w = Math.max(2, Math.abs(X(v) - zero));
+    const bar = el('rect', {
+      x: left, y, width: w, height: h, rx: 4,
+      fill: colorFn ? colorFn(r) : 'var(--series-1)',
+    });
+    bind(bar, `<b>${r.method}</b>${tipRows([
+      [label, format(v)],
+      ['Perplexity', r.perplexity != null ? r.perplexity.toFixed(4) : '—'],
+      ['Sparsity', fmtPct(r.sparsity)],
+      ['Wall time', r.wall_seconds != null ? r.wall_seconds.toFixed(1) + ' s' : '—'],
+    ])}`);
+    svg.appendChild(bar);
+    svg.appendChild(el('text', { x: m.l - 10, y: y + h / 2 + 4, 'text-anchor': 'end' }, r.method));
+    svg.appendChild(el('text', {
+      x: v >= 0 ? left + w + 8 : left - 8, y: y + h / 2 + 4,
+      'text-anchor': v >= 0 ? 'start' : 'end', class: 'value',
+    }, format(v)));
+  });
+}
+
+function drawHeat(run) {
+  const card = document.getElementById('heatcard');
+  const svg = document.getElementById('heat');
+  svg.innerHTML = '';
+  const rows = run.rows.filter(r => r.per_layer && Object.keys(r.per_layer).length > 1);
+  if (!rows.length) { card.style.display = 'none'; return; }
+  card.style.display = '';
+  const layers = [...new Set(rows.flatMap(r => Object.keys(r.per_layer)))]
+    .map(Number).sort((a, b) => a - b);
+  const cell = Math.max(16, Math.min(30, Math.floor(900 / layers.length)));
+  const m = { t: 10, r: 12, b: 40, l: 108 };
+  const W = m.l + m.r + layers.length * cell, H = m.t + m.b + rows.length * (cell + 2);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('width', W); svg.setAttribute('height', H);
+
+  const all = rows.flatMap(r => Object.values(r.per_layer));
+  const lo = Math.min(...all), hi = Math.max(...all);
+  const shade = v => SEQ[Math.min(SEQ.length - 1, Math.max(0,
+    Math.round((v - lo) / ((hi - lo) || 1) * (SEQ.length - 1))))];
+
+  rows.forEach((r, i) => {
+    const y = m.t + i * (cell + 2);
+    svg.appendChild(el('text', { x: m.l - 10, y: y + cell / 2 + 4, 'text-anchor': 'end' }, r.method));
+    layers.forEach((layer, j) => {
+      const v = r.per_layer[layer];
+      if (v == null) return;
+      const rect = el('rect', {
+        x: m.l + j * cell + 1, y, width: cell - 2, height: cell, rx: 3,
+        fill: `var(${shade(v)})`,
+      });
+      bind(rect, `<b>${r.method}</b> · layer ${layer}${tipRows([
+        ['Kept', fmtPct(v, 2)],
+        ['Pruned', fmtPct(1 - v, 2)],
+      ])}`);
+      svg.appendChild(rect);
+    });
+  });
+  layers.forEach((layer, j) => {
+    if (layers.length > 14 && layer % 4 !== 0) return;
+    svg.appendChild(el('text', {
+      x: m.l + j * cell + cell / 2, y: H - m.b + 18, 'text-anchor': 'middle',
+    }, layer));
+  });
+  svg.appendChild(el('text', { x: (m.l + W - m.r) / 2, y: H - 6, 'text-anchor': 'middle', class: 'axis-title' },
+    'Decoder layer'));
+}
+
+function drawTiles(run) {
+  const host = document.getElementById('tiles');
+  const dense = run.rows.find(r => r.method === 'dense' && r.status === 'passed');
+  const scored = run.rows.filter(r => r.status === 'passed' && r.method !== 'dense' && r.relative_loss != null);
+  const best = scored.filter(r => run.pareto.includes(r.method))
+    .slice().sort((a, b) => b.sparsity - a.sparsity)[0];
+  const cheapest = scored.slice().sort((a, b) => a.relative_loss - b.relative_loss)[0];
+  const tiles = [
+    ['Dense baseline', dense ? dense.perplexity.toFixed(3) : '—', 'perplexity, ' + run.manifest.dataset],
+    ['Most sparse on frontier', best ? fmtPct(best.sparsity, 1) : '—',
+      best ? `${best.method} · ${(best.relative_loss * 100).toFixed(2)}% quality cost` : '—'],
+    ['Smallest quality cost', cheapest ? (cheapest.relative_loss * 100).toFixed(2) + '%' : '—',
+      cheapest ? `${cheapest.method} · ${fmtPct(cheapest.sparsity, 1)} pruned` : '—'],
+    ['Configurations', String(run.rows.length), `${run.pareto.length} on the frontier`],
+  ];
+  host.innerHTML = tiles.map(([k, v, s]) =>
+    `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${s}</div></div>`).join('');
+}
+
+function drawTable(run) {
+  const table = document.getElementById('table');
+  const head = ['Method', 'Perplexity', 'Δ vs dense', 'Sparsity', 'Index entropy', 'Block occupancy',
+    'Kept per row', 'Attn calls', 'Wall (s)'];
+  const body = run.rows.map(r => {
+    if (r.status !== 'passed') {
+      return `<tr class="failed"><td class="mono">${r.method}</td><td colspan="8">failed — ${r.error || 'no result'}</td></tr>`;
+    }
+    const front = run.pareto.includes(r.method);
+    const delta = r.method === 'dense' ? 'baseline'
+      : (r.relative_loss * 100).toFixed(2) + '%';
+    const kept = r.row_kept_min != null ? `${r.row_kept_min.toFixed(0)}–${r.row_kept_max.toFixed(0)}` : '—';
+    return `<tr class="${front ? 'front' : ''}">
+      <td class="mono">${front ? '<i class="dot"></i>' : ''}${r.method}</td>
+      <td>${r.perplexity.toFixed(4)}</td><td>${delta}</td>
+      <td>${fmtPct(r.sparsity)}</td><td>${r.entropy.toFixed(4)}</td><td>${r.occupancy.toFixed(4)}</td>
+      <td>${kept}</td><td>${r.calls ?? '—'}</td><td>${r.wall_seconds != null ? r.wall_seconds.toFixed(1) : '—'}</td>
+    </tr>`;
+  }).join('');
+  table.innerHTML = `<thead><tr>${head.map((h, i) =>
+    `<th class="${i === 0 ? 'mono' : ''}">${h}</th>`).join('')}</tr></thead><tbody>${body}</tbody>`;
+}
+
+function render(index) {
+  const run = DATA.runs[index];
+  const m = run.manifest;
+  document.getElementById('lede').textContent =
+    `${(m.parameters || 0).toLocaleString()} parameters, ${m.hidden_layers} decoder layers, ` +
+    `${m.attention_heads} attention heads. Every configuration is measured on the same ` +
+    `${m.windows_evaluated} window${m.windows_evaluated === 1 ? '' : 's'} of ${m.sequence_length} tokens ` +
+    `from ${m.dataset}, with the same weights and seed ${m.seed}.` + partial;
+  const partial = run.partial ? ` This run is still in progress: ${run.rows.length} of ` +
+    `${run.rows.length + run.pending_methods.length} configurations measured so far.` : '';
+  const facts = [
+    ['Checkpoint', m.model],
+    ['Precision', `${m.dtype} on ${m.gpu || m.device}`],
+    ['Windows', `${m.windows_evaluated} x ${m.sequence_length} tok of ${m.windows_available}`],
+    ['Seed', String(m.seed)],
+    ['Host', m.slurm_job_id ? `${m.host || '—'} (job ${m.slurm_job_id})` : (m.host || '—')],
+    ['DynaX commit', m.dynax_commit ? m.dynax_commit.slice(0, 12) : '—'],
+  ];
+  document.getElementById('meta').innerHTML = facts
+    .map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+  drawTiles(run);
+  drawPareto(run);
+  drawBars('lossbar', run, r => r.method === 'dense' ? null : r.relative_loss * 100,
+    v => v.toFixed(1) + '%', 'Perplexity increase vs dense',
+    r => run.pareto.includes(r.method) ? 'var(--series-1)' : 'var(--dominated)');
+  drawBars('sparsebar', run, r => r.method === 'dense' ? null : r.sparsity * 100,
+    v => v.toFixed(0) + '%', 'Attention scores pruned');
+  drawHeat(run);
+  drawTable(run);
+  document.getElementById('footer').textContent =
+    `Report generated ${DATA.generated_at} from ${run.source}. ` +
+    `Sparsity, entropy and occupancy are measured on the emitted masks, not assumed from the method's ` +
+    `nominal ratio. Small window counts bound how far these numbers generalise.`;
+}
+
+const select = document.getElementById('runsel');
+DATA.runs.forEach((run, i) => {
+  const option = document.createElement('option');
+  option.value = String(i); option.textContent = run.id;
+  select.appendChild(option);
+});
+select.style.display = DATA.runs.length > 1 ? '' : 'none';
+document.querySelector('.controls').style.display = DATA.runs.length > 1 ? '' : 'none';
+select.addEventListener('change', () => render(Number(select.value)));
+render(0);
+window.addEventListener('resize', () => render(Number(select.value || 0)));
+</script>

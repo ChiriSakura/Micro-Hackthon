@@ -1,3 +1,21 @@
+"""µArch Agent：只组合「已验证」的 Chisel 模板，不生成 RTL。
+
+在流水线里的位置：Kernel → Compiler → **µArch** → Evaluator → Critic。
+
+提案的原话是这个 Agent「通过组合已验证的 Chisel 模块来保证硬件有效性，
+而不是无约束地生成 RTL」。所以这里的「生成」是**检索 + 参数化**：
+候选只能来自 `fast/agents/templates.py` 的注册表，参数必须落在
+`ParameterRange` 允许的取值里。
+
+verified-template 门限是这个 Agent 存在的全部意义：一个没有仿真证据的模板
+拿不到 `PASSED`。「能 elaborate、lint 干净」正是绝不能当作通过的那个状态——
+DynaX 的 6 个缺陷里有 2 个就是 lint 干净、只有仿真才暴露的。
+
+注意这里的 `TemplateRecord` 是一个最小协议（只有 4 个字段），
+完整的注册表记录在 `fast/agents/templates.py`，多带 `provenance`、
+`verified_scope` 等证据字段。
+"""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

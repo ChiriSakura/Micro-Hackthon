@@ -1,6 +1,25 @@
-# FAST GCP CPU worker template. It contains no project IDs or credentials.
-# Required environment: HEAD_IP, FAST_SSH_USER, GCP_PROJECT,
-# GCP_PRIVATE_KEY_PATH. Run `chia up --dry-run` before provisioning.
+# FAST / GCP stage 2: the stage-1 head plus CHIA-provisioned CPU workers.
+#
+# The head must already exist and be reachable (see fast-gcp-head.yaml.example).
+# CHIA provisions only the workers below, and injects reverse SSH tunnels for
+# them automatically, so the workers never need to dial in to the control host.
+#
+# Required environment: HEAD_IP, FAST_SSH_USER, FAST_HEAD_ENV, FAST_HEAD_KEY,
+# GCP_PROJECT, GCP_PRIVATE_KEY_PATH, GCP_PUBLIC_KEY_PATH.
+# It contains no project ids or credentials of its own.
+#
+# This file is a TEMPLATE. Render it before use so the worker bootstrap is
+# injected and the head/worker Python and Ray versions are pinned to match:
+#
+#   python FAST/scripts/gcp_render_cluster.py \
+#       --template FAST/configs/chia/fast-gcp.yaml.example \
+#       --out FAST/configs/chia/fast-gcp.yaml
+#
+# Before provisioning:
+#   python FAST/scripts/gcp_preflight.py --config FAST/configs/chia/fast-gcp.yaml
+#   chia up --dry-run FAST/configs/chia/fast-gcp.yaml   # prints the plan, creates nothing
+# After every run:
+#   chia down <this file>              # spot VMs still bill while they exist
 
 cluster_name: fast-gcp
 
@@ -8,39 +27,57 @@ provider:
     head_ip: ${HEAD_IP}
 
 auth:
+    # The head is the NYU login node, reached with the cluster login key.
+    # The cloud worker gets its own key below, so the login credential is
+    # never handed to a machine outside the cluster.
     ssh_user: ${FAST_SSH_USER}
-    ssh_private_key: ${GCP_PRIVATE_KEY_PATH}
+    ssh_private_key: ${FAST_HEAD_KEY}
 
 gcp_nodes:
     project: ${GCP_PROJECT}
     zone: us-central1-a
     fast_cpu_worker:
-        machine_type: c3-standard-8
+        # Ubuntu 24.04 ships Python 3.12, which is what the head runs. Ray refuses
+        # to join a cluster whose Python minor version differs, so do not move this
+        # to 22.04 (Python 3.10) without also changing the head environment.
+        machine_type: e2-standard-4
         count: 1
-        image: projects/ubuntu-os-cloud/global/images/family/ubuntu-2204-lts
+        image: projects/ubuntu-os-cloud/global/images/family/ubuntu-2404-lts-amd64
         disk_size_gb: 50
         spot: true
         ssh_user: ${FAST_SSH_USER}
         ssh_private_key: ${GCP_PRIVATE_KEY_PATH}
+        ssh_public_key: ${GCP_PUBLIC_KEY_PATH}
+        # skip_default_setup / setup_commands / setup_timeout are filled in by
+        # FAST/scripts/gcp_render_cluster.py from gcp_worker_bootstrap.sh.
 
 available_node_types:
-    fast_head:
-        resources: {"fast_head": 1}
-        num_workers: 1
-        compatible_ips: ["${HEAD_IP}"]
-        worker_env_commands: ["source ~/.bashrc && conda activate fast_env"]
-
+    # No head-local worker on purpose: `ray start --head` already runs a raylet on
+    # the head and advertises fast_head there, so a separate worker entry would
+    # start a second raylet on the same shared login node for nothing.
     fast_cpu_worker:
         resources: {"fast_cpu": 8, "fast_chisel": 1, "fast_verilator": 4}
         num_workers: 1
         compatible_ips: ["@fast_cpu_worker:0"]
-        worker_env_commands: ["source ~/.bashrc && conda activate fast_env"]
+        worker_env_commands: ["source ~/fast-env/bin/activate"]
 
-head_env_commands: ["source ~/.bashrc && conda activate fast_env"]
+# The head is the NYU login node and keeps its own environment; only the
+# cloud workers use ~/fast-env, which the bootstrap creates.
+head_env_commands: ["source ${FAST_HEAD_ENV}/bin/activate"]
 
 head_start_ray_commands:
     - ray stop
-    - ray start --head --port=6379 --dashboard-agent-listen-port=0 --resources='{"fast_head":1}'
+    # --num-cpus is a deliberate cap, not the machine's size. The head is a shared
+    # login node (28 cores, ~140 users); left to autodetect, Ray prestarts one
+    # worker process per core and the raylet misses its startup deadline with
+    # "The current node timed out during startup". The head only schedules the
+    # critic, so two CPUs is ample. Keep the object store small for the same reason.
+    # --temp-dir is not a local detail: Ray's session directory path is chosen by
+    # the head and reused verbatim by every worker that joins. Inherit the
+    # cluster's TMPDIR (/scratch/...) and the GCP worker dies with
+    # "PermissionError: [Errno 13] Permission denied: '/scratch'", because that
+    # path exists only on NYU machines. /tmp exists on both sides.
+    - ray start --head --port=6379 --dashboard-agent-listen-port=0 --num-cpus=2 --object-store-memory=1000000000 --temp-dir=/tmp/ray --resources='{"fast_head":1}'
 
 worker_start_ray_commands:
     - ray stop

@@ -95,3 +95,14 @@ def test_complete_report_cache_avoids_expensive_rerun(tmp_path):
 def test_invalid_experiment_specs_fail_closed(changes):
     with pytest.raises(ValueError):
         spec(**changes)
+
+
+def test_xm_budget_derives_the_high_and_low_retention_counts():
+    assert spec().xm_budget == (16, 8, 64)
+    assert spec(sparsity_x=8, sparsity_x_high=32).xm_budget == (32, 8, 64)
+    assert spec(sparsity_x=40, sparsity_m=64).xm_budget == (64, 40, 64)
+
+
+def test_spec_rejects_an_out_of_range_high_budget():
+    with pytest.raises(ValueError, match="X <= X_high <= M"):
+        spec(sparsity_x=8, sparsity_x_high=4)
