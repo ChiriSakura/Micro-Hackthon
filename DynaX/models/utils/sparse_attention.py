@@ -1,12 +1,8 @@
-import os
-import random
-from pathlib import Path
-
 import torch
-import math
 import torch.nn.functional as F
 
 from .salo_spattn import matchingStatic_Block
+from .sparsity_stats import get_recorder
 
 
 def _eval_overall_sparsity(sparsity_mask, attn_mask):
@@ -24,21 +20,29 @@ def _eval_overall_sparsity(sparsity_mask, attn_mask):
     return overall_sparsity
 
 
-count = 0
-mean_len = 0
-all_sparisity = 0
+def _record(method, sparsity_mask, attn_mask, layer_idx=None):
+    """Hand one boolean mask to the explicit per-run recorder."""
+    kept = sparsity_mask if sparsity_mask.dtype == torch.bool else sparsity_mask > 0
+    get_recorder().record(
+        method,
+        kept,
+        attn_mask,
+        causal_kept_ratio=_eval_overall_sparsity(kept, attn_mask),
+        layer_idx=layer_idx,
+    )
 
 
-def gen_sparsity_mask_xm(attention_scores, attn_mask, threshold_0, threshold_1):
-    global count
-    global mean_len
-    global all_sparisity
+def gen_sparsity_mask_xm(attention_scores, attn_mask, threshold_0, threshold_1, layer_idx=None,
+                         n1=16, n2=8, m=64):
+    """Dynamic X:M pruning.
+
+    Blocks whose probability mass exceeds ``threshold_0`` keep ``n1`` entries,
+    blocks below ``threshold_1`` keep none, and the remainder keep ``n2``.
+    """
+    if not 0 < n2 <= n1 <= m:
+        raise ValueError(f"X:M requires 0 < n2 <= n1 <= m, got n1={n1}, n2={n2}, m={m}")
 
     attention_scores = F.softmax(attention_scores + attn_mask, dim=-1)
-
-    n1 = 16
-    n2 = 8
-    m = 64
 
     original_shape = attention_scores.shape
     token_len = original_shape[-1]
@@ -57,29 +61,15 @@ def gen_sparsity_mask_xm(attention_scores, attn_mask, threshold_0, threshold_1):
     sparsity_mask_reshaped = torch.where(sum_m > threshold_0, sparsity_mask_reshaped1, sparsity_mask_reshaped)
     sparsity_mask = sparsity_mask_reshaped.view(original_shape)
 
+    _record("xm", sparsity_mask, attn_mask, layer_idx)
 
-    count += 1
-    all_sparisity += _eval_overall_sparsity(sparsity_mask, attn_mask)
-    mean_len += torch.mean(torch.sum((attn_mask > -1).float(), dim=-1))
-    if(count == 1) :
-        with open('sparsity_xm.txt', 'w') as txt:
-            txt.writelines('eval_xm:\n')
-    if(count%100 == 0) :
-        with open('sparsity_xm.txt', 'a') as txt:
-            txt.writelines('mean_sparisity: {:<10.5f} mean_len: {:<10} count: {:<10}\n'
-                           .format(round(all_sparisity/count, 5), round(mean_len.item()/count, 1), count))
-       
     sparsity_mask = sparsity_mask.type_as(attention_scores)
     sparsity_mask = (1.0 - sparsity_mask) * -10000.0
 
     return sparsity_mask.detach()
 
 
-def gen_sparsity_mask_nm(attention_scores, attn_mask, m, n):
-    global count
-    global mean_len
-    global all_sparisity
-
+def gen_sparsity_mask_nm(attention_scores, attn_mask, m, n, layer_idx=None):
     attention_scores = F.softmax(attention_scores + attn_mask, dim=-1)
 
     original_shape = attention_scores.shape
@@ -95,42 +85,19 @@ def gen_sparsity_mask_nm(attention_scores, attn_mask, m, n):
     sparsity_mask_reshaped.scatter_(-1, indices, True)
     sparsity_mask = sparsity_mask_reshaped.view(original_shape)
 
-    count += 1
-    all_sparisity += _eval_overall_sparsity(sparsity_mask, attn_mask)
-    mean_len += torch.mean(torch.sum((attn_mask > -1).float(), dim=-1))
-    if(count == 1) :
-        with open('sparsity_nm.txt', 'w') as txt:
-            txt.writelines('eval_nm:\n')
-    if(count%100 == 0) :
-        with open('sparsity_nm.txt', 'a') as txt:
-            txt.writelines('mean_sparisity: {:<10.5f} mean_len: {:<10} count: {:<10}\n'
-                           .format(round(all_sparisity/count, 5), round(mean_len.item()/count, 1), count))
+    _record("nm", sparsity_mask, attn_mask, layer_idx)
 
-    
     sparsity_mask = sparsity_mask.type_as(attention_scores)
     sparsity_mask = (1.0 - sparsity_mask) * -10000.0
     
     return sparsity_mask.detach()
 
 
-def gen_sparsity_mask_sanger(attention_scores, attn_mask, threshold):
-    global count
-    global mean_len
-    global all_sparisity
-
+def gen_sparsity_mask_sanger(attention_scores, attn_mask, threshold, layer_idx=None):
     attention_scores = F.softmax(attention_scores + attn_mask, dim=-1)
     sparsity_mask = attention_scores > threshold
 
-    count += 1
-    all_sparisity += _eval_overall_sparsity(sparsity_mask, attn_mask)
-    mean_len += torch.mean(torch.sum((attn_mask > -1).float(), dim=-1))
-    if(count == 1) :
-        with open('sparsity_sanger.txt', 'w') as txt:
-            txt.writelines('eval_sanger:\n')
-    if(count%100 == 0) :
-        with open('sparsity_sanger.txt', 'a') as txt:
-            txt.writelines('mean_sparisity: {:<10.5f} mean_len: {:<10} count: {:<10}\n'
-                           .format(round(all_sparisity/count, 5), round(mean_len.item()/count, 1), count))
+    _record("sanger", sparsity_mask, attn_mask, layer_idx)
 
     sparsity_mask = sparsity_mask.type_as(attention_scores)
     sparsity_mask = (1.0 - sparsity_mask) * -10000.0
@@ -138,11 +105,7 @@ def gen_sparsity_mask_sanger(attention_scores, attn_mask, threshold):
     return sparsity_mask.detach()
 
 
-def gen_sparsity_mask_topk(attention_scores, attn_mask, topk):
-    global count
-    global mean_len
-    global all_sparisity
-
+def gen_sparsity_mask_topk(attention_scores, attn_mask, topk, layer_idx=None):
     if topk <= 0 or topk > attention_scores.shape[-1]:
         raise ValueError(
             f"topk must be in [1, {attention_scores.shape[-1]}], got {topk}"
@@ -152,28 +115,15 @@ def gen_sparsity_mask_topk(attention_scores, attn_mask, topk):
     index = torch.topk(attention_scores, topk, dim=-1, largest=True)[1]
     sparsity_mask.scatter_(-1, index, True)
 
-    count += 1
-    all_sparisity += _eval_overall_sparsity(sparsity_mask, attn_mask)
-    mean_len += torch.mean(torch.sum((attn_mask > -1).float(), dim=-1))
-    if(count == 1) :
-        with open('sparsity_topk.txt', 'w') as txt:
-            txt.writelines('eval_topk:\n')
-    if(count%100 == 0) :
-        with open('sparsity_topk.txt', 'a') as txt:
-            txt.writelines('mean_sparisity: {:<10.5f} mean_len: {:<10} count: {:<10}\n'
-                           .format(round(all_sparisity/count, 5), round(mean_len.item()/count, 1), count))
-    
+    _record("topk", sparsity_mask, attn_mask, layer_idx)
+
     sparsity_mask = sparsity_mask.type_as(attention_scores)
     sparsity_mask = (1.0 - sparsity_mask) * -10000.0
 
     return sparsity_mask.detach()
 
 
-def gen_sparsity_mask_salo(attention_scores, attn_mask):
-    global count
-    global mean_len
-    global all_sparisity
-
+def gen_sparsity_mask_salo(attention_scores, attn_mask, layer_idx=None):
     match_size = 64
     pe_size = 8 
     global_nums = 1 
@@ -185,36 +135,27 @@ def gen_sparsity_mask_salo(attention_scores, attn_mask):
     
     sparsity_mask = matchingStatic_Block(attention_scores_salo, attn_mask_salo, match_size, pe_size, global_nums, random_nums, dilation)
 
-    count += 1
-    all_sparisity += _eval_overall_sparsity(sparsity_mask, attn_mask)
-    mean_len += torch.mean(torch.sum((attn_mask > -1).float(), dim=-1))
-    if(count == 1) :
-        with open('sparsity_salo.txt', 'w') as txt:
-            txt.writelines('eval_salo:\n')
-    if(count%100 == 0) :
-        with open('sparsity_salo.txt', 'a') as txt:
-            txt.writelines('mean_sparisity: {:<10.5f} mean_len: {:<10} count: {:<10}\n'
-                           .format(round(all_sparisity/count, 5), round(mean_len.item()/count, 1), count))
+    _record("salo", sparsity_mask, attn_mask, layer_idx)
 
-    
     sparsity_mask = sparsity_mask.type_as(attention_scores)
     sparsity_mask = (1.0 - sparsity_mask) * -10000.0
     
     return sparsity_mask.detach()
 
 
-def prune_attn_scores(attn_scores, attn_mask, threshold_0 = 1.0, threshold_1 = 0.1, m=64, n=16, topk=100, threshold=1e-4, sparse_method="xm"):
+def prune_attn_scores(attn_scores, attn_mask, threshold_0 = 1.0, threshold_1 = 0.1, m=64, n=16, topk=100, threshold=1e-4, sparse_method="xm", layer_idx=None,
+                      xm_n1=16, xm_n2=8, xm_m=64):
     match sparse_method:
         case "xm":
-            return gen_sparsity_mask_xm(attn_scores, attn_mask, threshold_0, threshold_1)
+            return gen_sparsity_mask_xm(attn_scores, attn_mask, threshold_0, threshold_1, layer_idx, xm_n1, xm_n2, xm_m)
         case "nm":
-            return gen_sparsity_mask_nm(attn_scores, attn_mask, m, n)
+            return gen_sparsity_mask_nm(attn_scores, attn_mask, m, n, layer_idx)
         case "sanger":
-            return gen_sparsity_mask_sanger(attn_scores, attn_mask, threshold)
+            return gen_sparsity_mask_sanger(attn_scores, attn_mask, threshold, layer_idx)
         case "topk":
-            return gen_sparsity_mask_topk(attn_scores, attn_mask, topk)
+            return gen_sparsity_mask_topk(attn_scores, attn_mask, topk, layer_idx)
         case "salo":
-            return gen_sparsity_mask_salo(attn_scores, attn_mask)
+            return gen_sparsity_mask_salo(attn_scores, attn_mask, layer_idx)
         case _:
             raise ValueError(
                 f"Unsupported sparse_method={sparse_method!r}; expected xm, nm, sanger, salo, or topk"

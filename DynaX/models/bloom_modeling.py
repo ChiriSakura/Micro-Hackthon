@@ -302,6 +302,10 @@ class BloomAttention(nn.Module):
         threshold_1 = config_data["threshold_1"]
         threshold = config_data["threshold_sanger"]
         topk = config_data["topk"]
+        # ★ FAST 改动：同 llama_modeling.py，X:M 参数化。
+        xm_n1 = config_data.get("xm_n1", 16)
+        xm_n2 = config_data.get("xm_n2", 8)
+        xm_m = config_data.get("xm_m", 64)
         if (is_sparse):
             batch_size, head_num, seqlen, seqlen = attn_weights.shape
             temp_mask = torch.zeros(batch_size, 1, 1, seqlen, device=attn_weights.device)
@@ -328,6 +332,10 @@ class BloomAttention(nn.Module):
                 topk,
                 threshold,
                 sparse_methed,
+                layer_idx=self.layer_idx,
+                xm_n1=xm_n1,
+                xm_n2=xm_n2,
+                xm_m=xm_m,
             )
             attn_weights += sparsity_mask
 

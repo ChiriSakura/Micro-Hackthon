@@ -274,6 +274,11 @@ def scaled_dot_product_attention(query, key, value, attn_mask=None, dropout_p=0.
     threshold_1 = config_data["threshold_1"]
     threshold = config_data["threshold_sanger"]
     topk = config_data["topk"]
+    # ★ FAST 改动：把 X:M 的 (n1, n2, m) 从写死改为可配置，这样一次实验
+    # 可以扫 xm:32:16:64 / xm:8:4:64 等参数化标签，而不必改源码重跑。
+    xm_n1 = config_data.get("xm_n1", 16)
+    xm_n2 = config_data.get("xm_n2", 8)
+    xm_m = config_data.get("xm_m", 64)
     if (is_sparse):
         batch_size, head_num, seqlen, seqlen = attn_weight.shape
         temp_mask = torch.zeros(batch_size, 1, 1, seqlen, device=query.device)
@@ -297,6 +302,10 @@ def scaled_dot_product_attention(query, key, value, attn_mask=None, dropout_p=0.
             topk,
             threshold,
             sparse_methed,
+            layer_idx=layer_idx,
+            xm_n1=xm_n1,
+            xm_n2=xm_n2,
+            xm_m=xm_m,
         )
         attn_weight += sparsity_mask
 

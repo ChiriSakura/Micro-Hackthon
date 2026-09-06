@@ -7,6 +7,9 @@
     "n": 16,
     "threshold_0": 1.5,
     "threshold_1": 0.2,
-    "threshold_sanger": 1e-4,
-    "topk": 400
+    "threshold_sanger": 0.0001,
+    "topk": 400,
+    "xm_n1": 16,
+    "xm_n2": 8,
+    "xm_m": 64
 }
