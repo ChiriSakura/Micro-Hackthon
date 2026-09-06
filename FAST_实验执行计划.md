@@ -80,6 +80,143 @@ Micro-Hackthon/
 8. 已创建 `FAST/` 五 Agent 控制框架，并完成 deterministic 单候选闭环与缓存验证。
 9. 当前没有遗留的 Slurm 作业。
 
+### 2.2 本轮执行进展（2026-09-04）
+
+本轮把阶段 0 从"合成输入 smoke test"推进到"真实公开模型上的可复现测量"，并把 FAST 的 Kernel Agent 接到了真实 DynaX 上。
+
+1. 稀疏统计从模块级全局计数器重构为显式 `SparsityRecorder`，统计写入候选专属 JSON，不再向 CWD 追加 `sparsity_*.txt`。
+2. 新增逐层保留比例、索引熵、块占用率、每行保留列数上下界四项硬件相关指标。
+3. X:M 的 `n1`、`n2`、`m` 已参数化，可由运行时配置或 `xm:N1:N2:M` 方法标签指定，不再是实现内常量。
+4. `runtime_config` 增加基于 mtime 的缓存与进程内覆盖，注意力每次调用不再重复读盘。
+5. 新增 `DynaX/run_eval_matrix.py`：一次加载模型与数据集，在同一进程内依次测量 dense 与多种稀疏配置，输出带 manifest 的 `results.json`，并在每个方法结束后立即落盘。
+6. 在 TinyLlama-1.1B 与 BLOOM-560m 两个真实公开模型上完成 WikiText-2 dense/稀疏对比，得到可用于论文讨论的第一批 perplexity 数据。
+7. FAST 新增 `DynaXKernelAdapter`，五 Agent 闭环的 Kernel 阶段已使用真实测量而非 deterministic 桩。
+8. FAST 新增 `RunManifest`，按计划书第 7 节生成候选目录、各阶段 JSON、artifact 校验值与工具版本。
+9. GCP 侧完成除凭据外的全部前置条件：gcloud CLI、`google-cloud-compute`、集群配置解析、出站 SSH/HTTPS、head 公钥登录、费用护栏，预检 11/12 通过。
+
+DynaX 测试套件由 10 个增加到 19 个（CPU），FAST 测试套件由 9 个增加到 21 个。
+
+#### 真实模型测量结果
+
+TinyLlama-1.1B（`TinyLlama-1.1B-intermediate-step-1431k-3T`），WikiText-2 raw test，序列长度 512，8 个窗口，float32，CPU，seed `20260903`，作业 `16968763`：
+
+| 方法 | 困惑度 | 相对损失 | 平均稀疏率 | 因果掩码内保留 | 块占用率 | 索引熵 |
+|---|---:|---:|---:|---:|---:|---:|
+| dense | 10.3546 | — | — | — | — | — |
+| X:M 32/16 | 10.5987 | +2.36% | 83.62% | 33.35% | 41.75% | 0.9372 |
+| Top-K 128 | 10.7208 | +3.54% | 75.00% | 43.72% | 64.98% | 0.9724 |
+| Sanger | 10.3520 | −0.03% | 74.38% | 45.86% | 54.07% | 0.9714 |
+| N:M 16:64 | 11.7482 | +13.46% | 75.00% | 27.34% | 100.00% | 0.9291 |
+| X:M 16/8 | 11.8493 | +14.44% | 91.54% | 16.54% | 43.24% | 0.9199 |
+| SALO | 12.1544 | +17.38% | 93.04% | 18.47% | 100.00% | 0.8808 |
+| N:M 8:64 | 12.7206 | +22.85% | 87.50% | 13.86% | 100.00% | 0.8792 |
+| X:M 8/4 | 12.8996 | +24.58% | 95.59% | 8.63% | 45.21% | 0.8907 |
+
+BLOOM-560m，同一数据集与序列长度，8 个窗口，作业 `16968874`：
+
+| 方法 | 困惑度 | 相对损失 | 平均稀疏率 | 块占用率 |
+|---|---:|---:|---:|---:|
+| dense | 29.8856 | — | — | — |
+| Top-K 128 | 29.8081 | −0.26% | 75.00% | 53.69% |
+| X:M 32/16 | 29.8323 | −0.18% | 86.67% | 32.52% |
+| Sanger | 29.8786 | −0.02% | 81.14% | 37.71% |
+| N:M 16:64 | 30.0261 | +0.47% | 75.00% | 100.00% |
+| X:M 16/8 | 30.0647 | +0.60% | 93.31% | 32.60% |
+| N:M 8:64 | 30.7167 | +2.78% | 87.50% | 100.00% |
+| X:M 8/4 | 30.8998 | +3.39% | 96.65% | 32.57% |
+| SALO | 32.8392 | +9.88% | 87.88% | 100.00% |
+
+两点必须写清楚的观察：
+
+- **同一方法在两个模型上的代价差一个数量级。** X:M 16/8 在 BLOOM-560m 上只花 +0.60% 困惑度就得到 93.3% 稀疏率，在 TinyLlama-1.1B 上同样配置要付 +14.44%。因此不能用单一模型的结论去标定 X:M 的稀疏预算，跨层协同设计必须把模型族当作实验变量。
+- **块占用率把 X:M 与 N:M 区分开。** X:M 系列的 64 宽列块占用率约 32%–45%，N:M 与 SALO 恒为 100%。也就是说只有 X:M 允许硬件整块跳过取数与计算；平均稀疏率相同的两个方法，对加速器的价值完全不同。这正是需要跨层反馈才能发现的信号。
+
+序列长度的影响（TinyLlama，8 个窗口，作业 `16969489`）：序列 2048 时 dense 困惑度降到 7.1782，而 X:M 16/8 升到 8.8189，相对损失从序列 512 的 +14.44% 扩大到 +22.86%。固定的每 64 列保留 8–16 个值的预算不随上下文长度自适应，这是 Critic 下一轮应当归因到 Kernel 层的具体问题。
+
+#### FAST 闭环现状
+
+`python -m fast.cli --kernel dynax` 已可在单条命令内完成：真实 DynaX 测量 → 精度门限 → Compiler schedule → verified-template 门限 → Evaluator → Critic 归因，并写出含配置哈希、报告哈希、artifact 校验值、DynaX 侧环境版本的 `manifest.json`。tiny 模型验证运行中，Kernel 实测稀疏率 84.52%、块占用率 73.83%，Critic 归因到 Compiler 层（PE 利用率低于门限），决策 `continue`。
+
+Evaluator 仍是 deterministic 后端，因此周期、面积、功耗、EDP 不能作为结论；表中的"每窗口秒"只反映 PyTorch 参考实现的掩码生成开销，不是目标加速器的加速比。
+
+#### GCP 预检结果
+
+| 检查项 | 结果 |
+|---|---|
+| chia / ray / google-cloud-compute / google-auth / yaml | 全部就绪 |
+| gcloud CLI | 583.0.0，安装在 scratch，无需 root |
+| 出站 HTTPS 到 `compute.googleapis.com` | 连通 |
+| 出站 SSH（22 端口） | 放行 |
+| 集群配置解析 | `fast-gcp.yaml` 通过，1 个 spot worker |
+| head 公钥登录 `gz2522@10.32.51.123` | 通过 |
+| 费用护栏 | 全部 worker 为 spot |
+| GCP ADC 凭据 | 已就位（`authorized_user`，quota project `project-842e7b1d-4f04-40b2-9b0`） |
+| Compute Engine API 实调 | 通，`us-central1-a` 当前 0 台实例，尚未产生费用 |
+
+预检结果：**12/12 全部通过**。随后 `chia up --dry-run` 也已通过，输出
+`Dry run complete. No changes made.`，计划如下：
+
+```text
+Head:    10.32.51.123
+Workers:
+  10.32.51.123  -> fast_head        {fast_head: 1}
+  198.51.100.1  -> fast_cpu_worker  {fast_cpu: 8, fast_chisel: 1, fast_verilator: 4}  [tunneled]
+
+SSH Tunnels (tool traffic via 10.32.51.123):
+  GCS: 127.0.0.2:16379 -> head :6379
+```
+
+`198.51.100.1` 是实例尚未创建时 CHIA 使用的占位地址。`[tunneled]` 表明 CHIA 已自动为
+云端 worker 注入反向 SSH 隧道：worker 通过自身的 `127.0.0.2:16379` 反向连到 head 的
+Ray GCS，因此**不需要在 NYU 集群防火墙上开放入站端口**，head 只需具备出站 SSH 能力。
+
+随后进行了七次真实 `chia up --yes`，**第 7 次全链路通过**（作业 `16985131`，
+20 分 28 秒，`COMPLETED`）：render → preflight 14/14 → dry-run → `chia up` →
+集群成型 → 五 Agent 图在 GCP worker 上执行 → `chia down` → zone 复核为空。
+
+决定性证据来自 `cloud_report.json`：`ran_on` 为 `chia-fast-gcp-fast-cpu-worker-0`
+（GCP 实例主机名，不是 head），`worker_python=3.12.9`、`worker_ray=2.54.0`、
+`functional_passed=true`、`decision=continue`。`cloud_smoke.py` 中"任务落回 head 即
+退出"的强制检查没有触发，因此这是真实的远程执行而非静默回退。集群资源
+`6.0 CPU`（head 2 + worker 4）、`fast_cpu 4.0`、`fast_chisel 1.0`、`fast_verilator 4.0`，
+两节点均 alive，五个 Agent 全部 `passed`，Critic 归因 compiler、决定 `continue`。
+
+拓扑为：head 在 NYU 计算节点，worker 在 GCP `us-central1-a`，通过反向 SSH 隧道
+（`127.0.0.2:16379 → head:6379`）连接，NYU 侧不需要开放任何入站端口。
+
+七次全部由 EXIT trap 正确回收，事后独立复核 zone 均为空；累计费用不到 0.05 美元。
+
+| # | 走到哪一步 | 失败原因 | 修复 |
+|---|---|---|---|
+| 1 | 建实例 404 | 镜像家族 `ubuntu-2404-lts` 不存在，24.04 起带 `-amd64` 后缀 | 改名；preflight 增加 `check_images` 提前解析镜像 |
+| 2 | 建隧道失败 | `HEAD_IP` 写死为另一台登录节点，`bind: Cannot assign requested address` | 改为推导本机地址；preflight 增加 `check_head_is_local` |
+| 3 | head `ray start` 超时 | 登录节点 28 核约 140 用户，Ray 按核数预启动 28 个 worker，raylet 错过启动 deadline | head 加 `--num-cpus=2 --object-store-memory=1GB` |
+| 4 | `[Errno 28] No space left on device` | 登录节点 `/tmp` 是 2 GB tmpfs，被其他用户占满 | head 迁入 Slurm 计算节点 |
+| 5 | worker 起 Ray 失败 | head 的 session 路径在 `/scratch`，云端不存在；Ray 让 worker 复用 head 的绝对路径 | head 加 `--temp-dir=/tmp/ray` |
+| 6 | worker 起 Ray 失败 | Ray 比较**完整** Python 版本，3.12.9 ≠ 3.12.3 | 渲染器传完整版本，引导用 uv 装精确 CPython |
+| 7 | — | — | **全链路通过** |
+
+真机上已确证可用的部分：
+
+- worker 引导脚本 68 秒跑完（apt 30 秒、venv 3 秒、pip 35 秒），
+  输出 `ready: python 3.12, ray 2.54.0, chia import ok`。
+- Ubuntu 24.04.4 自带 Python 3.12.3，与 head 的 3.12 次版本一致。
+- CHIA 建的防火墙规则是收紧的，只放行登录节点出口 IP `216.165.12.15/32`；
+  但 GCP 默认 VPC 自带的 `default-allow-ssh` 对 0.0.0.0/0 开放 22 端口，
+  这是项目创建时就存在的默认规则，正式使用前需要处理。
+- 专用密钥 `~/.ssh/fast_gcp_ed25519` 生效，集群登录凭据没有交给云主机。
+
+第 4 次的结论是环境约束而非配置问题：**登录节点不能作为 CHIA head**。Ray 的 session
+目录在 `/tmp`，而登录节点的 `/tmp` 是约 140 个用户共享的 2 GB tmpfs，随时可能被他人
+占满且无权清理。计算节点实测对比：`/tmp` 位于本地 nvme（79 GB，可用 49 GB），出站
+22/443 放行，公钥 SSH 入站可用（作业 `16980451`）。因此 head 迁入
+`slurm/cloud/fast_gcp_bringup.slurm`，与计划书第 8 节原本的约定一致。
+
+关键修正：`HEAD_IP` 必须是**运行 `chia up` 的那台机器**的地址，且不能用
+`hostname -I` 的第一个地址（`10.0.2.2` 是虚拟地址），也不能用回环地址
+（sshd 在回环上只提供 gssapi/password，不接受公钥）。`gcp_env.sh` 现在优先
+选取 `10.32.x` 网段的地址来推导，登录节点与计算节点都适用。
+
 关键 Slurm 证据：
 
 | Job ID | 资源 | 验证内容 | 状态 | 用时 |
@@ -123,13 +260,13 @@ tiny 模型端到端结果：
 - `DynaX/smoke_tiny_models.py`：tiny Llama/BLOOM 端到端验证。
 - `DynaX/models/utils/runtime_config.py`：支持用 `DYNAX_CONFIG_PATH` 选择候选专属配置。
 - `DynaX/tests/` 与 `DynaX/pytest.ini`：正式 golden suite，覆盖运行时配置、Dense/N:M/X:M、非法配置、tiny Llama/BLOOM 与可选 CUDA 路径。
-- `slurm/setup_dynax_env.slurm`：在 scratch 创建固定版本环境。
-- `slurm/dynax_gpu_smoke.slurm`：GPU 核心验证。
-- `slurm/dynax_tiny_model_cpu_smoke.slurm` 和 `slurm/dynax_tiny_model_smoke.slurm`：CPU/GPU 模型级验证。
-- `slurm/dynax_tiny_eval_cpu.slurm`：真实模型与数据集加载 smoke test。
-- `slurm/dynax_pytest_cpu.slurm` 和 `slurm/dynax_pytest_gpu.slurm`：在 CPU/GPU 分区执行正式 suite 并保存 JUnit 报告。
-- `slurm/setup_fast_env.slurm`：在 scratch 创建 Python 3.12 的 CHIA/FAST 隔离环境。
-- `slurm/fast_chia_smoke.slurm`：执行 FAST 单元测试和真实的五节点 CHIA/Ray task graph。
+- `slurm/env/setup_dynax_env.slurm`：在 scratch 创建固定版本环境。
+- `slurm/kernel/dynax_gpu_smoke.slurm`：GPU 核心验证。
+- `slurm/kernel/dynax_tiny_model_cpu_smoke.slurm` 和 `slurm/kernel/dynax_tiny_model_smoke.slurm`：CPU/GPU 模型级验证。
+- `slurm/kernel/dynax_tiny_eval_cpu.slurm`：真实模型与数据集加载 smoke test。
+- `slurm/kernel/dynax_pytest_cpu.slurm` 和 `slurm/kernel/dynax_pytest_gpu.slurm`：在 CPU/GPU 分区执行正式 suite 并保存 JUnit 报告。
+- `slurm/env/setup_fast_env.slurm`：在 scratch 创建 Python 3.12 的 CHIA/FAST 隔离环境。
+- `slurm/cloud/fast_chia_smoke.slurm`：执行 FAST 单元测试和真实的五节点 CHIA/Ray task graph。
 - `FAST/fast/`：五 Agent schema、Agent 实现、adapter 边界、CHIA node、SQLite 内容哈希缓存和本地 CLI。
 - `FAST/configs/chia/fast-gcp.yaml.example`：不含凭据的 GCP CPU worker 模板。
 
@@ -219,7 +356,7 @@ FAST 必须在项目侧实现 Kernel、Compiler、µArch、Evaluator、Critic �
 
 当前已完成第一版五 Agent 控制框架：五类角色使用版本化、JSON-safe 的类型协议，CHIA driver 仅作为控制平面而不计为第六个 Agent；`ChiaFunction` 节点通过逻辑资源标签在执行时映射到本地、Slurm 所在节点或 GCP worker。该版本已经验证门限、Critic 证据约束和完整报告缓存，但 deterministic adapter 只用于验证编排，不能作为论文实验结果。
 
-CHIA 仓库已确认原生提供 `gcp_nodes` 创建/销毁、GCP 集群 YAML、ADC/SSH 两层认证与异构 Ray worker 资源路由。新增的 `fast-gcp.yaml.example` 已通过 CHIA `load_config` 解析验证。因此后续 GCP 接入不需要改写五个 Agent，只需替换 backend adapter 和集群资源映射。实际 GCP 实例尚未创建，镜像/环境安装、费用告警和自动关机仍需在 provisioning 前完成。
+CHIA 仓库已确认原生提供 `gcp_nodes` 创建/销毁、GCP 集群 YAML、ADC/SSH 两层认证与异构 Ray worker 资源路由。新增的 `fast-gcp.yaml.example` 已通过 CHIA `load_config` 解析验证。因此后续 GCP 接入不需要改写五个 Agent，只需替换 backend adapter 和集群资源映射。这一判断已被实测证实：GCP 实例已实际创建并跑通五 Agent 图，五个 Agent 的代码一行未改，改动全部落在 backend adapter、集群配置与引导脚本上（见 2.2 节）。镜像与环境安装已由 `scripts/gcp_worker_bootstrap.sh` 解决；费用控制目前依靠`chia down` 加 zone 复核，预算告警只报警不封顶，自动关机仍未配置。
 
 ### 3.4 基础设施约束
 
@@ -632,8 +769,11 @@ runs/<experiment_id>/<candidate_id>/
 - [x] Dense 与 X:M tiny 模型测试通过（CPU 前向和 backward）。
 - [x] 已移除硬编码 `.cuda()`；CPU 模型链路、A100 核心链路和 L40S 模型级 CUDA suite 均通过。
 - [x] 当前 Slurm runner 为每个候选使用独立配置、日志和结果目录。
-- [ ] 所有失败都有非零退出码和结构化错误（非零退出已完成，结构化错误 JSON 尚未完成）。
+- [x] 所有失败都有非零退出码和结构化错误：`run_eval_matrix.py` 按方法记录
+      `{status, error}` 并整体返回非零；FAST manifest 记录 `exit_code` 与 `failed_stage`。
 - [ ] 至少一个 Chisel 模块通过软件 golden test。
 - [ ] Verilator 可以由脚本非交互运行。
-- [ ] FAST 单候选闭环能够生成完整 manifest。
-- [ ] 云端费用、并发和自动关机策略已经配置。
+- [x] FAST 单候选闭环能够生成完整 manifest：配置哈希、报告哈希、三仓库 commit 与
+      dirty 状态、工具版本、各 artifact 校验和，以及从 kernel trace 提取的测量环境。
+- [ ] 云端费用、并发和自动关机策略已经配置。并发已限为单 worker，销毁由 EXIT trap
+      强制执行并事后复核 zone（七次实测有效）；预算告警只报警不封顶，自动关机未配置。

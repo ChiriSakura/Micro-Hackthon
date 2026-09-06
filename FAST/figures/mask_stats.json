@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+    "layer": 10,
+    "head": 0,
+    "seq_len": 512,
+    "dataset": "wiki",
+    "layers_total": 22
+  },
+  "methods": {
+    "xm": {
+      "sparsity": 0.8063550804093567,
+      "kept_min": 1,
+      "kept_max": 96,
+      "kept_mean": 49.669921875,
+      "block_occupancy": 0.53076171875
+    },
+    "xm:32:16:64": {
+      "sparsity": 0.6294088084795322,
+      "kept_min": 1,
+      "kept_max": 192,
+      "kept_mean": 95.056640625,
+      "block_occupancy": 0.529052734375
+    },
+    "xm:8:4:64": {
+      "sparsity": 0.8992522538986355,
+      "kept_min": 1,
+      "kept_max": 48,
+      "kept_mean": 25.841796875,
+      "block_occupancy": 0.54345703125
+    },
+    "nm:16:64": {
+      "sparsity": 0.7266081871345029,
+      "kept_min": 1,
+      "kept_max": 128,
+      "kept_mean": 70.125,
+      "block_occupancy": 1.0
+    },
+    "topk:64": {
+      "sparsity": 0.7658382066276803,
+      "kept_min": 1,
+      "kept_max": 64,
+      "kept_mean": 60.0625,
+      "block_occupancy": 0.582763671875
+    },
+    "sanger": {
+      "sparsity": 0.2649396929824561,
+      "kept_min": 1,
+      "kept_max": 426,
+      "kept_mean": 188.54296875,
+      "block_occupancy": 0.5625
+    },
+    "salo": {
+      "sparsity": 0.9247304459064327,
+      "kept_min": 1,
+      "kept_max": 270,
+      "kept_mean": 19.306640625,
+      "block_occupancy": 1.0
+    }
+  }
+}
