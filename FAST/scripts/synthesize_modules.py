@@ -19,6 +19,7 @@ from pathlib import Path
 import sys
 
 from fast.adapters.synthesis import YosysSynthesisAdapter
+from fast.adapters.timing import OpenStaTimingAdapter, activity_from_stimulus
 from fast.agents.templates import TemplateRegistry, topk_area_units, array_area_units
 
 # elaborate 目标 -> (顶层模块名, 对应的模板 id)。
@@ -65,11 +66,29 @@ def main() -> int:
     parser.add_argument("--log-dir", type=Path, default=None)
     parser.add_argument("--only", nargs="*", default=None,
                         help="只综合这些 elaborate 目标")
+    parser.add_argument("--sta-container", type=Path, default=None,
+                        help="OpenSTA 镜像；给了就一并跑时序与功耗")
+    parser.add_argument("--period-ns", type=float, default=2.0,
+                        help="STA 的时钟周期；论文是 500 MHz 即 2ns")
+    parser.add_argument("--golden-dir", type=Path, default=None,
+                        help="金标准目录，用于从实际激励数出翻转率 alpha")
     args = parser.parse_args()
+
+    # 网表要写进 log_dir，所以它必须在第一个模块跑之前就存在——否则
+    # yosys 的 write_verilog 会 "Can't open output file ... No such file"，
+    # 而且只有第一个模块会中招，看起来像是那个模块的问题。
+    if args.log_dir:
+        args.log_dir.mkdir(parents=True, exist_ok=True)
 
     adapter = YosysSynthesisAdapter(
         container=args.container, liberty=args.liberty, work_root=args.log_dir
     )
+    timing = None
+    if args.sta_container:
+        timing = OpenStaTimingAdapter(
+            container=args.sta_container, liberty=args.liberty,
+            work_root=args.log_dir,
+        )
     registry = TemplateRegistry()
 
     selected = [m for m in MODULES if args.only is None or m[0] in args.only]
@@ -79,7 +98,8 @@ def main() -> int:
 
     for target, top_module, template_id in selected:
         verilog = args.rtl / target / f"{top_module}.v"
-        result = adapter.synthesize(verilog, top_module)
+        netlist = (args.log_dir / f"{target}.mapped.v") if args.log_dir else None
+        result = adapter.synthesize(verilog, top_module, netlist_out=netlist)
 
         template = registry.by_id(template_id) if template_id else None
         provenance = template.provenance if template else "-"
@@ -97,6 +117,47 @@ def main() -> int:
             print(f"{target:<16}{'FAILED':>9}{'-':>12}{result.wall_seconds:>7.0f}s  "
                   f"{provenance:<20}{result.error[:40] if result.error else ''}")
 
+        # 时序与功耗跑在同一份映射网表上。alpha 从实际施加的激励里数出来，
+        # 而不是取工具默认值——动态功耗严格正比于它，默认值等于给出一个和
+        # 稀疏度无关的任意数。
+        timing_row: dict = {}
+        if timing and result.success and netlist and netlist.is_file():
+            alpha = _activity_for(args.golden_dir, target)
+            measured = timing.analyse(
+                netlist, top_module, period_ns=args.period_ns, activity=alpha,
+                # 用 elaborate 目标而不是顶层模块名：RePEArray_S 和 _L 的
+                # 顶层同名，日志会互相覆盖。
+                label=target,
+            )
+            timing_row = {
+                "critical_path_ns": measured.critical_path_ns,
+                "slack_ns": measured.slack_ns,
+                "max_frequency_mhz": measured.max_frequency_mhz,
+                "activity": measured.activity,
+                "activity_source": (
+                    "golden vectors" if args.golden_dir else "default"
+                ),
+                "total_power_w": measured.total_power_w,
+                "leakage_power_w": measured.leakage_power_w,
+                "timing_error": measured.error,
+            }
+            timing_row["timing_credible"] = measured.timing_credible
+            timing_row["worst_stage_ns"] = measured.worst_stage_ns
+            timing_row["worst_stage_cell"] = measured.worst_stage_cell
+            power_mw = (measured.total_power_w or 0) * 1e3
+            if measured.success and measured.timing_credible:
+                print(f"{'':16}{'':9}{'':12}{'':8}  时序 {measured.critical_path_ns:.3f}ns "
+                      f"({measured.max_frequency_mhz:.0f} MHz, slack "
+                      f"{measured.slack_ns:+.3f}ns)  功耗 {power_mw:.3f} mW @ a={alpha:.3f}")
+            elif measured.success:
+                # 面积和功耗仍然可用，只有时序被扇出主导。
+                print(f"{'':16}{'':9}{'':12}{'':8}  时序不可信"
+                      f"（{measured.worst_stage_cell} 单级 "
+                      f"{measured.worst_stage_ns:.1f}ns，未插缓冲）"
+                      f"  功耗 {power_mw:.3f} mW @ a={alpha:.3f}")
+            else:
+                print(f"{'':16}  STA 失败：{(measured.error or '')[:60]}")
+
         rows.append({
             "target": target,
             "top_module": top_module,
@@ -110,6 +171,7 @@ def main() -> int:
             "wall_seconds": round(result.wall_seconds, 1),
             "error": result.error,
             "cell_histogram": result.cell_histogram,
+            **timing_row,
         })
 
     _report_model_gap(rows)
@@ -129,6 +191,23 @@ def main() -> int:
         print(f"\n写入 {args.out}")
 
     return 0 if all(r["success"] for r in rows) else 1
+
+
+def _activity_for(golden_dir: Path | None, target: str) -> float:
+    """从该模块的金标准激励里数出翻转率。
+
+    没有金标准时退回 0.2。那是个**假设**，不是测量——报告里的
+    activity_source 字段会这么写，因为一个和工作负载无关的功耗数字对
+    稀疏加速器没有意义。
+    """
+    if golden_dir is None:
+        return 0.2
+    path = golden_dir / f"{target}.json"
+    if not path.is_file():
+        return 0.2
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    measured = activity_from_stimulus(payload.get("cases", []))
+    return measured if measured > 0 else 0.2
 
 
 # 每个模型公式覆盖哪些 elaborate 目标。分族是必要的：族内比值一致说明公式

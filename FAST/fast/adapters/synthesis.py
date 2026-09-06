@@ -67,6 +67,8 @@ class SynthesisResult:
     # 单元名 -> 个数。看得出面积花在哪：ExpUnitFixPoint 的 XNOR2/XOR2 占比高，
     # 因为它的关键路径是那个乘法器。
     cell_histogram: dict[str, int] = field(default_factory=dict)
+    # 映射后的网表路径，如果要求写出的话。时序与功耗分析的输入。
+    netlist_uri: str = ""
     wall_seconds: float = 0.0
     log_uri: str = ""
     error: str | None = None
@@ -97,7 +99,8 @@ class YosysSynthesisAdapter:
         default_factory=dict, repr=False
     )
 
-    def script(self, verilog: Path, top_module: str) -> str:
+    def script(self, verilog: Path, top_module: str,
+               netlist_out: Path | None = None) -> str:
         """yosys 脚本。分成四步而不是一句 `synth`，因为顺序有讲究。
 
         `synth` 自己会跑一次 abc，但那是映射到通用门的；要拿到标准单元面积，
@@ -105,16 +108,22 @@ class YosysSynthesisAdapter:
         映射掉，否则 abc 会把它们留成通用 `$_DFF_`，最后的 `stat -liberty`
         就少算了一大块面积。
         """
-        return "; ".join([
+        steps = [
             f"read_verilog {verilog}",
             f"synth -top {top_module}",
             f"dfflibmap -liberty {self.liberty}",
             f"abc -liberty {self.liberty}",
             "opt_clean",
             f"stat -liberty {self.liberty}",
-        ])
+        ]
+        if netlist_out is not None:
+            # 时序和功耗都必须跑在映射后的网表上——RTL 上没有单元延迟可言。
+            # 写在 stat 之后，这样面积报的和 STA 读的是同一份网表。
+            steps.append(f"write_verilog -noattr {netlist_out}")
+        return "; ".join(steps)
 
-    def synthesize(self, verilog: Path, top_module: str) -> SynthesisResult:
+    def synthesize(self, verilog: Path, top_module: str,
+                   netlist_out: Path | None = None) -> SynthesisResult:
         key = (str(verilog), top_module)
         if key in self._cache:
             return self._cache[key]
@@ -133,7 +142,7 @@ class YosysSynthesisAdapter:
         try:
             completed = subprocess.run(
                 [*self.launcher, "apptainer", "exec", str(self.container),
-                 "yosys", "-p", self.script(Path(verilog), top_module)],
+                 "yosys", "-p", self.script(Path(verilog), top_module, netlist_out)],
                 capture_output=True, text=True,
                 timeout=self.timeout_seconds, env=environment,
             )
@@ -181,6 +190,7 @@ class YosysSynthesisAdapter:
             cell_area_um2=cell_area,
             cell_count=cell_count,
             cell_histogram=_histogram(text),
+            netlist_uri=str(netlist_out) if netlist_out else "",
             wall_seconds=elapsed,
             log_uri=log_uri,
         )

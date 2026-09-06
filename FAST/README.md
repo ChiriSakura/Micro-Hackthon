@@ -55,7 +55,7 @@ Compiler 和 µArch 实际上是**双向耦合**的，不是单向流水：
 | `L0-deterministic` | 合成数据，只验证控制流跑得通 | 恒 `False` |
 | `L1-analytical-shared-model` | 一阶代价模型 | 恒 `False` |
 | `L2-rtl-simulation` | Chisel → Verilator → golden 向量 | **实测** |
-| `L2-synthesis-nangate45` | Chisel → yosys → 标准单元面积 | 不适用（不测功能） |
+| `L2-synthesis-nangate45` | Chisel → yosys → 面积；OpenSTA → 时序/功耗 | 不适用（不测功能） |
 
 `L1` 那个后缀是刻意的。协同优化器用代价模型挑出获胜设计，
 Evaluator 再用**同一个模型**给它打分——这时候「一致」是算术，不是确认。
@@ -129,7 +129,8 @@ FAST/
 │   └── gen_golden.py                  # 命令行入口（薄）
 ├── scripts/
 │   ├── l2_closed_loop.py              # 协同优化 → 真实 RTL 仿真确认
-│   ├── synthesize_modules.py          # 综合全部模块 → 与一阶模型对照
+│   ├── synthesize_modules.py          # 综合全部模块 → 面积/时序/功耗
+│   ├── setup_hammer_nangate45.py      # 修补 hammer 上游的 4 处缺陷（幂等）
 │   ├── build_report.py                # eval 结果 → Markdown 表 + JSON
 │   ├── plot_results.py                # → figures/
 │   ├── summarize_eval.py              # results.json → 汇总
@@ -141,7 +142,7 @@ FAST/
 ├── docs/
 │   ├── GCP接入.md                      # GCP 拓扑、边界与执行顺序
 │   └── results/                       # 实测表格与汇总 JSON
-└── tests/                             # 137 个测试
+└── tests/                             # 150 个测试
 ```
 
 仓库根目录：
@@ -164,7 +165,7 @@ FAST/
 ### 4.1 控制闭环（秒级，无需外部环境）
 
 ```bash
-python -m pytest tests/ -q               # 137 passed
+python -m pytest tests/ -q               # 150 passed
 fast-smoke --run-dir runs/smoke          # L0：只验证控制流
 ```
 
@@ -244,14 +245,16 @@ Critic 归因时会读到，测试强制非 upstream 的模板必须写明改了
 
 ---
 
-## 6. 综合：把面积从「猜的」变成「量的」
+## 6. 综合：把面积、时序、功耗从「猜的」变成「量的」
 
 `codesign.py` 的一阶面积公式从来没有被任何工具校准过，协同优化器却在用它
 排序。一个把面积算错 3 倍的公式，在 Pareto 前沿上和正确公式看起来一模一样。
 
 ```bash
-sbatch slurm/rtl/fast_synthesis.slurm     # yosys + Nangate45，全部模块
+sbatch slurm/rtl/fast_synthesis.slurm     # yosys 出面积，OpenSTA 出时序与功耗
 ```
+
+三者**共用同一份映射网表**——否则面积和时序可能在描述两个不同的电路。
 
 工艺是 **Nangate45（开源 45nm）**，不是论文的 28nm 商业工艺。绝对面积不可与
 论文的 1.08 / 6.05 mm² 比较；能比的是设计之间的相对关系，而那正是协同优化器
@@ -272,6 +275,94 @@ sbatch slurm/rtl/fast_synthesis.slurm     # yosys + Nangate45，全部模块
 改名为 `max_area_um2`：单位变了名字不跟着改，正是这个项目在别处反复防的
 静默错配。
 
+### 实测结果（Nangate45，理想时钟、无线延迟）
+
+可信的时序，9 个配置：
+
+| 模块 | 面积 µm² | 关键路径 | 上限频率 | 功耗 @ 实测 α |
+|---|---|---|---|---|
+| `TopK_S` | 3 142 | 0.847 ns | 1180 MHz | 6.03 mW |
+| `PrePE_1_2` | 464 | 0.958 ns | 1044 MHz | 0.32 mW（α=0.154） |
+| `TopK` | 6 469 | 1.174 ns | 852 MHz | 13.58 mW（α=0.286） |
+| `PrePE_1_4` | 1 486 | 1.206 ns | 829 MHz | 0.55 mW |
+| `ExpUnit` | 626 | 1.659 ns | 603 MHz | 8.80 mW（α=0.371） |
+| `RePEArray_L` | 1 591 880 | 2.222 ns | **450 MHz** | 3 243 mW |
+| `RePEArray_S` | 371 999 | 2.230 ns | 448 MHz | 399 mW（α=0.078） |
+| `RePE` | 2 671 | 2.308 ns | 433 MHz | 12.04 mW（α=0.194） |
+| **`PSumSoftmax`** | 2 218 | **14.825 ns** | **67 MHz** | 121.7 mW（α=0.306） |
+
+**系统瓶颈是 softmax 归一化器，不是 PE 阵列。** `FixedPointDiv` 把
+`(num << point) / den` 做成一次**纯组合除法**——252 级逻辑、14.8 ns，比其他
+所有模块慢 6 倍。执行阵列在 450 MHz 附近（已经略低于论文的 500 MHz），
+而除法器只有 67 MHz。
+
+这对协同优化器有直接含义：**如果它在调阵列规模，而时钟由除法器决定，
+它优化的是错的东西。** 真实设计里这个除法器需要流水化或换成倒数近似。
+
+### 一道守卫，以及它拦下了什么
+
+`SRAM`、`SRAMBank`、`PrePEArray_S/L` 的时序被判为**不可信**：单级延迟
+6.8～196.2 ns，而 45nm 标准单元约 0.02–0.1 ns。起点都是广播到成百上千个
+负载的控制信号——**综合后的网表没有插过缓冲，那是布局布线干的活**。
+
+这不是工具配置问题，是流程本身的边界，也是把 hammer 的 `par` 打通的硬理由：
+不做 P&R 就拿不到高扇出设计的可信时序。
+
+守卫的判据是**单级延迟**而不是总延迟：`PSumSoftmax` 总延迟 14.8 ns 但每级
+都在 0.35 ns 以内（252 级），所以它可信；`PrePEArray_L` 总延迟 229 ns 却只有
+7 级，其中一个 NOR2 报 196 ns，所以它不可信。两者靠总延迟分不开。
+
+这道守卫是被咬过之后加的——我差点把那批伪影当成「DynaX 达不到 500 MHz」
+报出去。
+
+### 功耗：难点不在工具，在 α
+
+功耗 = 泄漏 + 内部 + 翻转。后两项**严格正比于翻转率 α**。同一份网表只改 α：
+
+| α | 总功耗 | 泄漏 |
+|---|---|---|
+| 0.05 | 1.199 mW | 14.8 µW |
+| 0.20 | 4.751 mW（4.0×） | 14.8 µW |
+| 0.50 | 11.854 mW（10.0×） | 14.8 µW |
+
+所以**用工具默认的 α 等于给出一个任意数**，更糟的是那个数和稀疏度完全无关，
+而 DynaX 省的恰恰就是翻转。拿它做协同优化，等于让优化器看不见稀疏化的
+主要收益。
+
+`activity_from_stimulus()` 因此从**实际施加的激励**里数出 α，而不是取默认值。
+`activity_source` 字段跟着结果走，说明这个 α 是数出来的还是假设的。
+
+实测的 α 跨度是 **0.033（PrePEArray_S）到 0.371（ExpUnit），11 倍**。用默认
+0.2 会让 PrePEArray_S 的功耗高估约 6 倍——这就是「测」和「猜」的差别。
+
+**当前边界**：激励是验证向量（随机控制走查、饱和边界），不是真实注意力
+负载的轨迹。所以现在的功耗是「该验证激励下的功耗」。要让它随稀疏配置变化，
+需要用真实 Q/K 生成激励——接口已留好，`activity` 是入参。
+
+再上一档是门级 VCD（OpenSTA 支持 `read_power_activities -vcd`，内部节点也
+实测），需要 Nangate45 的 Verilog 单元模型，当前拿不到。
+
+### hammer：能用，但要先修四处上游缺陷
+
+`scripts/setup_hammer_nangate45.py`（幂等）修完之后，hammer 的 `syn` 完整
+走通，产出 `mapped.v`、`.sdc` 和能喂给 `syn-to-par` 的 `syn-output.json`——
+面积 629.09 µm²，和直驱 yosys 的 625.90 差 0.5%。
+
+| # | 缺陷 | 性质 |
+|---|---|---|
+| 1 | `Stackup` 缺 `grid_unit` | 数据（×1） |
+| 2 | 每个 `Metal` 缺 `grid_unit` | 数据（×10） |
+| 3 | `max_width` 哨兵值不对齐网格 | 数据（×10） |
+| 4 | `latch_map_file` 未设时生成 `techmap -map None` | **插件代码 bug**（Python 的 `None` 被字符串化写进 tcl） |
+
+另有两处是配置而非缺陷：`yosys_bin` 必须显式给（不走 PATH）；PDK 路径是
+`<install_dir>/lib/` 而不是 `<install_dir>/nangate45/lib/`——hammer **替换**
+`nangate45/` 前缀而不是拼接。
+
+修的都是**数据**不是逻辑，所以升级 hammer 后重跑脚本即可，不必维护 fork。
+走通 hammer 的价值在于 `par` / `drc` / `lvs` 可以直接经 CHIA 的 `HammerNode`
+调用——**布线后的面积和功耗才是能和论文的 mm² 与 mW 对得上的量级**。
+
 ### 两条边界必须说清楚
 
 **SRAM 的实测不用于标定。** yosys 没有存储器宏编译器，把 `SyncReadMem` 映射
@@ -287,8 +378,10 @@ pydantic 校验（`grid_unit` 位置不对；补上后又卡在 `max_width` 不�
 `fast/runtime/chia_nodes.py:synthesis_node` 走 CHIA 的资源路由；等有了可用的
 PDK 和 tech plugin，`HammerNode` 是原位替换。
 
-顺带记一个坑：`yowasp-yosys`（纯 pip、免 root）装得上但用不了——WASI 起不了
-外部进程，综合会在 ABC 那一步**静默停下并返回 0**。适配器因此以「输出里有没有
+顺带记一个坑，它**在两条独立路径上各咬了一次**：`yowasp-yosys`（纯 pip、
+免 root）装得上但用不了——WASI 起不了外部进程，综合会在 ABC 那一步**静默
+停下并返回 0**。第一次是在直驱流程里，第二次是把它喂给 hammer 时——hammer
+一路修到最后卡在「没有 mapped.v」，根因还是它。适配器因此以「输出里有没有
 面积行」为判据，不看退出码。
 
 ---
@@ -340,12 +433,19 @@ LLM 走 Vertex AI（`gemini-2.5-flash`），复用已有 ADC，不引入新密�
 - **面积模型经 yosys + Nangate45 实测标定**，修正了预测单元与执行单元
   25.3 倍的相对权重偏差
 - CHIA/Ray 五节点任务图 + GCP 实机打通
-- 137 个自动化测试
+- **时序与功耗**：OpenSTA 实测，α 从实际激励数出；hammer 的 `syn` 也已打通
+- 150 个自动化测试
 
 尚未完成：
 
-- **功耗与时序**：目前只有面积。yosys 给不出有意义的功耗；时序要跑 STA
-  （OpenSTA 在同一个容器里，是下一步最便宜的一项）
+- **高扇出设计的时序**：4 个配置（SRAM、SRAMBank、PrePEArray_S/L）拿不到
+  可信时序，因为综合后没有插缓冲。要靠 hammer 的 `par`
+- **功耗的 α 仍来自验证向量**，不是真实注意力负载的轨迹。要让功耗随稀疏
+  配置变化，需要用真实 Q/K 生成激励；再上一档是门级 VCD
+- **布局布线**：hammer 的 `syn` 已通，`par` 还没跑。综合后面积不含布线，
+  和论文的 mm² 差一个系统性因子
+- **除法器是系统瓶颈**（67 MHz vs 阵列的 450 MHz），但协同优化器的搜索空间
+  里还没有「除法器实现方式」这个维度
 - **28nm 对齐**：Nangate45 是开源 45nm，和论文的 1.08 / 6.05 mm² 不可直比。
   要对齐需要商业 PDK，或至少一次跨工艺的缩放校准
 - **SRAM 面积仍是估计**：yosys 没有存储器宏编译器，实测反映的是流程缺一环

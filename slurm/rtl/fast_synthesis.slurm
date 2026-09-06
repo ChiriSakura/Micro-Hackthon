@@ -9,7 +9,16 @@
 #SBATCH --output=/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/slurm/%x_%j.out
 #SBATCH --error=/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/slurm/%x_%j.err
 
-# 用 yosys + Nangate45 综合每个模块，得到工具量出来的单元面积。
+# 面积、时序、功耗：全部来自工具，不是模型。
+#
+# 三者共用同一份综合网表：yosys 出面积并写出映射网表，OpenSTA 在那份网表上
+# 出关键路径和功耗。共用一份网表是必要的——否则面积和时序可能在描述两个
+# 不同的电路。
+#
+# 功耗的 alpha（翻转率）从**实际施加的金标准激励**里数出来，不取工具默认值。
+# 动态功耗严格正比于 alpha：实测同一网表下 alpha 从 0.05 到 0.50，功耗从
+# 1.199 mW 到 11.854 mW（10 倍），而泄漏恒定 14.8 uW。默认常数给出的功耗
+# 和稀疏度完全无关——而 DynaX 省的恰恰就是翻转。
 #
 # 工艺不是论文的 28nm 商业库（我们没有那个 PDK），是开源的 Nangate45。
 # 绝对面积不能和论文的 1.08 / 6.05 mm^2 比；设计之间的相对面积可以，
@@ -23,6 +32,7 @@ set -uo pipefail
 ROOT=/scratch/gz2522/gz2522/tmp/micro-hackthon
 REPO=/home/gz2522/Micro-Hackthon
 SIF="$ROOT/containers/yosys.sif"
+STA="$ROOT/containers/opensta.sif"
 LIB="$ROOT/pdk/nangate45/NangateOpenCellLibrary_typical.lib"
 OUT="$ROOT/runs/synth_${SLURM_JOB_ID}"
 export APPTAINER_TMPDIR=/tmp APPTAINER_CACHEDIR=/tmp/apptainer-cache
@@ -37,6 +47,11 @@ if [ ! -f "$SIF" ]; then
     echo "=== 拉取 yosys 镜像 ==="
     apptainer pull --force "$SIF" docker://hdlc/yosys:latest 2>&1 | tail -2
 fi
+if [ ! -f "$STA" ]; then
+    echo "=== 拉取 OpenSTA 镜像 ==="
+    # 二进制在 /OpenSTA/build/sta，不在 PATH 里——镜像的 entrypoint 指向它。
+    apptainer pull --force "$STA" docker://openroad/opensta:latest 2>&1 | tail -2
+fi
 if [ ! -f "$LIB" ]; then
     echo "=== 取 Nangate45 标准单元库 ==="
     curl -sL -o "$LIB" \
@@ -49,9 +64,28 @@ cd "$REPO/FAST/hardware"
 scala-cli run chisel --server=false --main-class Elaborate -- ALL "$OUT/rtl" 2>&1 \
     | grep -vE "^(Download|Downloaded|Compiling|Compiled)" | tail -5
 
-echo; echo "=== 2. 逐个综合 ==="
+echo; echo "=== 2. 生成金标准激励（用于数出翻转率 alpha） ==="
+# 功耗的 alpha 必须来自实际施加的激励。没有它就只能用默认常数，那样算出的
+# 功耗和稀疏度无关——对稀疏加速器等于没有信息量。
+mkdir -p "$OUT/golden"
+for SPEC in "ExpUnit|--module ExpUnit" "PSumSoftmax|--module PSumSoftmax" \
+            "SRAM|--module SRAM" "RePE|--module RePE" \
+            "PrePE_1_2|--module PrePE --out-bits 12" \
+            "TopK|" "RePEArray_S|--module RePEArray --num-rows 32 --pe-count 4 --reg-width 8" \
+            "PrePEArray_S|--module PrePEArray --height 32 --width 32 --out-bits 12"; do
+    NAME=${SPEC%%|*}; GARGS=${SPEC#*|}
+    # shellcheck disable=SC2086
+    PYTHONPATH="$REPO/FAST/hardware" "$ROOT/env/dynax-py312/bin/python" \
+        "$REPO/FAST/hardware/gen_golden.py" --out "$OUT/golden/$NAME.json" $GARGS \
+        > /dev/null 2>&1 && echo "  $NAME ok" || echo "  $NAME 跳过"
+done
+
+echo; echo "=== 3. 逐个综合 ==="
 cd "$REPO/FAST"
-PYTHONPATH="$REPO/FAST" "$ROOT/env/fast-py312/bin/python" scripts/synthesize_modules.py \
+# -u：输出重定向到文件时 Python 默认块缓冲，作业跑十几分钟却一行不出，
+# 分不清是慢还是卡住了。
+PYTHONPATH="$REPO/FAST" "$ROOT/env/fast-py312/bin/python" -u scripts/synthesize_modules.py \
     --rtl "$OUT/rtl" --container "$SIF" --liberty "$LIB" \
+    --sta-container "$STA" --period-ns 2.0 --golden-dir "$OUT/golden" \
     --out "$OUT/synthesis.json" --log-dir "$OUT/logs"
 echo "综合退出码: $?"
