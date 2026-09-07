@@ -27,6 +27,14 @@ from fast.agents.templates import TemplateRegistry, topk_area_units, array_area_
 MODULES: tuple[tuple[str, str, str | None], ...] = (
     ("ExpUnit", "ExpUnitFixPoint", "exp_unit"),
     ("FixedPointDiv", "FixedPointDiv", None),
+    # 流水化除法器的取舍曲线。上游的组合除法是整个系统的瓶颈
+    # （14.83 ns / 67 MHz，而执行阵列能跑 450 MHz），这几个点用来量出
+    # 「多花多少面积换多少频率」，让协同优化器能在上面选。
+    ("DivPipe1", "FixedPointDivPipelined", None),
+    ("DivPipe4", "FixedPointDivPipelined", None),
+    ("DivPipe8", "FixedPointDivPipelined", None),
+    ("DivPipe12", "FixedPointDivPipelined", None),
+    ("DivPipe24", "FixedPointDivPipelined", None),
     ("PSumSoftmax", "PSumSoftmax", "psum_softmax"),
     ("SRAMBank", "SRAMBank", None),
     ("SRAM", "SRAM", "sram"),

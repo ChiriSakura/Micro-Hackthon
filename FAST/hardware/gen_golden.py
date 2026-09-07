@@ -25,6 +25,7 @@ from golden.execute_unit import (
 )
 from golden.fixedpoint import quantise
 from golden.predict_unit import (
+    divider_cases,
     prepe_array_14_cases,
     prepe_array_cases,
     prepe_cases,
@@ -37,7 +38,9 @@ def main() -> int:
     parser.add_argument("--module", default="TopK",
                         choices=["TopK", "ExpUnit", "PSumSoftmax", "SRAM",
                                  "RePE", "RePERow", "RePEArray", "PrePE",
-                                 "PrePEArray", "PrePEArray14"])
+                                 "PrePEArray", "PrePEArray14", "Divider"])
+    parser.add_argument("--stages", type=int, default=8,
+                        help="流水化除法器的级数（决定输出延迟）")
     parser.add_argument("--height", type=int, default=2)
     parser.add_argument("--width", type=int, default=8)
     parser.add_argument("--out-bits", type=int, default=12)
@@ -57,6 +60,22 @@ def main() -> int:
     parser.add_argument("--seed", type=int, default=20260905)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
+
+    if args.module == "Divider":
+        payload = {
+            "module": "FixedPointDivPipelined",
+            "params": {"bits": args.bits, "point": args.point, "stages": args.stages},
+            "reference": "和上游 FixedPointDiv 逐位一致的恢复除法",
+            "seed": args.seed,
+            "cases": divider_cases(args.bits, args.point, args.stages, args.seed),
+        }
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
+                            encoding="utf-8")
+        total = sum(len(c["expected_value_ticks"]) for c in payload["cases"])
+        print(f"wrote {len(payload['cases'])} 除法器用例（{total} 点，"
+              f"延迟 {args.stages} 拍）to {args.out}")
+        return 0
 
     if args.module == "PrePEArray14":
         cases = prepe_array_14_cases(args.height, args.width, args.out_bits,

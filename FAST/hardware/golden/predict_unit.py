@@ -621,6 +621,65 @@ def _key_bound(chain_length: int, query_max: int, point: int, bits: int) -> int:
     return max(2, min(bound, 1 << (bits // 4)))
 
 
+def divider_reference(numerator: int, denominator: int,
+                      bits: int, point: int) -> int:
+    """流水化除法器的参照：和上游 `FixedPointDiv` 逐位一致。
+
+    两者语义必须相同，否则「换一个除法器实现」就不是在同一条曲线上取点，
+    而是换了功能。上游用 Chisel 的 `/`（SInt 除法，朝零截断）；这里用基 2
+    恢复除法先算绝对值再套符号——同样朝零截断。
+
+    除零返回 0，也和上游一致。
+    """
+    if denominator == 0:
+        return 0
+    # 被除数左移 point 位，这是定点除法的对齐。
+    shifted = abs(numerator) << point
+    magnitude = shifted // abs(denominator)
+    negative = (numerator < 0) != (denominator < 0)
+    return wrap(-magnitude if negative else magnitude, bits)
+
+
+def divider_cases(bits: int, point: int, stages: int, seed: int) -> list[dict]:
+    """覆盖符号组合、除零、截断方向和溢出的输入。
+
+    每个用例是一拍输入；流水线延迟 `stages` 拍，testbench 按 out_valid 采样。
+    """
+    generator = torch.Generator().manual_seed(seed)
+    scale = 1 << point
+    limit = 1 << (bits - 1)
+
+    named: list[tuple[str, list[tuple[int, int]]]] = [
+        # 除零：唯一有明确规定的特殊值。
+        ("divide_by_zero", [(scale, 0), (0, 0), (-scale, 0), (limit - 1, 0)]),
+        # 精确商，肉眼可核对。
+        ("exact", [(scale, scale), (2 * scale, scale), (scale, 2 * scale),
+                   (-2 * scale, scale), (2 * scale, -scale), (-2 * scale, -scale)]),
+        # 四种符号组合下的截断方向——朝零，不是朝负无穷。
+        ("truncation", [(3, 2 * scale), (-3, 2 * scale),
+                        (3, -2 * scale), (-3, -2 * scale),
+                        (1, 3 * scale), (-1, 3 * scale)]),
+        # 商超出输出宽度：窄化时回绕，和上游一样。
+        ("overflow", [(scale, 1), (100 * scale, scale), (scale, 2), (limit - 1, 1)]),
+        # 分子为零，以及分母远大于分子。
+        ("small_quotient", [(0, scale), (1, limit - 1), (-1, limit - 1)]),
+    ]
+    noise = torch.randint(-limit, limit, (64,), generator=generator).tolist()
+    named.append(("random", [(noise[i], noise[i + 1]) for i in range(0, 60, 2)]))
+
+    cases = []
+    for name, points in named:
+        inputs: list[int] = []
+        expected: list[int] = []
+        for numerator, denominator in points:
+            inputs.extend((numerator, denominator))
+            expected.append(divider_reference(numerator, denominator, bits, point))
+        cases.append({"name": name, "input_ticks": inputs,
+                      "expected_value_ticks": expected,
+                      "expected_idx": [stages]})
+    return cases
+
+
 def prepe_array_cases(height: int, width: int, out_bits: int, bits: int,
                       point: int, seed: int) -> list[dict]:
     """Drive the array with real (Q, K) and check it against DynaX's own Python.

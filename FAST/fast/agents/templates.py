@@ -374,6 +374,58 @@ def array_area_units(num_rows: int, pe_per_row: int, bits: int, reg_width: int) 
     return raw * _ARRAY_UM2_PER_UNIT
 
 
+# softmax 除法器的实测曲线（Nangate45，slurm job 17085953）。
+#
+#   级数   面积 um^2   关键路径    频率      延迟
+#     0      2081.4    14.780 ns   68 MHz    0 拍   ← 上游的组合除法
+#     1      2887.2    10.895 ns   92 MHz    1 拍
+#     4      4160.0     3.269 ns  306 MHz    4 拍
+#     8      5411.8     1.980 ns  505 MHz    8 拍   ← 第一个越过 500 MHz
+#    12      6367.5     1.546 ns  647 MHz   12 拍
+#    24      9321.2    （时序不可信，扇出主导）      收益已饱和
+#
+# 三件事从这条曲线上读出来：
+#
+# 1. 8 级的面积代价是 +3331 um^2，对比 RePEArray_S 的 371999 um^2 只有
+#    **0.9%**——用不到 1% 的系统面积把时钟从 68 MHz 提到阵列决定的 450 MHz。
+# 2. 功耗**下降**（81.0 -> 15.9 mW）。组合除法的长链会产生大量毛刺，插了
+#    寄存器把毛刺截断了。所以这不是「面积换频率」，是面积换频率**加**功耗。
+# 3. 曲线在 12 级附近拐弯，24 级收益饱和而面积还在涨。
+_DIVIDER_PROFILE: dict[int, tuple[float, float]] = {
+    # 级数 -> (面积 um^2, 关键路径 ns)
+    0: (2081.4, 14.780),
+    1: (2887.2, 10.895),
+    4: (4160.0, 3.269),
+    8: (5411.8, 1.980),
+    12: (6367.5, 1.546),
+}
+
+
+def divider_area_um2(stages: int) -> float:
+    """除法器面积，um^2（Nangate45 实测）。未测过的级数按最近的插值。"""
+    if stages in _DIVIDER_PROFILE:
+        return _DIVIDER_PROFILE[stages][0]
+    nearest = min(_DIVIDER_PROFILE, key=lambda s: abs(s - stages))
+    return _DIVIDER_PROFILE[nearest][0]
+
+
+def divider_critical_path_ns(stages: int) -> float:
+    """除法器的关键路径，ns（Nangate45 实测）。
+
+    这是**整个系统时钟的下界之一**：softmax 归一化在数据通路上，它慢，
+    整条流水线就得跟着慢。协同优化器必须把它和阵列的关键路径一起取 max。
+    """
+    if stages in _DIVIDER_PROFILE:
+        return _DIVIDER_PROFILE[stages][1]
+    nearest = min(_DIVIDER_PROFILE, key=lambda s: abs(s - stages))
+    return _DIVIDER_PROFILE[nearest][1]
+
+
+# 执行阵列的关键路径，实测 2.22-2.23 ns（32x4 与 64x8 几乎一样——它是
+# 单个 PE 内部的路径，不随阵列规模变化）。
+ARRAY_CRITICAL_PATH_NS = 2.23
+
+
 def sram_area_units(sram_bytes: int) -> float:
     """SRAM 的面积，um^2——**未经标定**。
 

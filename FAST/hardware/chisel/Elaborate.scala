@@ -57,6 +57,14 @@ object Elaborate extends App {
     case "TopFirst" =>
       () => new predict_unit.TopFirst(bits = Bits, point = Point, idxBits = 6, depth = 64)
     case "FixedPointDiv" => () => new predict_unit.FixedPointDiv(Bits, Point)
+    // 流水化除法器，级数是搜索维度。实测发现组合除法（上游）是整个系统
+    // 的瓶颈：14.83 ns / 67 MHz，而执行阵列能跑 450 MHz。这几个配置用来
+    // 量出面积与频率的取舍曲线，让协同优化器能在上面取点。
+    case "DivPipe1" => () => new predict_unit.FixedPointDivPipelined(Bits, Point, 1)
+    case "DivPipe4" => () => new predict_unit.FixedPointDivPipelined(Bits, Point, 4)
+    case "DivPipe8" => () => new predict_unit.FixedPointDivPipelined(Bits, Point, 8)
+    case "DivPipe12" => () => new predict_unit.FixedPointDivPipelined(Bits, Point, 12)
+    case "DivPipe24" => () => new predict_unit.FixedPointDivPipelined(Bits, Point, 24)
     case "PSumSoftmax" => () => new predict_unit.PSumSoftmax(Bits, Point)
 
     case "PrePEArray_S" =>
@@ -141,6 +149,7 @@ object Elaborate extends App {
   private val All = Seq(
     "ExpUnit",
     "FixedPointDiv", "PSumSoftmax",
+    "DivPipe1", "DivPipe4", "DivPipe8", "DivPipe12", "DivPipe24",
     "TopFirst", "TopK_S", "TopK",
     "SRAMBank", "SRAM",
     "PrePE_1_2", "PrePE_1_4", "PrePEArray_T", "PrePEArray14_T",

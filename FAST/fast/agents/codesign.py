@@ -20,6 +20,9 @@ from dataclasses import dataclass
 import math
 
 from fast.agents.templates import (
+    ARRAY_CRITICAL_PATH_NS,
+    divider_area_um2,
+    divider_critical_path_ns,
     TemplateRegistry,
     array_area_units,
     required_col_select_bits,
@@ -51,6 +54,9 @@ class CoDesignPoint:
     data_width: int
     sram_bytes: int
     queue_depth: int
+    # softmax 除法器的流水级数。0 = 上游的组合除法。
+    # 它决定系统时钟：0 级 68 MHz，8 级 505 MHz（实测，Nangate45）。
+    divider_stages: int = 0
 
     @property
     def mac_lanes(self) -> int:
@@ -70,6 +76,14 @@ class CoDesignSpace:
     pe_per_row: tuple[int, ...] = (4, 8, 16, 32)
     reg_width: tuple[int, ...] = (16, 32, 64)
     queue_depth: tuple[int, ...] = (0, 2, 4, 8, 16)
+    # softmax 归一化器的除法器流水级数。这个维度是实测逼出来的：上游的
+    # 组合除法（0 级）跑 68 MHz，而执行阵列能跑 450 MHz——时钟由除法器
+    # 决定，可搜索空间里却没有一个维度和它有关，优化器一直在调一个不
+    # 决定结果的变量。
+    #
+    # 取值来自 slurm 上的实测曲线（Nangate45，见 divider_profile）：
+    # 8 级是第一个越过 500 MHz 的点，代价约 0.9% 的系统面积。
+    divider_stages: tuple[int, ...] = (0, 4, 8, 12)
 
     def points(self, specs: ArchSpecs, sram_choices: tuple[int, ...] = (65536, 131072, 262144)):
         for tq in self.tile_q:
@@ -82,6 +96,7 @@ class CoDesignSpace:
                                     for width in specs.data_widths:
                                         for sram in sram_choices:
                                             for queue in self.queue_depth:
+                                              for div in self.divider_stages:
                                                 for buffered in self.double_buffer:
                                                     yield CoDesignPoint(
                                                         tile_q=tq, tile_k=tk, tile_d=td,
@@ -89,6 +104,7 @@ class CoDesignSpace:
                                                         num_rows=rows, pe_per_row=cols,
                                                         reg_width=regs, data_width=width,
                                                         sram_bytes=sram, queue_depth=queue,
+                                                        divider_stages=div,
                                                     )
 
 
@@ -172,6 +188,9 @@ def area_units(point: CoDesignPoint, block_m: int, kept_per_block: int) -> float
         array_area_units(point.num_rows, point.pe_per_row, point.data_width, point.reg_width)
         + topk_area_units(block_m, kept_per_block, point.data_width)
         + sram_area_units(point.sram_bytes)
+        # 除法器在数据通路上，它的面积必须算进来——否则「多花面积换频率」
+        # 这个取舍只有收益没有成本，优化器会无脑选最深的流水。
+        + divider_area_um2(point.divider_stages)
     )
 
 
@@ -215,17 +234,39 @@ def estimate(
     dram_bytes = kernel.block_occupancy * sequence_length * sequence_length * per_element
 
     area = area_units(point, block_m, kept_per_block)
+
+    # 时钟周期取数据通路上最慢的那一段。两段都是实测的：
+    #
+    #   执行阵列  2.23 ns（单个 PE 内部的路径，不随阵列规模变化）
+    #   除法器    14.78 ns（0 级/上游）到 1.55 ns（12 级）
+    #
+    # 在有这个 max 之前，`edp = energy * cycles` 里 energy 又等于
+    # `power * cycles`，所以 EDP 的单位是「周期² x 功率」——**时钟周期从来
+    # 没进过公式**。后果是优化器完全看不见除法器：快的除法器不改变周期数，
+    # 只改变每周期多长，而「每周期多长」在模型里不存在。
+    #
+    # 这也是为什么实测能改变搜索结果，而不只是让数字更准：它补上的是模型
+    # 里缺失的一个物理量，不是一个系数。
+    clock_period_ns = max(
+        ARRAY_CRITICAL_PATH_NS, divider_critical_path_ns(point.divider_stages)
+    )
+    seconds = cycles * clock_period_ns * 1e-9
+
     # Power tracks the lanes that actually switch, plus a memory term.
     power = lanes * utilisation * (point.data_width ** 2) * 1e-4 + point.sram_bytes * 1e-6
-    energy = power * cycles
+    energy = power * seconds
     return {
         "cycles": cycles,
+        "clock_period_ns": clock_period_ns,
+        "max_frequency_mhz": 1000.0 / clock_period_ns,
+        "seconds": seconds,
         "pe_utilization": utilisation,
-        "throughput": sequence_length / cycles if cycles else 0.0,
+        "throughput": sequence_length / seconds if seconds else 0.0,
         "dram_bytes": dram_bytes,
         "area": area,
         "power": power,
-        "edp": energy * cycles,
+        # 真正的 energy-delay product：焦耳 x 秒。
+        "edp": energy * seconds,
     }
 
 
