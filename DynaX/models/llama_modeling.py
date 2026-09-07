@@ -54,6 +54,7 @@ from transformers.models.llama.configuration_llama import LlamaConfig
 from models.utils.quant_utils import build_quant_matmul
 from models.utils.runtime_config import load_dynax_config
 from models.utils.sparse_attention import quant_qk_matmul, prune_attn_scores
+from models.utils.sparsity_stats import capture_qkv
 
 
 if is_flash_attn_2_available():
@@ -427,6 +428,12 @@ class LlamaAttention(nn.Module):
 
         key_states = repeat_kv(key_states, self.num_key_value_groups)
         value_states = repeat_kv(value_states, self.num_key_value_groups)
+
+        # ★ FAST 改动：在算分数之前把 Q/K/V 交给可选的抓取钩子。
+        # 硬件验证需要真实的注意力输入（见 FAST/hardware 的 attention tile），
+        # 这是拿到它们的唯一位置——RoPE 和 repeat_kv 都已经作用过，
+        # 正是进 matmul 的那三个张量。默认关闭，只多一次 is None 判断。
+        capture_qkv(self.layer_idx, query_states, key_states, value_states)
 
         attn_weights = torch.matmul(query_states, key_states.transpose(2, 3)) / math.sqrt(self.head_dim)  # key_states.transpose(2, 3)最后两个维度进行转置
 

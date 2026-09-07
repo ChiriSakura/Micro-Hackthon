@@ -273,3 +273,33 @@ def reset_recorder() -> SparsityRecorder:
 
 def dump_recorder(path: str | Path) -> Path:
     return get_recorder().dump(path)
+
+
+# ---------------------------------------------------------------------------
+# ★ FAST 新增：Q/K/V 抓取
+# ---------------------------------------------------------------------------
+#
+# 硬件验证需要真实的注意力输入，不是合成数据。稀疏加速器省的是翻转，
+# 而翻转率取决于真实 Q/K 的数值分布——用随机数驱动，功耗数字和稀疏度
+# 就脱钩了。
+#
+# 和上面的稀疏统计一样是显式的、默认关闭的钩子：不开启时每次前向只多
+# 一次 `is None` 判断。
+
+_TENSOR_SINK = None
+
+
+def set_tensor_sink(sink) -> None:
+    """装一个回调，接收每层每次前向的 (layer_idx, query, key, value)。
+
+    传 None 关闭。张量按原样传出（不复制），调用方要自己决定留哪些——
+    一个 22 层的模型跑一遍会调用几十次，全留会吃光内存。
+    """
+    global _TENSOR_SINK
+    _TENSOR_SINK = sink
+
+
+def capture_qkv(layer_idx, query, key, value) -> None:
+    """由 modeling 代码在算 attn_weights 之前调用。"""
+    if _TENSOR_SINK is not None:
+        _TENSOR_SINK(layer_idx, query, key, value)

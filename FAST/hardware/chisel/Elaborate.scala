@@ -56,6 +56,27 @@ object Elaborate extends App {
     case "TopK_S" => () => new predict_unit.TopK(m = 32, n = 8, bits = Bits, point = Point)
     case "TopFirst" =>
       () => new predict_unit.TopFirst(bits = Bits, point = Point, idxBits = 6, depth = 64)
+    // 预测单元和执行单元之间的断点：TopK 的块内索引 -> RePEA 的列选 +
+    // 存储侧的 gather 地址。论文的 Algorithm 1（block scheduler +
+    // N-index buffer）就是这一环，开源里没有。
+    // 完整的 attention tile：把 5 个模块连成一条链。开源 DynaX 没有顶层，
+    // 每个大模块的实例化次数都是 0——这是第一个把它们连起来的东西。
+    case "AttentionTile" =>
+      () => new AttentionTile(
+        bits = Bits, point = Point,
+        tileQ = 4, tileK = 32, headDim = 8,
+        // kept == peCountPerRow：一趟就覆盖全部保留列，scheduler.passes = 1。
+        // 分多趟本身是对的（结果相加），但会把「数据通路对不对」和
+        // 「多趟累加对不对」两个变量搅在一起，先验证前者。
+        keptPerRow = 8, peCountPerRow = 8,
+        psumBits = 12, dividerStages = 8,
+      )
+    case "IndexScheduler" =>
+      () => new predict_unit.IndexScheduler(
+        numRows = 4, keptPerRow = 8, peCountPerRow = 4, blockM = 32)
+    case "IndexScheduler_S" =>
+      () => new predict_unit.IndexScheduler(
+        numRows = 32, keptPerRow = 8, peCountPerRow = 4, blockM = 32)
     case "FixedPointDiv" => () => new predict_unit.FixedPointDiv(Bits, Point)
     // 流水化除法器，级数是搜索维度。实测发现组合除法（上游）是整个系统
     // 的瓶颈：14.83 ns / 67 MHz，而执行阵列能跑 450 MHz。这几个配置用来
@@ -150,6 +171,7 @@ object Elaborate extends App {
     "ExpUnit",
     "FixedPointDiv", "PSumSoftmax",
     "DivPipe1", "DivPipe4", "DivPipe8", "DivPipe12", "DivPipe24",
+    "IndexScheduler", "IndexScheduler_S", "AttentionTile",
     "TopFirst", "TopK_S", "TopK",
     "SRAMBank", "SRAM",
     "PrePE_1_2", "PrePE_1_4", "PrePEArray_T", "PrePEArray14_T",
