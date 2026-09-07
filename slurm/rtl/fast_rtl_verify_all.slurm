@@ -39,16 +39,18 @@ echo "node=$(hostname) partition=${SLURM_JOB_PARTITION:-?} out=$OUT"
 
 # target | top module | testbench | gen_golden args | sim args
 MODULES=(
-  "TopK|TopK|tb_topk.cpp||16"
+  # 第 5 个字段现在是 gen_ports 参数（只有阵列需要）。TopK 的 sim
+  # 参数由下面的 EXTRA 处理，这里必须留空。
+  "TopK|TopK|tb_topk.cpp||"
   "ExpUnit|ExpUnitFixPoint|tb_exp.cpp|--module ExpUnit|"
   "PSumSoftmax|PSumSoftmax|tb_psum_softmax.cpp|--module PSumSoftmax|"
   "SRAM|SRAM|tb_sram.cpp|--module SRAM|"
   "RePE|RePE|tb_repe.cpp|--module RePE|"
   "RePERow|RePERow|tb_repe_row.cpp|--module RePERow --pe-count 8 --reg-width 8|"
-  "RePEArray_T|RePEArray|tb_repe_array.cpp|--module RePEArray --num-rows 4 --pe-count 2 --reg-width 4|"
+  "RePEArray_T|RePEArray|tb_repe_array.cpp|--module RePEArray --num-rows 4 --pe-count 2 --reg-width 4|--module RePEArray --rows 4 --pes 2 --reg-width 4"
   "PrePE_1_2|PrePE_1_2|tb_prepe.cpp|--module PrePE --out-bits 12|"
-  "PrePEArray_T|PrePEArray_1_2|tb_prepe_array.cpp|--module PrePEArray --height 2 --width 8 --out-bits 12|"
-  "PrePEArray14_T|PrePEArray_1_4|tb_prepe_array14.cpp|--module PrePEArray14 --height 2 --width 8 --out-bits 15|"
+  "PrePEArray_T|PrePEArray_1_2|tb_prepe_array.cpp|--module PrePEArray --height 2 --width 8 --out-bits 12|--module PrePEArray_1_2 --height 2 --width 8"
+  "PrePEArray14_T|PrePEArray_1_4|tb_prepe_array14.cpp|--module PrePEArray14 --height 2 --width 8 --out-bits 15|--module PrePEArray_1_4 --height 2 --width 8"
 )
 
 echo "=== 1. elaborate every target (one JVM) ==="
@@ -61,7 +63,7 @@ echo "=== 2. verilate and simulate each ==="
 declare -a SUMMARY
 FAILED=0
 for SPEC in "${MODULES[@]}"; do
-    IFS='|' read -r TARGET TOP TB GOLDEN SIM <<< "$SPEC"
+    IFS='|' read -r TARGET TOP TB GOLDEN PORTS <<< "$SPEC"
     WORK="$OUT/$TARGET"
     mkdir -p "$WORK"
     VERILOG="$OUT/rtl/$TARGET/${TOP}.v"
@@ -74,6 +76,13 @@ for SPEC in "${MODULES[@]}"; do
         --out "$WORK/golden.json" $GOLDEN > /dev/null || {
         SUMMARY+=("$(printf '  %-14s GOLDEN FAILED' "$TARGET")"); FAILED=1; continue; }
 
+    # 阵列的 testbench 靠生成的端口头，尺寸不同头文件就不同——少了它
+    # 会以「找不到 array_ports.h」的形式构建失败。
+    if [[ -n "$PORTS" ]]; then
+        # shellcheck disable=SC2086
+        "$PY" "$HW_DIR/tb/gen_ports.py" --out "$WORK/array_ports.h" $PORTS > /dev/null || {
+            SUMMARY+=("$(printf '  %-14s PORTS FAILED' "$TARGET")"); FAILED=1; continue; }
+    fi
     cp "$HW_DIR/tb/$TB" "$HW_DIR/tb/golden.h" "$WORK/"
     (cd "$WORK" && apptainer exec "$ROOT/containers/verilator.sif" verilator \
         --cc --exe --build -j "${SLURM_CPUS_PER_TASK:-4}" \
@@ -88,7 +97,9 @@ for SPEC in "${MODULES[@]}"; do
 
     echo "--- $TARGET ---"
     # shellcheck disable=SC2086
-    RESULT=$(apptainer exec "$ROOT/containers/verilator.sif" "$BIN" "$WORK/golden.json" $SIM)
+    EXTRA=""; [[ "$TARGET" == "TopK" ]] && EXTRA=16
+    # shellcheck disable=SC2086
+    RESULT=$(apptainer exec "$ROOT/containers/verilator.sif" "$BIN" "$WORK/golden.json" $EXTRA)
     echo "$RESULT"
     VERDICT=$(printf '%s' "$RESULT" | grep -E "^(PASSED|FAILED):" | tail -1)
     SUMMARY+=("$(printf '  %-14s %s' "$TARGET" "${VERDICT:-no verdict}")")

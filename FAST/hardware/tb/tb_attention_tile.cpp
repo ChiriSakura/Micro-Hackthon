@@ -152,6 +152,8 @@ long outValue(VAttentionTile* dut, int row) {
 // PrePEA 的输入是低位宽无符号：predict_q 是每行一个 4-bit Q 元素，
 // predict_k 是一个 key 的 headDim 个 4-bit 元素。
 
+/// 预测端口现在是 SInt(4.W)。Verilator 把它表示成 4 位无符号容器，
+/// 所以送值时要取二进制补码的低 4 位（-7 -> 0b1001）。
 void setPredictQ(VAttentionTile* dut, int row, unsigned char value) {
     switch (row) {
         case 0: dut->io_predict_q_0 = value; break;
@@ -462,7 +464,7 @@ int main(int argc, char** argv) {
         drv.reset();
         auto setK = [&](int key) {
             for (int d = 0; d < kHeadDim; d++)
-                setPredictK(dut, d, (unsigned char)(key < 0 ? 0 : kp[key][d] & 0xF));
+                setPredictK(dut, d, (unsigned char)(key < 0 ? 0 : kp[key][d] & 0xF));  // 同上
         };
         auto step = [&](int pes, int arr) {
             dut->io_predict_pes_state = (unsigned char)pes;
@@ -490,7 +492,7 @@ int main(int argc, char** argv) {
             // 这是 verified_scope 里记着的那条使用约束。
             for (int which = 1; which >= 0; which--) {
                 for (int r = 0; r < kTileQ; r++)
-                    setPredictQ(dut, r, (unsigned char)(qp[r][2 * c + which] & 0xF));
+                    setPredictQ(dut, r, (unsigned char)(qp[r][2 * c + which] & 0xF));  // 补码低 4 位
                 step(kSInput, kAClear);
             }
         }

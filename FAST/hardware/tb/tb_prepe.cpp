@@ -28,7 +28,8 @@
 namespace {
 
 constexpr int kFieldsPerCycle = 6;   // left, sel, top0, top1, psum_in, state
-constexpr int kOutputsPerCycle = 5;  // bottom0, bottom1, right, sel_out, psum_out
+constexpr int kOutputsPerCycle = 5;
+constexpr int kPsumBits = 12;   // Elaborate.scala 的 PSumBitsS  // bottom0, bottom1, right, sel_out, psum_out
 
 }  // namespace
 
@@ -57,6 +58,7 @@ int main(int argc, char** argv) {
         const size_t cycles = item.input_ticks.size() / kFieldsPerCycle;
         for (size_t c = 0; c < cycles; c++) {
             const long* fields = &item.input_ticks[c * kFieldsPerCycle];
+            // 端口现在是 SInt(4.W)：送二进制补码的低 4 位。
             dut->io_left_in = (unsigned char)(fields[0] & 0xF);
             dut->io_sel_in = (unsigned char)(fields[1] & 1);
             dut->io_top_in0 = (unsigned char)(fields[2] & 0xF);
@@ -67,10 +69,17 @@ int main(int argc, char** argv) {
 
             if (item.expected_idx[c]) {
                 const long* want = &item.expected_value_ticks[c * kOutputsPerCycle];
-                const long got[kOutputsPerCycle] = {
-                    (long)dut->io_bottom_out0, (long)dut->io_bottom_out1,
-                    (long)dut->io_right_out, (long)dut->io_sel_out,
-                    (long)dut->io_psum_out,
+                // SInt 端口按位宽做符号扩展再比对——Verilator 用无符号容器
+            // 存它们，直接读会把 -2 读成 14。
+            auto s4 = [](unsigned v) { return (long)(int)((v & 0xF) ^ 0x8) - 8; };
+            auto sN = [&](unsigned v) {
+                    const unsigned sign = 1u << (kPsumBits - 1);
+                    return (long)(int)((v & (2 * sign - 1)) ^ sign) - (long)sign;
+                };
+            const long got[kOutputsPerCycle] = {
+                    s4(dut->io_bottom_out0), s4(dut->io_bottom_out1),
+                    s4(dut->io_right_out), (long)dut->io_sel_out,
+                    sN(dut->io_psum_out),
                 };
                 bool ok = true;
                 for (int i = 0; i < kOutputsPerCycle; i++) ok = ok && got[i] == want[i];

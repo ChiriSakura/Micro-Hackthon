@@ -89,8 +89,10 @@ class AttentionTile(
 
   val io = IO(new Bundle {
     // ---- 预测阶段：低精度 Q/K ------------------------------------------
-    val predict_q = Input(Vec(tileQ, UInt(4.W)))
-    val predict_k = Input(Vec(headDim, UInt(4.W)))
+    // ★ 预测通路改为有符号之后，顶层端口跟着改。低位宽有符号量化和
+    // DynaX 软件的 calc_max_quant_value(4) = ±7 对齐。
+    val predict_q = Input(Vec(tileQ, SInt(4.W)))
+    val predict_k = Input(Vec(headDim, SInt(4.W)))
     val predict_pes_state = Input(UInt(2.W))
     val predict_array_state = Input(UInt(2.W))
     val predict_score = Output(Vec(tileQ, fpType))

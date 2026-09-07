@@ -37,18 +37,22 @@ def quantise(values: torch.Tensor, bits: int, point: int) -> torch.Tensor:
     return torch.round(values * scale).clamp(-limit, limit - 1) / scale
 
 
-def quantise_unsigned(values: torch.Tensor, bits: int) -> torch.Tensor:
-    """预测通路用的低位宽无符号量化。
+def quantise_predict(values: torch.Tensor, bits: int) -> torch.Tensor:
+    """预测通路的低位宽**有符号**量化。
 
-    PrePEA 的端口是 UInt(4.W)/UInt(6.W)——**整条预测通路是无符号的**，
-    没有符号位。所以这里取绝对值再线性量化到满量程：预测单元算的是
-    |Q|·|K| 的近似，它只用来挑「哪些位置重要」，精确值由 RePEA 另算。
+    和 DynaX 自己的软件一致：quant_utils.py 的
+    calc_max_quant_value(bits) = 2^(bits-1) - 1，4-bit 即 ±7，按全张量的
+    最大幅值定标（get_dynamic_scale）。
+
+    这里曾经是无符号的，因为上游 RTL 的端口是 UInt(4.W)。那条通路现已改为
+    有符号（见 prepe_1_2.scala 的 ★ 注释）——丢符号会把和 query 反相关的
+    key 抬到最前面，实测让 top-8 选择质量从 75% 掉到 31%。
     """
-    magnitude = values.abs()
-    peak = magnitude.max()
+    peak = values.abs().max()
     if peak <= 0:
-        return torch.zeros_like(magnitude)
-    return torch.round(magnitude / peak * ((1 << bits) - 1))
+        return torch.zeros_like(values)
+    limit = (1 << (bits - 1)) - 1
+    return torch.round(values / peak * limit).clamp(-limit, limit)
 
 
 def sparse_attention_reference(
@@ -162,8 +166,8 @@ def main() -> int:
     sparse, kept_idx = sparse_attention_reference(q_fixed, k_fixed, v_fixed, args.kept)
 
     # 预测通路：无符号低位宽。它只决定「挑哪些列」，不进最终结果。
-    q_predict = quantise_unsigned(query, args.predict_bits)
-    k_predict = quantise_unsigned(key, args.predict_bits)
+    q_predict = quantise_predict(query, args.predict_bits)
+    k_predict = quantise_predict(key, args.predict_bits)
 
     scale = 1 << args.point
     payload = {
@@ -183,7 +187,7 @@ def main() -> int:
         "q_ticks": [[int(round(float(x) * scale)) for x in row] for row in q_fixed],
         "k_ticks": [[int(round(float(x) * scale)) for x in row] for row in k_fixed],
         "v_ticks": [[int(round(float(x) * scale)) for x in row] for row in v_fixed],
-        # 预测通路的无符号低位宽值
+        # 预测通路的有符号低位宽值
         "q_predict": [[int(x) for x in row] for row in q_predict],
         "k_predict": [[int(x) for x in row] for row in k_predict],
         # 参照：稀疏的那个才是硬件该复现的

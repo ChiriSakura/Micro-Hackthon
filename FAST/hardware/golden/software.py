@@ -13,6 +13,8 @@ RTL 的无符号比较才和软件的 `argmax(abs)` 同义）。
 
 from __future__ import annotations
 
+from golden.fixedpoint import wrap
+
 
 
 def software_1_2_qk(query: list[int], key: list[int], out_bits: int) -> int:
@@ -24,23 +26,37 @@ def software_1_2_qk(query: list[int], key: list[int], out_bits: int) -> int:
     run that, so it is the reference -- not a mirror of the RTL, which could only
     ever confirm that the RTL equals itself.
 
-    Restricted here to non-negative 4-bit operands, which makes torch.abs a
-    no-op and lets the RTL's unsigned compare mean the same thing. That leaves
-    exactly one thing under test: which K element each kept Q element multiplies.
+    操作数是**有符号**的，和 calc_max_quant_value(4) = ±7 对齐。
+
+    这里曾经限定非负操作数（让 torch.abs 成为恒等）——**正是那条限定掩盖了
+    软件和 RTL 之间的符号分歧**：软件按 sum(q*k) 排序，上游 RTL 按
+    sum(|q|*|k|) 排序，而非负输入下两者恰好相同。RTL 现已改为有符号，
+    这个参照也随之恢复成软件真正的语义。
     """
     total = 0
     for c in range(len(query) // 2):
         first, second = query[2 * c], query[2 * c + 1]
-        kept = 2 * c if first >= second else 2 * c + 1
+        # 选谁：按**幅值**（argmax(abs)）。乘什么：**带符号**的那个值。
+        # 这两件事分开，正是这次 RTL 改动的要点。
+        kept = 2 * c if abs(first) >= abs(second) else 2 * c + 1
         total += query[kept] * key[kept]
-    return total & ((1 << out_bits) - 1)
+    return wrap(total, out_bits)
 
 
 def software_1_4_qk(query: list[int], key: list[int], out_bits: int) -> int:
-    """DynaX's quant_qk_matmul("1_4_6bit"): keep one of every four, by magnitude."""
+    """DynaX 的 quant_qk_matmul("1_4_6bit")：每四个按幅值保留一个。
+
+    和 1:2 版本同样的两件事分开：
+      选谁   —— 按**幅值**（argmax(abs)）
+      乘什么 —— **带符号**的那个值
+
+    这里曾经写成 `group.index(max(group))`：对非负输入而言 max 就是
+    argmax(abs)，所以它一直「对」——直到操作数带上符号。那正是掩盖了
+    软件与 RTL 符号分歧的同一类限定。
+    """
     total = 0
     for c in range(len(query) // 4):
         group = query[4 * c:4 * c + 4]
-        kept = 4 * c + group.index(max(group))
+        kept = 4 * c + max(range(4), key=lambda i: abs(group[i]))
         total += query[kept] * key[kept]
-    return total & ((1 << out_bits) - 1)
+    return wrap(total, out_bits)

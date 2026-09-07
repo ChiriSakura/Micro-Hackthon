@@ -221,7 +221,19 @@ DYNAX_TEMPLATES: tuple[TemplateRecord, ...] = (
         # it has to reproduce. It does -- under one condition, recorded in
         # verified_scope below, that the sources never state.
         blocking_issue="",
-        provenance=PROVENANCE_UPSTREAM,
+        provenance=PROVENANCE_PATCHED,
+        patch_note=(
+            "预测通路从无符号改为有符号（1:2 和 1:4 都改）：端口 "
+            "UInt(4.W)/UInt(6.W) -> SInt(4.W)/SInt(6.W)，乘累加随之有符号，"
+            "exp 输入改符号扩展，去掉 psum==0 强制归零的特例。"
+            "起因是 DynaX 自己的软件用 "
+            "calc_max_quant_value(bits)=2^(bits-1)-1 做有符号量化——软件按 "
+            "sum(q*k) 排序，RTL 按 sum(|q|*|k|) 排序。这不是精度差异是方向"
+            "错误：和 query 反相关的 key 逐项乘积为负、总分很低，取绝对值后"
+            "却变成最高分。真实数据一例（TinyLlama L10H0，query 行 0，"
+            "key 24）：sum(q*k)=-1.93 排 32/32，sum(|q||k|)=+2.39 排 4/32。"
+            "实测 top-8 选择与精确分数的重合度 31% -> 72%（软件 75%）。"
+        ),
         verified_scope=(
             "Both pruning paths at height=2 width=8, each against DynaX's own "
             "quant_qk_matmul rather than a mirror of the RTL: PrePEArray_1_2 "
@@ -239,7 +251,7 @@ DYNAX_TEMPLATES: tuple[TemplateRecord, ...] = (
             "stays below the Q8.8 saturation point -- with full-range 6-bit K a "
             "deliberately wrong order still agrees 149/200 because every case "
             "reads 32767 -- the bound is now derived from the chain length "
-            "SIGNEDNESS：软件和 RTL 在算两件不同的事。"
+            "SIGNEDNESS（已修复）：软件和 RTL 曾在算两件不同的事。"
             "quant_utils.py 的 calc_max_quant_value(bits)=2^(bits-1)-1 是"
             "**有符号**量化（4-bit 即 ±7），而 prepe_1_2.scala 的端口是 "
             "UInt(4.W)——整条预测通路**无符号**，没有符号位。所以软件按 "
@@ -247,7 +259,15 @@ DYNAX_TEMPLATES: tuple[TemplateRecord, ...] = (
             "真实 Q/K）：软件近似保住 75% 的 top-8 选择，硬件只有 31%，"
             "两者互相只有 28% 重合。丢符号对注意力是实质性的——大的负分数"
             "在 |·| 下排到前面，但它对 softmax 的贡献接近 0。"
-            "上面那条「操作数取非负」的验证限定，恰恰使这个分歧不可见。"
+            "上面那条「操作数取非负」的验证限定，恰恰使这个分歧不可见——"
+            "非负输入下 sum(|q||k|) 和 sum(qk) 恰好相同，108 周期的金标准"
+            "全绿却什么都没测出来。"
+            "FAST 已就地修复 1:2 和 1:4 两条通路：端口 UInt -> SInt，"
+            "选择仍按幅值（同 argmax(abs)）但传带符号的值，exp 输入改符号"
+            "扩展，并去掉 psum==0 强制归零的特例（有符号下 0 是正常中间"
+            "分数，归零会把它排到所有负分数之下，破坏 exp 的单调性）。"
+            "修复后实测重合度回到 72%（软件 75%）。"
+            "金标准用例也改为幅值互异、符号随机，才真正在检验两者一致。"
             "rather than fixed, because the paper sizes have chains 4-8x longer. "
             "VERIFIED AT THE PAPER SIZES: DynaX-S PrePEA 32x32 (516 cycles) and "
             "DynaX-L PrePEA 64x32 (672 cycles), slurm/rtl/fast_rtl_verify_paper.slurm. "

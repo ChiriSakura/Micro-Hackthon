@@ -116,8 +116,9 @@ class PrePEModel:
             self.counter = 0
         elif state == S_CALC:
             chosen = self.top0 if self.sel == 0 else self.top1
-            # UInt arithmetic: 4x4 product plus psum_in, narrowed to outBits.
-            self.psum = (chosen * self.left + psum_in) & mask
+            # 有符号乘累加，按二进制补码窄化回 outBits——和 RTL 的
+            # `(a * b +& c)(outBits-1, 0).asSInt` 一致。
+            self.psum = wrap(chosen * self.left + psum_in, self.out_bits)
             self.top0, self.top1 = top_in0, top_in1
         elif state == S_INPUT:
             if self.counter == 1:
@@ -128,6 +129,11 @@ class PrePEModel:
 
 
 def prepe_cases(out_bits: int, seed: int) -> list[dict]:
+    """单个 PrePE 的用例。操作数是**有符号** 4-bit（-7..7）。
+
+    这里曾经是无符号的，和 RTL 的 UInt(4.W) 端口一致。端口改成 SInt 之后
+    同一个位模式含义就变了——比如 14 在无符号下是 +14，有符号下是 -2。
+    """
     generator = torch.Generator().manual_seed(seed)
     plans: list[tuple[str, list]] = []
 
@@ -135,9 +141,13 @@ def prepe_cases(out_bits: int, seed: int) -> list[dict]:
     def entry(left=0, sel=0, t0=0, t1=0, psum=0, state=S_IDLE):
         return (left, sel, t0, t1, psum, state)
 
+    limit = 7          # SInt(4) 的软件量化上界，同 calc_max_quant_value(4)
+    psum_lo = -(1 << (out_bits - 1))
+    psum_hi = (1 << (out_bits - 1)) - 1
+
     # sClear must zero every register including the input counter.
     plans.append(("clear", [
-        entry(left=9, sel=1, t0=7, t1=5, psum=100, state=S_CALC),
+        entry(left=-6, sel=1, t0=7, t1=-5, psum=100, state=S_CALC),
         entry(state=S_CLEAR),
         entry(state=S_IDLE),
         entry(state=S_IDLE),
@@ -146,10 +156,10 @@ def prepe_cases(out_bits: int, seed: int) -> list[dict]:
     # The input counter samples on its second sInput cycle, not its first.
     plans.append(("input_counter", [
         entry(state=S_CLEAR),
-        entry(left=3, sel=0, state=S_INPUT),   # counter 0 -> not sampled
-        entry(left=9, sel=1, state=S_INPUT),   # counter 1 -> sampled
-        entry(left=2, sel=0, state=S_INPUT),   # counter 0 -> not sampled
-        entry(left=5, sel=1, state=S_INPUT),   # counter 1 -> sampled
+        entry(left=3, sel=0, state=S_INPUT),    # counter 0 -> 不采样
+        entry(left=-7, sel=1, state=S_INPUT),   # counter 1 -> 采样（负值）
+        entry(left=2, sel=0, state=S_INPUT),    # counter 0 -> 不采样
+        entry(left=5, sel=1, state=S_INPUT),    # counter 1 -> 采样
         entry(state=S_IDLE),
         entry(state=S_IDLE),
     ]))
@@ -158,8 +168,9 @@ def prepe_cases(out_bits: int, seed: int) -> list[dict]:
     # register is multiplied cannot hide behind equal operands.
     for name, sel_bit in (("select_top0", 0), ("select_top1", 1)):
         plan = [entry(state=S_CLEAR)]
-        plan += [entry(left=6, sel=sel_bit, state=S_INPUT) for _ in range(2)]
-        plan += [entry(t0=index + 1, t1=15 - index, psum=index * 4, state=S_CALC)
+        # 负的 left 配正负交替的 top：符号必须一路传到乘积。
+        plan += [entry(left=-6, sel=sel_bit, state=S_INPUT) for _ in range(2)]
+        plan += [entry(t0=index - 3, t1=4 - index, psum=index * 4, state=S_CALC)
                  for index in range(6)]
         plan += [entry(state=S_IDLE), entry(state=S_IDLE)]
         plans.append((name, plan))
@@ -167,19 +178,20 @@ def prepe_cases(out_bits: int, seed: int) -> list[dict]:
     # The psum chain saturating its width: 4x4 products accumulated past
     # 2^outBits wrap rather than saturate, same as every other narrowing here.
     plan = [entry(state=S_CLEAR)]
-    plan += [entry(left=15, sel=0, state=S_INPUT) for _ in range(2)]
-    plan += [entry(t0=15, t1=15, psum=(1 << out_bits) - 200, state=S_CALC)
+    plan += [entry(left=-limit, sel=0, state=S_INPUT) for _ in range(2)]
+    plan += [entry(t0=-limit, t1=limit, psum=psum_lo + 200, state=S_CALC)
              for _ in range(4)]
     plan += [entry(state=S_IDLE)]
-    plans.append(("psum_wrap", plan))
+    plans.append(("psum_wrap", plan))   # 有符号下是向负方向回绕
 
     for index in range(3):
         plan = [entry(state=S_CLEAR)]
         for _ in range(24):
-            values = torch.randint(0, 16, (4,), generator=generator).tolist()
+            values = torch.randint(-limit, limit + 1, (4,), generator=generator).tolist()
             plan.append(entry(
                 left=values[0], sel=values[1] & 1, t0=values[2], t1=values[3],
-                psum=int(torch.randint(0, 1 << out_bits, (1,), generator=generator).item()),
+                psum=int(torch.randint(psum_lo, psum_hi + 1, (1,),
+                                       generator=generator).item()),
                 state=int(torch.randint(0, 4, (1,), generator=generator).item()),
             ))
         plans.append((f"random_{index}", plan))
@@ -244,15 +256,18 @@ class PrePEArrayModel:
             first_left = [0] * self.height
             first_sel = [0] * self.height
         else:
+            # 选谁按幅值，传下去的是带符号的值。
             first_left = [
-                max(self.left_first[i], left_in[i]) for i in range(self.height)
+                self.left_first[i] if abs(self.left_first[i]) > abs(left_in[i])
+                else left_in[i]
+                for i in range(self.height)
             ]
             # sel = 1 when the FIRST-latched element won. Which K that selects is
             # the question tb_prepe_array.cpp exists to answer: sel=1 drives
             # top_in1, i.e. K[2c+1], so the odd element of the pair has to be the
             # one presented first for the product to pair up correctly.
             first_sel = [
-                1 if self.left_first[i] > left_in[i] else 0
+                1 if abs(self.left_first[i]) > abs(left_in[i]) else 0
                 for i in range(self.height)
             ]
 
@@ -302,8 +317,9 @@ class PrePEArrayModel:
         elif array_state == A_IDLE:
             pass  # switch(aIdle) re-assigns expRegs to itself, holding it
         else:
+            # 不再对 psum == 0 特殊处理：有符号下 0 是正常的中间分数，
+            # 强制归零会把它排到所有负分数之下，破坏 exp 的单调性。
             self.exp_regs = [
-                0 if value == 0 else
                 wrap(exp_unit_reference(value, self.bits, self.point, 4, 4), self.bits)
                 for value in tail
             ]
@@ -385,7 +401,9 @@ class PrePE14Model:
             self.left = self.sel = self.psum = 0
             self.counter = 0
         elif state == S_CALC:
-            self.psum = (self.top[self.sel] * self.left + psum_in) & mask
+            # 有符号乘累加，按二进制补码窄化——和 RTL 的
+            # `(a * b +& c)(outBits-1, 0).asSInt` 一致。
+            self.psum = wrap(self.top[self.sel] * self.left + psum_in, self.out_bits)
             self.top = list(top_in)
         elif state == S_INPUT:
             if self.counter == 3:
@@ -441,10 +459,12 @@ class PrePEArray14Model:
             for i in range(self.height):
                 a, b = left_in[i], self.first[i]
                 c, d = self.second[i], self.third[i]
-                max01, idx01 = (a, 0) if a > b else (b, 1)
-                max23, idx23 = (c, 2) if c > d else (d, 3)
+                # 选谁按**幅值**（软件用 argmax(abs)），传下去的是**带符号**
+                # 的值。上游比幅值也传幅值——这就是符号分歧的来源。
+                max01, idx01 = (a, 0) if abs(a) > abs(b) else (b, 1)
+                max23, idx23 = (c, 2) if abs(c) > abs(d) else (d, 3)
                 head_left[i], head_sel[i] = (
-                    (max01, idx01) if max01 > max23 else (max23, idx23)
+                    (max01, idx01) if abs(max01) > abs(max23) else (max23, idx23)
                 )
 
         left_inputs = [
@@ -490,8 +510,8 @@ class PrePEArray14Model:
         if array_state == A_CLEAR:
             self.exp_regs = [0] * self.height
         elif array_state != A_IDLE:
+            # 同 1:2：不再对 psum == 0 特殊处理，有符号下 0 是正常中间分数。
             self.exp_regs = [
-                0 if value == 0 else
                 wrap(exp_unit_reference(value, self.bits, self.point, 4, 4), self.bits)
                 for value in tail
             ]
@@ -562,10 +582,15 @@ def prepe_array_14_cases(height: int, width: int, out_bits: int, bits: int,
     for index in range(6):
         query: list[int] = []
         for _ in range(width // 4):
-            group = torch.randperm(63, generator=generator)[:4] + 1
-            query.extend(int(value) for value in group)
-        key_max = _key_bound(width // 4, 63, point, bits)
-        key = torch.randint(1, key_max + 1, (width,), generator=generator).tolist()
+            # 幅值互不相同（避开平局），符号随机——和 1:2 同样的理由：
+            # 非负输入会让 sum(|q||k|) 和 sum(qk) 恰好相同，从而掩盖分歧。
+            group = (torch.randperm(31, generator=generator)[:4] + 1).tolist()
+            signs = (torch.randint(0, 2, (4,), generator=generator) * 2 - 1).tolist()
+            query.extend(int(v * sgn) for v, sgn in zip(group, signs))
+        key_max = _key_bound(width // 4, 31, point, bits, operand_bits=6)
+        magnitude = torch.randint(1, key_max + 1, (width,), generator=generator)
+        key_signs = torch.randint(0, 2, (width,), generator=generator) * 2 - 1
+        key = (magnitude * key_signs).tolist()
 
         model = PrePEArray14Model(height, width, out_bits, bits, point)
         plan = prepe_array_14_schedule(query, key, height, width, descending=True)
@@ -605,8 +630,9 @@ def prepe_array_14_cases(height: int, width: int, out_bits: int, bits: int,
 
 
 
-def _key_bound(chain_length: int, query_max: int, point: int, bits: int) -> int:
-    """K 的上界，使 exp(psum) 不落进饱和区。
+def _key_bound(chain_length: int, query_max: int, point: int, bits: int,
+               operand_bits: int | None = None) -> int:
+    """K 的上界。两个约束取更紧的那个。
 
     这个函数存在的理由是一次真实的教训：阵列唯一可观测的输出是 Q8.8 的
     `exp(psum)`，超过 e^7 就饱和到 32767。链越长 psum 越大，论文尺寸
@@ -615,10 +641,20 @@ def _key_bound(chain_length: int, query_max: int, point: int, bits: int) -> int:
     错误的喂入顺序仍有 149/200「通过」。
 
     选择只依赖 Q，K 只进入乘积，所以压 K 不影响被测的比较逻辑。
+
+    **第二个约束：K 必须装得进端口的位宽。** 这一条起初漏了，代价是一个
+    难查的失配：端口是 SInt(4.W)（-8..7），而这里算出的上界是 16——16 被
+    截成 0、9 被截成 -7，模型用完整值而 RTL 用截断值，于是只有「唯一携带
+    信息的那一拍」对不上。1:4 通路端口是 SInt(6.W)（±31）装得下，所以它
+    通过了，更显得像是尺寸相关的问题，其实不是。
     """
     saturation_ticks = 7 << point          # exp 在这里之后饱和
     bound = saturation_ticks // max(chain_length * query_max, 1)
-    return max(2, min(bound, 1 << (bits // 4)))
+    bound = max(2, min(bound, 1 << (bits // 4)))
+    if operand_bits is not None:
+        # 有符号端口的可表示上界，和软件的 calc_max_quant_value 一致。
+        bound = min(bound, (1 << (operand_bits - 1)) - 1)
+    return bound
 
 
 def divider_reference(numerator: int, denominator: int,
@@ -690,10 +726,15 @@ def prepe_array_cases(height: int, width: int, out_bits: int, bits: int,
     RTL equals itself, which is why the pairing convention looked unanswerable
     until the software was used as the arbiter.
 
-    Operands are non-negative 4-bit, so torch.abs is a no-op and the RTL's
-    unsigned compare means what the software's argmax(abs) means. Pairs are
-    generated without internal ties, because a tie is a separate disagreement:
-    the software keeps the first element, the RTL's strict `>` keeps the second.
+    操作数是**有符号** 4-bit（-7..7），和 DynaX 软件的
+    calc_max_quant_value(4) = 2^3 - 1 = 7 对齐。
+
+    这一点在改动前是反的：那时用非负操作数，让 torch.abs 成为恒等——
+    而**正是那条限定掩盖了软件和 RTL 之间的符号分歧**。现在两边都带符号，
+    这个用例才真的在检验它们算的是同一件事。
+
+    每组内部不取等幅值：等幅时软件的 argmax 保留最小下标，RTL 的严格 `>`
+    保留最大下标——那是另一个分歧，单独记录。
     """
     generator = torch.Generator().manual_seed(seed)
     cases = []
@@ -702,10 +743,14 @@ def prepe_array_cases(height: int, width: int, out_bits: int, bits: int,
     for index in range(6):
         query: list[int] = []
         for _ in range(width // 2):
-            pair = torch.randperm(15, generator=generator)[:2] + 1
-            query.extend(int(value) for value in pair)
-        key_max = _key_bound(width // 2, 15, point, bits)
-        key = torch.randint(1, key_max + 1, (width,), generator=generator).tolist()
+            # 幅值互不相同（避开平局），符号随机——这才覆盖真实数据的形态。
+            pair = (torch.randperm(7, generator=generator)[:2] + 1).tolist()
+            signs = (torch.randint(0, 2, (2,), generator=generator) * 2 - 1).tolist()
+            query.extend(int(v * sgn) for v, sgn in zip(pair, signs))
+        key_max = _key_bound(width // 2, 7, point, bits, operand_bits=4)
+        magnitude = torch.randint(1, key_max + 1, (width,), generator=generator)
+        key_signs = torch.randint(0, 2, (width,), generator=generator) * 2 - 1
+        key = (magnitude * key_signs).tolist()
 
         model = PrePEArrayModel(height, width, out_bits, bits, point)
         plan = prepe_array_schedule(query, key, height, width, odd_first=True)

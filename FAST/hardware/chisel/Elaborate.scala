@@ -103,6 +103,15 @@ object Elaborate extends App {
     // A small predict array for the functional bench: 2 rows of 4 PEs over an
     // 8-wide head dimension. The 1:2 pruning decision lives in the array's
     // cycleToggle block rather than in a PE, so it can only be checked here.
+    // 尺寸二分用：隔离 32x32 的失配是 height 还是 width 引起的。
+    case "PrePEArray_H32W8" =>
+      () => new predict_unit.PrePEArray_1_2(
+        bits = Bits, point = Point, append = 0,
+        internalBits = PSumBitsS, width = 8, height = 32)
+    case "PrePEArray_H2W32" =>
+      () => new predict_unit.PrePEArray_1_2(
+        bits = Bits, point = Point, append = 0,
+        internalBits = PSumBitsS, width = 32, height = 2)
     case "PrePEArray_T" =>
       () =>
         new predict_unit.PrePEArray_1_2(
