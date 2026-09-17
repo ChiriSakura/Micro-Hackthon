@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/Divider15by11/check_02/module_lint.log",
+  "diagnostics": "- V e r i l a t i o n   R e p o r t: Verilator 5.052 2026-09-05 rev v5.052\n- Verilator: Built from 0.034 MB sources in 2 modules, into 0.029 MB in 3 C++ files needing 0.000 MB\n- Verilator: Walltime 0.053 s (elab=0.011, cvt=0.024, bld=0.000); cpu 0.008 s on 1 threads; allocated 19.000 MB\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/Divider15by11/check_02/emitted/Divider15by11.v:44:15: Bits of signal are not used: '_GEN_24'[15]\n                                                                                                                                                               : ... note: In instance 'Divider15by11'\n   44 |   wire [15:0] _GEN_24 = reset ? 16'h0 : _GEN_15;  \n      |               ^~~~~~~\n                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.052\n                       ... Use \"/* verilator lint_off UNUSEDSIGNAL */\" and lint_on around source to disable this message.\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/Divider15by11/check_02/emitted/Divider15by11.v:45:15: Bits of signal are not used: '_GEN_25'[11]\n                                                                                                                                                               : ... note: In instance 'Divider15by11'\n   45 |   wire [11:0] _GEN_25 = reset ? 12'h0 : _GEN_17;  \n      |               ^~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/Divider15by11/check_02/emitted/Divider15by11.v:46:15: Bits of signal are not used: '_GEN_26'[15]\n                                                                                                                                                               : ... note: In instance 'Divider15by11'\n   46 |   wire [15:0] _GEN_26 = reset ? 16'h0 : _GEN_18;  \n      |               ^~~~~~~\n",
+  "wall_seconds": 0.608148880302906,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "verilator",
+    "--lint-only",
+    "--Wall",
+    "-Wno-fatal",
+    "--top-module",
+    "Divider15by11",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/Divider15by11/check_02/emitted/Divider15by11.v"
+  ],
+  "elaboration": {
+    "passed": true,
+    "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/Divider15by11/check_02/chisel_elaboration.log",
+    "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/ScoreAndWeightUnit as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+    "wall_seconds": 5.322623008862138,
+    "command": [
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+      "run",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/ScoreAndWeightUnit/ScoreAndWeightUnit.scala",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/Divider15by11/Divider15by11.scala",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/Divider15by11/check_02/FASTGeneratedElaborate.scala",
+      "--workspace",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/Divider15by11/check_02/scala_build",
+      "--server=false",
+      "--main-class",
+      "FASTGeneratedElaborate",
+      "--",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/Divider15by11/check_02/emitted"
+    ],
+    "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/Divider15by11/check_02/emitted/Divider15by11.v",
+    "elaborated_sha256": "cbfbf3479cd205f4d6acf96863fd0661e02393d9bd382fe8cc4fd88b28a42d5e"
+  },
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01/build_01/Divider15by11/check_02/emitted/Divider15by11.v"
+}

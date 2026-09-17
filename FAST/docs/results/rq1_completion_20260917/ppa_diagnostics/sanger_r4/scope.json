@@ -1,0 +1,11 @@
+{
+  "scope": "Read-only routed database/SPEF timing diagnosis; no design change and no feedback injected into running agents",
+  "original_result": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_sanger_threshold/round_04/build_02/hammer/result.json",
+  "original_artifacts": {
+    "hammer/par-rundir/routed.def": "62d55de707c5e6ad2eae985034b9720d28defa354a1db6c375b750f6a3c44694",
+    "hammer/par-rundir/routed.v": "e47b3481c31f9ae3a60972d3c9ad167eb2406f640edd0be54df7a64388d24ca6",
+    "hammer/par-rundir/routed.odb": "1c1cf397419ba7604a96704e01081e73ce18539e2230ceb8eef23133fbd84454",
+    "hammer/par-rundir/rq1_sanger_threshold_top.par.spef": "90107bc5ed72deb85f64a429d33708d62249507cadab81abc90308c56b2a6f43",
+    "hammer/par-rundir/rq1_sanger_threshold_top_route_drc.rpt": "8f7e19b825c8a54b8c81f7d8e6615f1e4a8ee0f86019a879d51017bc3f3f02eb"
+  }
+}

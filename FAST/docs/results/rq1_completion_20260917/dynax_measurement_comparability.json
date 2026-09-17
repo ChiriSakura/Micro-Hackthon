@@ -1,0 +1,67 @@
+{
+  "compared_rounds": [
+    1,
+    5
+  ],
+  "passed": true,
+  "checks": {
+    "driver_sha256": {
+      "equal": true,
+      "baseline": "9b370c6e51363a441abb05fd2e8ace3e480c5c0e1ea638fc3f035e21174796b7",
+      "best": "9b370c6e51363a441abb05fd2e8ace3e480c5c0e1ea638fc3f035e21174796b7"
+    },
+    "routing_tool": {
+      "equal": true,
+      "baseline": "26Q1-2900-gdf79404cd8",
+      "best": "26Q1-2900-gdf79404cd8"
+    },
+    "pdk_sha256": {
+      "equal": true,
+      "baseline": {
+        "setRC.tcl": "521df813bf4da9d7400df33e3f680c9a328cc720830dbfca1188083741503fa5",
+        "rcx_patterns.rules": "2f65fafbe2c704b378563c53a680b93cef080c2799997019d43df7d1e5a563e9",
+        "lib/NangateOpenCellLibrary_typical.lib": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1"
+      },
+      "best": {
+        "setRC.tcl": "521df813bf4da9d7400df33e3f680c9a328cc720830dbfca1188083741503fa5",
+        "rcx_patterns.rules": "2f65fafbe2c704b378563c53a680b93cef080c2799997019d43df7d1e5a563e9",
+        "lib/NangateOpenCellLibrary_typical.lib": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1"
+      }
+    },
+    "activity": {
+      "equal": true,
+      "baseline": 0.1,
+      "best": 0.1
+    },
+    "frequency_mhz": {
+      "equal": true,
+      "baseline": 300,
+      "best": 300
+    },
+    "io_delay_ns": {
+      "equal": true,
+      "baseline": 1.0,
+      "best": 1.0
+    },
+    "output_load_ff": {
+      "equal": true,
+      "baseline": 5.0,
+      "best": 5.0
+    },
+    "process_corner": {
+      "equal": true,
+      "baseline": "Nangate45 typical 1.1 V 25 C for setup and hold; not multi-PVT signoff",
+      "best": "Nangate45 typical 1.1 V 25 C for setup and hold; not multi-PVT signoff"
+    },
+    "power_method": {
+      "equal": true,
+      "baseline": "OpenROAD post-route extracted-RC power estimate; uniform activity, not silicon measurement",
+      "best": "OpenROAD post-route extracted-RC power estimate; uniform activity, not silicon measurement"
+    }
+  },
+  "physical_adapter_sha256": [
+    "bbc831c069e450514af9fc188001b33531fd442c7c9c48a0daa0b309c5da5196",
+    "eeaa52836b0790a677f591f384ce9fb18437c187965caadb8c4d15e26c73ad87"
+  ],
+  "note": "Adapter version changed for checkpoints/process timeout handling; physical driver and listed measurement settings match."
+}

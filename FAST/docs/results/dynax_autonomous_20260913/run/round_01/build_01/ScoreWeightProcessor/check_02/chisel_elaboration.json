@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+  "wall_seconds": 5.925353079102933,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/ScoreWeightProcessor.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted"
+  ],
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted/ScoreWeightProcessor.v",
+  "elaborated_sha256": "83a2795156dd85593c7baa1b39d25605f652269c3ced2dbca2f7cb183c1e9d58"
+}

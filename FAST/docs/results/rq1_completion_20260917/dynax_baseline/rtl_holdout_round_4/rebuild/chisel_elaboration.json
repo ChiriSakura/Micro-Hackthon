@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/references as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+  "timed_out": false,
+  "returncode": 0,
+  "wall_seconds": 8.164797910001653,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/references/025.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/references/026.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/ScoreAndExpUnit_Adapter.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/SelectionUnit.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/NormalizationUnit_Adapter.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/rq1_dynax_xm_Top.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/emitted"
+  ],
+  "elaborated_verilog": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/emitted/rq1_dynax_xm_Top.v",
+  "elaborated_sha256": "5fd89e490d06d25b896b7e0876cf1f330dbbc6f01df833514d20013c9a31841e"
+}

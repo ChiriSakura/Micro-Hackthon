@@ -1,0 +1,187 @@
+{
+  "utc": "2026-09-17T05:07:05.528341+00:00",
+  "paths": [
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/gates_round_1/obj_dir",
+      "bytes": 223630570,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/gates_round_4/obj_dir",
+      "bytes": 223630563,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_1/rebuild/obj_dir",
+      "bytes": 156922330,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_1/rebuild/scala_build/.bsp",
+      "bytes": 1794,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_1/rebuild/scala_build/.scala-build",
+      "bytes": 207992,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_1/seed_101/obj_dir",
+      "bytes": 156923459,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_1/seed_211/obj_dir",
+      "bytes": 156923450,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_1/seed_307/obj_dir",
+      "bytes": 156923459,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_1/seed_401/obj_dir",
+      "bytes": 156923446,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_1/seed_503/obj_dir",
+      "bytes": 156923452,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/obj_dir",
+      "bytes": 156922328,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/scala_build/.bsp",
+      "bytes": 1794,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/rebuild/scala_build/.scala-build",
+      "bytes": 207022,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/seed_101/obj_dir",
+      "bytes": 156923451,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/seed_211/obj_dir",
+      "bytes": 156923457,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/seed_307/obj_dir",
+      "bytes": 156923455,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/seed_401/obj_dir",
+      "bytes": 156923446,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/rtl_holdout_round_4/seed_503/obj_dir",
+      "bytes": 156923454,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/gates_round_5/obj_dir",
+      "bytes": 220646802,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/obj_dir",
+      "bytes": 156594634,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/scala_build/.bsp",
+      "bytes": 1765,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/scala_build/.scala-build",
+      "bytes": 193419,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/rtl_holdout_round_5/seed_101/obj_dir",
+      "bytes": 156595772,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/rtl_holdout_round_5/seed_211/obj_dir",
+      "bytes": 156595779,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/rtl_holdout_round_5/seed_307/obj_dir",
+      "bytes": 156595782,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/rtl_holdout_round_5/seed_401/obj_dir",
+      "bytes": 156595767,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/rtl_holdout_round_5/seed_503/obj_dir",
+      "bytes": 155966508,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/topk_common_test/gates_round_5/obj_dir",
+      "bytes": 163337055,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/topk_common_test/rtl_holdout_round_5/rebuild/obj_dir",
+      "bytes": 151551584,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/topk_common_test/rtl_holdout_round_5/rebuild/scala_build/.bsp",
+      "bytes": 1499,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/topk_common_test/rtl_holdout_round_5/rebuild/scala_build/.scala-build",
+      "bytes": 110177,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/topk_common_test/rtl_holdout_round_5/seed_101/obj_dir",
+      "bytes": 151552769,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/topk_common_test/rtl_holdout_round_5/seed_211/obj_dir",
+      "bytes": 151552769,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/topk_common_test/rtl_holdout_round_5/seed_307/obj_dir",
+      "bytes": 151552778,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/topk_common_test/rtl_holdout_round_5/seed_401/obj_dir",
+      "bytes": 151552768,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/topk_common_test/rtl_holdout_round_5/seed_503/obj_dir",
+      "bytes": 151552776,
+      "reason": "Rebuildable cache of completed or failed independent validation; source, test vectors, logs and summaries retained"
+    }
+  ],
+  "bytes": 4563309325,
+  "status": "complete"
+}

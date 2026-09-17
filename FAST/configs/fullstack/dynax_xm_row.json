@@ -1,0 +1,19 @@
+{
+  "algorithm": "dynax_xm_row",
+  "prompt": "Generate a complete bounded DynaX X:M decode-row system from signed Q/K/V to output AND selected mask, following the exact provided LUT arithmetic contract. Compute scores, normalized block mass and X:M top-k selection on chip. Read and assign matching hardware AND golden test references. Prefer a few simple arithmetic modules and explicit top-level control. Start with a correct compact implementation, no requirement of one query per cycle.",
+  "constraints": {
+    "max_quality_loss": 0.15,
+    "max_area_um2": 200000,
+    "frequency_mhz": 100
+  },
+  "max_loops": 1,
+  "compiler_attempts": 3,
+  "module_attempts": 4,
+  "seed": 17,
+  "activity": 0.1,
+  "hdl": "chisel",
+  "module_workers": 1,
+  "assembly_attempts": 4,
+  "ppa_backend": "yosys_opensta",
+  "dense_equivalent_ops_per_query": 48
+}

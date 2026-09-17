@@ -1,0 +1,641 @@
+{
+  "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_sanger_threshold",
+  "status": "failed",
+  "rounds": [
+    {
+      "round": 1,
+      "config": {
+        "threshold_256": 3
+      },
+      "calibration": {
+        "config": {
+          "threshold_256": 3
+        },
+        "quality_loss": 0.03839193117999572,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010057824013621622,
+        "squared_error_sum": 969417.0321110461,
+        "dense_squared_output_sum": 657704372.200548,
+        "sparsity": 0.3775889376218323,
+        "fully_dense_query_fraction": 0.09844054580896686,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 0,
+          "2": 5,
+          "3": 20,
+          "4": 46,
+          "5": 104,
+          "6": 135,
+          "7": 211,
+          "8": 248,
+          "9": 245,
+          "10": 216,
+          "11": 187,
+          "12": 137,
+          "13": 120,
+          "14": 108,
+          "15": 68,
+          "16": 202
+        },
+        "samples": 2052,
+        "seed": 20260915,
+        "includes_shared_boundary_cases": true,
+        "workload_sha256": "60517956d3f68a3bb09f8553e8549416807efb4bad8c7fcdb40eae8460b3694e"
+      },
+      "heldout": {
+        "config": {
+          "threshold_256": 3
+        },
+        "quality_loss": 0.038867556410522336,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010556113603441514,
+        "squared_error_sum": 1866705.6694551858,
+        "dense_squared_output_sum": 1235666780.7148442,
+        "sparsity": 0.363372802734375,
+        "fully_dense_query_fraction": 0.121826171875,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 1,
+          "2": 9,
+          "3": 28,
+          "4": 85,
+          "5": 193,
+          "6": 265,
+          "7": 390,
+          "8": 462,
+          "9": 474,
+          "10": 439,
+          "11": 381,
+          "12": 314,
+          "13": 233,
+          "14": 175,
+          "15": 148,
+          "16": 499
+        },
+        "samples": 4096,
+        "seed": 20260916,
+        "includes_shared_boundary_cases": false,
+        "workload_sha256": "d1ae69138f2824e724be7e1eb655d676c9945441b169e8867e1d8877065c389c"
+      },
+      "evaluation": null,
+      "status": "failed",
+      "critique": null,
+      "critique_applied": false
+    }
+  ],
+  "qualified_pareto_rounds": [],
+  "algorithm": "rq1_sanger_threshold",
+  "error": "RuntimeError: Compiler/UArch build budget exhausted; see compiler_feedback.json",
+  "agent_calls": {
+    "kernel": 1,
+    "compiler": 13,
+    "critic": 0,
+    "uarch": 12,
+    "uarch_assembly": 5,
+    "compiler_diagnosis": 7
+  },
+  "search_pareto_rounds": [],
+  "call_costs": [
+    {
+      "path": "agent_calls/compiler/0001.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 65.863605260849,
+      "usage": {
+        "prompt_token_count": 12652,
+        "candidates_token_count": 36,
+        "thoughts_token_count": 6705,
+        "cached_content_token_count": null,
+        "total_token_count": 19393
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0002.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 171.91295742988586,
+      "usage": {
+        "prompt_token_count": 32737,
+        "candidates_token_count": 8928,
+        "thoughts_token_count": 12054,
+        "cached_content_token_count": null,
+        "total_token_count": 53719
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0003.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 124.11373734474182,
+      "usage": {
+        "prompt_token_count": 40808,
+        "candidates_token_count": 9327,
+        "thoughts_token_count": 7036,
+        "cached_content_token_count": null,
+        "total_token_count": 57171
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0004.json",
+      "role": "compiler",
+      "success": false,
+      "wall_seconds": 341.02980041503906,
+      "usage": {
+        "prompt_token_count": 41247,
+        "candidates_token_count": 1916,
+        "thoughts_token_count": 46079,
+        "cached_content_token_count": null,
+        "total_token_count": 89242
+      },
+      "error": "ValueError: compiler LLM failed: reply did not finish (MAX_TOKENS); max_output_tokens=48000. partial: ```json\n{\n  \"language\": \"chisel\",\n  \"top\": \"Rq1SangerThreshold\",\n  \"rationale\": \"The system implements the rq1_sanger_threshold algorithm using a feed-forward pipeline to meet the 300 MHz frequency ta"
+    },
+    {
+      "path": "agent_calls/compiler/0005.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 120.23552298545837,
+      "usage": {
+        "prompt_token_count": 41341,
+        "candidates_token_count": 8107,
+        "thoughts_token_count": 6656,
+        "cached_content_token_count": null,
+        "total_token_count": 56104
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0006.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 106.75606989860535,
+      "usage": {
+        "prompt_token_count": 40834,
+        "candidates_token_count": 8231,
+        "thoughts_token_count": 6035,
+        "cached_content_token_count": null,
+        "total_token_count": 55100
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0007.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 103.95353937149048,
+      "usage": {
+        "prompt_token_count": 45018,
+        "candidates_token_count": 8802,
+        "thoughts_token_count": 4878,
+        "cached_content_token_count": null,
+        "total_token_count": 58698
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0008.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 65.2776620388031,
+      "usage": {
+        "prompt_token_count": 84153,
+        "candidates_token_count": 40,
+        "thoughts_token_count": 4738,
+        "cached_content_token_count": null,
+        "total_token_count": 88931
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0009.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 201.16962909698486,
+      "usage": {
+        "prompt_token_count": 163119,
+        "candidates_token_count": 9067,
+        "thoughts_token_count": 15124,
+        "cached_content_token_count": null,
+        "total_token_count": 187310
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0010.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 233.5343005657196,
+      "usage": {
+        "prompt_token_count": 175665,
+        "candidates_token_count": 8485,
+        "thoughts_token_count": 18130,
+        "cached_content_token_count": null,
+        "total_token_count": 202280
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0011.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 51.17923974990845,
+      "usage": {
+        "prompt_token_count": 116437,
+        "candidates_token_count": 24,
+        "thoughts_token_count": 3697,
+        "cached_content_token_count": null,
+        "total_token_count": 120158
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0012.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 109.90991711616516,
+      "usage": {
+        "prompt_token_count": 127011,
+        "candidates_token_count": 8548,
+        "thoughts_token_count": 6891,
+        "cached_content_token_count": null,
+        "total_token_count": 142450
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0013.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 93.52722430229187,
+      "usage": {
+        "prompt_token_count": 134634,
+        "candidates_token_count": 8513,
+        "thoughts_token_count": 4344,
+        "cached_content_token_count": null,
+        "total_token_count": 147491
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/kernel/0001.json",
+      "role": "kernel",
+      "success": true,
+      "wall_seconds": 30.598228693008423,
+      "usage": {
+        "prompt_token_count": 6606,
+        "candidates_token_count": 237,
+        "thoughts_token_count": 1407,
+        "cached_content_token_count": null,
+        "total_token_count": 8250
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/ScoreAndExp/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 193.21341395378113,
+      "usage": {
+        "prompt_token_count": 25298,
+        "candidates_token_count": 4218,
+        "thoughts_token_count": 22774,
+        "cached_content_token_count": null,
+        "total_token_count": 52290
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/ScoreAndExp/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 101.40761590003967,
+      "usage": {
+        "prompt_token_count": 35424,
+        "candidates_token_count": 4029,
+        "thoughts_token_count": 8788,
+        "cached_content_token_count": null,
+        "total_token_count": 48241
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/FinalDivider/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 69.72604870796204,
+      "usage": {
+        "prompt_token_count": 28101,
+        "candidates_token_count": 1086,
+        "thoughts_token_count": 7832,
+        "cached_content_token_count": null,
+        "total_token_count": 37019
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/FinalDivider/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 56.34006595611572,
+      "usage": {
+        "prompt_token_count": 29995,
+        "candidates_token_count": 1120,
+        "thoughts_token_count": 6735,
+        "cached_content_token_count": null,
+        "total_token_count": 37850
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/FinalDivider/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 56.314940214157104,
+      "usage": {
+        "prompt_token_count": 32124,
+        "candidates_token_count": 1211,
+        "thoughts_token_count": 6008,
+        "cached_content_token_count": null,
+        "total_token_count": 39343
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/ScoreMaxDeltaExp/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 265.4346179962158,
+      "usage": {
+        "prompt_token_count": 23093,
+        "candidates_token_count": 3774,
+        "thoughts_token_count": 15435,
+        "cached_content_token_count": null,
+        "total_token_count": 42302
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/SelectionReduce/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 95.43559336662292,
+      "usage": {
+        "prompt_token_count": 24533,
+        "candidates_token_count": 1915,
+        "thoughts_token_count": 10055,
+        "cached_content_token_count": null,
+        "total_token_count": 36503
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 28.116413116455078,
+      "usage": {
+        "prompt_token_count": 29483,
+        "candidates_token_count": 205,
+        "thoughts_token_count": 2877,
+        "cached_content_token_count": null,
+        "total_token_count": 32565
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 17.791375160217285,
+      "usage": {
+        "prompt_token_count": 29778,
+        "candidates_token_count": 268,
+        "thoughts_token_count": 1582,
+        "cached_content_token_count": null,
+        "total_token_count": 31628
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/FinalDivider/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 38.08539605140686,
+      "usage": {
+        "prompt_token_count": 29384,
+        "candidates_token_count": 1299,
+        "thoughts_token_count": 3423,
+        "cached_content_token_count": null,
+        "total_token_count": 34106
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/FinalDivider/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 35.76032590866089,
+      "usage": {
+        "prompt_token_count": 31069,
+        "candidates_token_count": 1328,
+        "thoughts_token_count": 2732,
+        "cached_content_token_count": null,
+        "total_token_count": 35129
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/Rq1SangerThreshold/uarch_assembly/0001.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 115.64635229110718,
+      "usage": {
+        "prompt_token_count": 36293,
+        "candidates_token_count": 1510,
+        "thoughts_token_count": 13127,
+        "cached_content_token_count": null,
+        "total_token_count": 50930
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/Rq1SangerThreshold/uarch_assembly/0002.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 38.32501697540283,
+      "usage": {
+        "prompt_token_count": 44703,
+        "candidates_token_count": 165,
+        "thoughts_token_count": 3947,
+        "cached_content_token_count": null,
+        "total_token_count": 48815
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/Rq1SangerThreshold/uarch_assembly/0003.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 123.3049795627594,
+      "usage": {
+        "prompt_token_count": 45509,
+        "candidates_token_count": 1445,
+        "thoughts_token_count": 14458,
+        "cached_content_token_count": null,
+        "total_token_count": 61412
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/Rq1SangerThreshold/uarch_assembly/0004.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 64.9492416381836,
+      "usage": {
+        "prompt_token_count": 53477,
+        "candidates_token_count": 1591,
+        "thoughts_token_count": 6634,
+        "cached_content_token_count": null,
+        "total_token_count": 61702
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/Rq1SangerThreshold/uarch_assembly/0005.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 72.22810220718384,
+      "usage": {
+        "prompt_token_count": 61433,
+        "candidates_token_count": 1560,
+        "thoughts_token_count": 6715,
+        "cached_content_token_count": null,
+        "total_token_count": 69708
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/ScoreMaxDeltaExp/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 125.44932842254639,
+      "usage": {
+        "prompt_token_count": 26266,
+        "candidates_token_count": 3471,
+        "thoughts_token_count": 15755,
+        "cached_content_token_count": null,
+        "total_token_count": 45492
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/ScoreMaxDeltaExp/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 97.85689163208008,
+      "usage": {
+        "prompt_token_count": 30168,
+        "candidates_token_count": 3536,
+        "thoughts_token_count": 9376,
+        "cached_content_token_count": null,
+        "total_token_count": 43080
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/SelectionReduce/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 141.36956882476807,
+      "usage": {
+        "prompt_token_count": 26011,
+        "candidates_token_count": 1707,
+        "thoughts_token_count": 16720,
+        "cached_content_token_count": null,
+        "total_token_count": 44438
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 139.65066838264465,
+      "usage": {
+        "prompt_token_count": 26910,
+        "candidates_token_count": 569,
+        "thoughts_token_count": 14414,
+        "cached_content_token_count": null,
+        "total_token_count": 41893
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 103.49121475219727,
+      "usage": {
+        "prompt_token_count": 19297,
+        "candidates_token_count": 577,
+        "thoughts_token_count": 10684,
+        "cached_content_token_count": null,
+        "total_token_count": 30558
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/compiler_diagnosis/0003.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 80.83457040786743,
+      "usage": {
+        "prompt_token_count": 20239,
+        "candidates_token_count": 647,
+        "thoughts_token_count": 9219,
+        "cached_content_token_count": null,
+        "total_token_count": 30105
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/compiler_diagnosis/0004.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 366.45289397239685,
+      "usage": {
+        "prompt_token_count": 27588,
+        "candidates_token_count": 683,
+        "thoughts_token_count": 46079,
+        "cached_content_token_count": null,
+        "total_token_count": 74350
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/compiler_diagnosis/0005.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 135.18906021118164,
+      "usage": {
+        "prompt_token_count": 27727,
+        "candidates_token_count": 607,
+        "thoughts_token_count": 15334,
+        "cached_content_token_count": null,
+        "total_token_count": 43668
+      },
+      "error": null
+    }
+  ],
+  "token_totals": {
+    "prompt_token_count": 1826165,
+    "candidates_token_count": 118782,
+    "thoughts_token_count": 414477,
+    "total_token_count": 2359424
+  },
+  "calls_missing_usage": 0
+}

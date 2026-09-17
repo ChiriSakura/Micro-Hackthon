@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "tile_q": 32,
+  "tile_k": 32,
+  "tile_d": 64,
+  "loop_order": [
+    "q",
+    "k",
+    "d"
+  ],
+  "data_layout": "blocked-qkd-double",
+  "parallelism": 16,
+  "predicted_utilization": null,
+  "predicted_bytes": 24576,
+  "num_rows": 32,
+  "pe_per_row": 8,
+  "reg_width": 32,
+  "data_width": 16,
+  "sram_bytes": 65536,
+  "queue_depth": 0,
+  "divider_stages": 12,
+  "bank_count": 16,
+  "block_m": 64,
+  "kept_per_block": 32,
+  "predicted_cycles": null,
+  "predicted_area_um2": null,
+  "predicted_power_mw": null,
+  "predicted_clock_ns": null,
+  "rationale": [],
+  "error": null,
+  "schema_version": "0.2"
+}

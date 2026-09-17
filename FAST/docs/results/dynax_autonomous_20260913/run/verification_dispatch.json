@@ -1,0 +1,26 @@
+{
+  "round_01_gate": {
+    "job_id": "17711656",
+    "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_gate.slurm",
+    "submitted_unix": 1789338431.53925,
+    "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_gate_17711656"
+  },
+  "round_01_holdout": {
+    "job_id": "17711657",
+    "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout.slurm",
+    "submitted_unix": 1789338431.7088377,
+    "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657"
+  },
+  "round_02_gate": {
+    "job_id": "17715900",
+    "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_gate.slurm",
+    "submitted_unix": 1789340766.8991785,
+    "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_gate_17715900"
+  },
+  "round_02_holdout": {
+    "job_id": "17715901",
+    "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout.slurm",
+    "submitted_unix": 1789340766.9980254,
+    "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17715901"
+  }
+}

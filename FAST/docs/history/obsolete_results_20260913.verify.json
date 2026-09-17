@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "archive_sha256": "471d7cec409b5e9305964c8193db800e912199c2142bd476957e6c1c5a883415",
+  "file_count": 13,
+  "uncompressed_bytes": 1507257,
+  "archive_bytes": 238362,
+  "manifest": {
+    "version": 1,
+    "inputs": {
+      "superseded": "/home/gz2522/Micro-Hackthon/FAST/docs/results/superseded",
+      "early/results.md": "/home/gz2522/Micro-Hackthon/FAST/docs/results/results.md",
+      "early/summary.json": "/home/gz2522/Micro-Hackthon/FAST/docs/results/summary.json",
+      "figures/pareto_energy_latency_20260910.pdf": "/home/gz2522/Micro-Hackthon/FAST/figures/pareto_energy_latency_20260910.pdf",
+      "figures/pareto_energy_latency_20260910.png": "/home/gz2522/Micro-Hackthon/FAST/figures/pareto_energy_latency_20260910.png"
+    },
+    "files": {
+      "early/results.md": {
+        "sha256": "80731e1a0e598b8502464ed576c068b08614d4264e9d361e91d5bc1553c0ffc9",
+        "bytes": 2791
+      },
+      "early/summary.json": {
+        "sha256": "b10a9688b434b2bdd0c832a7f7e804c6d5f26b67511ec404046e1f0c834f97df",
+        "bytes": 40587
+      },
+      "figures/pareto_energy_latency_20260910.pdf": {
+        "sha256": "0aecefdb70212433c9885cdf912a145d0b7c5392ee060b30e549b7eb4e1a67af",
+        "bytes": 19830
+      },
+      "figures/pareto_energy_latency_20260910.png": {
+        "sha256": "99ea0b39116f7d641b5676b82dfed899c7e0d6d76819c34ba2e752ab2e0bd9b2",
+        "bytes": 117601
+      },
+      "superseded/README.md": {
+        "sha256": "0c0a6a0554f6d313943f3b30262a09b81705dbcaefedc7f09148e7856179e597",
+        "bytes": 1914
+      },
+      "superseded/pareto_llm_live_20260910.json": {
+        "sha256": "282623878021edb03a1fe626d4039e809cf9d6ddbda34d9a2b7c6790a2aa1ead",
+        "bytes": 29082
+      },
+      "superseded/pareto_llm_live_20260910.md": {
+        "sha256": "1c07ba14003badcdb2a9235cfe4d8fed5f4e425e4180e804f602cf28612483b3",
+        "bytes": 504
+      },
+      "superseded/pareto_llm_live_retry_20260910.json": {
+        "sha256": "c01e52056a64816031120118cc234ad2c182d35a6d34e002b07e218e4f466fa6",
+        "bytes": 28467
+      },
+      "superseded/pareto_llm_live_retry_20260910.md": {
+        "sha256": "1cffdb41cc035cb2b227073132c3d3fc71e0cdde579cf377841959662ddd756a",
+        "bytes": 504
+      },
+      "superseded/pareto_llm_smoke_20260910.json": {
+        "sha256": "1740e48d50e922d645b1942736f87b1018cfd468cfdb1530e18f2ddbe19d09a7",
+        "bytes": 29174
+      },
+      "superseded/pareto_llm_smoke_20260910.md": {
+        "sha256": "1c07ba14003badcdb2a9235cfe4d8fed5f4e425e4180e804f602cf28612483b3",
+        "bytes": 504
+      },
+      "superseded/pareto_pilot_20260910.json": {
+        "sha256": "007e5bc4cd1c7bf0194d680ace1a41a5c3dc8d5fb5c93424b16e6d216cf7c4ec",
+        "bytes": 1235620
+      },
+      "superseded/pareto_pilot_20260910.md": {
+        "sha256": "725f3a9de6344a70f1569c4609148653afafe03c698975d3a179270c36318ea4",
+        "bytes": 679
+      }
+    },
+    "excluded": []
+  }
+}

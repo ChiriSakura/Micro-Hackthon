@@ -1,0 +1,200 @@
+{
+  "manifest": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/libraries/catalog.json",
+  "manifest_sha256": "85a8747d1187a08e8b48ab538f6d6058e8936818bee82f152e97f409b66f6b4b",
+  "files": {
+    "algorithm:threshold_attention": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/libraries/algorithms/threshold_attention.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/references/000.py",
+      "sha256": "d46102a870b500a844b2321e944b2058854c0065b7f0b70a29654eb825f3ab24"
+    },
+    "template:register_stage": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/libraries/hardware/register_stage.v",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/references/001.v",
+      "sha256": "ffdae2d491debe7b24fcff7e3241a683de945aeed7c349f802925c407868b5cf"
+    },
+    "template:chisel_carry_and_clock": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/libraries/hardware/ArithmeticStage.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/references/002.scala",
+      "sha256": "a5146cd539f756ad8dedfce2a6378b2c55342b8489c1df5e78e2e246757ebc06"
+    },
+    "template:pipelined_divider": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/hardware/chisel/src/main/scala/predict_unit/divider.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/references/003.scala",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+    },
+    "template:dynax_exp_reference": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/references/004.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "template:topk_selection": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/hardware/chisel/src/main/scala/predict_unit/topk.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/references/005.scala",
+      "sha256": "09196842ec6bef512088f1eaf4a3112053e64f36cd5b7220de1b6191fe020cec"
+    },
+    "template:sram_banks": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/hardware/chisel/src/main/scala/execute_unit/sram.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/references/006.scala",
+      "sha256": "d23602c53d9b3ea95e5bd5ac303b152ed2fa9bf260b9b2bcfb4645d28e74cb69"
+    },
+    "template:key_feeder": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/references/007.scala",
+      "sha256": "497aa40bcce085c4f0bb9dea9b169831cb010a527907d5060eeca84826797c9d"
+    },
+    "template:execution_pe": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/hardware/chisel/src/main/scala/execute_unit/repe.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/references/008.scala",
+      "sha256": "d694fc01d8352008c56cfa7d29d72959a69a366f15b3b25e031024e2eff445a9"
+    },
+    "template:low_precision_predictor": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/references/009.scala",
+      "sha256": "3cf7e3b7877b363cc69aa3076f5aaa8990c858f4d2063088bf82140e644e452d"
+    },
+    "template:index_scheduler": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/references/010.scala",
+      "sha256": "49396ee98ca68d61b1cd49e63aa697be041cecd48721a3a770b4e2d72c5fb9d2"
+    },
+    "template:block_scheduler": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/references/011.scala",
+      "sha256": "45e788edd06864e12c38cb40d4746a128177e26fa74c53e721e333e4fd4ced74"
+    },
+    "template:partial_softmax": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v6/hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/references/012.scala",
+      "sha256": "62b543bc76a83b73d4a13fc6752dc544ecd14da252a04fd9420fd4752b059810"
+    }
+  },
+  "catalog": {
+    "version": 1,
+    "algorithms": {
+      "threshold_attention": {
+        "source": "algorithms/threshold_attention.py",
+        "factory": "ThresholdAttention"
+      }
+    },
+    "hardware_templates": {
+      "register_stage": {
+        "source": "hardware/register_stage.v",
+        "description": "Verilog synchronous valid/data register stage; handshake and reset example.",
+        "tags": [
+          "verilog",
+          "pipeline",
+          "valid"
+        ]
+      },
+      "chisel_carry_and_clock": {
+        "source": "hardware/ArithmeticStage.scala",
+        "description": "Chisel RawModule example: explicit clock/reset, carry-preserving +& adder, gated valid/data registers.",
+        "tags": [
+          "chisel",
+          "addition",
+          "width",
+          "clock",
+          "pipeline"
+        ]
+      },
+      "pipelined_divider": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+        "description": "FAST radix-2 restoring divider, full-width numerator processing, tunable pipeline depth and valid propagation; adapt fixed-point signed interface to target semantics.",
+        "tags": [
+          "chisel",
+          "division",
+          "normalization",
+          "pipeline"
+        ]
+      },
+      "dynax_exp_reference": {
+        "source": "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+        "description": "FAST reconstruction of fixed-point exponential unit; this is not an original DynaX release module.",
+        "tags": [
+          "chisel",
+          "exponential",
+          "fixedpoint"
+        ]
+      },
+      "topk_selection": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/topk.scala",
+        "description": "Top-k value/index selection hardware with parameterized widths.",
+        "tags": [
+          "chisel",
+          "topk",
+          "sparse",
+          "selection"
+        ]
+      },
+      "sram_banks": {
+        "source": "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+        "description": "Banked synchronous SRAM access and storage interface reference.",
+        "tags": [
+          "chisel",
+          "memory",
+          "banks"
+        ]
+      },
+      "key_feeder": {
+        "source": "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+        "description": "Key gather/feeding with backpressure and banking; reference for sparse memory scheduling.",
+        "tags": [
+          "chisel",
+          "gather",
+          "backpressure",
+          "memory"
+        ]
+      },
+      "execution_pe": {
+        "source": "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+        "description": "DynaX execution PE combining fixed-point arithmetic and state-controlled updates.",
+        "tags": [
+          "chisel",
+          "mac",
+          "processing-element",
+          "fixedpoint"
+        ]
+      },
+      "low_precision_predictor": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+        "description": "DynaX low-precision prediction PE and array; 1:2 pruning example.",
+        "tags": [
+          "chisel",
+          "prediction",
+          "sparsity",
+          "low-precision"
+        ]
+      },
+      "index_scheduler": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+        "description": "Sparse index scheduling and mapping to execution lanes.",
+        "tags": [
+          "chisel",
+          "schedule",
+          "sparse",
+          "indices"
+        ]
+      },
+      "block_scheduler": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+        "description": "Block scheduling, queueing and flow control reference.",
+        "tags": [
+          "chisel",
+          "schedule",
+          "queue",
+          "block"
+        ]
+      },
+      "partial_softmax": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+        "description": "Partial-sum normalization and fixed-point divider reference; check semantics before adapting.",
+        "tags": [
+          "chisel",
+          "normalization",
+          "softmax",
+          "fixedpoint"
+        ]
+      }
+    }
+  }
+}

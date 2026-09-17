@@ -1,0 +1,26 @@
+{
+  "manifest": "/home/gz2522/Micro-Hackthon/FAST/libraries/catalog.json",
+  "manifest_sha256": "f30ab03f2063002d16fafae4808448f419bb47b56e39f64e3b65ad940af452ea",
+  "files": {
+    "algorithm:threshold_attention": {
+      "original": "/home/gz2522/Micro-Hackthon/FAST/libraries/algorithms/threshold_attention.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_revalidation_v2/references/000.py",
+      "sha256": "d46102a870b500a844b2321e944b2058854c0065b7f0b70a29654eb825f3ab24"
+    },
+    "template:register_stage": {
+      "original": "/home/gz2522/Micro-Hackthon/FAST/libraries/hardware/register_stage.v",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_revalidation_v2/references/001.v",
+      "sha256": "ffdae2d491debe7b24fcff7e3241a683de945aeed7c349f802925c407868b5cf"
+    },
+    "template:dynax_exp_reference": {
+      "original": "/home/gz2522/Micro-Hackthon/FAST/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_revalidation_v2/references/002.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "template:chisel_carry_and_clock": {
+      "original": "/home/gz2522/Micro-Hackthon/FAST/libraries/hardware/ArithmeticStage.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_revalidation_v2/references/003.scala",
+      "sha256": "a5146cd539f756ad8dedfce2a6378b2c55342b8489c1df5e78e2e246757ebc06"
+    }
+  }
+}

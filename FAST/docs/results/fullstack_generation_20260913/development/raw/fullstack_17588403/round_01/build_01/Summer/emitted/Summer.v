@@ -1,0 +1,23 @@
+module Summer(
+  input  [35:0] weights_in, // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 4:22]
+  input  [51:0] weighted_vs_in, // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 5:26]
+  output [10:0] sum_w_out, // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 6:21]
+  output [14:0] sum_wv_out // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 7:22]
+);
+  wire [8:0] w0 = weights_in[8:0]; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 10:22]
+  wire [8:0] w1 = weights_in[17:9]; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 11:22]
+  wire [8:0] w2 = weights_in[26:18]; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 12:22]
+  wire [8:0] w3 = weights_in[35:27]; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 13:22]
+  wire [12:0] wv0 = weighted_vs_in[12:0]; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 16:27]
+  wire [12:0] wv1 = weighted_vs_in[25:13]; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 17:27]
+  wire [12:0] wv2 = weighted_vs_in[38:26]; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 18:27]
+  wire [12:0] wv3 = weighted_vs_in[51:39]; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 19:27]
+  wire [8:0] sum_w_01 = w0 + w1; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 23:21]
+  wire [8:0] sum_w_23 = w2 + w3; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 24:21]
+  wire [8:0] _sum_w_out_T_1 = sum_w_01 + sum_w_23; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 27:25]
+  wire [12:0] sum_wv_01 = wv0 + wv1; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 31:23]
+  wire [12:0] sum_wv_23 = wv2 + wv3; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 32:23]
+  wire [12:0] _sum_wv_out_T_1 = sum_wv_01 + sum_wv_23; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 35:27]
+  assign sum_w_out = {{2'd0}, _sum_w_out_T_1}; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 27:13]
+  assign sum_wv_out = {{2'd0}, _sum_wv_out_T_1}; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 35:14]
+endmodule

@@ -1,0 +1,291 @@
+{
+  "passed": true,
+  "selection": {
+    "read_templates": [
+      "chisel_carry_and_clock",
+      "partial_softmax"
+    ]
+  },
+  "plan": {
+    "top": "ThresholdAttention",
+    "modules": [
+      {
+        "name": "InputStage",
+        "purpose": "Registers and unpacks the packed input vectors q, k, and v upon start.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "start_in",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "q_in",
+            "direction": "input",
+            "width": 8
+          },
+          {
+            "name": "k_in",
+            "direction": "input",
+            "width": 32
+          },
+          {
+            "name": "v_in",
+            "direction": "input",
+            "width": 16
+          },
+          {
+            "name": "valid_out",
+            "direction": "output",
+            "width": 1
+          },
+          {
+            "name": "q_out",
+            "direction": "output",
+            "width": 8
+          },
+          {
+            "name": "k_out",
+            "direction": "output",
+            "width": 32
+          },
+          {
+            "name": "v_out",
+            "direction": "output",
+            "width": 16
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This module acts as the first stage of the pipeline. It contains registers for the inputs 'q', 'k', and 'v', and a validity flag. Using 'withClockAndReset', a 'valid_reg' is defined and set to follow 'start_in'. When 'start_in' is high, the input ports 'q_in', 'k_in', and 'v_in' are captured into their respective registers. The outputs 'q_out', 'k_out', and 'v_out' are directly wired to these registers. The 'valid_out' port is connected to 'valid_reg', effectively creating a single-cycle delay and propagating the valid signal to the next stage. The output ports maintain the packed format; unpacking is performed via wiring at the input of the next stage to keep this module simple.",
+        "reference_ids": []
+      },
+      {
+        "name": "ScoreStage",
+        "purpose": "Calculates four dot-product scores in parallel from the unpacked q, k vectors.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "valid_in",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "q_in",
+            "direction": "input",
+            "width": 8
+          },
+          {
+            "name": "k_in",
+            "direction": "input",
+            "width": 32
+          },
+          {
+            "name": "valid_out",
+            "direction": "output",
+            "width": 1
+          },
+          {
+            "name": "scores_out",
+            "direction": "output",
+            "width": 36
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This module computes the four scores concurrently. The logic is structured as a combinatorial calculation followed by a pipeline register. First, the packed 'q_in' and 'k_in' are unpacked into their constituent 4-bit elements using wire slicing. For each of the four keys, two 4x4 multipliers compute `q[d]*k[i][d]`, and a 9-bit adder sums the two products to produce a 9-bit score. This results in four 9-bit scores. These scores are then registered using `RegNext` to create a pipeline stage. The `valid_in` signal is also registered and passed to `valid_out`. The four 9-bit scores are concatenated into a single 36-bit `scores_out` vector.",
+        "reference_ids": []
+      },
+      {
+        "name": "AggregateStage",
+        "purpose": "Applies thresholding to scores, and calculates the sum of weights and the sum of weighted values using a 3-stage pipelined adder tree.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "valid_in",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "scores_in",
+            "direction": "input",
+            "width": 36
+          },
+          {
+            "name": "v_in",
+            "direction": "input",
+            "width": 16
+          },
+          {
+            "name": "valid_out",
+            "direction": "output",
+            "width": 1
+          },
+          {
+            "name": "weight_sum_out",
+            "direction": "output",
+            "width": 11
+          },
+          {
+            "name": "weighted_value_sum_out",
+            "direction": "output",
+            "width": 15
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This module is a 3-stage pipeline. It takes inspiration from the 'chisel_carry_and_clock' reference for its structure with explicit clock/reset and carry-propagating adders (`+&`).\nStage 1: Receives four 9-bit scores and four 4-bit values. It applies the threshold (a constant 64) to each score to produce four 9-bit weights (`weight[i] = score[i] >= 64 ? score[i] : 0`). It then computes four 13-bit weighted-value products (`weight[i] * v[i]`). These intermediate results are registered.\nStage 2: Implements the first level of two parallel adder trees. It sums pairs of weights (`w[0]+w[1]`, `w[2]+w[3]`) and pairs of weighted values, producing two 10-bit partial weight sums and two 14-bit partial weighted-value sums. These are registered.\nStage 3: Completes the adder trees, summing the partial sums from Stage 2 to produce the final 11-bit `weight_sum` and 15-bit `weighted_value_sum`. These final sums are registered and driven to the outputs. The `valid_in` signal is passed through all three pipeline stages to produce `valid_out`.",
+        "reference_ids": [
+          "chisel_carry_and_clock"
+        ]
+      },
+      {
+        "name": "NormalizeStage",
+        "purpose": "Performs unsigned integer division using a from-scratch pipelined radix-2 restoring divider. Handles division by zero.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "valid_in",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "numerator_in",
+            "direction": "input",
+            "width": 15
+          },
+          {
+            "name": "denominator_in",
+            "direction": "input",
+            "width": 11
+          },
+          {
+            "name": "valid_out",
+            "direction": "output",
+            "width": 1
+          },
+          {
+            "name": "result_out",
+            "direction": "output",
+            "width": 4
+          }
+        ],
+        "dependencies": [],
+        "implementation": "Implements a pipelined, unsigned, radix-2, restoring integer divider from scratch with a fixed latency of 16 cycles. \n1. Input Handling: On `valid_in`, inputs are latched. A flag, `is_zero_denom`, is set if `denominator_in` is 0. \n2. Pipelined Core: The division is performed over 15 cycles. The logic is implemented as a chain of 15 registered stages. Each stage performs one bit of the division: it shifts the current remainder, subtracts the divisor (zero-extended to 15 bits), and based on the result's sign, restores the remainder and determines the next quotient bit. The partial remainder and quotient are passed to the next stage. \n3. Latency Matching: A 16-stage shift register, implemented with `RegNext`, delays the initial `valid_in` and the `is_zero_denom` flag to align them with the divider's output. `valid_out` is the final output of this validity pipeline. \n4. Output Selection: The final output `result_out` is determined by the delayed `is_zero_denom` flag. If true, `result_out` is 0. Otherwise, it is the lower 4 bits of the 15-bit quotient from the divider pipeline.",
+        "reference_ids": []
+      },
+      {
+        "name": "ThresholdAttention",
+        "purpose": "Top-level module managing control flow and instantiating the datapath stages for threshold attention.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "start",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "q",
+            "direction": "input",
+            "width": 8
+          },
+          {
+            "name": "k",
+            "direction": "input",
+            "width": 32
+          },
+          {
+            "name": "v",
+            "direction": "input",
+            "width": 16
+          },
+          {
+            "name": "done",
+            "direction": "output",
+            "width": 1
+          },
+          {
+            "name": "result",
+            "direction": "output",
+            "width": 4
+          }
+        ],
+        "dependencies": [
+          "InputStage",
+          "ScoreStage",
+          "AggregateStage",
+          "NormalizeStage"
+        ],
+        "implementation": "This module orchestrates the attention computation using a simple two-state finite state machine (FSM): IDLE and BUSY. In the IDLE state, it waits for the 'start' signal. Upon receiving 'start', it transitions to the BUSY state and enables the first pipeline stage, 'InputStage', to latch the inputs. In the BUSY state, it monitors the 'valid_out' signal from the final pipeline stage, 'NormalizeStage'. When this signal is asserted, it indicates the result is ready. The FSM then asserts 'done' for a single cycle, outputs the 'result' from 'NormalizeStage', and transitions back to IDLE. All child modules are instantiated and connected in a linear pipeline. The 'clock' and 'reset' signals are passed to all child modules.",
+        "reference_ids": []
+      }
+    ],
+    "rationale": "The design implements a fully parallel, deeply pipelined datapath to meet the 100 MHz frequency target while minimizing latency. The architecture processes all four key-value pairs simultaneously. The datapath is decomposed into four main stages: InputStage for unpacking, ScoreStage for parallel dot-product calculation, AggregateStage for thresholding and accumulation, and NormalizeStage for the final division. The AggregateStage employs a three-stage pipelined adder tree to manage the summation logic's critical path. The most complex component, the 15-bit by 11-bit divider, is implemented as a from-scratch 16-cycle pipelined radix-2 restoring divider, as the available reference templates were either for combinatorial division (unsuitable for timing) or could not be read within the budget. Numeric widths for all signals and registers are explicitly sized based on the provided `numeric_bounds` to guarantee no overflow. The total latency is approximately 25 cycles, comfortably within the 128-cycle constraint. This design prioritizes performance and predictable timing.",
+    "language": "chisel"
+  },
+  "bindings": {
+    "InputStage": [],
+    "ScoreStage": [],
+    "AggregateStage": [
+      {
+        "id": "chisel_carry_and_clock",
+        "description": "Chisel RawModule example: explicit clock/reset, carry-preserving +& adder, gated valid/data registers.",
+        "tags": [
+          "chisel",
+          "addition",
+          "width",
+          "clock",
+          "pipeline"
+        ],
+        "language": "chisel",
+        "sha256": "a5146cd539f756ad8dedfce2a6378b2c55342b8489c1df5e78e2e246757ebc06"
+      }
+    ],
+    "NormalizeStage": [],
+    "ThresholdAttention": []
+  },
+  "llm_calls": 2,
+  "scope": "current Compiler selection/planning protocol only; no RTL or PPA in this check"
+}

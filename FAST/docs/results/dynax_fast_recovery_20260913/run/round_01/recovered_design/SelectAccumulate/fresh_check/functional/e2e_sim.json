@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/functional/e2e_sim.log",
+  "diagnostics": "FAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_PASS cases=4\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/functional/trusted_testbench.sv:506: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 765ps; walltime 0.001 s; speed 872.886 ns/s\n- Verilator: cpu 0.000 s on 1 threads; allocated 3 MB\n",
+  "wall_seconds": 0.4202035404741764,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/functional/obj_dir/VFASTTestbench"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "status": "failed",
+  "error": "RuntimeError: Compiler/UArch build budget exhausted; see compiler_feedback.json",
+  "reference_integrity": true,
+  "critic_enabled": true,
+  "rounds": [
+    {
+      "round": 1,
+      "reentry": "kernel",
+      "status": "failed",
+      "config": {
+        "threshold": 64
+      },
+      "profile": {
+        "config": {
+          "threshold": 64
+        },
+        "quality_loss": 0.07025641025641026,
+        "quality_metric": "mean absolute output error / 15 vs threshold=0",
+        "quality_scope": "260 deterministic synthetic profiling queries; not model perplexity",
+        "sparsity": 0.31634615384615383,
+        "active_keys_histogram": {
+          "0": 20,
+          "1": 27,
+          "2": 47,
+          "3": 74,
+          "4": 92
+        },
+        "samples": 260,
+        "seed": 17
+      },
+      "error": "RuntimeError: Compiler/UArch build budget exhausted; see compiler_feedback.json"
+    }
+  ],
+  "pareto_rounds": [],
+  "agent_calls": {
+    "kernel": 1,
+    "compiler": 2,
+    "uarch": 9,
+    "critic": 0
+  },
+  "evidence_scope": "generated complete integration workload; not legacy DynaX or whole-model evidence"
+}

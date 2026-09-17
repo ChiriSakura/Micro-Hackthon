@@ -1,0 +1,21 @@
+{
+  "manifest": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v3/libraries/catalog.json",
+  "manifest_sha256": "2614ae3cc120f0712e3ef43d6511322d5fbc5764896116e0921871bdac6ff4e2",
+  "files": {
+    "algorithm:threshold_attention": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v3/libraries/algorithms/threshold_attention.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/references/000.py",
+      "sha256": "d46102a870b500a844b2321e944b2058854c0065b7f0b70a29654eb825f3ab24"
+    },
+    "template:register_stage": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v3/libraries/hardware/register_stage.v",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/references/001.v",
+      "sha256": "ffdae2d491debe7b24fcff7e3241a683de945aeed7c349f802925c407868b5cf"
+    },
+    "template:dynax_exp_reference": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v3/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/references/002.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    }
+  }
+}

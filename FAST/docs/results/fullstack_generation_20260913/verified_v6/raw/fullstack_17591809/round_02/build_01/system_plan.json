@@ -1,0 +1,199 @@
+{
+  "top": "ThresholdAttention",
+  "modules": [
+    {
+      "name": "ScoreUnit",
+      "purpose": "Computes the dot product score for a single query-key pair: score = q[0]*k[0] + q[1]*k[1].",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "valid_in",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "q_in",
+          "direction": "input",
+          "width": 8
+        },
+        {
+          "name": "k_in",
+          "direction": "input",
+          "width": 8
+        },
+        {
+          "name": "valid_out",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "name": "score_out",
+          "direction": "output",
+          "width": 9
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This module is designed from scratch. It is a single-stage pipeline. On a valid input, it first unpacks the 8-bit 'q_in' and 'k_in' vectors into their 4-bit components. It then performs two parallel 4x4 unsigned multiplications, yielding two 8-bit products. These products are then added together to produce a 9-bit score. The result is stored in a register, which is updated only when 'valid_in' is high. The 'valid_out' signal is a registered version of 'valid_in', ensuring a fixed latency of one cycle. The pipelining style with explicit clock/reset and valid propagation is inspired by the 'chisel_carry_and_clock' reference. The arithmetic is: `score_out_reg := (q_in(3,0) * k_in(3,0)) + (q_in(7,4) * k_in(7,4))`.",
+      "reference_ids": []
+    },
+    {
+      "name": "AggregationUnit",
+      "purpose": "Thresholds four scores, computes weighted values, and calculates their respective sums ('weight_sum' and 'weighted_value_sum').",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "valid_in",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "scores_in",
+          "direction": "input",
+          "width": 36
+        },
+        {
+          "name": "values_in",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "valid_out",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "name": "weight_sum_out",
+          "direction": "output",
+          "width": 11
+        },
+        {
+          "name": "weighted_value_sum_out",
+          "direction": "output",
+          "width": 15
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This from-scratch module uses a two-stage pipeline to manage timing. The inputs 'scores_in' and 'values_in' are treated as vectors of four 9-bit and four 4-bit numbers, respectively. Stage 1: For each of the four inputs, the 9-bit score is compared against a hardwired threshold of 64. If the score is greater than or equal to the threshold, it becomes the 'weight'; otherwise, the weight is zero. Concurrently, each resulting weight is multiplied by its corresponding 4-bit value, producing a 13-bit weighted value. These intermediate weights and weighted values are registered. Stage 2: The four 9-bit weights are summed using a two-level adder tree to produce the 11-bit 'weight_sum_out'. Similarly, the four 13-bit weighted values are summed to produce the 15-bit 'weighted_value_sum_out'. The final sums are registered. The pipeline has a total latency of two cycles, with the valid signal propagated through both stages.",
+      "reference_ids": []
+    },
+    {
+      "name": "UnsignedDivider",
+      "purpose": "Performs pipelined unsigned integer division: floor(numerator / denominator).",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "valid_in",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "numerator_in",
+          "direction": "input",
+          "width": 15
+        },
+        {
+          "name": "denominator_in",
+          "direction": "input",
+          "width": 11
+        },
+        {
+          "name": "valid_out",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "name": "quotient_out",
+          "direction": "output",
+          "width": 4
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This module is a direct adaptation of the 'pipelined_divider' reference. The original reference implements a signed fixed-point divider; this module is specialized for unsigned integer division. The sign-handling and fixed-point scaling logic from the reference are removed. The core radix-2 restoring division algorithm is preserved. The module is configured for a 15-bit numerator and an 11-bit denominator. To meet the 100 MHz target with margin, the pipeline is configured with 15 stages, where each stage performs one bit-level division step. This results in a 15-cycle latency. The initial state sets the dividend to 'numerator_in' and the divisor to 'denominator_in'. A check for 'denominator_in' being zero is performed, and if so, the final result is forced to zero. The full 15-bit quotient is computed, and the final 4-bit 'quotient_out' is taken by truncating the lower bits of the result, effectively performing a floor operation.",
+      "reference_ids": [
+        "pipelined_divider"
+      ]
+    },
+    {
+      "name": "ThresholdAttention",
+      "purpose": "Top-level module that orchestrates the attention computation, manages I/O, and controls the overall pipeline flow.",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "start",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "q",
+          "direction": "input",
+          "width": 8
+        },
+        {
+          "name": "k",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "name": "v",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "done",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "name": "result",
+          "direction": "output",
+          "width": 4
+        }
+      ],
+      "dependencies": [
+        "ScoreUnit",
+        "AggregationUnit",
+        "UnsignedDivider"
+      ],
+      "implementation": "This module implements a two-state finite state machine (FSM): IDLE and BUSY. In the IDLE state, it waits for the 'start' signal. Upon a rising edge of 'start', it latches the 'q', 'k', and 'v' inputs into registers and transitions to the BUSY state, asserting a one-cycle 'pipeline_start' signal. This signal initiates the computation in the first stage of the pipeline. The module unpacks the 'k' and 'v' input vectors to feed the parallel sub-modules. It instantiates four 'ScoreUnit' modules, one 'AggregationUnit', and one 'UnsignedDivider', connecting them in a sequential pipeline. The 'clock' and 'reset' signals are passed to all child modules. The final 'done' signal from the divider module signals the completion of the computation, causing the FSM to transition back to IDLE. The top-level 'done' output is directly connected to the divider's 'valid_out', and the 'result' output is connected to the divider's 'quotient_out'.",
+      "reference_ids": []
+    }
+  ],
+  "rationale": "The design implements the threshold_attention algorithm using a 4-stage, feed-forward pipeline to meet the 100 MHz frequency target while maintaining low latency. The architecture is modular, promoting reuse and clarity. Stage 1, managed by the top module's state machine, latches inputs. Stage 2 consists of four parallel 'ScoreUnit' modules, each a single-cycle pipelined MAC, to compute dot-product scores concurrently. Stage 3 is a two-cycle 'AggregationUnit' that thresholds scores, computes weighted values, and sums them using a pipelined adder tree to manage the critical path. Stage 4 employs a pipelined 'UnsignedDivider' for the final normalization, adapted from a reference template. This divider is configured with 15 stages for maximum throughput, resulting in a 15-cycle latency. The total design latency is approximately 19 cycles, which is well within the 128-cycle budget specified in the contract. The fixed threshold from the configuration is hardwired.",
+  "language": "chisel"
+}

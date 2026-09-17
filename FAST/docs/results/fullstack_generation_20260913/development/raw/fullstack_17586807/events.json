@@ -1,0 +1,93 @@
+[
+  {
+    "time_unix": 1789274996.5487719,
+    "stage": "round_start",
+    "round": 1,
+    "reentry": "kernel"
+  },
+  {
+    "time_unix": 1789274996.5562696,
+    "stage": "kernel",
+    "attempt": 1
+  },
+  {
+    "time_unix": 1789275020.099212,
+    "stage": "kernel_profile",
+    "choice": {
+      "config": {
+        "threshold": 0
+      },
+      "rationale": "This is the first design attempt with no prior feedback. The primary goal is to establish a valid baseline that meets all constraints. The `threshold` parameter controls the sparsity of the attention mechanism, directly impacting quality and potentially energy/latency. A `threshold` of 0 effectively disables sparsity, resulting in a dense attention calculation. This choice guarantees zero quality loss, safely staying within the `max_quality_loss` of 0.15. By starting with the dense baseline, we can obtain accurate measurements for area, latency, and power, which will serve as a crucial reference point for exploring energy-latency-quality tradeoffs with higher, sparser thresholds in subsequent iterations, as requested by the prompt."
+    },
+    "profile": {
+      "config": {
+        "threshold": 0
+      },
+      "quality_loss": 0.0,
+      "quality_metric": "mean absolute output error / 15 vs threshold=0",
+      "quality_scope": "260 deterministic synthetic profiling queries; not model perplexity",
+      "sparsity": 0.0163461538461539,
+      "active_keys_histogram": {
+        "0": 1,
+        "1": 0,
+        "2": 2,
+        "3": 9,
+        "4": 248
+      },
+      "samples": 260,
+      "seed": 17
+    }
+  },
+  {
+    "time_unix": 1789275020.1318703,
+    "stage": "compiler",
+    "build": 1,
+    "round_dir": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17586807/round_01"
+  },
+  {
+    "time_unix": 1789275138.5815341,
+    "stage": "uarch",
+    "module": "ScoreWeight",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789275159.9941807,
+    "stage": "module_repair",
+    "module": "ScoreWeight",
+    "error": "ANSI ports differ from plan: actual=[], expected=[('k0', 'input', 4), ('k1', 'input', 4), ('q0', 'input', 4), ('q1', 'input', 4), ('v_in', 'input', 4), ('weight', 'output', 9), ('weighted_v', 'output', 13)]"
+  },
+  {
+    "time_unix": 1789275160.0059662,
+    "stage": "uarch",
+    "module": "ScoreWeight",
+    "attempt": 2,
+    "build": 1
+  },
+  {
+    "time_unix": 1789275180.1131766,
+    "stage": "module_repair",
+    "module": "ScoreWeight",
+    "error": "ANSI ports differ from plan: actual=[], expected=[('k0', 'input', 4), ('k1', 'input', 4), ('q0', 'input', 4), ('q1', 'input', 4), ('v_in', 'input', 4), ('weight', 'output', 9), ('weighted_v', 'output', 13)]"
+  },
+  {
+    "time_unix": 1789275180.1278164,
+    "stage": "uarch",
+    "module": "ScoreWeight",
+    "attempt": 3,
+    "build": 1
+  },
+  {
+    "time_unix": 1789275216.4440558,
+    "stage": "module_check",
+    "module": "ScoreWeight",
+    "passed": true
+  },
+  {
+    "time_unix": 1789275216.4567783,
+    "stage": "uarch",
+    "module": "Divider_15x11_4",
+    "attempt": 1,
+    "build": 1
+  }
+]

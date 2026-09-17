@@ -1,0 +1,874 @@
+{
+  "task": {
+    "algorithm": "dynax_xm_row",
+    "prompt": "Generate a complete bounded DynaX X:M decode-row system from signed Q/K/V to output AND selected mask, following the exact provided LUT arithmetic contract. Compute scores, normalized block mass and X:M top-k selection on chip. Read and assign matching hardware AND golden test references. Prefer a few simple arithmetic modules and explicit top-level control. Start with a correct compact implementation, no requirement of one query per cycle. Inspect the integrated DynaX hardware bundles first. Prefer linking compatible existing native modules read-only through linked_reference_ids and generating thin adapters, rather than rewriting working library cores. Preserve native protocols and use their golden tests to define latency and corner cases. Reuse requires exact compatibility with the trusted algorithm math; fill missing score/mass computation and exact LUT behavior in generated modules.",
+    "constraints": {
+      "max_quality_loss": 0.15,
+      "max_area_um2": 200000,
+      "frequency_mhz": 100
+    },
+    "max_loops": 2,
+    "compiler_attempts": 3,
+    "module_attempts": 5,
+    "seed": 17,
+    "kernel_profile_budget": 16,
+    "activity": 0.1,
+    "hdl": "chisel",
+    "template_read_budget": 2,
+    "module_workers": 1,
+    "assembly_attempts": 5,
+    "ppa_backend": "hammer_openroad",
+    "dense_equivalent_ops_per_query": 48
+  },
+  "algorithm": {
+    "id": "dynax_xm_row",
+    "semantics": "DynaX X:M attention, is_quant=False, bounded one-query integration contract. 8 keys, head_dim=2, value_dim=1. q[2], k[8][2] signed 4-bit ticks Q*.2; v[8] signed 8-bit ticks Q*.4. scale_factor=1. All 8 keys visible (one decode row). s[i]=q[0]*k[i][0]+q[1]*k[i][1], signed full precision; floating score=s[i]/16. h=max(s); e[i]=EXP[h-s[i]], where EXP[d]=round(65535*exp(-d/16)), EXACT table supplied. S=sum(e). Two contiguous blocks of m=4; B[b]=sum(e[4*b:4*b+4]). If 8*B[b] > t0_quarters*S keep n1=2; elif 8*B[b] < t1_quarters*S keep 0; else keep n2=1. Strict comparisons match DynaX (sum probability mass * sequence_length / m). Within each block choose highest signed score first, ties choose SMALLER original key index. keep_mask bit i marks selected key. Reuse e for selected weights; D=sum(e[i] for selected i), N=sum(e[i]*v[i] for selected i). result=trunc_toward_zero((N*16)/D), signed 16-bit Q*.8; D=0 =>0. This implements a declared LUT approximation of softmax, not exact float softmax. Tie rule is a deterministic refinement of torch.topk unspecified tie ordering. All scores, block masses and indices MUST be computed on chip from q/k/v; no external oracle ports.",
+    "config_space": {
+      "t0_quarters": [
+        5,
+        6
+      ],
+      "t1_quarters": [
+        1,
+        2
+      ]
+    },
+    "numeric_bounds": {
+      "score_min": -112,
+      "score_max": 128,
+      "exp_delta_max": 240,
+      "exponent_max": 65535,
+      "all_weight_sum_max": 524280,
+      "abs_weighted_value_sum_max": 67107840,
+      "abs_scaled_numerator_max": 1073725440
+    },
+    "exp_table": [
+      65535,
+      61564,
+      57834,
+      54330,
+      51039,
+      47946,
+      45042,
+      42313,
+      39749,
+      37341,
+      35078,
+      32953,
+      30957,
+      29081,
+      27319,
+      25664,
+      24109,
+      22648,
+      21276,
+      19987,
+      18776,
+      17639,
+      16570,
+      15566,
+      14623,
+      13737,
+      12905,
+      12123,
+      11388,
+      10698,
+      10050,
+      9441,
+      8869,
+      8332,
+      7827,
+      7353,
+      6907,
+      6489,
+      6096,
+      5726,
+      5379,
+      5054,
+      4747,
+      4460,
+      4190,
+      3936,
+      3697,
+      3473,
+      3263,
+      3065,
+      2879,
+      2705,
+      2541,
+      2387,
+      2242,
+      2107,
+      1979,
+      1859,
+      1746,
+      1641,
+      1541,
+      1448,
+      1360,
+      1278,
+      1200,
+      1128,
+      1059,
+      995,
+      935,
+      878,
+      825,
+      775,
+      728,
+      684,
+      642,
+      604,
+      567,
+      533,
+      500,
+      470,
+      442,
+      415,
+      390,
+      366,
+      344,
+      323,
+      303,
+      285,
+      268,
+      252,
+      236,
+      222,
+      209,
+      196,
+      184,
+      173,
+      162,
+      153,
+      143,
+      135,
+      127,
+      119,
+      112,
+      105,
+      99,
+      93,
+      87,
+      82,
+      77,
+      72,
+      68,
+      64,
+      60,
+      56,
+      53,
+      50,
+      47,
+      44,
+      41,
+      39,
+      36,
+      34,
+      32,
+      30,
+      28,
+      27,
+      25,
+      23,
+      22,
+      21,
+      19,
+      18,
+      17,
+      16,
+      15,
+      14,
+      13,
+      13,
+      12,
+      11,
+      10,
+      10,
+      9,
+      9,
+      8,
+      8,
+      7,
+      7,
+      6,
+      6,
+      6,
+      5,
+      5,
+      5,
+      4,
+      4,
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      3,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "exp_table_packed_hex": "0x10001000100010001000100010001000100010001000100010001000100010001000100020002000200020002000200020002000300030003000300030004000400040004000500050005000600060006000700070008000800090009000a000a000b000c000d000d000e000f00100011001200130015001600170019001b001c001e00200022002400270029002c002f003200350038003c004000440048004d00520057005d0063006900700077007f0087008f009900a200ad00b800c400d100de00ec00fc010c011d012f01430158016e0186019f01ba01d601f402150237025c028202ac02d803070339036e03a703e30423046804b004fe055005a80605066906d2074307bb083b08c2095309ed0a910b3f0bf90cbf0d910e710f60105e116c128b13be1503165e17d019591afb1cb91e93208c22a524e1274229ca2c7c2f5b326935a9391f3cce40ba44e749584e13531c58785e2d64406ab7719978ed80b9890691dd9b45a549aff2bb4ac75fd43ae1eaf07cffff",
+    "exp_behavior_example": "lane(0x10001000100010001000100010001000100010001000100010001000100010001000100020002000200020002000200020002000300030003000300030004000400040004000500050005000600060006000700070008000800090009000a000a000b000c000d000d000e000f00100011001200130015001600170019001b001c001e00200022002400270029002c002f003200350038003c004000440048004d00520057005d0063006900700077007f0087008f009900a200ad00b800c400d100de00ec00fc010c011d012f01430158016e0186019f01ba01d601f402150237025c028202ac02d803070339036e03a703e30423046804b004fe055005a80605066906d2074307bb083b08c2095309ed0a910b3f0bf90cbf0d910e710f60105e116c128b13be1503165e17d019591afb1cb91e93208c22a524e1274229ca2c7c2f5b326935a9391f3cce40ba44e749584e13531c58785e2d64406ab7719978ed80b9890691dd9b45a549aff2bb4ac75fd43ae1eaf07cffff, delta, 16)",
+    "ports": [
+      {
+        "name": "clock",
+        "direction": "input",
+        "width": 1
+      },
+      {
+        "name": "reset",
+        "direction": "input",
+        "width": 1
+      },
+      {
+        "name": "start",
+        "direction": "input",
+        "width": 1
+      },
+      {
+        "name": "q",
+        "direction": "input",
+        "width": 8
+      },
+      {
+        "name": "k",
+        "direction": "input",
+        "width": 64
+      },
+      {
+        "name": "v",
+        "direction": "input",
+        "width": 64
+      },
+      {
+        "name": "done",
+        "direction": "output",
+        "width": 1
+      },
+      {
+        "name": "result",
+        "direction": "output",
+        "width": 16
+      },
+      {
+        "name": "keep_mask",
+        "direction": "output",
+        "width": 8
+      }
+    ],
+    "protocol": "Synchronous active-high reset. Accept one-cycle start while idle. Inputs remain stable until done. done is a one-cycle pulse within 1024 edges, result and keep_mask valid with done. First capture edge counts as cycle 1. Repeated transactions without reset. Pack q[d] at 4*d, k[i][d] at 4*(2*i+d), v[i] at 8*i, all two-complement bit patterns."
+  },
+  "profile": {
+    "config": {
+      "t0_quarters": 5,
+      "t1_quarters": 1
+    },
+    "quality_loss": 0.10570359105224009,
+    "quality_metric": "mean absolute Q8 output error / 2048 versus floating dense attention on same quantized inputs",
+    "quality_scope": "260 synthetic decode-row queries; no model perplexity",
+    "sparsity": 0.695673076923077,
+    "active_keys_histogram": {
+      "0": 0,
+      "1": 0,
+      "2": 147,
+      "3": 113,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0
+    },
+    "samples": 260,
+    "seed": 17
+  },
+  "config": {
+    "t0_quarters": 5,
+    "t1_quarters": 1
+  },
+  "system_plan": {
+    "top": "DynaX_XM_Row",
+    "modules": [
+      {
+        "name": "ScoreWeightGen",
+        "purpose": "Computes 8 signed scores from Q/K vectors, and then computes 8 unsigned weights using a max-finding and LUT lookup.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "start",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "q_in",
+            "direction": "input",
+            "width": 8
+          },
+          {
+            "name": "k_in",
+            "direction": "input",
+            "width": 64
+          },
+          {
+            "name": "scores_out",
+            "direction": "output",
+            "width": 72
+          },
+          {
+            "name": "weights_out",
+            "direction": "output",
+            "width": 128
+          },
+          {
+            "name": "valid_out",
+            "direction": "output",
+            "width": 1
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This module is a 3-stage pipeline with a latency of 3 cycles. A chain of three registers propagates the `start` signal to generate the final `valid_out`.\nStage 1: On a `start` pulse, input registers latch the `q_in` and `k_in` values.\nStage 2: Enabled by the stage 1 valid signal, a register latches the 8 signed scores. The scores are computed combinationally by eight parallel MAC units from the stage 1 registers: `s_i = q0 * k_i0 + q1 * k_i1`. The product of two s4 values is s8, and the sum of two s8 values fits in a signed 9-bit integer (s9).\nStage 3: Enabled by the stage 2 valid signal, output registers are latched. The scores are passed through. The weights are computed combinationally from the stage 2 scores: a comparator tree finds the max score `h` (SInt(9.W)). Eight parallel subtractors compute deltas `d_i = h - s_i`. The result is a signed 10-bit value, but the valid range is 0-240, so it is cast to an 8-bit unsigned integer to index a 256x16 ROM (initialized with `exp_table`) to look up the weights `e_i = EXP[d_i]`. \nThe final outputs `scores_out` and `weights_out` are driven from the stage 3 registers. `valid_out` is driven by the stage 3 valid signal, ensuring data and valid are aligned.",
+        "reference_ids": [],
+        "design_prompt": "You are a UArch agent. Design a Chisel RawModule named `ScoreWeightGen` with the specified ports. It implements a 3-stage pipeline with a latency of 3. On a single-cycle `start` pulse, it computes 8 signed scores from the `q_in` and `k_in` inputs. In subsequent stages, it finds the max score, computes deltas, and uses a ROM to look up 8 corresponding weights from the provided `exp_table`. The `exp_table` is `0x10001000100010001000100010001000100010001000100010001000100010001000100020002000200020002000200020002000300030003000300030004000400040004000500050005000600060006000700070008000800090009000a000a000b000c000d000d000e000f00100011001200130015001600170019001b001c001e00200022002400270029002c002f003200350038003c004000440048004d00520057005d0063006900700077007f0087008f009900a200ad00b800c400d100de00ec00fc010c011d012f01430158016e0186019f01ba01d601f402150237025c028202ac02d803070339036e03a703e30423046804b004fe055005a80605066906d2074307bb083b08c2095309ed0a910b3f0bf90cbf0d910e710f60105e116c128b13be1503165e17d019591afb1cb91e93208c22a524e1274229ca2c7c2f5b326935a9391f3cce40ba44e749584e13531c58785e2d64406ab7719978ed80b9890691dd9b45a549aff2bb4ac75fd43ae1eaf07cffff`. The final scores and weights are packed into `scores_out` and `weights_out` respectively, and `valid_out` is pulsed high for one cycle, 3 cycles after `start`. All registers must be reset. Ensure all score-related calculations, including the max-finding, use signed arithmetic.",
+        "behavior": {
+          "test_generation_version": 2,
+          "latency": 3,
+          "reset": "reset",
+          "valid_input": "start",
+          "valid_output": "valid_out",
+          "let": {
+            "EXP_TABLE": "0x10001000100010001000100010001000100010001000100010001000100010001000100020002000200020002000200020002000300030003000300030004000400040004000500050005000600060006000700070008000800090009000a000a000b000c000d000d000e000f00100011001200130015001600170019001b001c001e00200022002400270029002c002f003200350038003c004000440048004d00520057005d0063006900700077007f0087008f009900a200ad00b800c400d100de00ec00fc010c011d012f01430158016e0186019f01ba01d601f402150237025c028202ac02d803070339036e03a703e30423046804b004fe055005a80605066906d2074307bb083b08c2095309ed0a910b3f0bf90cbf0d910e710f60105e116c128b13be1503165e17d019591afb1cb91e93208c22a524e1274229ca2c7c2f5b326935a9391f3cce40ba44e749584e13531c58785e2d64406ab7719978ed80b9890691dd9b45a549aff2bb4ac75fd43ae1eaf07cffff",
+            "q0": "signed(lane(q_in, 0, 4), 4)",
+            "q1": "signed(lane(q_in, 1, 4), 4)",
+            "k00": "signed(lane(k_in, 0, 4), 4)",
+            "k01": "signed(lane(k_in, 1, 4), 4)",
+            "k10": "signed(lane(k_in, 2, 4), 4)",
+            "k11": "signed(lane(k_in, 3, 4), 4)",
+            "k20": "signed(lane(k_in, 4, 4), 4)",
+            "k21": "signed(lane(k_in, 5, 4), 4)",
+            "k30": "signed(lane(k_in, 6, 4), 4)",
+            "k31": "signed(lane(k_in, 7, 4), 4)",
+            "k40": "signed(lane(k_in, 8, 4), 4)",
+            "k41": "signed(lane(k_in, 9, 4), 4)",
+            "k50": "signed(lane(k_in, 10, 4), 4)",
+            "k51": "signed(lane(k_in, 11, 4), 4)",
+            "k60": "signed(lane(k_in, 12, 4), 4)",
+            "k61": "signed(lane(k_in, 13, 4), 4)",
+            "k70": "signed(lane(k_in, 14, 4), 4)",
+            "k71": "signed(lane(k_in, 15, 4), 4)",
+            "s0": "q0*k00 + q1*k01",
+            "s1": "q0*k10 + q1*k11",
+            "s2": "q0*k20 + q1*k21",
+            "s3": "q0*k30 + q1*k31",
+            "s4": "q0*k40 + q1*k41",
+            "s5": "q0*k50 + q1*k51",
+            "s6": "q0*k60 + q1*k61",
+            "s7": "q0*k70 + q1*k71",
+            "h": "max(s0, max(s1, max(s2, max(s3, max(s4, max(s5, max(s6, s7)))))))",
+            "d0": "h - s0",
+            "d1": "h - s1",
+            "d2": "h - s2",
+            "d3": "h - s3",
+            "d4": "h - s4",
+            "d5": "h - s5",
+            "d6": "h - s6",
+            "d7": "h - s7",
+            "e0": "lane(EXP_TABLE, d0, 16)",
+            "e1": "lane(EXP_TABLE, d1, 16)",
+            "e2": "lane(EXP_TABLE, d2, 16)",
+            "e3": "lane(EXP_TABLE, d3, 16)",
+            "e4": "lane(EXP_TABLE, d4, 16)",
+            "e5": "lane(EXP_TABLE, d5, 16)",
+            "e6": "lane(EXP_TABLE, d6, 16)",
+            "e7": "lane(EXP_TABLE, d7, 16)"
+          },
+          "outputs": {
+            "scores_out": "spack(9, s0, s1, s2, s3, s4, s5, s6, s7)",
+            "weights_out": "pack(16, e0, e1, e2, e3, e4, e5, e6, e7)"
+          },
+          "vectors": [
+            {
+              "q_in": 0,
+              "k_in": 0
+            },
+            {
+              "q_in": "spack(4, 7, -8)",
+              "k_in": "spack(4, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7)"
+            },
+            {
+              "q_in": "spack(4, 1, 2)",
+              "k_in": "spack(4, 7, -8, 6, -7, 5, -6, 4, -5, 3, -4, 2, -3, 1, -2, 0)"
+            }
+          ]
+        },
+        "linked_reference_ids": []
+      },
+      {
+        "name": "SelectAccumulate",
+        "purpose": "Performs X:M selection based on scores and weights, then accumulates the final numerator N and denominator D based on the resulting keep_mask.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "valid_in",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "scores_in",
+            "direction": "input",
+            "width": 72
+          },
+          {
+            "name": "weights_in",
+            "direction": "input",
+            "width": 128
+          },
+          {
+            "name": "values_in",
+            "direction": "input",
+            "width": 64
+          },
+          {
+            "name": "N_out",
+            "direction": "output",
+            "width": 28
+          },
+          {
+            "name": "D_out",
+            "direction": "output",
+            "width": 19
+          },
+          {
+            "name": "keep_mask_out",
+            "direction": "output",
+            "width": 8
+          },
+          {
+            "name": "valid_out",
+            "direction": "output",
+            "width": 1
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This module is a 5-stage pipeline. \nStage 1: Latches and unpacks inputs `scores_in` (8x s9), `weights_in` (8x u16), and `values_in` (8x s8).\nStage 2: Calculates block masses. An adder tree computes the total weight sum `S` (u19). Two smaller adder trees compute block sums `B0` (u18) and `B1` (u18).\nStage 3: Determines `n0` and `n1`, the number of items to keep in each block. This involves multiplying `S` by `t0_quarters=5` and `t1_quarters=1` and comparing `8*B` against the results. Two parallel 4-input sorting networks sort the scores within each block. The sorters operate on `(score, -index)` tuples to enforce the tie-breaking rule (smaller original key index wins).\nStage 4: Generates the 8-bit `keep_mask` based on the `n0`, `n1` values and the sorted indices. Eight parallel `u16 * s8 -> s24` multipliers compute the weighted values `e_i * v_i`.\nStage 5: Two masked adder trees compute the final sums. `D` (u19) is the sum of weights `e_i` for selected items. `N` (s28) is the sum of weighted values `e_i*v_i` for selected items. The final `N_out`, `D_out`, and `keep_mask_out` are registered, and `valid_out` is asserted. The total latency is 5 cycles.",
+        "reference_ids": [],
+        "design_prompt": "You are a UArch agent. Design a Chisel RawModule named `SelectAccumulate` with the specified ports. It implements a 5-stage pipeline with a latency of 5. On a `valid_in` pulse, it processes scores, weights, and values to perform X:M selection and accumulation. The X:M parameters are `t0_quarters=5` and `t1_quarters=1`, with `n1=2` and `n2=1`. The selection requires sorting 4-element score blocks, with a tie-breaking rule that prefers smaller original indices. After generating a `keep_mask`, it calculates the sum of selected weights (`D_out`) and the sum of selected weighted values (`N_out`). The final results are registered and output with a `valid_out` pulse. All registers must be reset.",
+        "behavior": {
+          "test_generation_version": 2,
+          "latency": 5,
+          "reset": "reset",
+          "valid_input": "valid_in",
+          "valid_output": "valid_out",
+          "let": {
+            "s0": "signed(lane(scores_in, 0, 9), 9)",
+            "s1": "signed(lane(scores_in, 1, 9), 9)",
+            "s2": "signed(lane(scores_in, 2, 9), 9)",
+            "s3": "signed(lane(scores_in, 3, 9), 9)",
+            "s4": "signed(lane(scores_in, 4, 9), 9)",
+            "s5": "signed(lane(scores_in, 5, 9), 9)",
+            "s6": "signed(lane(scores_in, 6, 9), 9)",
+            "s7": "signed(lane(scores_in, 7, 9), 9)",
+            "e0": "lane(weights_in, 0, 16)",
+            "e1": "lane(weights_in, 1, 16)",
+            "e2": "lane(weights_in, 2, 16)",
+            "e3": "lane(weights_in, 3, 16)",
+            "e4": "lane(weights_in, 4, 16)",
+            "e5": "lane(weights_in, 5, 16)",
+            "e6": "lane(weights_in, 6, 16)",
+            "e7": "lane(weights_in, 7, 16)",
+            "v0": "signed(lane(values_in, 0, 8), 8)",
+            "v1": "signed(lane(values_in, 1, 8), 8)",
+            "v2": "signed(lane(values_in, 2, 8), 8)",
+            "v3": "signed(lane(values_in, 3, 8), 8)",
+            "v4": "signed(lane(values_in, 4, 8), 8)",
+            "v5": "signed(lane(values_in, 5, 8), 8)",
+            "v6": "signed(lane(values_in, 6, 8), 8)",
+            "v7": "signed(lane(values_in, 7, 8), 8)",
+            "B0": "e0 + e1 + e2 + e3",
+            "B1": "e4 + e5 + e6 + e7",
+            "S": "B0 + B1",
+            "n0": "2 if 8*B0 > 5*S else (0 if 8*B0 < 1*S else 1)",
+            "n1": "2 if 8*B1 > 5*S else (0 if 8*B1 < 1*S else 1)",
+            "b0_r0": "(1 if s1 > s0 or (s1==s0 and 1<0) else 0) + (1 if s2 > s0 or (s2==s0 and 2<0) else 0) + (1 if s3 > s0 or (s3==s0 and 3<0) else 0)",
+            "b0_r1": "(1 if s0 > s1 or (s0==s1 and 0<1) else 0) + (1 if s2 > s1 or (s2==s1 and 2<1) else 0) + (1 if s3 > s1 or (s3==s1 and 3<1) else 0)",
+            "b0_r2": "(1 if s0 > s2 or (s0==s2 and 0<2) else 0) + (1 if s1 > s2 or (s1==s2 and 1<2) else 0) + (1 if s3 > s2 or (s3==s2 and 3<2) else 0)",
+            "b0_r3": "(1 if s0 > s3 or (s0==s3 and 0<3) else 0) + (1 if s1 > s3 or (s1==s3 and 1<3) else 0) + (1 if s2 > s3 or (s2==s3 and 2<3) else 0)",
+            "b1_r4": "(1 if s5 > s4 or (s5==s4 and 5<4) else 0) + (1 if s6 > s4 or (s6==s4 and 6<4) else 0) + (1 if s7 > s4 or (s7==s4 and 7<4) else 0)",
+            "b1_r5": "(1 if s4 > s5 or (s4==s5 and 4<5) else 0) + (1 if s6 > s5 or (s6==s5 and 6<5) else 0) + (1 if s7 > s5 or (s7==s5 and 7<5) else 0)",
+            "b1_r6": "(1 if s4 > s6 or (s4==s6 and 4<6) else 0) + (1 if s5 > s6 or (s5==s6 and 5<6) else 0) + (1 if s7 > s6 or (s7==s6 and 7<6) else 0)",
+            "b1_r7": "(1 if s4 > s7 or (s4==s7 and 4<7) else 0) + (1 if s5 > s7 or (s5==s7 and 5<7) else 0) + (1 if s6 > s7 or (s6==s7 and 6<7) else 0)",
+            "k0": "1 if b0_r0 < n0 else 0",
+            "k1": "1 if b0_r1 < n0 else 0",
+            "k2": "1 if b0_r2 < n0 else 0",
+            "k3": "1 if b0_r3 < n0 else 0",
+            "k4": "1 if b1_r4 < n1 else 0",
+            "k5": "1 if b1_r5 < n1 else 0",
+            "k6": "1 if b1_r6 < n1 else 0",
+            "k7": "1 if b1_r7 < n1 else 0"
+          },
+          "outputs": {
+            "N_out": "(k0*e0*v0) + (k1*e1*v1) + (k2*e2*v2) + (k3*e3*v3) + (k4*e4*v4) + (k5*e5*v5) + (k6*e6*v6) + (k7*e7*v7)",
+            "D_out": "(k0*e0) + (k1*e1) + (k2*e2) + (k3*e3) + (k4*e4) + (k5*e5) + (k6*e6) + (k7*e7)",
+            "keep_mask_out": "pack(1, k0, k1, k2, k3, k4, k5, k6, k7)"
+          },
+          "vectors": [
+            {
+              "scores_in": 0,
+              "weights_in": 0,
+              "values_in": 0
+            },
+            {
+              "scores_in": "spack(9, 10,20,5,15, 100,80,120,90)",
+              "weights_in": "pack(16, 100,100,100,100, 10,10,10,10)",
+              "values_in": "spack(8, 1,2,3,4,5,6,7,8)"
+            },
+            {
+              "scores_in": "spack(9, 10,10,10,10, 10,10,10,10)",
+              "weights_in": "pack(16, 65535,65535,65535,65535, 65535,65535,65535,65535)",
+              "values_in": "spack(8, -128,127,-1,1, -128,127,-1,1)"
+            }
+          ]
+        },
+        "linked_reference_ids": []
+      },
+      {
+        "name": "DividerWrapper",
+        "purpose": "A wrapper for the native pipelined divider, adapted for integer division.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "valid_in",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "N_in",
+            "direction": "input",
+            "width": 28
+          },
+          {
+            "name": "D_in",
+            "direction": "input",
+            "width": 19
+          },
+          {
+            "name": "result_out",
+            "direction": "output",
+            "width": 16
+          },
+          {
+            "name": "valid_out",
+            "direction": "output",
+            "width": 1
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This module is a thin adapter that instantiates the native `predict_unit.FixedPointDivPipelined` class from the `pipelined_divider` reference. It is configured with `bitWidth=32`, `point=0`, and `stages=8`. On `valid_in`, it prepares the inputs for the child: the numerator is calculated as `N_in << 4` (a 32-bit signed value), and the denominator `D_in` (19-bit unsigned) is zero-extended to 32 bits and cast to signed. These are connected to the `numerator` and `denominator` FixedPoint inputs of the child module. The child's `out_valid` is passed through to this module's `valid_out`. The 32-bit `quotient` from the child is truncated to the lower 16 bits to produce the final `result_out`. The latency of this wrapper is 8 cycles, determined by the `stages` parameter of the child.",
+        "reference_ids": [
+          "pipelined_divider"
+        ],
+        "design_prompt": "You are a UArch agent. Design a Chisel RawModule named `DividerWrapper` with the specified ports. This module must be a thin adapter for the native `predict_unit.FixedPointDivPipelined` module from the `pipelined_divider` reference. Instantiate the child with `bitWidth=32`, `point=0`, and `stages=8`. On a `valid_in` pulse, compute the 32-bit signed numerator as `N_in << 4` and the 32-bit signed denominator by zero-extending `D_in`. Pass these values and the valid signal to the child divider. The child's `out_valid` should be propagated to `valid_out`. The final `result_out` is the lower 16 bits of the child's 32-bit quotient. The module latency is 8 cycles. Ensure all registers are reset.",
+        "behavior": {
+          "test_generation_version": 2,
+          "latency": 8,
+          "reset": "reset",
+          "valid_input": "valid_in",
+          "valid_output": "valid_out",
+          "let": {
+            "num_s32": "signed(N_in, 28) * 16"
+          },
+          "outputs": {
+            "result_out": "0 if D_in == 0 else trunc_div(num_s32, D_in)"
+          },
+          "vectors": [
+            {
+              "N_in": 0,
+              "D_in": 1
+            },
+            {
+              "N_in": 1000,
+              "D_in": 10
+            },
+            {
+              "N_in": 134217727,
+              "D_in": 524287
+            },
+            {
+              "N_in": 0,
+              "D_in": 0
+            }
+          ]
+        },
+        "linked_reference_ids": [
+          "pipelined_divider"
+        ]
+      },
+      {
+        "name": "DynaX_XM_Row",
+        "purpose": "Top-level wrapper for the dynax_xm_row algorithm. It instantiates and connects the pipeline stages and manages the overall control flow.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "start",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "q",
+            "direction": "input",
+            "width": 8
+          },
+          {
+            "name": "k",
+            "direction": "input",
+            "width": 64
+          },
+          {
+            "name": "v",
+            "direction": "input",
+            "width": 64
+          },
+          {
+            "name": "done",
+            "direction": "output",
+            "width": 1
+          },
+          {
+            "name": "result",
+            "direction": "output",
+            "width": 16
+          },
+          {
+            "name": "keep_mask",
+            "direction": "output",
+            "width": 8
+          }
+        ],
+        "dependencies": [
+          "ScoreWeightGen",
+          "SelectAccumulate",
+          "DividerWrapper"
+        ],
+        "implementation": "The top module implements a control flow for the pipeline. On a `start` pulse, it latches the `q`, `k`, and `v` inputs and initiates the `ScoreWeightGen` module. The pipeline stages (`ScoreWeightGen`, `SelectAccumulate`, `DividerWrapper`) are connected in series. Pipeline registers are inserted between stages to buffer data and valid signals, ensuring correct timing. The `v` input is delayed by 4 cycles to align with the inputs of `SelectAccumulate`. The `keep_mask` output from `SelectAccumulate` is delayed by 9 cycles using a shift register to align with the final `result` from the `DividerWrapper`. The top-level `done` signal is asserted for one cycle when the final `valid_out` from the `DividerWrapper` is received. The total latency from `start` to `done` is 18 cycles (3 for ScoreWeightGen + 1 for reg + 5 for SelectAccumulate + 1 for reg + 8 for DividerWrapper). All registers use `withClockAndReset` with the top-level `clock` and `reset`.",
+        "reference_ids": [],
+        "design_prompt": "You are a UArch agent. Design a Chisel RawModule named DynaX_XM_Row with the exact ports specified in the contract. This module serves as the top-level wrapper for the dynax_xm_row system. It must instantiate three child modules: `ScoreWeightGen`, `SelectAccumulate`, and `DividerWrapper`. Implement a simple valid-propagation pipeline to control the data flow. On a single-cycle `start` pulse, latch the `q`, `k`, and `v` inputs and initiate the pipeline by sending a start pulse to the `ScoreWeightGen` module. The pipeline stages are connected in series, with pipeline registers buffering the data and a valid bit between each stage. The `v` input must be delayed by 4 cycles to align with the `SelectAccumulate` stage. The `keep_mask` output from `SelectAccumulate` must be delayed by 9 cycles through a shift register to align with the `result` output from the `DividerWrapper`. Wait for the final `valid_out` from the `DividerWrapper` to assert the top-level `done` signal for one cycle, at which point the final `result` and `keep_mask` are also made available at the output ports. The total latency from `start` to `done` should be the sum of the latencies of the child modules plus register delays (18 cycles). Ensure all registers are reset synchronously with an active-high `reset`.",
+        "behavior": null,
+        "linked_reference_ids": []
+      }
+    ],
+    "rationale": "The design is decomposed into a three-stage pipeline, which is a direct and efficient way to implement the specified algorithm. This plan addresses the critic's feedback by reducing the pipeline depth of the divider to improve latency and energy efficiency. The previous plan's 16-stage divider was over-pipelined for the target frequency. This revised plan reduces the divider stages to 8, which is a better trade-off between clock speed and latency. It also corrects a test vector latency mismatch in the `SelectAccumulate` module identified in UArch feedback. The overall architecture remains a simple pipeline, which is appropriate for the single-row contract.\n1. `ScoreWeightGen`: A 3-stage pipeline to compute scores and then weights using a ROM for the EXP table. This isolates the initial dot-product and LUT lookup logic.\n2. `SelectAccumulate`: A 5-stage pipeline to perform the complex X:M selection logic, including block mass calculation, dynamic top-k determination per block, and masked accumulation of the final numerator (N) and denominator (D). The logic correctly implements the specified tie-breaking rule. The test vectors have been corrected to match the 5-cycle latency.\n3. `DividerWrapper`: A thin adapter for the `pipelined_divider` library module, now configured for 8 stages as per the critic's instruction. This reduces its latency from 16 to 8 cycles.\nThe top module, `DynaX_XM_Row`, connects these stages and adjusts its internal delay paths to accommodate the new divider latency. The total pipeline latency is 18 cycles, which is a significant improvement over the previous 26-cycle plan.",
+    "language": "chisel"
+  },
+  "module": {
+    "name": "DynaX_XM_Row",
+    "purpose": "Top-level wrapper for the dynax_xm_row algorithm. It instantiates and connects the pipeline stages and manages the overall control flow.",
+    "ports": [
+      {
+        "name": "clock",
+        "direction": "input",
+        "width": 1
+      },
+      {
+        "name": "reset",
+        "direction": "input",
+        "width": 1
+      },
+      {
+        "name": "start",
+        "direction": "input",
+        "width": 1
+      },
+      {
+        "name": "q",
+        "direction": "input",
+        "width": 8
+      },
+      {
+        "name": "k",
+        "direction": "input",
+        "width": 64
+      },
+      {
+        "name": "v",
+        "direction": "input",
+        "width": 64
+      },
+      {
+        "name": "done",
+        "direction": "output",
+        "width": 1
+      },
+      {
+        "name": "result",
+        "direction": "output",
+        "width": 16
+      },
+      {
+        "name": "keep_mask",
+        "direction": "output",
+        "width": 8
+      }
+    ],
+    "dependencies": [
+      "ScoreWeightGen",
+      "SelectAccumulate",
+      "DividerWrapper"
+    ],
+    "implementation": "The top module implements a control flow for the pipeline. On a `start` pulse, it latches the `q`, `k`, and `v` inputs and initiates the `ScoreWeightGen` module. The pipeline stages (`ScoreWeightGen`, `SelectAccumulate`, `DividerWrapper`) are connected in series. Pipeline registers are inserted between stages to buffer data and valid signals, ensuring correct timing. The `v` input is delayed by 4 cycles to align with the inputs of `SelectAccumulate`. The `keep_mask` output from `SelectAccumulate` is delayed by 9 cycles using a shift register to align with the final `result` from the `DividerWrapper`. The top-level `done` signal is asserted for one cycle when the final `valid_out` from the `DividerWrapper` is received. The total latency from `start` to `done` is 18 cycles (3 for ScoreWeightGen + 1 for reg + 5 for SelectAccumulate + 1 for reg + 8 for DividerWrapper). All registers use `withClockAndReset` with the top-level `clock` and `reset`.",
+    "reference_ids": [],
+    "design_prompt": "You are a UArch agent. Design a Chisel RawModule named DynaX_XM_Row with the exact ports specified in the contract. This module serves as the top-level wrapper for the dynax_xm_row system. It must instantiate three child modules: `ScoreWeightGen`, `SelectAccumulate`, and `DividerWrapper`. Implement a simple valid-propagation pipeline to control the data flow. On a single-cycle `start` pulse, latch the `q`, `k`, and `v` inputs and initiate the pipeline by sending a start pulse to the `ScoreWeightGen` module. The pipeline stages are connected in series, with pipeline registers buffering the data and a valid bit between each stage. The `v` input must be delayed by 4 cycles to align with the `SelectAccumulate` stage. The `keep_mask` output from `SelectAccumulate` must be delayed by 9 cycles through a shift register to align with the `result` output from the `DividerWrapper`. Wait for the final `valid_out` from the `DividerWrapper` to assert the top-level `done` signal for one cycle, at which point the final `result` and `keep_mask` are also made available at the output ports. The total latency from `start` to `done` should be the sum of the latencies of the child modules plus register delays (18 cycles). Ensure all registers are reset synchronously with an active-high `reset`.",
+    "tests": [],
+    "behavior": null,
+    "linked_reference_ids": []
+  },
+  "compiler_prompt": "You are a UArch agent. Design a Chisel RawModule named DynaX_XM_Row with the exact ports specified in the contract. This module serves as the top-level wrapper for the dynax_xm_row system. It must instantiate three child modules: `ScoreWeightGen`, `SelectAccumulate`, and `DividerWrapper`. Implement a simple valid-propagation pipeline to control the data flow. On a single-cycle `start` pulse, latch the `q`, `k`, and `v` inputs and initiate the pipeline by sending a start pulse to the `ScoreWeightGen` module. The pipeline stages are connected in series, with pipeline registers buffering the data and a valid bit between each stage. The `v` input must be delayed by 4 cycles to align with the `SelectAccumulate` stage. The `keep_mask` output from `SelectAccumulate` must be delayed by 9 cycles through a shift register to align with the `result` output from the `DividerWrapper`. Wait for the final `valid_out` from the `DividerWrapper` to assert the top-level `done` signal for one cycle, at which point the final `result` and `keep_mask` are also made available at the output ports. The total latency from `start` to `done` should be the sum of the latencies of the child modules plus register delays (18 cycles). Ensure all registers are reset synchronously with an active-high `reset`.",
+  "critic": {
+    "layer": "compiler",
+    "reason": "The current design has a very large positive timing slack of 5.19 ns on a 10 ns clock period, indicating it is significantly over-pipelined for the target frequency. The 16-stage pipelined divider contributes 16 cycles to the total 27-cycle latency. Reducing the number of divider pipeline stages will directly reduce overall latency and thus improve energy_efficiency_queries_per_joule, trading the unused timing slack for a faster result. This change requires revising the system's pipeline schedule, as the top-level FSM and inter-module delay paths depend on the divider's latency.",
+    "evidence": [
+      "evaluation.slack_ns",
+      "evaluation.latency_ns",
+      "evaluation.energy_efficiency_queries_per_joule",
+      "evaluation.area_um2"
+    ],
+    "instructions": "Revise the system plan. For the `DividerWrapper` module, modify its design prompt to request an implementation with `stages=8` instead of `stages=16`. Re-assemble the `DynaX_XM_Row` top-level to correctly connect the modules, adjusting its internal FSM and delay paths to account for the new `DividerWrapper` latency of 8 cycles. This is expected to reduce total latency from 27 to approximately 19 cycles, significantly improving energy efficiency."
+  },
+  "reference_code": {},
+  "reference_support_code": {},
+  "linked_library_symbols": {
+    "classes": [],
+    "packages": []
+  },
+  "reference_tests": {},
+  "reference_provenance": [],
+  "computed_behavior_examples": [],
+  "previous_failed_attempt": null,
+  "previous_implementation": "import chisel3._\nimport chisel3.util._\n\nclass DynaX_XM_Row extends RawModule {\n  val clock = IO(Input(Clock()))\n  val reset = IO(Input(Bool()))\n  val start = IO(Input(Bool()))\n  val q = IO(Input(UInt(8.W)))\n  val k = IO(Input(UInt(64.W)))\n  val v = IO(Input(UInt(64.W)))\n  val done = IO(Output(Bool()))\n  val result = IO(Output(UInt(16.W)))\n  val keep_mask = IO(Output(UInt(8.W)))\n\n  val score_weight_gen = Module(new ScoreWeightGen)\n  val select_accumulate = Module(new SelectAccumulate)\n  val divider_wrapper = Module(new DividerWrapper)\n\n  // Connect clocks and resets to children (RawModule style, no .io)\n  score_weight_gen.clock := clock\n  score_weight_gen.reset := reset\n  select_accumulate.clock := clock\n  select_accumulate.reset := reset\n  divider_wrapper.clock := clock\n  divider_wrapper.reset := reset\n\n  withClockAndReset(clock, reset) {\n    val sIdle :: sBusy :: sDone :: Nil = Enum(3)\n    val state = RegInit(sIdle)\n\n    val swg_start = WireDefault(false.B)\n    val div_valid_out = divider_wrapper.valid_out\n\n    // FSM\n    done := false.B\n    switch(state) {\n      is(sIdle) {\n        when(start) {\n          state := sBusy\n          swg_start := true.B\n        }\n      }\n      is(sBusy) {\n        when(div_valid_out) {\n          state := sDone\n        }\n      }\n      is(sDone) {\n        done := true.B\n        state := sIdle\n      }\n    }\n\n    // --- Pipeline --- //\n\n    // Stage 0 -> 1: ScoreWeightGen (Latency 3)\n    score_weight_gen.start := swg_start\n    score_weight_gen.q_in := q\n    score_weight_gen.k_in := k\n\n    // Pipeline Register 1 (1 cycle delay)\n    val sa_valid_in = RegNext(score_weight_gen.valid_out, false.B)\n    val scores_in_sa = RegNext(score_weight_gen.scores_out)\n    val weights_in_sa = RegNext(score_weight_gen.weights_out)\n    \n    // Delay v by 4 cycles (3 for SWG + 1 for pipe reg) to align with scores/weights\n    val v_p1 = RegEnable(v, swg_start)\n    val v_p2 = RegNext(v_p1)\n    val v_p3 = RegNext(v_p2)\n    val v_p4 = RegNext(v_p3)\n\n    // Stage 1 -> 2: SelectAccumulate (Latency 5)\n    select_accumulate.valid_in := sa_valid_in\n    select_accumulate.scores_in := scores_in_sa\n    select_accumulate.weights_in := weights_in_sa\n    select_accumulate.values_in := v_p4\n\n    // Pipeline Register 2 (1 cycle delay)\n    val div_valid_in = RegNext(select_accumulate.valid_out, false.B)\n    val N_in_div = RegNext(select_accumulate.N_out)\n    val D_in_div = RegNext(select_accumulate.D_out)\n\n    // Stage 2 -> 3: DividerWrapper (Latency 16)\n    divider_wrapper.valid_in := div_valid_in\n    divider_wrapper.N_in := N_in_div\n    divider_wrapper.D_in := D_in_div\n\n    // --- Output Alignment --- //\n\n    // Delay keep_mask by 17 cycles (1 for pipe reg 2 + 16 for divider).\n    val keep_mask_delayed = ShiftRegister(select_accumulate.keep_mask_out, 17)\n\n    // Final output registers, updated when divider is done\n    val result_reg = Reg(UInt(16.W))\n    val keep_mask_reg = Reg(UInt(8.W))\n\n    when(div_valid_out) {\n      result_reg := divider_wrapper.result_out\n      keep_mask_reg := keep_mask_delayed\n    }\n\n    result := result_reg\n    keep_mask := keep_mask_reg\n  }\n}\n"
+}

@@ -31,5 +31,5 @@ mkdir -p "$TMPDIR"
 echo "node=$(hostname) template=$TEMPLATE"
 cd "$REPO/FAST"
 PYTHONPATH="$REPO/FAST" "$ROOT/env/dynax-py312/bin/python" \
-    scripts/l2_closed_loop.py --repo-root "$REPO" --template "$TEMPLATE"
+    scripts/legacy/l2_closed_loop.py --repo-root "$REPO" --template "$TEMPLATE"
 echo "closed loop exit: $?"

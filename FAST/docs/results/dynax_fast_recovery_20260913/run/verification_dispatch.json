@@ -1,0 +1,14 @@
+{
+  "round_01_gate": {
+    "job_id": "17711041",
+    "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate.slurm",
+    "submitted_unix": 1789337820.0169868,
+    "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041"
+  },
+  "round_01_holdout": {
+    "job_id": "17711042",
+    "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_holdout.slurm",
+    "submitted_unix": 1789337820.1660182,
+    "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_holdout_17711042"
+  }
+}

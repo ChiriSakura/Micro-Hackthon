@@ -1,0 +1,1230 @@
+{
+  "parent_search_sha256": "41e3da0b03f2fd13e84ba6a867c94850e9b76449b837dccf9516c1cf181559d5",
+  "algorithm": "xm:16:8:32:0.75:0.05",
+  "quality_loss": 0.03529660876991823,
+  "independent_feedback": [
+    {
+      "design_id": "b2e59f2475829f0eb1702ad139ab933b7f6932510f3864d5d294811590e233b0",
+      "scope": "BlockScheduler, 16 rows x 8 PE, M=32; not full attention",
+      "metrics": {
+        "queue_depth": 4.0,
+        "rows": 16.0,
+        "pe": 8.0,
+        "imbalance": 1.265597,
+        "row_util": 0.93719,
+        "pe_util": 0.93719,
+        "cycles": 403.0,
+        "area_um2": 34854.512,
+        "cells": 13647.0,
+        "estimated_power_mw": 6.736003,
+        "assumed_activity": 0.0213,
+        "critical_path_ns": 2.8837,
+        "sta_period_ns": 2.857142857142857,
+        "slack_ns": -0.0624,
+        "max_frequency_mhz": 342.51937681045956
+      },
+      "function_passed": true,
+      "frequency_feasible": false,
+      "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/prepared/confirm16/candidates/b2e59f2475829f0eb1702ad139ab933b7f6932510f3864d5d294811590e233b0/rtl/validation.json"
+    }
+  ],
+  "budget": 5,
+  "method": "llm",
+  "critic_mode": "off",
+  "ablation": "none",
+  "seed": 0,
+  "max_loops": 5,
+  "critic_reviews": [],
+  "parent_point": {
+    "tile_q": 32,
+    "tile_k": 32,
+    "tile_d": 64,
+    "parallelism": 8,
+    "double_buffer": false,
+    "num_rows": 16,
+    "pe_per_row": 8,
+    "reg_width": 16,
+    "data_width": 16,
+    "sram_bytes": 131072,
+    "queue_depth": 4,
+    "divider_stages": 8,
+    "bank_count": 16
+  },
+  "state": "finished",
+  "best_verified_design_id": "213585eb28dd933572ac51f857c6e79eadeee6eba18110d001f461954a46fb9f",
+  "llm_seed_supported": false,
+  "continue_after_success": true,
+  "llm_successful_batches": 5,
+  "fallback_batches": 0,
+  "calls": [
+    {
+      "prompt": "You are the Compiler Agent (the planner) in a hardware/software co-design loop for dynamic sparse attention. You choose which complete design points to evaluate next. A design point fixes BOTH the software schedule and the hardware parameters, because they are coupled: the array shape limits parallelism, SRAM capacity limits tile size, and queue depth and bank count set both the cycle count and the clock.\n\nExplore the latency-energy Pareto front, minimising BOTH seconds per task and\njoules per task. Energy = power_mW * 1e-3 * seconds; efficiency = tasks/J.\nKeep both fast/high-energy and slow/low-energy trade-offs. Area and frequency\nare constraints. Do not use EDP or area as substitutes for these two axes.\nThe current energy model is partial; model results are not independent evidence.\n\n## The workload you are designing for\n\nsparse method: xm:16:8:32:0.75:0.05\nmeasured sparsity: 0.8497\nblock occupancy: 0.3997\ntile-local load imbalance (32-row tile): 1.449\n\n## Budgets you must design inside\n\narea <= 4,000,000 um^2\nclock >= 350 MHz\nPE count <= 256\nSRAM <= 524288 bytes\npower: no budget set\n\nNo default design or pre-ranked calibration table is supplied. Explore from the legal domains and use evaluator feedback.\n\n## The legal values for each field\n\n  tile_q           [32, 64]\n  tile_k           [32, 64]\n  tile_d           [32, 64]\n  parallelism      [4, 8, 16]\n  double_buffer    [False, True]\n  num_rows         [16, 32]\n  pe_per_row       [4, 8]\n  reg_width        [16, 32]\n  queue_depth      [0, 2, 4]\n  divider_stages   [4, 8, 12]\n  bank_count       [8, 16, 32]\n  data_width       [16]\n  sram_bytes       [65536, 131072, 262144]\n\n## What has been evaluated so far\n\n  point                                      feasible  cycles      area um^2   MHz\n  16x8 rw16 q4 d8 b16 s128K t32/32/64        NO            64,463   1,510,156   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n\nChoose 1 design points that are NOT already evaluated.\n\nReply with ONLY a JSON array, no prose, no code fence. Each element:\n  {\"tile_q\": <int>, \"tile_k\": <int>, \"tile_d\": <int>, \"parallelism\": <int>,\n    \"double_buffer\": <true|false>, \"num_rows\": <int>, \"pe_per_row\": <int>,\n    \"reg_width\": <int>, \"data_width\": <int>, \"sram_bytes\": <int>,\n    \"queue_depth\": <int>, \"divider_stages\": <int>, \"bank_count\": <int>,\n    \"rationale\": \"<cites a specific number from the tables above>\"}\n\nEvery field must come from the legal values listed. Every rationale must cite a\nmeasured number or state plainly that the region is unexplored.",
+      "response": "```json\n[\n  {\n    \"tile_q\": 32,\n    \"tile_k\": 32,\n    \"tile_d\": 64,\n    \"parallelism\": 16,\n    \"double_buffer\": false,\n    \"num_rows\": 16,\n    \"pe_per_row\": 8,\n    \"reg_width\": 16,\n    \"data_width\": 16,\n    \"sram_bytes\": 131072,\n    \"queue_depth\": 2,\n    \"divider_stages\": 8,\n    \"bank_count\": 16,\n    \"rationale\": \"The independent validation for a design with queue_depth: 4.0 failed to meet the frequency target (max_frequency_mhz: 342.5), so reducing queue depth to 2 may improve timing.\"\n  }\n]\n```",
+      "success": true
+    },
+    {
+      "prompt": "You are the Compiler Agent (the planner) in a hardware/software co-design loop for dynamic sparse attention. You choose which complete design points to evaluate next. A design point fixes BOTH the software schedule and the hardware parameters, because they are coupled: the array shape limits parallelism, SRAM capacity limits tile size, and queue depth and bank count set both the cycle count and the clock.\n\nExplore the latency-energy Pareto front, minimising BOTH seconds per task and\njoules per task. Energy = power_mW * 1e-3 * seconds; efficiency = tasks/J.\nKeep both fast/high-energy and slow/low-energy trade-offs. Area and frequency\nare constraints. Do not use EDP or area as substitutes for these two axes.\nThe current energy model is partial; model results are not independent evidence.\n\n## The workload you are designing for\n\nsparse method: xm:16:8:32:0.75:0.05\nmeasured sparsity: 0.8497\nblock occupancy: 0.3997\ntile-local load imbalance (32-row tile): 1.449\n\n## Budgets you must design inside\n\narea <= 4,000,000 um^2\nclock >= 350 MHz\nPE count <= 256\nSRAM <= 524288 bytes\npower: no budget set\n\nNo default design or pre-ranked calibration table is supplied. Explore from the legal domains and use evaluator feedback.\n\n## The legal values for each field\n\n  tile_q           [32, 64]\n  tile_k           [32, 64]\n  tile_d           [32, 64]\n  parallelism      [4, 8, 16]\n  double_buffer    [False, True]\n  num_rows         [16, 32]\n  pe_per_row       [4, 8]\n  reg_width        [16, 32]\n  queue_depth      [0, 2, 4]\n  divider_stages   [4, 8, 12]\n  bank_count       [8, 16, 32]\n  data_width       [16]\n  sram_bytes       [65536, 131072, 262144]\n\n## What has been evaluated so far\n\n  point                                      feasible  cycles      area um^2   MHz\n  16x8 rw16 q4 d8 b16 s128K t32/32/64        NO            64,463   1,510,156   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n  16x8 rw16 q2 d8 b16 s128K t32/32/64        yes           67,366   1,493,722   396 latency_s=0.00017030011730597797 energy_J=6.483861444197024e-05\n\nChoose 1 design points that are NOT already evaluated.\n\nReply with ONLY a JSON array, no prose, no code fence. Each element:\n  {\"tile_q\": <int>, \"tile_k\": <int>, \"tile_d\": <int>, \"parallelism\": <int>,\n    \"double_buffer\": <true|false>, \"num_rows\": <int>, \"pe_per_row\": <int>,\n    \"reg_width\": <int>, \"data_width\": <int>, \"sram_bytes\": <int>,\n    \"queue_depth\": <int>, \"divider_stages\": <int>, \"bank_count\": <int>,\n    \"rationale\": \"<cites a specific number from the tables above>\"}\n\nEvery field must come from the legal values listed. Every rationale must cite a\nmeasured number or state plainly that the region is unexplored.",
+      "response": "```json\n[\n  {\n    \"tile_q\": 32,\n    \"tile_k\": 32,\n    \"tile_d\": 64,\n    \"parallelism\": 8,\n    \"double_buffer\": false,\n    \"num_rows\": 16,\n    \"pe_per_row\": 8,\n    \"reg_width\": 16,\n    \"data_width\": 16,\n    \"sram_bytes\": 131072,\n    \"queue_depth\": 0,\n    \"divider_stages\": 8,\n    \"bank_count\": 16,\n    \"rationale\": \"Point 2 was feasible with queue_depth=2 (latency_s=0.0001703), while point 1 failed with queue_depth=4. This point explores the other side of the trade-off by setting queue_depth=0. This should create a slower, lower-energy point to expand the Pareto front, as it reduces hardware complexity at the cost of increased cycle count.\"\n  }\n]\n```",
+      "success": true
+    },
+    {
+      "prompt": "You are the Compiler Agent (the planner) in a hardware/software co-design loop for dynamic sparse attention. You choose which complete design points to evaluate next. A design point fixes BOTH the software schedule and the hardware parameters, because they are coupled: the array shape limits parallelism, SRAM capacity limits tile size, and queue depth and bank count set both the cycle count and the clock.\n\nExplore the latency-energy Pareto front, minimising BOTH seconds per task and\njoules per task. Energy = power_mW * 1e-3 * seconds; efficiency = tasks/J.\nKeep both fast/high-energy and slow/low-energy trade-offs. Area and frequency\nare constraints. Do not use EDP or area as substitutes for these two axes.\nThe current energy model is partial; model results are not independent evidence.\n\n## The workload you are designing for\n\nsparse method: xm:16:8:32:0.75:0.05\nmeasured sparsity: 0.8497\nblock occupancy: 0.3997\ntile-local load imbalance (32-row tile): 1.449\n\n## Budgets you must design inside\n\narea <= 4,000,000 um^2\nclock >= 350 MHz\nPE count <= 256\nSRAM <= 524288 bytes\npower: no budget set\n\nNo default design or pre-ranked calibration table is supplied. Explore from the legal domains and use evaluator feedback.\n\n## The legal values for each field\n\n  tile_q           [32, 64]\n  tile_k           [32, 64]\n  tile_d           [32, 64]\n  parallelism      [4, 8, 16]\n  double_buffer    [False, True]\n  num_rows         [16, 32]\n  pe_per_row       [4, 8]\n  reg_width        [16, 32]\n  queue_depth      [0, 2, 4]\n  divider_stages   [4, 8, 12]\n  bank_count       [8, 16, 32]\n  data_width       [16]\n  sram_bytes       [65536, 131072, 262144]\n\n## What has been evaluated so far\n\n  point                                      feasible  cycles      area um^2   MHz\n  16x8 rw16 q4 d8 b16 s128K t32/32/64        NO            64,463   1,510,156   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n  16x8 rw16 q2 d8 b16 s128K t32/32/64        yes           67,366   1,493,722   396 latency_s=0.00017030011730597797 energy_J=6.483861444197024e-05\n  16x8 rw16 q0 d8 b16 s128K t32/32/64        yes           81,876   1,476,229   440 latency_s=0.00018610483851270445 energy_J=5.914022674988486e-05\n\nChoose 1 design points that are NOT already evaluated.\n\nReply with ONLY a JSON array, no prose, no code fence. Each element:\n  {\"tile_q\": <int>, \"tile_k\": <int>, \"tile_d\": <int>, \"parallelism\": <int>,\n    \"double_buffer\": <true|false>, \"num_rows\": <int>, \"pe_per_row\": <int>,\n    \"reg_width\": <int>, \"data_width\": <int>, \"sram_bytes\": <int>,\n    \"queue_depth\": <int>, \"divider_stages\": <int>, \"bank_count\": <int>,\n    \"rationale\": \"<cites a specific number from the tables above>\"}\n\nEvery field must come from the legal values listed. Every rationale must cite a\nmeasured number or state plainly that the region is unexplored.",
+      "response": "```json\n[\n  {\n    \"tile_q\": 32,\n    \"tile_k\": 32,\n    \"tile_d\": 64,\n    \"parallelism\": 16,\n    \"double_buffer\": false,\n    \"num_rows\": 16,\n    \"pe_per_row\": 8,\n    \"reg_width\": 16,\n    \"data_width\": 16,\n    \"sram_bytes\": 131072,\n    \"queue_depth\": 4,\n    \"divider_stages\": 12,\n    \"bank_count\": 16,\n    \"rationale\": \"The configuration with queue_depth=4 and divider_stages=8 was marked infeasible, indicating it failed to meet the 350 MHz timing constraint. However, it had the lowest cycle count (64,463). Increasing divider_stages from 8 to 12 is a direct attempt to repair this timing failure by pipelining a likely critical path. This may allow the design to meet frequency and realize its low-cycle potential, possibly creating a new best latency point.\"\n  }\n]\n```",
+      "success": true
+    },
+    {
+      "prompt": "You are the Compiler Agent (the planner) in a hardware/software co-design loop for dynamic sparse attention. You choose which complete design points to evaluate next. A design point fixes BOTH the software schedule and the hardware parameters, because they are coupled: the array shape limits parallelism, SRAM capacity limits tile size, and queue depth and bank count set both the cycle count and the clock.\n\nExplore the latency-energy Pareto front, minimising BOTH seconds per task and\njoules per task. Energy = power_mW * 1e-3 * seconds; efficiency = tasks/J.\nKeep both fast/high-energy and slow/low-energy trade-offs. Area and frequency\nare constraints. Do not use EDP or area as substitutes for these two axes.\nThe current energy model is partial; model results are not independent evidence.\n\n## The workload you are designing for\n\nsparse method: xm:16:8:32:0.75:0.05\nmeasured sparsity: 0.8497\nblock occupancy: 0.3997\ntile-local load imbalance (32-row tile): 1.449\n\n## Budgets you must design inside\n\narea <= 4,000,000 um^2\nclock >= 350 MHz\nPE count <= 256\nSRAM <= 524288 bytes\npower: no budget set\n\nNo default design or pre-ranked calibration table is supplied. Explore from the legal domains and use evaluator feedback.\n\n## The legal values for each field\n\n  tile_q           [32, 64]\n  tile_k           [32, 64]\n  tile_d           [32, 64]\n  parallelism      [4, 8, 16]\n  double_buffer    [False, True]\n  num_rows         [16, 32]\n  pe_per_row       [4, 8]\n  reg_width        [16, 32]\n  queue_depth      [0, 2, 4]\n  divider_stages   [4, 8, 12]\n  bank_count       [8, 16, 32]\n  data_width       [16]\n  sram_bytes       [65536, 131072, 262144]\n\n## What has been evaluated so far\n\n  point                                      feasible  cycles      area um^2   MHz\n  16x8 rw16 q4 d8 b16 s128K t32/32/64        NO            64,463   1,510,156   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n  16x8 rw16 q2 d8 b16 s128K t32/32/64        yes           67,366   1,493,722   396 latency_s=0.00017030011730597797 energy_J=6.483861444197024e-05\n  16x8 rw16 q0 d8 b16 s128K t32/32/64        yes           81,876   1,476,229   440 latency_s=0.00018610483851270445 energy_J=5.914022674988486e-05\n  16x8 rw16 q4 d12 b16 s128K t32/32/64       NO: independent scheduler validation rejecte     64,463   1,525,447   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n\nChoose 1 design points that are NOT already evaluated.\n\nReply with ONLY a JSON array, no prose, no code fence. Each element:\n  {\"tile_q\": <int>, \"tile_k\": <int>, \"tile_d\": <int>, \"parallelism\": <int>,\n    \"double_buffer\": <true|false>, \"num_rows\": <int>, \"pe_per_row\": <int>,\n    \"reg_width\": <int>, \"data_width\": <int>, \"sram_bytes\": <int>,\n    \"queue_depth\": <int>, \"divider_stages\": <int>, \"bank_count\": <int>,\n    \"rationale\": \"<cites a specific number from the tables above>\"}\n\nEvery field must come from the legal values listed. Every rationale must cite a\nmeasured number or state plainly that the region is unexplored.",
+      "response": "```json\n[\n  {\n    \"tile_q\": 32,\n    \"tile_k\": 32,\n    \"tile_d\": 64,\n    \"parallelism\": 8,\n    \"double_buffer\": false,\n    \"num_rows\": 16,\n    \"pe_per_row\": 8,\n    \"reg_width\": 16,\n    \"data_width\": 16,\n    \"sram_bytes\": 131072,\n    \"queue_depth\": 4,\n    \"divider_stages\": 8,\n    \"bank_count\": 32,\n    \"rationale\": \"The independent validation for a similar design with queue_depth=4 and bank_count=16 showed a frequency failure (max_frequency_mhz: 342.519). This point attempts to repair this timing issue by increasing bank_count to 32, aiming to achieve the low cycle count (64,463) of the queue_depth=4 configuration while meeting the 350 MHz clock target.\"\n  }\n]\n```",
+      "success": true
+    },
+    {
+      "prompt": "You are the Compiler Agent (the planner) in a hardware/software co-design loop for dynamic sparse attention. You choose which complete design points to evaluate next. A design point fixes BOTH the software schedule and the hardware parameters, because they are coupled: the array shape limits parallelism, SRAM capacity limits tile size, and queue depth and bank count set both the cycle count and the clock.\n\nExplore the latency-energy Pareto front, minimising BOTH seconds per task and\njoules per task. Energy = power_mW * 1e-3 * seconds; efficiency = tasks/J.\nKeep both fast/high-energy and slow/low-energy trade-offs. Area and frequency\nare constraints. Do not use EDP or area as substitutes for these two axes.\nThe current energy model is partial; model results are not independent evidence.\n\n## The workload you are designing for\n\nsparse method: xm:16:8:32:0.75:0.05\nmeasured sparsity: 0.8497\nblock occupancy: 0.3997\ntile-local load imbalance (32-row tile): 1.449\n\n## Budgets you must design inside\n\narea <= 4,000,000 um^2\nclock >= 350 MHz\nPE count <= 256\nSRAM <= 524288 bytes\npower: no budget set\n\nNo default design or pre-ranked calibration table is supplied. Explore from the legal domains and use evaluator feedback.\n\n## The legal values for each field\n\n  tile_q           [32, 64]\n  tile_k           [32, 64]\n  tile_d           [32, 64]\n  parallelism      [4, 8, 16]\n  double_buffer    [False, True]\n  num_rows         [16, 32]\n  pe_per_row       [4, 8]\n  reg_width        [16, 32]\n  queue_depth      [0, 2, 4]\n  divider_stages   [4, 8, 12]\n  bank_count       [8, 16, 32]\n  data_width       [16]\n  sram_bytes       [65536, 131072, 262144]\n\n## What has been evaluated so far\n\n  point                                      feasible  cycles      area um^2   MHz\n  16x8 rw16 q4 d8 b16 s128K t32/32/64        NO            64,463   1,510,156   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n  16x8 rw16 q2 d8 b16 s128K t32/32/64        yes           67,366   1,493,722   396 latency_s=0.00017030011730597797 energy_J=6.483861444197024e-05\n  16x8 rw16 q0 d8 b16 s128K t32/32/64        yes           81,876   1,476,229   440 latency_s=0.00018610483851270445 energy_J=5.914022674988486e-05\n  16x8 rw16 q4 d12 b16 s128K t32/32/64       NO: independent scheduler validation rejecte     64,463   1,525,447   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n  16x8 rw16 q4 d8 b32 s128K t32/32/64        NO: independent scheduler validation rejecte     47,862   1,515,935   362 latency_s=0.0001320984382393606 energy_J=5.240647511690401e-05\n\nChoose 1 design points that are NOT already evaluated.\n\nReply with ONLY a JSON array, no prose, no code fence. Each element:\n  {\"tile_q\": <int>, \"tile_k\": <int>, \"tile_d\": <int>, \"parallelism\": <int>,\n    \"double_buffer\": <true|false>, \"num_rows\": <int>, \"pe_per_row\": <int>,\n    \"reg_width\": <int>, \"data_width\": <int>, \"sram_bytes\": <int>,\n    \"queue_depth\": <int>, \"divider_stages\": <int>, \"bank_count\": <int>,\n    \"rationale\": \"<cites a specific number from the tables above>\"}\n\nEvery field must come from the legal values listed. Every rationale must cite a\nmeasured number or state plainly that the region is unexplored.",
+      "response": "```json\n[\n  {\n    \"tile_q\": 32,\n    \"tile_k\": 32,\n    \"tile_d\": 64,\n    \"parallelism\": 8,\n    \"double_buffer\": false,\n    \"num_rows\": 16,\n    \"pe_per_row\": 8,\n    \"reg_width\": 16,\n    \"data_width\": 16,\n    \"sram_bytes\": 131072,\n    \"queue_depth\": 4,\n    \"divider_stages\": 8,\n    \"bank_count\": 8,\n    \"rationale\": \"The design with queue_depth=4 and bank_count=16 failed to meet timing, achieving a max frequency of 342.5 MHz. This proposal attempts to repair this by reducing bank_count to 8, which may simplify memory interconnect logic and improve the clock frequency to meet the 350 MHz target.\"\n  }\n]\n```",
+      "success": true
+    }
+  ],
+  "rejections": [],
+  "candidates": [
+    {
+      "design_id": "213585eb28dd933572ac51f857c6e79eadeee6eba18110d001f461954a46fb9f",
+      "label": "xm:16:8:32:0.75:0.05",
+      "algorithm": {
+        "label": "xm:16:8:32:0.75:0.05",
+        "family": "xm",
+        "block_m": 32,
+        "kept_high": 16,
+        "kept_low": 8,
+        "threshold_0": 0.75,
+        "threshold_1": 0.05
+      },
+      "point": {
+        "tile_q": 32,
+        "tile_k": 32,
+        "tile_d": 64,
+        "parallelism": 16,
+        "double_buffer": false,
+        "num_rows": 16,
+        "pe_per_row": 8,
+        "reg_width": 16,
+        "data_width": 16,
+        "sram_bytes": 131072,
+        "queue_depth": 2,
+        "divider_stages": 8,
+        "bank_count": 16
+      },
+      "task": {
+        "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+        "dataset": "wikitext-2-raw-v1",
+        "sequence_length": 512,
+        "head_dim": 64,
+        "epsilon": 0.05,
+        "data_seed": 20260903,
+        "max_samples": 32,
+        "dtype": "float32",
+        "capture_layer": 10,
+        "capture_head": 0
+      },
+      "quality_loss": 0.03529660876991823,
+      "metrics": {
+        "cycles": 67365.55273179508,
+        "compute_cycles": 44145.18527640569,
+        "memory_slowdown": 1.526,
+        "memory_slowdown_source": "measured:xm",
+        "clock_period_ns": 2.528,
+        "max_frequency_mhz": 395.56962025316454,
+        "seconds": 0.00017030011730597797,
+        "pe_utilization": 0.8922984339257755,
+        "throughput": 3006457.118758705,
+        "dram_bytes": 13412708.545454545,
+        "area": 1493721.5103999998,
+        "power": 380.73147257717267,
+        "energy_j": 6.483861444197024e-05,
+        "energy_efficiency_tasks_per_j": 15422.908225390716,
+        "energy_scope": "partial-model:execute-array-dynamic+sram-leakage",
+        "edp": 1.1042023645424608e-08
+      },
+      "analytical_violations": [],
+      "module_verified": true,
+      "parent_design_id": "b2e59f2475829f0eb1702ad139ab933b7f6932510f3864d5d294811590e233b0",
+      "iteration": 0,
+      "proposal_seconds": 42.41605216823518,
+      "critic_review_id": null,
+      "stages": [
+        {
+          "stage": "capture",
+          "state": "finished",
+          "command": null,
+          "trace_reuse": {
+            "cache_key": "4bda0b95b4b0fad5d2c0daf1b0f0f934c36a859fe42e33507ed1241327a6f330",
+            "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/prepared/workloads/confirm16.json",
+            "sha256": "9ed20dfb09db88386fc55978a41a564e4866f4a3fe475e6fce9dd40c47338538",
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6",
+            "hardware_result_reused": false
+          },
+          "exit_code": 0,
+          "wall_seconds": 0.03655741736292839
+        },
+        {
+          "stage": "validate",
+          "state": "finished",
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/fast-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/critic_ablation_20260911/FAST/scripts/validate_pareto_scheduler.py",
+            "--design",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/213585eb28dd933572ac51f857c6e79eadeee6eba18110d001f461954a46fb9f/design.json",
+            "--workload",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/213585eb28dd933572ac51f857c6e79eadeee6eba18110d001f461954a46fb9f/workload.json",
+            "--tile-offset",
+            "0",
+            "--tile-count",
+            "0",
+            "--out",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/213585eb28dd933572ac51f857c6e79eadeee6eba18110d001f461954a46fb9f/rtl",
+            "--frequency-mhz",
+            "350",
+            "--containers",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers",
+            "--liberty",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/nangate45/NangateOpenCellLibrary_typical.lib"
+          ],
+          "exit_code": 0,
+          "wall_seconds": 19.572714675217867
+        }
+      ],
+      "independent_observations": [
+        {
+          "design_id": "213585eb28dd933572ac51f857c6e79eadeee6eba18110d001f461954a46fb9f",
+          "scope": "BlockScheduler, 16 rows x 8 PE, M=32; not full attention",
+          "function_passed": true,
+          "frequency_feasible": true,
+          "metrics": {
+            "queue_depth": 2.0,
+            "rows": 16.0,
+            "pe": 8.0,
+            "imbalance": 1.265597,
+            "row_util": 0.903559,
+            "pe_util": 0.903559,
+            "cycles": 418.0,
+            "area_um2": 21387.198,
+            "cells": 8636.0,
+            "estimated_power_mw": 4.162457,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.6061,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": 0.2164,
+            "max_frequency_mhz": 378.68132343712807
+          },
+          "latency_s": 1.1942857142857144e-06,
+          "identity_ok": true,
+          "complete_captured_task": true,
+          "sources_unchanged": true,
+          "frequency_matches": true,
+          "source": {
+            "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+            "dataset": "wiki",
+            "layer": 10,
+            "seq_len": 512,
+            "seed": 20260903,
+            "head": 0,
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+          },
+          "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/213585eb28dd933572ac51f857c6e79eadeee6eba18110d001f461954a46fb9f/rtl/validation.json"
+        }
+      ],
+      "independent_results": [
+        {
+          "depth": 2,
+          "passed": true,
+          "frequency_feasible": true,
+          "wall_seconds": 19.087142584845424,
+          "metrics": {
+            "queue_depth": 2.0,
+            "rows": 16.0,
+            "pe": 8.0,
+            "imbalance": 1.265597,
+            "row_util": 0.903559,
+            "pe_util": 0.903559,
+            "cycles": 418.0,
+            "area_um2": 21387.198,
+            "cells": 8636.0,
+            "estimated_power_mw": 4.162457,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.6061,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": 0.2164,
+            "max_frequency_mhz": 378.68132343712807
+          },
+          "stages": [
+            {
+              "stage": "elaborate",
+              "passed": true,
+              "diagnostics": "ok",
+              "metrics": {}
+            },
+            {
+              "stage": "simulate",
+              "passed": true,
+              "diagnostics": "queue_depth=2 rows=16 pe=8 tiles=272\n  cycles_active=418  row_utilisation=0.9036  pe_utilisation=0.9036\n  pass_imbalance=1.2656  model_says=0.9187  measured_row=0.9036\nMEASURE queue_depth=2 rows=16 pe=8 imbalance=1.265597 row_util=0.903559 pe_util=0.903559 cycles=418\nPASSED: 0 \u5904\u5224\u636e\u5931\u8d25",
+              "metrics": {
+                "queue_depth": 2.0,
+                "rows": 16.0,
+                "pe": 8.0,
+                "imbalance": 1.265597,
+                "row_util": 0.903559,
+                "pe_util": 0.903559,
+                "cycles": 418.0
+              }
+            },
+            {
+              "stage": "synthesize",
+              "passed": true,
+              "diagnostics": "ok: area_um2=21,387.198, cells=8,636.000, estimated_power_mw=4.162, assumed_activity=0.021, critical_path_ns=2.606, sta_period_ns=2.857, slack_ns=0.216, max_frequency_mhz=378.681",
+              "metrics": {
+                "area_um2": 21387.198,
+                "cells": 8636.0,
+                "estimated_power_mw": 4.162457,
+                "assumed_activity": 0.0213,
+                "critical_path_ns": 2.6061,
+                "sta_period_ns": 2.857142857142857,
+                "slack_ns": 0.2164,
+                "max_frequency_mhz": 378.68132343712807
+              }
+            }
+          ],
+          "latency_s": 1.1942857142857144e-06
+        }
+      ],
+      "validation_sha256": "986b5222442598cdd03edce3d888bbf486db409dd93541f0273cb9297a1ae9f9",
+      "scheduler_latency_s": 1.1942857142857144e-06,
+      "scheduler_uniform_activity_energy_j": 4.971162931428572e-09,
+      "wall_seconds": 62.064473662525415,
+      "state": "finished"
+    },
+    {
+      "design_id": "7d5bcede175fd5bcbc70971c18a527d352fe5744e5282a82138c576130cd8371",
+      "label": "xm:16:8:32:0.75:0.05",
+      "algorithm": {
+        "label": "xm:16:8:32:0.75:0.05",
+        "family": "xm",
+        "block_m": 32,
+        "kept_high": 16,
+        "kept_low": 8,
+        "threshold_0": 0.75,
+        "threshold_1": 0.05
+      },
+      "point": {
+        "tile_q": 32,
+        "tile_k": 32,
+        "tile_d": 64,
+        "parallelism": 8,
+        "double_buffer": false,
+        "num_rows": 16,
+        "pe_per_row": 8,
+        "reg_width": 16,
+        "data_width": 16,
+        "sram_bytes": 131072,
+        "queue_depth": 0,
+        "divider_stages": 8,
+        "bank_count": 16
+      },
+      "task": {
+        "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+        "dataset": "wikitext-2-raw-v1",
+        "sequence_length": 512,
+        "head_dim": 64,
+        "epsilon": 0.05,
+        "data_seed": 20260903,
+        "max_samples": 32,
+        "dtype": "float32",
+        "capture_layer": 10,
+        "capture_head": 0
+      },
+      "quality_loss": 0.03529660876991823,
+      "metrics": {
+        "cycles": 81876.30378913526,
+        "compute_cycles": 53654.196454217075,
+        "memory_slowdown": 1.526,
+        "memory_slowdown_source": "measured:xm",
+        "clock_period_ns": 2.273,
+        "max_frequency_mhz": 439.94720633523974,
+        "seconds": 0.00018610483851270445,
+        "pe_utilization": 0.7341584124013845,
+        "throughput": 2751137.499120144,
+        "dram_bytes": 13412708.545454545,
+        "area": 1476228.8103999998,
+        "power": 317.7790928087431,
+        "energy_j": 5.914022674988486e-05,
+        "energy_efficiency_tasks_per_j": 16908.964590703854,
+        "energy_scope": "partial-model:execute-array-dynamic+sram-leakage",
+        "edp": 1.1006282348892045e-08
+      },
+      "analytical_violations": [],
+      "module_verified": true,
+      "parent_design_id": "213585eb28dd933572ac51f857c6e79eadeee6eba18110d001f461954a46fb9f",
+      "iteration": 1,
+      "proposal_seconds": 66.75957116670907,
+      "critic_review_id": null,
+      "stages": [
+        {
+          "stage": "capture",
+          "state": "finished",
+          "command": null,
+          "trace_reuse": {
+            "cache_key": "4bda0b95b4b0fad5d2c0daf1b0f0f934c36a859fe42e33507ed1241327a6f330",
+            "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/prepared/workloads/confirm16.json",
+            "sha256": "9ed20dfb09db88386fc55978a41a564e4866f4a3fe475e6fce9dd40c47338538",
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6",
+            "hardware_result_reused": false
+          },
+          "exit_code": 0,
+          "wall_seconds": 0.03393334150314331
+        },
+        {
+          "stage": "validate",
+          "state": "finished",
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/fast-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/critic_ablation_20260911/FAST/scripts/validate_pareto_scheduler.py",
+            "--design",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/7d5bcede175fd5bcbc70971c18a527d352fe5744e5282a82138c576130cd8371/design.json",
+            "--workload",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/7d5bcede175fd5bcbc70971c18a527d352fe5744e5282a82138c576130cd8371/workload.json",
+            "--tile-offset",
+            "0",
+            "--tile-count",
+            "0",
+            "--out",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/7d5bcede175fd5bcbc70971c18a527d352fe5744e5282a82138c576130cd8371/rtl",
+            "--frequency-mhz",
+            "350",
+            "--containers",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers",
+            "--liberty",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/nangate45/NangateOpenCellLibrary_typical.lib"
+          ],
+          "exit_code": 0,
+          "wall_seconds": 18.457893419079483
+        }
+      ],
+      "independent_observations": [
+        {
+          "design_id": "7d5bcede175fd5bcbc70971c18a527d352fe5744e5282a82138c576130cd8371",
+          "scope": "BlockScheduler, 16 rows x 8 PE, M=32; not full attention",
+          "function_passed": true,
+          "frequency_feasible": true,
+          "metrics": {
+            "queue_depth": 0.0,
+            "rows": 16.0,
+            "pe": 8.0,
+            "imbalance": 1.265597,
+            "row_util": 0.790141,
+            "pe_util": 0.790141,
+            "cycles": 478.0,
+            "area_um2": 7374.318,
+            "cells": 3321.0,
+            "estimated_power_mw": 1.478434,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.364,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": 0.4585,
+            "max_frequency_mhz": 416.9024150561329
+          },
+          "latency_s": 1.3657142857142857e-06,
+          "identity_ok": true,
+          "complete_captured_task": true,
+          "sources_unchanged": true,
+          "frequency_matches": true,
+          "source": {
+            "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+            "dataset": "wiki",
+            "layer": 10,
+            "seq_len": 512,
+            "seed": 20260903,
+            "head": 0,
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+          },
+          "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/7d5bcede175fd5bcbc70971c18a527d352fe5744e5282a82138c576130cd8371/rtl/validation.json"
+        }
+      ],
+      "independent_results": [
+        {
+          "depth": 0,
+          "passed": true,
+          "frequency_feasible": true,
+          "wall_seconds": 18.002644806168973,
+          "metrics": {
+            "queue_depth": 0.0,
+            "rows": 16.0,
+            "pe": 8.0,
+            "imbalance": 1.265597,
+            "row_util": 0.790141,
+            "pe_util": 0.790141,
+            "cycles": 478.0,
+            "area_um2": 7374.318,
+            "cells": 3321.0,
+            "estimated_power_mw": 1.478434,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.364,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": 0.4585,
+            "max_frequency_mhz": 416.9024150561329
+          },
+          "stages": [
+            {
+              "stage": "elaborate",
+              "passed": true,
+              "diagnostics": "ok",
+              "metrics": {}
+            },
+            {
+              "stage": "simulate",
+              "passed": true,
+              "diagnostics": "queue_depth=0 rows=16 pe=8 tiles=272\n  cycles_active=478  row_utilisation=0.7901  pe_utilisation=0.7901\n  pass_imbalance=1.2656  model_says=0.7901  measured_row=0.7901\nMEASURE queue_depth=0 rows=16 pe=8 imbalance=1.265597 row_util=0.790141 pe_util=0.790141 cycles=478\nPASSED: 0 \u5904\u5224\u636e\u5931\u8d25",
+              "metrics": {
+                "queue_depth": 0.0,
+                "rows": 16.0,
+                "pe": 8.0,
+                "imbalance": 1.265597,
+                "row_util": 0.790141,
+                "pe_util": 0.790141,
+                "cycles": 478.0
+              }
+            },
+            {
+              "stage": "synthesize",
+              "passed": true,
+              "diagnostics": "ok: area_um2=7,374.318, cells=3,321.000, estimated_power_mw=1.478, assumed_activity=0.021, critical_path_ns=2.364, sta_period_ns=2.857, slack_ns=0.459, max_frequency_mhz=416.902",
+              "metrics": {
+                "area_um2": 7374.318,
+                "cells": 3321.0,
+                "estimated_power_mw": 1.478434,
+                "assumed_activity": 0.0213,
+                "critical_path_ns": 2.364,
+                "sta_period_ns": 2.857142857142857,
+                "slack_ns": 0.4585,
+                "max_frequency_mhz": 416.9024150561329
+              }
+            }
+          ],
+          "latency_s": 1.3657142857142857e-06
+        }
+      ],
+      "validation_sha256": "a6a1883a0d234a57e7af4e90107ff505658d4908ad655588cf1fff5183bbfb6d",
+      "scheduler_latency_s": 1.3657142857142857e-06,
+      "scheduler_uniform_activity_energy_j": 2.0191184342857144e-09,
+      "wall_seconds": 85.30495235323906,
+      "state": "finished"
+    },
+    {
+      "design_id": "37da507d9df37d1df6311841d72be2abfcadb7da9c4259c1b03b8ea02569cc9f",
+      "label": "xm:16:8:32:0.75:0.05",
+      "algorithm": {
+        "label": "xm:16:8:32:0.75:0.05",
+        "family": "xm",
+        "block_m": 32,
+        "kept_high": 16,
+        "kept_low": 8,
+        "threshold_0": 0.75,
+        "threshold_1": 0.05
+      },
+      "point": {
+        "tile_q": 32,
+        "tile_k": 32,
+        "tile_d": 64,
+        "parallelism": 16,
+        "double_buffer": false,
+        "num_rows": 16,
+        "pe_per_row": 8,
+        "reg_width": 16,
+        "data_width": 16,
+        "sram_bytes": 131072,
+        "queue_depth": 4,
+        "divider_stages": 12,
+        "bank_count": 16
+      },
+      "task": {
+        "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+        "dataset": "wikitext-2-raw-v1",
+        "sequence_length": 512,
+        "head_dim": 64,
+        "epsilon": 0.05,
+        "data_seed": 20260903,
+        "max_samples": 32,
+        "dtype": "float32",
+        "capture_layer": 10,
+        "capture_head": 0
+      },
+      "quality_loss": 0.03529660876991823,
+      "metrics": {
+        "cycles": 64463.40252032705,
+        "compute_cycles": 42243.383040843415,
+        "memory_slowdown": 1.526,
+        "memory_slowdown_source": "measured:xm",
+        "clock_period_ns": 2.76,
+        "max_frequency_mhz": 362.3188405797102,
+        "seconds": 0.00017791899095610266,
+        "pe_utilization": 0.9324698178035303,
+        "throughput": 2877714.1622072486,
+        "dram_bytes": 13412708.545454545,
+        "area": 1525447.0103999998,
+        "power": 396.72289707122934,
+        "energy_j": 7.05845375360949e-05,
+        "energy_efficiency_tasks_per_j": 14167.408825036628,
+        "energy_scope": "partial-model:execute-array-dynamic+sram-leakage",
+        "edp": 1.2558329695525158e-08
+      },
+      "analytical_violations": [],
+      "module_verified": false,
+      "parent_design_id": "7d5bcede175fd5bcbc70971c18a527d352fe5744e5282a82138c576130cd8371",
+      "iteration": 2,
+      "proposal_seconds": 42.68846097867936,
+      "critic_review_id": null,
+      "stages": [
+        {
+          "stage": "capture",
+          "state": "finished",
+          "command": null,
+          "trace_reuse": {
+            "cache_key": "4bda0b95b4b0fad5d2c0daf1b0f0f934c36a859fe42e33507ed1241327a6f330",
+            "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/prepared/workloads/confirm16.json",
+            "sha256": "9ed20dfb09db88386fc55978a41a564e4866f4a3fe475e6fce9dd40c47338538",
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6",
+            "hardware_result_reused": false
+          },
+          "exit_code": 0,
+          "wall_seconds": 0.028161441907286644
+        },
+        {
+          "stage": "validate",
+          "state": "finished",
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/fast-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/critic_ablation_20260911/FAST/scripts/validate_pareto_scheduler.py",
+            "--design",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/37da507d9df37d1df6311841d72be2abfcadb7da9c4259c1b03b8ea02569cc9f/design.json",
+            "--workload",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/37da507d9df37d1df6311841d72be2abfcadb7da9c4259c1b03b8ea02569cc9f/workload.json",
+            "--tile-offset",
+            "0",
+            "--tile-count",
+            "0",
+            "--out",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/37da507d9df37d1df6311841d72be2abfcadb7da9c4259c1b03b8ea02569cc9f/rtl",
+            "--frequency-mhz",
+            "350",
+            "--containers",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers",
+            "--liberty",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/nangate45/NangateOpenCellLibrary_typical.lib"
+          ],
+          "exit_code": 1,
+          "wall_seconds": 19.36422018148005
+        }
+      ],
+      "independent_observations": [
+        {
+          "design_id": "37da507d9df37d1df6311841d72be2abfcadb7da9c4259c1b03b8ea02569cc9f",
+          "scope": "BlockScheduler, 16 rows x 8 PE, M=32; not full attention",
+          "function_passed": true,
+          "frequency_feasible": false,
+          "metrics": {
+            "queue_depth": 4.0,
+            "rows": 16.0,
+            "pe": 8.0,
+            "imbalance": 1.265597,
+            "row_util": 0.93719,
+            "pe_util": 0.93719,
+            "cycles": 403.0,
+            "area_um2": 34854.512,
+            "cells": 13647.0,
+            "estimated_power_mw": 6.736003,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.8837,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": -0.0624,
+            "max_frequency_mhz": 342.51937681045956
+          },
+          "latency_s": null,
+          "identity_ok": true,
+          "complete_captured_task": true,
+          "sources_unchanged": true,
+          "frequency_matches": true,
+          "source": {
+            "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+            "dataset": "wiki",
+            "layer": 10,
+            "seq_len": 512,
+            "seed": 20260903,
+            "head": 0,
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+          },
+          "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/37da507d9df37d1df6311841d72be2abfcadb7da9c4259c1b03b8ea02569cc9f/rtl/validation.json"
+        }
+      ],
+      "independent_results": [
+        {
+          "depth": 4,
+          "passed": true,
+          "frequency_feasible": false,
+          "wall_seconds": 18.850763687863946,
+          "metrics": {
+            "queue_depth": 4.0,
+            "rows": 16.0,
+            "pe": 8.0,
+            "imbalance": 1.265597,
+            "row_util": 0.93719,
+            "pe_util": 0.93719,
+            "cycles": 403.0,
+            "area_um2": 34854.512,
+            "cells": 13647.0,
+            "estimated_power_mw": 6.736003,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.8837,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": -0.0624,
+            "max_frequency_mhz": 342.51937681045956
+          },
+          "stages": [
+            {
+              "stage": "elaborate",
+              "passed": true,
+              "diagnostics": "ok",
+              "metrics": {}
+            },
+            {
+              "stage": "simulate",
+              "passed": true,
+              "diagnostics": "queue_depth=4 rows=16 pe=8 tiles=272\n  cycles_active=403  row_utilisation=0.9372  pe_utilisation=0.9372\n  pass_imbalance=1.2656  model_says=0.9496  measured_row=0.9372\nMEASURE queue_depth=4 rows=16 pe=8 imbalance=1.265597 row_util=0.937190 pe_util=0.937190 cycles=403\nPASSED: 0 \u5904\u5224\u636e\u5931\u8d25",
+              "metrics": {
+                "queue_depth": 4.0,
+                "rows": 16.0,
+                "pe": 8.0,
+                "imbalance": 1.265597,
+                "row_util": 0.93719,
+                "pe_util": 0.93719,
+                "cycles": 403.0
+              }
+            },
+            {
+              "stage": "synthesize",
+              "passed": true,
+              "diagnostics": "ok: area_um2=34,854.512, cells=13,647.000, estimated_power_mw=6.736, assumed_activity=0.021, critical_path_ns=2.884, sta_period_ns=2.857, slack_ns=-0.062, max_frequency_mhz=342.519",
+              "metrics": {
+                "area_um2": 34854.512,
+                "cells": 13647.0,
+                "estimated_power_mw": 6.736003,
+                "assumed_activity": 0.0213,
+                "critical_path_ns": 2.8837,
+                "sta_period_ns": 2.857142857142857,
+                "slack_ns": -0.0624,
+                "max_frequency_mhz": 342.51937681045956
+              }
+            }
+          ],
+          "latency_s": null
+        }
+      ],
+      "validation_sha256": "739af3a236ec6db4536e6229f20a35d1afcab72055fd7a86f84d17fb2838a92e",
+      "wall_seconds": 62.1220977306366,
+      "state": "finished"
+    },
+    {
+      "design_id": "dca59512a3a3f499735f39f1ee0cbd90dbccd1a1eca1718020cdc1d9f2ae92b8",
+      "label": "xm:16:8:32:0.75:0.05",
+      "algorithm": {
+        "label": "xm:16:8:32:0.75:0.05",
+        "family": "xm",
+        "block_m": 32,
+        "kept_high": 16,
+        "kept_low": 8,
+        "threshold_0": 0.75,
+        "threshold_1": 0.05
+      },
+      "point": {
+        "tile_q": 32,
+        "tile_k": 32,
+        "tile_d": 64,
+        "parallelism": 8,
+        "double_buffer": false,
+        "num_rows": 16,
+        "pe_per_row": 8,
+        "reg_width": 16,
+        "data_width": 16,
+        "sram_bytes": 131072,
+        "queue_depth": 4,
+        "divider_stages": 8,
+        "bank_count": 32
+      },
+      "task": {
+        "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+        "dataset": "wikitext-2-raw-v1",
+        "sequence_length": 512,
+        "head_dim": 64,
+        "epsilon": 0.05,
+        "data_seed": 20260903,
+        "max_samples": 32,
+        "dtype": "float32",
+        "capture_layer": 10,
+        "capture_head": 0
+      },
+      "quality_loss": 0.03529660876991823,
+      "metrics": {
+        "cycles": 47861.75298527559,
+        "compute_cycles": 42243.383040843415,
+        "memory_slowdown": 1.133,
+        "memory_slowdown_source": "measured:xm",
+        "clock_period_ns": 2.76,
+        "max_frequency_mhz": 362.3188405797102,
+        "seconds": 0.0001320984382393606,
+        "pe_utilization": 0.9324698178035303,
+        "throughput": 3875897.450598642,
+        "dram_bytes": 13412708.545454545,
+        "area": 1515935.4104,
+        "power": 396.72289707122934,
+        "energy_j": 5.240647511690401e-05,
+        "energy_efficiency_tasks_per_j": 19081.611533103172,
+        "energy_scope": "partial-model:execute-array-dynamic+sram-leakage",
+        "edp": 6.922813516572933e-09
+      },
+      "analytical_violations": [],
+      "module_verified": false,
+      "parent_design_id": "37da507d9df37d1df6311841d72be2abfcadb7da9c4259c1b03b8ea02569cc9f",
+      "iteration": 3,
+      "proposal_seconds": 46.78102733101696,
+      "critic_review_id": null,
+      "stages": [
+        {
+          "stage": "capture",
+          "state": "finished",
+          "command": null,
+          "trace_reuse": {
+            "cache_key": "4bda0b95b4b0fad5d2c0daf1b0f0f934c36a859fe42e33507ed1241327a6f330",
+            "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/prepared/workloads/confirm16.json",
+            "sha256": "9ed20dfb09db88386fc55978a41a564e4866f4a3fe475e6fce9dd40c47338538",
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6",
+            "hardware_result_reused": false
+          },
+          "exit_code": 0,
+          "wall_seconds": 0.036014171317219734
+        },
+        {
+          "stage": "validate",
+          "state": "finished",
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/fast-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/critic_ablation_20260911/FAST/scripts/validate_pareto_scheduler.py",
+            "--design",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/dca59512a3a3f499735f39f1ee0cbd90dbccd1a1eca1718020cdc1d9f2ae92b8/design.json",
+            "--workload",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/dca59512a3a3f499735f39f1ee0cbd90dbccd1a1eca1718020cdc1d9f2ae92b8/workload.json",
+            "--tile-offset",
+            "0",
+            "--tile-count",
+            "0",
+            "--out",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/dca59512a3a3f499735f39f1ee0cbd90dbccd1a1eca1718020cdc1d9f2ae92b8/rtl",
+            "--frequency-mhz",
+            "350",
+            "--containers",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers",
+            "--liberty",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/nangate45/NangateOpenCellLibrary_typical.lib"
+          ],
+          "exit_code": 1,
+          "wall_seconds": 19.368123184889555
+        }
+      ],
+      "independent_observations": [
+        {
+          "design_id": "dca59512a3a3f499735f39f1ee0cbd90dbccd1a1eca1718020cdc1d9f2ae92b8",
+          "scope": "BlockScheduler, 16 rows x 8 PE, M=32; not full attention",
+          "function_passed": true,
+          "frequency_feasible": false,
+          "metrics": {
+            "queue_depth": 4.0,
+            "rows": 16.0,
+            "pe": 8.0,
+            "imbalance": 1.265597,
+            "row_util": 0.93719,
+            "pe_util": 0.93719,
+            "cycles": 403.0,
+            "area_um2": 34854.512,
+            "cells": 13647.0,
+            "estimated_power_mw": 6.736003,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.8837,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": -0.0624,
+            "max_frequency_mhz": 342.51937681045956
+          },
+          "latency_s": null,
+          "identity_ok": true,
+          "complete_captured_task": true,
+          "sources_unchanged": true,
+          "frequency_matches": true,
+          "source": {
+            "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+            "dataset": "wiki",
+            "layer": 10,
+            "seq_len": 512,
+            "seed": 20260903,
+            "head": 0,
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+          },
+          "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/dca59512a3a3f499735f39f1ee0cbd90dbccd1a1eca1718020cdc1d9f2ae92b8/rtl/validation.json"
+        }
+      ],
+      "independent_results": [
+        {
+          "depth": 4,
+          "passed": true,
+          "frequency_feasible": false,
+          "wall_seconds": 18.88003746420145,
+          "metrics": {
+            "queue_depth": 4.0,
+            "rows": 16.0,
+            "pe": 8.0,
+            "imbalance": 1.265597,
+            "row_util": 0.93719,
+            "pe_util": 0.93719,
+            "cycles": 403.0,
+            "area_um2": 34854.512,
+            "cells": 13647.0,
+            "estimated_power_mw": 6.736003,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.8837,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": -0.0624,
+            "max_frequency_mhz": 342.51937681045956
+          },
+          "stages": [
+            {
+              "stage": "elaborate",
+              "passed": true,
+              "diagnostics": "ok",
+              "metrics": {}
+            },
+            {
+              "stage": "simulate",
+              "passed": true,
+              "diagnostics": "queue_depth=4 rows=16 pe=8 tiles=272\n  cycles_active=403  row_utilisation=0.9372  pe_utilisation=0.9372\n  pass_imbalance=1.2656  model_says=0.9496  measured_row=0.9372\nMEASURE queue_depth=4 rows=16 pe=8 imbalance=1.265597 row_util=0.937190 pe_util=0.937190 cycles=403\nPASSED: 0 \u5904\u5224\u636e\u5931\u8d25",
+              "metrics": {
+                "queue_depth": 4.0,
+                "rows": 16.0,
+                "pe": 8.0,
+                "imbalance": 1.265597,
+                "row_util": 0.93719,
+                "pe_util": 0.93719,
+                "cycles": 403.0
+              }
+            },
+            {
+              "stage": "synthesize",
+              "passed": true,
+              "diagnostics": "ok: area_um2=34,854.512, cells=13,647.000, estimated_power_mw=6.736, assumed_activity=0.021, critical_path_ns=2.884, sta_period_ns=2.857, slack_ns=-0.062, max_frequency_mhz=342.519",
+              "metrics": {
+                "area_um2": 34854.512,
+                "cells": 13647.0,
+                "estimated_power_mw": 6.736003,
+                "assumed_activity": 0.0213,
+                "critical_path_ns": 2.8837,
+                "sta_period_ns": 2.857142857142857,
+                "slack_ns": -0.0624,
+                "max_frequency_mhz": 342.51937681045956
+              }
+            }
+          ],
+          "latency_s": null
+        }
+      ],
+      "validation_sha256": "e9fa19d0389bb30a3fcec59a61693006e0ed4ef2d267f24f73a82dff2079e9b3",
+      "wall_seconds": 66.22709578461945,
+      "state": "finished"
+    },
+    {
+      "design_id": "c37ff3e643e001f6cfe14711751ce645334192a610e847bfb36149362e4b06a0",
+      "label": "xm:16:8:32:0.75:0.05",
+      "algorithm": {
+        "label": "xm:16:8:32:0.75:0.05",
+        "family": "xm",
+        "block_m": 32,
+        "kept_high": 16,
+        "kept_low": 8,
+        "threshold_0": 0.75,
+        "threshold_1": 0.05
+      },
+      "point": {
+        "tile_q": 32,
+        "tile_k": 32,
+        "tile_d": 64,
+        "parallelism": 8,
+        "double_buffer": false,
+        "num_rows": 16,
+        "pe_per_row": 8,
+        "reg_width": 16,
+        "data_width": 16,
+        "sram_bytes": 131072,
+        "queue_depth": 4,
+        "divider_stages": 8,
+        "bank_count": 8
+      },
+      "task": {
+        "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+        "dataset": "wikitext-2-raw-v1",
+        "sequence_length": 512,
+        "head_dim": 64,
+        "epsilon": 0.05,
+        "data_seed": 20260903,
+        "max_samples": 32,
+        "dtype": "float32",
+        "capture_layer": 10,
+        "capture_head": 0
+      },
+      "quality_loss": 0.03529660876991823,
+      "metrics": {
+        "cycles": 90612.05662260913,
+        "compute_cycles": 42243.383040843415,
+        "memory_slowdown": 2.145,
+        "memory_slowdown_source": "measured:xm",
+        "clock_period_ns": 2.76,
+        "max_frequency_mhz": 362.3188405797102,
+        "seconds": 0.0002500892762784012,
+        "pe_utilization": 0.9324698178035303,
+        "throughput": 2047268.9098033851,
+        "dram_bytes": 13412708.545454545,
+        "area": 1507256.6104,
+        "power": 396.72289707122934,
+        "energy_j": 9.92161422116144e-05,
+        "energy_efficiency_tasks_per_j": 10079.005066203214,
+        "energy_scope": "partial-model:execute-array-dynamic+sram-leakage",
+        "edp": 2.4812893200837578e-08
+      },
+      "analytical_violations": [],
+      "module_verified": false,
+      "parent_design_id": "dca59512a3a3f499735f39f1ee0cbd90dbccd1a1eca1718020cdc1d9f2ae92b8",
+      "iteration": 4,
+      "proposal_seconds": 58.05127393361181,
+      "critic_review_id": null,
+      "stages": [
+        {
+          "stage": "capture",
+          "state": "finished",
+          "command": null,
+          "trace_reuse": {
+            "cache_key": "4bda0b95b4b0fad5d2c0daf1b0f0f934c36a859fe42e33507ed1241327a6f330",
+            "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/prepared/workloads/confirm16.json",
+            "sha256": "9ed20dfb09db88386fc55978a41a564e4866f4a3fe475e6fce9dd40c47338538",
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6",
+            "hardware_result_reused": false
+          },
+          "exit_code": 0,
+          "wall_seconds": 0.03089781478047371
+        },
+        {
+          "stage": "validate",
+          "state": "finished",
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/fast-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/critic_ablation_20260911/FAST/scripts/validate_pareto_scheduler.py",
+            "--design",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/c37ff3e643e001f6cfe14711751ce645334192a610e847bfb36149362e4b06a0/design.json",
+            "--workload",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/c37ff3e643e001f6cfe14711751ce645334192a610e847bfb36149362e4b06a0/workload.json",
+            "--tile-offset",
+            "0",
+            "--tile-count",
+            "0",
+            "--out",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/c37ff3e643e001f6cfe14711751ce645334192a610e847bfb36149362e4b06a0/rtl",
+            "--frequency-mhz",
+            "350",
+            "--containers",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers",
+            "--liberty",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/nangate45/NangateOpenCellLibrary_typical.lib"
+          ],
+          "exit_code": 1,
+          "wall_seconds": 19.37136824335903
+        }
+      ],
+      "independent_observations": [
+        {
+          "design_id": "c37ff3e643e001f6cfe14711751ce645334192a610e847bfb36149362e4b06a0",
+          "scope": "BlockScheduler, 16 rows x 8 PE, M=32; not full attention",
+          "function_passed": true,
+          "frequency_feasible": false,
+          "metrics": {
+            "queue_depth": 4.0,
+            "rows": 16.0,
+            "pe": 8.0,
+            "imbalance": 1.265597,
+            "row_util": 0.93719,
+            "pe_util": 0.93719,
+            "cycles": 403.0,
+            "area_um2": 34854.512,
+            "cells": 13647.0,
+            "estimated_power_mw": 6.736003,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.8837,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": -0.0624,
+            "max_frequency_mhz": 342.51937681045956
+          },
+          "latency_s": null,
+          "identity_ok": true,
+          "complete_captured_task": true,
+          "sources_unchanged": true,
+          "frequency_matches": true,
+          "source": {
+            "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+            "dataset": "wiki",
+            "layer": 10,
+            "seq_len": 512,
+            "seed": 20260903,
+            "head": 0,
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+          },
+          "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/c37ff3e643e001f6cfe14711751ce645334192a610e847bfb36149362e4b06a0/rtl/validation.json"
+        }
+      ],
+      "independent_results": [
+        {
+          "depth": 4,
+          "passed": true,
+          "frequency_feasible": false,
+          "wall_seconds": 18.8235999122262,
+          "metrics": {
+            "queue_depth": 4.0,
+            "rows": 16.0,
+            "pe": 8.0,
+            "imbalance": 1.265597,
+            "row_util": 0.93719,
+            "pe_util": 0.93719,
+            "cycles": 403.0,
+            "area_um2": 34854.512,
+            "cells": 13647.0,
+            "estimated_power_mw": 6.736003,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.8837,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": -0.0624,
+            "max_frequency_mhz": 342.51937681045956
+          },
+          "stages": [
+            {
+              "stage": "elaborate",
+              "passed": true,
+              "diagnostics": "ok",
+              "metrics": {}
+            },
+            {
+              "stage": "simulate",
+              "passed": true,
+              "diagnostics": "queue_depth=4 rows=16 pe=8 tiles=272\n  cycles_active=403  row_utilisation=0.9372  pe_utilisation=0.9372\n  pass_imbalance=1.2656  model_says=0.9496  measured_row=0.9372\nMEASURE queue_depth=4 rows=16 pe=8 imbalance=1.265597 row_util=0.937190 pe_util=0.937190 cycles=403\nPASSED: 0 \u5904\u5224\u636e\u5931\u8d25",
+              "metrics": {
+                "queue_depth": 4.0,
+                "rows": 16.0,
+                "pe": 8.0,
+                "imbalance": 1.265597,
+                "row_util": 0.93719,
+                "pe_util": 0.93719,
+                "cycles": 403.0
+              }
+            },
+            {
+              "stage": "synthesize",
+              "passed": true,
+              "diagnostics": "ok: area_um2=34,854.512, cells=13,647.000, estimated_power_mw=6.736, assumed_activity=0.021, critical_path_ns=2.884, sta_period_ns=2.857, slack_ns=-0.062, max_frequency_mhz=342.519",
+              "metrics": {
+                "area_um2": 34854.512,
+                "cells": 13647.0,
+                "estimated_power_mw": 6.736003,
+                "assumed_activity": 0.0213,
+                "critical_path_ns": 2.8837,
+                "sta_period_ns": 2.857142857142857,
+                "slack_ns": -0.0624,
+                "max_frequency_mhz": 342.51937681045956
+              }
+            }
+          ],
+          "latency_s": null
+        }
+      ],
+      "validation_sha256": "9d269b46860d31f7f96599003718060541619f3a16a0f0c5bacdddcad3691b8a",
+      "wall_seconds": 77.49861990194768,
+      "state": "finished"
+    }
+  ],
+  "evidence_scope": "scheduler functional/STA repair; not full-attention energy/PPA",
+  "critic_calls": [],
+  "wall_seconds": 353.3124322295189,
+  "api_calls": {
+    "proposer": [
+      {
+        "role": "proposer",
+        "index": 0,
+        "prompt": "You are the Compiler Agent (the planner) in a hardware/software co-design loop for dynamic sparse attention. You choose which complete design points to evaluate next. A design point fixes BOTH the software schedule and the hardware parameters, because they are coupled: the array shape limits parallelism, SRAM capacity limits tile size, and queue depth and bank count set both the cycle count and the clock.\n\nExplore the latency-energy Pareto front, minimising BOTH seconds per task and\njoules per task. Energy = power_mW * 1e-3 * seconds; efficiency = tasks/J.\nKeep both fast/high-energy and slow/low-energy trade-offs. Area and frequency\nare constraints. Do not use EDP or area as substitutes for these two axes.\nThe current energy model is partial; model results are not independent evidence.\n\n## The workload you are designing for\n\nsparse method: xm:16:8:32:0.75:0.05\nmeasured sparsity: 0.8497\nblock occupancy: 0.3997\ntile-local load imbalance (32-row tile): 1.449\n\n## Budgets you must design inside\n\narea <= 4,000,000 um^2\nclock >= 350 MHz\nPE count <= 256\nSRAM <= 524288 bytes\npower: no budget set\n\nNo default design or pre-ranked calibration table is supplied. Explore from the legal domains and use evaluator feedback.\n\n## The legal values for each field\n\n  tile_q           [32, 64]\n  tile_k           [32, 64]\n  tile_d           [32, 64]\n  parallelism      [4, 8, 16]\n  double_buffer    [False, True]\n  num_rows         [16, 32]\n  pe_per_row       [4, 8]\n  reg_width        [16, 32]\n  queue_depth      [0, 2, 4]\n  divider_stages   [4, 8, 12]\n  bank_count       [8, 16, 32]\n  data_width       [16]\n  sram_bytes       [65536, 131072, 262144]\n\n## What has been evaluated so far\n\n  point                                      feasible  cycles      area um^2   MHz\n  16x8 rw16 q4 d8 b16 s128K t32/32/64        NO            64,463   1,510,156   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n\nChoose 1 design points that are NOT already evaluated.\n\nReply with ONLY a JSON array, no prose, no code fence. Each element:\n  {\"tile_q\": <int>, \"tile_k\": <int>, \"tile_d\": <int>, \"parallelism\": <int>,\n    \"double_buffer\": <true|false>, \"num_rows\": <int>, \"pe_per_row\": <int>,\n    \"reg_width\": <int>, \"data_width\": <int>, \"sram_bytes\": <int>,\n    \"queue_depth\": <int>, \"divider_stages\": <int>, \"bank_count\": <int>,\n    \"rationale\": \"<cites a specific number from the tables above>\"}\n\nEvery field must come from the legal values listed. Every rationale must cite a\nmeasured number or state plainly that the region is unexplored.\nIndependent validation overrides the model's frequency predictions. Review the following latest observed outcomes. Propose new legal hardware parameters; preserve the measured algorithm and quality contract. Avoid repeating failed or already evaluated designs. Only independent validation can accept a repair.\n[{\"design_id\": \"b2e59f2475829f0eb1702ad139ab933b7f6932510f3864d5d294811590e233b0\", \"scope\": \"BlockScheduler, 16 rows x 8 PE, M=32; not full attention\", \"metrics\": {\"queue_depth\": 4.0, \"rows\": 16.0, \"pe\": 8.0, \"imbalance\": 1.265597, \"row_util\": 0.93719, \"pe_util\": 0.93719, \"cycles\": 403.0, \"area_um2\": 34854.512, \"cells\": 13647.0, \"estimated_power_mw\": 6.736003, \"assumed_activity\": 0.0213, \"critical_path_ns\": 2.8837, \"sta_period_ns\": 2.857142857142857, \"slack_ns\": -0.0624, \"max_frequency_mhz\": 342.51937681045956}, \"function_passed\": true, \"frequency_feasible\": false, \"log_uri\": \"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/prepared/confirm16/candidates/b2e59f2475829f0eb1702ad139ab933b7f6932510f3864d5d294811590e233b0/rtl/validation.json\"}]",
+        "prompt_sha256": "7e720d1a29a052438dd4fc45fb58f35fd73057dfde056664d2fc5b7fc259163e",
+        "state": "finished",
+        "response": "```json\n[\n  {\n    \"tile_q\": 32,\n    \"tile_k\": 32,\n    \"tile_d\": 64,\n    \"parallelism\": 16,\n    \"double_buffer\": false,\n    \"num_rows\": 16,\n    \"pe_per_row\": 8,\n    \"reg_width\": 16,\n    \"data_width\": 16,\n    \"sram_bytes\": 131072,\n    \"queue_depth\": 2,\n    \"divider_stages\": 8,\n    \"bank_count\": 16,\n    \"rationale\": \"The independent validation for a design with queue_depth: 4.0 failed to meet the frequency target (max_frequency_mhz: 342.5), so reducing queue depth to 2 may improve timing.\"\n  }\n]\n```",
+        "success": true,
+        "error": "",
+        "usage": null,
+        "wall_seconds": 42.391372715123
+      },
+      {
+        "role": "proposer",
+        "index": 1,
+        "prompt": "You are the Compiler Agent (the planner) in a hardware/software co-design loop for dynamic sparse attention. You choose which complete design points to evaluate next. A design point fixes BOTH the software schedule and the hardware parameters, because they are coupled: the array shape limits parallelism, SRAM capacity limits tile size, and queue depth and bank count set both the cycle count and the clock.\n\nExplore the latency-energy Pareto front, minimising BOTH seconds per task and\njoules per task. Energy = power_mW * 1e-3 * seconds; efficiency = tasks/J.\nKeep both fast/high-energy and slow/low-energy trade-offs. Area and frequency\nare constraints. Do not use EDP or area as substitutes for these two axes.\nThe current energy model is partial; model results are not independent evidence.\n\n## The workload you are designing for\n\nsparse method: xm:16:8:32:0.75:0.05\nmeasured sparsity: 0.8497\nblock occupancy: 0.3997\ntile-local load imbalance (32-row tile): 1.449\n\n## Budgets you must design inside\n\narea <= 4,000,000 um^2\nclock >= 350 MHz\nPE count <= 256\nSRAM <= 524288 bytes\npower: no budget set\n\nNo default design or pre-ranked calibration table is supplied. Explore from the legal domains and use evaluator feedback.\n\n## The legal values for each field\n\n  tile_q           [32, 64]\n  tile_k           [32, 64]\n  tile_d           [32, 64]\n  parallelism      [4, 8, 16]\n  double_buffer    [False, True]\n  num_rows         [16, 32]\n  pe_per_row       [4, 8]\n  reg_width        [16, 32]\n  queue_depth      [0, 2, 4]\n  divider_stages   [4, 8, 12]\n  bank_count       [8, 16, 32]\n  data_width       [16]\n  sram_bytes       [65536, 131072, 262144]\n\n## What has been evaluated so far\n\n  point                                      feasible  cycles      area um^2   MHz\n  16x8 rw16 q4 d8 b16 s128K t32/32/64        NO            64,463   1,510,156   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n  16x8 rw16 q2 d8 b16 s128K t32/32/64        yes           67,366   1,493,722   396 latency_s=0.00017030011730597797 energy_J=6.483861444197024e-05\n\nChoose 1 design points that are NOT already evaluated.\n\nReply with ONLY a JSON array, no prose, no code fence. Each element:\n  {\"tile_q\": <int>, \"tile_k\": <int>, \"tile_d\": <int>, \"parallelism\": <int>,\n    \"double_buffer\": <true|false>, \"num_rows\": <int>, \"pe_per_row\": <int>,\n    \"reg_width\": <int>, \"data_width\": <int>, \"sram_bytes\": <int>,\n    \"queue_depth\": <int>, \"divider_stages\": <int>, \"bank_count\": <int>,\n    \"rationale\": \"<cites a specific number from the tables above>\"}\n\nEvery field must come from the legal values listed. Every rationale must cite a\nmeasured number or state plainly that the region is unexplored.\nIndependent validation overrides the model's frequency predictions. Review the following latest observed outcomes. Propose new legal hardware parameters; preserve the measured algorithm and quality contract. Avoid repeating failed or already evaluated designs. Only independent validation can accept a repair.\n[{\"design_id\": \"213585eb28dd933572ac51f857c6e79eadeee6eba18110d001f461954a46fb9f\", \"scope\": \"BlockScheduler, 16 rows x 8 PE, M=32; not full attention\", \"function_passed\": true, \"frequency_feasible\": true, \"metrics\": {\"queue_depth\": 2.0, \"rows\": 16.0, \"pe\": 8.0, \"imbalance\": 1.265597, \"row_util\": 0.903559, \"pe_util\": 0.903559, \"cycles\": 418.0, \"area_um2\": 21387.198, \"cells\": 8636.0, \"estimated_power_mw\": 4.162457, \"assumed_activity\": 0.0213, \"critical_path_ns\": 2.6061, \"sta_period_ns\": 2.857142857142857, \"slack_ns\": 0.2164, \"max_frequency_mhz\": 378.68132343712807}, \"latency_s\": 1.1942857142857144e-06, \"identity_ok\": true, \"complete_captured_task\": true, \"sources_unchanged\": true, \"frequency_matches\": true, \"source\": {\"model\": \"TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T\", \"dataset\": \"wiki\", \"layer\": 10, \"seq_len\": 512, \"seed\": 20260903, \"head\": 0, \"token_sha256\": \"72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6\"}, \"log_uri\": \"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/213585eb28dd933572ac51f857c6e79eadeee6eba18110d001f461954a46fb9f/rtl/validation.json\"}]",
+        "prompt_sha256": "f5141504afa3c1ef0309a13e79251d856d09e99d7ec69b43e9105b4d8324db5f",
+        "state": "finished",
+        "response": "```json\n[\n  {\n    \"tile_q\": 32,\n    \"tile_k\": 32,\n    \"tile_d\": 64,\n    \"parallelism\": 8,\n    \"double_buffer\": false,\n    \"num_rows\": 16,\n    \"pe_per_row\": 8,\n    \"reg_width\": 16,\n    \"data_width\": 16,\n    \"sram_bytes\": 131072,\n    \"queue_depth\": 0,\n    \"divider_stages\": 8,\n    \"bank_count\": 16,\n    \"rationale\": \"Point 2 was feasible with queue_depth=2 (latency_s=0.0001703), while point 1 failed with queue_depth=4. This point explores the other side of the trade-off by setting queue_depth=0. This should create a slower, lower-energy point to expand the Pareto front, as it reduces hardware complexity at the cost of increased cycle count.\"\n  }\n]\n```",
+        "success": true,
+        "error": "",
+        "usage": null,
+        "wall_seconds": 66.7398010827601
+      },
+      {
+        "role": "proposer",
+        "index": 2,
+        "prompt": "You are the Compiler Agent (the planner) in a hardware/software co-design loop for dynamic sparse attention. You choose which complete design points to evaluate next. A design point fixes BOTH the software schedule and the hardware parameters, because they are coupled: the array shape limits parallelism, SRAM capacity limits tile size, and queue depth and bank count set both the cycle count and the clock.\n\nExplore the latency-energy Pareto front, minimising BOTH seconds per task and\njoules per task. Energy = power_mW * 1e-3 * seconds; efficiency = tasks/J.\nKeep both fast/high-energy and slow/low-energy trade-offs. Area and frequency\nare constraints. Do not use EDP or area as substitutes for these two axes.\nThe current energy model is partial; model results are not independent evidence.\n\n## The workload you are designing for\n\nsparse method: xm:16:8:32:0.75:0.05\nmeasured sparsity: 0.8497\nblock occupancy: 0.3997\ntile-local load imbalance (32-row tile): 1.449\n\n## Budgets you must design inside\n\narea <= 4,000,000 um^2\nclock >= 350 MHz\nPE count <= 256\nSRAM <= 524288 bytes\npower: no budget set\n\nNo default design or pre-ranked calibration table is supplied. Explore from the legal domains and use evaluator feedback.\n\n## The legal values for each field\n\n  tile_q           [32, 64]\n  tile_k           [32, 64]\n  tile_d           [32, 64]\n  parallelism      [4, 8, 16]\n  double_buffer    [False, True]\n  num_rows         [16, 32]\n  pe_per_row       [4, 8]\n  reg_width        [16, 32]\n  queue_depth      [0, 2, 4]\n  divider_stages   [4, 8, 12]\n  bank_count       [8, 16, 32]\n  data_width       [16]\n  sram_bytes       [65536, 131072, 262144]\n\n## What has been evaluated so far\n\n  point                                      feasible  cycles      area um^2   MHz\n  16x8 rw16 q4 d8 b16 s128K t32/32/64        NO            64,463   1,510,156   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n  16x8 rw16 q2 d8 b16 s128K t32/32/64        yes           67,366   1,493,722   396 latency_s=0.00017030011730597797 energy_J=6.483861444197024e-05\n  16x8 rw16 q0 d8 b16 s128K t32/32/64        yes           81,876   1,476,229   440 latency_s=0.00018610483851270445 energy_J=5.914022674988486e-05\n\nChoose 1 design points that are NOT already evaluated.\n\nReply with ONLY a JSON array, no prose, no code fence. Each element:\n  {\"tile_q\": <int>, \"tile_k\": <int>, \"tile_d\": <int>, \"parallelism\": <int>,\n    \"double_buffer\": <true|false>, \"num_rows\": <int>, \"pe_per_row\": <int>,\n    \"reg_width\": <int>, \"data_width\": <int>, \"sram_bytes\": <int>,\n    \"queue_depth\": <int>, \"divider_stages\": <int>, \"bank_count\": <int>,\n    \"rationale\": \"<cites a specific number from the tables above>\"}\n\nEvery field must come from the legal values listed. Every rationale must cite a\nmeasured number or state plainly that the region is unexplored.\nIndependent validation overrides the model's frequency predictions. Review the following latest observed outcomes. Propose new legal hardware parameters; preserve the measured algorithm and quality contract. Avoid repeating failed or already evaluated designs. Only independent validation can accept a repair.\n[{\"design_id\": \"7d5bcede175fd5bcbc70971c18a527d352fe5744e5282a82138c576130cd8371\", \"scope\": \"BlockScheduler, 16 rows x 8 PE, M=32; not full attention\", \"function_passed\": true, \"frequency_feasible\": true, \"metrics\": {\"queue_depth\": 0.0, \"rows\": 16.0, \"pe\": 8.0, \"imbalance\": 1.265597, \"row_util\": 0.790141, \"pe_util\": 0.790141, \"cycles\": 478.0, \"area_um2\": 7374.318, \"cells\": 3321.0, \"estimated_power_mw\": 1.478434, \"assumed_activity\": 0.0213, \"critical_path_ns\": 2.364, \"sta_period_ns\": 2.857142857142857, \"slack_ns\": 0.4585, \"max_frequency_mhz\": 416.9024150561329}, \"latency_s\": 1.3657142857142857e-06, \"identity_ok\": true, \"complete_captured_task\": true, \"sources_unchanged\": true, \"frequency_matches\": true, \"source\": {\"model\": \"TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T\", \"dataset\": \"wiki\", \"layer\": 10, \"seq_len\": 512, \"seed\": 20260903, \"head\": 0, \"token_sha256\": \"72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6\"}, \"log_uri\": \"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/7d5bcede175fd5bcbc70971c18a527d352fe5744e5282a82138c576130cd8371/rtl/validation.json\"}]",
+        "prompt_sha256": "dc4a6fcaab1b7639e309096919548c5f054460c498f2b701911178d076313400",
+        "state": "finished",
+        "response": "```json\n[\n  {\n    \"tile_q\": 32,\n    \"tile_k\": 32,\n    \"tile_d\": 64,\n    \"parallelism\": 16,\n    \"double_buffer\": false,\n    \"num_rows\": 16,\n    \"pe_per_row\": 8,\n    \"reg_width\": 16,\n    \"data_width\": 16,\n    \"sram_bytes\": 131072,\n    \"queue_depth\": 4,\n    \"divider_stages\": 12,\n    \"bank_count\": 16,\n    \"rationale\": \"The configuration with queue_depth=4 and divider_stages=8 was marked infeasible, indicating it failed to meet the 350 MHz timing constraint. However, it had the lowest cycle count (64,463). Increasing divider_stages from 8 to 12 is a direct attempt to repair this timing failure by pipelining a likely critical path. This may allow the design to meet frequency and realize its low-cycle potential, possibly creating a new best latency point.\"\n  }\n]\n```",
+        "success": true,
+        "error": "",
+        "usage": null,
+        "wall_seconds": 42.66183997131884
+      },
+      {
+        "role": "proposer",
+        "index": 3,
+        "prompt": "You are the Compiler Agent (the planner) in a hardware/software co-design loop for dynamic sparse attention. You choose which complete design points to evaluate next. A design point fixes BOTH the software schedule and the hardware parameters, because they are coupled: the array shape limits parallelism, SRAM capacity limits tile size, and queue depth and bank count set both the cycle count and the clock.\n\nExplore the latency-energy Pareto front, minimising BOTH seconds per task and\njoules per task. Energy = power_mW * 1e-3 * seconds; efficiency = tasks/J.\nKeep both fast/high-energy and slow/low-energy trade-offs. Area and frequency\nare constraints. Do not use EDP or area as substitutes for these two axes.\nThe current energy model is partial; model results are not independent evidence.\n\n## The workload you are designing for\n\nsparse method: xm:16:8:32:0.75:0.05\nmeasured sparsity: 0.8497\nblock occupancy: 0.3997\ntile-local load imbalance (32-row tile): 1.449\n\n## Budgets you must design inside\n\narea <= 4,000,000 um^2\nclock >= 350 MHz\nPE count <= 256\nSRAM <= 524288 bytes\npower: no budget set\n\nNo default design or pre-ranked calibration table is supplied. Explore from the legal domains and use evaluator feedback.\n\n## The legal values for each field\n\n  tile_q           [32, 64]\n  tile_k           [32, 64]\n  tile_d           [32, 64]\n  parallelism      [4, 8, 16]\n  double_buffer    [False, True]\n  num_rows         [16, 32]\n  pe_per_row       [4, 8]\n  reg_width        [16, 32]\n  queue_depth      [0, 2, 4]\n  divider_stages   [4, 8, 12]\n  bank_count       [8, 16, 32]\n  data_width       [16]\n  sram_bytes       [65536, 131072, 262144]\n\n## What has been evaluated so far\n\n  point                                      feasible  cycles      area um^2   MHz\n  16x8 rw16 q4 d8 b16 s128K t32/32/64        NO            64,463   1,510,156   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n  16x8 rw16 q2 d8 b16 s128K t32/32/64        yes           67,366   1,493,722   396 latency_s=0.00017030011730597797 energy_J=6.483861444197024e-05\n  16x8 rw16 q0 d8 b16 s128K t32/32/64        yes           81,876   1,476,229   440 latency_s=0.00018610483851270445 energy_J=5.914022674988486e-05\n  16x8 rw16 q4 d12 b16 s128K t32/32/64       NO: independent scheduler validation rejecte     64,463   1,525,447   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n\nChoose 1 design points that are NOT already evaluated.\n\nReply with ONLY a JSON array, no prose, no code fence. Each element:\n  {\"tile_q\": <int>, \"tile_k\": <int>, \"tile_d\": <int>, \"parallelism\": <int>,\n    \"double_buffer\": <true|false>, \"num_rows\": <int>, \"pe_per_row\": <int>,\n    \"reg_width\": <int>, \"data_width\": <int>, \"sram_bytes\": <int>,\n    \"queue_depth\": <int>, \"divider_stages\": <int>, \"bank_count\": <int>,\n    \"rationale\": \"<cites a specific number from the tables above>\"}\n\nEvery field must come from the legal values listed. Every rationale must cite a\nmeasured number or state plainly that the region is unexplored.\nIndependent validation overrides the model's frequency predictions. Review the following latest observed outcomes. Propose new legal hardware parameters; preserve the measured algorithm and quality contract. Avoid repeating failed or already evaluated designs. Only independent validation can accept a repair.\n[{\"design_id\": \"37da507d9df37d1df6311841d72be2abfcadb7da9c4259c1b03b8ea02569cc9f\", \"scope\": \"BlockScheduler, 16 rows x 8 PE, M=32; not full attention\", \"function_passed\": true, \"frequency_feasible\": false, \"metrics\": {\"queue_depth\": 4.0, \"rows\": 16.0, \"pe\": 8.0, \"imbalance\": 1.265597, \"row_util\": 0.93719, \"pe_util\": 0.93719, \"cycles\": 403.0, \"area_um2\": 34854.512, \"cells\": 13647.0, \"estimated_power_mw\": 6.736003, \"assumed_activity\": 0.0213, \"critical_path_ns\": 2.8837, \"sta_period_ns\": 2.857142857142857, \"slack_ns\": -0.0624, \"max_frequency_mhz\": 342.51937681045956}, \"latency_s\": null, \"identity_ok\": true, \"complete_captured_task\": true, \"sources_unchanged\": true, \"frequency_matches\": true, \"source\": {\"model\": \"TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T\", \"dataset\": \"wiki\", \"layer\": 10, \"seq_len\": 512, \"seed\": 20260903, \"head\": 0, \"token_sha256\": \"72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6\"}, \"log_uri\": \"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/37da507d9df37d1df6311841d72be2abfcadb7da9c4259c1b03b8ea02569cc9f/rtl/validation.json\"}]",
+        "prompt_sha256": "df792e544450db3b3e787f0fe0c10faf7a6adfb0cdd8f2157497f0ca780d91b2",
+        "state": "finished",
+        "response": "```json\n[\n  {\n    \"tile_q\": 32,\n    \"tile_k\": 32,\n    \"tile_d\": 64,\n    \"parallelism\": 8,\n    \"double_buffer\": false,\n    \"num_rows\": 16,\n    \"pe_per_row\": 8,\n    \"reg_width\": 16,\n    \"data_width\": 16,\n    \"sram_bytes\": 131072,\n    \"queue_depth\": 4,\n    \"divider_stages\": 8,\n    \"bank_count\": 32,\n    \"rationale\": \"The independent validation for a similar design with queue_depth=4 and bank_count=16 showed a frequency failure (max_frequency_mhz: 342.519). This point attempts to repair this timing issue by increasing bank_count to 32, aiming to achieve the low cycle count (64,463) of the queue_depth=4 configuration while meeting the 350 MHz clock target.\"\n  }\n]\n```",
+        "success": true,
+        "error": "",
+        "usage": null,
+        "wall_seconds": 46.7569332793355
+      },
+      {
+        "role": "proposer",
+        "index": 4,
+        "prompt": "You are the Compiler Agent (the planner) in a hardware/software co-design loop for dynamic sparse attention. You choose which complete design points to evaluate next. A design point fixes BOTH the software schedule and the hardware parameters, because they are coupled: the array shape limits parallelism, SRAM capacity limits tile size, and queue depth and bank count set both the cycle count and the clock.\n\nExplore the latency-energy Pareto front, minimising BOTH seconds per task and\njoules per task. Energy = power_mW * 1e-3 * seconds; efficiency = tasks/J.\nKeep both fast/high-energy and slow/low-energy trade-offs. Area and frequency\nare constraints. Do not use EDP or area as substitutes for these two axes.\nThe current energy model is partial; model results are not independent evidence.\n\n## The workload you are designing for\n\nsparse method: xm:16:8:32:0.75:0.05\nmeasured sparsity: 0.8497\nblock occupancy: 0.3997\ntile-local load imbalance (32-row tile): 1.449\n\n## Budgets you must design inside\n\narea <= 4,000,000 um^2\nclock >= 350 MHz\nPE count <= 256\nSRAM <= 524288 bytes\npower: no budget set\n\nNo default design or pre-ranked calibration table is supplied. Explore from the legal domains and use evaluator feedback.\n\n## The legal values for each field\n\n  tile_q           [32, 64]\n  tile_k           [32, 64]\n  tile_d           [32, 64]\n  parallelism      [4, 8, 16]\n  double_buffer    [False, True]\n  num_rows         [16, 32]\n  pe_per_row       [4, 8]\n  reg_width        [16, 32]\n  queue_depth      [0, 2, 4]\n  divider_stages   [4, 8, 12]\n  bank_count       [8, 16, 32]\n  data_width       [16]\n  sram_bytes       [65536, 131072, 262144]\n\n## What has been evaluated so far\n\n  point                                      feasible  cycles      area um^2   MHz\n  16x8 rw16 q4 d8 b16 s128K t32/32/64        NO            64,463   1,510,156   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n  16x8 rw16 q2 d8 b16 s128K t32/32/64        yes           67,366   1,493,722   396 latency_s=0.00017030011730597797 energy_J=6.483861444197024e-05\n  16x8 rw16 q0 d8 b16 s128K t32/32/64        yes           81,876   1,476,229   440 latency_s=0.00018610483851270445 energy_J=5.914022674988486e-05\n  16x8 rw16 q4 d12 b16 s128K t32/32/64       NO: independent scheduler validation rejecte     64,463   1,525,447   362 latency_s=0.00017791899095610266 energy_J=7.05845375360949e-05\n  16x8 rw16 q4 d8 b32 s128K t32/32/64        NO: independent scheduler validation rejecte     47,862   1,515,935   362 latency_s=0.0001320984382393606 energy_J=5.240647511690401e-05\n\nChoose 1 design points that are NOT already evaluated.\n\nReply with ONLY a JSON array, no prose, no code fence. Each element:\n  {\"tile_q\": <int>, \"tile_k\": <int>, \"tile_d\": <int>, \"parallelism\": <int>,\n    \"double_buffer\": <true|false>, \"num_rows\": <int>, \"pe_per_row\": <int>,\n    \"reg_width\": <int>, \"data_width\": <int>, \"sram_bytes\": <int>,\n    \"queue_depth\": <int>, \"divider_stages\": <int>, \"bank_count\": <int>,\n    \"rationale\": \"<cites a specific number from the tables above>\"}\n\nEvery field must come from the legal values listed. Every rationale must cite a\nmeasured number or state plainly that the region is unexplored.\nIndependent validation overrides the model's frequency predictions. Review the following latest observed outcomes. Propose new legal hardware parameters; preserve the measured algorithm and quality contract. Avoid repeating failed or already evaluated designs. Only independent validation can accept a repair.\n[{\"design_id\": \"dca59512a3a3f499735f39f1ee0cbd90dbccd1a1eca1718020cdc1d9f2ae92b8\", \"scope\": \"BlockScheduler, 16 rows x 8 PE, M=32; not full attention\", \"function_passed\": true, \"frequency_feasible\": false, \"metrics\": {\"queue_depth\": 4.0, \"rows\": 16.0, \"pe\": 8.0, \"imbalance\": 1.265597, \"row_util\": 0.93719, \"pe_util\": 0.93719, \"cycles\": 403.0, \"area_um2\": 34854.512, \"cells\": 13647.0, \"estimated_power_mw\": 6.736003, \"assumed_activity\": 0.0213, \"critical_path_ns\": 2.8837, \"sta_period_ns\": 2.857142857142857, \"slack_ns\": -0.0624, \"max_frequency_mhz\": 342.51937681045956}, \"latency_s\": null, \"identity_ok\": true, \"complete_captured_task\": true, \"sources_unchanged\": true, \"frequency_matches\": true, \"source\": {\"model\": \"TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T\", \"dataset\": \"wiki\", \"layer\": 10, \"seq_len\": 512, \"seed\": 20260903, \"head\": 0, \"token_sha256\": \"72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6\"}, \"log_uri\": \"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/confirm16_off_s0/dca59512a3a3f499735f39f1ee0cbd90dbccd1a1eca1718020cdc1d9f2ae92b8/rtl/validation.json\"}]",
+        "prompt_sha256": "1010fa4084b7d751bf01edc01ff36ffcf5215eae59f051ed77909222854a8003",
+        "state": "finished",
+        "response": "```json\n[\n  {\n    \"tile_q\": 32,\n    \"tile_k\": 32,\n    \"tile_d\": 64,\n    \"parallelism\": 8,\n    \"double_buffer\": false,\n    \"num_rows\": 16,\n    \"pe_per_row\": 8,\n    \"reg_width\": 16,\n    \"data_width\": 16,\n    \"sram_bytes\": 131072,\n    \"queue_depth\": 4,\n    \"divider_stages\": 8,\n    \"bank_count\": 8,\n    \"rationale\": \"The design with queue_depth=4 and bank_count=16 failed to meet timing, achieving a max frequency of 342.5 MHz. This proposal attempts to repair this by reducing bank_count to 8, which may simplify memory interconnect logic and improve the clock frequency to meet the 350 MHz target.\"\n  }\n]\n```",
+        "success": true,
+        "error": "",
+        "usage": null,
+        "wall_seconds": 58.02660990413278
+      }
+    ]
+  },
+  "active_loop": 5,
+  "loops_completed": 5,
+  "evaluated": 5,
+  "budget_complete": true,
+  "stopped_because": "budget exhausted"
+}

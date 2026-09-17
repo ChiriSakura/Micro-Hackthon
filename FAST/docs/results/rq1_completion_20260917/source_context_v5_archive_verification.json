@@ -1,0 +1,7 @@
+{
+  "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/source_context_v5.tar.gz",
+  "sha256": "e5d9d0a95aee678d7026e66f0c2a7434eba8c7c1adbdd239cef8e176e47d7485",
+  "checked_files": 325,
+  "passed": true,
+  "experimental_use": "NOT used for the current four-algorithm candidate generation or PPA. Follow-up framework fix, regression tested only; no new candidate or retrospectively claimed gain."
+}

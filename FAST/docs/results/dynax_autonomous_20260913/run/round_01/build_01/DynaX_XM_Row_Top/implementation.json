@@ -1,0 +1,16 @@
+{
+  "module": "DynaX_XM_Row_Top",
+  "role": "uarch_assembly",
+  "language": "chisel",
+  "source_sha256": "34c54519adbc667923de78c051173cb819fcbac3a528b4084196f088a44ecc46",
+  "linked_reference_ids": [],
+  "linked_library_sha256": {
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/references/004.scala": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+  },
+  "reference_ids": [
+    "attention_tile_system_reference"
+  ],
+  "rationale": "The `DynaX_XM_Row_Top` module integrates the three child modules (`ScoreWeightProcessor`, `SelectorAggregator`, `FinalDivider`) using a finite state machine (FSM) as specified in the system plan. The FSM orchestrates the flow of data through the pipeline, respecting the latency and handshake protocols of each child module. \n\n1.  **FSM States**: The FSM implements the exact states outlined in the plan: `IDLE`, `PROCESS`, `WAIT_WEIGHTS`, `AGGREGATE`, `DIV_START`, `WAIT_WAIT`, and `DONE`. This ensures a clear, sequential execution of the algorithm's computational stages.\n\n2.  **Input Latching**: Upon receiving a `start` signal in the `IDLE` state, the top-level inputs `q`, `k`, and `v` are latched into registers (`q_reg`, `k_reg`, `v_reg`). This ensures the inputs remain stable for the duration of the computation, as required by the protocol.\n\n3.  **Pipeline Handshaking**: The FSM uses the `valid_in`/`valid_out` signals of the pipelined children (`ScoreWeightProcessor` and `FinalDivider`) for handshaking. In state `sProcess`, `score_proc.valid_in` is asserted. The FSM then moves to `sWaitWeights` and waits for `score_proc.valid_out` to become high, which correctly handles the 3-cycle latency. A similar handshake is performed for the `FinalDivider` in states `sDivStart` and `sWaitDivider` to manage its 18-cycle latency. This event-driven approach is more robust than using fixed-cycle counters.\n\n4.  **Intermediate Data Handling**: The outputs of `ScoreWeightProcessor` (`scores_out`, `weights_out`) are valid for one cycle. They are latched into `scores_reg` and `weights_reg` before being used in the `sAggregate` state. The outputs of the combinational `SelectorAggregator` (`N_out`, `D_out`, `keep_mask_out`) are computed in the `sAggregate` state. Since these values are needed in a subsequent state (`sDivStart`) and the inputs to `SelectorAggregator` are transient, the outputs `N`, `D`, and `keep_mask` are latched into registers (`N_reg`, `D_reg`, `keep_mask_reg`). This is a standard pipelining technique to ensure data integrity between stages.\n\n5.  **Output Generation**: The final `keep_mask` is available after the `sAggregate` state. The final `result` is available after the `FinalDivider` completes. In the `sDone` state, the `result` is latched, and the `done` signal is asserted for a single cycle, fulfilling the output protocol. The FSM then returns to `IDLE` when `start` is de-asserted.\n\nThis implementation directly follows the control flow described in the design prompt and system plan, correctly instantiates and connects the verified child modules, and adheres to Chisel best practices and the specified coding style.",
+  "critic_request": null,
+  "scope": "Agent explanation; module planner-vector checks and independent E2E are separate evidence"
+}

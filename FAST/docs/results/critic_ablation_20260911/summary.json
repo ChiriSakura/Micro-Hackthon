@@ -1,0 +1,519 @@
+{
+  "protocol": {
+    "title": "Critic hardware-feedback ablation",
+    "max_loops": 5,
+    "evaluation_budget": 5,
+    "repeats": 3,
+    "runs": [
+      {
+        "id": "main32_off_s0",
+        "case": "main32",
+        "arm": "off",
+        "proposer": "random",
+        "critic": "off",
+        "ablation": "none",
+        "seed": 0
+      },
+      {
+        "id": "main32_rule_s0",
+        "case": "main32",
+        "arm": "rule",
+        "proposer": "random",
+        "critic": "rule",
+        "ablation": "none",
+        "seed": 0
+      },
+      {
+        "id": "main32_llm_s0",
+        "case": "main32",
+        "arm": "llm",
+        "proposer": "random",
+        "critic": "llm",
+        "ablation": "none",
+        "seed": 0
+      },
+      {
+        "id": "main32_shadow_s0",
+        "case": "main32",
+        "arm": "shadow",
+        "proposer": "random",
+        "critic": "llm",
+        "ablation": "shadow",
+        "seed": 0
+      },
+      {
+        "id": "main32_no_independent_s0",
+        "case": "main32",
+        "arm": "no_independent",
+        "proposer": "random",
+        "critic": "llm",
+        "ablation": "no_independent",
+        "seed": 0
+      },
+      {
+        "id": "main32_local_random_s0",
+        "case": "main32",
+        "arm": "local_random",
+        "proposer": "random",
+        "critic": "off",
+        "ablation": "local_random",
+        "seed": 0
+      },
+      {
+        "id": "main32_off_s1",
+        "case": "main32",
+        "arm": "off",
+        "proposer": "random",
+        "critic": "off",
+        "ablation": "none",
+        "seed": 1
+      },
+      {
+        "id": "main32_rule_s1",
+        "case": "main32",
+        "arm": "rule",
+        "proposer": "random",
+        "critic": "rule",
+        "ablation": "none",
+        "seed": 1
+      },
+      {
+        "id": "main32_llm_s1",
+        "case": "main32",
+        "arm": "llm",
+        "proposer": "random",
+        "critic": "llm",
+        "ablation": "none",
+        "seed": 1
+      },
+      {
+        "id": "main32_shadow_s1",
+        "case": "main32",
+        "arm": "shadow",
+        "proposer": "random",
+        "critic": "llm",
+        "ablation": "shadow",
+        "seed": 1
+      },
+      {
+        "id": "main32_no_independent_s1",
+        "case": "main32",
+        "arm": "no_independent",
+        "proposer": "random",
+        "critic": "llm",
+        "ablation": "no_independent",
+        "seed": 1
+      },
+      {
+        "id": "main32_local_random_s1",
+        "case": "main32",
+        "arm": "local_random",
+        "proposer": "random",
+        "critic": "off",
+        "ablation": "local_random",
+        "seed": 1
+      },
+      {
+        "id": "main32_off_s2",
+        "case": "main32",
+        "arm": "off",
+        "proposer": "random",
+        "critic": "off",
+        "ablation": "none",
+        "seed": 2
+      },
+      {
+        "id": "main32_rule_s2",
+        "case": "main32",
+        "arm": "rule",
+        "proposer": "random",
+        "critic": "rule",
+        "ablation": "none",
+        "seed": 2
+      },
+      {
+        "id": "main32_llm_s2",
+        "case": "main32",
+        "arm": "llm",
+        "proposer": "random",
+        "critic": "llm",
+        "ablation": "none",
+        "seed": 2
+      },
+      {
+        "id": "main32_shadow_s2",
+        "case": "main32",
+        "arm": "shadow",
+        "proposer": "random",
+        "critic": "llm",
+        "ablation": "shadow",
+        "seed": 2
+      },
+      {
+        "id": "main32_no_independent_s2",
+        "case": "main32",
+        "arm": "no_independent",
+        "proposer": "random",
+        "critic": "llm",
+        "ablation": "no_independent",
+        "seed": 2
+      },
+      {
+        "id": "main32_local_random_s2",
+        "case": "main32",
+        "arm": "local_random",
+        "proposer": "random",
+        "critic": "off",
+        "ablation": "local_random",
+        "seed": 2
+      },
+      {
+        "id": "confirm16_off_s0",
+        "case": "confirm16",
+        "arm": "off",
+        "proposer": "llm",
+        "critic": "off",
+        "ablation": "none",
+        "seed": 0
+      },
+      {
+        "id": "confirm16_llm_s0",
+        "case": "confirm16",
+        "arm": "llm",
+        "proposer": "llm",
+        "critic": "llm",
+        "ablation": "none",
+        "seed": 0
+      },
+      {
+        "id": "confirm16_off_s1",
+        "case": "confirm16",
+        "arm": "off",
+        "proposer": "llm",
+        "critic": "off",
+        "ablation": "none",
+        "seed": 1
+      },
+      {
+        "id": "confirm16_llm_s1",
+        "case": "confirm16",
+        "arm": "llm",
+        "proposer": "llm",
+        "critic": "llm",
+        "ablation": "none",
+        "seed": 1
+      },
+      {
+        "id": "confirm16_off_s2",
+        "case": "confirm16",
+        "arm": "off",
+        "proposer": "llm",
+        "critic": "off",
+        "ablation": "none",
+        "seed": 2
+      },
+      {
+        "id": "confirm16_llm_s2",
+        "case": "confirm16",
+        "arm": "llm",
+        "proposer": "llm",
+        "critic": "llm",
+        "ablation": "none",
+        "seed": 2
+      }
+    ],
+    "algorithm": "xm:16:8:32:0.75:0.05",
+    "quality_evidence": "confirmation_32.json",
+    "epsilon": 0.05,
+    "target_mhz": 350,
+    "llm": {
+      "model": "gemini-2.5-pro",
+      "temperature": 0.2,
+      "seed_supported": false
+    },
+    "stopping": "Continue after success and critic stop; cap 5 loops and 5 analytical candidate evaluations. Illegal or duplicate proposals rejected; no hidden cost evaluations.",
+    "feedback": "All groups retain independent acceptance. Blind arm hides validation and independently derived feasibility from critic and its rule fallback only.",
+    "primary": [
+      "recovered_within_5",
+      "first_verified_loop",
+      "best_verified_scheduler_latency_s",
+      "final_verified",
+      "verified_incumbent"
+    ],
+    "secondary": [
+      "scheduler_area_um2",
+      "uniform_activity_component_power_mw",
+      "uniform_activity_component_energy_j",
+      "LLM_calls",
+      "wall_seconds",
+      "fallbacks"
+    ],
+    "proxy_hypervolume_reference": {
+      "latency_s": 1e-05,
+      "energy_j": 1e-06
+    },
+    "scope": "Fixed quality-confirmed algorithm; complete single captured layer/head scheduler workload. Not full-attention PPA or cross-algorithm ablation.",
+    "controls": "Same case parent, task, domains, gates and max evaluation count. Seeds control random sampling only; LLM repeats are stochastic. No equal wall-time or API-call budget claim.",
+    "trace_cache": "Two frozen complete-task captures with hash and task checks; never reuse hardware results.",
+    "analysis": "Report all failures and rounds, stratify cases; n=3 exploratory, no significance or general replacement claim."
+  },
+  "aggregates": [
+    {
+      "case": "main32",
+      "arm": "off",
+      "runs": 3,
+      "completed": 3,
+      "recovered": 3,
+      "final_verified": 2,
+      "first_loops": [
+        4,
+        1,
+        2
+      ],
+      "best_latency_us": [
+        1.2342857142857142,
+        0.7171428571428571,
+        1.2571428571428571
+      ],
+      "mean_best_latency_us_successful": 1.0695238095238095,
+      "median_first_loop_successful": 2,
+      "evaluated": 15,
+      "independent_attempts": 13,
+      "verified_candidates": 7,
+      "mean_wall_seconds": 94.10950081922783,
+      "api_calls": 0,
+      "api_failed": 0,
+      "critic_applied": 0,
+      "critic_fallbacks": 0,
+      "mean_proxy_hypervolume": 0.8908046278247795
+    },
+    {
+      "case": "main32",
+      "arm": "rule",
+      "runs": 3,
+      "completed": 3,
+      "recovered": 3,
+      "final_verified": 0,
+      "first_loops": [
+        2,
+        2,
+        2
+      ],
+      "best_latency_us": [
+        0.7171428571428571,
+        0.7171428571428571,
+        0.7171428571428571
+      ],
+      "mean_best_latency_us_successful": 0.7171428571428571,
+      "median_first_loop_successful": 2,
+      "evaluated": 15,
+      "independent_attempts": 15,
+      "verified_candidates": 9,
+      "mean_wall_seconds": 107.33636700268835,
+      "api_calls": 0,
+      "api_failed": 0,
+      "critic_applied": 15,
+      "critic_fallbacks": 0,
+      "mean_proxy_hypervolume": 0.9264218636941053
+    },
+    {
+      "case": "main32",
+      "arm": "llm",
+      "runs": 3,
+      "completed": 3,
+      "recovered": 3,
+      "final_verified": 3,
+      "first_loops": [
+        2,
+        2,
+        2
+      ],
+      "best_latency_us": [
+        0.7171428571428571,
+        0.7171428571428571,
+        0.7171428571428571
+      ],
+      "mean_best_latency_us_successful": 0.7171428571428571,
+      "median_first_loop_successful": 2,
+      "evaluated": 15,
+      "independent_attempts": 14,
+      "verified_candidates": 9,
+      "mean_wall_seconds": 336.08229438681155,
+      "api_calls": 15,
+      "api_failed": 0,
+      "critic_applied": 15,
+      "critic_fallbacks": 0,
+      "mean_proxy_hypervolume": 0.9264218636941053
+    },
+    {
+      "case": "main32",
+      "arm": "shadow",
+      "runs": 3,
+      "completed": 3,
+      "recovered": 3,
+      "final_verified": 2,
+      "first_loops": [
+        4,
+        1,
+        2
+      ],
+      "best_latency_us": [
+        1.2342857142857142,
+        0.7171428571428571,
+        1.2571428571428571
+      ],
+      "mean_best_latency_us_successful": 1.0695238095238095,
+      "median_first_loop_successful": 2,
+      "evaluated": 15,
+      "independent_attempts": 13,
+      "verified_candidates": 7,
+      "mean_wall_seconds": 249.70425904976824,
+      "api_calls": 15,
+      "api_failed": 0,
+      "critic_applied": 0,
+      "critic_fallbacks": 2,
+      "mean_proxy_hypervolume": 0.8908046278247795
+    },
+    {
+      "case": "main32",
+      "arm": "no_independent",
+      "runs": 3,
+      "completed": 3,
+      "recovered": 3,
+      "final_verified": 1,
+      "first_loops": [
+        3,
+        4,
+        4
+      ],
+      "best_latency_us": [
+        0.7171428571428571,
+        0.7171428571428571,
+        0.7171428571428571
+      ],
+      "mean_best_latency_us_successful": 0.7171428571428571,
+      "median_first_loop_successful": 4,
+      "evaluated": 15,
+      "independent_attempts": 14,
+      "verified_candidates": 5,
+      "mean_wall_seconds": 389.1321344525398,
+      "api_calls": 15,
+      "api_failed": 0,
+      "critic_applied": 15,
+      "critic_fallbacks": 0,
+      "mean_proxy_hypervolume": 0.9264218636941053
+    },
+    {
+      "case": "main32",
+      "arm": "local_random",
+      "runs": 3,
+      "completed": 3,
+      "recovered": 2,
+      "final_verified": 2,
+      "first_loops": [
+        4,
+        3,
+        null
+      ],
+      "best_latency_us": [
+        0.7171428571428571,
+        0.7171428571428571,
+        null
+      ],
+      "mean_best_latency_us_successful": 0.7171428571428571,
+      "median_first_loop_successful": 3.5,
+      "evaluated": 15,
+      "independent_attempts": 15,
+      "verified_candidates": 5,
+      "mean_wall_seconds": 122.34090984629681,
+      "api_calls": 0,
+      "api_failed": 0,
+      "critic_applied": 15,
+      "critic_fallbacks": 0,
+      "mean_proxy_hypervolume": 0.6176145757960702
+    },
+    {
+      "case": "confirm16",
+      "arm": "off",
+      "runs": 3,
+      "completed": 3,
+      "recovered": 3,
+      "final_verified": 1,
+      "first_loops": [
+        1,
+        2,
+        2
+      ],
+      "best_latency_us": [
+        1.1942857142857144,
+        1.1942857142857144,
+        1.1942857142857144
+      ],
+      "mean_best_latency_us_successful": 1.1942857142857144,
+      "median_first_loop_successful": 2,
+      "evaluated": 15,
+      "independent_attempts": 15,
+      "verified_candidates": 7,
+      "mean_wall_seconds": 351.4675900809137,
+      "api_calls": 15,
+      "api_failed": 0,
+      "critic_applied": 0,
+      "critic_fallbacks": 0,
+      "mean_proxy_hypervolume": 0.8770435910482265
+    },
+    {
+      "case": "confirm16",
+      "arm": "llm",
+      "runs": 3,
+      "completed": 3,
+      "recovered": 3,
+      "final_verified": 3,
+      "first_loops": [
+        1,
+        1,
+        1
+      ],
+      "best_latency_us": [
+        1.1942857142857144,
+        1.1942857142857144,
+        1.1942857142857144
+      ],
+      "mean_best_latency_us_successful": 1.1942857142857144,
+      "median_first_loop_successful": 1,
+      "evaluated": 15,
+      "independent_attempts": 13,
+      "verified_candidates": 13,
+      "mean_wall_seconds": 345.8507285260748,
+      "api_calls": 15,
+      "api_failed": 0,
+      "critic_applied": 15,
+      "critic_fallbacks": 0,
+      "mean_proxy_hypervolume": 0.8787428440902009
+    }
+  ],
+  "run_count": 24,
+  "all_complete": true,
+  "shadow_pairs": [
+    {
+      "seed": 0,
+      "complete": true,
+      "identical_candidates": true,
+      "identical_verdicts": true
+    },
+    {
+      "seed": 1,
+      "complete": true,
+      "identical_candidates": true,
+      "identical_verdicts": true
+    },
+    {
+      "seed": 2,
+      "complete": true,
+      "identical_candidates": true,
+      "identical_verdicts": true
+    }
+  ],
+  "audit_errors": [],
+  "source_files_checked": 184,
+  "source_unchanged": true
+}

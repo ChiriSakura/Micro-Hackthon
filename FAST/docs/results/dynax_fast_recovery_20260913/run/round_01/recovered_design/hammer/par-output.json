@@ -1,0 +1,21 @@
+{
+    "vlsi.builtins.is_complete": false,
+    "par.outputs.output_ilms": [],
+    "par.outputs.output_ilms_meta": "append",
+    "vlsi.inputs.ilms": [],
+    "vlsi.inputs.ilms_meta": "append",
+    "par.outputs.output_gds": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/DynaX_XM_Row.gds",
+    "par.outputs.output_netlist": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/DynaX_XM_Row.lvs.v",
+    "par.outputs.output_sim_netlist": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/DynaX_XM_Row.sim.v",
+    "par.outputs.hcells_list": [],
+    "par.outputs.seq_cells": "",
+    "par.outputs.all_regs": "",
+    "par.inputs.input_files": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/syn-rundir/DynaX_XM_Row.mapped.v"
+    ],
+    "par.inputs.top_module": "DynaX_XM_Row",
+    "par.outputs.sdf_file": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/DynaX_XM_Row.par.sdf.gz",
+    "par.outputs.spefs": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/DynaX_XM_Row.par.spef"
+    ]
+}

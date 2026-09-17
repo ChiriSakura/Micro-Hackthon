@@ -1,0 +1,4213 @@
+{
+  "followups": [
+    {
+      "evidence_id": "block_nm_assisted_A1",
+      "evidence_class": "assisted_repair",
+      "display_label": "A1",
+      "report": "../block_nm_timing_repair_20260917/RESULTS.md",
+      "algorithm": "rq1_block_nm",
+      "round": 1,
+      "status": "evaluated",
+      "config": {
+        "n": 7
+      },
+      "qualified": true,
+      "independently_qualified": true,
+      "qualification_status": "passed",
+      "search_feasible": true,
+      "heldout_rmse": 0.033320809848209114,
+      "heldout_sparsity": 0.125,
+      "workload_sha256": "b8a0ed265cc4b24bad5253a4317a446abaa6c1d3e00c67042a1c0d079fa3c7b1",
+      "critic_layer": "stop",
+      "critique": {
+        "layer": "stop",
+        "reason": "The assisted repair was successful. The design meets all constraints, including timing (slack +0.437 ns), area (41.8k um^2 < 200k um^2), and quality (0.0336 < 0.05). The critical path violation from the previous design, caused by a serial reduction chain, was resolved by implementing a balanced comparator tree for the max-score calculation. Since a feasible point has been established and the experiment's loop budget (max_loops=1) is exhausted, the process concludes.",
+        "evidence": [
+          "evaluation.feasible",
+          "evaluation.slack_ns",
+          "evaluation.area_um2",
+          "evaluation.quality_loss"
+        ],
+        "instructions": "Stop. A feasible design point that meets all constraints has been successfully generated and measured. The timing violation has been fixed. No further action is required for this task."
+      },
+      "critique_applied": false,
+      "system_plan": {
+        "top": "Rq1BlockNmTop",
+        "modules": [
+          {
+            "name": "FindMin8",
+            "purpose": "Finds the minimum of 8 signed scores, breaking ties by choosing the one with the largest original index. This is used to implement the 'keep top 7 of 8' selection by identifying the single element to discard.",
+            "ports": [
+              {
+                "name": "scores_in",
+                "direction": "input",
+                "width": 72
+              },
+              {
+                "name": "keep_mask_out",
+                "direction": "output",
+                "width": 8
+              }
+            ],
+            "dependencies": [],
+            "implementation": "This is a purely combinational module. It unpacks the 72-bit `scores_in` input into eight 9-bit signed scores. The original indices (0-7) are implicit. A three-stage comparator tree finds the minimum (score, index) pair. The custom comparator logic for two pairs (s_a, i_a) and (s_b, i_b) will select (s_a, i_a) if `s_a < s_b` or if `s_a == s_b and i_a > i_b`. The output of the tree is the 3-bit index of the single score to be discarded. This index is then used to generate an 8-bit mask where all bits are '1' except for the bit at the discarded index, which is '0'.",
+            "reference_ids": [],
+            "design_prompt": "Generate a combinational Chisel module `FindMin8` that takes an input `scores_in` of 72 bits and produces an 8-bit output `keep_mask_out`. The input represents eight packed signed 9-bit scores. The module must identify the single minimum score among the eight. For tie-breaking, if two scores are equal, the one with the larger original index (from 7 down to 0) is considered the minimum. The output `keep_mask_out` should have a '0' at the position of the minimum score and '1's elsewhere. The implementation should be a comparator tree. No registers are allowed.",
+            "tests": [
+              {
+                "name": "behavior_combinational",
+                "steps": [
+                  {
+                    "inputs": {
+                      "scores_in": 739132885347721553930
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 254
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 92595066625405783120
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 127
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 92414216885903037450
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 127
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 369477777720651315250
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 251
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 462071084429515187300
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 127
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 923239686272253977650
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 191
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 3992475019210513963510
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 127
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 101277334762679703030
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 191
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 0
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 127
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 1060126600920943602371
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 223
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 1335412143605077507342
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 254
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 1310516986867474348721
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 251
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 2179235229780836392343
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 254
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 4237814304488080613597
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 239
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 1926071958509886143429
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 239
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 877937393498242179392
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 254
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 3816403882866522905527
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 247
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 1940569762814518802660
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 253
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 3438324408222823163989
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 251
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 2341908475532123281743
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 247
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 2060943562362716706306
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 251
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 2365803952279117758720
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 127
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "scores_in": 2356562530590527454975
+                    },
+                    "cycles": 0,
+                    "expected": {
+                      "keep_mask_out": 127
+                    }
+                  }
+                ]
+              }
+            ],
+            "behavior": {
+              "test_generation_version": 2,
+              "latency": 0,
+              "let": {
+                "s0": "signed(lane(scores_in, 0, 9), 9)",
+                "s1": "signed(lane(scores_in, 1, 9), 9)",
+                "s2": "signed(lane(scores_in, 2, 9), 9)",
+                "s3": "signed(lane(scores_in, 3, 9), 9)",
+                "s4": "signed(lane(scores_in, 4, 9), 9)",
+                "s5": "signed(lane(scores_in, 5, 9), 9)",
+                "s6": "signed(lane(scores_in, 6, 9), 9)",
+                "s7": "signed(lane(scores_in, 7, 9), 9)",
+                "is_le_10": "1 if s1 < s0 or (s1 == s0 and 1 > 0) else 0",
+                "min_s_10": "s1 if is_le_10 == 1 else s0",
+                "min_i_10": "1 if is_le_10 == 1 else 0",
+                "is_le_32": "1 if s3 < s2 or (s3 == s2 and 3 > 2) else 0",
+                "min_s_32": "s3 if is_le_32 == 1 else s2",
+                "min_i_32": "3 if is_le_32 == 1 else 2",
+                "is_le_54": "1 if s5 < s4 or (s5 == s4 and 5 > 4) else 0",
+                "min_s_54": "s5 if is_le_54 == 1 else s4",
+                "min_i_54": "5 if is_le_54 == 1 else 4",
+                "is_le_76": "1 if s7 < s6 or (s7 == s6 and 7 > 6) else 0",
+                "min_s_76": "s7 if is_le_76 == 1 else s6",
+                "min_i_76": "7 if is_le_76 == 1 else 6",
+                "is_le_32_10": "1 if min_s_32 < min_s_10 or (min_s_32 == min_s_10 and min_i_32 > min_i_10) else 0",
+                "min_s_32_10": "min_s_32 if is_le_32_10 == 1 else min_s_10",
+                "min_i_32_10": "min_i_32 if is_le_32_10 == 1 else min_i_10",
+                "is_le_76_54": "1 if min_s_76 < min_s_54 or (min_s_76 == min_s_54 and min_i_76 > min_i_54) else 0",
+                "min_s_76_54": "min_s_76 if is_le_76_54 == 1 else min_s_54",
+                "min_i_76_54": "min_i_76 if is_le_76_54 == 1 else min_i_54",
+                "is_le_final": "1 if min_s_76_54 < min_s_32_10 or (min_s_76_54 == min_s_32_10 and min_i_76_54 > min_i_32_10) else 0",
+                "min_idx": "min_i_76_54 if is_le_final == 1 else min_i_32_10"
+              },
+              "outputs": {
+                "keep_mask_out": "255 - (1 << min_idx)"
+              },
+              "vectors": [
+                {
+                  "scores_in": "spack(9, 10, 20, 30, 40, 50, 60, 70, 80)"
+                },
+                {
+                  "scores_in": "spack(9, 80, 70, 60, 50, 40, 30, 20, 10)"
+                },
+                {
+                  "scores_in": "spack(9, 10, 10, 10, 10, 10, 10, 10, 10)"
+                },
+                {
+                  "scores_in": "spack(9, 50, 60, 10, 80, 20, 70, 30, 40)"
+                },
+                {
+                  "scores_in": "spack(9, 100, 50, 50, 50, 50, 50, 50, 50)"
+                },
+                {
+                  "scores_in": "spack(9, 50, 50, 50, 50, 50, 50, 50, 100)"
+                },
+                {
+                  "scores_in": "spack(9, -10, -20, -30, -40, -50, -60, -70, -80)"
+                },
+                {
+                  "scores_in": "spack(9, -10, 10, -10, 10, -10, 10, -10, 10)"
+                },
+                {
+                  "scores_in": "spack(9, 0, 0, 0, 0, 0, 0, 0, 0)"
+                }
+              ]
+            },
+            "linked_reference_ids": []
+          },
+          {
+            "name": "DividerWrapper",
+            "purpose": "A wrapper for the library's pipelined divider, configured to perform the final division step of the algorithm: a signed 32-bit numerator divided by an unsigned 20-bit denominator, producing a signed 16-bit result.",
+            "ports": [
+              {
+                "name": "clock",
+                "direction": "input",
+                "width": 1
+              },
+              {
+                "name": "reset",
+                "direction": "input",
+                "width": 1
+              },
+              {
+                "name": "valid_in",
+                "direction": "input",
+                "width": 1
+              },
+              {
+                "name": "numer_in",
+                "direction": "input",
+                "width": 32
+              },
+              {
+                "name": "denom_in",
+                "direction": "input",
+                "width": 20
+              },
+              {
+                "name": "quotient_out",
+                "direction": "output",
+                "width": 16
+              },
+              {
+                "name": "valid_out",
+                "direction": "output",
+                "width": 1
+              }
+            ],
+            "dependencies": [],
+            "implementation": "This module instantiates the `predict_unit.FixedPointDivPipelined` class from the `pipelined_divider` library reference. It is configured with `bitWidth=32`, `point=0`, and `stages=33`. This configuration performs a 32-bit integer division. The `numer_in` (s32) is connected to the divider's `numerator` input. The `denom_in` (u20) is zero-extended to 32 bits and connected to the `denominator` input; the divider treats this positive value correctly in its signed division. The `point=0` setting makes the divider perform integer division `numer/denom`. The `s33` result from the native divider's quotient port is then truncated to `s16` to produce the final `quotient_out`. The valid signal is passed through the pipeline, resulting in a latency of 33 cycles.",
+            "reference_ids": [
+              "pipelined_divider"
+            ],
+            "design_prompt": "Generate a Chisel module `DividerWrapper` that adapts the native `predict_unit.FixedPointDivPipelined` class. Your module must have the specified ports. Instantiate the native divider with `bitWidth=32`, `point=0`, and `stages=33`. Connect the inputs by casting `numer_in` (SInt) to the divider's `FixedPoint` numerator. The `denom_in` (UInt) must be zero-extended to 32 bits and then cast to a `FixedPoint` denominator. The divider's `FixedPoint` output should be converted back to a `SInt` and truncated to 16 bits to drive `quotient_out`. Propagate the valid signals correctly, accounting for the 33-cycle latency.",
+            "tests": [
+              {
+                "name": "behavior_isolated_0",
+                "steps": [
+                  {
+                    "inputs": {
+                      "reset": 1,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0,
+                      "quotient_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 0,
+                      "denom_in": 100
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 1,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0,
+                      "quotient_out": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "behavior_isolated_1",
+                "steps": [
+                  {
+                    "inputs": {
+                      "reset": 1,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0,
+                      "quotient_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 1000,
+                      "denom_in": 10
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 100
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 1,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0,
+                      "quotient_out": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "behavior_isolated_2",
+                "steps": [
+                  {
+                    "inputs": {
+                      "reset": 1,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0,
+                      "quotient_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 1003,
+                      "denom_in": 10
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 100
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 1,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0,
+                      "quotient_out": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "behavior_stream",
+                "steps": [
+                  {
+                    "inputs": {
+                      "reset": 1,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0,
+                      "quotient_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 0,
+                      "denom_in": 100
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 1000,
+                      "denom_in": 10
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 1003,
+                      "denom_in": 10
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 4294966293,
+                      "denom_in": 10
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 1000,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 2147483647,
+                      "denom_in": 1
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 2147483648,
+                      "denom_in": 1
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 2147483647,
+                      "denom_in": 1048575
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 2147483648,
+                      "denom_in": 1048575
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 52734659,
+                      "denom_in": 235717
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 3281255694,
+                      "denom_in": 295394
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 2937174705,
+                      "denom_in": 290855
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 4081367803,
+                      "denom_in": 486124
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 599541520,
+                      "denom_in": 69448
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 2843984136,
+                      "denom_in": 286425
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 3145521415,
+                      "denom_in": 865222
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 2547265503,
+                      "denom_in": 247774
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 1730639091,
+                      "denom_in": 416279
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 884452691,
+                      "denom_in": 821957
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 4102178440,
+                      "denom_in": 441098
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 1,
+                      "numer_in": 3109446303,
+                      "denom_in": 873123
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 100
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 100
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 65436
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 65535
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 2048
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 63488
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 223
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 62105
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 60868
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 65097
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 8632
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 60471
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 64208
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 58483
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 4157
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 1076
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 65099
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 1,
+                      "quotient_out": 64179
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 0,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0
+                    }
+                  },
+                  {
+                    "inputs": {
+                      "reset": 1,
+                      "valid_in": 0,
+                      "numer_in": 0,
+                      "denom_in": 0
+                    },
+                    "cycles": 1,
+                    "expected": {
+                      "valid_out": 0,
+                      "quotient_out": 0
+                    }
+                  }
+                ]
+              }
+            ],
+            "behavior": {
+              "test_generation_version": 2,
+              "latency": 33,
+              "reset": "reset",
+              "valid_input": "valid_in",
+              "valid_output": "valid_out",
+              "let": {},
+              "outputs": {
+                "quotient_out": "trunc_div(signed(numer_in, 32), denom_in)"
+              },
+              "vectors": [
+                {
+                  "numer_in": 0,
+                  "denom_in": 100
+                },
+                {
+                  "numer_in": 1000,
+                  "denom_in": 10
+                },
+                {
+                  "numer_in": 1003,
+                  "denom_in": 10
+                },
+                {
+                  "numer_in": "(-1003) & 0xffffffff",
+                  "denom_in": 10
+                },
+                {
+                  "numer_in": 1000,
+                  "denom_in": 0
+                },
+                {
+                  "numer_in": 2147483647,
+                  "denom_in": 1
+                },
+                {
+                  "numer_in": "(-2147483648) & 0xFFFFFFFF",
+                  "denom_in": 1
+                },
+                {
+                  "numer_in": 2147483647,
+                  "denom_in": 1048575
+                },
+                {
+                  "numer_in": "(-2147483648) & 0xFFFFFFFF",
+                  "denom_in": 1048575
+                }
+              ]
+            },
+            "linked_reference_ids": [
+              "pipelined_divider"
+            ]
+          },
+          {
+            "name": "Rq1BlockNmTop",
+            "purpose": "Top-level module that orchestrates the entire rq1_block_nm computation. It contains the main control FSM, which is pipelined to meet timing constraints, input/intermediate registers, and the primary datapath elements for score calculation, exponentiation, and accumulation.",
+            "ports": [
+              {
+                "name": "clock",
+                "direction": "input",
+                "width": 1
+              },
+              {
+                "name": "reset",
+                "direction": "input",
+                "width": 1
+              },
+              {
+                "name": "start",
+                "direction": "input",
+                "width": 1
+              },
+              {
+                "name": "q",
+                "direction": "input",
+                "width": 8
+              },
+              {
+                "name": "k",
+                "direction": "input",
+                "width": 128
+              },
+              {
+                "name": "v",
+                "direction": "input",
+                "width": 128
+              },
+              {
+                "name": "done",
+                "direction": "output",
+                "width": 1
+              },
+              {
+                "name": "result",
+                "direction": "output",
+                "width": 16
+              },
+              {
+                "name": "keep_mask",
+                "direction": "output",
+                "width": 16
+              }
+            ],
+            "dependencies": [
+              "FindMin8",
+              "DividerWrapper"
+            ],
+            "implementation": "The top module is built around a state machine with the following states: IDLE, CALC_SCORES, PIPE_S1_MAX, PIPE_S2_MASK, PIPE_S3_EXP, ACCUMULATE, DIV_START, DIV_WAIT, and DONE_PULSE. This FSM implements the critic's suggestion to break the critical path. On a `start` pulse, input `q`, `k`, and `v` are latched. The FSM then proceeds as follows:\n1. `CALC_SCORES` (16 cycles): A MAC unit computes one signed 9-bit score `s[i] = q[0]*k[i][0] + q[1]*k[i][1]` per cycle. The 16 scores are stored in a 16x9-bit register file `s_reg`.\n2. `PIPE_S1_MAX` (1 cycle): A 16-input comparator tree finds the maximum score `h` from `s_reg`. The result `h` is stored in `h_reg`.\n3. `PIPE_S2_MASK` (1 cycle): Two instantiated `FindMin8` modules operate in parallel on the two 8-key blocks in `s_reg` to compute the 16-bit `keep_mask`. The result is stored in `keep_mask_reg`.\n4. `PIPE_S3_EXP` (1 cycle): For each score `s[i]`, this stage calculates the delta `d[i] = h_reg - s_reg[i]` and uses `d[i]` to look up the 16-bit exponential value `e[i]` from a 256x16-bit ROM (initialized with `exp_table_packed_hex`). The 16 resulting `e[i]` values are stored in `e_reg`.\n5. `ACCUMULATE` (16 cycles): Over 16 cycles, the module iterates through the keys. If the corresponding bit in `keep_mask_reg` is set, it accumulates `e_reg[i]` into a 20-bit denominator `D` and `e_reg[i] * v_reg[i]` into a 28-bit signed numerator `N`.\n6. `DIV_START` (1 cycle): The final numerator `N_shifted = N << 4` (a 32-bit signed value) and denominator `D` (a 20-bit unsigned value) are passed to the `DividerWrapper` instance, and its `valid_in` is asserted.\n7. `DIV_WAIT` (32 cycles): The FSM waits for the pipelined divider to complete. The divider has a 33-cycle latency; this state waits for the cycle before the result is valid.\n8. `DONE_PULSE` (1 cycle): When the divider's `valid_out` is high, the 16-bit result is latched, `done` is asserted for one cycle, and the FSM returns to IDLE. Total latency is approximately 1+16+1+1+1+16+1+32+1 = 70 cycles.",
+            "reference_ids": [],
+            "design_prompt": "You are the top-level assembly UArch. The child modules FindMin8 and DividerWrapper are already complete and verified. Your task is to generate the Chisel code for the Rq1BlockNmTop module. This module must instantiate FindMin8 and DividerWrapper and connect them within a state-machine-controlled datapath that exactly implements the rq1_block_nm algorithm. The state machine and datapath must follow the pipelined implementation plan provided in the parent's `implementation` field, specifically using the states `IDLE`, `CALC_SCORES`, `PIPE_S1_MAX`, `PIPE_S2_MASK`, `PIPE_S3_EXP`, `ACCUMULATE`, `DIV_START`, `DIV_WAIT`, and `DONE_PULSE`. You must manage all intermediate data storage (registers for inputs, scores, max_score, keep_mask, exponential values, and accumulators) and generate the precise control signals for each component in each cycle. The exponential lookup table must be implemented as a ROM initialized from the `exp_table_packed_hex` in the algorithm contract. Ensure all port widths, signedness, and arithmetic operations (including the shifts for the final division) match the system plan precisely. The final `done` signal must be a single-cycle pulse. The total latency from `start` to `done` must be deterministic.",
+            "tests": [],
+            "behavior": null,
+            "linked_reference_ids": []
+          }
+        ],
+        "rationale": "The design addresses the timing failure reported by the critic by further pipelining the top-level FSM. The previous plan's single `PIPE_S1_MAX_MASK` stage, which computed the max score and keep mask in parallel, and the subsequent `PIPE_S2_EXP` stage, still contained too much combinational logic to meet the 300 MHz target. Following the critic's instruction, this logic is now split into three sequential single-cycle stages: `PIPE_S1_MAX` (finds max score `h`), `PIPE_S2_MASK` (computes `keep_mask`), and `PIPE_S3_EXP` (computes deltas and performs exponential lookups). This decomposition breaks the critical path by isolating the max-finding, mask generation, and exponentiation logic into separate pipeline stages, each with a shallower combinational depth. This change increases the total latency by one cycle to approximately 70 cycles, which is an acceptable trade-off to resolve the timing violation. The `FindMin8` and `DividerWrapper` modules from the previous plan are preserved unchanged as they are functionally correct and were not on the critical path.",
+        "language": "chisel"
+      },
+      "sources": {
+        "round_01/build_01/FindMin8/FindMin8.scala": "cbf797570df71e0b03549ab99297be2888eaf7de15df35f1c26078a2e03a9af8",
+        "round_01/build_01/DividerWrapper/DividerWrapper.scala": "ec66a2cc2549c47689e2b88523734dbffbf96cab7627e61238cd621a02211690",
+        "round_01/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala": "53221e3f5e99f8b39ab291642ccae8bb69da653bcede37175eed2b3852619784"
+      },
+      "token_totals": {
+        "prompt_token_count": 89544,
+        "candidates_token_count": 5378,
+        "thoughts_token_count": 6398,
+        "total_token_count": 101320
+      },
+      "agent_calls": {
+        "kernel": 0,
+        "compiler": 0,
+        "critic": 1,
+        "uarch": 0,
+        "uarch_assembly": 1,
+        "compiler_diagnosis": 0
+      },
+      "calls_missing_usage": 0,
+      "complete": true,
+      "feasible": true,
+      "area_um2": 41780.88599999517,
+      "power_mw": 13.4159094,
+      "frequency_mhz": 300,
+      "latency_ns": 233.33333333333334,
+      "energy_nj": 3.13037886,
+      "energy_efficiency_queries_per_joule": 319450151.15518636,
+      "slack_ns": 0.43733039,
+      "hold_slack_ns": 0.00664113,
+      "route_drc_violations": 0
+    }
+  ],
+  "updated_utc": "2026-09-17T20:35:59.180202+00:00",
+  "runs": [
+    {
+      "algorithm": "rq1_dynax_xm",
+      "status": "budget_exhausted_with_failures",
+      "persisted_status": "budget_exhausted_with_failures",
+      "scheduler": {
+        "state": "COMPLETED",
+        "elapsed": "00:30:20"
+      },
+      "error": null,
+      "costs": {
+        "calls": 106,
+        "tokens": 12504773,
+        "new_calls": 1,
+        "new_tokens": 355005,
+        "new_calls_missing_usage": 0
+      },
+      "attempted_rounds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "completed_rounds": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "search_pareto": [
+        5
+      ],
+      "post_status": "budget_exhausted_with_failures",
+      "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm",
+      "evidence_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm",
+      "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm",
+      "job_id": "17909360"
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "status": "budget_exhausted",
+      "persisted_status": "budget_exhausted",
+      "scheduler": {
+        "state": "FAILED",
+        "elapsed": "00:49:52"
+      },
+      "error": null,
+      "costs": {
+        "calls": 42,
+        "tokens": 3183463,
+        "new_calls": 6,
+        "new_tokens": 786626,
+        "new_calls_missing_usage": 0
+      },
+      "attempted_rounds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "completed_rounds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "search_pareto": [],
+      "post_status": "budget_exhausted",
+      "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm",
+      "evidence_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm",
+      "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_sta_v4_20260917/rq1_block_nm",
+      "job_id": "17912008"
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "status": "critic_stopped",
+      "persisted_status": "critic_stopped",
+      "scheduler": {
+        "state": "COMPLETED",
+        "elapsed": "01:03:31"
+      },
+      "error": null,
+      "costs": {
+        "calls": 144,
+        "tokens": 10532272,
+        "new_calls": 1,
+        "new_tokens": 305876,
+        "new_calls_missing_usage": 0
+      },
+      "attempted_rounds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "completed_rounds": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "search_pareto": [
+        1
+      ],
+      "post_status": "critic_stopped",
+      "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold",
+      "evidence_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold",
+      "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_checkpoint_v3_20260917/rq1_sanger_threshold",
+      "job_id": "17911508"
+    },
+    {
+      "algorithm": "rq1_global_topk",
+      "status": "critic_stopped",
+      "persisted_status": "critic_stopped",
+      "scheduler": {
+        "state": "COMPLETED",
+        "elapsed": "00:02:47"
+      },
+      "error": null,
+      "costs": {
+        "calls": 74,
+        "tokens": 4292457,
+        "new_calls": 0,
+        "new_tokens": 0,
+        "new_calls_missing_usage": 0
+      },
+      "attempted_rounds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "completed_rounds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "search_pareto": [
+        5
+      ],
+      "post_status": "critic_stopped",
+      "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk",
+      "evidence_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk",
+      "output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/topk_common_test",
+      "job_id": "17909367"
+    }
+  ],
+  "rounds": [
+    {
+      "algorithm": "rq1_dynax_xm",
+      "round": 1,
+      "status": "evaluated",
+      "config": {
+        "n1": 8,
+        "n2": 7,
+        "t0_quarters": 2,
+        "t1_quarters": 0
+      },
+      "qualified": true,
+      "qualification_status": "passed",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.002618049401694358,
+      "heldout_sparsity": 0.01638031005859375,
+      "critic_layer": "uarch",
+      "critique_applied": false,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": true,
+      "area_um2": 132392.987999922,
+      "power_mw": 47.6655699,
+      "latency_ns": 200.0,
+      "energy_nj": 9.533113980000001,
+      "energy_efficiency_queries_per_joule": 104897518.491644,
+      "frequency_mhz": 300,
+      "slack_ns": 0.31882253,
+      "hold_slack_ns": 0.00417,
+      "route_drc_violations": 0
+    },
+    {
+      "algorithm": "rq1_dynax_xm",
+      "round": 2,
+      "status": "evaluated",
+      "config": {
+        "n1": 8,
+        "n2": 7,
+        "t0_quarters": 2,
+        "t1_quarters": 0
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.002618049401694358,
+      "heldout_sparsity": 0.01638031005859375,
+      "critic_layer": "kernel",
+      "critique_applied": false,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": false,
+      "area_um2": 133226.36599994043,
+      "power_mw": 48.061464,
+      "latency_ns": 200.0,
+      "energy_nj": 9.612292799999999,
+      "energy_efficiency_queries_per_joule": 104033451.83159631,
+      "frequency_mhz": 300,
+      "slack_ns": -0.0729401,
+      "hold_slack_ns": 0.00615974,
+      "route_drc_violations": 0
+    },
+    {
+      "algorithm": "rq1_dynax_xm",
+      "round": 3,
+      "status": "candidate_failed",
+      "config": {
+        "n1": 7,
+        "n2": 4,
+        "t0_quarters": 2,
+        "t1_quarters": 0
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": null,
+      "heldout_rmse": 0.03681302409260263,
+      "heldout_sparsity": 0.17414093017578125,
+      "critic_layer": "compiler",
+      "critique_applied": false,
+      "rollback_to_round": 1,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": "Compiler/UArch build budget exhausted; see compiler_feedback.json",
+      "complete": null,
+      "feasible": null,
+      "area_um2": null,
+      "power_mw": null,
+      "latency_ns": null,
+      "energy_nj": null,
+      "energy_efficiency_queries_per_joule": null,
+      "frequency_mhz": null,
+      "slack_ns": null,
+      "hold_slack_ns": null,
+      "route_drc_violations": null
+    },
+    {
+      "algorithm": "rq1_dynax_xm",
+      "round": 4,
+      "status": "evaluated",
+      "config": {
+        "n1": 8,
+        "n2": 7,
+        "t0_quarters": 2,
+        "t1_quarters": 0
+      },
+      "qualified": true,
+      "qualification_status": "passed",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.002618049401694358,
+      "heldout_sparsity": 0.01638031005859375,
+      "critic_layer": "kernel",
+      "critique_applied": true,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": true,
+      "area_um2": 132392.987999922,
+      "power_mw": 47.6655699,
+      "latency_ns": 200.0,
+      "energy_nj": 9.533113980000001,
+      "energy_efficiency_queries_per_joule": 104897518.491644,
+      "frequency_mhz": 300,
+      "slack_ns": 0.31882253,
+      "hold_slack_ns": 0.00417,
+      "route_drc_violations": 0
+    },
+    {
+      "algorithm": "rq1_dynax_xm",
+      "round": 5,
+      "status": "evaluated",
+      "config": {
+        "n1": 7,
+        "n2": 4,
+        "t0_quarters": 2,
+        "t1_quarters": 0
+      },
+      "qualified": true,
+      "qualification_status": "passed",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.03681302409260263,
+      "heldout_sparsity": 0.17414093017578125,
+      "critic_layer": "uarch",
+      "critique_applied": false,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": true,
+      "area_um2": 117718.83199993092,
+      "power_mw": 41.4465591,
+      "latency_ns": 186.66666666666669,
+      "energy_nj": 7.736691032000001,
+      "energy_efficiency_queries_per_joule": 129254224.55981047,
+      "frequency_mhz": 300,
+      "slack_ns": 0.40683836,
+      "hold_slack_ns": 0.00437653,
+      "route_drc_violations": 0
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "round": 1,
+      "status": "evaluated",
+      "config": {
+        "n": 7
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.033320809848209114,
+      "heldout_sparsity": 0.125,
+      "critic_layer": "compiler",
+      "critique_applied": true,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 1,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": false,
+      "area_um2": 45185.9519999948,
+      "power_mw": 14.313414700000001,
+      "latency_ns": 226.66666666666669,
+      "energy_nj": 3.244373998666667,
+      "energy_efficiency_queries_per_joule": 308225870.510295,
+      "frequency_mhz": 300,
+      "slack_ns": -3.10006952,
+      "hold_slack_ns": 0.00693209,
+      "route_drc_violations": 5
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "round": 2,
+      "status": "evaluated",
+      "config": {
+        "n": 7
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.033320809848209114,
+      "heldout_sparsity": 0.125,
+      "critic_layer": "compiler",
+      "critique_applied": true,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": false,
+      "area_um2": 42246.91799999584,
+      "power_mw": 13.6186369,
+      "latency_ns": 230.0,
+      "energy_nj": 3.132286487,
+      "energy_efficiency_queries_per_joule": 319255599.43201965,
+      "frequency_mhz": 300,
+      "slack_ns": -1.81639135,
+      "hold_slack_ns": 0.00819245,
+      "route_drc_violations": 1
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "round": 3,
+      "status": "evaluated",
+      "config": {
+        "n": 7
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.033320809848209114,
+      "heldout_sparsity": 0.125,
+      "critic_layer": "uarch",
+      "critique_applied": true,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": false,
+      "area_um2": 42167.11799999562,
+      "power_mw": 13.8443168,
+      "latency_ns": 233.33333333333334,
+      "energy_nj": 3.230340586666667,
+      "energy_efficiency_queries_per_joule": 309564881.2164054,
+      "frequency_mhz": 300,
+      "slack_ns": -1.80368257,
+      "hold_slack_ns": 0.00337705,
+      "route_drc_violations": 0
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "round": 4,
+      "status": "evaluated",
+      "config": {
+        "n": 7
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.033320809848209114,
+      "heldout_sparsity": 0.125,
+      "critic_layer": "uarch",
+      "critique_applied": true,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": false,
+      "area_um2": 42514.24799999581,
+      "power_mw": 13.874416199999999,
+      "latency_ns": 286.6666666666667,
+      "energy_nj": 3.977332644,
+      "energy_efficiency_queries_per_joule": 251424783.77023575,
+      "frequency_mhz": 300,
+      "slack_ns": -1.67740512,
+      "hold_slack_ns": 0.0080512,
+      "route_drc_violations": 1
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "round": 5,
+      "status": "evaluated",
+      "config": {
+        "n": 7
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.033320809848209114,
+      "heldout_sparsity": 0.125,
+      "critic_layer": "uarch",
+      "critique_applied": false,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": false,
+      "area_um2": 42292.93599999565,
+      "power_mw": 13.7061542,
+      "latency_ns": 233.33333333333334,
+      "energy_nj": 3.198102646666667,
+      "energy_efficiency_queries_per_joule": 312685398.3383818,
+      "frequency_mhz": 300,
+      "slack_ns": -1.85258663,
+      "hold_slack_ns": -2.837e-05,
+      "route_drc_violations": 0
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "round": 1,
+      "status": "evaluated",
+      "config": {
+        "threshold_256": 3
+      },
+      "qualified": true,
+      "qualification_status": "passed",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.03868273225121316,
+      "heldout_sparsity": 0.37479400634765625,
+      "critic_layer": "kernel",
+      "critique_applied": true,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": true,
+      "area_um2": 74779.51599996084,
+      "power_mw": 23.3000778,
+      "latency_ns": 73.33333333333334,
+      "energy_nj": 1.708672372,
+      "energy_efficiency_queries_per_joule": 585249704.0316163,
+      "frequency_mhz": 300,
+      "slack_ns": 0.07215206,
+      "hold_slack_ns": 0.00315911,
+      "route_drc_violations": 0
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "round": 2,
+      "status": "evaluated",
+      "config": {
+        "threshold_256": 2
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.023468599323221567,
+      "heldout_sparsity": 0.3126373291015625,
+      "critic_layer": "compiler",
+      "critique_applied": true,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": true,
+      "area_um2": 81281.88599996526,
+      "power_mw": 25.675957999999998,
+      "latency_ns": 140.0,
+      "energy_nj": 3.59463412,
+      "energy_efficiency_queries_per_joule": 278192429.77641356,
+      "frequency_mhz": 300,
+      "slack_ns": 1.10246301,
+      "hold_slack_ns": 0.0059999,
+      "route_drc_violations": 0
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "round": 3,
+      "status": "failed",
+      "config": {
+        "threshold_256": 2
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": null,
+      "heldout_rmse": 0.023468599323221567,
+      "heldout_sparsity": 0.3126373291015625,
+      "critic_layer": "kernel",
+      "critique_applied": true,
+      "rollback_to_round": 1,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": "RuntimeError: Compiler/UArch build budget exhausted; see compiler_feedback.json",
+      "complete": null,
+      "feasible": null,
+      "area_um2": null,
+      "power_mw": null,
+      "latency_ns": null,
+      "energy_nj": null,
+      "energy_efficiency_queries_per_joule": null,
+      "frequency_mhz": null,
+      "slack_ns": null,
+      "hold_slack_ns": null,
+      "route_drc_violations": null
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "round": 4,
+      "status": "evaluated",
+      "config": {
+        "threshold_256": 1
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.010311270572556964,
+      "heldout_sparsity": 0.22274017333984375,
+      "critic_layer": "compiler",
+      "critique_applied": true,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": false,
+      "area_um2": 64421.20999999158,
+      "power_mw": 17.6763162,
+      "latency_ns": 46.66666666666667,
+      "energy_nj": 0.8248947560000001,
+      "energy_efficiency_queries_per_joule": 1212275860.3159308,
+      "frequency_mhz": 300,
+      "slack_ns": -2.59888577,
+      "hold_slack_ns": 0.00906766,
+      "route_drc_violations": 3
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "round": 5,
+      "status": "evaluated",
+      "config": {
+        "threshold_256": 1
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.010311270572556964,
+      "heldout_sparsity": 0.22274017333984375,
+      "critic_layer": "stop",
+      "critique_applied": false,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": 1,
+      "ppa_retries": 1,
+      "physical_checkpoint_recovery": {
+        "reason": "[CRITICAL ODB-0445] No undo_updateField support for type dbTechNonDefaultRule",
+        "from_step": "clock_tree_resize",
+        "checkpoint_sha256": "4c8b9e13cee3e2afc809915a409c8d58aae055b9088546f3695af604d1016e28",
+        "preserved_artifacts": {
+          "par_failed_attempt/par.log": "f11d5fe197f8783792a35b86eede6d73f518a5a449826a010305503c547ef3ee",
+          "par_failed_attempt/par.tcl": "b4454f0cf53f04db3d347de665f7096e74bfe6f0e73f08cdc8bb685110b75e17",
+          "par_failed_attempt/pre_clock_tree_resize": "4c8b9e13cee3e2afc809915a409c8d58aae055b9088546f3695af604d1016e28"
+        },
+        "original_stage": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par.log",
+          "diagnostics": "..s/bin/openroad -no_init -log /...] Design area 85233 um^2 22% utilization.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_design_area_metrics\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) puts \"Design has [llength [get_cells *]] instances.\"\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Design has 71534 instances.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer: end_report)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer: begin_report > /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-rundir/reports/dpl_sta.power.rpt)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_power -corner setup -digits 3\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Group                  Internal  Switching    Leakage      Total\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                           Power      Power      Power      Power (Watts)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ----------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Sequential            1.202e-02  4.304e-04  4.195e-04  1.287e-02  26.9%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Combinational         1.613e-02  1.738e-02  1.424e-03  3.493e-02  73.1%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Clock                 0.000e+00  0.000e+00  0.000e+00  0.000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Macro                 0.000e+00  0.000e+00  0.000e+00  0.000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Pad                   0.000e+00  0.000e+00  0.000e+00  0.000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ----------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total                 2.815e-02  1.781e-02  1.843e-03  4.780e-02 100.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                           58.9%      37.3%       3.9%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_power_metric -corner setup\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_power -corner hold -digits 3\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Group                  Internal  Switching    Leakage      Total\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                           Power      Power      Power      Power (Watts)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ----------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Sequential            1.202e-02  4.304e-04  4.195e-04  1.287e-02  26.9%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Combinational         1.613e-02  1.738e-02  1.424e-03  3.493e-02  73.1%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Clock                 0.000e+00  0.000e+00  0.000e+00  0.000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Macro                 0.000e+00  0.000e+00  0.000e+00  0.000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Pad                   0.000e+00  0.000e+00  0.000e+00  0.000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ----------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total                 2.815e-02  1.781e-02  1.843e-03  4.780e-02 100.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                           58.9%      37.3%       3.9%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_power_metric -corner hold\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer: end_report)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db pre_clock_tree\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn pre_clock_tree latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) check_placement -verbose\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) repair_clock_inverters\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) clock_tree_synthesis -root_buf BUF_X4 -buf_list { BUF_X4 BUF_X8 } -sink_clustering_enable\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0050] Root buffer is BUF_X4.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0051] Sink buffer is BUF_X8.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0052] The following clock buffers will be used for CTS:\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                     BUF_X4\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                     BUF_X8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0049] Characterization buffer is BUF_X8.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0007] Net \"clock\" found for clock \"clock\".\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0010]  Clock net \"clock\" has 5465 sinks.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0008] TritonCTS found 1 clock nets.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0097] Characterization used 2 buffer(s) types.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0201] 0 blockages from hard placement blockages and placed macros will be used.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0027] Generating H-Tree topology for net clock.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0028]  Total number of sinks: 5465.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0029]  Register sinks will be clustered in groups of up to 30 and with maximum cluster diameter of 100.0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0030]  Number of static layers: 0.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0020]  Wire segment unit: 14000  dbu (7 um).\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0204] A clustering solution was found from clustering size of 30 and clustering diameter of 100.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0205] Better solution may be possible if either -sink_clustering_size, -sink_clustering_max_diameter, or both options are omitted to enable automatic clustering.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0019]  Total number of sinks after clustering: 195.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0024]  Normalized sink region: [(3.08883, 4.82), (80.5003, 89.8149)].\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0025]     Width:  77.4114.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0026]     Height: 84.9949.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  Level 1\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Direction: Vertical\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Sinks per sub-region: 98\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Sub-region size: 77.4114 X 42.4975\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0034]     Segment length (rounded): 22.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  Level 2\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Direction: Horizontal\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Sinks per sub-region: 49\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Sub-region size: 38.7057 X 42.4975\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0034]     Segment length (rounded): 20.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  Level 3\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Direction: Vertical\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Sinks per sub-region: 25\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Sub-region size: 38.7057 X 21.2487\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0034]     Segment length (rounded): 10.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  Level 4\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Direction: Horizontal\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Sinks per sub-region: 13\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Sub-region size: 19.3529 X 21.2487\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0034]     Segment length (rounded): 10.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0035]  Number of sinks covered: 195.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0018]     Created 224 clock buffers.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0012]     Minimum number of buffers in the clock path: 5.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0013]     Maximum number of buffers in the clock path: 5.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0015]     Created 224 clock nets.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0016]     Fanout distribution for the current clock = 2:1, 8:1, 9:3, 10:3, 11:7, 12:3, 13:2, 14:2, 15:2, 16:3, 18:2, 19:4, 20:2, 21:1, 22:1, 23:3, 24:3, 25:1, 26:4, 28:3, 29:1, 30:159..\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0017]     Max level of the clock tree: 4.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0098] Clock net \"clock\"\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0099]  Sinks 5525\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0100]  Leaf buffers 195\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0101]  Average sink wire length 818.65 um\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0102]  Path depth 4 - 5\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO CTS-0207]  Dummy loads inserted 60\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_propagated_clock [all_clocks]\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) estimate_parasitics -placement\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) repair_clock_nets\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RSZ-0058] Using max wire length 591um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) estimate_parasitics -placement\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_placement_padding -global -left 1 -right 1\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) detailed_placement\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DPL-0005] Max displacement: +/- 500 sites horizontally, +/- 100 rows vertically.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Movements Summary\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ---------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total cells:                   57612\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Diamond Move Success:          57612 (100.00%)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Diamond Move Failure:              0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Rip-up and replace Success:        0 (  0.00% of diamond failures)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Rip-up and replace Failure:        0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total Placement Failures:          0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ---------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Placement Analysis\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ---------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] total displacement        545.9 u\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] average displacement        0.0 u\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] max displacement            3.4 u\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] original HPWL          927790.0 u\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] legalized HPWL         937213.0 u\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] delta HPWL                    1 %\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) estimate_parasitics -placement\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db pre_clock_tree_resize\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn pre_clock_tree_resize latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_input_delay 1.0 -clock clock [all_inputs -no_clocks]\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_output_delay 1.0 -clock clock [all_outputs]\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_load 5.0 [all_outputs]\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_placement_padding -global -left 1 -right 1\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) puts \"Design has [llength [get_cells *]] instances.\"\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Design has 71818 instances.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) repair_timing -setup -setup_margin 0.05\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RSZ-0100] Repair move sequence: UnbufferMove SizeUpMove SwapPinsMove BufferMove CloneMove SplitLoadMove\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RSZ-0094] Found 127 endpoints with setup violations.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RSZ-0099] Repairing 127 out of 127 (100.00%) violating endpoints...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]    Iter   | Removed | Resized | Inserted | Cloned |  Pin  |   Area   |    WNS   |   StTNS    |   EnTNS    |  Viol  |  Worst\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]           | Buffers |  Gates  | Buffers  |  Gates | Swaps |          |          |            |            | Endpts | St/EnPt\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ------------------------------------------------------------------------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]        0* |       0 |       0 |        0 |      0 |     0 |    +0.0% |   -0.733 |      -17.8 |      -10.9 |    127 | _113484_/D\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [CRITICAL ODB-0445] No undo_updateField support for type dbTechNonDefaultRule\u001b[0m\n\u001b[91m[par] ERROR: OpenROAD returned with a nonzero exit code: 1.\u001b[0m\n\u001b[96m[par] To create a tar archive of the issue, set:\n            par.openroad.create_archive_mode: latest_run\n        in your YAML configs and re-run your par command\u001b[0m\n\u001b[96m[par] Did not run write_design\u001b[0m\nAction par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-output.json\n",
+          "timed_out": false,
+          "returncode": 0,
+          "wall_seconds": 156.83076369500486,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/hammer_driver.py",
+            "par",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/config.json",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-input.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-output.json"
+          ]
+        },
+        "command": [
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/hammer_driver.py",
+          "par",
+          "-p",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/config.json",
+          "-p",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-input.json",
+          "--obj_dir",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer",
+          "-o",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-output.json",
+          "--from_step",
+          "clock_tree_resize"
+        ],
+        "optimization_policy_changed": false,
+        "retry_stage": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par_resume.log",
+          "diagnostics": "s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]        422783\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0200] Skipping iteration 61\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0200] Skipping iteration 62\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0200] Skipping iteration 63\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0200] Skipping iteration 64\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0198] Complete detail routing.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length = 1124017 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal1 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal2 = 551299 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal3 = 521079 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal4 = 26836 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal5 = 23523 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal6 = 929 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal7 = 332 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal8 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal9 = 16 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal10 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total number of vias = 422783.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Up-via summary (total 422783):\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  active         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal1    203542\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal2    213308\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal3      4237\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal4      1596\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal5        84\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal6        12\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal7         2\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal8         2\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal9         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]        422783\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0267] cpu time = 02:06:32, elapsed time = 00:45:42, memory = 4142.57 (MB), peak = 4207.59 (MB)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0180] Post processing.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db pre_extraction\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn pre_extraction latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) define_process_corner -ext_model_index 0 X\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0431] Defined process_corner X with ext_model_index 0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0029] Defined extraction corner X\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) extract_parasitics -ext_model_file /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/rcx_patterns.rules -corner_cnt 2\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0435] Reading extraction model file /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/rcx_patterns.rules ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0436] RC segment generation rq1_sanger_threshold_top (max_merge_res 50.0) ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0040] Final 272196 rc segments\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0439] Coupling Cap extraction rq1_sanger_threshold_top ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 7% of 486241 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 19% of 486241 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 31% of 486241 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 48% of 486241 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 59% of 486241 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 75% of 486241 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 88% of 486241 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 100% of 486241 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0045] Extract 63592 nets, 330730 rsegs, 330730 caps, 680296 ccs\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_spef /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-rundir/rq1_sanger_threshold_top.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0443] 63592 nets finished\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) read_spef -corner setup /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-rundir/rq1_sanger_threshold_top.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) read_spef -corner hold /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-rundir/rq1_sanger_threshold_top.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db pre_report_routed\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn pre_report_routed latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_power_activity -global -activity 0.1 -duty 0.5\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_propagated_clock [all_clocks]\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) global_connect\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-rundir/routed.odb\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_def /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-rundir/routed.def\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_verilog /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-rundir/routed.v\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) puts FAST_FINAL_BEGIN\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_FINAL_BEGIN\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_power -corner setup -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Group                      Internal      Switching        Leakage          Total\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                               Power          Power          Power          Power (Watts)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] --------------------------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Sequential           7.43881566e-03 9.73836519e-04 4.33669833e-04 8.84632114e-03  34.3%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Combinational        3.56601505e-03 5.17978938e-03 1.35623128e-03 1.01020355e-02  39.1%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Clock                2.88844341e-03 3.93019617e-03 4.30752043e-05 6.86171465e-03  26.6%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Macro                0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Pad                  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] --------------------------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total                1.38933286e-02 1.00838067e-02 1.83327019e-03 2.58104037e-02 100.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                               53.8%          39.1%           7.1%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_worst_slack -max -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] worst slack max 0.00701195\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_worst_slack -min -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] worst slack min 0.00723388\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_check_types -max_slew -max_capacitance -violators\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] max capacitance\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Pin                                    Limit     Cap   Slack\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _065727_/ZN                            26.70   29.98   -3.28 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _068295_/ZN                            53.41   56.47   -3.06 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _065859_/ZN                            53.41   56.19   -2.79 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _070131_/ZN                            26.70   29.39   -2.68 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _071830_/ZN                            58.36   60.91   -2.54 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _066610_/ZN                            59.36   61.76   -2.41 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _076950_/ZN                            59.36   61.66   -2.30 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _070164_/ZN                            59.36   61.56   -2.20 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _075151_/ZN                            26.70   28.57   -1.86 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _075280_/ZN                            26.70   28.53   -1.83 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _075142_/ZN                            26.70   28.51   -1.81 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _072575_/ZN                            53.41   55.21   -1.80 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _075156_/ZN                            26.70   28.48   -1.78 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _070073_/ZN                            58.36   60.00   -1.64 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _113275_/Q                             60.73   62.23   -1.50 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _075292_/ZN                            59.36   60.83   -1.47 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _073452_/ZN                            26.70   28.09   -1.39 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _070149_/ZN                            59.36   60.69   -1.33 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _069258_/ZN                            26.70   27.77   -1.06 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _069228_/ZN                            26.70   27.74   -1.03 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _075168_/ZN                            26.70   27.73   -1.03 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_design_area\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Design area 395924 um^2 100% utilization.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set fast_filler_names {FILLCELL_X1 FILLCELL_X2 FILLCELL_X4 FILLCELL_X8 FILLCELL_X16 FILLCELL_X32}\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_CELL_AREA_UM2 82930.28799997525\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_DIE_AREA_UM2 435600.0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_CORE_AREA_UM2 395923.71\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_FINAL_END\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db post_report_routed\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn post_report_routed latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exit\u001b[0m\n\u001b[96m[par] Did not run write_design\u001b[0m\nAction par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-output.json\n",
+          "timed_out": false,
+          "returncode": 0,
+          "wall_seconds": 2953.650716641998,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/hammer_driver.py",
+            "par",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/config.json",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-input.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/hammer/par-output.json",
+            "--from_step",
+            "clock_tree_resize"
+          ]
+        }
+      },
+      "error": null,
+      "complete": true,
+      "feasible": false,
+      "area_um2": 82930.28799997525,
+      "power_mw": 25.810403700000002,
+      "latency_ns": 70.0,
+      "energy_nj": 1.806728259,
+      "energy_efficiency_queries_per_joule": 553486665.7554173,
+      "frequency_mhz": 300,
+      "slack_ns": 0.00701195,
+      "hold_slack_ns": 0.00723388,
+      "route_drc_violations": 2
+    },
+    {
+      "algorithm": "rq1_global_topk",
+      "round": 1,
+      "status": "evaluated",
+      "config": {
+        "k": 14
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.030839545888640484,
+      "heldout_sparsity": 0.125,
+      "critic_layer": "kernel",
+      "critique_applied": true,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": true,
+      "area_um2": 24802.638000001498,
+      "power_mw": 8.65796953,
+      "latency_ns": 283.33333333333337,
+      "energy_nj": 2.4530913668333336,
+      "energy_efficiency_queries_per_joule": 407648901.1050934,
+      "frequency_mhz": 300,
+      "slack_ns": 1.01987755,
+      "hold_slack_ns": 0.00663589,
+      "route_drc_violations": 0
+    },
+    {
+      "algorithm": "rq1_global_topk",
+      "round": 2,
+      "status": "evaluated",
+      "config": {
+        "k": 15
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.020018825393910648,
+      "heldout_sparsity": 0.0625,
+      "critic_layer": "uarch",
+      "critique_applied": true,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": true,
+      "area_um2": 24090.02400000124,
+      "power_mw": 8.45907163,
+      "latency_ns": 276.6666666666667,
+      "energy_nj": 2.340343150966667,
+      "energy_efficiency_queries_per_joule": 427287767.4314363,
+      "frequency_mhz": 300,
+      "slack_ns": 0.06679213,
+      "hold_slack_ns": 0.00826555,
+      "route_drc_violations": 0
+    },
+    {
+      "algorithm": "rq1_global_topk",
+      "round": 3,
+      "status": "evaluated",
+      "config": {
+        "k": 15
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.020018825393910648,
+      "heldout_sparsity": 0.0625,
+      "critic_layer": "compiler",
+      "critique_applied": true,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": true,
+      "area_um2": 24108.91000000123,
+      "power_mw": 8.44734628,
+      "latency_ns": 276.6666666666667,
+      "energy_nj": 2.3370991374666668,
+      "energy_efficiency_queries_per_joule": 427880864.77322686,
+      "frequency_mhz": 300,
+      "slack_ns": 0.06026379,
+      "hold_slack_ns": 0.00691305,
+      "route_drc_violations": 0
+    },
+    {
+      "algorithm": "rq1_global_topk",
+      "round": 4,
+      "status": "evaluated",
+      "config": {
+        "k": 15
+      },
+      "qualified": false,
+      "qualification_status": "not_selected",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.020018825393910648,
+      "heldout_sparsity": 0.0625,
+      "critic_layer": "compiler",
+      "critique_applied": true,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": false,
+      "area_um2": 22738.212000000993,
+      "power_mw": 7.2126905400000005,
+      "latency_ns": 223.33333333333334,
+      "energy_nj": 1.6108342206000001,
+      "energy_efficiency_queries_per_joule": 620796347.1421175,
+      "frequency_mhz": 300,
+      "slack_ns": 0.06358802,
+      "hold_slack_ns": 0.0085397,
+      "route_drc_violations": 2
+    },
+    {
+      "algorithm": "rq1_global_topk",
+      "round": 5,
+      "status": "evaluated",
+      "config": {
+        "k": 15
+      },
+      "qualified": true,
+      "qualification_status": "passed",
+      "setup_repair_policy": "default",
+      "heldout_rmse": 0.020018825393910648,
+      "heldout_sparsity": 0.0625,
+      "critic_layer": "stop",
+      "critique_applied": false,
+      "rollback_to_round": null,
+      "historical_rollback_to_round": null,
+      "ppa_retries": 0,
+      "physical_checkpoint_recovery": null,
+      "error": null,
+      "complete": true,
+      "feasible": true,
+      "area_um2": 19154.926000000534,
+      "power_mw": 6.23409264,
+      "latency_ns": 230.0,
+      "energy_nj": 1.4338413072,
+      "energy_efficiency_queries_per_joule": 697427250.1276981,
+      "frequency_mhz": 300,
+      "slack_ns": 0.05732481,
+      "hold_slack_ns": 0.0084481,
+      "route_drc_violations": 0
+    }
+  ],
+  "designs": [
+    {
+      "algorithm": "rq1_dynax_xm",
+      "round": 1,
+      "top": "rq1_dynax_xm_Top",
+      "language": "chisel",
+      "config": {
+        "n1": 8,
+        "n2": 7,
+        "t0_quarters": 2,
+        "t1_quarters": 0
+      },
+      "modules": [
+        {
+          "name": "ScoreAndExpUnit_Adapter",
+          "purpose": "A thin adapter to instantiate and connect to the verified 'ScoreAndExpUnit' native Chisel module.",
+          "latency": 7,
+          "linked_reference_ids": [
+            "verified_rq1_score_exp"
+          ]
+        },
+        {
+          "name": "SelectionUnit",
+          "purpose": "Implements the DynaX X:M selection logic. It computes block-wise exponential sums, determines the number of keys to keep for each of two blocks, performs Top-K selection on scores for each block using internal bitonic sorters, and generates the final keep_mask.",
+          "latency": 12,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "NormalizationUnit_Adapter",
+          "purpose": "A thin adapter to instantiate and connect to the verified 'NormalizationUnit' native Chisel module.",
+          "latency": 41,
+          "linked_reference_ids": [
+            "verified_rq1_normalization"
+          ]
+        },
+        {
+          "name": "rq1_dynax_xm_Top",
+          "purpose": "Top-level wrapper for the sparse softmax system, integrating the score/exp, selection, and normalization units into a single pipeline.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_dynax_xm",
+      "round": 2,
+      "top": "rq1_dynax_xm_Top",
+      "language": "chisel",
+      "config": {
+        "n1": 8,
+        "n2": 7,
+        "t0_quarters": 2,
+        "t1_quarters": 0
+      },
+      "modules": [
+        {
+          "name": "ScoreAndExpUnit_Adapter",
+          "purpose": "A thin adapter to instantiate and connect to the verified 'ScoreAndExpUnit' native Chisel module.",
+          "latency": 7,
+          "linked_reference_ids": [
+            "verified_rq1_score_exp"
+          ]
+        },
+        {
+          "name": "SelectionUnit",
+          "purpose": "Implements the DynaX X:M selection logic. It computes block-wise exponential sums, determines the number of keys to keep for each of two blocks, performs Top-K selection on scores for each block using internal bitonic sorters, and generates the final keep_mask.",
+          "latency": 12,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "NormalizationUnit_Adapter",
+          "purpose": "A thin adapter to instantiate and connect to the verified 'NormalizationUnit' native Chisel module.",
+          "latency": 41,
+          "linked_reference_ids": [
+            "verified_rq1_normalization"
+          ]
+        },
+        {
+          "name": "rq1_dynax_xm_Top",
+          "purpose": "Top-level wrapper for the sparse softmax system, integrating the score/exp, selection, and normalization units into a single pipeline.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_dynax_xm",
+      "round": 4,
+      "top": "rq1_dynax_xm_Top",
+      "language": "chisel",
+      "config": {
+        "n1": 8,
+        "n2": 7,
+        "t0_quarters": 2,
+        "t1_quarters": 0
+      },
+      "modules": [
+        {
+          "name": "ScoreAndExpUnit_Adapter",
+          "purpose": "A thin adapter to instantiate and connect to the verified 'ScoreAndExpUnit' native Chisel module.",
+          "latency": 7,
+          "linked_reference_ids": [
+            "verified_rq1_score_exp"
+          ]
+        },
+        {
+          "name": "SelectionUnit",
+          "purpose": "Implements the DynaX X:M selection logic. It computes block-wise exponential sums, determines the number of keys to keep for each of two blocks, performs Top-K selection on scores for each block using internal sorters, and generates the final keep_mask.",
+          "latency": 12,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "NormalizationUnit_Adapter",
+          "purpose": "A thin adapter to instantiate and connect to the verified 'NormalizationUnit' native Chisel module.",
+          "latency": 41,
+          "linked_reference_ids": [
+            "verified_rq1_normalization"
+          ]
+        },
+        {
+          "name": "rq1_dynax_xm_Top",
+          "purpose": "Top-level wrapper for the sparse softmax system, integrating the score/exp, selection, and normalization units into a single pipeline.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_dynax_xm",
+      "round": 5,
+      "top": "Rq1DynaXm",
+      "language": "chisel",
+      "config": {
+        "n1": 7,
+        "n2": 4,
+        "t0_quarters": 2,
+        "t1_quarters": 0
+      },
+      "modules": [
+        {
+          "name": "ScoreAndExpUnit_rq1",
+          "purpose": "Adapter for the verified native `ScoreAndExpUnit` module. This module computes attention scores and their corresponding exponentials.",
+          "latency": 7,
+          "linked_reference_ids": [
+            "verified_rq1_score_exp"
+          ]
+        },
+        {
+          "name": "DynaX_SelectionUnit",
+          "purpose": "Implements the DynaX X:M selection logic. It computes block mass, applies thresholds to determine how many keys to keep (n1=7 or n2=4), and sorts the scores within each block to select the top candidates, generating a final keep_mask. This module corrects the tie-breaking and sorter implementation defects from previous attempts.",
+          "latency": 7,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "NormalizationUnit_rq1",
+          "purpose": "Adapter for the verified native `NormalizationUnit` module. This module performs the final normalization step.",
+          "latency": 41,
+          "linked_reference_ids": [
+            "verified_rq1_normalization"
+          ]
+        },
+        {
+          "name": "Rq1DynaXm",
+          "purpose": "Top-level wrapper for the sparse softmax system, integrating score/exponentiation, selection, and normalization modules. It manages the overall pipeline, data alignment, and I/O protocol.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "round": 1,
+      "top": "Rq1BlockNmTop",
+      "language": "chisel",
+      "config": {
+        "n": 7
+      },
+      "modules": [
+        {
+          "name": "FindMin8",
+          "purpose": "Finds the minimum of 8 signed scores, breaking ties by choosing the one with the largest original index. This is used to implement the 'keep top 7 of 8' selection by identifying the single element to discard.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "DividerWrapper",
+          "purpose": "A wrapper for the library's pipelined divider, configured to perform the final division step of the algorithm: a signed 32-bit numerator divided by an unsigned 20-bit denominator, producing a signed 16-bit result.",
+          "latency": 33,
+          "linked_reference_ids": [
+            "pipelined_divider"
+          ]
+        },
+        {
+          "name": "Rq1BlockNmTop",
+          "purpose": "Top-level module that orchestrates the entire rq1_block_nm computation. It contains the main control FSM, input/intermediate registers, and the primary datapath elements for score calculation, exponentiation, and accumulation.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "round": 2,
+      "top": "Rq1BlockNmTop",
+      "language": "chisel",
+      "config": {
+        "n": 7
+      },
+      "modules": [
+        {
+          "name": "FindMin8",
+          "purpose": "Finds the minimum of 8 signed scores, breaking ties by choosing the one with the largest original index. This is used to implement the 'keep top 7 of 8' selection by identifying the single element to discard.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "DividerWrapper",
+          "purpose": "A wrapper for the library's pipelined divider, configured to perform the final division step of the algorithm: a signed 32-bit numerator divided by an unsigned 20-bit denominator, producing a signed 16-bit result.",
+          "latency": 33,
+          "linked_reference_ids": [
+            "pipelined_divider"
+          ]
+        },
+        {
+          "name": "Rq1BlockNmTop",
+          "purpose": "Top-level module that orchestrates the entire rq1_block_nm computation. It contains the main control FSM, input/intermediate registers, and the primary datapath elements for score calculation, exponentiation, and accumulation.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "round": 3,
+      "top": "Rq1BlockNmTop",
+      "language": "chisel",
+      "config": {
+        "n": 7
+      },
+      "modules": [
+        {
+          "name": "FindMin8",
+          "purpose": "Finds the minimum of 8 signed scores, breaking ties by choosing the one with the largest original index. This is used to implement the 'keep top 7 of 8' selection by identifying the single element to discard.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "DividerWrapper",
+          "purpose": "A wrapper for the library's pipelined divider, configured to perform the final division step of the algorithm: a signed 32-bit numerator divided by an unsigned 20-bit denominator, producing a signed 16-bit result.",
+          "latency": 33,
+          "linked_reference_ids": [
+            "pipelined_divider"
+          ]
+        },
+        {
+          "name": "Rq1BlockNmTop",
+          "purpose": "Top-level module that orchestrates the entire rq1_block_nm computation. It contains the main control FSM, which is pipelined to meet timing constraints, input/intermediate registers, and the primary datapath elements for score calculation, exponentiation, and accumulation.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "round": 4,
+      "top": "Rq1BlockNmTop",
+      "language": "chisel",
+      "config": {
+        "n": 7
+      },
+      "modules": [
+        {
+          "name": "FindMin8",
+          "purpose": "Finds the minimum of 8 signed scores, breaking ties by choosing the one with the largest original index. This is used to implement the 'keep top 7 of 8' selection by identifying the single element to discard.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "DividerWrapper",
+          "purpose": "A wrapper for the library's pipelined divider, configured to perform the final division step of the algorithm: a signed 32-bit numerator divided by an unsigned 20-bit denominator, producing a signed 16-bit result.",
+          "latency": 33,
+          "linked_reference_ids": [
+            "pipelined_divider"
+          ]
+        },
+        {
+          "name": "Rq1BlockNmTop",
+          "purpose": "Top-level module that orchestrates the entire rq1_block_nm computation. It contains the main control FSM, which is pipelined to meet timing constraints, input/intermediate registers, and the primary datapath elements for score calculation, exponentiation, and accumulation.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "round": 5,
+      "top": "Rq1BlockNmTop",
+      "language": "chisel",
+      "config": {
+        "n": 7
+      },
+      "modules": [
+        {
+          "name": "FindMin8",
+          "purpose": "Finds the minimum of 8 signed scores, breaking ties by choosing the one with the largest original index. This is used to implement the 'keep top 7 of 8' selection by identifying the single element to discard.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "DividerWrapper",
+          "purpose": "A wrapper for the library's pipelined divider, configured to perform the final division step of the algorithm: a signed 32-bit numerator divided by an unsigned 20-bit denominator, producing a signed 16-bit result.",
+          "latency": 33,
+          "linked_reference_ids": [
+            "pipelined_divider"
+          ]
+        },
+        {
+          "name": "Rq1BlockNmTop",
+          "purpose": "Top-level module that orchestrates the entire rq1_block_nm computation. It contains the main control FSM, which is pipelined to meet timing constraints, input/intermediate registers, and the primary datapath elements for score calculation, exponentiation, and accumulation.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "round": 1,
+      "top": "SangerThresholdTop",
+      "language": "chisel",
+      "config": {
+        "threshold_256": 3
+      },
+      "modules": [
+        {
+          "name": "ScoreArray",
+          "purpose": "Calculates 16 parallel dot-product scores from the query and key vectors.",
+          "latency": 1,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "MaxExpAndThreshold",
+          "purpose": "Finds the max score, computes exponentials via a LUT, and applies the Sanger threshold.",
+          "latency": 7,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "Accumulator",
+          "purpose": "Accumulates the numerator (N) and denominator (D) for normalization based on the keep_mask.",
+          "latency": 5,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "Normalizer",
+          "purpose": "Performs the final normalization division.",
+          "latency": 8,
+          "linked_reference_ids": [
+            "pipelined_divider"
+          ]
+        },
+        {
+          "name": "SangerThresholdTop",
+          "purpose": "Top-level wrapper that integrates all sub-modules and manages the system's control flow and I/O.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "round": 2,
+      "top": "rq1_sanger_threshold",
+      "language": "chisel",
+      "config": {
+        "threshold_256": 2
+      },
+      "modules": [
+        {
+          "name": "ScoreGen",
+          "purpose": "Computes 16 dot-product scores in parallel from the query vector q and key matrix k.",
+          "latency": 1,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "ExpStage",
+          "purpose": "Finds the maximum score, calculates deltas h-s_i, and looks up the exponential values e_i from a ROM.",
+          "latency": 2,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "Threshold",
+          "purpose": "Calculates the total sum of exponentials 'S' and determines the 'keep_mask' based on the Sanger threshold.",
+          "latency": 2,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "Accum",
+          "purpose": "Accumulates sparse numerator 'N' and denominator 'D' based on the 'keep_mask'.",
+          "latency": 2,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "Normalizer",
+          "purpose": "Performs the final normalization division result = trunc((N*16)/D).",
+          "latency": 33,
+          "linked_reference_ids": [
+            "pipelined_divider"
+          ]
+        },
+        {
+          "name": "rq1_sanger_threshold",
+          "purpose": "Top-level module that integrates the full sparse softmax datapath and manages the I/O protocol according to the algorithm contract.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "round": 4,
+      "top": "rq1_sanger_threshold_top",
+      "language": "chisel",
+      "config": {
+        "threshold_256": 1
+      },
+      "modules": [
+        {
+          "name": "ScoreCalculator",
+          "purpose": "Computes 16 parallel signed dot products (2-element vectors) to generate the initial attention scores.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "SoftmaxUnit",
+          "purpose": "Finds the maximum of 16 scores, computes `h-s_i`, looks up `e_i` from a table, and calculates the total sum of `e_i`.",
+          "latency": 3,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "SelectionAndAccumulation",
+          "purpose": "Generates a selection mask based on a dynamic threshold and accumulates the selected weights (e_i) and weighted values (e_i * v_i).",
+          "latency": 2,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "Normalizer",
+          "purpose": "Performs the final normalization division: `trunc_toward_zero((N*16)/D)`, producing the 16-bit final result.",
+          "latency": 8,
+          "linked_reference_ids": [
+            "pipelined_divider"
+          ]
+        },
+        {
+          "name": "rq1_sanger_threshold_top",
+          "purpose": "Top-level module that integrates the pipeline stages (Score, Softmax, Selection/Accumulation, Normalization) and handles the system's I/O and control flow according to the specified protocol.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "round": 5,
+      "top": "rq1_sanger_threshold_top",
+      "language": "chisel",
+      "config": {
+        "threshold_256": 1
+      },
+      "modules": [
+        {
+          "name": "ScoreCalculator",
+          "purpose": "Computes 16 parallel signed dot products (2-element vectors) to generate the initial attention scores.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "SoftmaxUnit",
+          "purpose": "Finds the maximum of 16 scores, computes `h-s_i`, looks up `e_i` from a table, and calculates the total sum of `e_i`. Pipelined for timing.",
+          "latency": 7,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "SelectionAndAccumulation",
+          "purpose": "Generates a selection mask based on a dynamic threshold and accumulates the selected weights (e_i) and weighted values (e_i * v_i).",
+          "latency": 5,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "Normalizer",
+          "purpose": "Performs the final normalization division: `trunc_toward_zero((N*16)/D)`, producing the 16-bit final result.",
+          "latency": 8,
+          "linked_reference_ids": [
+            "pipelined_divider"
+          ]
+        },
+        {
+          "name": "rq1_sanger_threshold_top",
+          "purpose": "Top-level module that integrates the pipeline stages (Score, Softmax, Selection/Accumulation, Normalization) and handles the system's I/O and control flow according to the specified protocol.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_global_topk",
+      "round": 1,
+      "top": "Rq1GlobalTopk",
+      "language": "chisel",
+      "config": {
+        "k": 14
+      },
+      "modules": [
+        {
+          "name": "ScoreCalculator",
+          "purpose": "Calculates the dot product score for a single key: s = q[0]*k[0] + q[1]*k[1].",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "ExpAndProd",
+          "purpose": "Calculates the exponential of a score delta, and the product of the exponential with a value.",
+          "latency": 2,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "Normalizer",
+          "purpose": "Performs the final division: result = trunc_div(N_shifted, D).",
+          "latency": 33,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "Rq1GlobalTopk",
+          "purpose": "Top-level module that orchestrates the sparse softmax calculation through a state machine, controlling data flow between the compute units.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_global_topk",
+      "round": 2,
+      "top": "rq1_global_topk",
+      "language": "chisel",
+      "config": {
+        "k": 15
+      },
+      "modules": [
+        {
+          "name": "ScoreCalculator",
+          "purpose": "Calculates the dot product of two 2-element 4-bit signed vectors.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "ExpLut",
+          "purpose": "Implements the exponential lookup table.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "FinalDivider",
+          "purpose": "Performs the final normalization division: result = trunc_toward_zero((N*16)/D).",
+          "latency": 32,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "rq1_global_topk",
+          "purpose": "Top-level module for the sparse softmax decode-row algorithm. It orchestrates the computation of scores, exponentials, top-k selection, and normalization through a state machine and child modules.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_global_topk",
+      "round": 3,
+      "top": "rq1_global_topk",
+      "language": "chisel",
+      "config": {
+        "k": 15
+      },
+      "modules": [
+        {
+          "name": "ScoreCalculator",
+          "purpose": "Calculates the dot product of two 2-element 4-bit signed vectors.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "ExpLut",
+          "purpose": "Implements the exponential lookup table.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "FinalDivider",
+          "purpose": "Performs the final normalization division: result = trunc_toward_zero((N*16)/D).",
+          "latency": 32,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "rq1_global_topk",
+          "purpose": "Top-level module for the sparse softmax decode-row algorithm. It orchestrates the computation of scores, exponentials, top-k selection, and normalization through a state machine and child modules.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_global_topk",
+      "round": 4,
+      "top": "rq1_global_topk",
+      "language": "chisel",
+      "config": {
+        "k": 15
+      },
+      "modules": [
+        {
+          "name": "ScoreCalculator",
+          "purpose": "Calculates the dot product of two 2-element 4-bit signed vectors.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "ExpLut",
+          "purpose": "Implements the exponential lookup table.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "FinalDivider",
+          "purpose": "Performs the final normalization division: result = trunc_toward_zero((N*16)/D).",
+          "latency": 16,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "rq1_global_topk",
+          "purpose": "Top-level module for the sparse softmax decode-row algorithm. It orchestrates the computation of scores, exponentials, top-k selection, and normalization through a state machine and child modules.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_global_topk",
+      "round": 5,
+      "top": "rq1_global_topk",
+      "language": "chisel",
+      "config": {
+        "k": 15
+      },
+      "modules": [
+        {
+          "name": "ScoreCalculator",
+          "purpose": "Calculates the dot product of two 2-element 4-bit signed vectors.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "ExpLut",
+          "purpose": "Implements the exponential lookup table.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "FinalDivider",
+          "purpose": "Performs the final normalization division: result = trunc_toward_zero((N*16)/D).",
+          "latency": 18,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "rq1_global_topk",
+          "purpose": "Top-level module for the sparse softmax decode-row algorithm. It orchestrates the computation of scores, exponentials, top-k selection, and normalization through a state machine and child modules.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "round": 1,
+      "evidence_id": "block_nm_assisted_A1",
+      "top": "Rq1BlockNmTop",
+      "language": "chisel",
+      "config": {
+        "n": 7
+      },
+      "modules": [
+        {
+          "name": "FindMin8",
+          "purpose": "Finds the minimum of 8 signed scores, breaking ties by choosing the one with the largest original index. This is used to implement the 'keep top 7 of 8' selection by identifying the single element to discard.",
+          "latency": 0,
+          "linked_reference_ids": []
+        },
+        {
+          "name": "DividerWrapper",
+          "purpose": "A wrapper for the library's pipelined divider, configured to perform the final division step of the algorithm: a signed 32-bit numerator divided by an unsigned 20-bit denominator, producing a signed 16-bit result.",
+          "latency": 33,
+          "linked_reference_ids": [
+            "pipelined_divider"
+          ]
+        },
+        {
+          "name": "Rq1BlockNmTop",
+          "purpose": "Top-level module that orchestrates the entire rq1_block_nm computation. It contains the main control FSM, which is pipelined to meet timing constraints, input/intermediate registers, and the primary datapath elements for score calculation, exponentiation, and accumulation.",
+          "latency": null,
+          "linked_reference_ids": []
+        }
+      ]
+    }
+  ],
+  "scope": "Development continuations across different versions; NOT a uniform from-scratch success-rate experiment"
+}

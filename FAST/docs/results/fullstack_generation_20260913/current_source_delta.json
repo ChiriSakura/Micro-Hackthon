@@ -1,0 +1,17 @@
+{
+  "files": {
+    "fast/fullstack/agents.py": {
+      "experiment_sha256": "f59553117c2d534b7347ac7e73a6aea9b1384022c4eb2d146df2cdadb5d37754",
+      "current_sha256": "c1a2c759a4711e39ef4cc7a6ae8fb7de8f8c34a6c998fbb91867c67a8f771002"
+    },
+    "fast/fullstack/flow.py": {
+      "experiment_sha256": "8004e5fdb40638601ac41425d457c8c10c06cba1567c7f00b748259716061869",
+      "current_sha256": "d2a48c2bd9cae10d1258594fa02a38409c0fca137e2b493f7ab071b9c52581d6"
+    }
+  },
+  "changes": [
+    "Compiler selection and final planning use distinct prompts; response retries retain retrieved code.",
+    "Accepted UArch implementation explanations and hashes are recorded separately from the retained architecture plan."
+  ],
+  "physical_backend_unchanged": true
+}

@@ -1,0 +1,276 @@
+{
+  "round": 2,
+  "reentry": "uarch",
+  "status": "evaluated",
+  "config": {
+    "threshold": 64
+  },
+  "profile": {
+    "config": {
+      "threshold": 64
+    },
+    "quality_loss": 0.07025641025641026,
+    "quality_metric": "mean absolute output error / 15 vs threshold=0",
+    "quality_scope": "260 deterministic synthetic profiling queries; not model perplexity",
+    "sparsity": 0.31634615384615383,
+    "active_keys_histogram": {
+      "0": 20,
+      "1": 27,
+      "2": 47,
+      "3": 74,
+      "4": 92
+    },
+    "samples": 260,
+    "seed": 17
+  },
+  "system_plan": {
+    "top": "ThresholdAttention",
+    "modules": [
+      {
+        "name": "ScoreAndWeightUnit",
+        "purpose": "Calculates the score for a single key-query pair and applies a threshold to generate the corresponding weight. This is a purely combinational module.",
+        "ports": [
+          {
+            "name": "q_vec",
+            "direction": "input",
+            "width": 8
+          },
+          {
+            "name": "k_vec",
+            "direction": "input",
+            "width": 8
+          },
+          {
+            "name": "threshold",
+            "direction": "input",
+            "width": 9
+          },
+          {
+            "name": "weight",
+            "direction": "output",
+            "width": 9
+          }
+        ],
+        "dependencies": [],
+        "implementation": "The module's logic is entirely combinational. It performs the following operations:\n1. Input Unpacking: The 8-bit `q_vec` is split into two 4-bit unsigned numbers, `q0 = q_vec(3,0)` and `q1 = q_vec(7,4)`. Similarly, `k_vec` is split into `k0 = k_vec(3,0)` and `k1 = k_vec(7,4)`.\n2. Multiplication: Two parallel 4x4 unsigned multipliers calculate `prod0 = q0 * k0` and `prod1 = q1 * k1`. Each product is an 8-bit value.\n3. Addition: An 8-bit adder computes `score = prod0 + prod1`. The result is a 9-bit unsigned value to hold the maximum possible score of 450.\n4. Thresholding: A 9-bit comparator checks if `score >= threshold`.\n5. Muxing: A 2-to-1 multiplexer selects the output `weight`. If the comparison is true, `weight` is assigned the value of `score`; otherwise, it is assigned 0. The critical path consists of a multiplier, an adder, a comparator, and a multiplexer."
+      },
+      {
+        "name": "Divider15by11",
+        "purpose": "Performs unsigned integer division of a 15-bit dividend by an 11-bit divisor, producing a 15-bit quotient. It uses an iterative restoring algorithm that completes in 15 cycles.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "start",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "dividend",
+            "direction": "input",
+            "width": 15
+          },
+          {
+            "name": "divisor",
+            "direction": "input",
+            "width": 11
+          },
+          {
+            "name": "quotient",
+            "direction": "output",
+            "width": 15
+          },
+          {
+            "name": "valid_out",
+            "direction": "output",
+            "width": 1
+          }
+        ],
+        "dependencies": [],
+        "implementation": "The module is a state machine with `sIdle`, `sBusy`, and `sDone` states, using `withClockAndReset`. On a `start` pulse in `sIdle`, it latches inputs and initializes internal registers before moving to `sBusy`.\n\nInternal Registers:\n- `dividend_reg`: 15-bit shift register, loaded with the `dividend` input.\n- `divisor_reg`: 11-bit register, loaded with the `divisor` input.\n- `rem_reg`: 11-bit register for the partial remainder, initialized to 0.\n- `quotient_reg`: 15-bit shift register for the result, initialized to 0.\n- `count_reg`: 4-bit down-counter, initialized to 14.\n\nState Machine Logic:\n- `sBusy`: This state executes for 15 cycles. In each cycle:\n  1. A 12-bit intermediate value `next_rem_val` is formed by shifting `rem_reg` left and appending the MSB of `dividend_reg`: `val next_rem_val = (rem_reg << 1) | dividend_reg(14)`.\n  2. `dividend_reg` is shifted left by one position: `dividend_reg := dividend_reg << 1`.\n  3. A trial subtraction is evaluated: `when (next_rem_val >= divisor_reg)`.\n  4. If the condition is true, the subtraction is committed and the new quotient bit is 1: `rem_reg := next_rem_val - divisor_reg`, `quotient_reg := (quotient_reg << 1) | 1.U`.\n  5. Otherwise, the remainder is updated without subtraction and the new quotient bit is 0: `rem_reg := next_rem_val(10,0)`, `quotient_reg := quotient_reg << 1`.\n  6. `count_reg` is decremented. When it reaches zero, the FSM transitions to `sDone`.\n- `sDone`: Asserts `valid_out` for one cycle. The `quotient` output is driven by `quotient_reg`. The FSM then returns to `sIdle`."
+      },
+      {
+        "name": "ThresholdAttention",
+        "purpose": "Top-level module that orchestrates the threshold attention algorithm. It controls the data flow through the ScoreAndWeightUnit and Divider, managing state and accumulating intermediate results.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "start",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "q",
+            "direction": "input",
+            "width": 8
+          },
+          {
+            "name": "k",
+            "direction": "input",
+            "width": 32
+          },
+          {
+            "name": "v",
+            "direction": "input",
+            "width": 16
+          },
+          {
+            "name": "done",
+            "direction": "output",
+            "width": 1
+          },
+          {
+            "name": "result",
+            "direction": "output",
+            "width": 4
+          }
+        ],
+        "dependencies": [
+          "ScoreAndWeightUnit",
+          "Divider15by11"
+        ],
+        "implementation": "The module is a finite state machine (FSM) with states sIdle, sCompute, sDivide, sWaitDivide, and sDone. All registers and state transitions are synchronous to the clock edge and reset by the active-high reset. The `withClockAndReset` construct is used for all sequential logic.\n\nState Machine Logic:\n- `sIdle`: Waits for the `start` signal. When `start` is high, it latches the `q`, `k`, and `v` inputs into `q_reg`, `k_reg`, and `v_reg` respectively. It also initializes accumulator registers `weight_sum_reg` (11 bits) and `weighted_value_sum_reg` (15 bits) to zero, and a key index counter `idx_reg` (2 bits) to zero. The FSM then transitions to `sCompute`.\n- `sCompute`: This state iterates for 4 cycles. In each cycle, controlled by `idx_reg`:\n  - The current key vector `k_i` (8 bits) and value scalar `v_i` (4 bits) are extracted from `k_reg` and `v_reg` using right-shifts: `k_i = (k_reg >> (idx_reg * 8))(7,0)` and `v_i = (v_reg >> (idx_reg * 4))(3,0)`.\n  - The `ScoreAndWeightUnit` is driven with `q_reg`, `k_i`, and a hardcoded threshold of 64. The unit combinationally produces `current_weight` (9 bits).\n  - The accumulators are updated: `weight_sum_reg := weight_sum_reg + current_weight` and `weighted_value_sum_reg := weighted_value_sum_reg + (current_weight * v_i)`.\n  - `idx_reg` is incremented. After processing the fourth key (`idx_reg`=3), the FSM transitions to `sDivide`.\n- `sDivide`: This state initiates the division. It checks if `weight_sum_reg` is zero. If so, it sets an internal result register to 0 and transitions to `sDone`. Otherwise, it asserts the `start` signal to the `Divider15by11` instance for one cycle, providing `weighted_value_sum_reg` as the dividend and `weight_sum_reg` as the divisor. It then transitions to `sWaitDivide`.\n- `sWaitDivide`: The FSM waits for the `valid_out` signal from the divider. Upon `valid_out` assertion, it latches the 15-bit `quotient` from the divider into an internal register and transitions to `sDone`.\n- `sDone`: Asserts the top-level `done` output for one cycle. The `result` output is driven with the lower 4 bits of the latched quotient. The FSM returns to `sIdle`.\n\nChild module connections:\n- `score_weight_unit`: Instantiated once. Its inputs are driven combinationally based on registers in `ThresholdAttention`.\n- `divider`: Instantiated once. Its `clock` and `reset` are connected to the top-level ports. Its `start`, `dividend`, and `divisor` ports are controlled by the FSM."
+      }
+    ],
+    "rationale": "The design adopts a sequential, iterative architecture to minimize area, which is a key constraint (`max_area_um2`: 30000). The computation is broken down into three main stages controlled by a central FSM: input latching, iterative score/weight calculation, and division. A single `ScoreAndWeightUnit` is instantiated and reused across the four keys, processing one key per cycle. This saves the area of three additional units compared to a fully parallel design. The accumulation of `weight_sum` and `weighted_value_sum` is performed within the top module's control logic. For the division `floor(weighted_value_sum / weight_sum)`, a dedicated iterative restoring divider module (`Divider15by11`) is used, offering a good trade-off between area and latency. It computes a 15-bit quotient from a 15-bit dividend and 11-bit divisor in 15 clock cycles. The total latency is approximately 22 cycles (1 for start, 4 for key processing, 1 for divider setup, 15 for division, 1 for final output), which is well within the 128-cycle budget. Numeric widths are chosen based on the `numeric_bounds` to prevent overflow while minimizing datapath size. The `threshold` value is hardcoded to 64 as specified in the profiling configuration.",
+    "language": "chisel"
+  },
+  "sources": {
+    "round_02/build_01/ScoreAndWeightUnit/ScoreAndWeightUnit.scala": "9b1f5892ef40619c54e9d1e7c2e2e62a0b6aac72d61983e85c708b3ec78e1bf5",
+    "round_02/build_01/Divider15by11/Divider15by11.scala": "bd92b5d464c916dbb56f3fee3c4cf7a3722a407bd747c0c9eea94187a329d141",
+    "round_02/build_01/ThresholdAttention/ThresholdAttention.scala": "0091e2c401ce9d78791a467c73e7f0b5031889295172f1e072f3358c1be5ea03"
+  },
+  "rtl_sources": {
+    "round_02/build_01/ThresholdAttention/check_01/emitted/ThresholdAttention.v": "978cbe48857fe5e87a1b60bd097c8cd1cbeb32ff4a1ebaac016af7f54daf24d0"
+  },
+  "evaluation": {
+    "complete": true,
+    "feasible": true,
+    "synthesis": {
+      "success": true,
+      "top_module": "ThresholdAttention",
+      "technology": "nangate45",
+      "cell_area_um2": 3306.646,
+      "cell_count": 2518,
+      "cell_histogram": {
+        "AND2_X1": 73,
+        "AND3_X1": 48,
+        "AND4_X1": 15,
+        "AOI211_X1": 80,
+        "AOI21_X1": 225,
+        "AOI221_X1": 21,
+        "AOI222_X1": 4,
+        "AOI22_X1": 66,
+        "DFF_X1": 120,
+        "INV_X1": 147,
+        "MUX2_X1": 164,
+        "NAND2_X1": 237,
+        "NAND3_X1": 92,
+        "NAND4_X1": 23,
+        "NOR2_X1": 316,
+        "NOR3_X1": 92,
+        "NOR4_X1": 22,
+        "OAI211_X1": 40,
+        "OAI21_X1": 231,
+        "OAI221_X1": 12,
+        "OAI222_X1": 3,
+        "OAI22_X1": 38,
+        "OAI33_X1": 8,
+        "OR2_X1": 69,
+        "OR3_X1": 55,
+        "OR4_X1": 17,
+        "XNOR2_X1": 219,
+        "XOR2_X1": 81,
+        "Divider15by11": 1,
+        "ScoreAndWeightUnit": 1,
+        "ThresholdAttention": 1
+      },
+      "netlist_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/mapped.v",
+      "wall_seconds": 2.3620493412017822,
+      "log_uri": "file:///scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/yosys_ThresholdAttention.log",
+      "error": null
+    },
+    "verification": {
+      "passed": true,
+      "stage": "simulation",
+      "simulation": {
+        "passed": true,
+        "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/e2e_sim.log",
+        "diagnostics": "FAST_CASE cycles=6\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=6\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=6\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=6\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=6\nFAST_CASE cycles=6\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=6\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_CASE cycles=6\nFAST_CASE cycles=6\nFAST_CASE cycles=7\nFAST_CASE cycles=7\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/trusted_testbench.sv:123: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 8ns; walltime 0.001 s; speed 5.694 us/s\n- Verilator: cpu 0.001 s on 1 threads; allocated 3 MB\n",
+        "wall_seconds": 0.3918837970122695,
+        "command": [
+          "apptainer",
+          "exec",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/obj_dir/VFASTTestbench"
+        ]
+      },
+      "cases": 100,
+      "expected_cases": 100,
+      "mean_cycles": 6.91,
+      "min_cycles": 6,
+      "max_cycles": 7,
+      "testbench_sha256": "72f8f5bace119ba7a405ff72ec5850ad1ec0436d43b6446610dfed9a4c6d4c66",
+      "coverage": "100 integer-reference queries, threshold boundaries, all-zero/max, repeated transactions, mid-run reset"
+    },
+    "design_sha256": "978cbe48857fe5e87a1b60bd097c8cd1cbeb32ff4a1ebaac016af7f54daf24d0",
+    "scope": "entire generated top and all instantiated modules, memories mapped to flops",
+    "power_method": "OpenSTA uniform-activity estimate, pre-layout Nangate45",
+    "activity": 0.1,
+    "timing": {
+      "success": true,
+      "top_module": "ThresholdAttention",
+      "technology": "nangate45",
+      "clock_period_ns": 10.0,
+      "critical_path_ns": 6.5616,
+      "slack_ns": 3.407,
+      "activity": 0.1,
+      "worst_stage_ns": 0.243,
+      "worst_stage_cell": "NOR4_X1",
+      "timing_credible": true,
+      "internal_power_w": 0.0001095644,
+      "switching_power_w": 6.135279e-05,
+      "leakage_power_w": 7.193967e-05,
+      "total_power_w": 0.0002428568,
+      "wall_seconds": 0.7433922290802002,
+      "log_uri": "file:///scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/sta_ThresholdAttention.log",
+      "error": null
+    },
+    "area_um2": 3306.646,
+    "power_mw": 0.2428568,
+    "frequency_mhz": 100,
+    "max_frequency_mhz": 151.67602002123465,
+    "slack_ns": 3.407,
+    "latency_ns": 69.1,
+    "energy_nj": 0.01678140488,
+    "quality_loss": 0.07025641025641026
+  },
+  "critique": {
+    "layer": "uarch",
+    "reason": "The round 2 design successfully reduced latency from 22 to 7 cycles by parallelizing the divider, establishing a new Pareto-optimal point. However, measurement shows latency is now dominated by the 4-cycle sequential processing of key-query scores. The design has substantial remaining budget, with area usage at only 11% of the constraint (3306.646 um2 vs 30000 um2) and a healthy timing slack of 3.407 ns. This is a clear opportunity to trade abundant area for a significant latency reduction by parallelizing the score calculation.",
+    "evidence": [
+      "evaluation.verification.max_cycles",
+      "evaluation.area_um2",
+      "evaluation.slack_ns"
+    ],
+    "instructions": "Modify the `ThresholdAttention` microarchitecture to instantiate four `ScoreAndWeightUnit`s. Process all four keys in parallel within a single cycle, replacing the current 4-cycle FSM loop. The outputs (`weight` and `weight*v`) from these four parallel units should be summed using adder trees before the division stage. This change is expected to reduce the computation stage from 4 cycles to 1, lowering the total latency from 7 to approximately 4 cycles and creating a superior latency-energy design point."
+  },
+  "critique_applied": false
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/emitted"
+  }
+]

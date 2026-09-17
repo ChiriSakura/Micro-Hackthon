@@ -1,0 +1,35 @@
+[
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/emitted"
+  },
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~SelectorAggregator|SelectorAggregator>keep_mask_out",
+    "sources":[
+      "~SelectorAggregator|SelectorAggregator>weights_in",
+      "~SelectorAggregator|SelectorAggregator>scores_in"
+    ]
+  },
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~SelectorAggregator|SelectorAggregator>N_out",
+    "sources":[
+      "~SelectorAggregator|SelectorAggregator>weights_in",
+      "~SelectorAggregator|SelectorAggregator>v_in",
+      "~SelectorAggregator|SelectorAggregator>scores_in"
+    ]
+  },
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~SelectorAggregator|SelectorAggregator>D_out",
+    "sources":[
+      "~SelectorAggregator|SelectorAggregator>weights_in",
+      "~SelectorAggregator|SelectorAggregator>scores_in"
+    ]
+  }
+]

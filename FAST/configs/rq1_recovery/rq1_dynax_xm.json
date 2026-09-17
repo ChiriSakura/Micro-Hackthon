@@ -1,0 +1,30 @@
+{
+  "algorithm": "rq1_dynax_xm",
+  "prompt": "Generate a complete sparse softmax decode-row system from signed Q/K/V to result AND selected mask under the exact supplied algorithm contract. Optimize the latency-energy-efficiency Pareto frontier subject to quality, area and 300 MHz timing constraints. Read and assign relevant immutable hardware AND golden test references. Compiler chooses modules, scheduling, numeric widths and pipeline depths; UArch generates each implementation, then a separate assembly implements the full system. Prefer compatible native library reuse with linked_reference_ids and thin generated adapters; inspect integrated bundles if useful. Reuse must preserve exact contract math. Start from a correct compact implementation; one-query-per-cycle throughput is not required. All algorithm parameters are chosen by Kernel from measured profiles and can be revisited by Critic. No manually supplied complete system plan or previous top-level RTL. Immutable prior generated components may be selected from the reference catalog. This is an engineering recovery experiment with immutable previously verified score/exp and normalization components available in the catalog, in addition to original hardware references. Read their contracts and prefer compatible native reuse for the initial working design. Kernel must independently choose a non-degenerate dynamic X:M configuration from measured calibration and selection-validation profiles; do not collapse to fixed N:M (n1=n2 with t1=0). Satisfy the selection quality margin before building. Compiler owns module boundaries and architecture; preserve unrelated verified module definitions exactly during targeted optimization. A failed design candidate consumes a round and is rolled back when possible. Keep the same algorithm math, 300MHz and final 5% quality constraint; do not relax verification. Complete five outer attempts, recording successful designs and failed candidates separately.",
+  "constraints": {
+    "max_quality_loss": 0.05,
+    "max_area_um2": 200000,
+    "frequency_mhz": 300
+  },
+  "max_loops": 5,
+  "compiler_attempts": 5,
+  "module_attempts": 5,
+  "seed": 17,
+  "kernel_profile_budget": 64,
+  "activity": 0.1,
+  "hdl": "chisel",
+  "template_read_budget": 3,
+  "module_workers": 1,
+  "assembly_attempts": 5,
+  "ppa_backend": "hammer_openroad",
+  "dense_equivalent_ops_per_query": 96,
+  "min_loops": 5,
+  "reuse_verified_modules": true,
+  "continue_after_build_failure": true,
+  "quality_validation_seeds": [
+    2026091701,
+    2026091702
+  ],
+  "quality_validation_samples": 4096,
+  "quality_margin": 0.005
+}

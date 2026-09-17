@@ -1,0 +1,212 @@
+[
+  {
+    "selection": "main_latency_and_energy_proxy",
+    "run_id": "main32_llm_s0",
+    "loop": 2,
+    "design_id": "86db208eda7fb8f9e075532a45993414af24f3337d2ece0630d2f675d59b39c0",
+    "software": {
+      "algorithm": {
+        "label": "xm:16:8:32:0.75:0.05",
+        "family": "xm",
+        "block_m": 32,
+        "kept_high": 16,
+        "kept_low": 8,
+        "threshold_0": 0.75,
+        "threshold_1": 0.05
+      },
+      "task": {
+        "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+        "dataset": "wikitext-2-raw-v1",
+        "sequence_length": 512,
+        "head_dim": 64,
+        "epsilon": 0.05,
+        "data_seed": 20260903,
+        "max_samples": 32,
+        "dtype": "float32",
+        "capture_layer": 10,
+        "capture_head": 0
+      },
+      "quality_loss": 0.03529660876991823,
+      "quality_windows": 32
+    },
+    "hardware_point": {
+      "tile_q": 64,
+      "tile_k": 64,
+      "tile_d": 64,
+      "parallelism": 16,
+      "double_buffer": true,
+      "num_rows": 32,
+      "pe_per_row": 8,
+      "reg_width": 32,
+      "data_width": 16,
+      "sram_bytes": 262144,
+      "queue_depth": 0,
+      "divider_stages": 12,
+      "bank_count": 32
+    },
+    "scheduler_validation": {
+      "metrics": {
+        "queue_depth": 0.0,
+        "rows": 32.0,
+        "pe": 8.0,
+        "imbalance": 1.329141,
+        "row_util": 0.752366,
+        "pe_util": 0.752366,
+        "cycles": 251.0,
+        "area_um2": 13940.262,
+        "cells": 6152.0,
+        "estimated_power_mw": 2.799779,
+        "assumed_activity": 0.0213,
+        "critical_path_ns": 2.4835,
+        "sta_period_ns": 2.857142857142857,
+        "slack_ns": 0.3378,
+        "max_frequency_mhz": 396.92890436281573
+      },
+      "latency_s": 7.171428571428571e-07,
+      "uniform_activity_energy_j": 2.007841511428571e-09,
+      "scope": "BlockScheduler only, Nangate45 synthesis/STA, uniform activity=0.0213, not placed-and-routed/full-attention PPA",
+      "evidence": "raw/runs/main32_llm_s0/86db208eda7fb8f9e075532a45993414af24f3337d2ece0630d2f675d59b39c0/rtl/validation.json"
+    },
+    "other_hardware_parameters": "Selected full point preserved; fields outside rows/PE/queue/M are not independently measured by this scheduler gate."
+  },
+  {
+    "selection": "confirm_latency",
+    "run_id": "confirm16_llm_s0",
+    "loop": 1,
+    "design_id": "a160f04c809dbeb2bb900d0f60a3f14bbd7de054010d2d60c35205e8899b9b73",
+    "software": {
+      "algorithm": {
+        "label": "xm:16:8:32:0.75:0.05",
+        "family": "xm",
+        "block_m": 32,
+        "kept_high": 16,
+        "kept_low": 8,
+        "threshold_0": 0.75,
+        "threshold_1": 0.05
+      },
+      "task": {
+        "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+        "dataset": "wikitext-2-raw-v1",
+        "sequence_length": 512,
+        "head_dim": 64,
+        "epsilon": 0.05,
+        "data_seed": 20260903,
+        "max_samples": 32,
+        "dtype": "float32",
+        "capture_layer": 10,
+        "capture_head": 0
+      },
+      "quality_loss": 0.03529660876991823,
+      "quality_windows": 32
+    },
+    "hardware_point": {
+      "tile_q": 32,
+      "tile_k": 32,
+      "tile_d": 64,
+      "parallelism": 8,
+      "double_buffer": false,
+      "num_rows": 16,
+      "pe_per_row": 8,
+      "reg_width": 16,
+      "data_width": 16,
+      "sram_bytes": 131072,
+      "queue_depth": 2,
+      "divider_stages": 8,
+      "bank_count": 16
+    },
+    "scheduler_validation": {
+      "metrics": {
+        "queue_depth": 2.0,
+        "rows": 16.0,
+        "pe": 8.0,
+        "imbalance": 1.265597,
+        "row_util": 0.903559,
+        "pe_util": 0.903559,
+        "cycles": 418.0,
+        "area_um2": 21387.198,
+        "cells": 8636.0,
+        "estimated_power_mw": 4.162457,
+        "assumed_activity": 0.0213,
+        "critical_path_ns": 2.6061,
+        "sta_period_ns": 2.857142857142857,
+        "slack_ns": 0.2164,
+        "max_frequency_mhz": 378.68132343712807
+      },
+      "latency_s": 1.1942857142857144e-06,
+      "uniform_activity_energy_j": 4.971162931428572e-09,
+      "scope": "BlockScheduler only, Nangate45 synthesis/STA, uniform activity=0.0213, not placed-and-routed/full-attention PPA",
+      "evidence": "raw/runs/confirm16_llm_s0/a160f04c809dbeb2bb900d0f60a3f14bbd7de054010d2d60c35205e8899b9b73/rtl/validation.json"
+    },
+    "other_hardware_parameters": "Selected full point preserved; fields outside rows/PE/queue/M are not independently measured by this scheduler gate."
+  },
+  {
+    "selection": "confirm_energy_proxy",
+    "run_id": "confirm16_llm_s0",
+    "loop": 2,
+    "design_id": "7d5bcede175fd5bcbc70971c18a527d352fe5744e5282a82138c576130cd8371",
+    "software": {
+      "algorithm": {
+        "label": "xm:16:8:32:0.75:0.05",
+        "family": "xm",
+        "block_m": 32,
+        "kept_high": 16,
+        "kept_low": 8,
+        "threshold_0": 0.75,
+        "threshold_1": 0.05
+      },
+      "task": {
+        "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+        "dataset": "wikitext-2-raw-v1",
+        "sequence_length": 512,
+        "head_dim": 64,
+        "epsilon": 0.05,
+        "data_seed": 20260903,
+        "max_samples": 32,
+        "dtype": "float32",
+        "capture_layer": 10,
+        "capture_head": 0
+      },
+      "quality_loss": 0.03529660876991823,
+      "quality_windows": 32
+    },
+    "hardware_point": {
+      "tile_q": 32,
+      "tile_k": 32,
+      "tile_d": 64,
+      "parallelism": 8,
+      "double_buffer": false,
+      "num_rows": 16,
+      "pe_per_row": 8,
+      "reg_width": 16,
+      "data_width": 16,
+      "sram_bytes": 131072,
+      "queue_depth": 0,
+      "divider_stages": 8,
+      "bank_count": 16
+    },
+    "scheduler_validation": {
+      "metrics": {
+        "queue_depth": 0.0,
+        "rows": 16.0,
+        "pe": 8.0,
+        "imbalance": 1.265597,
+        "row_util": 0.790141,
+        "pe_util": 0.790141,
+        "cycles": 478.0,
+        "area_um2": 7374.318,
+        "cells": 3321.0,
+        "estimated_power_mw": 1.478434,
+        "assumed_activity": 0.0213,
+        "critical_path_ns": 2.364,
+        "sta_period_ns": 2.857142857142857,
+        "slack_ns": 0.4585,
+        "max_frequency_mhz": 416.9024150561329
+      },
+      "latency_s": 1.3657142857142857e-06,
+      "uniform_activity_energy_j": 2.0191184342857144e-09,
+      "scope": "BlockScheduler only, Nangate45 synthesis/STA, uniform activity=0.0213, not placed-and-routed/full-attention PPA",
+      "evidence": "raw/runs/confirm16_llm_s0/7d5bcede175fd5bcbc70971c18a527d352fe5744e5282a82138c576130cd8371/rtl/validation.json"
+    },
+    "other_hardware_parameters": "Selected full point preserved; fields outside rows/PE/queue/M are not independently measured by this scheduler gate."
+  }
+]

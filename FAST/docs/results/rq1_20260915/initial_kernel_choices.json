@@ -1,0 +1,41 @@
+[
+  {
+    "algorithm": "rq1_dynax_xm",
+    "config": {
+      "n1": 7,
+      "n2": 6,
+      "t0_quarters": 4,
+      "t1_quarters": 0
+    },
+    "quality_loss": 0.04474579932352966,
+    "sparsity": 0.18771320662768032,
+    "scope": "initial software calibration, not PPA or independently verified hardware"
+  },
+  {
+    "algorithm": "rq1_block_nm",
+    "config": {
+      "n": 7
+    },
+    "quality_loss": 0.03358657986150424,
+    "sparsity": 0.125,
+    "scope": "initial software calibration, not PPA or independently verified hardware"
+  },
+  {
+    "algorithm": "rq1_global_topk",
+    "config": {
+      "k": 14
+    },
+    "quality_loss": 0.028844295519552907,
+    "sparsity": 0.125,
+    "scope": "initial software calibration, not PPA or independently verified hardware"
+  },
+  {
+    "algorithm": "rq1_sanger_threshold",
+    "config": {
+      "threshold_256": 3
+    },
+    "quality_loss": 0.03839193117999572,
+    "sparsity": 0.3775889376218323,
+    "scope": "initial software calibration, not PPA or independently verified hardware"
+  }
+]

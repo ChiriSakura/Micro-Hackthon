@@ -1,0 +1,354 @@
+{
+  "scope": "Read-only accepted source/hash and contract audit. Does not prove PPA gain or isolate Critic causality. N:M R2 record still in progress at audit.",
+  "transitions": [
+    {
+      "algorithm": "rq1_dynax_xm",
+      "rounds": [
+        {
+          "round": 1,
+          "config": {
+            "n1": 8,
+            "n2": 7,
+            "t0_quarters": 2,
+            "t1_quarters": 0
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/round_01/result.json",
+          "record_sha256_at_audit": "4240b5c0f566b4635479beed03ea3bb83025f9c0506eb18b9b20e814632cceff",
+          "sources": [
+            {
+              "path": "round_01/build_01/ScoreAndExpUnit_Adapter/ScoreAndExpUnit_Adapter.scala",
+              "sha256": "511836a14ca8ba3c52a7db14ef6cb957080aed97f1fb14a438670b205b8c1830"
+            },
+            {
+              "path": "round_01/build_01/SelectionUnit/SelectionUnit.scala",
+              "sha256": "0132270c7efddf017f2bc09736e87be6c33ed6d522167246888725c93294d452"
+            },
+            {
+              "path": "round_01/build_01/NormalizationUnit_Adapter/NormalizationUnit_Adapter.scala",
+              "sha256": "9bc03676b136d136c4a596a903466b57e2cf64240489d0e879589b1f6a4ece13"
+            },
+            {
+              "path": "round_01/build_01/rq1_dynax_xm_Top/rq1_dynax_xm_Top.scala",
+              "sha256": "647eefd8fbc992afb9489912d5d59ed97e21b4f26320e76c39e95105eb1641f4"
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreAndExpUnit_Adapter",
+              "latency": 7,
+              "linked_reference_ids": [
+                "verified_rq1_score_exp"
+              ]
+            },
+            {
+              "name": "SelectionUnit",
+              "latency": 12,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "NormalizationUnit_Adapter",
+              "latency": 41,
+              "linked_reference_ids": [
+                "verified_rq1_normalization"
+              ]
+            },
+            {
+              "name": "rq1_dynax_xm_Top",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "uarch",
+          "critic_reason": "The initial design is feasible and meets all constraints, establishing a valid Pareto point. It has a total latency of 60 cycles and a positive timing slack of 0.32ns. The largest latency contributor is the immutable NormalizationUnit (41 cycles). The second largest is the generated SelectionUnit (12 cycles). To improve energy efficiency, this intervention targets a reduction in the SelectionUnit's latency by creating a more aggressive pipeline. The existing timing slack suggests that combining logic stages within the SelectionUnit is likely to succeed while still meeting the 300MHz clock target, directly reducing overall latency and energy per query.",
+          "verification_passed": true,
+          "cycles": 60.0
+        },
+        {
+          "round": 5,
+          "config": {
+            "n1": 7,
+            "n2": 4,
+            "t0_quarters": 2,
+            "t1_quarters": 0
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/round_05/result.json",
+          "record_sha256_at_audit": "adad905af78d26e21dc9ecd3df7828a388f57f68ff66d259cdbbf9723a39cdd5",
+          "sources": [
+            {
+              "path": "round_05/build_01/ScoreAndExpUnit_rq1/ScoreAndExpUnit_rq1.scala",
+              "sha256": "119ab7f07f3b42e8743b7afc9a2403a5b69b42296d275d550c7331c473d8df16"
+            },
+            {
+              "path": "round_05/build_01/DynaX_SelectionUnit/DynaX_SelectionUnit.scala",
+              "sha256": "6f91ce5a63a9a8de8ad76f9163611af0de600ea7e127c9404ecbb967f3d5611f"
+            },
+            {
+              "path": "round_05/build_01/NormalizationUnit_rq1/NormalizationUnit_rq1.scala",
+              "sha256": "9c2cb9bdc985d4c5aeffb163b19ee9fca4891ec6b229bfe6ae70428c1e4382e8"
+            },
+            {
+              "path": "round_05/build_01/Rq1DynaXm/Rq1DynaXm.scala",
+              "sha256": "d32a5993597acd3acdcfc67fe8b538e0d65e22b70491bfa8fbd310ef0dcd03e6"
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreAndExpUnit_rq1",
+              "latency": 7,
+              "linked_reference_ids": [
+                "verified_rq1_score_exp"
+              ]
+            },
+            {
+              "name": "DynaX_SelectionUnit",
+              "latency": 7,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "NormalizationUnit_rq1",
+              "latency": 41,
+              "linked_reference_ids": [
+                "verified_rq1_normalization"
+              ]
+            },
+            {
+              "name": "Rq1DynaXm",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "uarch",
+          "critic_reason": "The current design is feasible with a healthy timing slack of 0.406 ns and represents a new Pareto-optimal point. The `DynaX_SelectionUnit` contributes 7 cycles to the total 56-cycle latency. To further improve energy efficiency, this intervention targets reducing the latency of this module. By combining logic from adjacent pipeline stages, we can attempt to reduce its latency to 6 cycles. This would decrease the total system latency to 55 cycles, directly improving both latency and energy_efficiency_queries_per_joule. This is a bounded microarchitectural change that preserves the module's interface and functionality.",
+          "verification_passed": true,
+          "cycles": 56.0
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "rounds": [
+        {
+          "round": 1,
+          "config": {
+            "n": 7
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_01/result.json",
+          "record_sha256_at_audit": "a4597582d681a189ffd8cb9bd6bc33cb1b542e022f91be422f3a0bd3703daf12",
+          "sources": [
+            {
+              "path": "round_01/build_01/FindMin8/FindMin8.scala",
+              "sha256": "cbf797570df71e0b03549ab99297be2888eaf7de15df35f1c26078a2e03a9af8"
+            },
+            {
+              "path": "round_01/build_01/DividerWrapper/DividerWrapper.scala",
+              "sha256": "ec66a2cc2549c47689e2b88523734dbffbf96cab7627e61238cd621a02211690"
+            },
+            {
+              "path": "round_01/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala",
+              "sha256": "ca1a5d81dbb7741682fdcfd3f47bee893f2a233a3485a6a5517acead32e2a4e7"
+            }
+          ],
+          "modules": [
+            {
+              "name": "FindMin8",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "DividerWrapper",
+              "latency": 33,
+              "linked_reference_ids": [
+                "pipelined_divider"
+              ]
+            },
+            {
+              "name": "Rq1BlockNmTop",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "compiler",
+          "critic_reason": "The current design is functionally correct and meets area constraints, but fails timing with a large negative slack of -3.1 ns at the target 300 MHz frequency. The root cause is an excessively long combinational path in the `FINALIZE_EXP` state of the `Rq1BlockNmTop` module. This single cycle attempts to find the max score across 16 values, calculate 16 deltas, perform 16 parallel table lookups, and compute the keep mask using two `FindMin8` comparator trees. This logic is too complex to execute in a single 3.33 ns cycle.",
+          "verification_passed": true,
+          "cycles": 68.0
+        },
+        {
+          "round": 2,
+          "config": {
+            "n": 7
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_02/result.json",
+          "record_sha256_at_audit": "86c9dc9b3bf4f3a98b03d1118a5d6cd96ecaeb51a403aca2590091319b2ac08f",
+          "sources": [
+            {
+              "path": "round_02/build_01/FindMin8/FindMin8.scala",
+              "sha256": "cbf797570df71e0b03549ab99297be2888eaf7de15df35f1c26078a2e03a9af8"
+            },
+            {
+              "path": "round_02/build_01/DividerWrapper/DividerWrapper.scala",
+              "sha256": "ec66a2cc2549c47689e2b88523734dbffbf96cab7627e61238cd621a02211690"
+            },
+            {
+              "path": "round_02/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala",
+              "sha256": "28321b20afd5bb14c7a4b8b27d66c5c9ea15ec144762e4b568ed7d70514df385"
+            }
+          ],
+          "modules": [
+            {
+              "name": "FindMin8",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "DividerWrapper",
+              "latency": 33,
+              "linked_reference_ids": [
+                "pipelined_divider"
+              ]
+            },
+            {
+              "name": "Rq1BlockNmTop",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "compiler",
+          "critic_reason": "The current design is functionally correct and meets area/quality constraints, but fails the 300 MHz timing constraint with a negative slack of -1.816 ns. The previous compiler intervention successfully pipelined the design and improved slack from -3.1 ns, but it was insufficient. The remaining critical path is likely within the `Rq1BlockNmTop` module's `PIPE_S1_MAX_MASK` state, which computes the 16-input max score and the 16-bit keep_mask in parallel. This concentration of deep combinational logic still violates the timing budget.",
+          "verification_passed": true,
+          "cycles": 69.0
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "rounds": [
+        {
+          "round": 4,
+          "config": {
+            "threshold_256": 1
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_sanger_threshold/round_04/result.json",
+          "record_sha256_at_audit": "c66761a66e64c8709731069704f8fca70c2474a8b9ee104e43adae4cf1c9917d",
+          "sources": [
+            {
+              "path": "round_04/build_02/ScoreCalculator/ScoreCalculator.scala",
+              "sha256": "e665dcec0aa41b2fe3083f91bf7c70b363c162b9f03458a876b00bc7b54b37e7"
+            },
+            {
+              "path": "round_04/build_02/SoftmaxUnit/SoftmaxUnit.scala",
+              "sha256": "852eec6fa05b11b56d5c6f925029a9ab484fd0c4cba7eb672c03cb8c6e7f66f4"
+            },
+            {
+              "path": "round_04/build_02/SelectionAndAccumulation/SelectionAndAccumulation.scala",
+              "sha256": "982fdcd92585a3a3a9deba0df3916bedf40fbedac0bdd6a40a1b39c7f8dc0b39"
+            },
+            {
+              "path": "round_04/build_02/Normalizer/Normalizer.scala",
+              "sha256": "f7f0e1901c91ca4333b24f83871eaa6aca811b24e8d7ef9d622ff8eb262c3f86"
+            },
+            {
+              "path": "round_04/build_02/rq1_sanger_threshold_top/rq1_sanger_threshold_top.scala",
+              "sha256": "0bfc0c047ab62639f8a3a91efb6288a4f2d2c241417b6236807ac33ee00c8f5a"
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreCalculator",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "SoftmaxUnit",
+              "latency": 3,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "SelectionAndAccumulation",
+              "latency": 2,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "Normalizer",
+              "latency": 8,
+              "linked_reference_ids": [
+                "pipelined_divider"
+              ]
+            },
+            {
+              "name": "rq1_sanger_threshold_top",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "compiler",
+          "critic_reason": "The current design for config threshold_256=1 fails to meet the 300 MHz timing constraint, with a large negative slack of -2.59888577 ns. This is caused by an overly aggressive pipeline schedule with a total latency of only 14 cycles. This short latency, particularly the 3-cycle SoftmaxUnit and 2-cycle SelectionAndAccumulation modules, creates combinational paths that are too long. The goal is to achieve a feasible design for this high-quality configuration by relaxing the latency constraint.",
+          "verification_passed": true,
+          "cycles": 14.0
+        },
+        {
+          "round": 5,
+          "config": {
+            "threshold_256": 1
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_sanger_threshold/round_05/result.json",
+          "record_sha256_at_audit": "26879b17e93a12a00d5f55f679133282e98ed7b8ced45ef2dd876675ca11d5d7",
+          "sources": [
+            {
+              "path": "round_05/build_01/ScoreCalculator/ScoreCalculator.scala",
+              "sha256": "e665dcec0aa41b2fe3083f91bf7c70b363c162b9f03458a876b00bc7b54b37e7"
+            },
+            {
+              "path": "round_05/build_01/SoftmaxUnit/SoftmaxUnit.scala",
+              "sha256": "3debd4362f24d6b914e1571d9324c49eedde1cf089477d8e27b4881a022e4ca9"
+            },
+            {
+              "path": "round_05/build_01/SelectionAndAccumulation/SelectionAndAccumulation.scala",
+              "sha256": "e5f775b589cf7029803f424f28f14fb9fd2f080129dfd35dc966f243122c912c"
+            },
+            {
+              "path": "round_05/build_01/Normalizer/Normalizer.scala",
+              "sha256": "f7f0e1901c91ca4333b24f83871eaa6aca811b24e8d7ef9d622ff8eb262c3f86"
+            },
+            {
+              "path": "round_05/build_01/rq1_sanger_threshold_top/rq1_sanger_threshold_top.scala",
+              "sha256": "1a129202fbd49f53630751460f2f7784e2f493afd45d7578ee30ffc14224f666"
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreCalculator",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "SoftmaxUnit",
+              "latency": 7,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "SelectionAndAccumulation",
+              "latency": 5,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "Normalizer",
+              "latency": 8,
+              "linked_reference_ids": [
+                "pipelined_divider"
+              ]
+            },
+            {
+              "name": "rq1_sanger_threshold_top",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "stop",
+          "critic_reason": "The exploration has yielded one feasible, efficient design (Round 1, config threshold_256: 3). Subsequent attempts to improve quality by targeting lower thresholds (1 and 2) have consistently failed. Round 2 produced a Pareto-dominated point with excessive latency (140ns). Round 3 failed during module build. Round 4 failed timing (-2.6ns slack). The most recent attempt (Round 5) resulted in a P&R tool crash while trying to repair timing violations for the threshold_256: 1 config. Given the repeated failures and tool instability on higher-quality configurations, and having reached the `min_loops` budget of 5, further attempts are unlikely to yield a Pareto-superior design. The best known design is the one from Round 1.",
+          "verification_passed": true,
+          "cycles": 21.0
+        }
+      ]
+    }
+  ]
+}

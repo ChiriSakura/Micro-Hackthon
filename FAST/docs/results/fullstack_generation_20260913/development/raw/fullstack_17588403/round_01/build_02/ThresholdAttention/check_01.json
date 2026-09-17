@@ -1,0 +1,21 @@
+{
+  "passed": false,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ProcessingElement as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\nException in thread \"main\" chisel3.package$ChiselException: Error: No implicit clock.\n\tat ... ()\n\tat ThresholdAttention.$anonfun$state_reg$2(ThresholdAttention.scala:19)\n\tat chisel3.experimental.prefix$.apply(prefix.scala:50)\n\tat ThresholdAttention.$anonfun$state_reg$1(ThresholdAttention.scala:19)\n\tat chisel3.internal.plugin.package$.autoNameRecursively(package.scala:33)\n\tat ThresholdAttention.<init>(ThresholdAttention.scala:19)\n\tat FASTGeneratedElaborate$.$anonfun$new$1(FASTGeneratedElaborate.scala:7)\n\tat ... ()\n\tat ... (Stack trace trimmed to user code only. Rerun with --full-stacktrace to see the full stack trace)\n",
+  "wall_seconds": 5.119859401136637,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ProcessingElement/ProcessingElement.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/Divider/Divider.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/ThresholdAttention.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/emitted"
+  ]
+}

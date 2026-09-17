@@ -1,0 +1,1987 @@
+{
+  "entries": [
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/DynaX_XM_Row_Top/check_01/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152713484,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/DynaX_XM_Row_Top/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 15,
+      "logical_bytes": 182456,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/FinalDivider/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 12,
+      "logical_bytes": 61455,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/FinalDivider/check_02/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 12,
+      "logical_bytes": 61362,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/FinalDivider/check_02/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 25,
+      "logical_bytes": 1737861,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 9,
+      "logical_bytes": 37888,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 9,
+      "logical_bytes": 41561,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 41,
+      "logical_bytes": 150227405,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/SelectorAggregator/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 9,
+      "logical_bytes": 58775,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/SelectorAggregator/check_01/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 25,
+      "logical_bytes": 1051930,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/ScoreWeightProcessor/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 9,
+      "logical_bytes": 36073,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/ScoreWeightProcessor/check_01/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 41,
+      "logical_bytes": 150270652,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 9,
+      "logical_bytes": 59354,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 25,
+      "logical_bytes": 1052049,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/DynaX_XM_Row_Top/check_01/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152653065,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/DynaX_XM_Row_Top/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 15,
+      "logical_bytes": 183019,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 12,
+      "logical_bytes": 61362,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 25,
+      "logical_bytes": 1447192,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 9,
+      "logical_bytes": 38716,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 41,
+      "logical_bytes": 150270112,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 5,
+      "logical_bytes": 2402,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_02/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 5,
+      "logical_bytes": 2402,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 9,
+      "logical_bytes": 62183,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 25,
+      "logical_bytes": 1053253,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/latest",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_clock_tree",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_clock_tree_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_constrain_io",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_detailed_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_dummy_step",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_extraction",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_floorplan_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_global_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_global_route",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_global_route_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_init_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_io_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_macro_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_physical_cells",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_place_bumps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_place_final_fillers",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_place_initial_pins",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_place_tapcells",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_power_straps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_report_routed",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 84577947,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_route_current_openroad",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/post_snap_power_grid",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_clock_tree",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 17788097,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_clock_tree_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 17822537,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_constrain_io",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 13804822,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_detailed_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 17788097,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_dummy_step",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 17909630,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_extraction",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 73001386,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_floorplan_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 13804822,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_global_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 17602063,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_global_route",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 17909630,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_global_route_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 34009796,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_init_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 353,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_io_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 17602063,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_macro_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 13567003,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_place_bumps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 13567003,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_place_final_fillers",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 59859027,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_place_initial_pins",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 13557483,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_place_tapcells",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 13567003,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_power_straps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 16803078,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_report_routed",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 84577947,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 17602063,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_route_current_openroad",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 59859027,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/pre_snap_power_grid",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 17602063,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/latest",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_clock_tree",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_clock_tree_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_constrain_io",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_detailed_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_dummy_step",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_extraction",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_floorplan_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_global_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_global_route",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_global_route_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_init_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_io_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_macro_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_physical_cells",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_place_bumps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_place_final_fillers",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_place_initial_pins",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_place_tapcells",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_power_straps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_report_routed",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 81604136,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_route_current_openroad",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/post_snap_power_grid",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_clock_tree",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 16996913,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_clock_tree_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 17021073,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_constrain_io",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 13056251,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_detailed_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 16996913,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_dummy_step",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 17055177,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_extraction",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 70437470,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_floorplan_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 13056251,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_global_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 16817804,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_global_route",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 17055177,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_global_route_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 32722947,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_init_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 353,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_io_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 16817804,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_macro_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 12806296,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_place_bumps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 12806296,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_place_final_fillers",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 57789039,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_place_initial_pins",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 12796776,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_place_tapcells",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 12806296,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_power_straps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 16018819,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_report_routed",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 81604136,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 16817804,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_route_current_openroad",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 57789039,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/hammer/par-rundir/pre_snap_power_grid",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 16817804,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_gate_17711656/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 55,
+      "logical_bytes": 184300371,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_gate_17715900/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 54,
+      "logical_bytes": 182669363,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/rebuild/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152672024,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/rebuild/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 15,
+      "logical_bytes": 181982,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/seed_101/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152673138,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/seed_211/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152673126,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/seed_307/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152673144,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/seed_401/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152673155,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/seed_503/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152673148,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17715901/rebuild/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152611483,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17715901/rebuild/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 15,
+      "logical_bytes": 182545,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17715901/seed_101/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152612592,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17715901/seed_211/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152612590,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17715901/seed_307/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152612592,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17715901/seed_401/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152612615,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17715901/seed_503/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152612603,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/DividerWrapper/fresh_check/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 12,
+      "logical_bytes": 61541,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/DividerWrapper/fresh_check/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 25,
+      "logical_bytes": 1705966,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/DynaX_XM_Row/fresh_check/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152152912,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/DynaX_XM_Row/fresh_check/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 15,
+      "logical_bytes": 168570,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/ScoreWeightGen/fresh_check/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 9,
+      "logical_bytes": 36010,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/ScoreWeightGen/fresh_check/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 25,
+      "logical_bytes": 2013130,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 9,
+      "logical_bytes": 57353,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 25,
+      "logical_bytes": 1379295,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_01/ScoreWeightGen/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 9,
+      "logical_bytes": 36074,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_01/ScoreWeightGen/check_01/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 25,
+      "logical_bytes": 2064746,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/DividerWrapper/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 12,
+      "logical_bytes": 61451,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/DividerWrapper/check_01/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 25,
+      "logical_bytes": 1441725,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/DynaX_XM_Row/check_01/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152076224,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/DynaX_XM_Row/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 15,
+      "logical_bytes": 160541,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/DynaX_XM_Row/check_02/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152076055,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/DynaX_XM_Row/check_02/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 15,
+      "logical_bytes": 160520,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/ScoreWeightGen/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 9,
+      "logical_bytes": 35084,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/ScoreWeightGen/check_01/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 25,
+      "logical_bytes": 2065116,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/check_01/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 5,
+      "logical_bytes": 2454,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/check_02/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 5,
+      "logical_bytes": 2454,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/check_03/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 9,
+      "logical_bytes": 58765,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/check_03/functional/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 25,
+      "logical_bytes": 1499443,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/latest",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_clock_tree",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_clock_tree_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_constrain_io",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_detailed_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_dummy_step",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_extraction",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_floorplan_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_global_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_global_route",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_global_route_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_init_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_io_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_macro_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_physical_cells",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_place_bumps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_place_final_fillers",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_place_initial_pins",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_place_tapcells",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_power_straps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_report_routed",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 90810434,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_route_current_openroad",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/post_snap_power_grid",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_clock_tree",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19186425,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_clock_tree_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19237749,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_constrain_io",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 15181066,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_detailed_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19186425,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_dummy_step",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19886612,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_extraction",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 78517012,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_floorplan_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 15181066,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_global_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 18997723,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_global_route",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19886612,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_global_route_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 36874718,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_init_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 353,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_io_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 18997723,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_macro_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 14944231,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_place_bumps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 14944231,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_place_final_fillers",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 64240105,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_place_initial_pins",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 14934711,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_place_tapcells",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 14944231,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_power_straps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 18198738,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_report_routed",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 90810434,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 18997723,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_route_current_openroad",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 64240105,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/par-rundir/pre_snap_power_grid",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 18997723,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/latest",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_clock_tree",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_clock_tree_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_constrain_io",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_detailed_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_dummy_step",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_extraction",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_floorplan_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_global_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_global_route",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_global_route_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_init_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_io_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_macro_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_physical_cells",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_place_bumps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_place_final_fillers",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_place_initial_pins",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_place_tapcells",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_power_straps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_report_routed",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 93160910,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_route_current_openroad",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/post_snap_power_grid",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 0,
+      "logical_bytes": 0,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_clock_tree",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19684546,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_clock_tree_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19737630,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_constrain_io",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 15691035,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_detailed_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19684546,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_dummy_step",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19953617,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_extraction",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 80087579,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_floorplan_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 15691035,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_global_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19503724,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_global_route",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19953617,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_global_route_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 37387439,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_init_design",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 353,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_io_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19503724,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_macro_placement",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 15459448,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_place_bumps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 15459448,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_place_final_fillers",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 65230527,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_place_initial_pins",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 15449928,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_place_tapcells",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 15459448,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_power_straps",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 18704739,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_report_routed",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 93160910,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_resize",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19503724,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_route_current_openroad",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 65230527,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-rundir/pre_snap_power_grid",
+      "reason": "intermediate OpenROAD checkpoint; final routed.odb retained",
+      "regular_files": 1,
+      "logical_bytes": 19503724,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 62,
+      "logical_bytes": 187215522,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_holdout_17711042/rebuild/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152106942,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_holdout_17711042/rebuild/scala_build",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 15,
+      "logical_bytes": 168003,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_holdout_17711042/seed_101/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152108057,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_holdout_17711042/seed_211/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152108063,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_holdout_17711042/seed_307/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152108074,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_holdout_17711042/seed_401/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152108080,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_holdout_17711042/seed_503/obj_dir",
+      "reason": "rebuildable compiler/simulator cache",
+      "regular_files": 44,
+      "logical_bytes": 152108070,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17702044",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 45,
+      "logical_bytes": 805122,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v4",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 131,
+      "logical_bytes": 1200333,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_v4.slurm",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 1,
+      "logical_bytes": 1035,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17702555",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 561,
+      "logical_bytes": 11961149,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v5",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 131,
+      "logical_bytes": 1201268,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_v5.slurm",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 1,
+      "logical_bytes": 1035,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17703217",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 343,
+      "logical_bytes": 12470915,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v6",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 131,
+      "logical_bytes": 1207169,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_v6.slurm",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 1,
+      "logical_bytes": 1035,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17705068",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 892,
+      "logical_bytes": 786780561,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v7",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 142,
+      "logical_bytes": 1326530,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_v7.slurm",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 1,
+      "logical_bytes": 1035,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 142,
+      "logical_bytes": 1332313,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_startup_17707908.json",
+      "reason": "retired development version; all non-cache evidence archived",
+      "regular_files": 1,
+      "logical_bytes": 1617,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/dynax_development_20260913.tar.gz"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/superseded",
+      "reason": "obsolete metrics/derived plot; preserved with invalidation context",
+      "regular_files": 9,
+      "logical_bytes": 1326448,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/obsolete_results_20260913.tar.gz"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/results.md",
+      "reason": "obsolete metrics/derived plot; preserved with invalidation context",
+      "regular_files": 1,
+      "logical_bytes": 2791,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/obsolete_results_20260913.tar.gz"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/summary.json",
+      "reason": "obsolete metrics/derived plot; preserved with invalidation context",
+      "regular_files": 1,
+      "logical_bytes": 40587,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/obsolete_results_20260913.tar.gz"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/figures/pareto_energy_latency_20260910.pdf",
+      "reason": "obsolete metrics/derived plot; preserved with invalidation context",
+      "regular_files": 1,
+      "logical_bytes": 19830,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/obsolete_results_20260913.tar.gz"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/figures/pareto_energy_latency_20260910.png",
+      "reason": "obsolete metrics/derived plot; preserved with invalidation context",
+      "regular_files": 1,
+      "logical_bytes": 117601,
+      "archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/obsolete_results_20260913.tar.gz"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/fast/__pycache__",
+      "reason": "rebuildable Python cache",
+      "regular_files": 3,
+      "logical_bytes": 8462,
+      "archive": "None"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/fast/adapters/__pycache__",
+      "reason": "rebuildable Python cache",
+      "regular_files": 16,
+      "logical_bytes": 122170,
+      "archive": "None"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/fast/agents/__pycache__",
+      "reason": "rebuildable Python cache",
+      "regular_files": 30,
+      "logical_bytes": 474423,
+      "archive": "None"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/fast/experiments/__pycache__",
+      "reason": "rebuildable Python cache",
+      "regular_files": 2,
+      "logical_bytes": 8886,
+      "archive": "None"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/fast/fullstack/__pycache__",
+      "reason": "rebuildable Python cache",
+      "regular_files": 6,
+      "logical_bytes": 80659,
+      "archive": "None"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/fast/orchestrator/__pycache__",
+      "reason": "rebuildable Python cache",
+      "regular_files": 4,
+      "logical_bytes": 55048,
+      "archive": "None"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/fast/runtime/__pycache__",
+      "reason": "rebuildable Python cache",
+      "regular_files": 2,
+      "logical_bytes": 2613,
+      "archive": "None"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/fast/schemas/__pycache__",
+      "reason": "rebuildable Python cache",
+      "regular_files": 8,
+      "logical_bytes": 76232,
+      "archive": "None"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/fast/storage/__pycache__",
+      "reason": "rebuildable Python cache",
+      "regular_files": 8,
+      "logical_bytes": 76453,
+      "archive": "None"
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/scripts/__pycache__",
+      "reason": "rebuildable Python cache",
+      "regular_files": 19,
+      "logical_bytes": 233947,
+      "archive": "None"
+    }
+  ],
+  "removed_files": 4640,
+  "logical_bytes_removed": 8064967831
+}

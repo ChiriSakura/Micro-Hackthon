@@ -29,6 +29,15 @@ OUT="$ROOT/runs/rtl_verify_all_${SLURM_JOB_ID}"
 export PATH=/share/apps/openjdk/21.0.3/bin:$ROOT/tools:$PATH
 export COURSIER_CACHE="$ROOT/cache/coursier"
 export SCALA_CLI_HOME="$ROOT/cache/scala-cli"
+# 每个作业用自己的 .scala-build。
+#
+# 共享的后果撞到过三次：所有作业都从同一个仓库路径跑 `scala-cli run chisel`，
+# 于是并发提交时它们编译进**同一个** FAST/hardware/chisel/.scala-build。
+# 表现是随机一两个作业报 `FAIL: predict_unit/PrePEArray_1_2` 或干脆不产出
+# ELABORATE 行——看起来像 RTL 坏了，串行重跑就全过。
+export SCALA_BUILD_WS="${TMPDIR:-/tmp}/scala-build-${SLURM_JOB_ID:-$$}"
+mkdir -p "$SCALA_BUILD_WS"
+
 export TMPDIR=/tmp/fast-rtl-$$
 PY="$ROOT/env/dynax-py312/bin/python"
 mkdir -p "$TMPDIR" "$OUT"
@@ -55,7 +64,7 @@ MODULES=(
 
 echo "=== 1. elaborate every target (one JVM) ==="
 TARGETS=$(printf "%s\n" "${MODULES[@]}" | cut -d'|' -f1 | paste -sd,)
-scala-cli run chisel --server=false --main-class Elaborate -- "LIST:$TARGETS" "$OUT/rtl" 2>&1 \
+scala-cli run chisel --workspace "$SCALA_BUILD_WS" --server=false --main-class Elaborate -- "LIST:$TARGETS" "$OUT/rtl" 2>&1 \
     | grep -vE "^(Download|Downloaded|Compiling|Compiled)"
 
 echo

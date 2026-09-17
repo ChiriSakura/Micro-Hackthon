@@ -1,0 +1,20 @@
+[
+  {
+    "algorithm": "rq1_block_nm",
+    "job_id": "17874649",
+    "post_job_id": "17874650",
+    "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm",
+    "output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm",
+    "launch_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_block_nm-ext2.slurm",
+    "post_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_block_nm-ext2-post.slurm"
+  },
+  {
+    "algorithm": "rq1_sanger_threshold",
+    "job_id": "17874651",
+    "post_job_id": "17874667",
+    "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold",
+    "output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold",
+    "launch_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_sanger_threshold-ext2.slurm",
+    "post_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_sanger_threshold-ext2-post.slurm"
+  }
+]

@@ -1,0 +1,153 @@
+{
+  "top": "ThresholdAttention",
+  "modules": [
+    {
+      "name": "ScoreCalculatorBank",
+      "purpose": "Calculates all four attention scores in parallel from the query and key vectors.",
+      "ports": [
+        {
+          "name": "q_in",
+          "direction": "input",
+          "width": 8
+        },
+        {
+          "name": "k_in",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "name": "scores_out",
+          "direction": "output",
+          "width": 36
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This is a purely combinational module. It first unpacks the inputs. `q_in` is split into `q0` (bits 3:0) and `q1` (bits 7:4). `k_in` is split into four 8-bit key vectors. For each of the four lanes (i=0 to 3), it calculates `score[i] = (q0 * k[i][0]) + (q1 * k[i][1])`. Each `k[i][0]` and `k[i][1]` is a 4-bit value from the corresponding 8-bit key vector. Each product is 4x4 bits, resulting in an 8-bit value. The two products are added to produce a 9-bit score. The four 9-bit scores are then concatenated to form the 36-bit `scores_out` output. The entire operation completes in a single clock cycle."
+    },
+    {
+      "name": "Summer",
+      "purpose": "Sums the four weight values and four weighted-value products using combinational adder trees.",
+      "ports": [
+        {
+          "name": "weights_in",
+          "direction": "input",
+          "width": 36
+        },
+        {
+          "name": "weighted_vs_in",
+          "direction": "input",
+          "width": 52
+        },
+        {
+          "name": "sum_w_out",
+          "direction": "output",
+          "width": 11
+        },
+        {
+          "name": "sum_wv_out",
+          "direction": "output",
+          "width": 15
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This is a purely combinational module that implements two parallel adder trees. It first unpacks its inputs: `weights_in` into four 9-bit weights (w0, w1, w2, w3) and `weighted_vs_in` into four 13-bit weighted values (wv0, wv1, wv2, wv3). \n- **Weight Summation:** It computes `(w0 + w1) + (w2 + w3)`. The first level of additions (9b+9b) produces two 10-bit intermediate sums. The second level adds these two 10-bit values to produce the final 11-bit `sum_w_out`. \n- **Weighted Value Summation:** It computes `(wv0 + wv1) + (wv2 + wv3)`. The first level (13b+13b) produces two 14-bit sums. The second level adds these to produce the final 15-bit `sum_wv_out`. The logic is structured to minimize combinational delay."
+    },
+    {
+      "name": "Divider",
+      "purpose": "Performs unsigned integer division floor(N/D) using an iterative non-restoring algorithm.",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "start",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "numer_in",
+          "direction": "input",
+          "width": 15
+        },
+        {
+          "name": "denom_in",
+          "direction": "input",
+          "width": 11
+        },
+        {
+          "name": "quotient_out",
+          "direction": "output",
+          "width": 4
+        },
+        {
+          "name": "done",
+          "direction": "output",
+          "width": 1
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This module implements a fixed-latency, 4-bit quotient, non-restoring integer divider. It uses a state machine with states IDLE, CALC, and DONE. \n- **On `start`:** The module latches `numer_in` and `denom_in`, initializes a 3-bit cycle counter to 4, and sets up the initial partial remainder. The partial remainder register (`rem_reg`) is 16 bits (15 from numerator + 1 for sign). The state transitions to CALC. \n- **CALC state:** For 4 cycles, the division loop executes. In each cycle, the partial remainder is shifted left, and the next bit of the numerator is shifted in. The denominator is then subtracted. The MSB of the result determines the next quotient bit (1 if positive/zero, 0 if negative). If the result was negative, the remainder is restored by adding the denominator back in the next cycle's shift-and-subtract (this is the non-restoring property). The quotient is assembled bit-by-bit in a 4-bit register. \n- **DONE state:** After 4 calculation cycles, the state transitions to DONE. The `done` output is asserted high for one cycle, and `quotient_out` holds the final result. The module then returns to IDLE. The total latency from `start` to `done` is 6 cycles (1 for setup, 4 for calculation, 1 for done signal)."
+    },
+    {
+      "name": "ThresholdAttention",
+      "purpose": "Top-level module that orchestrates the threshold attention computation. It manages the control flow, pipelines the data, and connects the computational sub-modules.",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "start",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "q",
+          "direction": "input",
+          "width": 8
+        },
+        {
+          "name": "k",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "name": "v",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "done",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "name": "result",
+          "direction": "output",
+          "width": 4
+        }
+      ],
+      "dependencies": [
+        "ScoreCalculatorBank",
+        "Summer",
+        "Divider"
+      ],
+      "implementation": "The module uses a two-state FSM (IDLE, BUSY) to manage the overall operation. On `start`, it transitions to BUSY, latches the `q`, `k`, and `v` inputs into registers, and initiates a 4-stage pipeline. A 4-bit shift register `pipe_valid` tracks the data's progress through the pipeline. \n- **Stage 0 (Input Latch):** When `start` is high in IDLE state, `q_reg`, `k_reg`, and `v_reg` capture the inputs. `pipe_valid(0)` is set. \n- **Stage 1 (Score Calculation):** The registered `q_reg` and `k_reg` are fed into a `ScoreCalculatorBank` instance. The 36-bit score vector output is registered in `scores_reg`. The `v_reg` is also passed down the pipeline in `v_reg_p1`. \n- **Stage 2 (Threshold & Multiply):** The `scores_reg` values are combinationally compared against the threshold (64). The resulting weights (9 bits each) and their products with the corresponding values from `v_reg_p1` (13 bits each) are registered in `weights_reg` and `weighted_vs_reg`. \n- **Stage 3 (Summation):** The `weights_reg` and `weighted_vs_reg` are fed into a `Summer` instance. The 11-bit `sum_w` and 15-bit `sum_wv` outputs are registered in `sum_w_reg` and `sum_wv_reg`. \n- **Stage 4 (Division):** When the pipeline reaches this stage (`pipe_valid(3)` is high), the module checks if `sum_w_reg` is zero. If so, the result is immediately set to 0 and `done` is asserted in the next cycle. Otherwise, the `Divider` is started with `sum_wv_reg` as the numerator and `sum_w_reg` as the denominator. The FSM waits for the `divider_done` signal. \n- **Output Logic:** `done` is a single-cycle pulse generated when the divider finishes or the zero-denominator case is detected. `result` is driven by the divider's output or 0. The total latency is 5 cycles for the zero-denominator case and 10 cycles otherwise."
+    }
+  ],
+  "rationale": "The design is decomposed into a top-level controller (`ThresholdAttention`) and three specialized computational modules: `ScoreCalculatorBank`, `Summer`, and `Divider`. This promotes modularity and reusability. `ScoreCalculatorBank` and `Summer` encapsulate the parallel, combinational parts of the algorithm, while `Divider` handles the sequential, iterative part. A 4-stage pipeline is employed to structure the dataflow: 1. Score calculation, 2. Thresholding and weighted value multiplication, 3. Summation, 4. Division. This deep pipelining, with registers between each major computational step, ensures the design can meet the 100 MHz frequency target by breaking down long combinational paths. The total latency is approximately 10 cycles, well within the 128-cycle budget. Pipeline registers hold intermediate results, and input values are latched at the start. All internal datapaths have been sized based on a worst-case analysis of the algorithm's numeric bounds to prevent overflow. The `Divider` is an area-efficient iterative non-restoring design that completes in a fixed 6 cycles. A simple finite state machine in the top module manages the `start`/`done` protocol and orchestrates the pipeline, including the special case of a zero denominator.",
+  "language": "chisel"
+}

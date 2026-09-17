@@ -1,0 +1,19 @@
+{
+  "passed": false,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_01/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\nException in thread \"main\" java.lang.StringIndexOutOfBoundsException: begin 1020, end 1024, length 753\n\tat ... ()\n\tat ScoreWeightProcessor.$anonfun$expTableValues$3(ScoreWeightProcessor.scala:20)\n\tat ScoreWeightProcessor.$anonfun$expTableValues$3$adapted(ScoreWeightProcessor.scala:17)\n\tat scala.collection.immutable.Range.map(Range.scala:59)\n\tat ScoreWeightProcessor.$anonfun$expTableValues$2(ScoreWeightProcessor.scala:17)\n\tat chisel3.experimental.prefix$.apply(prefix.scala:50)\n\tat ScoreWeightProcessor.$anonfun$expTableValues$1(ScoreWeightProcessor.scala:22)\n\tat chisel3.internal.plugin.package$.autoNameRecursively(package.scala:33)\n\tat ScoreWeightProcessor.<init>(ScoreWeightProcessor.scala:17)\n\tat FASTGeneratedElaborate$.$anonfun$new$1(FASTGeneratedElaborate.scala:7)\n\tat ... ()\n\tat ... (Stack trace trimmed to user code only. Rerun with --full-stacktrace to see the full stack trace)\n",
+  "wall_seconds": 6.4625131115317345,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/ScoreWeightProcessor.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_01/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_01/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_01/emitted"
+  ]
+}

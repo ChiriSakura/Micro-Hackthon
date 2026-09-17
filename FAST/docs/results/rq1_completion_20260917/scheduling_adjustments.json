@@ -1,0 +1,11 @@
+[
+  {
+    "job_id": "17909361",
+    "time_limit_before": "06:00:00",
+    "time_limit_after": "06:00:00",
+    "reason": "DynaX finished with only R5 on the Pareto front; independent validation is one design. Reduce reservation to ease backfill; no tool timeout, workload, acceptance gate, or main search budget changed.",
+    "time_limit_requested": "02:00:00",
+    "applied": false,
+    "error": "scontrol update returned Unspecified error; original reservation retained"
+  }
+]

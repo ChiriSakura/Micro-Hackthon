@@ -1,0 +1,14 @@
+{
+  "module": "ScoreWeightProcessor",
+  "role": "uarch",
+  "language": "chisel",
+  "source_sha256": "7e1842324b88a935768ec1302c90ed5a4421df5dcef3a067a3882e49e6efc279",
+  "linked_reference_ids": [],
+  "linked_library_sha256": {},
+  "reference_ids": [
+    "dynax_exp_reference"
+  ],
+  "rationale": "The previous attempt failed during Chisel elaboration with a `java.lang.StringIndexOutOfBoundsException`. The root cause was the method used to initialize the exponential lookup table (ROM). The code attempted to parse a single, very long hexadecimal string literal (1024 characters) to create the 256 ROM entries. The error message indicated that the string's length was unexpectedly truncated to 753 characters by a tool in the build chain, causing the `substring` operation to fail when accessing higher indices. The core arithmetic and pipeline logic of the previous attempt was otherwise correct.\n\nThis corrected implementation resolves the issue by changing the ROM initialization strategy. Instead of parsing a hex string, it initializes the `VecInit` for the `expTable` directly from a `Seq` of `UInt` literals. These integer literals are taken from the `exp_table` array provided in the algorithm contract. This approach is more robust, avoids the string manipulation that caused the failure, and is also more readable. The rest of the module's logic, including the 3-stage pipeline structure, score calculation, max-finding, delta computation, and register stages, remains the same as it correctly implements the specified behavior and latency.",
+  "critic_request": null,
+  "scope": "Agent explanation; module planner-vector checks and independent E2E are separate evidence"
+}

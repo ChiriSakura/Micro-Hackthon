@@ -73,12 +73,12 @@ def test_timing_and_power_come_from_one_run(tmp_path):
     assert result.leakage_power_w == 1.4842e-05
 
 
-def test_max_frequency_comes_from_the_path_not_the_slack(tmp_path):
-    """1/(period - slack) 给的是「当前周期还能收紧多少」，不是电路的上限。"""
+def test_frequency_estimate_includes_setup_and_external_delays(tmp_path):
     result = _run(_adapter(tmp_path), tmp_path, _GOOD)
 
-    # 1000 / 1.659 ns = 602.8 MHz
-    assert abs(result.max_frequency_mhz - 602.77) < 0.1
+    assert abs(result.max_frequency_mhz - 1000 / (2.0 - 0.241)) < 0.01
+    # Arrival alone would optimistically omit the output delay in this path.
+    assert result.max_frequency_mhz < 1000 / result.critical_path_ns
 
 
 def test_a_violated_path_still_reports_its_negative_slack(tmp_path):

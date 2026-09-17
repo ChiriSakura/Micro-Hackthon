@@ -1,0 +1,33 @@
+{
+  "scope": "Read-only replay of routed ODB and extracted SPEF, same clocks/IO/TT libraries. No design mutation or feedback to active agents.",
+  "slack_ns": -2.59888577,
+  "matches_original_slack": true,
+  "paths": [
+    {
+      "startpoint": "_95308_",
+      "endpoint": "_96750_",
+      "start_cell": "DFF_X2 _95308_ (.D(_00414_),\n    .CK(clknet_leaf_2_clock),\n    .Q(\\score_calc.q1[2] ),\n    .QN(_48968_));",
+      "end_cell": "DFF_X1 _96750_ (.D(_01856_),\n    .CK(clknet_leaf_6_clock),\n    .Q(\\softmax_unit.deltas_s2_reg_0[7] ),\n    .QN(_47540_));"
+    },
+    {
+      "startpoint": "_95308_",
+      "endpoint": "_96654_",
+      "start_cell": "DFF_X2 _95308_ (.D(_00414_),\n    .CK(clknet_leaf_2_clock),\n    .Q(\\score_calc.q1[2] ),\n    .QN(_48968_));",
+      "end_cell": "DFF_X1 _96654_ (.D(_01760_),\n    .CK(clknet_leaf_3_clock),\n    .Q(\\softmax_unit.deltas_s2_reg_12[7] ),\n    .QN(_47636_));"
+    },
+    {
+      "startpoint": "_95308_",
+      "endpoint": "_96646_",
+      "start_cell": "DFF_X2 _95308_ (.D(_00414_),\n    .CK(clknet_leaf_2_clock),\n    .Q(\\score_calc.q1[2] ),\n    .QN(_48968_));",
+      "end_cell": "DFF_X1 _96646_ (.D(_01752_),\n    .CK(clknet_leaf_1_clock),\n    .Q(\\softmax_unit.deltas_s2_reg_13[7] ),\n    .QN(_47644_));"
+    }
+  ],
+  "inference": "Worst path runs from captured query input, through combinational score calculation and Softmax max/delta computation, into a delta register. R4 SoftmaxUnit uses a left-fold scores.reduce(_ max _) before subtraction in one stage. This supports the Critic compiler/pipeline intervention for Softmax; it does not establish SelectionAndAccumulation as a critical path.",
+  "source_file": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_sanger_threshold/round_04/build_02/SoftmaxUnit/SoftmaxUnit.scala",
+  "source_lines": [
+    33,
+    35,
+    39,
+    46
+  ]
+}

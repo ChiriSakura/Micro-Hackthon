@@ -1,0 +1,34 @@
+[
+  {
+    "class":"firrtl.transforms.DedupedResult",
+    "original":"~ThresholdAttention|ScoreUnit",
+    "duplicate":"~ThresholdAttention|ThresholdAttention/score_units_0:ScoreUnit",
+    "index":0.0
+  },
+  {
+    "class":"firrtl.transforms.DedupedResult",
+    "original":"~ThresholdAttention|ScoreUnit_1",
+    "duplicate":"~ThresholdAttention|ThresholdAttention/score_units_1:ScoreUnit",
+    "index":0.16666666666666666
+  },
+  {
+    "class":"firrtl.transforms.DedupedResult",
+    "original":"~ThresholdAttention|ScoreUnit_2",
+    "duplicate":"~ThresholdAttention|ThresholdAttention/score_units_2:ScoreUnit",
+    "index":0.3333333333333333
+  },
+  {
+    "class":"firrtl.transforms.DedupedResult",
+    "original":"~ThresholdAttention|ScoreUnit_3",
+    "duplicate":"~ThresholdAttention|ThresholdAttention/score_units_3:ScoreUnit",
+    "index":0.5
+  },
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17591809/round_01/build_03/ThresholdAttention/check_01/emitted"
+  }
+]

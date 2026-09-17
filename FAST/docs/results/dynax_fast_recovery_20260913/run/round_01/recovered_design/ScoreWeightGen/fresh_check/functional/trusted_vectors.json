@@ -1,0 +1,594 @@
+{
+  "vectors": [
+    {
+      "name": "behavior_isolated_0",
+      "steps": [
+        {
+          "inputs": {
+            "reset": 1,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "scores_out": 0,
+            "weights_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 0,
+            "weights_out": 340282366920938463463374607431768211455
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 1,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "scores_out": 0,
+            "weights_out": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "behavior_isolated_1",
+      "steps": [
+        {
+          "inputs": {
+            "reset": 1,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "scores_out": 0,
+            "weights_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 135,
+            "k_in": 8608480567731124087
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 4666917952738103391225,
+            "weights_out": 340282366920938463463374607431768211455
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 1,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "scores_out": 0,
+            "weights_out": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "behavior_isolated_2",
+      "steps": [
+        {
+          "inputs": {
+            "reset": 1,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "scores_out": 0,
+            "weights_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 33,
+            "k_in": 63563607751104135
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 9187237411168973303,
+            "weights_out": 340281479151852577984788328340808634845
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 1,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "scores_out": 0,
+            "weights_out": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "behavior_stream",
+      "steps": [
+        {
+          "inputs": {
+            "reset": 1,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "scores_out": 0,
+            "weights_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 135,
+            "k_in": 8608480567731124087
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 33,
+            "k_in": 63563607751104135
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 0,
+            "weights_out": 340282366920938463463374607431768211455
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 4666917952738103391225,
+            "weights_out": 340282366920938463463374607431768211455
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 6,
+            "k_in": 9872921485067753974
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 9187237411168973303,
+            "weights_out": 340281479151852577984788328340808634845
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 71,
+            "k_in": 12214818854605046828
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 69,
+            "k_in": 9704267385038425620
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 4335325685101255961636,
+            "weights_out": 2597834088257536558232919435763843071
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 4058103266969072982508,
+            "weights_out": 228627998399658244807023462075794608
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 104,
+            "k_in": 10940422033893253440
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 4712350583475190877208,
+            "weights_out": 27929395709931647290298136030824393399
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 60,
+            "k_in": 7433038300836677450
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 101,
+            "k_in": 6093133167277354323
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 3826799413554146981912,
+            "weights_out": 129847083598332681728333325382174559
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 4638960027912492277796,
+            "weights_out": 19196059829788526210266269421065338879
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 186,
+            "k_in": 17618722244719778127
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 469454243779355056685,
+            "weights_out": 248949871280323034839603854174838032646
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 107,
+            "k_in": 4001579002242687647
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 30,
+            "k_in": 6557893407921752448
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 4547642867459809647602,
+            "weights_out": 425890433009170674309145356735676528
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 4574648869603183179227,
+            "weights_out": 23158264140919992088939114184096810238
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 104,
+            "k_in": 6943577248329738020
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 147502000961878500856,
+            "weights_out": 282098801165876489717295677373662835305
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 44,
+            "k_in": 13462770687058978335
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 1,
+            "q_in": 99,
+            "k_in": 8893068527085053031
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 333158315311282473452,
+            "weights_out": 67011783178666462086086043730199183750
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 137882839650526812166,
+            "weights_out": 233871728078559929622492571142887533239
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "scores_out": 249372297257223217209,
+            "weights_out": 52183037089078131632508134228318093311
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 1,
+            "start": 0,
+            "q_in": 0,
+            "k_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "scores_out": 0,
+            "weights_out": 0
+          }
+        }
+      ]
+    }
+  ],
+  "expected_cases": 4,
+  "coverage": "Compiler-authored module scenarios; cycle marker is a case counter, not performance evidence"
+}

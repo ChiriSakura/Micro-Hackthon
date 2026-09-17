@@ -1,0 +1,34 @@
+{
+  "utc": "2026-09-17T16:09:28.575792+00:00",
+  "scope": "Externally diagnosed FAST assembly UArch repair; original RQ1 five-round record remains unchanged.",
+  "original_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm",
+  "original_record_sha256": "56fbe0a3e7914dd71679d33e45687f15d39cb7a0e5fbea0921d69e5c124281f2",
+  "original_top_sha256": "38224fe8a58848c3e0acd5be928ec9c314e1a1ed76408d255406bffb218fc311",
+  "framework_snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/block_nm_timing_repair_v1_20260917",
+  "diagnosis_sha256": "496f6b8ffea7cc614d1fcb56f845af0b5dbc2ec020afbd17cb904cffa0fa17ce",
+  "constraints": {
+    "frequency_mhz": 300,
+    "max_quality_loss": 0.05,
+    "max_area_um2": 200000
+  },
+  "fixed_config": {
+    "n": 7
+  },
+  "framework_files": {
+    "fast/fullstack/__init__.py": "32113321986e16a597ec677cd47a19f056064c6de0e37561d2845fc89c6414d4",
+    "fast/fullstack/agents.py": "abab7f5aab88f6c49633fc2a0e62cc73ae989a6bce3b51cb2f426d5d0971f585",
+    "fast/fullstack/artifacts.py": "f13c498a80c6ac96fbca07ed405bd9dc57aaf0c2e81252ca6fc00f11de9891c6",
+    "fast/fullstack/behavior.py": "8608b3314edcca5d7585cd726e4e8e619da7e8ffe7bc4b88f2f344759ff5efa0",
+    "fast/fullstack/cli.py": "c6b62e815f3ce32d3621898a422c207eef99159cab557729fe7a1dfd696cb524",
+    "fast/fullstack/contracts.py": "50c4e2b211bd197f647991003b28abed5bfcb9b140233525795b00b118dcaec9",
+    "fast/fullstack/dispatch.py": "fa036ced7ab2c747db2a083e28b78c428594a46224ee355b779dfcd5f42ad949",
+    "fast/fullstack/flow.py": "66b12248177d86ee84d1cdae4c1b411aeab79ed11c1b3ecb18029021763ae016",
+    "fast/fullstack/hammer_driver.py": "33c77f514ef54ea98afe80beb85952781f7008ac9d4fbf849e76e5551516d754",
+    "fast/fullstack/library.py": "13fdbd200fa917a9a1c42c3c865435de633745cd3038b985068485f114f9aab9",
+    "fast/fullstack/physical.py": "3576f8cbaa1bbab5b54b86da023d190d36907abdc2a6ebbdeefe1da43aa83b43",
+    "fast/fullstack/recovery.py": "8c723ff5b81cceb46ecd3a3cfa3089563a16939ca6b3d08aff4a869af49deeab",
+    "fast/fullstack/revalidation.py": "8d0ba23e56bdae216e02a6adfa7b1d75e8a1b90310661e3fd4781249425456ca",
+    "fast/fullstack/tools.py": "58f600eab088f87e1f2fed46d28f4bc5a5b16a5b0b8cd34092d68b9341e6c9a0",
+    "scripts/repair_generated_assembly.py": "2323c91b151b3e8695c17cf3ec1fc696fe7d5cf5c43fa1f3a0dd7889d7d5c74d"
+  }
+}

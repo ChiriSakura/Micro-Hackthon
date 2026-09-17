@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/Divider/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ProcessingElement as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+  "wall_seconds": 5.145501139573753,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ProcessingElement/ProcessingElement.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/Divider/Divider.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/Divider/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/Divider/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/Divider/emitted"
+  ],
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/Divider/emitted/Divider.v",
+  "elaborated_sha256": "8b7c3781c68da1a96dca2d6ac51027783d7978edc3b0bb3e52c1becba43cb411"
+}

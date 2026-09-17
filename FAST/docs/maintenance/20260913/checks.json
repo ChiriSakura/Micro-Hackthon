@@ -1,0 +1,121 @@
+{
+  "reference_files_checked": 53,
+  "changed_references": [],
+  "current_markdown_pages_checked": 21,
+  "missing_links": [],
+  "cli": [
+    {
+      "command": [
+        "-m",
+        "fast.fullstack.cli",
+        "--help"
+      ],
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "command": [
+        "scripts/archive_generated_run.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "command": [
+        "scripts/report_generated_run.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "command": [
+        "scripts/revalidate_generated_design.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "command": [
+        "scripts/verify_generated_holdout.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "command": [
+        "scripts/verify_routed_design.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "command": [
+        "scripts/legacy/l2_closed_loop.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "command": [
+        "scripts/legacy/design_ppa.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "command": [
+        "scripts/legacy/build_report.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "command": [
+        "scripts/legacy/summarize_eval.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "error": null
+    },
+    {
+      "command": [
+        "scripts/legacy/report_threshold_bringup.py",
+        "--help"
+      ],
+      "returncode": 0,
+      "error": null
+    }
+  ],
+  "syntax_errors": [],
+  "slurm_syntax": [
+    {
+      "path": "loop/fast_l2_closed_loop.slurm",
+      "returncode": 0,
+      "error": ""
+    },
+    {
+      "path": "rtl/fast_design_ppa.slurm",
+      "returncode": 0,
+      "error": ""
+    }
+  ],
+  "latest_evidence_symlinks": [],
+  "python_regression": "514 passed",
+  "relocation_e2e": {
+    "job": 17721095,
+    "cases": 100,
+    "cycles": 17,
+    "llm_calls": 0,
+    "backend": "yosys_opensta",
+    "feasible": false
+  },
+  "passed": true
+}

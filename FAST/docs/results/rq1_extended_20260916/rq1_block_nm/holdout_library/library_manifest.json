@@ -1,0 +1,1228 @@
+{
+  "manifest": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/rq1_extended_catalog.json",
+  "manifest_sha256": "70d49ea6451820ef5193e9ff51fdcd79288f3a319553ac322b8f0dcdd49f0b08",
+  "files": {
+    "algorithm:rq1_dynax_xm": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/algorithms/rq1_sparse_rows.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/000.py",
+      "sha256": "1529dd73851f465ce2831f38a47f297366a28bd99cc55ac56a2cba542183501d"
+    },
+    "algorithm:rq1_block_nm": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/algorithms/rq1_sparse_rows.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/000.py",
+      "sha256": "1529dd73851f465ce2831f38a47f297366a28bd99cc55ac56a2cba542183501d"
+    },
+    "algorithm:rq1_global_topk": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/algorithms/rq1_sparse_rows.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/000.py",
+      "sha256": "1529dd73851f465ce2831f38a47f297366a28bd99cc55ac56a2cba542183501d"
+    },
+    "algorithm:rq1_sanger_threshold": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/algorithms/rq1_sparse_rows.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/000.py",
+      "sha256": "1529dd73851f465ce2831f38a47f297366a28bd99cc55ac56a2cba542183501d"
+    },
+    "template:register_stage": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/hardware/register_stage.v",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/004.v",
+      "sha256": "ffdae2d491debe7b24fcff7e3241a683de945aeed7c349f802925c407868b5cf"
+    },
+    "template:chisel_carry_and_clock": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/hardware/ArithmeticStage.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/005.scala",
+      "sha256": "a5146cd539f756ad8dedfce2a6378b2c55342b8489c1df5e78e2e246757ebc06"
+    },
+    "template:pipelined_divider": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/divider.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/006.scala",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+    },
+    "template:dynax_exp_reference": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/007.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "template:topk_selection": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/topk.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/008.scala",
+      "sha256": "09196842ec6bef512088f1eaf4a3112053e64f36cd5b7220de1b6191fe020cec"
+    },
+    "template:sram_banks": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/sram.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/009.scala",
+      "sha256": "d23602c53d9b3ea95e5bd5ac303b152ed2fa9bf260b9b2bcfb4645d28e74cb69"
+    },
+    "template:key_feeder": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/010.scala",
+      "sha256": "497aa40bcce085c4f0bb9dea9b169831cb010a527907d5060eeca84826797c9d"
+    },
+    "template:execution_pe": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/repe.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/011.scala",
+      "sha256": "d694fc01d8352008c56cfa7d29d72959a69a366f15b3b25e031024e2eff445a9"
+    },
+    "template:low_precision_predictor": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/012.scala",
+      "sha256": "3cf7e3b7877b363cc69aa3076f5aaa8990c858f4d2063088bf82140e644e452d"
+    },
+    "template:index_scheduler": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/013.scala",
+      "sha256": "49396ee98ca68d61b1cd49e63aa697be041cecd48721a3a770b4e2d72c5fb9d2"
+    },
+    "template:block_scheduler": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/014.scala",
+      "sha256": "45e788edd06864e12c38cb40d4746a128177e26fa74c53e721e333e4fd4ced74"
+    },
+    "template:partial_softmax": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/015.scala",
+      "sha256": "62b543bc76a83b73d4a13fc6752dc544ecd14da252a04fd9420fd4752b059810"
+    },
+    "template:attention_tile_reference": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/attention_tile.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/016.scala",
+      "sha256": "e77f1f9f370f03380eccb4af14685b014c9d90da290d0c6cbcc83687f4a43298"
+    },
+    "template:attention_tile_top_reference": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/attention_tile_top.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/017.scala",
+      "sha256": "ce8815f1856a5ac258ef17154fafbbb5225c89fabd3c26e10a1b35c4194e7c53"
+    },
+    "template:attention_tile_system_reference": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/attention_tile_system.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/018.scala",
+      "sha256": "72efecaef3a77c6fd63f1c1da6195279d16f9319c003e779b524064c6d971244"
+    },
+    "template:sanger_official_mask": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/mask.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/019.scala",
+      "sha256": "db53fb239a02d641ab03cd36e763c51fc8c929692ad8dc779f011b92c8bf4a5d"
+    },
+    "template:sanger_official_pack": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/pack.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/020.scala",
+      "sha256": "ad3ee1f52d7764fb17ab42e4a2200e07a5f6c0a52b0b402b08eb6fa24198babd"
+    },
+    "template:sanger_official_sparse_pe": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/pe_row.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/021.scala",
+      "sha256": "b015c2e19f583e0b0e784a506af7151f1d3e8de9fd72b024b85043243d666d6a"
+    },
+    "template:flexcim_nm_distribution": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/flexcim_af604014/hw/distribution.v",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/022.v",
+      "sha256": "5c50d338d41a6132c71d205d0a41916d51b64d4850bf6161d19e01585216eb7d"
+    },
+    "template:spatten_official_topk": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/TopK.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/023.scala",
+      "sha256": "20f6395998b9bee448e13a63da4d68afdb3efb2aebb9c4473a8f04cade593e69"
+    },
+    "template:bitonic_sort_network": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/bitonic_sorter_d48b8ab0/hdl/basic/bitonic_sort.v",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/024.v",
+      "sha256": "9b8e72ba2dd4a10d424becb5144b0a9269f307b28973d3ce987d3f4e302411c0"
+    },
+    "test:pipelined_divider:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/tb_divider.cpp",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/025.cpp",
+      "sha256": "9f010b9d13a5e345002ab43883b812e0c665671194d7b70456af3bb000a6eec3"
+    },
+    "test:pipelined_divider:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/fixedpoint.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/026.py",
+      "sha256": "bda248421e2c52119566c2982d322227d4c9a8c38bd1a056f2e962d28bfc26c4"
+    },
+    "test:dynax_exp_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/tb_exp.cpp",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/027.cpp",
+      "sha256": "645f2bad989fd7a3357e653c0cdb1745269112050079cd38eb44d17af4b738f8"
+    },
+    "test:dynax_exp_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/exp_unit.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/028.py",
+      "sha256": "18de3dcd0fae0a6e83c27a27dbc10c3b961839a2dced7c4a68973f314ef6c1c5"
+    },
+    "test:topk_selection:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/tb_topk.cpp",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/029.cpp",
+      "sha256": "9fae733701e109db831819fbdc16a527a48cfc0c93dc8be334d7adc818c1d203"
+    },
+    "test:topk_selection:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/predict_unit.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/030.py",
+      "sha256": "126f5e0d27517738b5516ab53dd7e4fbdfb5cbcd3e340c965f3d1d2ba75d1eff"
+    },
+    "test:topk_selection:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/reference_checks/topk_8_7.md",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/031.md",
+      "sha256": "3fce8e69dd1cdea987c0562a85409551268164eb32be084cb2c2e183a6e8bfba"
+    },
+    "test:sram_banks:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/tb_sram.cpp",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/032.cpp",
+      "sha256": "ddf8f8196c4f47bdeb983d5dcb5e97a67c73354d72e3e21a1dd9b401c6cf6d7c"
+    },
+    "test:key_feeder:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/tb_key_feeder.cpp",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/033.cpp",
+      "sha256": "74a382a0335326b63631424596111d912365441b225fa114f66a32516bf30d4f"
+    },
+    "support:execution_pe:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/007.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "test:execution_pe:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/tb_repe.cpp",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/035.cpp",
+      "sha256": "638f264211fae515486970712e75192355b895214b92c49dd1be65291f8133f2"
+    },
+    "test:execution_pe:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/execute_unit.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/036.py",
+      "sha256": "313b7948794d67d77caf8e78bea3255d33dcdafb9ae94ff2a1ad95af64a628db"
+    },
+    "support:low_precision_predictor:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/007.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "test:low_precision_predictor:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/tb_prepe_array.cpp",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/038.cpp",
+      "sha256": "3d08d85afe8603f8d26b060c5f3076c2882807cfd5bbefffcad4781d68bf0ef5"
+    },
+    "test:low_precision_predictor:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/software.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/039.py",
+      "sha256": "6237ab787dd0871059dc006f0aa6e8d49eaea2aea941bad78f29031e18c7ad54"
+    },
+    "test:block_scheduler:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/tb_block_scheduler.cpp",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/040.cpp",
+      "sha256": "9eff39302eff6267f9fa4a9100b0c3d56322f792ace8ce860c272ca125a3485a"
+    },
+    "test:partial_softmax:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/tb_psum_softmax.cpp",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/041.cpp",
+      "sha256": "ec8895002b158f30c1812d2b9437393e9218d75b6941796e6d15cf98a66a8cdf"
+    },
+    "test:partial_softmax:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/predict_unit.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/030.py",
+      "sha256": "126f5e0d27517738b5516ab53dd7e4fbdfb5cbcd3e340c965f3d1d2ba75d1eff"
+    },
+    "support:attention_tile_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/attention_tile_system.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/018.scala",
+      "sha256": "72efecaef3a77c6fd63f1c1da6195279d16f9319c003e779b524064c6d971244"
+    },
+    "support:attention_tile_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/attention_tile_top.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/017.scala",
+      "sha256": "ce8815f1856a5ac258ef17154fafbbb5225c89fabd3c26e10a1b35c4194e7c53"
+    },
+    "support:attention_tile_reference:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/010.scala",
+      "sha256": "497aa40bcce085c4f0bb9dea9b169831cb010a527907d5060eeca84826797c9d"
+    },
+    "support:attention_tile_reference:3": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/repe.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/011.scala",
+      "sha256": "d694fc01d8352008c56cfa7d29d72959a69a366f15b3b25e031024e2eff445a9"
+    },
+    "support:attention_tile_reference:4": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/047.scala",
+      "sha256": "1e1a501ff1b2eb147b0ba388918190fc06c409f742068454af5b8d76c4721215"
+    },
+    "support:attention_tile_reference:5": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/048.scala",
+      "sha256": "73db4c2312be27805a2c54428a1d975485c89b93f23271df1104a01c1ca1a352"
+    },
+    "support:attention_tile_reference:6": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/sram.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/009.scala",
+      "sha256": "d23602c53d9b3ea95e5bd5ac303b152ed2fa9bf260b9b2bcfb4645d28e74cb69"
+    },
+    "support:attention_tile_reference:7": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/007.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "support:attention_tile_reference:8": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/014.scala",
+      "sha256": "45e788edd06864e12c38cb40d4746a128177e26fa74c53e721e333e4fd4ced74"
+    },
+    "support:attention_tile_reference:9": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/052.scala",
+      "sha256": "bb5006c94f149fe7e3b5baf642a027bf86b0420e87ca2cb0cecd28cd9ba2d916"
+    },
+    "support:attention_tile_reference:10": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/divider.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/006.scala",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+    },
+    "support:attention_tile_reference:11": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/013.scala",
+      "sha256": "49396ee98ca68d61b1cd49e63aa697be041cecd48721a3a770b4e2d72c5fb9d2"
+    },
+    "support:attention_tile_reference:12": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/012.scala",
+      "sha256": "3cf7e3b7877b363cc69aa3076f5aaa8990c858f4d2063088bf82140e644e452d"
+    },
+    "support:attention_tile_reference:13": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/056.scala",
+      "sha256": "dc57bc8281a0f42070a4954de96df30d66dcede2c966493837e005ad905676f0"
+    },
+    "support:attention_tile_reference:14": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/015.scala",
+      "sha256": "62b543bc76a83b73d4a13fc6752dc544ecd14da252a04fd9420fd4752b059810"
+    },
+    "support:attention_tile_reference:15": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/topk.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/008.scala",
+      "sha256": "09196842ec6bef512088f1eaf4a3112053e64f36cd5b7220de1b6191fe020cec"
+    },
+    "test:attention_tile_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/tb_attention_tile.cpp",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/059.cpp",
+      "sha256": "29d1a2fe2ac9858fc0d0e6d9b9a717366c1699a00d45d44161ad1ad4c642126c"
+    },
+    "test:attention_tile_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/drivers.h",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/060.h",
+      "sha256": "55604883315e75cdb3763b8192afe10aea4e4eb0b91b92b78027590d19028e85"
+    },
+    "test:attention_tile_reference:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/golden.h",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/061.h",
+      "sha256": "2d4a4eba6fe92e7baa96d5aff3596d28dcb42652389e90d25f609a02bd5d777a"
+    },
+    "test:attention_tile_reference:3": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/fixedpoint.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/026.py",
+      "sha256": "bda248421e2c52119566c2982d322227d4c9a8c38bd1a056f2e962d28bfc26c4"
+    },
+    "test:attention_tile_reference:4": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/execute_unit.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/036.py",
+      "sha256": "313b7948794d67d77caf8e78bea3255d33dcdafb9ae94ff2a1ad95af64a628db"
+    },
+    "test:attention_tile_reference:5": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/predict_unit.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/030.py",
+      "sha256": "126f5e0d27517738b5516ab53dd7e4fbdfb5cbcd3e340c965f3d1d2ba75d1eff"
+    },
+    "support:attention_tile_top_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/attention_tile.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/016.scala",
+      "sha256": "e77f1f9f370f03380eccb4af14685b014c9d90da290d0c6cbcc83687f4a43298"
+    },
+    "support:attention_tile_top_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/attention_tile_system.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/018.scala",
+      "sha256": "72efecaef3a77c6fd63f1c1da6195279d16f9319c003e779b524064c6d971244"
+    },
+    "support:attention_tile_top_reference:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/010.scala",
+      "sha256": "497aa40bcce085c4f0bb9dea9b169831cb010a527907d5060eeca84826797c9d"
+    },
+    "support:attention_tile_top_reference:3": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/repe.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/011.scala",
+      "sha256": "d694fc01d8352008c56cfa7d29d72959a69a366f15b3b25e031024e2eff445a9"
+    },
+    "support:attention_tile_top_reference:4": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/047.scala",
+      "sha256": "1e1a501ff1b2eb147b0ba388918190fc06c409f742068454af5b8d76c4721215"
+    },
+    "support:attention_tile_top_reference:5": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/048.scala",
+      "sha256": "73db4c2312be27805a2c54428a1d975485c89b93f23271df1104a01c1ca1a352"
+    },
+    "support:attention_tile_top_reference:6": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/sram.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/009.scala",
+      "sha256": "d23602c53d9b3ea95e5bd5ac303b152ed2fa9bf260b9b2bcfb4645d28e74cb69"
+    },
+    "support:attention_tile_top_reference:7": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/007.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "support:attention_tile_top_reference:8": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/014.scala",
+      "sha256": "45e788edd06864e12c38cb40d4746a128177e26fa74c53e721e333e4fd4ced74"
+    },
+    "support:attention_tile_top_reference:9": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/052.scala",
+      "sha256": "bb5006c94f149fe7e3b5baf642a027bf86b0420e87ca2cb0cecd28cd9ba2d916"
+    },
+    "support:attention_tile_top_reference:10": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/divider.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/006.scala",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+    },
+    "support:attention_tile_top_reference:11": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/013.scala",
+      "sha256": "49396ee98ca68d61b1cd49e63aa697be041cecd48721a3a770b4e2d72c5fb9d2"
+    },
+    "support:attention_tile_top_reference:12": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/012.scala",
+      "sha256": "3cf7e3b7877b363cc69aa3076f5aaa8990c858f4d2063088bf82140e644e452d"
+    },
+    "support:attention_tile_top_reference:13": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/056.scala",
+      "sha256": "dc57bc8281a0f42070a4954de96df30d66dcede2c966493837e005ad905676f0"
+    },
+    "support:attention_tile_top_reference:14": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/015.scala",
+      "sha256": "62b543bc76a83b73d4a13fc6752dc544ecd14da252a04fd9420fd4752b059810"
+    },
+    "support:attention_tile_top_reference:15": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/topk.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/008.scala",
+      "sha256": "09196842ec6bef512088f1eaf4a3112053e64f36cd5b7220de1b6191fe020cec"
+    },
+    "test:attention_tile_top_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/tb_attention_tile_top.cpp",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/081.cpp",
+      "sha256": "74ab38f8c53a531a2578800cdd1edb2fb7d2f4a6fb75c67ebae1b99a7386a860"
+    },
+    "test:attention_tile_top_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/drivers.h",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/060.h",
+      "sha256": "55604883315e75cdb3763b8192afe10aea4e4eb0b91b92b78027590d19028e85"
+    },
+    "test:attention_tile_top_reference:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/golden.h",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/061.h",
+      "sha256": "2d4a4eba6fe92e7baa96d5aff3596d28dcb42652389e90d25f609a02bd5d777a"
+    },
+    "test:attention_tile_top_reference:3": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/fixedpoint.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/026.py",
+      "sha256": "bda248421e2c52119566c2982d322227d4c9a8c38bd1a056f2e962d28bfc26c4"
+    },
+    "test:attention_tile_top_reference:4": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/execute_unit.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/036.py",
+      "sha256": "313b7948794d67d77caf8e78bea3255d33dcdafb9ae94ff2a1ad95af64a628db"
+    },
+    "test:attention_tile_top_reference:5": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/predict_unit.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/030.py",
+      "sha256": "126f5e0d27517738b5516ab53dd7e4fbdfb5cbcd3e340c965f3d1d2ba75d1eff"
+    },
+    "support:attention_tile_system_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/attention_tile.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/016.scala",
+      "sha256": "e77f1f9f370f03380eccb4af14685b014c9d90da290d0c6cbcc83687f4a43298"
+    },
+    "support:attention_tile_system_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/attention_tile_top.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/017.scala",
+      "sha256": "ce8815f1856a5ac258ef17154fafbbb5225c89fabd3c26e10a1b35c4194e7c53"
+    },
+    "support:attention_tile_system_reference:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/010.scala",
+      "sha256": "497aa40bcce085c4f0bb9dea9b169831cb010a527907d5060eeca84826797c9d"
+    },
+    "support:attention_tile_system_reference:3": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/repe.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/011.scala",
+      "sha256": "d694fc01d8352008c56cfa7d29d72959a69a366f15b3b25e031024e2eff445a9"
+    },
+    "support:attention_tile_system_reference:4": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/047.scala",
+      "sha256": "1e1a501ff1b2eb147b0ba388918190fc06c409f742068454af5b8d76c4721215"
+    },
+    "support:attention_tile_system_reference:5": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/048.scala",
+      "sha256": "73db4c2312be27805a2c54428a1d975485c89b93f23271df1104a01c1ca1a352"
+    },
+    "support:attention_tile_system_reference:6": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/execute_unit/sram.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/009.scala",
+      "sha256": "d23602c53d9b3ea95e5bd5ac303b152ed2fa9bf260b9b2bcfb4645d28e74cb69"
+    },
+    "support:attention_tile_system_reference:7": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/007.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "support:attention_tile_system_reference:8": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/014.scala",
+      "sha256": "45e788edd06864e12c38cb40d4746a128177e26fa74c53e721e333e4fd4ced74"
+    },
+    "support:attention_tile_system_reference:9": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/052.scala",
+      "sha256": "bb5006c94f149fe7e3b5baf642a027bf86b0420e87ca2cb0cecd28cd9ba2d916"
+    },
+    "support:attention_tile_system_reference:10": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/divider.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/006.scala",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+    },
+    "support:attention_tile_system_reference:11": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/013.scala",
+      "sha256": "49396ee98ca68d61b1cd49e63aa697be041cecd48721a3a770b4e2d72c5fb9d2"
+    },
+    "support:attention_tile_system_reference:12": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/012.scala",
+      "sha256": "3cf7e3b7877b363cc69aa3076f5aaa8990c858f4d2063088bf82140e644e452d"
+    },
+    "support:attention_tile_system_reference:13": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/056.scala",
+      "sha256": "dc57bc8281a0f42070a4954de96df30d66dcede2c966493837e005ad905676f0"
+    },
+    "support:attention_tile_system_reference:14": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/015.scala",
+      "sha256": "62b543bc76a83b73d4a13fc6752dc544ecd14da252a04fd9420fd4752b059810"
+    },
+    "support:attention_tile_system_reference:15": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/chisel/src/main/scala/predict_unit/topk.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/008.scala",
+      "sha256": "09196842ec6bef512088f1eaf4a3112053e64f36cd5b7220de1b6191fe020cec"
+    },
+    "test:attention_tile_system_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/tb_attention_tile_system.cpp",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/103.cpp",
+      "sha256": "8c29d3b0e048be66962fb6949fffa4ae088cf2b0320e6087904a0b9fda66c1e9"
+    },
+    "test:attention_tile_system_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/drivers.h",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/060.h",
+      "sha256": "55604883315e75cdb3763b8192afe10aea4e4eb0b91b92b78027590d19028e85"
+    },
+    "test:attention_tile_system_reference:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/tb/golden.h",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/061.h",
+      "sha256": "2d4a4eba6fe92e7baa96d5aff3596d28dcb42652389e90d25f609a02bd5d777a"
+    },
+    "test:attention_tile_system_reference:3": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/fixedpoint.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/026.py",
+      "sha256": "bda248421e2c52119566c2982d322227d4c9a8c38bd1a056f2e962d28bfc26c4"
+    },
+    "test:attention_tile_system_reference:4": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/execute_unit.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/036.py",
+      "sha256": "313b7948794d67d77caf8e78bea3255d33dcdafb9ae94ff2a1ad95af64a628db"
+    },
+    "test:attention_tile_system_reference:5": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/hardware/golden/predict_unit.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/030.py",
+      "sha256": "126f5e0d27517738b5516ab53dd7e4fbdfb5cbcd3e340c965f3d1d2ba75d1eff"
+    },
+    "support:sanger_official_mask:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/109.scala",
+      "sha256": "29a41821e3d7dd6bf4bb26023cdbed828f7df5eb474931edf816422ac79588b3"
+    },
+    "test:sanger_official_mask:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/sanger_5d99ba39/hardware/src/test/scala/pe_row/mask_test.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/110.scala",
+      "sha256": "3903e9ee3803cb832bceeb4703b727cc10c0f48dc90b5adf7c4d375f45283386"
+    },
+    "test:sanger_official_pack:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/sanger_5d99ba39/hardware/src/test/scala/pe_row/pack_test.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/111.scala",
+      "sha256": "d2c388c2df845a24b60cc4f3342dd265e14558c3b2ff11fc4a0d2f9e6abc99bc"
+    },
+    "support:sanger_official_sparse_pe:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/109.scala",
+      "sha256": "29a41821e3d7dd6bf4bb26023cdbed828f7df5eb474931edf816422ac79588b3"
+    },
+    "test:sanger_official_sparse_pe:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/sanger_5d99ba39/hardware/src/test/scala/pe_row/pe_row_test.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/113.scala",
+      "sha256": "01d1d5e30b55fdb5daf5e69a32dab8a7eabe0e25bd9bc42b14a19fe7703f089b"
+    },
+    "test:flexcim_nm_distribution:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/flexcim_af604014/hw/tests/test_distribution.py",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/114.py",
+      "sha256": "22adf9d4dfd83d82c58b5e8e29b94e78fa736fbb7816474ee89f19296a185ebb"
+    },
+    "support:spatten_official_topk:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/QuickSelect.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/115.scala",
+      "sha256": "c371e2e110aeee31b3dada238b9dcf40b3dde000faa7dc040d245c45e33a09db"
+    },
+    "support:spatten_official_topk:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/PrefixSum.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/116.scala",
+      "sha256": "9a6b26131caff43002c2fd63b321e1c15f18d074cf974d58395b311a4e30a230"
+    },
+    "support:spatten_official_topk:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/ReductionTree.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/117.scala",
+      "sha256": "000ff88a6adc9e1432f45b475c40367fe39fdb624316fd30a823058eab53dffd"
+    },
+    "support:spatten_official_topk:3": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/Stage.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/118.scala",
+      "sha256": "82322bbe940d05f2a7e7e90631e6245ed9c8e9219554345a25d95c6dce401a80"
+    },
+    "support:spatten_official_topk:4": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/ZeroEliminator.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/119.scala",
+      "sha256": "866d22b4c7500d02461d75618fa0675ebf514325ab977c575efc3c47aa823de4"
+    },
+    "support:spatten_official_topk:5": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/Hashfunc.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/120.scala",
+      "sha256": "b67b7e8e27dae415ee9bc88348eb493bfc91ebf73b70854de5f66473472813ac"
+    },
+    "support:spatten_official_topk:6": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/MultiPortRAM.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/121.scala",
+      "sha256": "1e0cade563443fc8c9ae2e9cf6225ec19f23f1ecb51d5661851cb57f20fbd73e"
+    },
+    "support:spatten_official_topk:7": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/MultiBankRAM.scala",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/122.scala",
+      "sha256": "dc5ab877481cd481cc727cb4206cc9f97bf9e12a1e5d4a924d8c636ecef0c8ba"
+    },
+    "support:bitonic_sort_network:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/bitonic_sorter_d48b8ab0/hdl/basic/bitonic_block.v",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/123.v",
+      "sha256": "176c18746a05fd0f7a26442ea319d38bfaa829ad44246bdb62053e7db9fc9003"
+    },
+    "support:bitonic_sort_network:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/bitonic_sorter_d48b8ab0/hdl/basic/bitonic_node.v",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/124.v",
+      "sha256": "03760281526ea622a83ef5e129a75519413e13effbd830a21c17196bb8bf5629"
+    },
+    "support:bitonic_sort_network:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_extended_v2_20260916/libraries/third_party/bitonic_sorter_d48b8ab0/hdl/basic/bitonic_comp.v",
+      "snapshot": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_block_nm/holdout_library/references/125.v",
+      "sha256": "c952696174e36bd1b3fca1c2f3f91c45762484c668f4dfa402361e8e74e8d15c"
+    }
+  },
+  "catalog": {
+    "version": 1,
+    "algorithms": {
+      "rq1_dynax_xm": {
+        "source": "algorithms/rq1_sparse_rows.py",
+        "factory": "DynaxXM"
+      },
+      "rq1_block_nm": {
+        "source": "algorithms/rq1_sparse_rows.py",
+        "factory": "BlockNM"
+      },
+      "rq1_global_topk": {
+        "source": "algorithms/rq1_sparse_rows.py",
+        "factory": "GlobalTopK"
+      },
+      "rq1_sanger_threshold": {
+        "source": "algorithms/rq1_sparse_rows.py",
+        "factory": "SangerThreshold"
+      }
+    },
+    "hardware_templates": {
+      "register_stage": {
+        "source": "hardware/register_stage.v",
+        "description": "Verilog synchronous valid/data register stage; handshake and reset example.",
+        "tags": [
+          "verilog",
+          "pipeline",
+          "valid"
+        ]
+      },
+      "chisel_carry_and_clock": {
+        "source": "hardware/ArithmeticStage.scala",
+        "description": "Chisel RawModule example: explicit clock/reset, carry-preserving +& adder, gated valid/data registers.",
+        "tags": [
+          "chisel",
+          "addition",
+          "width",
+          "clock",
+          "pipeline"
+        ]
+      },
+      "pipelined_divider": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+        "description": "FAST radix-2 restoring divider, full-width numerator processing, tunable pipeline depth and valid propagation; adapt fixed-point signed interface to target semantics.",
+        "tags": [
+          "chisel",
+          "division",
+          "normalization",
+          "pipeline"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_divider.cpp",
+            "description": "Streaming valid/latency, signed Q8.8 quotient, divide-by-zero and wrap; adapt ports and unsigned semantics explicitly.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/fixedpoint.py",
+            "description": "Signed wrap, rounded fixed-point multiply and truncation toward zero.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "dynax_exp_reference": {
+        "source": "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+        "description": "FAST reconstruction of fixed-point exponential unit; this is not an original DynaX release module.",
+        "tags": [
+          "chisel",
+          "exponential",
+          "fixedpoint"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_exp.cpp",
+            "description": "Exponent fixed-point test driver.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/exp_unit.py",
+            "description": "Fixed-point exponential numerical reference.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "topk_selection": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/topk.scala",
+        "description": "Top-k value/index selection hardware with parameterized widths.",
+        "tags": [
+          "chisel",
+          "topk",
+          "sparse",
+          "selection"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_topk.cpp",
+            "description": "Selection order, indices and valid pulse sampling.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/predict_unit.py",
+            "description": "TopK and prediction numeric/timing reference; inspect applicable functions.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "reference_checks/topk_8_7.md",
+            "description": "Actual native m=8,n=7 latency/index probe and protocol limitations; distinguishes native timing from adapter timing.",
+            "usage": "measured_reference_protocol"
+          }
+        ]
+      },
+      "sram_banks": {
+        "source": "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+        "description": "Banked synchronous SRAM access and storage interface reference.",
+        "tags": [
+          "chisel",
+          "memory",
+          "banks"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_sram.cpp",
+            "description": "Banked memory read/write protocol.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "key_feeder": {
+        "source": "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+        "description": "Key gather/feeding with backpressure and banking; reference for sparse memory scheduling.",
+        "tags": [
+          "chisel",
+          "gather",
+          "backpressure",
+          "memory"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_key_feeder.cpp",
+            "description": "Gather, bank conflict and backpressure tests.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "execution_pe": {
+        "source": "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+        "description": "DynaX execution PE combining fixed-point arithmetic and state-controlled updates.",
+        "tags": [
+          "chisel",
+          "mac",
+          "processing-element",
+          "fixedpoint"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_repe.cpp",
+            "description": "PE control sequencing and arithmetic.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/execute_unit.py",
+            "description": "Execution golden model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ],
+        "support_sources": [
+          "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala"
+        ]
+      },
+      "low_precision_predictor": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+        "description": "DynaX low-precision prediction PE and array; 1:2 pruning example.",
+        "tags": [
+          "chisel",
+          "prediction",
+          "sparsity",
+          "low-precision"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_prepe_array.cpp",
+            "description": "Signed low-precision prediction and valid timing.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/software.py",
+            "description": "DynaX 1:2/1:4 query pruning mathematical reference.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ],
+        "support_sources": [
+          "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala"
+        ]
+      },
+      "index_scheduler": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+        "description": "Sparse index scheduling and mapping to execution lanes.",
+        "tags": [
+          "chisel",
+          "schedule",
+          "sparse",
+          "indices"
+        ]
+      },
+      "block_scheduler": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+        "description": "Block scheduling, queueing and flow control reference.",
+        "tags": [
+          "chisel",
+          "schedule",
+          "queue",
+          "block"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_block_scheduler.cpp",
+            "description": "Scheduler flow and work conservation.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "partial_softmax": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+        "description": "Partial-sum normalization and fixed-point divider reference; check semantics before adapting.",
+        "tags": [
+          "chisel",
+          "normalization",
+          "softmax",
+          "fixedpoint"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_psum_softmax.cpp",
+            "description": "Accumulator and normalizer driver.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/predict_unit.py",
+            "description": "Partial sum fixed-point reference.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "attention_tile_reference": {
+        "source": "../hardware/chisel/src/main/scala/attention_tile.scala",
+        "description": "Integrated DynaX-derived datapath blueprint: prediction, selection, execution and normalization. External control/gather; not independently complete QKV E2E.",
+        "tags": [
+          "chisel",
+          "dynax",
+          "integrated-system",
+          "native-library",
+          "fsm",
+          "reference-bundle"
+        ],
+        "support_sources": [
+          "../hardware/chisel/src/main/scala/attention_tile_system.scala",
+          "../hardware/chisel/src/main/scala/attention_tile_top.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+          "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/topk.scala"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_attention_tile.cpp",
+            "description": "Original integrated driver and actual acceptance criteria; inspect limitations.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/tb/drivers.h",
+            "description": "Existing cycle/control/handshake drivers.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/tb/golden.h",
+            "description": "Golden-data loader.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/fixedpoint.py",
+            "description": "Fixed-point arithmetic semantics.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/execute_unit.py",
+            "description": "Execution datapath cycle model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/predict_unit.py",
+            "description": "Prediction/selection cycle model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "attention_tile_top_reference": {
+        "source": "../hardware/chisel/src/main/scala/attention_tile_top.scala",
+        "description": "DynaX-derived hardware control FSM and cross-pass accumulation blueprint. External selected indices and K/V data; preserve verified scheduling.",
+        "tags": [
+          "chisel",
+          "dynax",
+          "integrated-system",
+          "native-library",
+          "fsm",
+          "reference-bundle"
+        ],
+        "support_sources": [
+          "../hardware/chisel/src/main/scala/attention_tile.scala",
+          "../hardware/chisel/src/main/scala/attention_tile_system.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+          "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/topk.scala"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_attention_tile_top.cpp",
+            "description": "Original integrated driver and actual acceptance criteria; inspect limitations.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/tb/drivers.h",
+            "description": "Existing cycle/control/handshake drivers.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/tb/golden.h",
+            "description": "Golden-data loader.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/fixedpoint.py",
+            "description": "Fixed-point arithmetic semantics.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/execute_unit.py",
+            "description": "Execution datapath cycle model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/predict_unit.py",
+            "description": "Prediction/selection cycle model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "attention_tile_system_reference": {
+        "source": "../hardware/chisel/src/main/scala/attention_tile_system.scala",
+        "description": "DynaX-derived system reference including selection, hardware indices, banked KeyFeeder and backpressure. Still single query row, external scores and block mass; system bench lacks final attention-value assertions. Use its actual architecture and protocols; fill missing QKV-to-score/mass path and independent E2E.",
+        "tags": [
+          "chisel",
+          "dynax",
+          "integrated-system",
+          "native-library",
+          "fsm",
+          "reference-bundle"
+        ],
+        "support_sources": [
+          "../hardware/chisel/src/main/scala/attention_tile.scala",
+          "../hardware/chisel/src/main/scala/attention_tile_top.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+          "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/topk.scala"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_attention_tile_system.cpp",
+            "description": "Original integrated driver and actual acceptance criteria; inspect limitations.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/tb/drivers.h",
+            "description": "Existing cycle/control/handshake drivers.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/tb/golden.h",
+            "description": "Golden-data loader.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/fixedpoint.py",
+            "description": "Fixed-point arithmetic semantics.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/execute_unit.py",
+            "description": "Execution datapath cycle model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/predict_unit.py",
+            "description": "Prediction/selection cycle model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "sanger_official_mask": {
+        "source": "third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/mask.scala",
+        "description": "Official Sanger MICRO21 low-bit dense PE / score-exp-sum architecture. UNSIGNED Q/K and approximate exp, NOT an exact signed-QKV softmax mask engine.",
+        "tags": [
+          "sanger",
+          "upstream",
+          "read-only",
+          "reference-only"
+        ],
+        "language": "chisel",
+        "native_linkable": false,
+        "compatibility": "Chisel 3.4.1 upstream; scalar controls are explicit idle/clear/calc/move, not valid-ready. DensePE is unsigned. Original exp approximation is NOT the RQ1 exact EXP table; translate architecture only where semantics match. Also uses package exp_unit, conflicting with existing DynaX ExpUnitFixPoint if both compiled. Actual combined upstream elaboration under FAST Chisel 3.6.1 FAILED with legacy API syntax (e.g. asUInt()/andR()); immutable upstream is guidance only. Newly generated Chisel must use current API and exact task math.",
+        "provenance": {
+          "repository": "https://github.com/hatsu3/Sanger",
+          "commit": "5d99ba390ed9a81e138271a7776058b45938859a",
+          "license": "No LICENSE file declared in pinned upstream; retained for local research reference, no license inferred."
+        },
+        "support_sources": [
+          "third_party/sanger_5d99ba39/hardware/src/main/scala/exp_unit/exp_unit.scala"
+        ],
+        "test_references": [
+          {
+            "source": "third_party/sanger_5d99ba39/hardware/src/test/scala/pe_row/mask_test.scala",
+            "description": "Unchanged upstream reference test; inspect protocol and assumptions; adaptation required for new interfaces.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "sanger_official_pack": {
+        "source": "third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/pack.scala",
+        "description": "Official Sanger mask-to-sparse-array configuration packer, per-row counters and sparse position encoding.",
+        "tags": [
+          "sanger",
+          "upstream",
+          "read-only",
+          "reference-only"
+        ],
+        "language": "chisel",
+        "native_linkable": false,
+        "compatibility": "Receives boolean selections from an external threshold decision, not Q/K scores. Output mask is array configuration, NOT the RQ1 bitmask; includes explicit clear/read controls and no_pe sentinel. Original test uses height=8, pe_n=4; do not impose this sparsity on RQ1. Actual combined upstream elaboration under FAST Chisel 3.6.1 FAILED with legacy API syntax (e.g. asUInt()/andR()); immutable upstream is guidance only. Newly generated Chisel must use current API and exact task math.",
+        "provenance": {
+          "repository": "https://github.com/hatsu3/Sanger",
+          "commit": "5d99ba390ed9a81e138271a7776058b45938859a",
+          "license": "No LICENSE file declared in pinned upstream; retained for local research reference, no license inferred."
+        },
+        "support_sources": [],
+        "test_references": [
+          {
+            "source": "third_party/sanger_5d99ba39/hardware/src/test/scala/pe_row/pack_test.scala",
+            "description": "Unchanged upstream reference test; inspect protocol and assumptions; adaptation required for new interfaces.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "sanger_official_sparse_pe": {
+        "source": "third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/pe_row.scala",
+        "description": "Official Sanger reconfigurable sparse PE/row/array for score and weighted-value accumulation, indexed routing and bubble controls.",
+        "tags": [
+          "sanger",
+          "upstream",
+          "read-only",
+          "reference-only"
+        ],
+        "language": "chisel",
+        "native_linkable": false,
+        "compatibility": "Externally sequenced fixed-point PE array, not complete QKV-to-output accelerator. Original approximate exponent and numeric widths differ from RQ1. New top control, signed widths, exact LUT and normalization remain necessary. Actual combined upstream elaboration under FAST Chisel 3.6.1 FAILED with legacy API syntax (e.g. asUInt()/andR()); immutable upstream is guidance only. Newly generated Chisel must use current API and exact task math.",
+        "provenance": {
+          "repository": "https://github.com/hatsu3/Sanger",
+          "commit": "5d99ba390ed9a81e138271a7776058b45938859a",
+          "license": "No LICENSE file declared in pinned upstream; retained for local research reference, no license inferred."
+        },
+        "support_sources": [
+          "third_party/sanger_5d99ba39/hardware/src/main/scala/exp_unit/exp_unit.scala"
+        ],
+        "test_references": [
+          {
+            "source": "third_party/sanger_5d99ba39/hardware/src/test/scala/pe_row/pe_row_test.scala",
+            "description": "Unchanged upstream reference test; inspect protocol and assumptions; adaptation required for new interfaces.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "flexcim_nm_distribution": {
+        "source": "third_party/flexcim_af604014/hw/distribution.v",
+        "description": "Official FLOW/FlexCiM ISLPED25 N:M configurable two-stage data distribution mux; sparse operand routing reference.",
+        "tags": [
+          "flexcim",
+          "upstream",
+          "read-only",
+          "reference-only"
+        ],
+        "language": "verilog",
+        "native_linkable": false,
+        "compatibility": "Flexible static weight sparsity routing, NOT dynamic attention pruning or top-n selection. Requires externally computed select indices; i_en is unused in source. Two-bit mux selectors limit native choices. Upstream Cocotb test parameters differ from defaults; inspect before adapting. Full FlexCiM sources are retained separately; this entry exposes only the distributor. This distributor passed 100 independent functional vectors. Full upstream FlexCiM bundle FAILED Verilator lint with syntax errors; do not assume its other modules are validated.",
+        "provenance": {
+          "repository": "https://github.com/FLOW-open-project/FLOW",
+          "commit": "af604014799d9a0cdf3cb43ff332edeaac4682c1",
+          "license": "MIT"
+        },
+        "support_sources": [],
+        "test_references": [
+          {
+            "source": "third_party/flexcim_af604014/hw/tests/test_distribution.py",
+            "description": "Unchanged upstream reference test; inspect protocol and assumptions; adaptation required for new interfaces.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "spatten_official_topk": {
+        "source": "third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/TopK.scala",
+        "description": "Official MIT SpAtten hardware TopK and QuickSelect algorithms with streams, pivot selection, prefix sums and compaction. Use real TopK; TopKDummy is NOT a numerical implementation.",
+        "tags": [
+          "spatten",
+          "upstream",
+          "read-only",
+          "reference-only"
+        ],
+        "language": "spinalhdl",
+        "native_linkable": false,
+        "compatibility": "SpinalHDL Component, NOT Chisel Module: reference-only translation, cannot native-link in FAST Chisel. Do not copy simulator TopKDummy or precomputed latency model. Preserve task signed comparisons, exact cardinality and deterministic ties when adapting. Stream backpressure/variable latency differs from II=1 fixed-latency behavior contracts.",
+        "provenance": {
+          "repository": "https://github.com/mit-han-lab/spatten",
+          "commit": "a0f1388630590668e09456c4680211c513592e3f",
+          "license": "MIT"
+        },
+        "support_sources": [
+          "third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/QuickSelect.scala",
+          "third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/PrefixSum.scala",
+          "third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/ReductionTree.scala",
+          "third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/Stage.scala",
+          "third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/ZeroEliminator.scala",
+          "third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/Hashfunc.scala",
+          "third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/MultiPortRAM.scala",
+          "third_party/spatten_a0f13886/spatten_hardware/hardware/src/main/scala/spatten/utils/MultiBankRAM.scala"
+        ],
+        "test_references": []
+      },
+      "bitonic_sort_network": {
+        "source": "third_party/bitonic_sorter_d48b8ab0/hdl/basic/bitonic_sort.v",
+        "description": "MIT-licensed parameterized signed/unsigned bitonic hardware sorting network; alternative blockwise ranking reference independent of streaming TopK.",
+        "tags": [
+          "bitonic_sorter",
+          "upstream",
+          "read-only",
+          "reference-only"
+        ],
+        "language": "verilog",
+        "native_linkable": false,
+        "compatibility": "Sorts words only, no separate indices or mask. Power-of-two channel counts are the validated scope. Basic interface lacks reset/valid; adaptation needs explicit transaction alignment and reset masking. PIPE_REG=1 gives log2(N)*(log2(N)+1)/2 register layers; verify edge counting under any new wrapper. Native Verilog linking is not supported by current FAST Chisel backend. Independent 8-lane signed-9-bit probes passed 100 vectors each for combinational and fully pipelined configurations (6 edges).",
+        "provenance": {
+          "repository": "https://github.com/mcjtag/bitonic_sorter",
+          "commit": "d48b8ab0af4589e5ef10ff82507f67882769cd24",
+          "license": "MIT"
+        },
+        "support_sources": [
+          "third_party/bitonic_sorter_d48b8ab0/hdl/basic/bitonic_block.v",
+          "third_party/bitonic_sorter_d48b8ab0/hdl/basic/bitonic_node.v",
+          "third_party/bitonic_sorter_d48b8ab0/hdl/basic/bitonic_comp.v"
+        ],
+        "test_references": []
+      }
+    }
+  }
+}

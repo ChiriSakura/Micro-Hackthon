@@ -1,0 +1,30 @@
+{
+  "algorithm": "rq1_block_nm",
+  "source_run": "rq1_extended_v2_20260916/rq1_block_nm",
+  "round": 1,
+  "scope": "Read-only diagnosis of original partial physical flow, not final routed PPA",
+  "observations": {
+    "last_pre_route_worst_setup_slack_ns": -3.142,
+    "late_route_drc_violations": 5,
+    "example_startpoint_cell": "_55567_",
+    "startpoint_Q": "_find_min_lo_scores_in_T_8[0]",
+    "example_endpoint_cell": "_55958_",
+    "endpoint_Q": "exp_vals_reg_3[8]",
+    "source_datapath": [
+      "scores_reg.reduce maximum over 16 signed scores",
+      "max_score - scores_reg(i)",
+      "exp_rom(delta(7,0))",
+      "exp_vals_reg capture"
+    ],
+    "source_path": "round_01/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala",
+    "source_lines": [
+      115,
+      119,
+      120,
+      122
+    ]
+  },
+  "inference": "A single combinational score-max/delta/LUT stage is a timing bottleneck; extending router timeout alone cannot establish 300 MHz feasibility.",
+  "candidate_intervention": "Compiler-planned balanced/pipelined maximum and exponent stages with explicitly revised valid/data latency contracts; must be generated and verified by FAST, not manually patched.",
+  "experiment_handling": "Current recovery first measures the unchanged design; all final timing and PPA conclusions await the real tool results."
+}

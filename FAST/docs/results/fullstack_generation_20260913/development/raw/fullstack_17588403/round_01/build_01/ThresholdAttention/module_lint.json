@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/ThresholdAttention/module_lint.log",
+  "diagnostics": "- V e r i l a t i o n   R e p o r t: Verilator 5.052 2026-09-05 rev v5.052\n- Verilator: Built from 0.041 MB sources in 5 modules, into 0.047 MB in 3 C++ files needing 0.000 MB\n- Verilator: Walltime 0.067 s (elab=0.013, cvt=0.029, bld=0.000); cpu 0.015 s on 1 threads; allocated 17.000 MB\n%Warning-DECLFILENAME: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/ThresholdAttention/emitted/ThresholdAttention.v:1:8: Filename 'ThresholdAttention' does not match MODULE name: 'ScoreCalculatorBank'\n    1 | module ScoreCalculatorBank(\n      |        ^~~~~~~~~~~~~~~~~~~\n                       ... For warning description see https://verilator.org/warn/DECLFILENAME?v=5.052\n                       ... Use \"/* verilator lint_off DECLFILENAME */\" and lint_on around source to disable this message.\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/ThresholdAttention/emitted/ThresholdAttention.v:82:15: Bits of signal are not used: 'p_next'[10:0]\n                                                                                                                                                                : ... note: In instance 'ThresholdAttention.divider'\n   82 |   wire [11:0] p_next = p_reg[11] ? $signed(p_plus_d) : $signed(p_minus_d);  \n      |               ^~~~~~\n                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.052\n                       ... Use \"/* verilator lint_off UNUSEDSIGNAL */\" and lint_on around source to disable this message.\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/ThresholdAttention/emitted/ThresholdAttention.v:94:15: Bits of signal are not used: '_GEN_16'[15]\n                                                                                                                                                                : ... note: In instance 'ThresholdAttention.divider'\n   94 |   wire [15:0] _GEN_16 = 2'h0 == state_reg ? {{1'd0}, a_reg} : _GEN_10;  \n      |               ^~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/ThresholdAttention/emitted/ThresholdAttention.v:95:14: Bits of signal are not used: '_GEN_18'[4]\n                                                                                                                                                                : ... note: In instance 'ThresholdAttention.divider'\n   95 |   wire [4:0] _GEN_18 = 2'h0 == state_reg ? {{1'd0}, q_reg} : _GEN_12;  \n      |              ^~~~~~~\n",
+  "wall_seconds": 0.6818521814420819,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "verilator",
+    "--lint-only",
+    "--Wall",
+    "-Wno-fatal",
+    "--top-module",
+    "ThresholdAttention",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/ThresholdAttention/emitted/ThresholdAttention.v"
+  ]
+}

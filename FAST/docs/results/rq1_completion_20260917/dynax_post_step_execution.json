@@ -1,0 +1,12 @@
+{
+  "utc": "2026-09-17T04:50:48.183725+00:00",
+  "cancelled_pending_post": "17910249",
+  "allocation": "17909362",
+  "cpus_per_step": 1,
+  "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_dynax_xm-complete-post-step.sh",
+  "independent_check_inputs_unchanged": true,
+  "new_collector": "17910504",
+  "note": "Shares existing allocated CPUs; may affect wall time but no design or PPA settings changed.",
+  "step_id": "17909362.1",
+  "tool_session_id": 49520
+}

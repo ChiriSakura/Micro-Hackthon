@@ -1,0 +1,25 @@
+{
+  "python": "3.12.9",
+  "code_sha256": {
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/fullstack/__init__.py": "32113321986e16a597ec677cd47a19f056064c6de0e37561d2845fc89c6414d4",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/fullstack/agents.py": "8df36e27181a6a49ef70540c46626b990fc815d2a7e59cdea361537f303fe381",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/fullstack/behavior.py": "f3d5fa77676d63f85b2a827588cd22cb6211814e047874da070cbe3b331a366b",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/fullstack/cli.py": "b7b57cdff8c2075467f5650afae1196edca1df40a6f37b86e699a8b8e9954fa6",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/fullstack/contracts.py": "bd13272e42a3495c04c772aae254936619c1d0a7bd86093205b973c38f866280",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/fullstack/dispatch.py": "313aff8dc6113c9c3f5efbb42eaba6338725dd462d95544634f46b1a23dad18d",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/fullstack/flow.py": "f81a55dd22f32eaab11942726c8381a279ca943260a6fdee459d56ebeb62fdc3",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/fullstack/hammer_driver.py": "9b370c6e51363a441abb05fd2e8ace3e480c5c0e1ea638fc3f035e21174796b7",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/fullstack/library.py": "27877e9170d8c837d18f67fae7cae871fa4042bd59b0234a5ec61c0b5bb64085",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/fullstack/physical.py": "3bcbe11a1475fdbeb6130e6a2df8923e46bbcba5f35cd3b9d2b558868c56b606",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/fullstack/tools.py": "3ce9bbc703ea3cc7766d951a97e5a741eec2ae5410f283399221d5636af0bee0",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/agents/llm_backends.py": "cf1cd708846b64bb7142e011956d62e6ae6665780699f18ddd53455cd3e72a51",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/adapters/synthesis.py": "bdfd30c68812327af36ed517d79fd5174bb22b8fb7d161a5a6acdb4617652097",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/fast/adapters/timing.py": "d19956344abbe2a93e634a4a373ed89dd5ed9625d5903637163ff6bfd863eb97"
+  },
+  "llm_backend": "VertexDirect",
+  "model": "gemini-2.5-pro",
+  "project": "project-842e7b1d-4f04-40b2-9b0",
+  "location": "us-central1",
+  "temperature": 0.2,
+  "tool_root": "/scratch/gz2522/gz2522/tmp/micro-hackthon"
+}

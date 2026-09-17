@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588404/round_01/build_01/Aggregator/module_lint.log",
+  "diagnostics": "- V e r i l a t i o n   R e p o r t: Verilator 5.052 2026-09-05 rev v5.052\n- Verilator: Built from 0.062 MB sources in 4 modules, into 0.021 MB in 3 C++ files needing 0.000 MB\n- Verilator: Walltime 0.064 s (elab=0.011, cvt=0.022, bld=0.000); cpu 0.006 s on 1 threads; allocated 18.000 MB\n",
+  "wall_seconds": 0.5495907617732882,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "verilator",
+    "--lint-only",
+    "--Wall",
+    "-Wno-fatal",
+    "--top-module",
+    "Aggregator",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588404/round_01/build_01/ScoreLane/ScoreLane.v",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588404/round_01/build_01/WeightLane/WeightLane.v",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588404/round_01/build_01/Aggregator/Aggregator.v"
+  ]
+}

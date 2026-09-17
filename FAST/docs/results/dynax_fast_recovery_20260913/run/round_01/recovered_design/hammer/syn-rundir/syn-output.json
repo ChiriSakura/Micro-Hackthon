@@ -1,0 +1,14 @@
+{
+    "vlsi.builtins.is_complete": false,
+    "synthesis.outputs.output_files": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/syn-rundir/DynaX_XM_Row.mapped.v"
+    ],
+    "synthesis.inputs.input_files": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/whole_system.v"
+    ],
+    "synthesis.inputs.top_module": "DynaX_XM_Row",
+    "synthesis.outputs.sdc": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/syn-rundir/DynaX_XM_Row.mapped.sdc",
+    "synthesis.outputs.seq_cells": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/syn-rundir/find_regs_cells.json",
+    "synthesis.outputs.all_regs": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/syn-rundir/find_regs_paths.json",
+    "synthesis.outputs.sdf_file": ""
+}

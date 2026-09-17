@@ -1,0 +1,22 @@
+{
+  "schema_version": "0.2",
+  "experiment_id": "tinyllama-xm-v1",
+  "candidate_id": "xm-32-16-64-seq512",
+  "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+  "dataset": "wikitext-2-raw-v1",
+  "sequence_length": 512,
+  "sparse_method": "xm",
+  "sparsity_x": 16,
+  "sparsity_x_high": 32,
+  "sparsity_m": 64,
+  "max_samples": 8,
+  "dtype": "float32",
+  "epsilon": 0.05,
+  "seed": 20260903,
+  "budget": {
+    "max_candidates": 1,
+    "max_evaluations": 1,
+    "max_wall_seconds": 3600,
+    "max_cloud_usd": 0.0
+  }
+}

@@ -1,0 +1,79 @@
+import chisel3._
+import chisel3.util._
+
+class SelectorAggregator extends RawModule {
+  val scores_in = IO(Input(UInt(72.W)))
+  val weights_in = IO(Input(UInt(128.W)))
+  val v_in = IO(Input(UInt(64.W)))
+  val N_out = IO(Output(SInt(27.W)))
+  val D_out = IO(Output(UInt(19.W)))
+  val keep_mask_out = IO(Output(UInt(8.W)))
+
+  // 1. Unpack inputs into vectors for lane-wise processing
+  val scores = VecInit(Seq.tabulate(8)(i => scores_in(9 * i + 8, 9 * i).asSInt))
+  val weights = VecInit(Seq.tabulate(8)(i => weights_in(16 * i + 15, 16 * i)))
+  val values = VecInit(Seq.tabulate(8)(i => v_in(8 * i + 7, 8 * i).asSInt))
+
+  // 2. Calculate block sums (B0, B1) and total sum (S) of weights.
+  // Use widening addition (+&) to ensure sums (up to 19 bits) do not overflow.
+  val B0 = weights.slice(0, 4).reduce(_ +& _)
+  val B1 = weights.slice(4, 8).reduce(_ +& _)
+  val S = B0 +& B1
+
+  // 3. X:M Selection Logic (t0_quarters=6, t1_quarters=2)
+  // Comparisons are performed on widened values to prevent truncation.
+  val S_times_6 = (S << 2.U) +& (S << 1.U)
+  val S_times_2 = S << 1.U
+
+  val B0_times_8 = B0 << 3.U
+  val keep_count_0 = Mux(B0_times_8 > S_times_6, 2.U(2.W), Mux(B0_times_8 < S_times_2, 0.U(2.W), 1.U(2.W)))
+
+  val B1_times_8 = B1 << 3.U
+  val keep_count_1 = Mux(B1_times_8 > S_times_6, 2.U(2.W), Mux(B1_times_8 < S_times_2, 0.U(2.W), 1.U(2.W)))
+
+  // 4. Top-2 Sorting Networks for each block
+  // Helper for compare-and-swap, implementing the tie-breaking rule (smaller index wins).
+  def compareAndSwap(scoreA: SInt, idxA: UInt, scoreB: SInt, idxB: UInt): ((SInt, UInt), (SInt, UInt)) = {
+    val cond = scoreA > scoreB || (scoreA === scoreB && idxA < idxB)
+    val top = Mux(cond, (scoreA, idxA), (scoreB, idxB))
+    val bot = Mux(cond, (scoreB, idxB), (scoreA, idxA))
+    (top, bot)
+  }
+
+  // Block 0 Sorter (indices 0-3)
+  val ((s01_max, i01_max), (s01_min, i01_min)) = compareAndSwap(scores(0), 0.U(3.W), scores(1), 1.U(3.W))
+  val ((s23_max, i23_max), (s23_min, i23_min)) = compareAndSwap(scores(2), 2.U(3.W), scores(3), 3.U(3.W))
+  val ((b0_top1_s, b0_top1_i), (b0_mid1_s, b0_mid1_i)) = compareAndSwap(s01_max, i01_max, s23_max, i23_max)
+  val ((b0_mid2_s, b0_mid2_i), _) = compareAndSwap(s01_min, i01_min, s23_min, i23_min)
+  val ((b0_top2_s, b0_top2_i), _) = compareAndSwap(b0_mid1_s, b0_mid1_i, b0_mid2_s, b0_mid2_i)
+
+  // Block 1 Sorter (indices 4-7)
+  val ((s45_max, i45_max), (s45_min, i45_min)) = compareAndSwap(scores(4), 4.U(3.W), scores(5), 5.U(3.W))
+  val ((s67_max, i67_max), (s67_min, i67_min)) = compareAndSwap(scores(6), 6.U(3.W), scores(7), 7.U(3.W))
+  val ((b1_top1_s, b1_top1_i), (b1_mid1_s, b1_mid1_i)) = compareAndSwap(s45_max, i45_max, s67_max, i67_max)
+  val ((b1_mid2_s, b1_mid2_i), _) = compareAndSwap(s45_min, i45_min, s67_min, i67_min)
+  val ((b1_top2_s, b1_top2_i), _) = compareAndSwap(b1_mid1_s, b1_mid1_i, b1_mid2_s, b1_mid2_i)
+
+  // 5. Generate keep_mask based on keep_counts and sorted indices
+  val k = Wire(Vec(8, Bool()))
+  for (i <- 0 until 4) {
+    k(i) := (keep_count_0 > 0.U && b0_top1_i === i.U) || (keep_count_0 > 1.U && b0_top2_i === i.U)
+  }
+  for (i <- 4 until 8) {
+    k(i) := (keep_count_1 > 0.U && b1_top1_i === i.U) || (keep_count_1 > 1.U && b1_top2_i === i.U)
+  }
+  keep_mask_out := k.asUInt
+
+  // 6. Aggregate Numerator (N) and Denominator (D) based on the keep_mask
+  val N_terms = Wire(Vec(8, SInt(25.W)))
+  val D_terms = Wire(Vec(8, UInt(16.W)))
+
+  for (i <- 0 until 8) {
+    val product = weights(i).zext * values(i)
+    N_terms(i) := Mux(k(i), product, 0.S(25.W))
+    D_terms(i) := Mux(k(i), weights(i), 0.U(16.W))
+  }
+
+  D_out := D_terms.reduce(_ +& _)
+  N_out := N_terms.reduce(_ +& _)
+}

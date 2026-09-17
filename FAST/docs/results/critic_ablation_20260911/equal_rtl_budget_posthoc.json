@@ -1,0 +1,150 @@
+{
+  "scope": "Post-hoc sensitivity analysis; unchanged primary 5-loop results",
+  "common_budget": 3,
+  "runs": [
+    {
+      "run_id": "main32_off_s0",
+      "arm": "off",
+      "seed": 0,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 1.2342857142857142
+    },
+    {
+      "run_id": "main32_rule_s0",
+      "arm": "rule",
+      "seed": 0,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 0.7171428571428571
+    },
+    {
+      "run_id": "main32_llm_s0",
+      "arm": "llm",
+      "seed": 0,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 0.7171428571428571
+    },
+    {
+      "run_id": "main32_shadow_s0",
+      "arm": "shadow",
+      "seed": 0,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 1.2342857142857142
+    },
+    {
+      "run_id": "main32_no_independent_s0",
+      "arm": "no_independent",
+      "seed": 0,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 0.7171428571428571
+    },
+    {
+      "run_id": "main32_local_random_s0",
+      "arm": "local_random",
+      "seed": 0,
+      "independent_budget": 3,
+      "recovered": false,
+      "best_latency_us": null
+    },
+    {
+      "run_id": "main32_off_s1",
+      "arm": "off",
+      "seed": 1,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 0.7171428571428571
+    },
+    {
+      "run_id": "main32_rule_s1",
+      "arm": "rule",
+      "seed": 1,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 0.7171428571428571
+    },
+    {
+      "run_id": "main32_llm_s1",
+      "arm": "llm",
+      "seed": 1,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 0.7171428571428571
+    },
+    {
+      "run_id": "main32_shadow_s1",
+      "arm": "shadow",
+      "seed": 1,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 0.7171428571428571
+    },
+    {
+      "run_id": "main32_no_independent_s1",
+      "arm": "no_independent",
+      "seed": 1,
+      "independent_budget": 3,
+      "recovered": false,
+      "best_latency_us": null
+    },
+    {
+      "run_id": "main32_local_random_s1",
+      "arm": "local_random",
+      "seed": 1,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 0.7171428571428571
+    },
+    {
+      "run_id": "main32_off_s2",
+      "arm": "off",
+      "seed": 2,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 1.2571428571428571
+    },
+    {
+      "run_id": "main32_rule_s2",
+      "arm": "rule",
+      "seed": 2,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 0.7171428571428571
+    },
+    {
+      "run_id": "main32_llm_s2",
+      "arm": "llm",
+      "seed": 2,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 0.7171428571428571
+    },
+    {
+      "run_id": "main32_shadow_s2",
+      "arm": "shadow",
+      "seed": 2,
+      "independent_budget": 3,
+      "recovered": true,
+      "best_latency_us": 1.2571428571428571
+    },
+    {
+      "run_id": "main32_no_independent_s2",
+      "arm": "no_independent",
+      "seed": 2,
+      "independent_budget": 3,
+      "recovered": false,
+      "best_latency_us": null
+    },
+    {
+      "run_id": "main32_local_random_s2",
+      "arm": "local_random",
+      "seed": 2,
+      "independent_budget": 3,
+      "recovered": false,
+      "best_latency_us": null
+    }
+  ]
+}

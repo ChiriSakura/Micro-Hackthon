@@ -1,0 +1,10 @@
+{
+  "action": "replan",
+  "reason": "The test vectors for the `SelectAccumulate` module specify a 4-cycle latency, which contradicts the module's behavioral contract (`behavior.latency` and `implementation` description) that specifies a 5-cycle latency. All provided tests (`behavior_isolated_0`, `behavior_isolated_1`, `behavior_isolated_2`, `behavior_stream`) expect the output to be valid 4 cycles after the input is asserted, while the specification requires a 5-cycle latency.",
+  "evidence": [
+    "UArch `replan_reason`: \"The planner tests for `SelectAccumulate` are inconsistent with the module's specified latency. The system plan and the `behavior` block both specify a 5-stage pipeline with a 5-cycle latency. However, the provided tests, such as `behavior_isolated_0`, expect a 4-cycle latency. In `behavior_isolated_0`, `valid_in` is asserted at cycle 2, but the corresponding `valid_out` is expected at cycle 6, which is a latency of 4 cycles (6-2=4). A correct 5-cycle pipeline implementation, as described in the plan, would assert `valid_out` at cycle 7 (2+5=7).\"",
+    "In `CONTEXT.module.tests[0]` (`behavior_isolated_0`), `valid_in` is asserted at step 2 (cycle 2), and `valid_out` is expected at step 6 (cycle 6), demonstrating an expected latency of 4 cycles.",
+    "The module's contract in `CONTEXT.module.behavior` specifies `\"latency\": 5`."
+  ],
+  "instructions": "Correct all test vectors for the `SelectAccumulate` module to reflect the specified 5-cycle latency. For a `valid_in` pulse at cycle `C`, the corresponding `valid_out` pulse and associated data should be expected at cycle `C+5`. For example, in `behavior_isolated_0`, shift the `valid_out` expectation from cycle 6 to cycle 7. Do not change the module's specified latency of 5 cycles or its implementation plan."
+}

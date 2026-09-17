@@ -1,0 +1,16 @@
+{
+  "origin_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm",
+  "round": 1,
+  "source_kind": "previous FAST generated artifact; not hand-written new RTL",
+  "scope": "module planner tests and 100-case whole-system E2E; whole system 300MHz routed PPA passed; prior sparse config failed final quality, so not a qualified complete design",
+  "files": {
+    "ScoreAndExpUnit.scala": {
+      "sha256": "cfca6f6c4f974c247ab33f9c3c39aa41a1d37ee74411b8805cbdd45ca9cfa05f",
+      "original_source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/ScoreAndExpUnit/ScoreAndExpUnit.scala"
+    },
+    "NormalizationUnit.scala": {
+      "sha256": "8c8c54a3724c7fcd343e6d7f6895915e222ff218ee5b9598f0aeb5d13a169678",
+      "original_source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/NormalizationUnit/NormalizationUnit.scala"
+    }
+  }
+}

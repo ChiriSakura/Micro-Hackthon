@@ -1,0 +1,99 @@
+{
+  "space_size": 4,
+  "profile_budget": 16,
+  "profiles": [
+    {
+      "config": {
+        "t0_quarters": 5,
+        "t1_quarters": 1
+      },
+      "quality_loss": 0.10570359105224009,
+      "quality_metric": "mean absolute Q8 output error / 2048 versus floating dense attention on same quantized inputs",
+      "quality_scope": "260 synthetic decode-row queries; no model perplexity",
+      "sparsity": 0.695673076923077,
+      "active_keys_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 147,
+        "3": 113,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      },
+      "samples": 260,
+      "seed": 17
+    },
+    {
+      "config": {
+        "t0_quarters": 5,
+        "t1_quarters": 2
+      },
+      "quality_loss": 0.11690325141393444,
+      "quality_metric": "mean absolute Q8 output error / 2048 versus floating dense attention on same quantized inputs",
+      "quality_scope": "260 synthetic decode-row queries; no model perplexity",
+      "sparsity": 0.7206730769230769,
+      "active_keys_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 199,
+        "3": 61,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      },
+      "samples": 260,
+      "seed": 17
+    },
+    {
+      "config": {
+        "t0_quarters": 6,
+        "t1_quarters": 1
+      },
+      "quality_loss": 0.1285335498850302,
+      "quality_metric": "mean absolute Q8 output error / 2048 versus floating dense attention on same quantized inputs",
+      "quality_scope": "260 synthetic decode-row queries; no model perplexity",
+      "sparsity": 0.725,
+      "active_keys_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 208,
+        "3": 52,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      },
+      "samples": 260,
+      "seed": 17
+    },
+    {
+      "config": {
+        "t0_quarters": 6,
+        "t1_quarters": 2
+      },
+      "quality_loss": 0.13973321024672453,
+      "quality_metric": "mean absolute Q8 output error / 2048 versus floating dense attention on same quantized inputs",
+      "quality_scope": "260 synthetic decode-row queries; no model perplexity",
+      "sparsity": 0.75,
+      "active_keys_histogram": {
+        "0": 0,
+        "1": 0,
+        "2": 260,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0
+      },
+      "samples": 260,
+      "seed": 17
+    }
+  ],
+  "invalid_combinations": []
+}

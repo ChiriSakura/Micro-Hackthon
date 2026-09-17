@@ -1,0 +1,24 @@
+{
+  "module": "SelectorAggregator",
+  "role": "uarch",
+  "language": "chisel",
+  "source_sha256": "a89437e2402465f50b34e7016f7ed63c49fc13c018e346265e23510758b69154",
+  "linked_reference_ids": [],
+  "linked_library_sha256": {},
+  "reference_ids": [
+    "topk_selection"
+  ],
+  "rationale": "This implementation creates the combinational `SelectorAggregator` module. It corrects the syntax errors from the previous failed attempts as identified by the compiler diagnosis. Specifically, it replaces the incorrect `asUInt(width)` with `pad(width)` for widening the signals `B0`, `B1`, and `S` before multiplication, preventing potential overflow in the X:M comparison logic. The logic for the two parallel 4-input sorting networks is implemented by directly translating the detailed steps from the `behavior` specification. This ensures correctness of the Top-K selection, including the tie-breaking rule (smaller original index wins). The implementation unpacks all inputs, calculates block and total sums, determines the keep count for each block, generates the final `keep_mask`, and aggregates the numerator `N` and denominator `D` using masked adder trees. All arithmetic uses widening operators (`+&`, `.zext`) to preserve precision as required by the specified bit widths.",
+  "critic_request": {
+    "layer": "uarch",
+    "reason": "The current design's energy efficiency is limited by its 26-cycle latency, with the 18-stage pipelined divider being the dominant contributor. The post-route evaluation shows significant timing slack (5.8ns) and area slack (37813 um^2 used vs 200000 um^2 budget), indicating the design is not physically constrained. This presents a clear opportunity to trade this abundant slack for a direct reduction in latency.",
+    "evidence": [
+      "evaluation.latency_ns",
+      "evaluation.slack_ns",
+      "evaluation.area_um2",
+      "evaluation.energy_efficiency_queries_per_joule"
+    ],
+    "instructions": "Modify the `FinalDivider` module's implementation. Re-configure the instantiated `predict_unit.FixedPointDivPipelined` core to use fewer pipeline stages by changing the `stages` parameter from 18 to a smaller value, such as 9. This is expected to reduce total system latency from 26 cycles to approximately 17 cycles. While the divider's area and per-cycle power will likely increase, the substantial reduction in execution time should lead to a net decrease in the total energy per query, thereby increasing the `energy_efficiency_queries_per_joule`."
+  },
+  "scope": "Agent explanation; module planner-vector checks and independent E2E are separate evidence"
+}

@@ -1,0 +1,50 @@
+{
+  "scope": "original_trajectory",
+  "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold",
+  "round": 1,
+  "record_sha256": "19c88b3c8f317f5554b6430e4db7ccb3df73e2eb107235a966da1abf12e27379",
+  "files": [
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_01/build_05/ScoreArray/ScoreArray.scala",
+      "exported": "generated/ScoreArray.scala",
+      "sha256": "7d45e7f313cee01503c7f0436db637550d52014b7226402e1e18121cea4b49ad",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_01/build_05/MaxExpAndThreshold/MaxExpAndThreshold.scala",
+      "exported": "generated/MaxExpAndThreshold.scala",
+      "sha256": "7c6945741516b07dcba53cd66f5343f23e4d09fc287362d2cdf246157d3073c7",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_01/build_05/Accumulator/Accumulator.scala",
+      "exported": "generated/Accumulator.scala",
+      "sha256": "fd0cf33ffd6f7e9eaa8cc63d2f319f2cf36bcc4b953b5f31a586cc0edf0d911b",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_01/build_05/Normalizer/Normalizer.scala",
+      "exported": "generated/Normalizer.scala",
+      "sha256": "3802372a4c6048111f8836b5dfdf9eff5ee0e6538e0f7c791bc5158e46bdc7ce",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/references/006.scala",
+      "exported": "linked_library/b3cfad736b31_006.scala",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1",
+      "kind": "linked_library"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_01/build_05/SangerThresholdTop/SangerThresholdTop.scala",
+      "exported": "generated/SangerThresholdTop.scala",
+      "sha256": "2c1a37da969215e877cd0ed45bf6382dc7ffe27ebdcb2efb4706da68a2bee0cf",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_01/build_05/SangerThresholdTop/check_01/emitted/SangerThresholdTop.v",
+      "exported": "rtl/SangerThresholdTop.v",
+      "sha256": "36674bd173882066b77a82109e2b546e919d15c22cf96c7a52bf99c01ca91ff1",
+      "kind": "rtl_sources"
+    }
+  ]
+}

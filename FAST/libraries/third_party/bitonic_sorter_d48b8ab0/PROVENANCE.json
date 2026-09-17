@@ -1,0 +1,49 @@
+{
+  "repository": "https://github.com/mcjtag/bitonic_sorter",
+  "commit": "d48b8ab0af4589e5ef10ff82507f67882769cd24",
+  "license": "MIT",
+  "local_directory": "libraries/third_party/bitonic_sorter_d48b8ab0",
+  "files": {
+    "LICENSE": {
+      "sha256": "4d010b2ba406798fdfc6bada29619aca290ace2269c6bea49ab962f6e3622b90",
+      "bytes": 1072
+    },
+    "README.md": {
+      "sha256": "ba9fb486236d0e4a98a8c94d040f9fd377611e8524ee18a0bd937df0082b8a4e",
+      "bytes": 2053
+    },
+    "hdl/axis/axis_bitonic_block.v": {
+      "sha256": "aa29e270496596e27f569e9f9154d0cfbf4dd67841ee5cd1707bd915521495ff",
+      "bytes": 6185
+    },
+    "hdl/axis/axis_bitonic_comp.v": {
+      "sha256": "9a1f0d5a9a7ccde03cbe27f177906640686c509cab0f196f6b642a16b1b986ac",
+      "bytes": 3953
+    },
+    "hdl/axis/axis_bitonic_node.v": {
+      "sha256": "91da24254f2ea9dcf51534a7648e5654438745f3cd451b9f69a3ac74cf9b3c8b",
+      "bytes": 4307
+    },
+    "hdl/axis/axis_bitonic_sort.v": {
+      "sha256": "68bf7836846322df0cac2e8cd94286274b2e4516cbf5594f9e71e15189d809b5",
+      "bytes": 7168
+    },
+    "hdl/basic/bitonic_block.v": {
+      "sha256": "176c18746a05fd0f7a26442ea319d38bfaa829ad44246bdb62053e7db9fc9003",
+      "bytes": 3449
+    },
+    "hdl/basic/bitonic_comp.v": {
+      "sha256": "c952696174e36bd1b3fca1c2f3f91c45762484c668f4dfa402361e8e74e8d15c",
+      "bytes": 2536
+    },
+    "hdl/basic/bitonic_node.v": {
+      "sha256": "03760281526ea622a83ef5e129a75519413e13effbd830a21c17196bb8bf5629",
+      "bytes": 2714
+    },
+    "hdl/basic/bitonic_sort.v": {
+      "sha256": "9b8e72ba2dd4a10d424becb5144b0a9269f307b28973d3ce987d3f4e302411c0",
+      "bytes": 3693
+    }
+  },
+  "upstream_files_modified": false
+}

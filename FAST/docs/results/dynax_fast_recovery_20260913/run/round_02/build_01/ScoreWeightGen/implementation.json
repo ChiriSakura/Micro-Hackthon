@@ -1,0 +1,22 @@
+{
+  "module": "ScoreWeightGen",
+  "role": "uarch",
+  "language": "chisel",
+  "source_sha256": "8104820199dd4354b705ec5f519b44a8ee3cf853fbca355faa3c42e56fb4ce93",
+  "linked_reference_ids": [],
+  "linked_library_sha256": {},
+  "reference_ids": [],
+  "rationale": "This module implements the `ScoreWeightGen` functionality as specified in the system plan. It is a 3-stage pipeline with a latency of 3 cycles. Stage 1 latches the input query and key vectors. Stage 2 computes the 8 signed dot-product scores in parallel, using widening addition (`+&`) to prevent overflow, ensuring the 9-bit signed score width is sufficient. Stage 3 finds the maximum score, calculates the non-negative deltas, and uses these deltas to index a 256x16 ROM, which is initialized with the provided `exp_table` values to find the corresponding weights. The final scores and weights are registered and packed into the output ports, with a valid signal pulsed for one cycle, 3 cycles after the initial `start` pulse. The implementation adheres to the specified port widths, data types, and pipelining structure, and uses synchronous reset for all registers as required.",
+  "critic_request": {
+    "layer": "compiler",
+    "reason": "The current design has a very large positive timing slack of 5.19 ns on a 10 ns clock period, indicating it is significantly over-pipelined for the target frequency. The 16-stage pipelined divider contributes 16 cycles to the total 27-cycle latency. Reducing the number of divider pipeline stages will directly reduce overall latency and thus improve energy_efficiency_queries_per_joule, trading the unused timing slack for a faster result. This change requires revising the system's pipeline schedule, as the top-level FSM and inter-module delay paths depend on the divider's latency.",
+    "evidence": [
+      "evaluation.slack_ns",
+      "evaluation.latency_ns",
+      "evaluation.energy_efficiency_queries_per_joule",
+      "evaluation.area_um2"
+    ],
+    "instructions": "Revise the system plan. For the `DividerWrapper` module, modify its design prompt to request an implementation with `stages=8` instead of `stages=16`. Re-assemble the `DynaX_XM_Row` top-level to correctly connect the modules, adjusting its internal FSM and delay paths to account for the new `DividerWrapper` latency of 8 cycles. This is expected to reduce total latency from 27 to approximately 19 cycles, significantly improving energy efficiency."
+  },
+  "scope": "Agent explanation; module planner-vector checks and independent E2E are separate evidence"
+}

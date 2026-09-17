@@ -1,0 +1,183 @@
+{
+  "top": "ThresholdAttention",
+  "modules": [
+    {
+      "name": "ScoreAndWeight",
+      "purpose": "Calculates the dot-product score for one key, compares it to the threshold, and outputs the resulting weight. This is a purely combinational module.",
+      "ports": [
+        {
+          "name": "q_vec",
+          "direction": "input",
+          "width": 8
+        },
+        {
+          "name": "k_vec",
+          "direction": "input",
+          "width": 8
+        },
+        {
+          "name": "weight",
+          "direction": "output",
+          "width": 9
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This module is combinational. It unpacks its 8-bit 'q_vec' and 'k_vec' inputs into two 4-bit elements each. It computes two 4x4 products: p0 = q[0]*k[0] and p1 = q[1]*k[1]. These 8-bit products are added to form a 9-bit score (max 450). The score is then compared to the fixed threshold of 64. If 'score >= 64', the output 'weight' is the score; otherwise, it is 0. The threshold is a hardcoded constant: 64.U(9.W).",
+      "reference_ids": []
+    },
+    {
+      "name": "Accumulator",
+      "purpose": "Accumulates weights and computes the sum of weighted values from all four keys. This is a 2-stage pipelined module.",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "in_valid",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "weights",
+          "direction": "input",
+          "width": 36
+        },
+        {
+          "name": "values",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "out_valid",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "name": "weight_sum",
+          "direction": "output",
+          "width": 11
+        },
+        {
+          "name": "weighted_value_sum",
+          "direction": "output",
+          "width": 15
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This module uses a 2-stage pipeline. The 'weights' input is a packed 36-bit vector (4x9b) and 'values' is 16-bit (4x4b). Stage 1: Four parallel 9-bit by 4-bit multipliers compute 'weight[i] * value[i]' for each key, producing four 13-bit products. These products and the input 'weights' are registered. The 'in_valid' signal is also registered. Stage 2: Two 2-level adder trees compute the final sums. One tree sums the four registered 9-bit weights to produce an 11-bit 'weight_sum'. The other sums the four registered 13-bit weighted value products to produce a 15-bit 'weighted_value_sum'. The outputs and the final 'out_valid' signal are registered. The total latency is 2 cycles. The 'withClockAndReset' pattern from the reference is used for all registers.",
+      "reference_ids": [
+        "chisel_carry_and_clock"
+      ]
+    },
+    {
+      "name": "Divider",
+      "purpose": "Performs pipelined unsigned integer division to normalize the accumulated values. This module adapts the 'pipelined_divider' reference.",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "in_valid",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "numerator",
+          "direction": "input",
+          "width": 15
+        },
+        {
+          "name": "denominator",
+          "direction": "input",
+          "width": 11
+        },
+        {
+          "name": "out_valid",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "name": "quotient",
+          "direction": "output",
+          "width": 4
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This module implements a 4-stage pipelined radix-2 restoring divider based on the logic from the 'pipelined_divider' reference. The reference's signed fixed-point interface is adapted for unsigned integer division. The number of division iterations is 15 (the numerator width). With 4 stages, each stage performs 4 or 3 iterations. The internal state (remainder, quotient, etc.) is pipelined between stages. The core 'step' function logic from the reference is used, but with widths tailored for a 15-bit dividend and 11-bit divisor. The logic to handle division by zero (outputting 0) is preserved. The full 15-bit quotient is calculated, and the final 4-bit output port is driven by truncating this result (i.e., taking the 4 least significant bits). The module has a fixed latency of 4 cycles, propagating the 'in_valid' signal to 'out_valid' across the pipeline.",
+      "reference_ids": [
+        "pipelined_divider"
+      ]
+    },
+    {
+      "name": "ThresholdAttention",
+      "purpose": "Top-level module that orchestrates the attention calculation, handles the start/done protocol, and connects the pipeline stages.",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "start",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "q",
+          "direction": "input",
+          "width": 8
+        },
+        {
+          "name": "k",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "name": "v",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "done",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "name": "result",
+          "direction": "output",
+          "width": 4
+        }
+      ],
+      "dependencies": [
+        "ScoreAndWeight",
+        "Accumulator",
+        "Divider"
+      ],
+      "implementation": "This module implements a simple state machine or valid-pipeline control. On a 'start' pulse, it latches the 'q', 'k', and 'v' inputs into registers. It unpacks these flat inputs into vectors for the child modules: q[2x4b], k[4x(2x4b)], v[4x4b]. A 'valid' signal, initialized by 'start', is propagated through the pipeline stages. It instantiates four 'ScoreAndWeight' modules, one 'Accumulator', and one 'Divider'. The unpacked 'q' vector is broadcast to all 'ScoreAndWeight' modules, while each gets its corresponding 'k' vector. The outputs of the 'ScoreAndWeight' modules ('weight') and the unpacked 'v' vectors are fed into the 'Accumulator'. The 'Accumulator' outputs are connected to the 'Divider' inputs. The 'done' signal is asserted for one cycle when the 'Divider' output is valid. The 4-bit 'result' output is assigned by truncating the 'Divider's quotient. The 'withClockAndReset' construct from the 'chisel_carry_and_clock' reference will be used for all registers.",
+      "reference_ids": [
+        "chisel_carry_and_clock"
+      ]
+    }
+  ],
+  "rationale": "The design implements the threshold attention algorithm using a 6-cycle, fully-pipelined datapath to meet the 100 MHz frequency target. The architecture is decomposed into modules corresponding to the main computational steps: scoring, accumulation, and normalization. Four parallel 'ScoreAndWeight' modules compute scores for each key simultaneously. An 'Accumulator' module, pipelined over two cycles, sums the weights and computes the weighted value sum. A 4-stage pipelined 'Divider', adapted from the 'pipelined_divider' reference, performs the final normalization. This structure provides a clear data flow, managed by a simple valid signal pipeline, ensuring a deterministic latency of 6 cycles, well within the 128-cycle constraint. The 'chisel_carry_and_clock' reference guides the implementation of stateful modules with explicit clock and reset. Numeric widths are chosen based on a careful analysis of the algorithm's bounds to prevent any internal overflow.",
+  "language": "chisel"
+}

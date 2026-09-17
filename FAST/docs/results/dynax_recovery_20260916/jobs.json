@@ -1,0 +1,11 @@
+[
+  {
+    "algorithm": "rq1_dynax_xm",
+    "job_id": "17879193",
+    "post_job_id": "17879194",
+    "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_v3_20260916/rq1_dynax_xm",
+    "output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/dynax_recovery_20260916/rq1_dynax_xm",
+    "launch_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax-recovery-v3.slurm",
+    "post_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax-recovery-v3-post.slurm"
+  }
+]

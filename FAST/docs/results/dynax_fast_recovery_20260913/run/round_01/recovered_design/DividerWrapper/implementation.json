@@ -1,0 +1,14 @@
+{
+  "module": "DividerWrapper",
+  "source_sha256": "49ac02a659c9c0d62dc5d204c59b7669c0f4fbc36bb16cc7bbb730d36385c1c5",
+  "original_source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17705068/round_01/build_02/DividerWrapper/DividerWrapper.scala",
+  "role": "recovered unchanged agent-generated source",
+  "language": "chisel",
+  "reference_ids": [
+    "pipelined_divider"
+  ],
+  "linked_reference_ids": [
+    "pipelined_divider"
+  ],
+  "scope": "externally selected composition; fresh checks required"
+}

@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/DynaX_XM_Row/check_01/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/references as the project root directory for this run.\nwarning: 2 deprecations (since Chisel 3.6); re-run with -deprecation for details\nwarning: 10 feature warnings; re-run with -feature for details\n2 warnings\n",
+  "wall_seconds": 7.230835719034076,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/references/004.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/ScoreWeightGen/ScoreWeightGen.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/SelectAccumulate.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/DividerWrapper/DividerWrapper.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/DynaX_XM_Row/DynaX_XM_Row.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/DynaX_XM_Row/check_01/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/DynaX_XM_Row/check_01/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/DynaX_XM_Row/check_01/emitted"
+  ],
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/DynaX_XM_Row/check_01/emitted/DynaX_XM_Row.v",
+  "elaborated_sha256": "92643fe25f9737e68616f710ed639c264f58e7d278a93051428863ddd8f900c9"
+}

@@ -1,0 +1,24 @@
+{
+  "utc": "2026-09-17T06:50:46.004724+00:00",
+  "job_id": "17912008",
+  "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_block_nm_sta_recovery.sh",
+  "script_sha256": "1d753bc6ece2e9a3d88bd3e12fec43d01182f2e6da0ca4d7a3e26159bae6131d",
+  "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_completion_sta_v4_20260917",
+  "original_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm",
+  "new_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm",
+  "policy": "default",
+  "max_candidates": 5,
+  "same_candidate_round": 4,
+  "remaining_new_candidates": 1,
+  "original_job": "17909362",
+  "reason": "Generic measured timing path feedback to prevent unsupported Critic bottleneck guesses; accepted R4 design unchanged",
+  "allocation_update": {
+    "utc": "2026-09-17T07:13:44.742664+00:00",
+    "initial_limit_hours": 6,
+    "reason": "Only same R4 PPA and one new R5 remain; shorten requested allocation while keeping per-tool timeout, candidate budget and scientific constraints unchanged.",
+    "attempted_limit_hours": 4,
+    "actual_time_limit": "06:00:00",
+    "applied": false,
+    "tool_message": "scontrol returned Unspecified error for job 17912008"
+  }
+}

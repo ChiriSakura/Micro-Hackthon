@@ -1,0 +1,12 @@
+{
+  "job_id": "17912912",
+  "parent_job": "17912008",
+  "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_block_nm_afterany_guard.sh",
+  "script_sha256": "122a72f0e79161565c9cd667b1d5a4bffc5a07668ba7bbb1a7b50359738edc67",
+  "guard_sha256": "2e78910367f5ed056c3e4219fa38c948e98c5e8ad85d87ef72d4d7517df42a0b",
+  "complete_output_check_passed": true,
+  "absent_output_check_passed": true,
+  "primary_output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_sta_v4_20260917/rq1_block_nm",
+  "fallback_output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_afterany_20260917/rq1_block_nm",
+  "scope": "Separate afterany safety net; no repeat validation when primary finalizer and archive already complete."
+}

@@ -1,0 +1,19 @@
+{
+  "passed": false,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_01/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator as the project root directory for this run.\n/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/SelectorAggregator.scala:38: error: inferred type arguments [(chisel3.SInt, chisel3.UInt)] do not conform to macro method apply's type parameter bounds [T <: chisel3.Data]\n    val top = Mux(cond, (scoreA, idxA), (scoreB, idxB))\n              ^\n/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/SelectorAggregator.scala:38: error: type mismatch;\n found   : (chisel3.SInt, chisel3.UInt)\n required: T\n    val top = Mux(cond, (scoreA, idxA), (scoreB, idxB))\n                        ^\n/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/SelectorAggregator.scala:38: error: type mismatch;\n found   : (chisel3.SInt, chisel3.UInt)\n required: T\n    val top = Mux(cond, (scoreA, idxA), (scoreB, idxB))\n                                        ^\n/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/SelectorAggregator.scala:39: error: inferred type arguments [(chisel3.SInt, chisel3.UInt)] do not conform to macro method apply's type parameter bounds [T <: chisel3.Data]\n    val bot = Mux(cond, (scoreB, idxB), (scoreA, idxA))\n              ^\n/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/SelectorAggregator.scala:39: error: type mismatch;\n found   : (chisel3.SInt, chisel3.UInt)\n required: T\n    val bot = Mux(cond, (scoreB, idxB), (scoreA, idxA))\n                        ^\n/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/SelectorAggregator.scala:39: error: type mismatch;\n found   : (chisel3.SInt, chisel3.UInt)\n required: T\n    val bot = Mux(cond, (scoreB, idxB), (scoreA, idxA))\n                                        ^\n6 errors\nCompilation failed\n",
+  "wall_seconds": 3.137333475984633,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/SelectorAggregator.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_01/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_01/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_01/emitted"
+  ]
+}

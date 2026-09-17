@@ -1,0 +1,9 @@
+{
+  "design_hashes_checked": 112,
+  "source_hashes_checked": 184,
+  "complete_execution_records": 24,
+  "expected_no_feasible_exit_codes": 1,
+  "report_links_passed": true,
+  "tests": "426 passed in 45.49s",
+  "errors": []
+}

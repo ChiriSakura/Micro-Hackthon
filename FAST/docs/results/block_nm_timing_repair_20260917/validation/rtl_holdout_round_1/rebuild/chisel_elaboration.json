@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/references as the project root directory for this run.\nwarning: 2 deprecations (since Chisel 3.6); re-run with -deprecation for details\nwarning: 10 feature warnings; re-run with -feature for details\n2 warnings\n",
+  "timed_out": false,
+  "returncode": 0,
+  "wall_seconds": 7.925964555994142,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/references/006.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/FindMin8.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/DividerWrapper.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/Rq1BlockNmTop.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/emitted"
+  ],
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/emitted/Rq1BlockNmTop.v",
+  "elaborated_sha256": "50de94ba547fdee2a0ea5cb5867e469235ad4b449b61617ba16a720dc7e39f6b"
+}

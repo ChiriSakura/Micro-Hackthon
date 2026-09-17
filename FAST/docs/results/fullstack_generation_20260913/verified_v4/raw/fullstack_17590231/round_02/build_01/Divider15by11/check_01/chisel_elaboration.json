@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/Divider15by11/check_01/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/ScoreAndWeightUnit as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+  "wall_seconds": 5.202069155871868,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/ScoreAndWeightUnit/ScoreAndWeightUnit.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/Divider15by11/Divider15by11.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/Divider15by11/check_01/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/Divider15by11/check_01/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/Divider15by11/check_01/emitted"
+  ],
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/Divider15by11/check_01/emitted/Divider15by11.v",
+  "elaborated_sha256": "6e20a48898c9d03c8ef946d6ba75f98af77cfedf16bf25fcdd177a337d8949c6"
+}

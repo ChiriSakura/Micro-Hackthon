@@ -1,0 +1,8 @@
+{
+  "tests": 2,
+  "passed": 2,
+  "xml": "repair_control_tests.xml",
+  "scope": "Fault injection and source/evidence delivery tests; not physical evidence.",
+  "script_sha256": "2323c91b151b3e8695c17cf3ec1fc696fe7d5cf5c43fa1f3a0dd7889d7d5c74d",
+  "test_sha256": "1aee8d20cba1a18b7d0736fd0f4aa554d5e17d5da86428276a090cdd14787298"
+}

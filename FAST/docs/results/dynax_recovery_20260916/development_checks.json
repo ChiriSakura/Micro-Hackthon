@@ -1,0 +1,29 @@
+{
+  "control_plane_only_not_hardware_evidence": true,
+  "new_recovery_and_report_tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "13",
+    "time": "62.423",
+    "timestamp": "2026-09-15T22:52:17.683609-04:00",
+    "hostname": "torch-login-a-1.hpc-infra.svc.cluster.local"
+  },
+  "existing_suite": {
+    "files": [
+      "tests/test_fullstack_generation.py",
+      "tests/test_fullstack_parallel.py",
+      "tests/test_extended_reference_library.py",
+      "tests/test_rq1_reports.py"
+    ],
+    "returncode": 0
+  },
+  "sha256": {
+    "tests/test_fullstack_recovery.py": "134dbc438a5f2f5160738c5e387046843f89f0e8f0ce220711d84ab6fbdeda1d",
+    "tests/test_fullstack_generation.py": "ddd231bd472f819613bbe4618aad5a9f104507938b65e27e5957ed1481a64424",
+    "tests/test_fullstack_parallel.py": "56655f79a087dca3809cf9b292f951839a65ec49719bbf994b66e2df344ffd6f",
+    "tests/test_extended_reference_library.py": "e1ca80f844911a925b28d1a2c0564ba6221dad88d4787a736a3fe7f579371dde",
+    "tests/test_rq1_reports.py": "9d45dbcb201d5969033214aa2f2cfc958e3ffb21d10ef255d7a1c669334aad35"
+  }
+}

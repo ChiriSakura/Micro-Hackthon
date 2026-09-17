@@ -1,0 +1,106 @@
+{
+    "vlsi.core.technology": "hammer.technology.nangate45",
+    "vlsi.core.node": 45,
+    "vlsi.core.synthesis_tool": "hammer.synthesis.yosys",
+    "vlsi.core.par_tool": "hammer.par.openroad",
+    "vlsi.core.build_system": "none",
+    "vlsi.core.max_threads": 4,
+    "technology.nangate45.install_dir": "/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45",
+    "technology.core.stackup": "nangate45_3Ma_2Mb_2Mc_2Md",
+    "technology.core.std_cell_rail_layer": "metal1",
+    "technology.core.std_cell_supplies.power": [
+        "VDD"
+    ],
+    "technology.core.std_cell_supplies.ground": [
+        "VSS"
+    ],
+    "vlsi.inputs.supplies.power": [
+        {
+            "name": "VDD",
+            "pins": [
+                "VDD"
+            ]
+        }
+    ],
+    "vlsi.inputs.supplies.ground": [
+        {
+            "name": "VSS",
+            "pins": [
+                "VSS"
+            ]
+        }
+    ],
+    "vlsi.inputs.supplies.VDD": "1.1 V",
+    "vlsi.inputs.supplies.GND": "0 V",
+    "vlsi.inputs.mmmc_corners": [
+        {
+            "name": "setup",
+            "type": "setup",
+            "voltage": "1.1 V",
+            "temp": "25 C"
+        },
+        {
+            "name": "hold",
+            "type": "hold",
+            "voltage": "1.1 V",
+            "temp": "25 C"
+        }
+    ],
+    "synthesis.inputs.top_module": "DynaX_XM_Row",
+    "synthesis.inputs.input_files": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/whole_system.v"
+    ],
+    "synthesis.clock_gating_mode": "auto",
+    "synthesis.yosys.latch_map_file": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/empty_latch_map.v",
+    "vlsi.inputs.clocks": [
+        {
+            "name": "clock",
+            "period": "10.0 ns",
+            "uncertainty": "0.1 ns"
+        }
+    ],
+    "vlsi.inputs.placement_constraints": [
+        {
+            "path": "DynaX_XM_Row",
+            "type": "toplevel",
+            "x": 0,
+            "y": 0,
+            "width": 660,
+            "height": 660,
+            "margins": {
+                "left": 10,
+                "right": 10,
+                "top": 10,
+                "bottom": 10
+            }
+        }
+    ],
+    "par.openroad.openroad_bin": "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/bin/openroad",
+    "par.openroad.setrc_file": "/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/setRC.tcl",
+    "par.openroad.openrcx_techfiles": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/rcx_patterns.rules"
+    ],
+    "par.openroad.timing_driven": true,
+    "par.openroad.write_reports": true,
+    "par.openroad.clock_tree_resize.hold_margin": 0.01,
+    "par.openroad.global_route_resize.hold_margin": 0.01,
+    "par.power_straps_mode": "generate",
+    "par.generate_power_straps_options.by_tracks.strap_layers": [
+        "metal4",
+        "metal7"
+    ],
+    "par.generate_power_straps_options.by_tracks.pin_layers": [
+        "metal7"
+    ],
+    "par.generate_power_straps_options.by_tracks.track_width": 4,
+    "par.generate_power_straps_options.by_tracks.track_spacing": 0,
+    "par.generate_power_straps_options.by_tracks.power_utilization": 0.05,
+    "fast.activity": 0.1,
+    "synthesis.outputs.output_files": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/syn-rundir/DynaX_XM_Row.mapped.v"
+    ],
+    "synthesis.outputs.sdc": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/syn-rundir/DynaX_XM_Row.mapped.sdc",
+    "synthesis.outputs.seq_cells": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/syn-rundir/find_regs_cells.json",
+    "synthesis.outputs.all_regs": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/syn-rundir/find_regs_paths.json",
+    "synthesis.outputs.sdf_file": ""
+}

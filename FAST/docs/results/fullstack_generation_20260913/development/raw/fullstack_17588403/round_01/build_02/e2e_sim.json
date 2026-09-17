@@ -1,0 +1,12 @@
+{
+  "passed": false,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/e2e_sim.log",
+  "diagnostics": "FAST_CASE cycles=4\n[176] %Fatal: trusted_testbench.sv:15: Assertion failed in FASTTestbench.run_case: mismatch case 1 actual=13 expected=15\n%Error: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/trusted_testbench.sv:15: Verilog $stop\nAborting...\n",
+  "wall_seconds": 0.41055236756801605,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/obj_dir/VFASTTestbench"
+  ]
+}

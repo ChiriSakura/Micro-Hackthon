@@ -1,0 +1,222 @@
+{
+  "top": "ThresholdAttention",
+  "modules": [
+    {
+      "name": "ScoreLane",
+      "purpose": "Calculates the attention score for a single key-query pair: score = q[0]*k[0] + q[1]*k[1].",
+      "ports": [
+        {
+          "name": "q0_in",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "name": "q1_in",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "name": "k0_in",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "name": "k1_in",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "name": "score_out",
+          "direction": "output",
+          "width": 9
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This module is purely combinational. It contains two 4x4-bit unsigned multipliers to compute `prod0 = q0_in * k0_in` and `prod1 = q1_in * k1_in`. The 8-bit results are then added together to produce the 9-bit `score_out`. The maximum score is 15*15 + 15*15 = 450, which fits in 9 bits. `assign score_out = (q0_in * k0_in) + (q1_in * k1_in);`"
+    },
+    {
+      "name": "WeightLane",
+      "purpose": "Applies the threshold to the score to get the weight, and computes the weighted value (weight * v).",
+      "ports": [
+        {
+          "name": "score_in",
+          "direction": "input",
+          "width": 9
+        },
+        {
+          "name": "v_in",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "name": "weight_out",
+          "direction": "output",
+          "width": 9
+        },
+        {
+          "name": "wv_out",
+          "direction": "output",
+          "width": 13
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This module is purely combinational. It has a local parameter `THRESHOLD` set to 64. It compares `score_in` with `THRESHOLD`. If `score_in` is greater than or equal to `THRESHOLD`, `weight_out` is assigned `score_in`; otherwise, it is assigned 0. This 9-bit `weight_out` is then multiplied by the 4-bit `v_in` using a 9x4-bit unsigned multiplier to produce the 13-bit `wv_out`. The maximum product is 450 * 15 = 6750, which fits in 13 bits."
+    },
+    {
+      "name": "Aggregator",
+      "purpose": "Sums the weights and weighted values from all four attention lanes.",
+      "ports": [
+        {
+          "name": "w_in_0",
+          "direction": "input",
+          "width": 9
+        },
+        {
+          "name": "w_in_1",
+          "direction": "input",
+          "width": 9
+        },
+        {
+          "name": "w_in_2",
+          "direction": "input",
+          "width": 9
+        },
+        {
+          "name": "w_in_3",
+          "direction": "input",
+          "width": 9
+        },
+        {
+          "name": "wv_in_0",
+          "direction": "input",
+          "width": 13
+        },
+        {
+          "name": "wv_in_1",
+          "direction": "input",
+          "width": 13
+        },
+        {
+          "name": "wv_in_2",
+          "direction": "input",
+          "width": 13
+        },
+        {
+          "name": "wv_in_3",
+          "direction": "input",
+          "width": 13
+        },
+        {
+          "name": "sum_w_out",
+          "direction": "output",
+          "width": 11
+        },
+        {
+          "name": "sum_wv_out",
+          "direction": "output",
+          "width": 15
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This module is purely combinational and implements two parallel 4-input adder trees. For the weights, it calculates `w_in_0 + w_in_1` and `w_in_2 + w_in_3` (10-bit intermediate sums), then adds these two sums to get the final 11-bit `sum_w_out` (max 4*450=1800). A similar two-level tree is used for the weighted values, producing 14-bit intermediate sums and a final 15-bit `sum_wv_out` (max 4*450*15=27000)."
+    },
+    {
+      "name": "Divider_15_11_4",
+      "purpose": "Performs 15-bit by 11-bit unsigned division to produce a 4-bit quotient. Handles division by zero.",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "start_in",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "dividend_in",
+          "direction": "input",
+          "width": 15
+        },
+        {
+          "name": "divisor_in",
+          "direction": "input",
+          "width": 11
+        },
+        {
+          "name": "quotient_out",
+          "direction": "output",
+          "width": 4
+        },
+        {
+          "name": "done_out",
+          "direction": "output",
+          "width": 1
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This is a sequential restoring divider controlled by a 3-state FSM (S_IDLE, S_CALC, S_DONE) and a 2-bit down-counter. Total latency is 6 cycles. \n- **S_IDLE (1 cycle):** On `start_in`, it latches `dividend_in` into `remainder_reg` and `divisor_in` into `divisor_reg`. If `divisor_in` is zero, it sets `quotient_reg` to 0 and goes to `S_DONE`. Otherwise, it initializes `quotient_reg` to 0, sets a `count_reg` to 3, and moves to `S_CALC`.\n- **S_CALC (4 cycles):** This state iterates four times. In each cycle, it calculates `shifted_divisor = divisor_reg << count_reg`. It subtracts this from `remainder_reg`. If `remainder_reg >= shifted_divisor`, the subtraction is committed to `remainder_reg` and the corresponding bit `quotient_reg[count_reg]` is set to 1. The `count_reg` is decremented. After 4 iterations, it moves to `S_DONE`.\n- **S_DONE (1 cycle):** `done_out` is asserted for one cycle. The module then returns to `S_IDLE`."
+    },
+    {
+      "name": "ThresholdAttention",
+      "purpose": "Top-level module orchestrating the threshold attention computation. It manages a 6-stage pipeline, controls module interactions, and interfaces with the external system.",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "start",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "q",
+          "direction": "input",
+          "width": 8
+        },
+        {
+          "name": "k",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "name": "v",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "done",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "name": "result",
+          "direction": "output",
+          "width": 4
+        }
+      ],
+      "dependencies": [
+        "ScoreLane",
+        "WeightLane",
+        "Aggregator",
+        "Divider_15_11_4"
+      ],
+      "implementation": "The module uses a 7-state FSM (IDLE, S_SCORE, S_WEIGHT, S_AGG, S_DIV_START, S_DIV_WAIT, S_DONE) to control a 6-stage pipeline. \n1. **IDLE:** Waits for `start`. On `start`, it latches `q`, `k`, `v` into registers (`q_reg`, `k_reg`, `v_reg`) and transitions to `S_SCORE`.\n2. **S_SCORE (Cycle 1):** Unpacked `q_reg` and `k_reg` values are fed to four parallel `ScoreLane` instances. The 9-bit score outputs are registered in `score_regs`.\n3. **S_WEIGHT (Cycle 2):** `score_regs` and unpacked `v_reg` values are fed to four parallel `WeightLane` instances. The outputs (`weight` and `weighted_value`) are registered in `weight_regs` and `wv_regs`.\n4. **S_AGG (Cycle 3):** `weight_regs` and `wv_regs` are fed to the `Aggregator`. The summed outputs are registered in `sum_w_reg` and `sum_wv_reg`.\n5. **S_DIV_START (Cycle 4):** A one-cycle `div_start` signal is asserted, feeding the stable `sum_w_reg` and `sum_wv_reg` to the divider.\n6. **S_DIV_WAIT (Cycles 5-10):** The FSM waits for the `div_done` signal from the `Divider_15_11_4` instance, which takes 6 cycles to complete.\n7. **S_DONE (Cycle 11):** On `div_done`, the FSM latches the divider's `quotient_out` into `result_reg`, asserts the top-level `done` signal for one cycle, and returns to `IDLE`. The `result` output is driven by `result_reg`. Total latency is 11 cycles."
+    }
+  ],
+  "rationale": "The design addresses a critical timing bug in the previous plan where the divider latched stale data from the aggregator. A pipeline stage is added between aggregation and division to ensure the summed weight and weighted-value inputs to the divider are stable. The architecture is a parallel, pipelined datapath. Four parallel `ScoreLane` and `WeightLane` instances compute attention for each key simultaneously. These are followed by a combinational two-stage adder tree in the `Aggregator`. The final division is handled by a resource-efficient 6-cycle sequential restoring divider. This modular, pipelined approach balances latency and area, fitting within the specified constraints. The total latency is 11 cycles from start acceptance to `done` assertion, well within the 128-cycle budget. Numeric widths are chosen based on the algorithm's `numeric_bounds` to prevent overflow. The attention `threshold` is hardcoded to 64 as specified.",
+  "language": "verilog"
+}

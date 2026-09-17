@@ -1,0 +1,112 @@
+import chisel3._
+import chisel3.util._
+
+class SelectorAggregator extends RawModule {
+  val scores_in = IO(Input(UInt(72.W)))
+  val weights_in = IO(Input(UInt(128.W)))
+  val v_in = IO(Input(UInt(64.W)))
+  val N_out = IO(Output(SInt(27.W)))
+  val D_out = IO(Output(UInt(19.W)))
+  val keep_mask_out = IO(Output(UInt(8.W)))
+
+  // 1. Unpack inputs into vectors for lane-wise processing
+  val scores = VecInit(Seq.tabulate(8)(i => scores_in(9 * i + 8, 9 * i).asSInt))
+  val weights = VecInit(Seq.tabulate(8)(i => weights_in(16 * i + 15, 16 * i)))
+  val values = VecInit(Seq.tabulate(8)(i => v_in(8 * i + 7, 8 * i).asSInt))
+
+  // 2. Calculate block sums (B0, B1) and total sum (S) of weights.
+  // Use widening addition (+&) to ensure sums do not overflow.
+  // Sum of 4x 16-bit weights fits in 18 bits. Sum of 8 fits in 19 bits.
+  val B0 = weights.slice(0, 4).reduce(_ +& _)
+  val B1 = weights.slice(4, 8).reduce(_ +& _)
+  val S = B0 +& B1
+
+  // 3. X:M Selection Logic (t0_quarters=6, t1_quarters=2)
+  // Comparisons are performed on widened values to prevent truncation.
+  // S is 19b, B is 18b. S*6 needs ~22b, B*8 needs ~21b. Widen to 25b.
+  val S_wide = S.asUInt(25.W)
+  val B0_wide = B0.asUInt(25.W)
+  val B1_wide = B1.asUInt(25.W)
+
+  val S_times_6 = S_wide * 6.U
+  val S_times_2 = S_wide * 2.U
+
+  val B0_times_8 = B0_wide * 8.U
+  val keep_count_0 = Mux(B0_times_8 > S_times_6, 2.U(2.W), Mux(B0_times_8 < S_times_2, 0.U(2.W), 1.U(2.W)))
+
+  val B1_times_8 = B1_wide * 8.U
+  val keep_count_1 = Mux(B1_times_8 > S_times_6, 2.U(2.W), Mux(B1_times_8 < S_times_2, 0.U(2.W), 1.U(2.W)))
+
+  // 4. Top-2 Sorting Networks for each block, as per behavior spec
+  val s = scores
+  val i = Seq.tabulate(8)(_.U(3.W))
+
+  // Block 0 Sorter (indices 0-3)
+  val b0_c01 = s(0) > s(1) || (s(0) === s(1) && i(0) < i(1))
+  val b0_s01_s = Mux(b0_c01, s(0), s(1)); val b0_s01_i = Mux(b0_c01, i(0), i(1))
+  val b0_s10_s = Mux(b0_c01, s(1), s(0)); val b0_s10_i = Mux(b0_c01, i(1), i(0))
+
+  val b0_c23 = s(2) > s(3) || (s(2) === s(3) && i(2) < i(3))
+  val b0_s23_s = Mux(b0_c23, s(2), s(3)); val b0_s23_i = Mux(b0_c23, i(2), i(3))
+  val b0_s32_s = Mux(b0_c23, s(3), s(2)); val b0_s32_i = Mux(b0_c23, i(3), i(2))
+
+  val b0_c02 = b0_s01_s > b0_s23_s || (b0_s01_s === b0_s23_s && b0_s01_i < b0_s23_i)
+  val b0_s02_i = Mux(b0_c02, b0_s01_i, b0_s23_i)
+  val b0_s20_s = Mux(b0_c02, b0_s23_s, b0_s01_s); val b0_s20_i = Mux(b0_c02, b0_s23_i, b0_s01_i)
+
+  val b0_c13 = b0_s10_s > b0_s32_s || (b0_s10_s === b0_s32_s && b0_s10_i < b0_s32_i)
+  val b0_s13_s = Mux(b0_c13, b0_s10_s, b0_s32_s); val b0_s13_i = Mux(b0_c13, b0_s10_i, b0_s32_i)
+
+  val b0_c12 = b0_s20_s > b0_s13_s || (b0_s20_s === b0_s13_s && b0_s20_i < b0_s13_i)
+  val b0_s12_i = Mux(b0_c12, b0_s20_i, b0_s13_i)
+
+  val b0_top1_idx = b0_s02_i
+  val b0_top2_idx = b0_s12_i
+
+  // Block 1 Sorter (indices 4-7)
+  val b1_c45 = s(4) > s(5) || (s(4) === s(5) && i(4) < i(5))
+  val b1_s45_s = Mux(b1_c45, s(4), s(5)); val b1_s45_i = Mux(b1_c45, i(4), i(5))
+  val b1_s54_s = Mux(b1_c45, s(5), s(4)); val b1_s54_i = Mux(b1_c45, i(5), i(4))
+
+  val b1_c67 = s(6) > s(7) || (s(6) === s(7) && i(6) < i(7))
+  val b1_s67_s = Mux(b1_c67, s(6), s(7)); val b1_s67_i = Mux(b1_c67, i(6), i(7))
+  val b1_s76_s = Mux(b1_c67, s(7), s(6)); val b1_s76_i = Mux(b1_c67, i(7), i(6))
+
+  val b1_c46 = b1_s45_s > b1_s67_s || (b1_s45_s === b1_s67_s && b1_s45_i < b1_s67_i)
+  val b1_s46_i = Mux(b1_c46, b1_s45_i, b1_s67_i)
+  val b1_s64_s = Mux(b1_c46, b1_s67_s, b1_s45_s); val b1_s64_i = Mux(b1_c46, b1_s67_i, b1_s45_i)
+
+  val b1_c57 = b1_s54_s > b1_s76_s || (b1_s54_s === b1_s76_s && b1_s54_i < b1_s76_i)
+  val b1_s57_s = Mux(b1_c57, b1_s54_s, b1_s76_s); val b1_s57_i = Mux(b1_c57, b1_s54_i, b1_s76_i)
+
+  val b1_c56 = b1_s64_s > b1_s57_s || (b1_s64_s === b1_s57_s && b1_s64_i < b1_s57_i)
+  val b1_s56_i = Mux(b1_c56, b1_s64_i, b1_s57_i)
+
+  val b1_top1_idx = b1_s46_i
+  val b1_top2_idx = b1_s56_i
+
+  // 5. Generate keep_mask based on keep_counts and sorted indices
+  val k = Wire(Vec(8, Bool()))
+  for (j <- 0 until 4) {
+    k(j) := (keep_count_0 > 0.U && b0_top1_idx === j.U) || (keep_count_0 > 1.U && b0_top2_idx === j.U)
+  }
+  for (j <- 4 until 8) {
+    k(j) := (keep_count_1 > 0.U && b1_top1_idx === j.U) || (keep_count_1 > 1.U && b1_top2_idx === j.U)
+  }
+  keep_mask_out := k.asUInt
+
+  // 6. Aggregate Numerator (N) and Denominator (D) based on the keep_mask
+  val N_terms = Wire(Vec(8, SInt(25.W)))
+  val D_terms = Wire(Vec(8, UInt(16.W)))
+
+  for (j <- 0 until 8) {
+    // Product of UInt(16).zext (SInt(17)) and SInt(8) is SInt(25).
+    val product = weights(j).zext * values(j)
+    N_terms(j) := Mux(k(j), product, 0.S(25.W))
+    D_terms(j) := Mux(k(j), weights(j), 0.U(16.W))
+  }
+
+  // Sum of up to 4x 25-bit N_terms fits in 27 bits. Sum of up to 8x 16-bit D_terms fits in 19 bits.
+  N_out := N_terms.reduce(_ +& _)
+  D_out := D_terms.reduce(_ +& _)
+}

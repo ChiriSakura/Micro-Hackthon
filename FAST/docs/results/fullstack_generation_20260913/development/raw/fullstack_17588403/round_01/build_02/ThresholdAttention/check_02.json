@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/module_lint.log",
+  "diagnostics": "- V e r i l a t i o n   R e p o r t: Verilator 5.052 2026-09-05 rev v5.052\n- Verilator: Built from 0.043 MB sources in 4 modules, into 0.056 MB in 3 C++ files needing 0.000 MB\n- Verilator: Walltime 0.062 s (elab=0.012, cvt=0.026, bld=0.000); cpu 0.014 s on 1 threads; allocated 19.000 MB\n%Warning-DECLFILENAME: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/emitted/ThresholdAttention.v:1:8: Filename 'ThresholdAttention' does not match MODULE name: 'ProcessingElement'\n    1 | module ProcessingElement(\n      |        ^~~~~~~~~~~~~~~~~\n                       ... For warning description see https://verilator.org/warn/DECLFILENAME?v=5.052\n                       ... Use \"/* verilator lint_off DECLFILENAME */\" and lint_on around source to disable this message.\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/emitted/ThresholdAttention.v:58:15: Bits of signal are not used: '_GEN_21'[15]\n                                                                                                                                                                : ... note: In instance 'ThresholdAttention.divider'\n   58 |   wire [15:0] _GEN_21 = reset ? 16'h0 : _GEN_14;  \n      |               ^~~~~~~\n                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.052\n                       ... Use \"/* verilator lint_off UNUSEDSIGNAL */\" and lint_on around source to disable this message.\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/emitted/ThresholdAttention.v:59:14: Bits of signal are not used: '_GEN_22'[4]\n                                                                                                                                                                : ... note: In instance 'ThresholdAttention.divider'\n   59 |   wire [4:0] _GEN_22 = reset ? 5'h0 : _GEN_16;  \n      |              ^~~~~~~\n",
+  "wall_seconds": 0.6807969277724624,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "verilator",
+    "--lint-only",
+    "--Wall",
+    "-Wno-fatal",
+    "--top-module",
+    "ThresholdAttention",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/emitted/ThresholdAttention.v"
+  ],
+  "elaboration": {
+    "passed": true,
+    "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/chisel_elaboration.log",
+    "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ProcessingElement as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+    "wall_seconds": 5.739383604377508,
+    "command": [
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+      "run",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ProcessingElement/ProcessingElement.scala",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/Divider/Divider.scala",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/ThresholdAttention.scala",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/FASTGeneratedElaborate.scala",
+      "--workspace",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/scala_build",
+      "--server=false",
+      "--main-class",
+      "FASTGeneratedElaborate",
+      "--",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/emitted"
+    ],
+    "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/emitted/ThresholdAttention.v",
+    "elaborated_sha256": "3b0eaeab9d6d65078ac451affa6b80e4254b065979153d4e169c7fd2a0fe75be"
+  },
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ThresholdAttention/emitted/ThresholdAttention.v"
+}

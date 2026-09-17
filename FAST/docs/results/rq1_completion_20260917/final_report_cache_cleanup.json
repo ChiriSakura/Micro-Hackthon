@@ -1,0 +1,103 @@
+{
+  "utc": "2026-09-17T08:09:19.651386+00:00",
+  "scope": "Completed historical validation rebuildable obj_dir / Scala caches only. Original sources, tests, logs, reports, archive and hashes retained. Also removed ~753KB final-report Python bytecode caches.",
+  "removed": [
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/gates_round_1/obj_dir",
+      "bytes": 219368691
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/obj_dir",
+      "bytes": 156504881
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/scala_build/.scala-build",
+      "bytes": 173165
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_101/obj_dir",
+      "bytes": 156505999
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_211/obj_dir",
+      "bytes": 156506006
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_307/obj_dir",
+      "bytes": 156506020
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_401/obj_dir",
+      "bytes": 156505998
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_503/obj_dir",
+      "bytes": 156506012
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/gates_round_5/obj_dir",
+      "bytes": 163323113
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/rebuild/obj_dir",
+      "bytes": 151537792
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/rebuild/scala_build/.scala-build",
+      "bytes": 110057
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/seed_101/obj_dir",
+      "bytes": 151538916
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/seed_211/obj_dir",
+      "bytes": 151538915
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/seed_307/obj_dir",
+      "bytes": 151538920
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/seed_401/obj_dir",
+      "bytes": 151538910
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/seed_503/obj_dir",
+      "bytes": 151538919
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/gates_round_1/obj_dir",
+      "bytes": 204955463
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/obj_dir",
+      "bytes": 154790771
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/scala_build/.scala-build",
+      "bytes": 175202
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_101/obj_dir",
+      "bytes": 154791892
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_211/obj_dir",
+      "bytes": 154791897
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_307/obj_dir",
+      "bytes": 154791901
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_401/obj_dir",
+      "bytes": 154791886
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_503/obj_dir",
+      "bytes": 154791899
+    }
+  ],
+  "bytes": 3365123225
+}

@@ -1,0 +1,31 @@
+[
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ProcessingElement/emitted"
+  },
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~ProcessingElement|ProcessingElement>weighted_v_out",
+    "sources":[
+      "~ProcessingElement|ProcessingElement>v_in",
+      "~ProcessingElement|ProcessingElement>q0",
+      "~ProcessingElement|ProcessingElement>k0",
+      "~ProcessingElement|ProcessingElement>q1",
+      "~ProcessingElement|ProcessingElement>k1"
+    ]
+  },
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~ProcessingElement|ProcessingElement>weight_out",
+    "sources":[
+      "~ProcessingElement|ProcessingElement>q0",
+      "~ProcessingElement|ProcessingElement>k0",
+      "~ProcessingElement|ProcessingElement>q1",
+      "~ProcessingElement|ProcessingElement>k1"
+    ]
+  }
+]

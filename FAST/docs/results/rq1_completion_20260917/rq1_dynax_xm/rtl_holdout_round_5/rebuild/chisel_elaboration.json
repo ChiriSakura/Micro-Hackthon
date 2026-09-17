@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/references as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+  "timed_out": false,
+  "returncode": 0,
+  "wall_seconds": 18.885536296998907,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/references/025.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/references/026.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/ScoreAndExpUnit_rq1.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/DynaX_SelectionUnit.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/NormalizationUnit_rq1.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/Rq1DynaXm.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/emitted"
+  ],
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/emitted/Rq1DynaXm.v",
+  "elaborated_sha256": "d18b6c2f72cc9d6182f909f30480605d30fb9730c7b68399505b68e5489876d4"
+}

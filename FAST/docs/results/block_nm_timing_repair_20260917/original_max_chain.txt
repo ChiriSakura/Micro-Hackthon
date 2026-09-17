@@ -1,0 +1,18 @@
+/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/check_02/emitted/Rq1BlockNmTop.v
+  wire [8:0] _h_reg_T_1 = $signed(scores_reg_0) > $signed(scores_reg_1) ? $signed(scores_reg_0) : $signed(scores_reg_1); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 121:49]
+  wire [8:0] _h_reg_T_3 = $signed(_h_reg_T_1) > $signed(scores_reg_2) ? $signed(_h_reg_T_1) : $signed(scores_reg_2); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 121:49]
+  wire [8:0] _h_reg_T_5 = $signed(_h_reg_T_3) > $signed(scores_reg_3) ? $signed(_h_reg_T_3) : $signed(scores_reg_3); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 121:49]
+  wire [8:0] _h_reg_T_7 = $signed(_h_reg_T_5) > $signed(scores_reg_4) ? $signed(_h_reg_T_5) : $signed(scores_reg_4); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 121:49]
+  wire [8:0] _h_reg_T_9 = $signed(_h_reg_T_7) > $signed(scores_reg_5) ? $signed(_h_reg_T_7) : $signed(scores_reg_5); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 121:49]
+  wire [8:0] _h_reg_T_11 = $signed(_h_reg_T_9) > $signed(scores_reg_6) ? $signed(_h_reg_T_9) : $signed(scores_reg_6); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 121:49]
+  wire [8:0] _h_reg_T_13 = $signed(_h_reg_T_11) > $signed(scores_reg_7) ? $signed(_h_reg_T_11) : $signed(scores_reg_7); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 121:49]
+  wire [8:0] _h_reg_T_15 = $signed(_h_reg_T_13) > $signed(scores_reg_8) ? $signed(_h_reg_T_13) : $signed(scores_reg_8); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 121:49]
+  wire [8:0] _h_reg_T_17 = $signed(_h_reg_T_15) > $signed(scores_reg_9) ? $signed(_h_reg_T_15) : $signed(scores_reg_9); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 121:49]
+  wire [8:0] _h_reg_T_19 = $signed(_h_reg_T_17) > $signed(scores_reg_10) ? $signed(_h_reg_T_17) : $signed(scores_reg_10)
+  wire [8:0] _h_reg_T_21 = $signed(_h_reg_T_19) > $signed(scores_reg_11) ? $signed(_h_reg_T_19) : $signed(scores_reg_11)
+  wire [8:0] _h_reg_T_23 = $signed(_h_reg_T_21) > $signed(scores_reg_12) ? $signed(_h_reg_T_21) : $signed(scores_reg_12)
+  wire [8:0] _h_reg_T_25 = $signed(_h_reg_T_23) > $signed(scores_reg_13) ? $signed(_h_reg_T_23) : $signed(scores_reg_13)
+  wire [8:0] _h_reg_T_27 = $signed(_h_reg_T_25) > $signed(scores_reg_14) ? $signed(_h_reg_T_25) : $signed(scores_reg_14)
+  wire [71:0] _find_min_lo_scores_in_T_8 = {scores_reg_7,scores_reg_6,scores_reg_5,scores_reg_4,scores_reg_3,
+          if ($signed(_h_reg_T_27) > $signed(scores_reg_15)) begin // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 121:49]
+            h_reg <= _h_reg_T_27;

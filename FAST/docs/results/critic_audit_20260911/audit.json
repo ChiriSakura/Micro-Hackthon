@@ -1,0 +1,3293 @@
+{
+  "scope": "read-only audit of historical trajectories, not an ablation or new optimization run",
+  "runs": [
+    {
+      "run": "codesign_17222059",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17222059/codesign.json",
+      "sha256": "d84bd9f9f29feb3bbbc27c0d23548ef11c08d6d193beef0ed6ed3d37ce9af24f",
+      "rounds": 1,
+      "proposers": null,
+      "stop": "attributed to uarch; that layer's mutation is not applied by this script: RTL simulation did not match the golden model",
+      "critic_rejections": [],
+      "rtl_mutations": [],
+      "trajectory": [
+        {
+          "kernel": "xm:32:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "revert",
+            "summary": "RTL simulation did not match the golden model",
+            "evidence": [
+              "evaluation.functional_passed",
+              "evaluation.log_uri",
+              "evaluation.fidelity"
+            ],
+            "mutations": [],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 32,
+            "pe_per_row": 8,
+            "queue_depth": 4
+          },
+          "performance": {
+            "cycles": null,
+            "throughput": null,
+            "pe_utilization": null,
+            "area": null,
+            "power": null,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=32,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1154/2048 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), one-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 32x8 kept=16 design, end to end"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17224361",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17224361/codesign.json",
+      "sha256": "4b0d8b1d48891507bfc0a064065aa5e480af6a095e3ccacd4a593400f98cc54b",
+      "rounds": 1,
+      "proposers": null,
+      "stop": "critic stopped: acceptance gates passed",
+      "critic_rejections": [],
+      "rtl_mutations": [],
+      "trajectory": [
+        {
+          "kernel": "xm:32:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "evaluator",
+            "decision": "stop",
+            "summary": "acceptance gates passed",
+            "evidence": [
+              "kernel.quality_loss",
+              "evaluation.fidelity",
+              "evaluation.pe_utilization"
+            ],
+            "mutations": [],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 32,
+            "pe_per_row": 8,
+            "queue_depth": 4
+          },
+          "performance": {
+            "cycles": null,
+            "throughput": null,
+            "pe_utilization": null,
+            "area": null,
+            "power": null,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=32,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "2048/2048 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), one-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 32x8 kept=16 design, end to end"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17224367",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17224367/codesign.json",
+      "sha256": "fbd9a68acec372661720d1d53c1b991e245ab1350b837e1ddb87efb29a7e0862",
+      "rounds": 1,
+      "proposers": null,
+      "stop": "critic stopped: acceptance gates passed",
+      "critic_rejections": [],
+      "rtl_mutations": [],
+      "trajectory": [
+        {
+          "kernel": "xm:32:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "evaluator",
+            "decision": "stop",
+            "summary": "acceptance gates passed",
+            "evidence": [
+              "kernel.quality_loss",
+              "evaluation.fidelity",
+              "evaluation.pe_utilization"
+            ],
+            "mutations": [],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 32,
+            "pe_per_row": 8,
+            "queue_depth": 4
+          },
+          "performance": {
+            "cycles": null,
+            "throughput": null,
+            "pe_utilization": null,
+            "area": null,
+            "power": null,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=32,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "2048/2048 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), one-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 32x8 kept=16 design, end to end"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17245154",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17245154/codesign.json",
+      "sha256": "9cf41bdf2512603f7069893eaed34e7b59d74d900f634a92e8da8270b976b571",
+      "rounds": 1,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用）",
+      "stop": "attributed to kernel; that layer's mutation is not applied by this script: The low PE utilization of 0.643 suggests the hardware is starved for data, a problem likely rooted in the xm kernel's memory access pattern, which has a high bank conflict rate.",
+      "critic_rejections": [],
+      "rtl_mutations": [],
+      "trajectory": [
+        {
+          "kernel": "xm:32:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "The low PE utilization of 0.643 suggests the hardware is starved for data, a problem likely rooted in the xm kernel's memory access pattern, which has a high bank conflict rate.",
+            "evidence": [
+              "evaluation.pe_utilization",
+              "bank conflict at 8 banks"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "sanger",
+                "expected_effect": "PE utilization increases above 0.643",
+                "risk": "Sparsity decreases from 0.8362 to 0.744, which may increase total cycles if not offset by the utilization gain."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 9457,
+            "throughput": 21415793.01086665,
+            "pe_utilization": 0.6429545072018416,
+            "area": 1465643.7648,
+            "power": 524.6573164538182,
+            "fidelity": "L1-analytical-shared-model",
+            "evidence": [
+              "model=L1-analytical (no RTL was simulated)",
+              "pe_utilization=0.6430",
+              "cycles=9457",
+              "dram_bytes=218911",
+              "area_units=1465643.8",
+              "kernel.load_imbalance=2.6660",
+              "NOT INDEPENDENT: this shares the co-optimizer's cost model, so it cannot disagree with the choice it is scoring"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17245379",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17245379/codesign.json",
+      "sha256": "6d1df00ade81f04ee12c229332bee6d67a015eb2e28f50fa6d1ad83e0f440652",
+      "rounds": 1,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用）",
+      "stop": "attributed to uarch; 该层的变异本脚本不施加: The queue is the critical path component with a delay of 2.760 ns, limiting the clock speed below the execution array's capability of 2.230 ns.",
+      "critic_rejections": [],
+      "rtl_mutations": [],
+      "trajectory": [
+        {
+          "kernel": "xm:32:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The queue is the critical path component with a delay of 2.760 ns, limiting the clock speed below the execution array's capability of 2.230 ns.",
+            "evidence": [
+              "plan.queue",
+              "measured.queue depth 4",
+              "measured.execution array critical path"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue",
+                "operation": "rewrite",
+                "value": 4,
+                "expected_effect": "critical path below 2.230 ns",
+                "risk": "RTL rewrite may increase area or power for the queue logic"
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 32,
+            "pe_per_row": 8,
+            "queue_depth": 4
+          },
+          "performance": {
+            "cycles": 8106,
+            "throughput": 22883855.953059766,
+            "pe_utilization": 0.7500795106021384,
+            "area": 2149998.4976000004,
+            "power": 622.7086151609984,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=32,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "2048/2048 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), one-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 32x8 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17245585",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17245585/codesign.json",
+      "sha256": "403e39b7e8fd60426cc7c5c0999b43d83557882328192b22bd0f03485da14ec5",
+      "rounds": 4,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用）",
+      "stop": "exhausted 4 rounds",
+      "critic_rejections": [],
+      "rtl_mutations": [],
+      "trajectory": [
+        {
+          "kernel": "xm:32:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The design failed its functional test during L2 RTL simulation, indicating a bug in the microarchitecture that must be fixed before any performance tuning.",
+            "evidence": [
+              "evaluation.functional_passed"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "rtl_implementation",
+                "operation": "rewrite",
+                "value": "debug and fix functional failure",
+                "expected_effect": "functional_passed becomes True for the current kernel and plan",
+                "risk": "RTL rewrite may introduce new bugs or alter performance/area characteristics, invalidating the current plan."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 4
+          },
+          "performance": {
+            "cycles": 8106,
+            "throughput": 22883855.953059766,
+            "pe_utilization": 0.7500795106021384,
+            "area": 1498512.3648,
+            "power": 609.9459591609984,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1020/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), one-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:32:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The design failed its functional test during L2 RTL simulation for the second consecutive round, indicating a persistent bug in the microarchitecture that was not resolved by the previous fix attempt.",
+            "evidence": [
+              "evaluation.functional_passed",
+              "earlier_rounds"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "RTL implementation",
+                "operation": "rewrite",
+                "value": "debug and fix functional failure",
+                "expected_effect": "functional_passed is True in the next L2 simulation",
+                "risk": "The bug fix could introduce a new performance bottleneck or a different functional bug."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 4
+          },
+          "performance": {
+            "cycles": 8106,
+            "throughput": 22883855.953059766,
+            "pe_utilization": 0.7500795106021384,
+            "area": 1498512.3648,
+            "power": 609.9459591609984,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1020/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), one-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:32:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "After three consecutive functional failures with the xm:32:16:64 kernel, the microarchitecture appears unable to support it, so the kernel itself must be changed to unblock progress.",
+            "evidence": [
+              "evaluation.functional_passed"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "topk:128",
+                "expected_effect": "Achieve functional_passed=True in the next round's L2 simulation.",
+                "risk": "The new kernel has higher quality loss (+0.0354 vs +0.0236) and lower sparsity (0.750 vs 0.836), which may degrade model accuracy and increase cycle count."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 4
+          },
+          "performance": {
+            "cycles": 8106,
+            "throughput": 22883855.953059766,
+            "pe_utilization": 0.7500795106021384,
+            "area": 1498512.3648,
+            "power": 609.9459591609984,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1020/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), one-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "topk:128",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "The current topk:128 kernel's quality loss of +0.0354 is unacceptably high when the available sanger kernel offers zero loss and a lower bank conflict rate.",
+            "evidence": [
+              "kernel candidate.quality_loss",
+              "candidates still available.#2 sanger.loss",
+              "measured.bank conflict at 8 banks.topk",
+              "measured.bank conflict at 8 banks.sanger"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "sanger",
+                "expected_effect": "quality_loss reduced to 0.0000 and cycle count reduced due to lower bank conflict rate",
+                "risk": "pe_utilization may decrease from 0.876 due to sanger's higher tile imbalance of 3.922"
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 8,
+            "pe_per_row": 16,
+            "queue_depth": 0
+          },
+          "performance": {
+            "cycles": 22182,
+            "throughput": 10154495.974205384,
+            "pe_utilization": 0.8759765391472463,
+            "area": 1114175.1504,
+            "power": 374.23405270373576,
+            "fidelity": "L1-analytical-shared-model",
+            "evidence": [
+              "model=L1-analytical (no RTL was simulated)",
+              "pe_utilization=0.8760",
+              "cycles=22183",
+              "dram_bytes=340687",
+              "area_units=1114175.2",
+              "kernel.load_imbalance=1.1416",
+              "NOT INDEPENDENT: this shares the co-optimizer's cost model, so it cannot disagree with the choice it is scoring"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17246745",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17246745/codesign.json",
+      "sha256": "aae9dfd76b12bd9fe572562f854f6a77a161da92adcc258dd44111dc1e4f46fb",
+      "rounds": 3,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用）",
+      "stop": "attributed to kernel but the critique carried no mutation to act on: The measured PE utilization of 0.8262 has not improved despite a compiler-level optimization attempt in the previous round, indicating the sanger kernel itself is the limiting factor.",
+      "critic_rejections": [],
+      "rtl_mutations": [],
+      "trajectory": [
+        {
+          "kernel": "xm:32:8:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "The current kernel candidate introduces a quality loss of +0.0253, while an available alternative ('sanger') offers zero loss at the cost of lower sparsity.",
+            "evidence": [
+              "kernel candidate.quality_loss",
+              "candidates still available.#2 sanger.loss"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "sanger",
+                "expected_effect": "quality_loss of 0.0000",
+                "risk": "Increased cycles due to lower sparsity (0.744 vs 0.858) and potentially lower PE utilization due to higher tile imbalance (1.631)."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 6191,
+            "throughput": 32713573.217357185,
+            "pe_utilization": 0.8541734613194805,
+            "area": 1465643.7648,
+            "power": 692.8213989641175,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "sanger",
+          "critique": {
+            "status": "passed",
+            "attribution": "compiler",
+            "decision": "continue",
+            "summary": "The measured PE utilization of 0.8262 is suboptimal, and the planner should be able to improve it by choosing a deeper queue at the expense of a slower clock.",
+            "evidence": [
+              "evaluation.pe_utilization",
+              "plan.queue"
+            ],
+            "mutations": [
+              {
+                "layer": "compiler",
+                "field": "pe_utilization_target",
+                "operation": "increase",
+                "value": 0.85,
+                "expected_effect": "A new plan with queue_depth=4, increasing clock period to 2.760 ns but improving PE utilization enough to reduce total cycles.",
+                "risk": "The utilization gain from a deeper queue may not be sufficient to overcome the slower clock, resulting in a net increase in total execution time."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 32,
+            "pe_per_row": 8,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 10945,
+            "throughput": 18504271.042534076,
+            "pe_utilization": 0.8261887549753243,
+            "area": 2111350.2976,
+            "power": 683.3037511611542,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=32,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "2048/2048 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 32x8 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "sanger",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "The measured PE utilization of 0.8262 has not improved despite a compiler-level optimization attempt in the previous round, indicating the sanger kernel itself is the limiting factor.",
+            "evidence": [
+              "evaluation.pe_utilization",
+              "earlier_rounds"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "kernel_candidate",
+                "operation": "switch",
+                "value": "topk:128",
+                "expected_effect": "pe_utilization > 0.8262",
+                "risk": "quality_loss increases from +0.0000 to +0.0354"
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 10945,
+            "throughput": 18504271.042534076,
+            "pe_utilization": 0.8261887549753243,
+            "area": 1459864.1648,
+            "power": 670.5410951611542,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17247292",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17247292/codesign.json",
+      "sha256": "1dcbc819a214805b5a0016225a172b3e8e3568ffc48879b12640433cbfce0f10",
+      "rounds": 5,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用）",
+      "stop": "exhausted 5 rounds",
+      "critic_rejections": [],
+      "rtl_mutations": [],
+      "trajectory": [
+        {
+          "kernel": "xm:32:8:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "The measured PE utilization of 0.8542 is limited by the current kernel's intrinsic properties, as the supporting data shows that increasing queue depth offers diminishing returns for a significant clock penalty.",
+            "evidence": [
+              "evaluation.pe_utilization",
+              "measurements.queue_utilisation (xm)",
+              "measurements.queue_depth"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "sanger",
+                "expected_effect": "Achieve quality_loss of 0.0000 and reduce cycle stalls from bank conflicts",
+                "risk": "The lower sparsity (0.744 vs 0.858) and higher tile imbalance (1.631) may increase total cycles or lower PE utilization further."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 6191,
+            "throughput": 32713573.217357185,
+            "pe_utilization": 0.8541734613194805,
+            "area": 1718751.4064,
+            "power": 705.5840549641175,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "sanger",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The system clock is limited by the queue's critical path delay of 2.528 ns, which is slower than the execution array's 2.230 ns path.",
+            "evidence": [
+              "plan.queue",
+              "predicted.clock",
+              "measured numbers.queue depth 0/2/4/8",
+              "measured numbers.execution array critical path"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue",
+                "operation": "rewrite",
+                "value": "depth 2",
+                "expected_effect": "critical path below 2.230 ns for queue depth 2",
+                "risk": "RTL rewrite may increase area/power or introduce functional bugs."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 21687,
+            "throughput": 9338847.19438107,
+            "pe_utilization": 0.8261887549753243,
+            "area": 1649531.9648,
+            "power": 670.5410951611542,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "sanger",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The system clock is limited by the queue's measured critical path delay of 2.528 ns, which is significantly slower than the execution array's ceiling of 2.230 ns.",
+            "evidence": [
+              "predicted.clock",
+              "earlier rounds[1].summary"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue",
+                "operation": "rewrite",
+                "value": "timing",
+                "expected_effect": "critical path for queue depth 2 below 2.230 ns",
+                "risk": "Redesigned queue may have larger area or power; a faster design may not be possible."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 21687,
+            "throughput": 9338847.19438107,
+            "pe_utilization": 0.8261887549753243,
+            "area": 1649531.9648,
+            "power": 670.5410951611542,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "sanger",
+          "critique": {
+            "status": "passed",
+            "attribution": "compiler",
+            "decision": "continue",
+            "summary": "The planner's choice of a queue depth of 2 created a critical path of 2.528 ns, which is the system's primary performance bottleneck.",
+            "evidence": [
+              "plan.queue",
+              "plan.predicted.clock"
+            ],
+            "mutations": [
+              {
+                "layer": "compiler",
+                "field": "clock_period_constraint",
+                "operation": "decrease",
+                "value": 2.273,
+                "expected_effect": "achieve a clock period <= 2.273 ns by forcing the planner to select a configuration with queue depth 0",
+                "risk": "Reduced queue depth is expected to lower PE utilization, potentially increasing overall cycle count."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 21687,
+            "throughput": 9338847.19438107,
+            "pe_utilization": 0.8261887549753243,
+            "area": 1649531.9648,
+            "power": 670.5410951611542,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "sanger",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The system clock is limited by the queue's measured critical path delay of 2.528 ns, which is slower than the execution array ceiling of 2.230 ns.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue",
+                "operation": "rewrite",
+                "value": 2,
+                "expected_effect": "critical path for queue depth 2 below 2.273 ns",
+                "risk": "RTL rewrite may increase area or power, or fail to meet the timing target."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 10945,
+            "throughput": 18504271.042534076,
+            "pe_utilization": 0.8261887549753243,
+            "area": 1722361.4768,
+            "power": 683.3037511611542,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17248917",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17248917/codesign.json",
+      "sha256": "9accc5a671062340ae2601ee43123f9a8b6f7c6e0a4bc25ee176019411b9f869",
+      "rounds": 4,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用）",
+      "stop": "exhausted 4 rounds",
+      "critic_rejections": [],
+      "rtl_mutations": [],
+      "trajectory": [
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "The current kernel configuration xm:32:4:64 has an unacceptably high quality loss of +0.0271, which can be drastically improved by switching to another measured configuration.",
+            "evidence": [
+              "current xm configuration.quality_loss"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "xm:64:16:64",
+                "expected_effect": "quality_loss below +0.001",
+                "risk": "Increased cycles and lower PE utilization due to lower sparsity (0.721 vs 0.8681) and higher tile imbalance (1.528)."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 5838,
+            "throughput": 34686413.58563928,
+            "pe_utilization": 0.8389336552786696,
+            "area": 1465643.7648,
+            "power": 680.6880749866656,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The clock period is limited to 2.528 ns by the queue with depth 2, which is slower than the execution array's achievable 2.230 ns critical path.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue",
+                "operation": "rewrite",
+                "value": "reduce critical path",
+                "expected_effect": "critical path for queue depth 2 below 2.230 ns",
+                "risk": "Increased area or power for the queue logic; potential for new functional bugs."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 16411,
+            "throughput": 12341029.245782143,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1450474.4944,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The clock period is limited to 2.528 ns by the queue with depth 2, while the execution array is capable of 2.230 ns.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue",
+              "evaluation.pe_utilization"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_rtl",
+                "operation": "rewrite",
+                "value": "add_pipeline_stage",
+                "expected_effect": "Reduce queue depth 2 critical path towards 2.230 ns",
+                "risk": "Increased queue latency may slightly increase stalls, and area/power will increase."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 16411,
+            "throughput": 12341029.245782143,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1450474.4944,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "compiler",
+            "decision": "continue",
+            "summary": "The current plan is limited by a 2.528 ns clock period due to queue_depth=2, while a faster hardware configuration (queue_depth=0) exists that would yield a 2.273 ns clock.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue",
+              "earlier rounds[1].summary",
+              "earlier rounds[2].summary"
+            ],
+            "mutations": [
+              {
+                "layer": "compiler",
+                "field": "constraints.clock_period_ns",
+                "operation": "decrease",
+                "value": 2.3,
+                "expected_effect": "planner generates a new plan with queue_depth=0, resulting in a predicted clock of 2.273 ns",
+                "risk": "The shallower queue (depth 0) has lower utilization (0.708 vs 0.832), which will decrease pe_utilization and may increase total cycles, potentially negating the benefit of a faster clock."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 16411,
+            "throughput": 12341029.245782143,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1450474.4944,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17249776",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17249776/codesign.json",
+      "sha256": "5fb1bb95934ebfbf1428e4f7cfabf6a7d64db8beda5b49fbf02d9f86f0fd4cbf",
+      "rounds": 4,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用） uarch-mutate=gemini-2.5-pro",
+      "stop": "上一轮的变异没有改变任何东西：计划和测量与前一轮完全相同（µArch 重入目前是空转——RTL 变异路径还没接进 flow）",
+      "critic_rejections": [],
+      "rtl_mutations": [
+        {
+          "round": 2,
+          "module": "RePE",
+          "accepted": false,
+          "attempts": 3,
+          "reason": "no mutation passed the gates in 3 attempts",
+          "gate_diagnostics": "[simulate] golden model failed: Traceback (most recent call last):\n  File \"/home/gz2522/Micro-Hackthon/FAST/hardware/gen_golden.py\", line 17, in <module>\n    import torch\nModuleNotFoundError: No module named 'torch'"
+        },
+        {
+          "round": 3,
+          "module": "RePE",
+          "accepted": false,
+          "attempts": 3,
+          "reason": "no mutation passed the gates in 3 attempts",
+          "gate_diagnostics": "[simulate] golden model failed: Traceback (most recent call last):\n  File \"/home/gz2522/Micro-Hackthon/FAST/hardware/gen_golden.py\", line 17, in <module>\n    import torch\nModuleNotFoundError: No module named 'torch'"
+        }
+      ],
+      "trajectory": [
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "The current kernel configuration's quality loss of +0.0271 is unacceptably high, and an alternative measured configuration exists with a much lower loss of +0.0008.",
+            "evidence": [
+              "current xm configuration.quality_loss",
+              "other measured xm configurations.#1.quality_loss"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "xm:64:16:64",
+                "expected_effect": "quality_loss near +0.0008",
+                "risk": "Increased cycles and DRAM traffic due to lower sparsity (0.721 vs 0.8681)"
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 5838,
+            "throughput": 34686413.58563928,
+            "pe_utilization": 0.8389336552786696,
+            "area": 1728141.0768000002,
+            "power": 693.4507309866656,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The clock frequency is limited by the queue's 2.528 ns critical path, which is significantly slower than the execution array's 2.230 ns capability.",
+            "evidence": [
+              "predicted.clock"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue",
+                "operation": "rewrite",
+                "value": "depth 2 implementation",
+                "expected_effect": "achieve a clock period at or below the execution array's 2.230 ns critical path",
+                "risk": "RTL rewrite for timing optimization may increase area or power, or fail to meet the timing target."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 32,
+            "pe_per_row": 8,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 12184,
+            "throughput": 16621721.649658915,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1854632.5856,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=32,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "2048/2048 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 32x8 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The clock period is limited by the queue's 2.528 ns critical path, which is slower than the execution array's 2.230 ns ceiling.",
+            "evidence": [
+              "predicted.clock",
+              "hardware.queue"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue",
+                "operation": "rewrite",
+                "value": "depth 2",
+                "expected_effect": "critical path below 2.300 ns while maintaining depth 2",
+                "risk": "Increased area or power for the queue block, or failure to meet the timing target."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 32,
+            "pe_per_row": 8,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 12184,
+            "throughput": 16621721.649658915,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1854632.5856,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=32,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "2048/2048 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 32x8 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The clock period is limited by the queue's 2.528 ns critical path, which is slower than the execution array's 2.230 ns capability and has been the bottleneck for three consecutive rounds.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue",
+              "round 1.summary",
+              "round 2.summary"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_rtl",
+                "operation": "rewrite",
+                "value": "pipelined",
+                "expected_effect": "queue critical path below 2.230 ns",
+                "risk": "Increased queue latency and area from additional pipeline registers"
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 32,
+            "pe_per_row": 8,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 12184,
+            "throughput": 16621721.649658915,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1854632.5856,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=32,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "2048/2048 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 32x8 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17250825",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17250825/codesign.json",
+      "sha256": "3314ecebf00fd459cee40aafd0f258be8704ddc651356609e03752a3c558a844",
+      "rounds": 3,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用） uarch-mutate=gemini-2.5-pro",
+      "stop": "critic stopped: acceptance gates passed",
+      "critic_rejections": [
+        "llm returned failure: ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'Deadline expired before operation could complete.', 'status': 'DEADLINE_EXCEEDED'}}"
+      ],
+      "rtl_mutations": [
+        {
+          "round": 2,
+          "module": "BlockSched_S4",
+          "accepted": false,
+          "attempts": 3,
+          "reason": "no mutation passed the gates in 3 attempts",
+          "gate_diagnostics": "[simulate] FAIL 工作量不守恒：硬件数到 19160 个 PE·拍，输入里有 23760 个保留列\nFAIL 行 3 有 52 趟没入队（共 191 趟）——仿真提前结束了\nqueue_depth=4 rows=32 pe=4 tiles=64\n  cycles_active=34135  row_utilisation=0.0044  pe_utilisation=0.0044\n  pass_imbalance=1.2391  model_says=0.9544  measured_row=0.0044\nMEASURE queue_depth=4 rows=32 pe=4 imbalance=1.239057 row_util=0.004385 pe_util=0.004385 cycles=34135\nFAIL 达到周期上限 34136，队列没排空\nFAILED: 3 处判据失败"
+        }
+      ],
+      "trajectory": [
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "The current kernel configuration xm:32:4:64 has an unacceptably high quality loss (+0.0271) while an alternative xm:64:16:64 with dramatically lower loss (+0.0008) has already been measured.",
+            "evidence": [
+              "current xm configuration.quality_loss",
+              "other measured xm configurations.#1.quality_loss"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "xm:64:16:64",
+                "expected_effect": "quality_loss near +0.0008",
+                "risk": "Increased cycle count due to lower sparsity (0.721 vs 0.8681) and potentially lower PE utilization due to higher tile imbalance (1.528)."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 5838,
+            "throughput": 34686413.58563928,
+            "pe_utilization": 0.8389336552786696,
+            "area": 1728141.0768000002,
+            "power": 693.4507309866656,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The clock period is limited to 2.528 ns by the queue implementation for depth 2, while the execution array's critical path is only 2.230 ns.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_logic",
+                "operation": "rewrite",
+                "value": "queue depth 2",
+                "expected_effect": "critical path below 2.528 ns, approaching the array limit of 2.230 ns",
+                "risk": "Increased area or power for the queue controller, or failure to meet the new timing target."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 32,
+            "pe_per_row": 8,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 24369,
+            "throughput": 8310860.824829457,
+            "pe_utilization": 0.8503164429130726,
+            "area": 2203629.6448,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=32,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "2048/2048 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 32x8 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "evaluator",
+            "decision": "stop",
+            "summary": "acceptance gates passed",
+            "evidence": [
+              "kernel.quality_loss",
+              "evaluation.fidelity",
+              "evaluation.pe_utilization"
+            ],
+            "mutations": [],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 32,
+            "pe_per_row": 8,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 24369,
+            "throughput": 8310860.824829457,
+            "pe_utilization": 0.8503164429130726,
+            "area": 2203629.6448,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=32,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "2048/2048 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 32x8 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17291098",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17291098/codesign.json",
+      "sha256": "2a35e838ca2c09dbe4fb7a9fd92ce16e8d051119fec69ee45202ea8b720239d6",
+      "rounds": 4,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用） uarch-mutate=gemini-2.5-pro",
+      "stop": "exhausted 4 rounds",
+      "critic_rejections": [],
+      "rtl_mutations": [],
+      "trajectory": [
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "PE utilization is only 0.8389, and an alternative kernel candidate exists with a measured lower tile load imbalance, which is the primary driver for utilization.",
+            "evidence": [
+              "evaluation.pe_utilization",
+              "other measured xm configurations.#2.tile imbalance"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "xm:32:32:64",
+                "expected_effect": "pe_utilization above 0.8389",
+                "risk": "Increased cycles due to lower sparsity (0.8681 -> 0.793)"
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 32,
+            "pe_per_row": 8,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 5838,
+            "throughput": 34686413.58563928,
+            "pe_utilization": 0.8389336552786696,
+            "area": 2117129.8976000003,
+            "power": 693.4507309866656,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=32,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "2048/2048 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 32x8 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:32:32:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "An alternative kernel candidate (xm:64:16:64) offers drastically lower quality loss (+0.0008 vs +0.0209) and lower tile imbalance (1.528), justifying a switch.",
+            "evidence": [
+              "other measured xm configurations:#1.loss",
+              "current xm configuration.quality_loss",
+              "other measured xm configurations:#1.tile imbalance",
+              "evaluation.pe_utilization"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "xm:64:16:64",
+                "expected_effect": "quality_loss below +0.0209 and pe_utilization above 0.8992",
+                "risk": "Increased cycle count due to lower sparsity (0.721 vs 0.7932)"
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 8536,
+            "throughput": 23725126.31240079,
+            "pe_utilization": 0.8992479064445709,
+            "area": 1465643.7648,
+            "power": 728.7078691949094,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "compiler",
+            "decision": "continue",
+            "summary": "Measured PE utilization is unacceptably low (0.6544), and measured component data indicates the planner's choice of a zero-depth queue is the cause.",
+            "evidence": [
+              "evaluation.pe_utilization",
+              "plan.queue"
+            ],
+            "mutations": [
+              {
+                "layer": "compiler",
+                "field": "min_pe_utilization_constraint",
+                "operation": "increase",
+                "value": 0.8,
+                "expected_effect": "Planner generates a new plan with queue_depth > 0, leading to measured pe_utilization > 0.8",
+                "risk": "Increased queue depth will increase clock period (from 2.273 ns) and may increase area/power."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 0
+          },
+          "performance": {
+            "cycles": 31664,
+            "throughput": 7113638.189348942,
+            "pe_utilization": 0.6544081604325572,
+            "area": 1614546.5648,
+            "power": 533.7762570099848,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The clock period is limited by the queue's 2.528 ns critical path, which is significantly slower than the execution array's 2.230 ns capability.",
+            "evidence": [
+              "predicted.clock",
+              "plan"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_rtl",
+                "operation": "rewrite",
+                "value": "optimize for timing",
+                "expected_effect": "critical path for queue depth 2 below 2.400 ns",
+                "risk": "Increased area or power for the queue logic, or failure to meet the new timing target."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 12184,
+            "throughput": 16621721.649658915,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1465643.7648,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17291608",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17291608/codesign.json",
+      "sha256": "40f4c6a17d40cb48da7d3d6369000c06e46617b3a72656534a37bdfda008fd3f",
+      "rounds": 1,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用） uarch-mutate=gemini-2.5-pro",
+      "stop": "attributed to kernel but the critique carried no mutation to act on: The current kernel's quality loss (+0.0271) is unacceptably high when a measured alternative exists with 33x lower loss (+0.0008).",
+      "critic_rejections": [],
+      "rtl_mutations": [],
+      "trajectory": [
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "The current kernel's quality loss (+0.0271) is unacceptably high when a measured alternative exists with 33x lower loss (+0.0008).",
+            "evidence": [
+              "current xm configuration.quality_loss",
+              "other measured xm configurations.#1.loss"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "#1 xm:64:16:64",
+                "expected_effect": "Achieve quality loss below +0.001",
+                "risk": "Performance will decrease due to lower sparsity (0.721 vs 0.8681) and higher tile imbalance (1.528), leading to more cycles and lower PE utilization."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 5838,
+            "throughput": 34686413.58563928,
+            "pe_utilization": 0.8389336552786696,
+            "area": 1484423.1056000001,
+            "power": 680.6880749866656,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17292070",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17292070/codesign.json",
+      "sha256": "7f8c7ba29949760b248c18d8819e71c53b655b95e30f3c20b697d94f7ccf1615",
+      "rounds": 7,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用） uarch-mutate=gemini-2.5-pro",
+      "stop": "exhausted 7 rounds",
+      "critic_rejections": [],
+      "rtl_mutations": [
+        {
+          "round": 1,
+          "module": "BlockSched_S4",
+          "accepted": true,
+          "attempts": 1,
+          "reason": "all gates passed",
+          "gate_diagnostics": ""
+        },
+        {
+          "round": 2,
+          "module": "BlockSched_S4",
+          "accepted": true,
+          "attempts": 1,
+          "reason": "all gates passed",
+          "gate_diagnostics": ""
+        },
+        {
+          "round": 6,
+          "module": "BlockSched_S4",
+          "accepted": true,
+          "attempts": 4,
+          "reason": "all gates passed",
+          "gate_diagnostics": ""
+        }
+      ],
+      "trajectory": [
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The system's critical path is the queue at 2.528 ns, which is slower than the execution array's 2.230 ns capability, while PE utilization is also limited by the shallow queue depth chosen to meet this timing.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue",
+              "evaluation.pe_utilization"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_rtl",
+                "operation": "rewrite",
+                "value": "target < 2.230 ns at depth 2",
+                "expected_effect": "critical path with queue depth 2 below 2.230 ns",
+                "risk": "RTL rewrite is high effort and may increase the queue's area or power consumption."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 8,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 11677,
+            "throughput": 17343206.79281964,
+            "pe_utilization": 0.8389336552786696,
+            "area": 869170.5384000001,
+            "power": 346.7253654933328,
+            "fidelity": "L1-analytical-shared-model",
+            "evidence": [
+              "model=L1-analytical (no RTL was simulated)",
+              "pe_utilization=0.8389",
+              "cycles=11678",
+              "dram_bytes=224487",
+              "area_units=869170.5",
+              "kernel.load_imbalance=3.0262",
+              "NOT INDEPENDENT: this shares the co-optimizer's cost model, so it cannot disagree with the choice it is scoring"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The system critical path is 2.528 ns, limited by the queue depth of 2, while the execution array could support a 2.230 ns clock.",
+            "evidence": [
+              "predicted.clock",
+              "hardware.queue"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_depth",
+                "operation": "decrease",
+                "value": 0,
+                "expected_effect": "critical path below 2.3 ns",
+                "risk": "PE utilization will decrease from ~0.83 to ~0.70, potentially increasing total cycles despite the faster clock."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 8,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 11677,
+            "throughput": 17343206.79281964,
+            "pe_utilization": 0.8389336552786696,
+            "area": 869170.5384000001,
+            "power": 346.7253654933328,
+            "fidelity": "L1-analytical-shared-model",
+            "evidence": [
+              "model=L1-analytical (no RTL was simulated)",
+              "pe_utilization=0.8389",
+              "cycles=11678",
+              "dram_bytes=224487",
+              "area_units=869170.5",
+              "kernel.load_imbalance=3.0262",
+              "NOT INDEPENDENT: this shares the co-optimizer's cost model, so it cannot disagree with the choice it is scoring"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "compiler",
+            "decision": "continue",
+            "summary": "The planner is stuck choosing a slow clock (2.528 ns) due to a queue depth of 2, and a new constraint is needed to force exploration of faster clock options.",
+            "evidence": [
+              "plan.queue",
+              "predicted.clock",
+              "earlier_rounds[0].summary",
+              "earlier_rounds[1].summary"
+            ],
+            "mutations": [
+              {
+                "layer": "compiler",
+                "field": "constraint:max_clock_period",
+                "operation": "decrease",
+                "value": 2.4,
+                "expected_effect": "The next plan's predicted clock period will be below 2.4 ns, likely achieved by selecting queue depth 0.",
+                "risk": "Reduced queue depth will lower queue utilization (from ~0.83 to ~0.71), which may decrease overall PE utilization and increase total cycles."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 8,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 11677,
+            "throughput": 17343206.79281964,
+            "pe_utilization": 0.8389336552786696,
+            "area": 869170.5384000001,
+            "power": 346.7253654933328,
+            "fidelity": "L1-analytical-shared-model",
+            "evidence": [
+              "model=L1-analytical (no RTL was simulated)",
+              "pe_utilization=0.8389",
+              "cycles=11678",
+              "dram_bytes=224487",
+              "area_units=869170.5",
+              "kernel.load_imbalance=3.0262",
+              "NOT INDEPENDENT: this shares the co-optimizer's cost model, so it cannot disagree with the choice it is scoring"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "PE utilization is low (0.8389) due to a queue bottleneck that cannot be resolved for the current kernel after multiple rounds, warranting a switch to a different kernel with better quality.",
+            "evidence": [
+              "evaluation.pe_utilization",
+              "other measured xm configurations.#1.quality_loss"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "xm:64:16:64",
+                "expected_effect": "quality_loss below +0.01",
+                "risk": "Lower sparsity (0.721) and higher tile imbalance (1.528) may decrease PE utilization and increase cycle count."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 5838,
+            "throughput": 34686413.58563928,
+            "pe_utilization": 0.8389336552786696,
+            "area": 1465643.7648,
+            "power": 680.6880749866656,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "planner_model",
+            "decision": "continue",
+            "summary": "The planner repeatedly chose a configuration with a queue depth of 2, which correctly predicted a slow clock of 2.528 ns, indicating its cost model is misjudging the clock vs. area trade-off.",
+            "evidence": [
+              "plan.queue",
+              "predicted.clock",
+              "earlier_rounds"
+            ],
+            "mutations": [
+              {
+                "layer": "planner_model",
+                "field": "cost_model",
+                "operation": "recalibrate",
+                "value": "clock_period_vs_area",
+                "expected_effect": "planner chooses a configuration with clock period < 2.528 ns",
+                "risk": "planner may over-provision queue/divider resources, increasing area and power"
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 8,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 24369,
+            "throughput": 8310860.824829457,
+            "pe_utilization": 0.8503164429130726,
+            "area": 869170.5384000001,
+            "power": 351.25662559483595,
+            "fidelity": "L1-analytical-shared-model",
+            "evidence": [
+              "model=L1-analytical (no RTL was simulated)",
+              "pe_utilization=0.8503",
+              "cycles=24370",
+              "dram_bytes=216287",
+              "area_units=869170.5",
+              "kernel.load_imbalance=3.0653",
+              "NOT INDEPENDENT: this shares the co-optimizer's cost model, so it cannot disagree with the choice it is scoring"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The system is bottlenecked by the queue's critical path of 2.528 ns, a hardware limitation that the planner correctly chose to accept in exchange for higher PE utilization, indicating the queue's microarchitecture itself must be improved.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue",
+              "evaluation.pe_utilization"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_rtl",
+                "operation": "rewrite",
+                "value": "performance-optimized",
+                "expected_effect": "critical path for queue depth 2 below 2.3 ns",
+                "risk": "RTL rewrite may fail to improve timing, or may increase area and power; previous attempts in rounds 0 and 1 were unsuccessful."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 8,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 24369,
+            "throughput": 8310860.824829457,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1063664.9488000001,
+            "power": 351.25662559483595,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x8 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "compiler",
+            "decision": "continue",
+            "summary": "The planner is repeatedly selecting a queue depth of 2, which correctly predicts a clock of 2.528 ns but is a known performance bottleneck that limits PE utilization.",
+            "evidence": [
+              "plan.queue",
+              "predicted.clock",
+              "evaluation.pe_utilization"
+            ],
+            "mutations": [
+              {
+                "layer": "compiler",
+                "field": "clock_target",
+                "operation": "decrease",
+                "value": 2.5,
+                "expected_effect": "The planner generates a new plan with a clock period below 2.528 ns.",
+                "risk": "The planner may fail to find a valid configuration under the new constraint, or the resulting plan may have worse overall EDP due to trade-offs in utilization or area."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 8,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 24369,
+            "throughput": 8310860.824829457,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1063664.9488000001,
+            "power": 351.25662559483595,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x8 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17297433",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17297433/codesign.json",
+      "sha256": "9d26fda80e46f85b97f9d84c64ee2ea6ddfde9dd6d4c3c94e0689896bd75af7c",
+      "rounds": 6,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用） uarch-mutate=gemini-2.5-pro",
+      "stop": "exhausted 6 rounds",
+      "critic_rejections": [],
+      "rtl_mutations": [
+        {
+          "round": 2,
+          "module": "BlockSched_S4",
+          "accepted": true,
+          "attempts": 1,
+          "reason": "all gates passed",
+          "gate_metrics": {
+            "area_um2": 42826.266,
+            "cells": 17087.0,
+            "critical_path_ns": 2.7601,
+            "max_frequency_mhz": 362.30571356110283
+          },
+          "gate_diagnostics": ""
+        },
+        {
+          "round": 3,
+          "module": "BlockSched_S4",
+          "accepted": true,
+          "attempts": 1,
+          "reason": "all gates passed",
+          "gate_metrics": {
+            "area_um2": 42993.846,
+            "cells": 17130.0,
+            "critical_path_ns": 2.7597,
+            "max_frequency_mhz": 362.35822734355185
+          },
+          "gate_diagnostics": ""
+        },
+        {
+          "round": 5,
+          "module": "BlockSched_S4",
+          "accepted": false,
+          "attempts": 4,
+          "reason": "no mutation passed the gates in 4 attempts",
+          "gate_metrics": {},
+          "gate_diagnostics": ""
+        }
+      ],
+      "trajectory": [
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "The current kernel's quality loss of +0.0271 is unacceptably high, while an available alternative configuration offers a loss of only +0.0008.",
+            "evidence": [
+              "current xm configuration.quality_loss",
+              "other measured xm configurations.#1.quality_loss"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "xm:64:16:64",
+                "expected_effect": "quality_loss below +0.001",
+                "risk": "Lower sparsity (0.721 vs 0.868) and higher tile imbalance (1.528) may increase cycle count and lower PE utilization."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 5838,
+            "throughput": 34686413.58563928,
+            "pe_utilization": 0.8389336552786696,
+            "area": 1728141.0768000002,
+            "power": 693.4507309866656,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The clock period of 2.528 ns is limited by the queue implementation, while the execution array's critical path is 2.230 ns, indicating a clear microarchitectural bottleneck.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_rtl",
+                "operation": "rewrite",
+                "value": "pipeline for timing",
+                "expected_effect": "critical path below 2.5 ns while maintaining queue depth of 2",
+                "risk": "Increased area and power from additional pipeline registers in the queue logic."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 8,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 24369,
+            "throughput": 8310860.824829457,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1063664.9488000001,
+            "power": 351.25662559483595,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x8 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The clock period is limited by the queue's critical path of 2.528 ns, which is slower than the execution array's potential of 2.230 ns.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_implementation",
+                "operation": "rewrite",
+                "value": "re-implement for speed",
+                "expected_effect": "queue critical path below 2.230 ns",
+                "risk": "Increased area or power, or failure to meet the timing target."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 8,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 24369,
+            "throughput": 8310860.824829457,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1063664.9488000001,
+            "power": 351.25662559483595,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x8 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "compiler",
+            "decision": "continue",
+            "summary": "The planner's choice of queue depth=2 created a clock bottleneck at 2.528 ns, and the resulting utilization gain was insufficient to overcome this slowdown.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue",
+              "evaluation.pe_utilization"
+            ],
+            "mutations": [
+              {
+                "layer": "compiler",
+                "field": "queue",
+                "operation": "switch",
+                "value": 0,
+                "expected_effect": "The clock period will decrease from 2.528 ns to ~2.273 ns, improving overall latency despite an expected drop in PE utilization from ~0.85 to ~0.71.",
+                "risk": "The drop in PE utilization may be larger than the clock speedup, resulting in a net increase in total cycles and a performance regression."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 8,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 24369,
+            "throughput": 8310860.824829457,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1063664.9488000001,
+            "power": 351.25662559483595,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=8,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=2, tolerance=2 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x8 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The selected queue depth of 2 has a measured critical path of 2.528 ns, which sets the system clock and is the primary performance bottleneck, being significantly slower than the execution array's potential of 2.230 ns.",
+            "evidence": [
+              "plan.queue",
+              "predicted.clock"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_implementation",
+                "operation": "rewrite",
+                "value": "depth=2",
+                "expected_effect": "Reduce queue depth=2 critical path below 2.3 ns",
+                "risk": "RTL rewrite may increase area or power of the queue logic, or introduce functional bugs."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 12184,
+            "throughput": 16621721.649658915,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1465643.7648,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "compiler",
+            "decision": "continue",
+            "summary": "The system clock is bottlenecked at 2.528 ns by the planner's choice of queue depth=2, which has been the limiting factor for the last four rounds.",
+            "evidence": [
+              "plan.queue",
+              "predicted.clock"
+            ],
+            "mutations": [
+              {
+                "layer": "compiler",
+                "field": "clock_period_ns",
+                "operation": "decrease",
+                "value": 2.3,
+                "expected_effect": "System clock period <= 2.3 ns, forcing the planner to select a configuration with queue depth=0.",
+                "risk": "PE utilization will decrease (from 0.85 to ~0.71 based on queue utilization tables), which may increase total cycles and EDP."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 12184,
+            "throughput": 16621721.649658915,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1465643.7648,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cache=hit",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17299021",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17299021/codesign.json",
+      "sha256": "c50c24e1ab52ea93c3da041d8c888f90ac90aba3829d49a965212b073e09abf7",
+      "rounds": 4,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用） uarch-mutate=gemini-2.5-pro",
+      "stop": "上一轮的变异没有改变任何东西：计划、测量和 RTL 状态都与前一轮完全相同。归因到 µArch 却没有 RTL 改动落地时，检查：变异是不是解析到了模块、门是不是自己跑不起来（诊断里的 [gate-infrastructure]）、以及有没有开 --mutate-rtl。",
+      "critic_rejections": [],
+      "rtl_mutations": [
+        {
+          "round": 2,
+          "module": "BlockSched_S4",
+          "accepted": false,
+          "attempts": 3,
+          "reason": "no mutation passed the gates in 3 attempts",
+          "gate_metrics": {},
+          "gate_diagnostics": ""
+        },
+        {
+          "round": 3,
+          "module": "BlockSched_S4",
+          "accepted": false,
+          "attempts": 3,
+          "reason": "no mutation passed the gates in 3 attempts",
+          "gate_metrics": {},
+          "gate_diagnostics": "[elaborate] /home/gz2522/Micro-Hackthon/FAST/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala:211: error: value deq is not a member of chisel3.util.Queue[BlockScheduler.this.Pass]\ndid you mean eq? or perhaps do_deq or do_enq?\n    rowBusy(r) := fire && q.deq.bits.active.reduceTree(_ || _)\n                            ^\n/home/gz2522/Micro-Hackthon/FAST/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala:212: error: value deq is not a member of chisel3.util.Queue[BlockScheduler.this.Pass]\ndid you mean eq? or perhaps do_deq or do_enq?\n    io.issue_cols(r) := q.deq.bits.cols\n                          ^\n/home/gz2522/Micro-Hackthon/FAST/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala:215: error: value deq is not a member of chisel3.util.Queue[BlockScheduler.this.Pass]\ndid you mean eq? or perhaps do_deq or do_enq?\n      io.issue_active(r)(p) := fire && q.deq.bits.active(p)\n                                         ^\n3 errors\nCompilation failed"
+        }
+      ],
+      "trajectory": [
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "kernel",
+            "decision": "continue",
+            "summary": "The current kernel configuration has an unacceptable quality loss of +0.0271, which must be addressed before performance optimization.",
+            "evidence": [
+              "current xm configuration.quality_loss"
+            ],
+            "mutations": [
+              {
+                "layer": "kernel",
+                "field": "candidate",
+                "operation": "switch",
+                "value": "#1 xm:64:16:64",
+                "expected_effect": "quality_loss below +0.001",
+                "risk": "Increased cycles and lower PE utilization due to lower sparsity (0.721 vs 0.8681) and higher tile imbalance (1.528)."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 11677,
+            "throughput": 17343206.79281964,
+            "pe_utilization": 0.8389336552786696,
+            "area": 1649531.9648,
+            "power": 680.6880749866656,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The clock period is limited to 2.528 ns by the queue's critical path, while the execution array could support 2.230 ns.",
+            "evidence": [
+              "measured numbers.queue depth 0/2/4/8",
+              "measured numbers.execution array critical path",
+              "plan.queue",
+              "plan.clock"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue",
+                "operation": "rewrite",
+                "value": 2,
+                "expected_effect": "critical path for queue depth 2 below 2.230 ns",
+                "risk": "RTL rewrite may increase area or power, or fail to meet the timing target."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 24369,
+            "throughput": 8310860.824829457,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1649531.9648,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cache=hit",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The overall clock period is limited to 2.528 ns by the queue's critical path, while the execution array could support a faster 2.230 ns clock.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_rtl",
+                "operation": "rewrite",
+                "value": "pipeline to reduce critical path",
+                "expected_effect": "reduce clock period to at or below 2.230 ns",
+                "risk": "Slight increase in area/power from pipeline registers and potential for utilization drop due to increased latency."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 24369,
+            "throughput": 8310860.824829457,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1649531.9648,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cache=hit",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:64:16:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "compiler",
+            "decision": "continue",
+            "summary": "The 2.528 ns clock period is bottlenecked by the queue depth of 2 specified in the plan, and repeated microarchitectural optimizations have failed to improve it.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue",
+              "earlier_rounds"
+            ],
+            "mutations": [
+              {
+                "layer": "compiler",
+                "field": "plan.queue",
+                "operation": "decrease",
+                "value": 0,
+                "expected_effect": "Achieve clock period of 2.273 ns",
+                "risk": "PE utilization may decrease from 0.85 to ~0.71 due to lower queue utilization (0.832 -> 0.708), potentially increasing total cycles and negating the clock speedup."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 24369,
+            "throughput": 8310860.824829457,
+            "pe_utilization": 0.8503164429130726,
+            "area": 1649531.9648,
+            "power": 689.7505951896719,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cache=hit",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17300572",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17300572/codesign.json",
+      "sha256": "9ab507ad8573aaa9e6753ab23a210b02bf5c4e490c97e2547a96e795eb58b247",
+      "rounds": 4,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用） uarch-mutate=gemini-2.5-pro",
+      "stop": "无进展：连续 3 个验证过的轮次，目标（面积约束下的吞吐）相对改进都小于 0.001",
+      "critic_rejections": [],
+      "rtl_mutations": [
+        {
+          "round": 1,
+          "module": "BlockSched_S4",
+          "accepted": true,
+          "attempts": 1,
+          "reason": "all gates passed",
+          "gate_metrics": {
+            "area_um2": 42989.058,
+            "cells": 17090.0,
+            "critical_path_ns": 2.6592,
+            "max_frequency_mhz": 376.05294825511436
+          },
+          "gate_diagnostics": ""
+        },
+        {
+          "round": 2,
+          "module": "BlockSched_S4",
+          "accepted": false,
+          "attempts": 3,
+          "reason": "no mutation passed the gates in 3 attempts",
+          "gate_metrics": {},
+          "gate_diagnostics": ""
+        },
+        {
+          "round": 3,
+          "module": "BlockSched_S4",
+          "accepted": true,
+          "attempts": 3,
+          "reason": "all gates passed",
+          "gate_metrics": {
+            "area_um2": 43832.278,
+            "cells": 17483.0,
+            "critical_path_ns": 1.8069,
+            "max_frequency_mhz": 553.4340583319498
+          },
+          "gate_diagnostics": ""
+        }
+      ],
+      "trajectory": [
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The system clock is limited by the queue's critical path of 2.528 ns, which is slower than the execution array's 2.230 ns path.",
+            "evidence": [
+              "plan.queue",
+              "predicted.clock"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_logic",
+                "operation": "rewrite",
+                "value": "optimize for speed",
+                "expected_effect": "critical path for queue depth 2 below 2.230 ns",
+                "risk": "RTL rewrite may increase area or power, or introduce functional bugs."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 5838,
+            "throughput": 34686413.58563928,
+            "pe_utilization": 0.8389336552786696,
+            "area": 1465643.7648,
+            "power": 680.6880749866656,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The system clock is limited by the queue's critical path of 2.528 ns, while the execution array could support a faster 2.230 ns clock.",
+            "evidence": [
+              "predicted.clock",
+              "earlier_rounds.round_0.note"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue.critical_path",
+                "operation": "rewrite",
+                "value": 2.23,
+                "expected_effect": "system critical path below 2.528 ns, approaching the execution array's 2.230 ns limit",
+                "risk": "RTL rewrite may fail to meet timing, or may increase area/power to do so."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 5838,
+            "throughput": 34686413.58563928,
+            "pe_utilization": 0.8389336552786696,
+            "area": 1465643.7648,
+            "power": 680.6880749866656,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The system clock is limited by the queue's critical path of 2.528 ns, which is slower than the execution array's potential of 2.230 ns.",
+            "evidence": [
+              "predicted.clock"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_rtl",
+                "operation": "rewrite",
+                "value": "target period < 2.528 ns",
+                "expected_effect": "system clock period less than 2.528 ns, approaching the array limit of 2.230 ns",
+                "risk": "This is the third round targeting the queue microarchitecture; further effort may yield no improvement, indicating a fundamental design or technology limit has been reached."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 5838,
+            "throughput": 34686413.58563928,
+            "pe_utilization": 0.8389336552786696,
+            "area": 1465643.7648,
+            "power": 680.6880749866656,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cache=hit",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The system clock is limited by the queue's critical path of 2.528 ns, while the execution array could support 2.230 ns.",
+            "evidence": [
+              "earlier_rounds[2].summary",
+              "measurements.queue_depth[2]",
+              "measurements.execution_array_critical_path"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue_depth",
+                "operation": "decrease",
+                "value": 0,
+                "expected_effect": "system critical path decreases from 2.528 ns to ~2.273 ns",
+                "risk": "PE utilization may drop from 0.832 to 0.708, potentially increasing cycle count and offsetting the clock speed improvement."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 5838,
+            "throughput": 34686413.58563928,
+            "pe_utilization": 0.8389336552786696,
+            "area": 1465643.7648,
+            "power": 680.6880749866656,
+            "fidelity": "L2-rtl-simulation",
+            "evidence": [
+              "model=L2-rtl-simulation of the PLANNED design (PLAN:bits=16,tileQ=16,tileK=64,headDim=64,keptPerRow=16,peCountPerRow=16,dividerStages=8)",
+              "reference=tb_attention_tile.cpp against real TinyLlama Q/K/V (tile.json)",
+              "1024/1024 output dimensions within tolerance",
+              "passes=1, tolerance=1 tick(s), two-sided",
+              "cycles/area/power are NOT simulated: they remain L1-analytical",
+              "verified_scope=the planned 16x16 kept=16 design, end to end",
+              "cycles<-L1-analytical-shared-model",
+              "throughput<-L1-analytical-shared-model",
+              "pe_utilization<-L1-analytical-shared-model",
+              "area<-L1-analytical-shared-model",
+              "power<-L1-analytical-shared-model",
+              "edp<-L1-analytical-shared-model"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "codesign_17333938",
+      "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/codesign_17333938/codesign.json",
+      "sha256": "165e5dad96378b391c23957e4efe273ec2ac5da9b919f3882881aa1a9b4badf1",
+      "rounds": 4,
+      "proposers": "compiler=gemini-2.5-pro critic=gemini-2.5-pro（真实 Vertex 调用） uarch-mutate=gemini-2.5-pro",
+      "stop": "attributed to compiler but the intervention cannot be executed: clock_period_constraint_ns=2.5 (unknown plan field)",
+      "critic_rejections": [],
+      "rtl_mutations": [
+        {
+          "round": 1,
+          "module": "BlockSched_S4",
+          "accepted": false,
+          "attempts": 3,
+          "reason": "no mutation passed the gates in 3 attempts",
+          "gate_metrics": {},
+          "gate_diagnostics": ""
+        },
+        {
+          "round": 2,
+          "module": "BlockSched_S4",
+          "accepted": true,
+          "attempts": 1,
+          "reason": "all gates passed",
+          "gate_metrics": {
+            "area_um2": 43834.14,
+            "cells": 17439.0,
+            "critical_path_ns": 1.2869,
+            "max_frequency_mhz": 777.0611547128759
+          },
+          "gate_diagnostics": ""
+        },
+        {
+          "round": 3,
+          "module": "BlockSched_S4",
+          "accepted": false,
+          "attempts": 3,
+          "reason": "no mutation passed the gates in 3 attempts",
+          "gate_metrics": {},
+          "gate_diagnostics": ""
+        }
+      ],
+      "trajectory": [
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The system critical path is 2.528 ns, determined by the queue delay for depth 2, which also limits PE utilization to 0.8389.",
+            "evidence": [
+              "predicted.clock",
+              "plan.queue",
+              "evaluation.pe_utilization"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue",
+                "operation": "rewrite",
+                "value": "reduce delay for depth=2",
+                "expected_effect": "critical path with queue depth 2 below 2.528 ns without reducing utilization",
+                "risk": "RTL rewrite may not yield a significant timing improvement, or may increase area or power."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 23355,
+            "throughput": 8671603.39640982,
+            "pe_utilization": 0.8389336552786696,
+            "area": 2004803.6767999998,
+            "power": 693.4507309866656,
+            "fidelity": "L1-analytical-shared-model",
+            "evidence": [
+              "model=L1-analytical (no RTL was simulated)",
+              "pe_utilization=0.8389",
+              "memory_slowdown=1.133 (measured:xm)",
+              "cycles=23356",
+              "dram_bytes=14367145",
+              "area_units=2004803.7",
+              "kernel.load_imbalance=3.0262",
+              "NOT INDEPENDENT: this shares the co-optimizer's cost model, so it cannot disagree with the choice it is scoring"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The system critical path is 2.528 ns, determined by the measured delay of the queue at depth 2, which is significantly slower than the execution array's path of 2.230 ns.",
+            "evidence": [
+              "current.plan.clock",
+              "current.plan.queue",
+              "earlier_rounds[0].summary"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue",
+                "operation": "rewrite",
+                "value": 2,
+                "expected_effect": "Reduce critical path for queue depth 2 to <= 2.300 ns",
+                "risk": "RTL rewrite may increase area or power, or it may fail to meet the new timing target."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 23355,
+            "throughput": 8671603.39640982,
+            "pe_utilization": 0.8389336552786696,
+            "area": 2004803.6767999998,
+            "power": 693.4507309866656,
+            "fidelity": "L1-analytical-shared-model",
+            "evidence": [
+              "model=L1-analytical (no RTL was simulated)",
+              "pe_utilization=0.8389",
+              "memory_slowdown=1.133 (measured:xm)",
+              "cycles=23356",
+              "dram_bytes=14367145",
+              "area_units=2004803.7",
+              "kernel.load_imbalance=3.0262",
+              "NOT INDEPENDENT: this shares the co-optimizer's cost model, so it cannot disagree with the choice it is scoring"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "uarch",
+            "decision": "continue",
+            "summary": "The system critical path is limited by the queue delay at depth 2 (2.528 ns), and analysis of measured data shows that tuning the queue depth parameter in either direction increases overall latency.",
+            "evidence": [
+              "earlier_rounds[1].summary",
+              "measured.queue_depth_0/2/4/8",
+              "measured.queue_utilisation_(xm)",
+              "measured.execution_array_critical_path"
+            ],
+            "mutations": [
+              {
+                "layer": "uarch",
+                "field": "queue",
+                "operation": "rewrite",
+                "value": "redesign for lower latency at depth 2",
+                "expected_effect": "critical path for queue at depth 2 < 2.230 ns",
+                "risk": "RTL rewrite is a high-effort task that may fail to meet the timing target or introduce new functional bugs."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 23355,
+            "throughput": 8671603.39640982,
+            "pe_utilization": 0.8389336552786696,
+            "area": 2004803.6767999998,
+            "power": 693.4507309866656,
+            "fidelity": "L1-analytical-shared-model",
+            "evidence": [
+              "model=L1-analytical (no RTL was simulated)",
+              "pe_utilization=0.8389",
+              "memory_slowdown=1.133 (measured:xm)",
+              "cycles=23356",
+              "dram_bytes=14367145",
+              "area_units=2004803.7",
+              "kernel.load_imbalance=3.0262",
+              "NOT INDEPENDENT: this shares the co-optimizer's cost model, so it cannot disagree with the choice it is scoring"
+            ]
+          }
+        },
+        {
+          "kernel": "xm:32:4:64",
+          "critique": {
+            "status": "passed",
+            "attribution": "compiler",
+            "decision": "continue",
+            "summary": "The critical path is 2.528 ns, limited by the queue depth of 2 chosen by the planner; a tighter clock constraint is needed to force the planner to find a faster configuration.",
+            "evidence": [
+              "predicted.clock",
+              "plan",
+              "measured.queue_depth",
+              "measured.execution_array_critical_path"
+            ],
+            "mutations": [
+              {
+                "layer": "compiler",
+                "field": "clock_period_constraint_ns",
+                "operation": "decrease",
+                "value": 2.5,
+                "expected_effect": "Planner generates a new hardware plan with a clock period < 2.500 ns, likely by choosing queue depth 0.",
+                "risk": "The new plan may have lower PE utilization (queue depth 0 has 0.708 vs 0.832 for depth 2), potentially increasing cycle count and overall latency despite the faster clock."
+              }
+            ],
+            "schema_version": "0.2"
+          },
+          "plan": {
+            "num_rows": 16,
+            "pe_per_row": 16,
+            "queue_depth": 2
+          },
+          "performance": {
+            "cycles": 23355,
+            "throughput": 8671603.39640982,
+            "pe_utilization": 0.8389336552786696,
+            "area": 2004803.6767999998,
+            "power": 693.4507309866656,
+            "fidelity": "L1-analytical-shared-model",
+            "evidence": [
+              "model=L1-analytical (no RTL was simulated)",
+              "pe_utilization=0.8389",
+              "memory_slowdown=1.133 (measured:xm)",
+              "cycles=23356",
+              "dram_bytes=14367145",
+              "area_units=2004803.7",
+              "kernel.load_imbalance=3.0262",
+              "NOT INDEPENDENT: this shares the co-optimizer's cost model, so it cannot disagree with the choice it is scoring"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

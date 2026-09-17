@@ -1,0 +1,25 @@
+{
+  "scope": "Read-only final routed ODB/SPEF replay; no RTL modification or feedback injected into active agents.",
+  "slack_ns": -3.10006952,
+  "matches_original_slack": true,
+  "paths": [
+    {
+      "startpoint": "_55567_",
+      "endpoint": "_55940_",
+      "start_cell": "DFF_X2 _55567_ (.D(_00850_),\n    .CK(clknet_leaf_0_clock),\n    .Q(\\_find_min_lo_scores_in_T_8[0] ),\n    .QN(_00073_));",
+      "end_cell": "DFF_X1 _55940_ (.D(_01223_),\n    .CK(clknet_leaf_1_clock),\n    .Q(\\exp_vals_reg_2[5] ),\n    .QN(_00201_));"
+    },
+    {
+      "startpoint": "_55567_",
+      "endpoint": "_55905_",
+      "start_cell": "DFF_X2 _55567_ (.D(_00850_),\n    .CK(clknet_leaf_0_clock),\n    .Q(\\_find_min_lo_scores_in_T_8[0] ),\n    .QN(_00073_));",
+      "end_cell": "DFF_X1 _55905_ (.D(_01188_),\n    .CK(clknet_leaf_1_clock),\n    .Q(\\exp_vals_reg_2[1] ),\n    .QN(_28586_));"
+    },
+    {
+      "startpoint": "_55567_",
+      "endpoint": "_55947_",
+      "start_cell": "DFF_X2 _55567_ (.D(_00850_),\n    .CK(clknet_leaf_0_clock),\n    .Q(\\_find_min_lo_scores_in_T_8[0] ),\n    .QN(_00073_));",
+      "end_cell": "DFF_X1 _55947_ (.D(_01230_),\n    .CK(clknet_leaf_1_clock),\n    .Q(\\exp_vals_reg_2[12] ),\n    .QN(_28550_));"
+    }
+  ]
+}

@@ -1,0 +1,557 @@
+[
+  {
+    "version": "v1_fallback",
+    "job": "17424251",
+    "frozen_sources_unchanged": true,
+    "algorithm": "xm:16:8:32:1.5:0.05",
+    "quality_loss": 0.03628796650278209,
+    "evaluated": 2,
+    "llm_calls": 2,
+    "llm_successful": 0,
+    "critic_seconds": 69.39631491154432,
+    "rounds": [
+      {
+        "review_id": "b5337c1d38d6a42fc66ff0dbf92064ea99f7ecd78b3237f1246b336e7979f8bb",
+        "fallback_reason": "ValueError: invalid Critique JSON",
+        "llm_success": false,
+        "attribution": "compiler",
+        "mutations": [
+          {
+            "layer": "compiler",
+            "field": "queue_depth",
+            "operation": "set",
+            "value": 2,
+            "expected_effect": "test constraint recovery and latency/energy trade-off; independent evidence is required for acceptance",
+            "risk": "may worsen another objective or remain infeasible"
+          }
+        ],
+        "before": {
+          "tile_q": 64,
+          "tile_k": 64,
+          "tile_d": 64,
+          "parallelism": 16,
+          "double_buffer": true,
+          "num_rows": 32,
+          "pe_per_row": 8,
+          "reg_width": 32,
+          "data_width": 16,
+          "sram_bytes": 262144,
+          "queue_depth": 4,
+          "divider_stages": 12,
+          "bank_count": 32
+        },
+        "after": {
+          "tile_q": 64,
+          "tile_k": 64,
+          "tile_d": 64,
+          "parallelism": 16,
+          "double_buffer": true,
+          "num_rows": 32,
+          "pe_per_row": 8,
+          "reg_width": 32,
+          "data_width": 16,
+          "sram_bytes": 262144,
+          "queue_depth": 2,
+          "divider_stages": 12,
+          "bank_count": 32
+        },
+        "module_verified": false,
+        "constraint_recovered": false,
+        "observations": [
+          {
+            "design_id": "0bded5728d2b22685b0d33ebb80392bb1b0ace1b248ca1d6c8245ca6e0380e01",
+            "scope": "BlockScheduler, 32 rows x 8 PE, M=32; not full attention",
+            "function_passed": true,
+            "frequency_feasible": false,
+            "metrics": {
+              "queue_depth": 2.0,
+              "rows": 32.0,
+              "pe": 8.0,
+              "imbalance": 1.294461,
+              "row_util": 0.912234,
+              "pe_util": 0.912234,
+              "cycles": 188.0,
+              "area_um2": 41951.658,
+              "cells": 16832.0,
+              "critical_path_ns": 2.8915,
+              "sta_period_ns": 2.857142857142857,
+              "slack_ns": -0.0701,
+              "max_frequency_mhz": 341.6183927342648
+            },
+            "latency_s": null,
+            "identity_ok": true,
+            "complete_captured_task": true,
+            "sources_unchanged": true,
+            "frequency_matches": true,
+            "source": {
+              "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+              "dataset": "wiki",
+              "layer": 10,
+              "seq_len": 512,
+              "seed": 20260903,
+              "head": 0,
+              "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+            },
+            "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_verify_17424251/0bded5728d2b22685b0d33ebb80392bb1b0ace1b248ca1d6c8245ca6e0380e01/rtl/validation.json"
+          }
+        ]
+      },
+      {
+        "review_id": "aba26f5bfe0be370fdc7afd0de8371b1bbac249fccac8b66ce72c5ab2d54042c",
+        "fallback_reason": "ValueError: invalid Critique JSON",
+        "llm_success": false,
+        "attribution": "compiler",
+        "mutations": [
+          {
+            "layer": "compiler",
+            "field": "queue_depth",
+            "operation": "set",
+            "value": 0,
+            "expected_effect": "test constraint recovery and latency/energy trade-off; independent evidence is required for acceptance",
+            "risk": "may worsen another objective or remain infeasible"
+          }
+        ],
+        "before": {
+          "tile_q": 64,
+          "tile_k": 64,
+          "tile_d": 64,
+          "parallelism": 16,
+          "double_buffer": true,
+          "num_rows": 32,
+          "pe_per_row": 8,
+          "reg_width": 32,
+          "data_width": 16,
+          "sram_bytes": 262144,
+          "queue_depth": 2,
+          "divider_stages": 12,
+          "bank_count": 32
+        },
+        "after": {
+          "tile_q": 64,
+          "tile_k": 64,
+          "tile_d": 64,
+          "parallelism": 16,
+          "double_buffer": true,
+          "num_rows": 32,
+          "pe_per_row": 8,
+          "reg_width": 32,
+          "data_width": 16,
+          "sram_bytes": 262144,
+          "queue_depth": 0,
+          "divider_stages": 12,
+          "bank_count": 32
+        },
+        "module_verified": true,
+        "constraint_recovered": true,
+        "observations": [
+          {
+            "design_id": "57a0f5515411ead5e8c13693ad7b61dcc2067be0377ea9464f487d4876c210fd",
+            "scope": "BlockScheduler, 32 rows x 8 PE, M=32; not full attention",
+            "function_passed": true,
+            "frequency_feasible": true,
+            "metrics": {
+              "queue_depth": 0.0,
+              "rows": 32.0,
+              "pe": 8.0,
+              "imbalance": 1.294461,
+              "row_util": 0.772523,
+              "pe_util": 0.772523,
+              "cycles": 222.0,
+              "area_um2": 13940.262,
+              "cells": 6152.0,
+              "critical_path_ns": 2.4835,
+              "sta_period_ns": 2.857142857142857,
+              "slack_ns": 0.3378,
+              "max_frequency_mhz": 396.92890436281573
+            },
+            "latency_s": 6.342857142857142e-07,
+            "identity_ok": true,
+            "complete_captured_task": true,
+            "sources_unchanged": true,
+            "frequency_matches": true,
+            "source": {
+              "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+              "dataset": "wiki",
+              "layer": 10,
+              "seq_len": 512,
+              "seed": 20260903,
+              "head": 0,
+              "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+            },
+            "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_verify_17424251/57a0f5515411ead5e8c13693ad7b61dcc2067be0377ea9464f487d4876c210fd/rtl/validation.json"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "version": "v2_fallback",
+    "job": "17424302",
+    "frozen_sources_unchanged": true,
+    "algorithm": "xm:16:8:32:1.5:0.05",
+    "quality_loss": 0.03628796650278209,
+    "evaluated": 2,
+    "llm_calls": 2,
+    "llm_successful": 0,
+    "critic_seconds": 93.39199233613908,
+    "rounds": [
+      {
+        "review_id": "b5337c1d38d6a42fc66ff0dbf92064ea99f7ecd78b3237f1246b336e7979f8bb",
+        "fallback_reason": "ValueError: action contradicts the decision or attribution",
+        "llm_success": false,
+        "attribution": "compiler",
+        "mutations": [
+          {
+            "layer": "compiler",
+            "field": "queue_depth",
+            "operation": "set",
+            "value": 2,
+            "expected_effect": "test constraint recovery and latency/energy trade-off; independent evidence is required for acceptance",
+            "risk": "may worsen another objective or remain infeasible"
+          }
+        ],
+        "before": {
+          "tile_q": 64,
+          "tile_k": 64,
+          "tile_d": 64,
+          "parallelism": 16,
+          "double_buffer": true,
+          "num_rows": 32,
+          "pe_per_row": 8,
+          "reg_width": 32,
+          "data_width": 16,
+          "sram_bytes": 262144,
+          "queue_depth": 4,
+          "divider_stages": 12,
+          "bank_count": 32
+        },
+        "after": {
+          "tile_q": 64,
+          "tile_k": 64,
+          "tile_d": 64,
+          "parallelism": 16,
+          "double_buffer": true,
+          "num_rows": 32,
+          "pe_per_row": 8,
+          "reg_width": 32,
+          "data_width": 16,
+          "sram_bytes": 262144,
+          "queue_depth": 2,
+          "divider_stages": 12,
+          "bank_count": 32
+        },
+        "module_verified": false,
+        "constraint_recovered": false,
+        "observations": [
+          {
+            "design_id": "0bded5728d2b22685b0d33ebb80392bb1b0ace1b248ca1d6c8245ca6e0380e01",
+            "scope": "BlockScheduler, 32 rows x 8 PE, M=32; not full attention",
+            "function_passed": true,
+            "frequency_feasible": false,
+            "metrics": {
+              "queue_depth": 2.0,
+              "rows": 32.0,
+              "pe": 8.0,
+              "imbalance": 1.294461,
+              "row_util": 0.912234,
+              "pe_util": 0.912234,
+              "cycles": 188.0,
+              "area_um2": 41951.658,
+              "cells": 16832.0,
+              "critical_path_ns": 2.8915,
+              "sta_period_ns": 2.857142857142857,
+              "slack_ns": -0.0701,
+              "max_frequency_mhz": 341.6183927342648
+            },
+            "latency_s": null,
+            "identity_ok": true,
+            "complete_captured_task": true,
+            "sources_unchanged": true,
+            "frequency_matches": true,
+            "source": {
+              "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+              "dataset": "wiki",
+              "layer": 10,
+              "seq_len": 512,
+              "seed": 20260903,
+              "head": 0,
+              "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+            },
+            "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_verify_17424302/0bded5728d2b22685b0d33ebb80392bb1b0ace1b248ca1d6c8245ca6e0380e01/rtl/validation.json"
+          }
+        ]
+      },
+      {
+        "review_id": "aa72ee6f6c74d1139badf21cc5a54bbdb411439ed664cf9cbc984dccc41b285a",
+        "fallback_reason": "ValueError: action contradicts the decision or attribution",
+        "llm_success": false,
+        "attribution": "compiler",
+        "mutations": [
+          {
+            "layer": "compiler",
+            "field": "queue_depth",
+            "operation": "set",
+            "value": 0,
+            "expected_effect": "test constraint recovery and latency/energy trade-off; independent evidence is required for acceptance",
+            "risk": "may worsen another objective or remain infeasible"
+          }
+        ],
+        "before": {
+          "tile_q": 64,
+          "tile_k": 64,
+          "tile_d": 64,
+          "parallelism": 16,
+          "double_buffer": true,
+          "num_rows": 32,
+          "pe_per_row": 8,
+          "reg_width": 32,
+          "data_width": 16,
+          "sram_bytes": 262144,
+          "queue_depth": 2,
+          "divider_stages": 12,
+          "bank_count": 32
+        },
+        "after": {
+          "tile_q": 64,
+          "tile_k": 64,
+          "tile_d": 64,
+          "parallelism": 16,
+          "double_buffer": true,
+          "num_rows": 32,
+          "pe_per_row": 8,
+          "reg_width": 32,
+          "data_width": 16,
+          "sram_bytes": 262144,
+          "queue_depth": 0,
+          "divider_stages": 12,
+          "bank_count": 32
+        },
+        "module_verified": true,
+        "constraint_recovered": true,
+        "observations": [
+          {
+            "design_id": "57a0f5515411ead5e8c13693ad7b61dcc2067be0377ea9464f487d4876c210fd",
+            "scope": "BlockScheduler, 32 rows x 8 PE, M=32; not full attention",
+            "function_passed": true,
+            "frequency_feasible": true,
+            "metrics": {
+              "queue_depth": 0.0,
+              "rows": 32.0,
+              "pe": 8.0,
+              "imbalance": 1.294461,
+              "row_util": 0.772523,
+              "pe_util": 0.772523,
+              "cycles": 222.0,
+              "area_um2": 13940.262,
+              "cells": 6152.0,
+              "critical_path_ns": 2.4835,
+              "sta_period_ns": 2.857142857142857,
+              "slack_ns": 0.3378,
+              "max_frequency_mhz": 396.92890436281573
+            },
+            "latency_s": 6.342857142857142e-07,
+            "identity_ok": true,
+            "complete_captured_task": true,
+            "sources_unchanged": true,
+            "frequency_matches": true,
+            "source": {
+              "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+              "dataset": "wiki",
+              "layer": 10,
+              "seq_len": 512,
+              "seed": 20260903,
+              "head": 0,
+              "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+            },
+            "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_verify_17424302/57a0f5515411ead5e8c13693ad7b61dcc2067be0377ea9464f487d4876c210fd/rtl/validation.json"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "version": "v3_final",
+    "job": "17424429",
+    "frozen_sources_unchanged": true,
+    "algorithm": "xm:16:8:32:1.5:0.05",
+    "quality_loss": 0.03628796650278209,
+    "evaluated": 2,
+    "llm_calls": 2,
+    "llm_successful": 2,
+    "critic_seconds": 192.96726217120886,
+    "rounds": [
+      {
+        "review_id": "b5337c1d38d6a42fc66ff0dbf92064ea99f7ecd78b3237f1246b336e7979f8bb",
+        "fallback_reason": null,
+        "llm_success": true,
+        "attribution": "uarch",
+        "mutations": [
+          {
+            "layer": "compiler",
+            "field": "queue_depth",
+            "operation": "set",
+            "value": 2,
+            "expected_effect": "Improve max_frequency to be >= 350MHz by simplifying scheduler logic, with a minimal increase in cycle count.",
+            "risk": "Reduced queue depth may increase stalls and overall cycle count if the system is sensitive to data buffering, potentially worsening the 'seconds' metric."
+          }
+        ],
+        "before": {
+          "tile_q": 64,
+          "tile_k": 64,
+          "tile_d": 64,
+          "parallelism": 16,
+          "double_buffer": true,
+          "num_rows": 32,
+          "pe_per_row": 8,
+          "reg_width": 32,
+          "data_width": 16,
+          "sram_bytes": 262144,
+          "queue_depth": 4,
+          "divider_stages": 12,
+          "bank_count": 32
+        },
+        "after": {
+          "tile_q": 64,
+          "tile_k": 64,
+          "tile_d": 64,
+          "parallelism": 16,
+          "double_buffer": true,
+          "num_rows": 32,
+          "pe_per_row": 8,
+          "reg_width": 32,
+          "data_width": 16,
+          "sram_bytes": 262144,
+          "queue_depth": 2,
+          "divider_stages": 12,
+          "bank_count": 32
+        },
+        "module_verified": false,
+        "constraint_recovered": false,
+        "observations": [
+          {
+            "design_id": "0bded5728d2b22685b0d33ebb80392bb1b0ace1b248ca1d6c8245ca6e0380e01",
+            "scope": "BlockScheduler, 32 rows x 8 PE, M=32; not full attention",
+            "function_passed": true,
+            "frequency_feasible": false,
+            "metrics": {
+              "queue_depth": 2.0,
+              "rows": 32.0,
+              "pe": 8.0,
+              "imbalance": 1.294461,
+              "row_util": 0.912234,
+              "pe_util": 0.912234,
+              "cycles": 188.0,
+              "area_um2": 41951.658,
+              "cells": 16832.0,
+              "critical_path_ns": 2.8915,
+              "sta_period_ns": 2.857142857142857,
+              "slack_ns": -0.0701,
+              "max_frequency_mhz": 341.6183927342648
+            },
+            "latency_s": null,
+            "identity_ok": true,
+            "complete_captured_task": true,
+            "sources_unchanged": true,
+            "frequency_matches": true,
+            "source": {
+              "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+              "dataset": "wiki",
+              "layer": 10,
+              "seq_len": 512,
+              "seed": 20260903,
+              "head": 0,
+              "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+            },
+            "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_verify_17424429/0bded5728d2b22685b0d33ebb80392bb1b0ace1b248ca1d6c8245ca6e0380e01/rtl/validation.json"
+          }
+        ]
+      },
+      {
+        "review_id": "ad19a7c1b13f94b0f2dd46a6b212ffd6ffc11399da5c9ab146523043930f054c",
+        "fallback_reason": null,
+        "llm_success": true,
+        "attribution": "uarch",
+        "mutations": [
+          {
+            "layer": "compiler",
+            "field": "queue_depth",
+            "operation": "set",
+            "value": 0,
+            "expected_effect": "The modified configuration will pass timing validation (frequency_feasible will be true) by meeting the 350 MHz target. This change may lead to an increase in total cycles.",
+            "risk": "Removing the queue entirely (depth=0) might introduce stalls and increase the overall cycle count, potentially worsening latency and energy consumption despite meeting the frequency target."
+          }
+        ],
+        "before": {
+          "tile_q": 64,
+          "tile_k": 64,
+          "tile_d": 64,
+          "parallelism": 16,
+          "double_buffer": true,
+          "num_rows": 32,
+          "pe_per_row": 8,
+          "reg_width": 32,
+          "data_width": 16,
+          "sram_bytes": 262144,
+          "queue_depth": 2,
+          "divider_stages": 12,
+          "bank_count": 32
+        },
+        "after": {
+          "tile_q": 64,
+          "tile_k": 64,
+          "tile_d": 64,
+          "parallelism": 16,
+          "double_buffer": true,
+          "num_rows": 32,
+          "pe_per_row": 8,
+          "reg_width": 32,
+          "data_width": 16,
+          "sram_bytes": 262144,
+          "queue_depth": 0,
+          "divider_stages": 12,
+          "bank_count": 32
+        },
+        "module_verified": true,
+        "constraint_recovered": true,
+        "observations": [
+          {
+            "design_id": "57a0f5515411ead5e8c13693ad7b61dcc2067be0377ea9464f487d4876c210fd",
+            "scope": "BlockScheduler, 32 rows x 8 PE, M=32; not full attention",
+            "function_passed": true,
+            "frequency_feasible": true,
+            "metrics": {
+              "queue_depth": 0.0,
+              "rows": 32.0,
+              "pe": 8.0,
+              "imbalance": 1.294461,
+              "row_util": 0.772523,
+              "pe_util": 0.772523,
+              "cycles": 222.0,
+              "area_um2": 13940.262,
+              "cells": 6152.0,
+              "critical_path_ns": 2.4835,
+              "sta_period_ns": 2.857142857142857,
+              "slack_ns": 0.3378,
+              "max_frequency_mhz": 396.92890436281573
+            },
+            "latency_s": 6.342857142857142e-07,
+            "identity_ok": true,
+            "complete_captured_task": true,
+            "sources_unchanged": true,
+            "frequency_matches": true,
+            "source": {
+              "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+              "dataset": "wiki",
+              "layer": 10,
+              "seq_len": 512,
+              "seed": 20260903,
+              "head": 0,
+              "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+            },
+            "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_verify_17424429/57a0f5515411ead5e8c13693ad7b61dcc2067be0377ea9464f487d4876c210fd/rtl/validation.json"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,418 @@
+{
+  "version": 1,
+  "algorithms": {
+    "threshold_attention": {
+      "source": "algorithms/threshold_attention.py",
+      "factory": "ThresholdAttention"
+    },
+    "dynax_xm_row": {
+      "source": "algorithms/dynax_xm_row.py",
+      "factory": "DynaxXMRow"
+    }
+  },
+  "hardware_templates": {
+    "register_stage": {
+      "source": "hardware/register_stage.v",
+      "description": "Verilog synchronous valid/data register stage; handshake and reset example.",
+      "tags": [
+        "verilog",
+        "pipeline",
+        "valid"
+      ]
+    },
+    "chisel_carry_and_clock": {
+      "source": "hardware/ArithmeticStage.scala",
+      "description": "Chisel RawModule example: explicit clock/reset, carry-preserving +& adder, gated valid/data registers.",
+      "tags": [
+        "chisel",
+        "addition",
+        "width",
+        "clock",
+        "pipeline"
+      ]
+    },
+    "pipelined_divider": {
+      "source": "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+      "description": "FAST radix-2 restoring divider, full-width numerator processing, tunable pipeline depth and valid propagation; adapt fixed-point signed interface to target semantics.",
+      "tags": [
+        "chisel",
+        "division",
+        "normalization",
+        "pipeline"
+      ],
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_divider.cpp",
+          "description": "Streaming valid/latency, signed Q8.8 quotient, divide-by-zero and wrap; adapt ports and unsigned semantics explicitly.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/fixedpoint.py",
+          "description": "Signed wrap, rounded fixed-point multiply and truncation toward zero.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        }
+      ]
+    },
+    "dynax_exp_reference": {
+      "source": "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "description": "FAST reconstruction of fixed-point exponential unit; this is not an original DynaX release module.",
+      "tags": [
+        "chisel",
+        "exponential",
+        "fixedpoint"
+      ],
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_exp.cpp",
+          "description": "Exponent fixed-point test driver.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/exp_unit.py",
+          "description": "Fixed-point exponential numerical reference.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        }
+      ]
+    },
+    "topk_selection": {
+      "source": "../hardware/chisel/src/main/scala/predict_unit/topk.scala",
+      "description": "Top-k value/index selection hardware with parameterized widths.",
+      "tags": [
+        "chisel",
+        "topk",
+        "sparse",
+        "selection"
+      ],
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_topk.cpp",
+          "description": "Selection order, indices and valid pulse sampling.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/predict_unit.py",
+          "description": "TopK and prediction numeric/timing reference; inspect applicable functions.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        }
+      ]
+    },
+    "sram_banks": {
+      "source": "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+      "description": "Banked synchronous SRAM access and storage interface reference.",
+      "tags": [
+        "chisel",
+        "memory",
+        "banks"
+      ],
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_sram.cpp",
+          "description": "Banked memory read/write protocol.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        }
+      ]
+    },
+    "key_feeder": {
+      "source": "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+      "description": "Key gather/feeding with backpressure and banking; reference for sparse memory scheduling.",
+      "tags": [
+        "chisel",
+        "gather",
+        "backpressure",
+        "memory"
+      ],
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_key_feeder.cpp",
+          "description": "Gather, bank conflict and backpressure tests.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        }
+      ]
+    },
+    "execution_pe": {
+      "source": "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+      "description": "DynaX execution PE combining fixed-point arithmetic and state-controlled updates.",
+      "tags": [
+        "chisel",
+        "mac",
+        "processing-element",
+        "fixedpoint"
+      ],
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_repe.cpp",
+          "description": "PE control sequencing and arithmetic.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/execute_unit.py",
+          "description": "Execution golden model.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        }
+      ],
+      "support_sources": [
+        "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala"
+      ]
+    },
+    "low_precision_predictor": {
+      "source": "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+      "description": "DynaX low-precision prediction PE and array; 1:2 pruning example.",
+      "tags": [
+        "chisel",
+        "prediction",
+        "sparsity",
+        "low-precision"
+      ],
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_prepe_array.cpp",
+          "description": "Signed low-precision prediction and valid timing.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/software.py",
+          "description": "DynaX 1:2/1:4 query pruning mathematical reference.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        }
+      ],
+      "support_sources": [
+        "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala"
+      ]
+    },
+    "index_scheduler": {
+      "source": "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+      "description": "Sparse index scheduling and mapping to execution lanes.",
+      "tags": [
+        "chisel",
+        "schedule",
+        "sparse",
+        "indices"
+      ]
+    },
+    "block_scheduler": {
+      "source": "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+      "description": "Block scheduling, queueing and flow control reference.",
+      "tags": [
+        "chisel",
+        "schedule",
+        "queue",
+        "block"
+      ],
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_block_scheduler.cpp",
+          "description": "Scheduler flow and work conservation.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        }
+      ]
+    },
+    "partial_softmax": {
+      "source": "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+      "description": "Partial-sum normalization and fixed-point divider reference; check semantics before adapting.",
+      "tags": [
+        "chisel",
+        "normalization",
+        "softmax",
+        "fixedpoint"
+      ],
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_psum_softmax.cpp",
+          "description": "Accumulator and normalizer driver.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/predict_unit.py",
+          "description": "Partial sum fixed-point reference.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        }
+      ]
+    },
+    "attention_tile_reference": {
+      "source": "../hardware/chisel/src/main/scala/attention_tile.scala",
+      "description": "Integrated DynaX-derived datapath blueprint: prediction, selection, execution and normalization. External control/gather; not independently complete QKV E2E.",
+      "tags": [
+        "chisel",
+        "dynax",
+        "integrated-system",
+        "native-library",
+        "fsm",
+        "reference-bundle"
+      ],
+      "support_sources": [
+        "../hardware/chisel/src/main/scala/attention_tile_system.scala",
+        "../hardware/chisel/src/main/scala/attention_tile_top.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+        "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/topk.scala"
+      ],
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_attention_tile.cpp",
+          "description": "Original integrated driver and actual acceptance criteria; inspect limitations.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/tb/drivers.h",
+          "description": "Existing cycle/control/handshake drivers.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/tb/golden.h",
+          "description": "Golden-data loader.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/fixedpoint.py",
+          "description": "Fixed-point arithmetic semantics.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/execute_unit.py",
+          "description": "Execution datapath cycle model.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/predict_unit.py",
+          "description": "Prediction/selection cycle model.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        }
+      ]
+    },
+    "attention_tile_top_reference": {
+      "source": "../hardware/chisel/src/main/scala/attention_tile_top.scala",
+      "description": "DynaX-derived hardware control FSM and cross-pass accumulation blueprint. External selected indices and K/V data; preserve verified scheduling.",
+      "tags": [
+        "chisel",
+        "dynax",
+        "integrated-system",
+        "native-library",
+        "fsm",
+        "reference-bundle"
+      ],
+      "support_sources": [
+        "../hardware/chisel/src/main/scala/attention_tile.scala",
+        "../hardware/chisel/src/main/scala/attention_tile_system.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+        "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/topk.scala"
+      ],
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_attention_tile_top.cpp",
+          "description": "Original integrated driver and actual acceptance criteria; inspect limitations.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/tb/drivers.h",
+          "description": "Existing cycle/control/handshake drivers.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/tb/golden.h",
+          "description": "Golden-data loader.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/fixedpoint.py",
+          "description": "Fixed-point arithmetic semantics.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/execute_unit.py",
+          "description": "Execution datapath cycle model.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/predict_unit.py",
+          "description": "Prediction/selection cycle model.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        }
+      ]
+    },
+    "attention_tile_system_reference": {
+      "source": "../hardware/chisel/src/main/scala/attention_tile_system.scala",
+      "description": "DynaX-derived system reference including selection, hardware indices, banked KeyFeeder and backpressure. Still single query row, external scores and block mass; system bench lacks final attention-value assertions. Use its actual architecture and protocols; fill missing QKV-to-score/mass path and independent E2E.",
+      "tags": [
+        "chisel",
+        "dynax",
+        "integrated-system",
+        "native-library",
+        "fsm",
+        "reference-bundle"
+      ],
+      "support_sources": [
+        "../hardware/chisel/src/main/scala/attention_tile.scala",
+        "../hardware/chisel/src/main/scala/attention_tile_top.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+        "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/topk.scala"
+      ],
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_attention_tile_system.cpp",
+          "description": "Original integrated driver and actual acceptance criteria; inspect limitations.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/tb/drivers.h",
+          "description": "Existing cycle/control/handshake drivers.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/tb/golden.h",
+          "description": "Golden-data loader.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/fixedpoint.py",
+          "description": "Fixed-point arithmetic semantics.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/execute_unit.py",
+          "description": "Execution datapath cycle model.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        },
+        {
+          "source": "../hardware/golden/predict_unit.py",
+          "description": "Prediction/selection cycle model.",
+          "usage": "reference_only_adapt_to_generated_contract"
+        }
+      ]
+    }
+  }
+}

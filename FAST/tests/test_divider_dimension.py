@@ -16,6 +16,7 @@ from __future__ import annotations
 
 from fast.agents.codesign import CoDesignPoint, CoDesignSpace, estimate
 from fast.agents.templates import (
+    queue_critical_path_ns,
     ARRAY_CRITICAL_PATH_NS,
     divider_area_um2,
     divider_critical_path_ns,
@@ -27,6 +28,9 @@ class _Kernel:
     actual_sparsity = 0.9
     block_occupancy = 0.42
     profile = None
+    # 硬件侧要靠它查取数引擎的 bank 冲突表：冲突取决于索引分布，
+    # 而分布由稀疏方法决定。
+    sparse_method = "xm"
 
 
 def _point(divider_stages: int) -> CoDesignPoint:
@@ -38,7 +42,7 @@ def _point(divider_stages: int) -> CoDesignPoint:
 
 
 def _metrics(divider_stages: int) -> dict:
-    return estimate(_point(divider_stages), _Kernel(), 512,
+    return estimate(_point(divider_stages), _Kernel(), 512, head_dim=64,
                     block_m=64, kept_per_block=16)
 
 
@@ -53,27 +57,50 @@ def test_edp_has_a_time_dimension():
     assert "seconds" in metrics
     assert "clock_period_ns" in metrics
     # edp = energy * seconds，而 energy = power * seconds
-    expected = metrics["power"] * metrics["seconds"] ** 2
+    expected = metrics["power"] * 1e-3 * metrics["seconds"] ** 2  # mW -> W
     assert abs(metrics["edp"] - expected) / expected < 1e-9
 
 
-def test_the_clock_is_set_by_the_slower_of_array_and_divider():
-    """时钟周期取数据通路上最慢的那一段，两段都是实测的。"""
-    # 上游的组合除法：14.78 ns，远慢于阵列的 2.23 ns。
+def test_the_clock_is_set_by_the_slowest_stage_on_the_datapath():
+    """时钟周期取数据通路上最慢的那一段，每一段都是实测的。
+
+    参与竞争的有三个：执行阵列 2.23 ns、除法器（随级数变）、工作队列
+    （随深度变）。三个都实测过，而且**三个都真的当过瓶颈**——这不是
+    防御性的 max，是三条实测曲线交叉的结果。
+    """
+    # 上游的组合除法：14.78 ns，远慢于其它两段。
     assert _metrics(0)["clock_period_ns"] == divider_critical_path_ns(0)
-    # 8 级之后除法器 1.98 ns，比阵列快，瓶颈交回给阵列。
-    assert _metrics(8)["clock_period_ns"] == ARRAY_CRITICAL_PATH_NS
+    # 8 级之后除法器 1.98 ns，不再是瓶颈；剩下阵列 2.23 ns 和队列。
+    period = _metrics(8)["clock_period_ns"]
+    assert period > divider_critical_path_ns(8)
+    assert period >= ARRAY_CRITICAL_PATH_NS
+
+
+def test_a_deep_queue_takes_the_clock_away_from_the_array():
+    """深度 8 起，决定系统频率的不再是阵列而是调度器。
+
+    这是实测才看得见的：队列的关键路径从 2.27 ns（深度 0）涨到 3.14 ns
+    （深度 8），而阵列是 2.23 ns。没有这条曲线，深度看起来只有好处。
+    """
+    assert queue_critical_path_ns(32, 4, 0) < queue_critical_path_ns(32, 4, 8)
+    assert queue_critical_path_ns(32, 4, 8) > ARRAY_CRITICAL_PATH_NS
+    # 41% 的时钟惩罚，换来的利用率是 0.864 -> 0.867。
+    penalty = queue_critical_path_ns(32, 4, 8) / ARRAY_CRITICAL_PATH_NS
+    assert penalty > 1.35
 
 
 def test_pipelining_the_divider_improves_edp_by_more_than_an_order_of_magnitude():
-    """这是实测逼出来的结论：0.8% 的面积换 40 倍以上的 EDP。"""
+    """这是实测逼出来的结论：整设计 6.4% 的面积换 40 倍以上的 EDP。"""
     slow = _metrics(0)
     fast = _metrics(8)
 
     assert fast["edp"] < slow["edp"] / 10
-    # 面积代价很小——这正是为什么这个取舍毫无悬念，而在有实测之前
-    # 优化器连这个选项都看不见。
-    assert fast["area"] / slow["area"] < 1.02
+    # 面积代价：**每个 query 行一个除法器**，所以 32 行的设计要付 32 份。
+    #
+    # 早先记的「0.8% 的面积」是拿一个除法器对一个执行阵列比出来的；整设计
+    # 尺度上是 6.4%（1,775,479 / 1,668,906）。结论不变——6.4% 换 40 倍 EDP
+    # 仍然毫无悬念——但那个 0.8% 是错的，不该靠放宽阈值糊过去。
+    assert fast["area"] / slow["area"] < 1.08
 
 
 def test_past_the_array_bottleneck_more_stages_only_cost_area():
@@ -89,12 +116,24 @@ def test_past_the_array_bottleneck_more_stages_only_cost_area():
     assert twelve["area"] > eight["area"]   # 更深只多花面积
 
 
-def test_the_divider_area_is_charged_to_the_design():
-    """不把除法器面积算进去，「换频率」就只有收益没有成本。"""
-    charged = _metrics(12)["area"] - _metrics(0)["area"]
-    expected = divider_area_um2(12) - divider_area_um2(0)
+def test_the_divider_area_is_charged_once_per_query_row():
+    """不把除法器面积算进去，「换频率」就只有收益没有成本。
 
-    assert abs(charged - expected) < 1e-6
+    **而且要按 query 行数计。** `attention_tile.scala` 是
+    `Seq.fill(tileQ)(Module(new FixedPointDivPipelined(...)))`——每行一个
+    归一化器。模型此前只算一个，32 行的设计因此少算 168k um^2。
+
+    这个缺陷是整设计综合实测发现的：模型预测 1,072,094 um^2 而实测
+    2,124,822。逐模块综合看不出来——单个除法器的面积一直是对的，错的是数量。
+    """
+    point = _point(0)
+    rows = point.num_rows
+    charged = _metrics(12)["area"] - _metrics(0)["area"]
+    expected = rows * (divider_area_um2(12) - divider_area_um2(0))
+
+    assert abs(charged - expected) < 1e-6, (
+        f"每行一个除法器：{rows} 行应计 {expected:,.0f} um^2，实际计了 {charged:,.0f}"
+    )
 
 
 def test_the_search_space_actually_varies_the_divider():

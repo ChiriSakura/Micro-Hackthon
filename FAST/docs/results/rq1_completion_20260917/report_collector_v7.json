@@ -1,0 +1,13 @@
+{
+  "job_id": "17911817",
+  "dependencies": [
+    "17909362",
+    "17910797",
+    "17911508",
+    "17910798",
+    "17909366",
+    "17909367"
+  ],
+  "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1-completion-report-v7.slurm",
+  "superseded_job": "17911535"
+}

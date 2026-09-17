@@ -1,0 +1,18 @@
+{
+  "algorithm": "threshold_attention",
+  "prompt": "Design a complete threshold-sparse attention accelerator from q/k/v inputs to normalized output. Analyze the allowed threshold configurations, then co-design the complete datapath and control. Prefer reusable modules; explore latency versus energy-efficiency tradeoffs (fixed useful work per query) within measured quality, area and clock constraints.",
+  "constraints": {
+    "max_quality_loss": 0.15,
+    "max_area_um2": 30000,
+    "frequency_mhz": 100
+  },
+  "max_loops": 2,
+  "compiler_attempts": 2,
+  "module_attempts": 3,
+  "seed": 17,
+  "activity": 0.1,
+  "hdl": "verilog",
+  "module_workers": 1,
+  "assembly_attempts": 3,
+  "dense_equivalent_ops_per_query": 24
+}

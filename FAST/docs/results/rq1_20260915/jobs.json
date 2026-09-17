@@ -1,0 +1,38 @@
+[
+  {
+    "algorithm": "rq1_dynax_xm",
+    "job_id": "17868425",
+    "post_job_id": "17868426",
+    "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm",
+    "output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm",
+    "launch_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_dynax_xm_v1.slurm",
+    "post_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_dynax_xm_v1_finalize.slurm"
+  },
+  {
+    "algorithm": "rq1_block_nm",
+    "job_id": "17868427",
+    "post_job_id": "17868428",
+    "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_block_nm",
+    "output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_block_nm",
+    "launch_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_block_nm_v1.slurm",
+    "post_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_block_nm_v1_finalize.slurm"
+  },
+  {
+    "algorithm": "rq1_global_topk",
+    "job_id": "17868429",
+    "post_job_id": "17868430",
+    "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk",
+    "output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk",
+    "launch_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_global_topk_v1.slurm",
+    "post_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_global_topk_v1_finalize.slurm"
+  },
+  {
+    "algorithm": "rq1_sanger_threshold",
+    "job_id": "17868431",
+    "post_job_id": "17868432",
+    "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_sanger_threshold",
+    "output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_sanger_threshold",
+    "launch_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_sanger_threshold_v1.slurm",
+    "post_script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_sanger_threshold_v1_finalize.slurm"
+  }
+]

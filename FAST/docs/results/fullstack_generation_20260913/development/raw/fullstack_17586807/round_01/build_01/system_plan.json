@@ -1,0 +1,143 @@
+{
+  "top": "threshold_attention",
+  "modules": [
+    {
+      "name": "ScoreWeight",
+      "purpose": "A purely combinational module to calculate the score, apply the threshold to get the weight, and compute the weighted value for a single key-value pair.",
+      "ports": [
+        {
+          "name": "q0",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "name": "q1",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "name": "k0",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "name": "k1",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "name": "v_in",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "name": "weight",
+          "direction": "output",
+          "width": 9
+        },
+        {
+          "name": "weighted_v",
+          "direction": "output",
+          "width": 13
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This module is purely combinational and parameterized by `THRESHOLD`.\n1. Two 4x4 multipliers compute `p0 = q0 * k0` and `p1 = q1 * k1`. The products are 8 bits wide.\n2. An adder sums the products: `score[8:0] = p0 + p1`. The score is 9 bits wide to hold values up to 450.\n3. A 9-bit comparator checks if `score >= THRESHOLD`.\n4. A mux selects the weight: `weight_out = (score >= THRESHOLD) ? score : 9'd0`.\n5. A 9x4 multiplier computes `weighted_v_out = weight_out * v_in`. The result is 13 bits wide to hold values up to 450 * 15 = 6750.\n\n`parameter THRESHOLD = 0;` // Can be set to 0, 64, 128, or 192 at synthesis time."
+    },
+    {
+      "name": "Divider_15x11_4",
+      "purpose": "A sequential unsigned divider that computes `dividend / divisor`, producing a 4-bit quotient. It takes a 15-bit dividend and an 11-bit divisor.",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "start_div",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "dividend",
+          "direction": "input",
+          "width": 15
+        },
+        {
+          "name": "divisor",
+          "direction": "input",
+          "width": 11
+        },
+        {
+          "name": "quotient",
+          "direction": "output",
+          "width": 4
+        },
+        {
+          "name": "done_div",
+          "direction": "output",
+          "width": 1
+        }
+      ],
+      "dependencies": [],
+      "implementation": "Implements a standard 15-cycle non-restoring division algorithm for robustness, as latency is not critical. It uses a simple FSM with IDLE, BUSY, and DONE states.\n- **Registers**: `A_reg` (16-bit accumulator, for remainder), `B_reg` (11-bit, for divisor), `Q_reg` (15-bit, for dividend/quotient), `count_reg` (5-bit counter).\n- **IDLE**: On `start_div`, it latches `dividend` into `Q_reg` and `divisor` into `B_reg`. `A_reg` is cleared, `count_reg` is set to 15, and state transitions to BUSY.\n- **BUSY**: For 15 cycles, the following occurs:\n  1. The sign bit of `A_reg` is checked.\n  2. `A_reg` and `Q_reg` are shifted left as a single 31-bit register (`{A_reg[14:0], Q_reg[14]}`).\n  3. If the old sign was 0, `B_reg` is subtracted from `A_reg`. If 1, `B_reg` is added.\n  4. The new quotient bit (`!A_reg[15]`) is shifted into `Q_reg[0]`.\n  5. `count_reg` is decremented.\n  After 15 cycles, a final remainder correction is performed if `A_reg` is negative. The state then moves to DONE.\n- **DONE**: `done_div` is asserted for one cycle. The final 4-bit quotient is driven from `Q_reg[3:0]`. The FSM returns to IDLE.\nThis implementation takes a fixed 16 cycles from `start_div` to `done_div` (15 for loop, 1 for done state)."
+    },
+    {
+      "name": "threshold_attention",
+      "purpose": "Top-level module that orchestrates the threshold attention computation. It includes the main FSM, input registers, accumulators for weights and weighted values, and instantiates the necessary sub-modules.",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "start",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "q",
+          "direction": "input",
+          "width": 8
+        },
+        {
+          "name": "k",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "name": "v",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "done",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "name": "result",
+          "direction": "output",
+          "width": 4
+        }
+      ],
+      "dependencies": [
+        "ScoreWeight",
+        "Divider_15x11_4"
+      ],
+      "implementation": "The module uses a four-state FSM: IDLE, COMPUTE, DIVIDE, DONE. \n- **IDLE**: Waits for `start`. On `start`, it latches the `q`, `k`, `v` inputs into `q_reg`, `k_reg`, `v_reg`, clears accumulators, and transitions to COMPUTE.\n- **COMPUTE**: This state lasts for 4 cycles, controlled by a 2-bit counter `iter_count`. In each cycle, muxes select the appropriate 4-bit `k_i[0]`, `k_i[1]`, and `v_i` from `k_reg` and `v_reg` based on `iter_count`. These are fed to the `ScoreWeight` instance. The resulting `weight` and `weighted_v` are added to `sum_w_reg` (11 bits) and `sum_wv_reg` (15 bits) respectively. After 4 cycles, the FSM transitions to DIVIDE.\n- **DIVIDE**: The final `sum_wv_reg` and `sum_w_reg` are passed to the `Divider_15x11_4` instance. A `div_start` signal is asserted for one cycle. The FSM then waits for the `div_done` signal from the divider.\n- **DONE**: Once `div_done` is asserted, the FSM transitions here. It sets the `done` output high for one cycle. The final `result` is selected: if `sum_w_reg` is zero, `result` is 0; otherwise, it is the 4-bit quotient from the divider. The FSM then returns to IDLE.\n\nChild connections:\n- `ScoreWeight` instance is connected to `q_reg` and the muxed `k` and `v` inputs. Its outputs feed the accumulator logic.\n- `Divider_15x11_4` instance is connected to the final accumulator values `sum_wv_reg` and `sum_w_reg`. Its `start_div` is driven by the FSM, and its `done_div` and `quotient` are used by the FSM to finalize the computation."
+    }
+  ],
+  "rationale": "The design implements the threshold attention algorithm using a resource-efficient iterative architecture. A central controller processes one key-value pair per cycle for four cycles. This approach balances area and latency, fitting comfortably within the specified constraints. The system is decomposed into three well-defined modules: a top-level controller (`threshold_attention`), a combinational datapath for score and weight calculation (`ScoreWeight`), and a standard sequential divider (`Divider_15x11_4`). This modularity simplifies design and verification. The datapath is scheduled as follows: inputs are latched, then four cycles are spent in a `COMPUTE` state where `ScoreWeight`'s output is accumulated. This is followed by a `DIVIDE` state that activates the sequential divider. The total latency is approximately 21 cycles (4 for compute, 1 for FSM transition, 15 for division, 1 for done), well under the 128-cycle limit. Numeric widths are derived from the algorithm's numeric bounds to prevent overflow. The `threshold` value is a parameter, allowing synthesis for any specified configuration to explore the quality-sparsity tradeoff. A check for division by zero is included, forcing the result to 0 as required."
+}

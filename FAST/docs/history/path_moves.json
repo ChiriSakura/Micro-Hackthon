@@ -1,0 +1,15 @@
+{
+  "scripts/build_report.py": "scripts/legacy/build_report.py",
+  "scripts/report_template.html": "scripts/legacy/report_template.html",
+  "scripts/plot_results.py": "scripts/legacy/plot_results.py",
+  "scripts/summarize_eval.py": "scripts/legacy/summarize_eval.py",
+  "scripts/l2_closed_loop.py": "scripts/legacy/l2_closed_loop.py",
+  "scripts/design_ppa.py": "scripts/legacy/design_ppa.py",
+  "scripts/report_fullstack_generation.py": "scripts/legacy/report_threshold_bringup.py",
+  "docs/research-review-2026-09-09.md": "docs/history/research-review-2026-09-09.md",
+  "docs/cleanup-2026-09-11.md": "docs/history/cleanup-2026-09-11.md",
+  "docs/results/superseded/": "docs/history/obsolete_results_20260913.tar.gz: superseded/",
+  "docs/results/results.md": "docs/history/obsolete_results_20260913.tar.gz: early/results.md",
+  "docs/results/summary.json": "docs/history/obsolete_results_20260913.tar.gz: early/summary.json",
+  "figures/pareto_energy_latency_20260910.*": "docs/history/obsolete_results_20260913.tar.gz: figures/"
+}

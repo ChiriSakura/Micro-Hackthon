@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "fast-codesign"
 version = "0.1.0"
-description = "CHIA-based five-agent co-design loop for dynamic sparse attention"
+description = "Reference-driven agentic full-stack hardware co-design and verification"
 requires-python = ">=3.10"
 dependencies = []
 
@@ -15,6 +15,7 @@ test = ["pytest>=8,<9"]
 
 [project.scripts]
 fast-smoke = "fast.cli:main"
+fast-generate = "fast.fullstack.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

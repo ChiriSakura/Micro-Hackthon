@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590849/round_01/build_01/Accumulator/check_01/module_lint.log",
+  "diagnostics": "- V e r i l a t i o n   R e p o r t: Verilator 5.052 2026-09-05 rev v5.052\n- Verilator: Built from 0.034 MB sources in 2 modules, into 0.024 MB in 3 C++ files needing 0.000 MB\n- Verilator: Walltime 0.058 s (elab=0.012, cvt=0.026, bld=0.000); cpu 0.008 s on 1 threads; allocated 19.000 MB\n",
+  "wall_seconds": 0.6561042191460729,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "verilator",
+    "--lint-only",
+    "--Wall",
+    "-Wno-fatal",
+    "--top-module",
+    "Accumulator",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590849/round_01/build_01/Accumulator/check_01/emitted/Accumulator.v"
+  ],
+  "elaboration": {
+    "passed": true,
+    "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590849/round_01/build_01/Accumulator/check_01/chisel_elaboration.log",
+    "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590849/round_01/build_01/ScoreAndWeight as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+    "wall_seconds": 5.021612148731947,
+    "command": [
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+      "run",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590849/round_01/build_01/ScoreAndWeight/ScoreAndWeight.scala",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590849/round_01/build_01/Accumulator/Accumulator.scala",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590849/round_01/build_01/Accumulator/check_01/FASTGeneratedElaborate.scala",
+      "--workspace",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590849/round_01/build_01/Accumulator/check_01/scala_build",
+      "--server=false",
+      "--main-class",
+      "FASTGeneratedElaborate",
+      "--",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590849/round_01/build_01/Accumulator/check_01/emitted"
+    ],
+    "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590849/round_01/build_01/Accumulator/check_01/emitted/Accumulator.v",
+    "elaborated_sha256": "0b6f809aaf16c4cafd44c361a977f738e3464c480f0c1aa06dda232401e560ba"
+  },
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590849/round_01/build_01/Accumulator/check_01/emitted/Accumulator.v"
+}

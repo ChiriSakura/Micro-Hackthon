@@ -1,0 +1,507 @@
+[
+  {
+    "time_unix": 1789275847.3175335,
+    "stage": "round_start",
+    "round": 1,
+    "reentry": "kernel"
+  },
+  {
+    "time_unix": 1789275847.3501916,
+    "stage": "kernel",
+    "attempt": 1
+  },
+  {
+    "time_unix": 1789275867.0720067,
+    "stage": "kernel_profile",
+    "choice": {
+      "config": {
+        "threshold": 64
+      },
+      "rationale": "The task constraint `max_quality_loss` is 0.15. Analyzing the measured profiles, `threshold: 0` (quality_loss=0.0) and `threshold: 64` (quality_loss=0.070) are valid configurations. `threshold: 128` (quality_loss=0.21) and `threshold: 192` (quality_loss=0.34) exceed the quality loss limit and are invalid. The prompt encourages exploring energy-latency tradeoffs. Comparing the two valid options, `threshold: 64` offers significantly higher sparsity (0.316 vs 0.016 for threshold=0) while keeping the quality loss well within the acceptable range. This higher sparsity enables potential energy savings by allowing parts of the accelerator to be clock-gated, directly addressing the prompt's goal of exploring energy tradeoffs. Therefore, `threshold: 64` is selected as it provides the best balance of quality and opportunity for energy optimization."
+    },
+    "profile": {
+      "config": {
+        "threshold": 64
+      },
+      "quality_loss": 0.07025641025641026,
+      "quality_metric": "mean absolute output error / 15 vs threshold=0",
+      "quality_scope": "260 deterministic synthetic profiling queries; not model perplexity",
+      "sparsity": 0.31634615384615383,
+      "active_keys_histogram": {
+        "0": 20,
+        "1": 27,
+        "2": 47,
+        "3": 74,
+        "4": 92
+      },
+      "samples": 260,
+      "seed": 17
+    }
+  },
+  {
+    "time_unix": 1789275867.0873694,
+    "stage": "compiler",
+    "build": 1,
+    "round_dir": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01"
+  },
+  {
+    "time_unix": 1789275978.9263291,
+    "stage": "uarch",
+    "module": "ScoreCalculatorBank",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789276021.8637779,
+    "stage": "module_check",
+    "module": "ScoreCalculatorBank",
+    "passed": true
+  },
+  {
+    "time_unix": 1789276021.8800838,
+    "stage": "uarch",
+    "module": "Summer",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789276048.5344415,
+    "stage": "module_check",
+    "module": "Summer",
+    "passed": true
+  },
+  {
+    "time_unix": 1789276048.5485435,
+    "stage": "uarch",
+    "module": "Divider",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789276172.4240408,
+    "stage": "module_check",
+    "module": "Divider",
+    "passed": false
+  },
+  {
+    "time_unix": 1789276172.4350019,
+    "stage": "uarch",
+    "module": "Divider",
+    "attempt": 2,
+    "build": 1
+  },
+  {
+    "time_unix": 1789276326.6877348,
+    "stage": "module_check",
+    "module": "Divider",
+    "passed": true
+  },
+  {
+    "time_unix": 1789276326.7005908,
+    "stage": "uarch",
+    "module": "ThresholdAttention",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789276486.203873,
+    "stage": "module_check",
+    "module": "ThresholdAttention",
+    "passed": true
+  },
+  {
+    "time_unix": 1789276486.2557335,
+    "stage": "e2e",
+    "build": 1
+  },
+  {
+    "time_unix": 1789276497.6829844,
+    "stage": "compiler_feedback",
+    "build": 1,
+    "plan": {
+      "top": "ThresholdAttention",
+      "modules": [
+        {
+          "name": "ScoreCalculatorBank",
+          "purpose": "Calculates all four attention scores in parallel from the query and key vectors.",
+          "ports": [
+            {
+              "name": "q_in",
+              "direction": "input",
+              "width": 8
+            },
+            {
+              "name": "k_in",
+              "direction": "input",
+              "width": 32
+            },
+            {
+              "name": "scores_out",
+              "direction": "output",
+              "width": 36
+            }
+          ],
+          "dependencies": [],
+          "implementation": "This is a purely combinational module. It first unpacks the inputs. `q_in` is split into `q0` (bits 3:0) and `q1` (bits 7:4). `k_in` is split into four 8-bit key vectors. For each of the four lanes (i=0 to 3), it calculates `score[i] = (q0 * k[i][0]) + (q1 * k[i][1])`. Each `k[i][0]` and `k[i][1]` is a 4-bit value from the corresponding 8-bit key vector. Each product is 4x4 bits, resulting in an 8-bit value. The two products are added to produce a 9-bit score. The four 9-bit scores are then concatenated to form the 36-bit `scores_out` output. The entire operation completes in a single clock cycle."
+        },
+        {
+          "name": "Summer",
+          "purpose": "Sums the four weight values and four weighted-value products using combinational adder trees.",
+          "ports": [
+            {
+              "name": "weights_in",
+              "direction": "input",
+              "width": 36
+            },
+            {
+              "name": "weighted_vs_in",
+              "direction": "input",
+              "width": 52
+            },
+            {
+              "name": "sum_w_out",
+              "direction": "output",
+              "width": 11
+            },
+            {
+              "name": "sum_wv_out",
+              "direction": "output",
+              "width": 15
+            }
+          ],
+          "dependencies": [],
+          "implementation": "This is a purely combinational module that implements two parallel adder trees. It first unpacks its inputs: `weights_in` into four 9-bit weights (w0, w1, w2, w3) and `weighted_vs_in` into four 13-bit weighted values (wv0, wv1, wv2, wv3). \n- **Weight Summation:** It computes `(w0 + w1) + (w2 + w3)`. The first level of additions (9b+9b) produces two 10-bit intermediate sums. The second level adds these two 10-bit values to produce the final 11-bit `sum_w_out`. \n- **Weighted Value Summation:** It computes `(wv0 + wv1) + (wv2 + wv3)`. The first level (13b+13b) produces two 14-bit sums. The second level adds these to produce the final 15-bit `sum_wv_out`. The logic is structured to minimize combinational delay."
+        },
+        {
+          "name": "Divider",
+          "purpose": "Performs unsigned integer division floor(N/D) using an iterative non-restoring algorithm.",
+          "ports": [
+            {
+              "name": "clock",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "reset",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "start",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "numer_in",
+              "direction": "input",
+              "width": 15
+            },
+            {
+              "name": "denom_in",
+              "direction": "input",
+              "width": 11
+            },
+            {
+              "name": "quotient_out",
+              "direction": "output",
+              "width": 4
+            },
+            {
+              "name": "done",
+              "direction": "output",
+              "width": 1
+            }
+          ],
+          "dependencies": [],
+          "implementation": "This module implements a fixed-latency, 4-bit quotient, non-restoring integer divider. It uses a state machine with states IDLE, CALC, and DONE. \n- **On `start`:** The module latches `numer_in` and `denom_in`, initializes a 3-bit cycle counter to 4, and sets up the initial partial remainder. The partial remainder register (`rem_reg`) is 16 bits (15 from numerator + 1 for sign). The state transitions to CALC. \n- **CALC state:** For 4 cycles, the division loop executes. In each cycle, the partial remainder is shifted left, and the next bit of the numerator is shifted in. The denominator is then subtracted. The MSB of the result determines the next quotient bit (1 if positive/zero, 0 if negative). If the result was negative, the remainder is restored by adding the denominator back in the next cycle's shift-and-subtract (this is the non-restoring property). The quotient is assembled bit-by-bit in a 4-bit register. \n- **DONE state:** After 4 calculation cycles, the state transitions to DONE. The `done` output is asserted high for one cycle, and `quotient_out` holds the final result. The module then returns to IDLE. The total latency from `start` to `done` is 6 cycles (1 for setup, 4 for calculation, 1 for done signal)."
+        },
+        {
+          "name": "ThresholdAttention",
+          "purpose": "Top-level module that orchestrates the threshold attention computation. It manages the control flow, pipelines the data, and connects the computational sub-modules.",
+          "ports": [
+            {
+              "name": "clock",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "reset",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "start",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "q",
+              "direction": "input",
+              "width": 8
+            },
+            {
+              "name": "k",
+              "direction": "input",
+              "width": 32
+            },
+            {
+              "name": "v",
+              "direction": "input",
+              "width": 16
+            },
+            {
+              "name": "done",
+              "direction": "output",
+              "width": 1
+            },
+            {
+              "name": "result",
+              "direction": "output",
+              "width": 4
+            }
+          ],
+          "dependencies": [
+            "ScoreCalculatorBank",
+            "Summer",
+            "Divider"
+          ],
+          "implementation": "The module uses a two-state FSM (IDLE, BUSY) to manage the overall operation. On `start`, it transitions to BUSY, latches the `q`, `k`, and `v` inputs into registers, and initiates a 4-stage pipeline. A 4-bit shift register `pipe_valid` tracks the data's progress through the pipeline. \n- **Stage 0 (Input Latch):** When `start` is high in IDLE state, `q_reg`, `k_reg`, and `v_reg` capture the inputs. `pipe_valid(0)` is set. \n- **Stage 1 (Score Calculation):** The registered `q_reg` and `k_reg` are fed into a `ScoreCalculatorBank` instance. The 36-bit score vector output is registered in `scores_reg`. The `v_reg` is also passed down the pipeline in `v_reg_p1`. \n- **Stage 2 (Threshold & Multiply):** The `scores_reg` values are combinationally compared against the threshold (64). The resulting weights (9 bits each) and their products with the corresponding values from `v_reg_p1` (13 bits each) are registered in `weights_reg` and `weighted_vs_reg`. \n- **Stage 3 (Summation):** The `weights_reg` and `weighted_vs_reg` are fed into a `Summer` instance. The 11-bit `sum_w` and 15-bit `sum_wv` outputs are registered in `sum_w_reg` and `sum_wv_reg`. \n- **Stage 4 (Division):** When the pipeline reaches this stage (`pipe_valid(3)` is high), the module checks if `sum_w_reg` is zero. If so, the result is immediately set to 0 and `done` is asserted in the next cycle. Otherwise, the `Divider` is started with `sum_wv_reg` as the numerator and `sum_w_reg` as the denominator. The FSM waits for the `divider_done` signal. \n- **Output Logic:** `done` is a single-cycle pulse generated when the divider finishes or the zero-denominator case is detected. `result` is driven by the divider's output or 0. The total latency is 5 cycles for the zero-denominator case and 10 cycles otherwise."
+        }
+      ],
+      "rationale": "The design is decomposed into a top-level controller (`ThresholdAttention`) and three specialized computational modules: `ScoreCalculatorBank`, `Summer`, and `Divider`. This promotes modularity and reusability. `ScoreCalculatorBank` and `Summer` encapsulate the parallel, combinational parts of the algorithm, while `Divider` handles the sequential, iterative part. A 4-stage pipeline is employed to structure the dataflow: 1. Score calculation, 2. Thresholding and weighted value multiplication, 3. Summation, 4. Division. This deep pipelining, with registers between each major computational step, ensures the design can meet the 100 MHz frequency target by breaking down long combinational paths. The total latency is approximately 10 cycles, well within the 128-cycle budget. Pipeline registers hold intermediate results, and input values are latched at the start. All internal datapaths have been sized based on a worst-case analysis of the algorithm's numeric bounds to prevent overflow. The `Divider` is an area-efficient iterative non-restoring design that completes in a fixed 6 cycles. A simple finite state machine in the top module manages the `start`/`done` protocol and orchestrates the pipeline, including the special case of a zero denominator.",
+      "language": "chisel"
+    },
+    "error": "Whole-system verification failed: {'passed': False, 'stage': 'simulation', 'simulation': {'passed': False, 'log': '/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/e2e_sim.log', 'diagnostics': 'FAST_CASE cycles=4\\n[186] %Fatal: trusted_testbench.sv:15: Assertion failed in FASTTestbench.run_case: mismatch case 1 actual=0 expected=15\\n%Error: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/trusted_testbench.sv:15: Verilog $stop\\nAborting...\\n', 'wall_seconds': 0.4365986464545131, 'command': ['apptainer', 'exec', '/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif', '/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/obj_dir/VFASTTestbench']}, 'cases': 1, 'expected_cases': 100, 'mean_cycles': 4.0, 'min_cycles': 4, 'max_cycles': 4, 'testbench_sha256': '72f8f5bace119ba7a405ff72ec5850ad1ec0436d43b6446610dfed9a4c6d4c66', 'coverage': '100 integer-reference queries, threshold boundaries, all-zero/max, repeated transactions, mid-run reset'}"
+  },
+  {
+    "time_unix": 1789276497.6980107,
+    "stage": "compiler",
+    "build": 2,
+    "round_dir": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01"
+  },
+  {
+    "time_unix": 1789276604.6735535,
+    "stage": "uarch",
+    "module": "ProcessingElement",
+    "attempt": 1,
+    "build": 2
+  },
+  {
+    "time_unix": 1789276634.2063735,
+    "stage": "module_check",
+    "module": "ProcessingElement",
+    "passed": true
+  },
+  {
+    "time_unix": 1789276634.2211556,
+    "stage": "uarch",
+    "module": "Divider",
+    "attempt": 1,
+    "build": 2
+  },
+  {
+    "time_unix": 1789276787.2231448,
+    "stage": "module_check",
+    "module": "Divider",
+    "passed": false
+  },
+  {
+    "time_unix": 1789276787.2345407,
+    "stage": "uarch",
+    "module": "Divider",
+    "attempt": 2,
+    "build": 2
+  },
+  {
+    "time_unix": 1789276871.153256,
+    "stage": "module_check",
+    "module": "Divider",
+    "passed": true
+  },
+  {
+    "time_unix": 1789276871.1697834,
+    "stage": "uarch",
+    "module": "ThresholdAttention",
+    "attempt": 1,
+    "build": 2
+  },
+  {
+    "time_unix": 1789277045.4565582,
+    "stage": "module_check",
+    "module": "ThresholdAttention",
+    "passed": false
+  },
+  {
+    "time_unix": 1789277045.4734604,
+    "stage": "uarch",
+    "module": "ThresholdAttention",
+    "attempt": 2,
+    "build": 2
+  },
+  {
+    "time_unix": 1789277181.4066718,
+    "stage": "module_check",
+    "module": "ThresholdAttention",
+    "passed": true
+  },
+  {
+    "time_unix": 1789277181.451304,
+    "stage": "e2e",
+    "build": 2
+  },
+  {
+    "time_unix": 1789277192.518659,
+    "stage": "compiler_feedback",
+    "build": 2,
+    "plan": {
+      "top": "ThresholdAttention",
+      "modules": [
+        {
+          "name": "ProcessingElement",
+          "purpose": "Calculates score, applies threshold to get weight, and computes weighted value for a single key-value pair. This is a purely combinational module.",
+          "ports": [
+            {
+              "name": "q0",
+              "direction": "input",
+              "width": 4
+            },
+            {
+              "name": "q1",
+              "direction": "input",
+              "width": 4
+            },
+            {
+              "name": "k0",
+              "direction": "input",
+              "width": 4
+            },
+            {
+              "name": "k1",
+              "direction": "input",
+              "width": 4
+            },
+            {
+              "name": "v_in",
+              "direction": "input",
+              "width": 4
+            },
+            {
+              "name": "weight_out",
+              "direction": "output",
+              "width": 9
+            },
+            {
+              "name": "weighted_v_out",
+              "direction": "output",
+              "width": 13
+            }
+          ],
+          "dependencies": [],
+          "implementation": "This module is purely combinational. It takes the 2-dimensional query vector (q0, q1) and a single 2-dimensional key vector (k0, k1) and computes the dot product score: `score = (q0 * k0) + (q1 * k1)`. Each product is a 4x4 multiplication resulting in an 8-bit value. The two products are added to produce a 9-bit score. This score is then compared to a hardcoded threshold of 64. If `score >= 64`, the output `weight_out` is equal to the score; otherwise, it is 0. Finally, the module multiplies this 9-bit weight by the 4-bit input value `v_in` to produce the 13-bit `weighted_v_out`. All operations complete in the same clock cycle."
+        },
+        {
+          "name": "Divider",
+          "purpose": "Performs unsigned integer division floor(N/D) for a 15-bit numerator and 11-bit denominator, producing a 4-bit quotient. It uses a multi-cycle, iterative restoring algorithm.",
+          "ports": [
+            {
+              "name": "clock",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "reset",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "start",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "numer_in",
+              "direction": "input",
+              "width": 15
+            },
+            {
+              "name": "denom_in",
+              "direction": "input",
+              "width": 11
+            },
+            {
+              "name": "quotient_out",
+              "direction": "output",
+              "width": 4
+            },
+            {
+              "name": "done",
+              "direction": "output",
+              "width": 1
+            }
+          ],
+          "dependencies": [],
+          "implementation": "This module implements a 4-iteration restoring integer divider using a state machine with three states: IDLE, CALC, and DONE. \n- **IDLE:** Waits for the `start` signal. When `start` is asserted, it latches `numer_in` into a 15-bit remainder register and `denom_in` into a divisor register. It initializes a 4-bit quotient register to zero and a 3-bit cycle counter to 4. It then transitions to the CALC state.\n- **CALC:** This state persists for 4 cycles. In each cycle, the remainder is shifted left by one bit. A trial subtraction is performed: `trial_rem = remainder_msbs - divisor`. If the result is not negative, the new remainder is `trial_rem`, and the next quotient bit is 1. Otherwise, the remainder is not updated (restored), and the quotient bit is 0. The quotient register is shifted left, and the new bit is inserted. The cycle counter is decremented.\n- **DONE:** After 4 calculation cycles, the state transitions to DONE. The `done` output is asserted high for one cycle, and `quotient_out` holds the final 4-bit result. The module then returns to IDLE. The total latency from `start` assertion to `done` assertion is 6 cycles (1 for setup, 4 for calculation, 1 for the done pulse)."
+        },
+        {
+          "name": "ThresholdAttention",
+          "purpose": "Top-level module that orchestrates the threshold attention computation, managing control flow and connecting the sub-modules.",
+          "ports": [
+            {
+              "name": "clock",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "reset",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "start",
+              "direction": "input",
+              "width": 1
+            },
+            {
+              "name": "q",
+              "direction": "input",
+              "width": 8
+            },
+            {
+              "name": "k",
+              "direction": "input",
+              "width": 32
+            },
+            {
+              "name": "v",
+              "direction": "input",
+              "width": 16
+            },
+            {
+              "name": "done",
+              "direction": "output",
+              "width": 1
+            },
+            {
+              "name": "result",
+              "direction": "output",
+              "width": 4
+            }
+          ],
+          "dependencies": [
+            "ProcessingElement",
+            "Divider"
+          ],
+          "implementation": "This module uses a 6-state FSM (IDLE, CALC_SCORES, SUM, DIV_START, DIV_WAIT, DONE_STATE) to control the computation. \n- **IDLE:** On a rising `start` signal, the module latches the `q`, `k`, and `v` inputs into registers and transitions to CALC_SCORES.\n- **CALC_SCORES (1 cycle):** Four `ProcessingElement` instances run in parallel. The inputs `q`, `k`, and `v` are unpacked and fed to them. Their 36-bit total `weight_out` and 52-bit total `weighted_v_out` are registered at the end of the cycle. The FSM transitions to SUM.\n- **SUM (1 cycle):** The registered weights and weighted values are summed using two parallel combinational 2-level adder trees. The final 11-bit `sum_w` and 15-bit `sum_wv` are latched into registers. The FSM transitions to DIV_START.\n- **DIV_START (1 cycle):** The registered `sum_w_reg` is checked. If it is zero, the final result is set to 0, and the FSM transitions to DONE_STATE. Otherwise, the `start` signal of the `Divider` module is asserted with `sum_wv_reg` as the numerator and `sum_w_reg` as the denominator, and the FSM transitions to DIV_WAIT.\n- **DIV_WAIT (multi-cycle):** The FSM waits for the `done` signal from the `Divider`. When `divider.done` is high, the FSM latches the `divider.quotient_out` as the final result and transitions to DONE_STATE.\n- **DONE_STATE (1 cycle):** The top-level `done` signal is asserted. The `result` output holds the final value. The FSM transitions back to IDLE to be ready for the next transaction.\nThis explicit state-driven flow ensures correct data synchronization between stages, fixing the bug in the previous design. Latency is 5 cycles for the zero-denominator case and 10 cycles for the division case."
+        }
+      ],
+      "rationale": "The design addresses the previous verification failure by replacing a pipelined shift-register control with a more robust, explicit Finite State Machine (FSM). The failure, a premature 'done' signal at cycle 4 with an incorrect result, suggested a race condition or incorrect logic timing in the zero-denominator check. The new FSM has distinct states for each major computational step (Score Calculation, Summation, Division), ensuring that each stage's inputs are stable registered values before proceeding. This fixes the bug by guaranteeing the check on `sum_w` happens on cycle 4 using the value latched at the end of cycle 3, leading to a correct 'done' pulse on cycle 5 for the zero-denominator case. For the division path, the FSM explicitly starts the divider and waits for its completion signal, ensuring the correct result is available. The architecture is decomposed into a top-level controller (`ThresholdAttention`), four parallel `ProcessingElement` modules that compute scores and weights, and a shared iterative `Divider`. This modular approach improves clarity and correctness. Pipelining is achieved through the FSM states, with intermediate results held in registers, balancing latency and throughput while ensuring the 100MHz frequency target can be met. The total latency is 5 cycles for the zero-denominator case and 10 cycles for the division case, well within the 128-cycle limit.",
+      "language": "chisel"
+    },
+    "error": "Whole-system verification failed: {'passed': False, 'stage': 'simulation', 'simulation': {'passed': False, 'log': '/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/e2e_sim.log', 'diagnostics': 'FAST_CASE cycles=4\\n[176] %Fatal: trusted_testbench.sv:15: Assertion failed in FASTTestbench.run_case: mismatch case 1 actual=13 expected=15\\n%Error: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/trusted_testbench.sv:15: Verilog $stop\\nAborting...\\n', 'wall_seconds': 0.41055236756801605, 'command': ['apptainer', 'exec', '/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif', '/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/obj_dir/VFASTTestbench']}, 'cases': 1, 'expected_cases': 100, 'mean_cycles': 4.0, 'min_cycles': 4, 'max_cycles': 4, 'testbench_sha256': '72f8f5bace119ba7a405ff72ec5850ad1ec0436d43b6446610dfed9a4c6d4c66', 'coverage': '100 integer-reference queries, threshold boundaries, all-zero/max, repeated transactions, mid-run reset'}"
+  },
+  {
+    "time_unix": 1789277192.5354934,
+    "stage": "failure",
+    "error": "RuntimeError: Compiler/UArch build budget exhausted; see compiler_feedback.json"
+  }
+]

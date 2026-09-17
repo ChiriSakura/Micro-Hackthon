@@ -1,0 +1,24 @@
+[
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/emitted"
+  },
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~Summer|Summer>sum_w_out",
+    "sources":[
+      "~Summer|Summer>weights_in"
+    ]
+  },
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~Summer|Summer>sum_wv_out",
+    "sources":[
+      "~Summer|Summer>weighted_vs_in"
+    ]
+  }
+]

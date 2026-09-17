@@ -1,0 +1,31 @@
+{
+  "scope": "Current FullStackFlow, Critic enabled, Hammer backend; conceptual flow, not all exception branches",
+  "framework_sha256": {
+    "fast/fullstack/__init__.py": "32113321986e16a597ec677cd47a19f056064c6de0e37561d2845fc89c6414d4",
+    "fast/fullstack/agents.py": "8df36e27181a6a49ef70540c46626b990fc815d2a7e59cdea361537f303fe381",
+    "fast/fullstack/artifacts.py": "f13c498a80c6ac96fbca07ed405bd9dc57aaf0c2e81252ca6fc00f11de9891c6",
+    "fast/fullstack/behavior.py": "f3d5fa77676d63f85b2a827588cd22cb6211814e047874da070cbe3b331a366b",
+    "fast/fullstack/cli.py": "b7b57cdff8c2075467f5650afae1196edca1df40a6f37b86e699a8b8e9954fa6",
+    "fast/fullstack/contracts.py": "bd13272e42a3495c04c772aae254936619c1d0a7bd86093205b973c38f866280",
+    "fast/fullstack/dispatch.py": "5057e2a977d86c719a456cc49a7cd130d968ca183f0b75cfae1fbaaafeaace68",
+    "fast/fullstack/flow.py": "ed00fc555590c2e176b5b0185d46bf4ea3f2b9b436fce56d86312c70cfb39d5b",
+    "fast/fullstack/hammer_driver.py": "9b370c6e51363a441abb05fd2e8ace3e480c5c0e1ea638fc3f035e21174796b7",
+    "fast/fullstack/library.py": "82d2db9243386cb36fcdf2a2104876065e5d384ceb6f3d84d35debfc8b907ca2",
+    "fast/fullstack/physical.py": "bbc831c069e450514af9fc188001b33531fd442c7c9c48a0daa0b309c5da5196",
+    "fast/fullstack/revalidation.py": "8d0ba23e56bdae216e02a6adfa7b1d75e8a1b90310661e3fd4781249425456ca",
+    "fast/fullstack/tools.py": "3ce9bbc703ea3cc7766d951a97e5a741eec2ae5410f283399221d5636af0bee0"
+  },
+  "figure_sha256": {
+    "README.md": "f7fe24bbf66601b5e96413a7cb888a5934a4105e3f68e449097e3f568543eb89",
+    "draw_agentflow.py": "cb296a77e2ef0501a7e7f27d8bade52c25f32ddbca8e2c7effae86a6f2a7fb5d",
+    "fast_agentflow.pdf": "80a469645a6063f91e42f6307e03b9ebc85189cc0f679ae07491233799ffd0c6",
+    "fast_agentflow.png": "596aaaf5898f4813ba8f06508dc07379b10777848bc8d9b0f08e0bf6bdca6b60",
+    "fast_agentflow.svg": "e35688d25cd6424aba686e4363c9d8a3797e456edfe5bddf8d270f3c00ed44ce",
+    "figure.tex": "4ca9782f819141fe5e89983dd4b42ed8b590cfc15f45b9d197bb7bc4b65d295e"
+  },
+  "checks": {
+    "pdf_header": true,
+    "svg_editable_text_elements": 53,
+    "visual_review": "PNG reviewed for labels, arrows and source correspondence"
+  }
+}

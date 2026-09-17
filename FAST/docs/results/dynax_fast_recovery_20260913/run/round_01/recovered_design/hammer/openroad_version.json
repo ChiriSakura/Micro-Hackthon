@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/hammer/openroad_version.log",
+  "diagnostics": "26Q1-2900-gdf79404cd8 \n",
+  "wall_seconds": 1.3164920527487993,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/bin/openroad",
+    "-version"
+  ]
+}

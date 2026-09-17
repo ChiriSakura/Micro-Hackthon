@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+  "wall_seconds": 8.49614529684186,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/ScoreAndExpUnit.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/SelectionUnit.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/NormalizationUnit.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/rq1_dynax_xm_top.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/emitted"
+  ],
+  "elaborated_verilog": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/emitted/rq1_dynax_xm_top.v",
+  "elaborated_sha256": "9ad2596005aa74d5d0a3e037dbd83b61531208200f4c6f8c8974e6afb45710bf"
+}

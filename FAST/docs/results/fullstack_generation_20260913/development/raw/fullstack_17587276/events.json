@@ -1,0 +1,106 @@
+[
+  {
+    "time_unix": 1789275306.5655093,
+    "stage": "round_start",
+    "round": 1,
+    "reentry": "kernel"
+  },
+  {
+    "time_unix": 1789275306.6013374,
+    "stage": "kernel",
+    "attempt": 1
+  },
+  {
+    "time_unix": 1789275328.507222,
+    "stage": "kernel_profile",
+    "choice": {
+      "config": {
+        "threshold": 64
+      },
+      "rationale": "The task constraint `max_quality_loss` is 0.15. The measured profiles show quality losses of 0.0 (threshold=0), 0.070 (threshold=64), 0.21 (threshold=128), and 0.341 (threshold=192). Configurations with threshold=128 and threshold=192 are invalid as they exceed the quality loss constraint. Between the two valid options, threshold=0 provides no quality loss but also very low sparsity (0.016). Threshold=64 provides a significant increase in sparsity to 0.316 while maintaining a quality loss of 0.070, which is well within the allowed budget. The prompt encourages exploring energy-latency tradeoffs. Selecting threshold=64 embraces this by trading a small, acceptable amount of quality for a large gain in sparsity, which can be leveraged by the accelerator datapath for significant power and latency savings."
+    },
+    "profile": {
+      "config": {
+        "threshold": 64
+      },
+      "quality_loss": 0.07025641025641026,
+      "quality_metric": "mean absolute output error / 15 vs threshold=0",
+      "quality_scope": "260 deterministic synthetic profiling queries; not model perplexity",
+      "sparsity": 0.31634615384615383,
+      "active_keys_histogram": {
+        "0": 20,
+        "1": 27,
+        "2": 47,
+        "3": 74,
+        "4": 92
+      },
+      "samples": 260,
+      "seed": 17
+    }
+  },
+  {
+    "time_unix": 1789275328.5218916,
+    "stage": "compiler",
+    "build": 1,
+    "round_dir": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17587276/round_01"
+  },
+  {
+    "time_unix": 1789275433.0160236,
+    "stage": "uarch",
+    "module": "ProcessingLane",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789275485.879263,
+    "stage": "module_check",
+    "module": "ProcessingLane",
+    "passed": true
+  },
+  {
+    "time_unix": 1789275485.8946106,
+    "stage": "uarch",
+    "module": "ReductionDivider",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789275571.7767105,
+    "stage": "module_check",
+    "module": "ReductionDivider",
+    "passed": true
+  },
+  {
+    "time_unix": 1789275571.7902453,
+    "stage": "uarch",
+    "module": "threshold_attention",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789275661.0992005,
+    "stage": "module_check",
+    "module": "threshold_attention",
+    "passed": true
+  },
+  {
+    "time_unix": 1789275661.1445642,
+    "stage": "e2e",
+    "build": 1
+  },
+  {
+    "time_unix": 1789275674.8698716,
+    "stage": "ppa",
+    "round": 1
+  },
+  {
+    "time_unix": 1789275678.0015497,
+    "stage": "critic",
+    "round": 1
+  },
+  {
+    "time_unix": 1789275703.538612,
+    "stage": "failure",
+    "error": "ValueError: Critic evidence must reference measured evaluation/profile"
+  }
+]

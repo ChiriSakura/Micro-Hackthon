@@ -1,0 +1,62 @@
+[
+  {
+    "turn": 1,
+    "references": [
+      {
+        "id": "pipelined_divider",
+        "description": "FAST radix-2 restoring divider, full-width numerator processing, tunable pipeline depth and valid propagation; adapt fixed-point signed interface to target semantics.",
+        "tags": [
+          "chisel",
+          "division",
+          "normalization",
+          "pipeline"
+        ],
+        "language": "chisel",
+        "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+      },
+      {
+        "id": "chisel_carry_and_clock",
+        "description": "Chisel RawModule example: explicit clock/reset, carry-preserving +& adder, gated valid/data registers.",
+        "tags": [
+          "chisel",
+          "addition",
+          "width",
+          "clock",
+          "pipeline"
+        ],
+        "language": "chisel",
+        "sha256": "a5146cd539f756ad8dedfce2a6378b2c55342b8489c1df5e78e2e246757ebc06"
+      }
+    ]
+  },
+  {
+    "turn": 2,
+    "references": [
+      {
+        "id": "pipelined_divider",
+        "description": "FAST radix-2 restoring divider, full-width numerator processing, tunable pipeline depth and valid propagation; adapt fixed-point signed interface to target semantics.",
+        "tags": [
+          "chisel",
+          "division",
+          "normalization",
+          "pipeline"
+        ],
+        "language": "chisel",
+        "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+      },
+      {
+        "id": "chisel_carry_and_clock",
+        "description": "Chisel RawModule example: explicit clock/reset, carry-preserving +& adder, gated valid/data registers.",
+        "tags": [
+          "chisel",
+          "addition",
+          "width",
+          "clock",
+          "pipeline"
+        ],
+        "language": "chisel",
+        "sha256": "a5146cd539f756ad8dedfce2a6378b2c55342b8489c1df5e78e2e246757ebc06"
+      }
+    ]
+  }
+]

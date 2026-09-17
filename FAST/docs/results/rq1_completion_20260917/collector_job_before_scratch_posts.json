@@ -1,0 +1,13 @@
+{
+  "job_id": "17910682",
+  "dependencies": [
+    "17909362",
+    "17909363",
+    "17909365",
+    "17909366",
+    "17909367"
+  ],
+  "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1-completion-report-v3.slurm",
+  "supersedes": "17910504",
+  "reason": "Separate pending/unselected from failed qualification, annotate independent checks in figure and record concrete Critic limitations"
+}

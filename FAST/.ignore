@@ -1,0 +1,8 @@
+# Keep default code searches on the current implementation. Evidence remains
+# available explicitly: rg --no-ignore PATTERN docs/results/<experiment>/run
+/docs/results/**/run/
+/docs/results/**/snapshot/
+/docs/results/**/source/
+/docs/results/**/raw/
+/docs/results/**/gate_round_*/
+/docs/results/**/holdout_round_*/

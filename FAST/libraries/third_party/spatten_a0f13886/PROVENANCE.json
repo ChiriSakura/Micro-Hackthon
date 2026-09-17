@@ -1,0 +1,125 @@
+{
+  "repository": "https://github.com/mit-han-lab/spatten",
+  "commit": "a0f1388630590668e09456c4680211c513592e3f",
+  "license": "MIT",
+  "local_directory": "libraries/third_party/spatten_a0f13886",
+  "files": {
+    "LICENSE": {
+      "sha256": "2af485d269071b583c62c20250a63349f8313312cc9df0bd9007ca39c6d57bd9",
+      "bytes": 1068
+    },
+    "README.md": {
+      "sha256": "bf01800301d197014a1241b50182ddac534f5d3012a51a0851d092d031cf53d7",
+      "bytes": 6604
+    },
+    "spatten_hardware/hardware/build.sbt": {
+      "sha256": "cef37dd22e2aae0ffcc46ef02e6c37b6a1a988d76153dcf927d58a1bc52f5dc0",
+      "bytes": 638
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/BMR.scala": {
+      "sha256": "913a30f9c1c94e56c25725941ad5f76789f031501736de0784c37aed83f02a0b",
+      "bytes": 4745
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/Broadcast.scala": {
+      "sha256": "e6180ef3b208fd2a0550cb0a6146d7b0b60f8997849cb0f7b72c685691c4a7fd",
+      "bytes": 3376
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/Buffer.scala": {
+      "sha256": "cf137dc212119e03e5fc404bb5f09c95a1ed698dbee5ee0f9b50849b2f3cfc7f",
+      "bytes": 11715
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/BufferManager.scala": {
+      "sha256": "77d5c5a57ce101dc72e8c503bda11f9b51eea9b8a2c6672a3638c4ee1c7d2a1e",
+      "bytes": 6909
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/DotProduct.scala": {
+      "sha256": "5830d7800a673cfc8fdbf346819d2cb75a3081b2bcb249c6723e48b8eb99a2ac",
+      "bytes": 2287
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/MatrixFetcher.scala": {
+      "sha256": "98e4a3435068d34f2cff2b6e30fd53ad31098c1db8657ed8ebe8c202654343c3",
+      "bytes": 16258
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/MultiplyValue.scala": {
+      "sha256": "e03d2fd92278718a0c36fa0deb9c2185d87d1e77a1df7196b25b145d15c2d3f0",
+      "bytes": 2252
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/RequantDecision.scala": {
+      "sha256": "cfb0c77b1383c562a88d8b33ae9d45046a2b078b7a87d8ffebca19a20fa566f0",
+      "bytes": 2789
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/Softmax.scala": {
+      "sha256": "a407d44705a83a166090f9a417b71f6b21bb864b8329fb38f039b297c78c386a",
+      "bytes": 6978
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/SpAtten.scala": {
+      "sha256": "e79e9c8c86d9d480bf35ad7f35027fe92b582296fd3f58a4483d8d8f543a63de",
+      "bytes": 9910
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/SpAttenController.scala": {
+      "sha256": "4b27d6eb0f3626b8f0ef36b085985c924355e7051a94b3130de64f3cac974d7e",
+      "bytes": 33870
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/TopK.scala": {
+      "sha256": "20f6395998b9bee448e13a63da4d68afdb3efb2aebb9c4473a8f04cade593e69",
+      "bytes": 8557
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/sim/TestSpAtten.scala": {
+      "sha256": "1ebd7dda83a046dac8702bf15f362e72c64f83e352c40f57a723dfcaf146e688",
+      "bytes": 11528
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/sim/TopKLatencyModel.scala": {
+      "sha256": "038b7f48ffcab387de809169f108432999de0db1a5a6fc80ce8637baa8194caa",
+      "bytes": 2243
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/utils/ALU.scala": {
+      "sha256": "9cb9eccca798e981767f940a24f00eae760f348e263360d79140767af7af3c9e",
+      "bytes": 2573
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/utils/AXIDataLoader.scala": {
+      "sha256": "4d0ddb643f3dabd7a08b4227f7a663b2f8bb730a238a157682fc1718288fbab0",
+      "bytes": 3108
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/utils/DRAMSim.scala": {
+      "sha256": "65f3f9a5625be6723eeb2ecf41092fdd8150cb25e2d835ef925aa53609d42519",
+      "bytes": 6151
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/utils/Hashfunc.scala": {
+      "sha256": "b67b7e8e27dae415ee9bc88348eb493bfc91ebf73b70854de5f66473472813ac",
+      "bytes": 1202
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/utils/MultiBankRAM.scala": {
+      "sha256": "dc5ab877481cd481cc727cb4206cc9f97bf9e12a1e5d4a924d8c636ecef0c8ba",
+      "bytes": 9004
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/utils/MultiPortRAM.scala": {
+      "sha256": "1e0cade563443fc8c9ae2e9cf6225ec19f23f1ecb51d5661851cb57f20fbd73e",
+      "bytes": 4458
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/utils/PrefixSum.scala": {
+      "sha256": "9a6b26131caff43002c2fd63b321e1c15f18d074cf974d58395b311a4e30a230",
+      "bytes": 2859
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/utils/QuickSelect.scala": {
+      "sha256": "c371e2e110aeee31b3dada238b9dcf40b3dde000faa7dc040d245c45e33a09db",
+      "bytes": 12178
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/utils/ReductionTree.scala": {
+      "sha256": "000ff88a6adc9e1432f45b475c40367fe39fdb624316fd30a823058eab53dffd",
+      "bytes": 2777
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/utils/Stage.scala": {
+      "sha256": "82322bbe940d05f2a7e7e90631e6245ed9c8e9219554345a25d95c6dce401a80",
+      "bytes": 2444
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/utils/UnalignedFIFO.scala": {
+      "sha256": "69ea0648e050c4414b24466083c22967497bd2740b4165a8d6d5b6481b058d00",
+      "bytes": 2318
+    },
+    "spatten_hardware/hardware/src/main/scala/spatten/utils/ZeroEliminator.scala": {
+      "sha256": "866d22b4c7500d02461d75618fa0675ebf514325ab977c575efc3c47aa823de4",
+      "bytes": 8348
+    }
+  },
+  "upstream_files_modified": false
+}

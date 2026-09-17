@@ -1,0 +1,53 @@
+{
+  "utc": "2026-09-17T16:34:09.700664+00:00",
+  "initial_job": "17920156",
+  "observed_initial_partition": "all",
+  "observed_initial_qos": "cpu48",
+  "original_script_partition": "cpu_short",
+  "attempts": [
+    {
+      "action": "scontrol update Partition=cpu_short QOS=cpu_short",
+      "accepted": false,
+      "response": "Unspecified error; job unchanged"
+    },
+    {
+      "action": "sbatch --test-only --qos=cpu_short",
+      "accepted": false,
+      "response": "cpu_short is not a valid QoS for this job"
+    },
+    {
+      "action": "sbatch --test-only --qos=interactive",
+      "accepted": false,
+      "response": "interactive does not fit a batch job"
+    },
+    {
+      "action": "sbatch --test-only --qos=cpu48 --partition=cs",
+      "accepted": true,
+      "estimated_start_local": "2026-09-17T18:45:38",
+      "selected": false
+    },
+    {
+      "action": "salloc --qos=interactive --immediate=15",
+      "job_id": "17920564",
+      "accepted": true,
+      "result": "Not immediately allocated; timed out and released"
+    },
+    {
+      "action": "salloc --qos=interactive",
+      "job_id": "17920568",
+      "accepted": true,
+      "partition": "cpu_short,cs",
+      "state": "PENDING"
+    }
+  ],
+  "decision": "Preserve original pending queue position until one route receives nodes; launch hardware workload only once, cancel the unused allocation.",
+  "official_documentation": "https://services.rt.nyu.edu/docs/hpc/submitting_jobs/slurm_submitting_jobs/",
+  "final_outcome": {
+    "job_id": "17920156",
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "node": "gr101",
+    "elapsed": "00:21:17",
+    "note": "Original all/cpu48 job ran successfully; interactive alternate 17920568 was cancelled before any node allocation. No duplicate hardware run."
+  }
+}

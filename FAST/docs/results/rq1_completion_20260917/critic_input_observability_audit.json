@@ -1,0 +1,87 @@
+{
+  "scope": "Original N:M Critic request payloads. Saved full P&R logs contain detailed reports, but they were not in these truncated/summary-only Critic inputs.",
+  "old_calls": [
+    {
+      "file": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/agent_calls/critic/0001.json",
+      "sha256": "79c352fe80b262e7fdd3dfd89c01d6ae12dfda67f40e2e4abb0c035837f9dac8",
+      "prompt_characters": 132603,
+      "sta_startpoint_occurrences": 0,
+      "structured_timing_diagnosis_present": false
+    },
+    {
+      "file": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/agent_calls/critic/0002.json",
+      "sha256": "9ecad76db0730bfb5bb25bc8c3881dc2838320a701747ee5d2bd40ae24d9006e",
+      "prompt_characters": 224201,
+      "sta_startpoint_occurrences": 0,
+      "structured_timing_diagnosis_present": false
+    },
+    {
+      "file": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/agent_calls/critic/0003.json",
+      "sha256": "55fcbc8e39c1adf7303ae52e7d1de6aab07f13ca2390b2791278962d545bdf1e",
+      "prompt_characters": 317265,
+      "sta_startpoint_occurrences": 0,
+      "structured_timing_diagnosis_present": false
+    },
+    {
+      "file": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/agent_calls/critic/0004.json",
+      "sha256": "5f6bd4fa43e96bd8060be4d57c98c88dcdfa75bf234d5b9b4fbbdbc4ad64c23f",
+      "prompt_characters": 317336,
+      "sta_startpoint_occurrences": 0,
+      "structured_timing_diagnosis_present": false
+    },
+    {
+      "file": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/agent_calls/critic/0005.json",
+      "sha256": "393f5bc2b53071ff915ab0b7ca56c16ad9cc9d7f2a4692cb45f9afa6880f7acc",
+      "prompt_characters": 317624,
+      "sta_startpoint_occurrences": 0,
+      "structured_timing_diagnosis_present": false
+    },
+    {
+      "file": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/agent_calls/critic/0006.json",
+      "sha256": "c7cd07569c340653d4b8bbba9cd87a117934432cc4798eefa18b5ae83b369bed",
+      "prompt_characters": 317697,
+      "sta_startpoint_occurrences": 0,
+      "structured_timing_diagnosis_present": false
+    }
+  ],
+  "all_old_calls_lack_explicit_sta_paths": true,
+  "new_calls": [
+    {
+      "file": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/agent_calls/critic/0007.json",
+      "sha256": "ecc7ecdf0544034cd96ee5c3dfa56075087e0a9221a32763fb9df2c87a5910ea",
+      "prompt_characters": 431795,
+      "sta_startpoint_occurrences": 1,
+      "structured_timing_diagnosis_present": true,
+      "endpoint_mapping_present": true
+    },
+    {
+      "file": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/agent_calls/critic/0008.json",
+      "sha256": "8e3a73a94de1a66dc40dd1612aab4b01f2d6bae69429faca9faa0f6164649680",
+      "prompt_characters": 431866,
+      "sta_startpoint_occurrences": 1,
+      "structured_timing_diagnosis_present": true,
+      "endpoint_mapping_present": true
+    }
+  ],
+  "actual_generated_source_in_v4_critic_input": false,
+  "source_presence_check": {
+    "request": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/agent_calls/critic/0008.json",
+    "scores_reg_reduce_present": false,
+    "h_reg_assignment_present": false,
+    "implementation_fields": [
+      "module",
+      "role",
+      "language",
+      "source_sha256",
+      "linked_reference_ids",
+      "linked_library_sha256",
+      "reference_ids",
+      "rationale",
+      "critic_request",
+      "reused_from",
+      "measurements_reused",
+      "scope"
+    ]
+  },
+  "followup_fix": "Current workspace supplies verified accepted_sources; not used by frozen v4 candidate generation. Separate regression tests, no retrospective improvement claim."
+}

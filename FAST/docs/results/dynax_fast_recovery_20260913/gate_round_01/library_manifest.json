@@ -1,0 +1,924 @@
+{
+  "manifest": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/libraries/catalog.json",
+  "manifest_sha256": "dfd5e378297eab60e3981f3e5de2be1f1b92bc10ed862a8c84bdc6a552752eea",
+  "files": {
+    "algorithm:threshold_attention": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/libraries/algorithms/threshold_attention.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/000.py",
+      "sha256": "d46102a870b500a844b2321e944b2058854c0065b7f0b70a29654eb825f3ab24"
+    },
+    "algorithm:dynax_xm_row": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/libraries/algorithms/dynax_xm_row.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/001.py",
+      "sha256": "ace7d3ebcbe635cf933acd01ccb68883d9d8d8d6a3f07b44ad276b8fb856be99"
+    },
+    "template:register_stage": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/libraries/hardware/register_stage.v",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/002.v",
+      "sha256": "ffdae2d491debe7b24fcff7e3241a683de945aeed7c349f802925c407868b5cf"
+    },
+    "template:chisel_carry_and_clock": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/libraries/hardware/ArithmeticStage.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/003.scala",
+      "sha256": "a5146cd539f756ad8dedfce2a6378b2c55342b8489c1df5e78e2e246757ebc06"
+    },
+    "template:pipelined_divider": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/divider.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/004.scala",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+    },
+    "template:dynax_exp_reference": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/005.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "template:topk_selection": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/topk.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/006.scala",
+      "sha256": "09196842ec6bef512088f1eaf4a3112053e64f36cd5b7220de1b6191fe020cec"
+    },
+    "template:sram_banks": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/sram.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/007.scala",
+      "sha256": "d23602c53d9b3ea95e5bd5ac303b152ed2fa9bf260b9b2bcfb4645d28e74cb69"
+    },
+    "template:key_feeder": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/008.scala",
+      "sha256": "497aa40bcce085c4f0bb9dea9b169831cb010a527907d5060eeca84826797c9d"
+    },
+    "template:execution_pe": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/repe.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/009.scala",
+      "sha256": "d694fc01d8352008c56cfa7d29d72959a69a366f15b3b25e031024e2eff445a9"
+    },
+    "template:low_precision_predictor": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/010.scala",
+      "sha256": "3cf7e3b7877b363cc69aa3076f5aaa8990c858f4d2063088bf82140e644e452d"
+    },
+    "template:index_scheduler": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/011.scala",
+      "sha256": "49396ee98ca68d61b1cd49e63aa697be041cecd48721a3a770b4e2d72c5fb9d2"
+    },
+    "template:block_scheduler": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/012.scala",
+      "sha256": "45e788edd06864e12c38cb40d4746a128177e26fa74c53e721e333e4fd4ced74"
+    },
+    "template:partial_softmax": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/013.scala",
+      "sha256": "62b543bc76a83b73d4a13fc6752dc544ecd14da252a04fd9420fd4752b059810"
+    },
+    "template:attention_tile_reference": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/attention_tile.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/014.scala",
+      "sha256": "e77f1f9f370f03380eccb4af14685b014c9d90da290d0c6cbcc83687f4a43298"
+    },
+    "template:attention_tile_top_reference": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/attention_tile_top.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/015.scala",
+      "sha256": "ce8815f1856a5ac258ef17154fafbbb5225c89fabd3c26e10a1b35c4194e7c53"
+    },
+    "template:attention_tile_system_reference": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/attention_tile_system.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/016.scala",
+      "sha256": "72efecaef3a77c6fd63f1c1da6195279d16f9319c003e779b524064c6d971244"
+    },
+    "test:pipelined_divider:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/tb_divider.cpp",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/017.cpp",
+      "sha256": "9f010b9d13a5e345002ab43883b812e0c665671194d7b70456af3bb000a6eec3"
+    },
+    "test:pipelined_divider:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/fixedpoint.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/018.py",
+      "sha256": "bda248421e2c52119566c2982d322227d4c9a8c38bd1a056f2e962d28bfc26c4"
+    },
+    "test:dynax_exp_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/tb_exp.cpp",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/019.cpp",
+      "sha256": "645f2bad989fd7a3357e653c0cdb1745269112050079cd38eb44d17af4b738f8"
+    },
+    "test:dynax_exp_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/exp_unit.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/020.py",
+      "sha256": "18de3dcd0fae0a6e83c27a27dbc10c3b961839a2dced7c4a68973f314ef6c1c5"
+    },
+    "test:topk_selection:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/tb_topk.cpp",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/021.cpp",
+      "sha256": "9fae733701e109db831819fbdc16a527a48cfc0c93dc8be334d7adc818c1d203"
+    },
+    "test:topk_selection:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/predict_unit.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/022.py",
+      "sha256": "126f5e0d27517738b5516ab53dd7e4fbdfb5cbcd3e340c965f3d1d2ba75d1eff"
+    },
+    "test:sram_banks:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/tb_sram.cpp",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/023.cpp",
+      "sha256": "ddf8f8196c4f47bdeb983d5dcb5e97a67c73354d72e3e21a1dd9b401c6cf6d7c"
+    },
+    "test:key_feeder:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/tb_key_feeder.cpp",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/024.cpp",
+      "sha256": "74a382a0335326b63631424596111d912365441b225fa114f66a32516bf30d4f"
+    },
+    "support:execution_pe:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/005.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "test:execution_pe:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/tb_repe.cpp",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/026.cpp",
+      "sha256": "638f264211fae515486970712e75192355b895214b92c49dd1be65291f8133f2"
+    },
+    "test:execution_pe:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/execute_unit.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/027.py",
+      "sha256": "313b7948794d67d77caf8e78bea3255d33dcdafb9ae94ff2a1ad95af64a628db"
+    },
+    "support:low_precision_predictor:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/005.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "test:low_precision_predictor:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/tb_prepe_array.cpp",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/029.cpp",
+      "sha256": "3d08d85afe8603f8d26b060c5f3076c2882807cfd5bbefffcad4781d68bf0ef5"
+    },
+    "test:low_precision_predictor:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/software.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/030.py",
+      "sha256": "6237ab787dd0871059dc006f0aa6e8d49eaea2aea941bad78f29031e18c7ad54"
+    },
+    "test:block_scheduler:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/tb_block_scheduler.cpp",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/031.cpp",
+      "sha256": "9eff39302eff6267f9fa4a9100b0c3d56322f792ace8ce860c272ca125a3485a"
+    },
+    "test:partial_softmax:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/tb_psum_softmax.cpp",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/032.cpp",
+      "sha256": "ec8895002b158f30c1812d2b9437393e9218d75b6941796e6d15cf98a66a8cdf"
+    },
+    "test:partial_softmax:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/predict_unit.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/022.py",
+      "sha256": "126f5e0d27517738b5516ab53dd7e4fbdfb5cbcd3e340c965f3d1d2ba75d1eff"
+    },
+    "support:attention_tile_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/attention_tile_system.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/016.scala",
+      "sha256": "72efecaef3a77c6fd63f1c1da6195279d16f9319c003e779b524064c6d971244"
+    },
+    "support:attention_tile_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/attention_tile_top.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/015.scala",
+      "sha256": "ce8815f1856a5ac258ef17154fafbbb5225c89fabd3c26e10a1b35c4194e7c53"
+    },
+    "support:attention_tile_reference:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/008.scala",
+      "sha256": "497aa40bcce085c4f0bb9dea9b169831cb010a527907d5060eeca84826797c9d"
+    },
+    "support:attention_tile_reference:3": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/repe.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/009.scala",
+      "sha256": "d694fc01d8352008c56cfa7d29d72959a69a366f15b3b25e031024e2eff445a9"
+    },
+    "support:attention_tile_reference:4": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/038.scala",
+      "sha256": "1e1a501ff1b2eb147b0ba388918190fc06c409f742068454af5b8d76c4721215"
+    },
+    "support:attention_tile_reference:5": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/039.scala",
+      "sha256": "73db4c2312be27805a2c54428a1d975485c89b93f23271df1104a01c1ca1a352"
+    },
+    "support:attention_tile_reference:6": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/sram.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/007.scala",
+      "sha256": "d23602c53d9b3ea95e5bd5ac303b152ed2fa9bf260b9b2bcfb4645d28e74cb69"
+    },
+    "support:attention_tile_reference:7": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/005.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "support:attention_tile_reference:8": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/012.scala",
+      "sha256": "45e788edd06864e12c38cb40d4746a128177e26fa74c53e721e333e4fd4ced74"
+    },
+    "support:attention_tile_reference:9": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/043.scala",
+      "sha256": "bb5006c94f149fe7e3b5baf642a027bf86b0420e87ca2cb0cecd28cd9ba2d916"
+    },
+    "support:attention_tile_reference:10": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/divider.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/004.scala",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+    },
+    "support:attention_tile_reference:11": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/011.scala",
+      "sha256": "49396ee98ca68d61b1cd49e63aa697be041cecd48721a3a770b4e2d72c5fb9d2"
+    },
+    "support:attention_tile_reference:12": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/010.scala",
+      "sha256": "3cf7e3b7877b363cc69aa3076f5aaa8990c858f4d2063088bf82140e644e452d"
+    },
+    "support:attention_tile_reference:13": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/047.scala",
+      "sha256": "dc57bc8281a0f42070a4954de96df30d66dcede2c966493837e005ad905676f0"
+    },
+    "support:attention_tile_reference:14": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/013.scala",
+      "sha256": "62b543bc76a83b73d4a13fc6752dc544ecd14da252a04fd9420fd4752b059810"
+    },
+    "support:attention_tile_reference:15": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/topk.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/006.scala",
+      "sha256": "09196842ec6bef512088f1eaf4a3112053e64f36cd5b7220de1b6191fe020cec"
+    },
+    "test:attention_tile_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/tb_attention_tile.cpp",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/050.cpp",
+      "sha256": "29d1a2fe2ac9858fc0d0e6d9b9a717366c1699a00d45d44161ad1ad4c642126c"
+    },
+    "test:attention_tile_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/drivers.h",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/051.h",
+      "sha256": "55604883315e75cdb3763b8192afe10aea4e4eb0b91b92b78027590d19028e85"
+    },
+    "test:attention_tile_reference:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/golden.h",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/052.h",
+      "sha256": "2d4a4eba6fe92e7baa96d5aff3596d28dcb42652389e90d25f609a02bd5d777a"
+    },
+    "test:attention_tile_reference:3": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/fixedpoint.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/018.py",
+      "sha256": "bda248421e2c52119566c2982d322227d4c9a8c38bd1a056f2e962d28bfc26c4"
+    },
+    "test:attention_tile_reference:4": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/execute_unit.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/027.py",
+      "sha256": "313b7948794d67d77caf8e78bea3255d33dcdafb9ae94ff2a1ad95af64a628db"
+    },
+    "test:attention_tile_reference:5": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/predict_unit.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/022.py",
+      "sha256": "126f5e0d27517738b5516ab53dd7e4fbdfb5cbcd3e340c965f3d1d2ba75d1eff"
+    },
+    "support:attention_tile_top_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/attention_tile.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/014.scala",
+      "sha256": "e77f1f9f370f03380eccb4af14685b014c9d90da290d0c6cbcc83687f4a43298"
+    },
+    "support:attention_tile_top_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/attention_tile_system.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/016.scala",
+      "sha256": "72efecaef3a77c6fd63f1c1da6195279d16f9319c003e779b524064c6d971244"
+    },
+    "support:attention_tile_top_reference:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/008.scala",
+      "sha256": "497aa40bcce085c4f0bb9dea9b169831cb010a527907d5060eeca84826797c9d"
+    },
+    "support:attention_tile_top_reference:3": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/repe.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/009.scala",
+      "sha256": "d694fc01d8352008c56cfa7d29d72959a69a366f15b3b25e031024e2eff445a9"
+    },
+    "support:attention_tile_top_reference:4": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/038.scala",
+      "sha256": "1e1a501ff1b2eb147b0ba388918190fc06c409f742068454af5b8d76c4721215"
+    },
+    "support:attention_tile_top_reference:5": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/039.scala",
+      "sha256": "73db4c2312be27805a2c54428a1d975485c89b93f23271df1104a01c1ca1a352"
+    },
+    "support:attention_tile_top_reference:6": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/sram.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/007.scala",
+      "sha256": "d23602c53d9b3ea95e5bd5ac303b152ed2fa9bf260b9b2bcfb4645d28e74cb69"
+    },
+    "support:attention_tile_top_reference:7": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/005.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "support:attention_tile_top_reference:8": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/012.scala",
+      "sha256": "45e788edd06864e12c38cb40d4746a128177e26fa74c53e721e333e4fd4ced74"
+    },
+    "support:attention_tile_top_reference:9": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/043.scala",
+      "sha256": "bb5006c94f149fe7e3b5baf642a027bf86b0420e87ca2cb0cecd28cd9ba2d916"
+    },
+    "support:attention_tile_top_reference:10": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/divider.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/004.scala",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+    },
+    "support:attention_tile_top_reference:11": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/011.scala",
+      "sha256": "49396ee98ca68d61b1cd49e63aa697be041cecd48721a3a770b4e2d72c5fb9d2"
+    },
+    "support:attention_tile_top_reference:12": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/010.scala",
+      "sha256": "3cf7e3b7877b363cc69aa3076f5aaa8990c858f4d2063088bf82140e644e452d"
+    },
+    "support:attention_tile_top_reference:13": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/047.scala",
+      "sha256": "dc57bc8281a0f42070a4954de96df30d66dcede2c966493837e005ad905676f0"
+    },
+    "support:attention_tile_top_reference:14": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/013.scala",
+      "sha256": "62b543bc76a83b73d4a13fc6752dc544ecd14da252a04fd9420fd4752b059810"
+    },
+    "support:attention_tile_top_reference:15": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/topk.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/006.scala",
+      "sha256": "09196842ec6bef512088f1eaf4a3112053e64f36cd5b7220de1b6191fe020cec"
+    },
+    "test:attention_tile_top_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/tb_attention_tile_top.cpp",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/072.cpp",
+      "sha256": "74ab38f8c53a531a2578800cdd1edb2fb7d2f4a6fb75c67ebae1b99a7386a860"
+    },
+    "test:attention_tile_top_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/drivers.h",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/051.h",
+      "sha256": "55604883315e75cdb3763b8192afe10aea4e4eb0b91b92b78027590d19028e85"
+    },
+    "test:attention_tile_top_reference:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/golden.h",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/052.h",
+      "sha256": "2d4a4eba6fe92e7baa96d5aff3596d28dcb42652389e90d25f609a02bd5d777a"
+    },
+    "test:attention_tile_top_reference:3": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/fixedpoint.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/018.py",
+      "sha256": "bda248421e2c52119566c2982d322227d4c9a8c38bd1a056f2e962d28bfc26c4"
+    },
+    "test:attention_tile_top_reference:4": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/execute_unit.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/027.py",
+      "sha256": "313b7948794d67d77caf8e78bea3255d33dcdafb9ae94ff2a1ad95af64a628db"
+    },
+    "test:attention_tile_top_reference:5": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/predict_unit.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/022.py",
+      "sha256": "126f5e0d27517738b5516ab53dd7e4fbdfb5cbcd3e340c965f3d1d2ba75d1eff"
+    },
+    "support:attention_tile_system_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/attention_tile.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/014.scala",
+      "sha256": "e77f1f9f370f03380eccb4af14685b014c9d90da290d0c6cbcc83687f4a43298"
+    },
+    "support:attention_tile_system_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/attention_tile_top.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/015.scala",
+      "sha256": "ce8815f1856a5ac258ef17154fafbbb5225c89fabd3c26e10a1b35c4194e7c53"
+    },
+    "support:attention_tile_system_reference:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/008.scala",
+      "sha256": "497aa40bcce085c4f0bb9dea9b169831cb010a527907d5060eeca84826797c9d"
+    },
+    "support:attention_tile_system_reference:3": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/repe.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/009.scala",
+      "sha256": "d694fc01d8352008c56cfa7d29d72959a69a366f15b3b25e031024e2eff445a9"
+    },
+    "support:attention_tile_system_reference:4": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/038.scala",
+      "sha256": "1e1a501ff1b2eb147b0ba388918190fc06c409f742068454af5b8d76c4721215"
+    },
+    "support:attention_tile_system_reference:5": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/039.scala",
+      "sha256": "73db4c2312be27805a2c54428a1d975485c89b93f23271df1104a01c1ca1a352"
+    },
+    "support:attention_tile_system_reference:6": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/execute_unit/sram.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/007.scala",
+      "sha256": "d23602c53d9b3ea95e5bd5ac303b152ed2fa9bf260b9b2bcfb4645d28e74cb69"
+    },
+    "support:attention_tile_system_reference:7": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/005.scala",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    },
+    "support:attention_tile_system_reference:8": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/012.scala",
+      "sha256": "45e788edd06864e12c38cb40d4746a128177e26fa74c53e721e333e4fd4ced74"
+    },
+    "support:attention_tile_system_reference:9": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/043.scala",
+      "sha256": "bb5006c94f149fe7e3b5baf642a027bf86b0420e87ca2cb0cecd28cd9ba2d916"
+    },
+    "support:attention_tile_system_reference:10": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/divider.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/004.scala",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+    },
+    "support:attention_tile_system_reference:11": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/011.scala",
+      "sha256": "49396ee98ca68d61b1cd49e63aa697be041cecd48721a3a770b4e2d72c5fb9d2"
+    },
+    "support:attention_tile_system_reference:12": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/010.scala",
+      "sha256": "3cf7e3b7877b363cc69aa3076f5aaa8990c858f4d2063088bf82140e644e452d"
+    },
+    "support:attention_tile_system_reference:13": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/047.scala",
+      "sha256": "dc57bc8281a0f42070a4954de96df30d66dcede2c966493837e005ad905676f0"
+    },
+    "support:attention_tile_system_reference:14": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/013.scala",
+      "sha256": "62b543bc76a83b73d4a13fc6752dc544ecd14da252a04fd9420fd4752b059810"
+    },
+    "support:attention_tile_system_reference:15": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/chisel/src/main/scala/predict_unit/topk.scala",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/006.scala",
+      "sha256": "09196842ec6bef512088f1eaf4a3112053e64f36cd5b7220de1b6191fe020cec"
+    },
+    "test:attention_tile_system_reference:0": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/tb_attention_tile_system.cpp",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/094.cpp",
+      "sha256": "8c29d3b0e048be66962fb6949fffa4ae088cf2b0320e6087904a0b9fda66c1e9"
+    },
+    "test:attention_tile_system_reference:1": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/drivers.h",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/051.h",
+      "sha256": "55604883315e75cdb3763b8192afe10aea4e4eb0b91b92b78027590d19028e85"
+    },
+    "test:attention_tile_system_reference:2": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/tb/golden.h",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/052.h",
+      "sha256": "2d4a4eba6fe92e7baa96d5aff3596d28dcb42652389e90d25f609a02bd5d777a"
+    },
+    "test:attention_tile_system_reference:3": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/fixedpoint.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/018.py",
+      "sha256": "bda248421e2c52119566c2982d322227d4c9a8c38bd1a056f2e962d28bfc26c4"
+    },
+    "test:attention_tile_system_reference:4": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/execute_unit.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/027.py",
+      "sha256": "313b7948794d67d77caf8e78bea3255d33dcdafb9ae94ff2a1ad95af64a628db"
+    },
+    "test:attention_tile_system_reference:5": {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/dynax_autonomous_v8r1/hardware/golden/predict_unit.py",
+      "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_gate_17711041/references/022.py",
+      "sha256": "126f5e0d27517738b5516ab53dd7e4fbdfb5cbcd3e340c965f3d1d2ba75d1eff"
+    }
+  },
+  "catalog": {
+    "version": 1,
+    "algorithms": {
+      "threshold_attention": {
+        "source": "algorithms/threshold_attention.py",
+        "factory": "ThresholdAttention"
+      },
+      "dynax_xm_row": {
+        "source": "algorithms/dynax_xm_row.py",
+        "factory": "DynaxXMRow"
+      }
+    },
+    "hardware_templates": {
+      "register_stage": {
+        "source": "hardware/register_stage.v",
+        "description": "Verilog synchronous valid/data register stage; handshake and reset example.",
+        "tags": [
+          "verilog",
+          "pipeline",
+          "valid"
+        ]
+      },
+      "chisel_carry_and_clock": {
+        "source": "hardware/ArithmeticStage.scala",
+        "description": "Chisel RawModule example: explicit clock/reset, carry-preserving +& adder, gated valid/data registers.",
+        "tags": [
+          "chisel",
+          "addition",
+          "width",
+          "clock",
+          "pipeline"
+        ]
+      },
+      "pipelined_divider": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+        "description": "FAST radix-2 restoring divider, full-width numerator processing, tunable pipeline depth and valid propagation; adapt fixed-point signed interface to target semantics.",
+        "tags": [
+          "chisel",
+          "division",
+          "normalization",
+          "pipeline"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_divider.cpp",
+            "description": "Streaming valid/latency, signed Q8.8 quotient, divide-by-zero and wrap; adapt ports and unsigned semantics explicitly.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/fixedpoint.py",
+            "description": "Signed wrap, rounded fixed-point multiply and truncation toward zero.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "dynax_exp_reference": {
+        "source": "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+        "description": "FAST reconstruction of fixed-point exponential unit; this is not an original DynaX release module.",
+        "tags": [
+          "chisel",
+          "exponential",
+          "fixedpoint"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_exp.cpp",
+            "description": "Exponent fixed-point test driver.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/exp_unit.py",
+            "description": "Fixed-point exponential numerical reference.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "topk_selection": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/topk.scala",
+        "description": "Top-k value/index selection hardware with parameterized widths.",
+        "tags": [
+          "chisel",
+          "topk",
+          "sparse",
+          "selection"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_topk.cpp",
+            "description": "Selection order, indices and valid pulse sampling.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/predict_unit.py",
+            "description": "TopK and prediction numeric/timing reference; inspect applicable functions.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "sram_banks": {
+        "source": "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+        "description": "Banked synchronous SRAM access and storage interface reference.",
+        "tags": [
+          "chisel",
+          "memory",
+          "banks"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_sram.cpp",
+            "description": "Banked memory read/write protocol.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "key_feeder": {
+        "source": "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+        "description": "Key gather/feeding with backpressure and banking; reference for sparse memory scheduling.",
+        "tags": [
+          "chisel",
+          "gather",
+          "backpressure",
+          "memory"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_key_feeder.cpp",
+            "description": "Gather, bank conflict and backpressure tests.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "execution_pe": {
+        "source": "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+        "description": "DynaX execution PE combining fixed-point arithmetic and state-controlled updates.",
+        "tags": [
+          "chisel",
+          "mac",
+          "processing-element",
+          "fixedpoint"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_repe.cpp",
+            "description": "PE control sequencing and arithmetic.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/execute_unit.py",
+            "description": "Execution golden model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ],
+        "support_sources": [
+          "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala"
+        ]
+      },
+      "low_precision_predictor": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+        "description": "DynaX low-precision prediction PE and array; 1:2 pruning example.",
+        "tags": [
+          "chisel",
+          "prediction",
+          "sparsity",
+          "low-precision"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_prepe_array.cpp",
+            "description": "Signed low-precision prediction and valid timing.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/software.py",
+            "description": "DynaX 1:2/1:4 query pruning mathematical reference.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ],
+        "support_sources": [
+          "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala"
+        ]
+      },
+      "index_scheduler": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+        "description": "Sparse index scheduling and mapping to execution lanes.",
+        "tags": [
+          "chisel",
+          "schedule",
+          "sparse",
+          "indices"
+        ]
+      },
+      "block_scheduler": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+        "description": "Block scheduling, queueing and flow control reference.",
+        "tags": [
+          "chisel",
+          "schedule",
+          "queue",
+          "block"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_block_scheduler.cpp",
+            "description": "Scheduler flow and work conservation.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "partial_softmax": {
+        "source": "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+        "description": "Partial-sum normalization and fixed-point divider reference; check semantics before adapting.",
+        "tags": [
+          "chisel",
+          "normalization",
+          "softmax",
+          "fixedpoint"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_psum_softmax.cpp",
+            "description": "Accumulator and normalizer driver.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/predict_unit.py",
+            "description": "Partial sum fixed-point reference.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "attention_tile_reference": {
+        "source": "../hardware/chisel/src/main/scala/attention_tile.scala",
+        "description": "Integrated DynaX-derived datapath blueprint: prediction, selection, execution and normalization. External control/gather; not independently complete QKV E2E.",
+        "tags": [
+          "chisel",
+          "dynax",
+          "integrated-system",
+          "native-library",
+          "fsm",
+          "reference-bundle"
+        ],
+        "support_sources": [
+          "../hardware/chisel/src/main/scala/attention_tile_system.scala",
+          "../hardware/chisel/src/main/scala/attention_tile_top.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+          "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/topk.scala"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_attention_tile.cpp",
+            "description": "Original integrated driver and actual acceptance criteria; inspect limitations.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/tb/drivers.h",
+            "description": "Existing cycle/control/handshake drivers.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/tb/golden.h",
+            "description": "Golden-data loader.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/fixedpoint.py",
+            "description": "Fixed-point arithmetic semantics.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/execute_unit.py",
+            "description": "Execution datapath cycle model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/predict_unit.py",
+            "description": "Prediction/selection cycle model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "attention_tile_top_reference": {
+        "source": "../hardware/chisel/src/main/scala/attention_tile_top.scala",
+        "description": "DynaX-derived hardware control FSM and cross-pass accumulation blueprint. External selected indices and K/V data; preserve verified scheduling.",
+        "tags": [
+          "chisel",
+          "dynax",
+          "integrated-system",
+          "native-library",
+          "fsm",
+          "reference-bundle"
+        ],
+        "support_sources": [
+          "../hardware/chisel/src/main/scala/attention_tile.scala",
+          "../hardware/chisel/src/main/scala/attention_tile_system.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+          "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/topk.scala"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_attention_tile_top.cpp",
+            "description": "Original integrated driver and actual acceptance criteria; inspect limitations.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/tb/drivers.h",
+            "description": "Existing cycle/control/handshake drivers.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/tb/golden.h",
+            "description": "Golden-data loader.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/fixedpoint.py",
+            "description": "Fixed-point arithmetic semantics.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/execute_unit.py",
+            "description": "Execution datapath cycle model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/predict_unit.py",
+            "description": "Prediction/selection cycle model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      },
+      "attention_tile_system_reference": {
+        "source": "../hardware/chisel/src/main/scala/attention_tile_system.scala",
+        "description": "DynaX-derived system reference including selection, hardware indices, banked KeyFeeder and backpressure. Still single query row, external scores and block mass; system bench lacks final attention-value assertions. Use its actual architecture and protocols; fill missing QKV-to-score/mass path and independent E2E.",
+        "tags": [
+          "chisel",
+          "dynax",
+          "integrated-system",
+          "native-library",
+          "fsm",
+          "reference-bundle"
+        ],
+        "support_sources": [
+          "../hardware/chisel/src/main/scala/attention_tile.scala",
+          "../hardware/chisel/src/main/scala/attention_tile_top.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+          "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+          "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+          "../hardware/chisel/src/main/scala/predict_unit/topk.scala"
+        ],
+        "test_references": [
+          {
+            "source": "../hardware/tb/tb_attention_tile_system.cpp",
+            "description": "Original integrated driver and actual acceptance criteria; inspect limitations.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/tb/drivers.h",
+            "description": "Existing cycle/control/handshake drivers.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/tb/golden.h",
+            "description": "Golden-data loader.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/fixedpoint.py",
+            "description": "Fixed-point arithmetic semantics.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/execute_unit.py",
+            "description": "Execution datapath cycle model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          },
+          {
+            "source": "../hardware/golden/predict_unit.py",
+            "description": "Prediction/selection cycle model.",
+            "usage": "reference_only_adapt_to_generated_contract"
+          }
+        ]
+      }
+    }
+  }
+}

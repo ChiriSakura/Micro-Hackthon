@@ -1,0 +1,165 @@
+{
+  "scope": "upstream component probes only, NOT generated RQ1 E2E or PPA",
+  "checks": {
+    "bitonic_signed8_pipeline_0": {
+      "passed": true,
+      "stage": "simulation",
+      "simulation": {
+        "passed": true,
+        "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/bitonic_signed8_pipeline_0/e2e_sim.log",
+        "diagnostics": "FAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/bitonic_signed8_pipeline_0/trusted_testbench.sv:106: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 1us; walltime 0.001 s; speed 1.107 ms/s\n- Verilator: cpu 0.000 s on 1 threads; allocated 3 MB\n",
+        "wall_seconds": 0.399292116984725,
+        "command": [
+          "apptainer",
+          "exec",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/bitonic_signed8_pipeline_0/obj_dir/VFASTTestbench"
+        ]
+      },
+      "cases": 100,
+      "expected_cases": 100,
+      "mean_cycles": 1.0,
+      "min_cycles": 1,
+      "max_cycles": 1,
+      "testbench_sha256": "21824cbadf565dd546114e0b2fe1b0413b11c91d5f736c8b3df2125c5c5fdb92",
+      "coverage": "bitonic_signed8_pipeline_0"
+    },
+    "bitonic_signed8_pipeline_1": {
+      "passed": true,
+      "stage": "simulation",
+      "simulation": {
+        "passed": true,
+        "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/bitonic_signed8_pipeline_1/e2e_sim.log",
+        "diagnostics": "FAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/bitonic_signed8_pipeline_1/trusted_testbench.sv:106: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 6us; walltime 0.001 s; speed 4.256 ms/s\n- Verilator: cpu 0.001 s on 1 threads; allocated 3 MB\n",
+        "wall_seconds": 0.40245575178414583,
+        "command": [
+          "apptainer",
+          "exec",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/bitonic_signed8_pipeline_1/obj_dir/VFASTTestbench"
+        ]
+      },
+      "cases": 100,
+      "expected_cases": 100,
+      "mean_cycles": 1.0,
+      "min_cycles": 1,
+      "max_cycles": 1,
+      "testbench_sha256": "3f58e2585186d9f9cec97e58597a426e5905435771e8abf3d9873becce2d882b",
+      "coverage": "bitonic_signed8_pipeline_1"
+    },
+    "flexcim_full_bundle_lint": {
+      "passed": false,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/flexcim_lint/lint.log",
+      "diagnostics": "%Error: /home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/adder_tree.v:31:19: syntax error, unexpected <=, expecting '('\n   31 |         acc_ready <= 1;\n      |                   ^~\n        ... See the manual at https://verilator.org/verilator_doc.html?v=5.052 for more assistance.\n%Error: /home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/adder_tree.v:33:19: syntax error, unexpected <=, expecting '('\n   33 |         acc_ready <= 0;\n      |                   ^~\n%Error: /home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/cim_cell.v:3:1: syntax error, unexpected ')', expecting IDENTIFIER or IDENTIFIER-for-pathpulse or randomize\n    3 | ) (\n      | ^\n%Error: /home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/cim_cell.v:29:3: syntax error, unexpected output\n   29 |   output reg out_data_valid;\n      |   ^~~~~~\n%Error: /home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/cim_cell.v:36:3: syntax error, unexpected IDENTIFIER-for-instance\n   36 |   cim_mem_cell #(.DATA_WIDTH(DATA_WIDTH))\n      |   ^~~~~~~~~~~~\n%Error: /home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/cim_column.v:42:32: syntax error, unexpected '=', expecting ')'\n   42 |         cim_cell #(.DATA_WIDTH = DATA_WIDTH)\n      |                                ^\n%Error: /home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/cim_column.v:62:5: syntax error, unexpected '.', expecting ')'\n   62 |     .i_data_valid(i_data_valid),\n      |     ^\n%Error: /home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/cim_mem_cell.v:3:1: syntax error, unexpected ')', expecting IDENTIFIER or IDENTIFIER-for-pathpulse or randomize\n    3 | ) (\n      | ^\n%Error: /home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/cim_mem_cell.v:27:3: syntax error, unexpected initial\n   27 |   initial begin\n      |   ^~~~~~~\n%Error: Exiting due to 9 error(s)\n",
+      "wall_seconds": 0.6278691701591015,
+      "command": [
+        "apptainer",
+        "exec",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+        "verilator",
+        "--lint-only",
+        "--language",
+        "1800-2017",
+        "-Wno-fatal",
+        "--top-module",
+        "flexcim",
+        "/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/adder_tree.v",
+        "/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/cim_cell.v",
+        "/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/cim_column.v",
+        "/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/cim_macro.v",
+        "/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/cim_mem_cell.v",
+        "/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/cim_sub_macro.v",
+        "/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/distribution.v",
+        "/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/flexcim.v",
+        "/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/flexcim_af604014/hw/merging.v"
+      ]
+    },
+    "flexcim_distribution": {
+      "passed": true,
+      "stage": "simulation",
+      "simulation": {
+        "passed": true,
+        "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/flexcim_distribution/e2e_sim.log",
+        "diagnostics": "FAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/flexcim_distribution/trusted_testbench.sv:106: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 100ns; walltime 0.001 s; speed 100.514 us/s\n- Verilator: cpu 0.000 s on 1 threads; allocated 3 MB\n",
+        "wall_seconds": 0.4223688170313835,
+        "command": [
+          "apptainer",
+          "exec",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/flexcim_distribution/obj_dir/VFASTTestbench"
+        ]
+      },
+      "cases": 100,
+      "expected_cases": 100,
+      "mean_cycles": 1.0,
+      "min_cycles": 1,
+      "max_cycles": 1,
+      "testbench_sha256": "4551d381a0ae368589e911a4e1d6d7bb99aa69f67e5cede880cc0ef46819e232",
+      "coverage": "flexcim_distribution"
+    },
+    "sanger_elaboration": {
+      "passed": false,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/sanger_elaboration/elaboration.log",
+      "diagnostics": "Warning: setting /home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/exp_unit as the project root directory for this run.\n/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/exp_unit/exp_unit.scala:32: error: value Double is not a member of object scala.collection.immutable.Range\n    Range.Double(0.0, 1.0, pow(2.0, -point)).map((a) => pow(2.0, a) - a)\n          ^\n/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/exp_unit/exp_unit.scala:48: error: value Double is not a member of object scala.collection.immutable.Range\npossible cause: maybe a semicolon is missing before `value Double`?\n            .Double(x, x + pow(2.0, -lut_bits), pow(2.0, -lut_bits))\n             ^\n/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/exp_unit/exp_unit.scala:62: error: overloaded method apply with alternatives:\n  (x: BigInt,y: BigInt)chisel3.UInt <and>\n  (x: Int,y: Int)chisel3.UInt <and>\n  (x: chisel3.UInt)chisel3.Bool <and>\n  (x: Int)chisel3.Bool <and>\n  (x: BigInt)chisel3.Bool\n cannot be applied to ()\n    v_bits := v.asUInt()(\n                ^\n/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/exp_unit/exp_unit.scala:81: error: overloaded method apply with alternatives:\n  (x: BigInt,y: BigInt)chisel3.UInt <and>\n  (x: Int,y: Int)chisel3.UInt <and>\n  (x: chisel3.UInt)chisel3.Bool <and>\n  (x: Int)chisel3.Bool <and>\n  (x: BigInt)chisel3.Bool\n cannot be applied to ()\n  x := io.in_value.asUInt()\n                   ^\n/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/pack.scala:31: error: overloaded method apply with alternatives:\n  (x: BigInt,y: BigInt)chisel3.UInt <and>\n  (x: Int,y: Int)chisel3.UInt <and>\n  (x: chisel3.UInt)chisel3.Bool <and>\n  (x: Int)chisel3.Bool <and>\n  (x: BigInt)chisel3.Bool\n cannot be applied to ()\n      (for (i <- 1 until bits) yield (r(i - 1, 0).andR() & io.en).asUInt())\n                                                  ^\n/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/pack.scala:33: error: missing parameter type for expanded function ((<x$1: error>, x$2) => Cat(x$1, x$2))\n      p.reverse.reduce(Cat(_, _)),\n                           ^\n/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/pack.scala:33: error: missing parameter type for expanded function ((<x$1: error>, <x$2: error>) => Cat(x$1, x$2))\n      p.reverse.reduce(Cat(_, _)),\n                              ^\n/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/pack.scala:34: error: overloaded method apply with alternatives:\n  (x: BigInt,y: BigInt)chisel3.UInt <and>\n  (x: Int,y: Int)chisel3.UInt <and>\n  (x: chisel3.UInt)chisel3.Bool <and>\n  (x: Int)chisel3.Bool <and>\n  (x: BigInt)chisel3.Bool\n cannot be applied to ()\n      io.en.asUInt()\n            ^\n/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/pack.scala:96: error: overloaded method apply with alternatives:\n  (x: BigInt,y: BigInt)chisel3.UInt <and>\n  (x: Int,y: Int)chisel3.UInt <and>\n  (x: chisel3.UInt)chisel3.Bool <and>\n  (x: Int)chisel3.Bool <and>\n  (x: BigInt)chisel3.Bool\n cannot be applied to ()\n        (for (b <- io.binaries) yield b.asUInt()).reduce(Cat(_, _)).orR()\n                                        ^\n/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/pack.scala:113: error: overloaded method apply with alternatives:\n  (x: BigInt,y: BigInt)chisel3.UInt <and>\n  (x: Int,y: Int)chisel3.UInt <and>\n  (x: chisel3.UInt)chisel3.Bool <and>\n  (x: Int)chisel3.Bool <and>\n  (x: BigInt)chisel3.Bool\n cannot be applied to ()\n        yield (io.binaries(i) & (b_counter(i).io.out === pe_n.U)).asUInt())\n                                                                  ^\n10 errors\nCompilation failed\n",
+      "wall_seconds": 6.58379081543535,
+      "command": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+        "run",
+        "/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/exp_unit/exp_unit.scala",
+        "/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/mask.scala",
+        "/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/pack.scala",
+        "/home/gz2522/Micro-Hackthon/FAST/libraries/third_party/sanger_5d99ba39/hardware/src/main/scala/pe_row/pe_row.scala",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/sanger_elaboration/Probe.scala",
+        "--workspace",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/sanger_elaboration/scala_build",
+        "--server=false",
+        "--main-class",
+        "Probe",
+        "--",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/sanger_elaboration/emitted"
+      ]
+    },
+    "legacy_topk_elaboration": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/legacy_topk_elaboration/elaboration.log",
+      "diagnostics": "Warning: setting /home/gz2522/Micro-Hackthon/FAST/hardware/chisel/src/main/scala/predict_unit as the project root directory for this run.\nwarning: 16 deprecations (since Chisel 3.6); re-run with -deprecation for details\nwarning: 47 feature warnings; re-run with -feature for details\n2 warnings\n",
+      "wall_seconds": 7.164724439382553,
+      "command": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+        "run",
+        "/home/gz2522/Micro-Hackthon/FAST/hardware/chisel/src/main/scala/predict_unit/topk.scala",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/legacy_topk_elaboration/Probe.scala",
+        "--workspace",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/legacy_topk_elaboration/scala_build",
+        "--server=false",
+        "--main-class",
+        "Probe",
+        "--",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/legacy_topk_elaboration/emitted"
+      ]
+    },
+    "legacy_topk_8_7_latency": {
+      "passed": true,
+      "stage": "simulation",
+      "simulation": {
+        "passed": true,
+        "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/legacy_topk_8_7_latency/e2e_sim.log",
+        "diagnostics": "RANK 0 cycle=8\nRANK 1 cycle=9\nRANK 2 cycle=10\nRANK 3 cycle=11\nRANK 4 cycle=12\nRANK 5 cycle=13\nRANK 6 cycle=14\nFAST_CASE cycles=14\nFAST_PASS cases=1\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/legacy_topk_8_7_latency/trusted_testbench.sv:27: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 196ps; walltime 0.001 s; speed 204.556 ns/s\n- Verilator: cpu 0.000 s on 1 threads; allocated 3 MB\n",
+        "wall_seconds": 0.4346654787659645,
+        "command": [
+          "apptainer",
+          "exec",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916/legacy_topk_8_7_latency/obj_dir/VFASTTestbench"
+        ]
+      },
+      "cases": 1,
+      "expected_cases": 1,
+      "mean_cycles": 14.0,
+      "min_cycles": 14,
+      "max_cycles": 14,
+      "testbench_sha256": "dfe4b61914a5b4c6e5d176b04ab79ef65fc3f8c8c427776aee25c23d7c935c59",
+      "coverage": "legacy_topk_8_7_latency"
+    }
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "updated_utc": "2026-09-16T10:00:56.640057+00:00",
+  "runs": [
+    {
+      "algorithm": "rq1_block_nm",
+      "job_id": "17874649",
+      "status": "ppa_failed",
+      "last_event": "ppa",
+      "error": null,
+      "agent_calls_started": 18,
+      "agent_calls_finished": 18,
+      "token_total_recorded": 1000135,
+      "calls_missing_usage": 0,
+      "search_pareto_rounds": [],
+      "qualified_pareto_rounds": [],
+      "references_read": [
+        "attention_tile_system_reference",
+        "execution_pe",
+        "pipelined_divider",
+        "topk_selection"
+      ],
+      "references_assigned": [
+        "pipelined_divider"
+      ],
+      "references_link_requested": [
+        "pipelined_divider"
+      ]
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "job_id": "17874651",
+      "status": "failed",
+      "last_event": "failure",
+      "error": "RuntimeError: Compiler/UArch build budget exhausted; see compiler_feedback.json",
+      "agent_calls_started": 113,
+      "agent_calls_finished": 113,
+      "token_total_recorded": 7160536,
+      "calls_missing_usage": 2,
+      "search_pareto_rounds": [
+        1
+      ],
+      "qualified_pareto_rounds": [
+        1
+      ],
+      "references_read": [
+        "dynax_exp_reference",
+        "pipelined_divider",
+        "sanger_official_mask",
+        "sanger_official_pack",
+        "sanger_official_sparse_pe"
+      ],
+      "references_assigned": [
+        "dynax_exp_reference",
+        "pipelined_divider"
+      ],
+      "references_link_requested": [
+        "pipelined_divider"
+      ]
+    }
+  ],
+  "rounds": [
+    {
+      "algorithm": "rq1_block_nm",
+      "round": 1,
+      "status": "ppa_failed",
+      "config": "{\"n\": 7}",
+      "calibration_rmse": 0.03358657986150424,
+      "calibration_sparsity": 0.125,
+      "heldout_rmse": 0.03775422390872124,
+      "heldout_sparsity": 0.125,
+      "search_feasible": false,
+      "independently_qualified": null,
+      "critic_layer": null,
+      "critique_applied": false,
+      "xm_collapses_to_fixed_nm": null,
+      "area_um2": null,
+      "power_mw": null,
+      "frequency_mhz": null,
+      "latency_ns": null,
+      "energy_nj": null,
+      "energy_efficiency_queries_per_joule": null,
+      "energy_efficiency_dense_equivalent_tops_per_w": null,
+      "slack_ns": null,
+      "hold_slack_ns": null,
+      "route_drc_violations": null
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "round": 1,
+      "status": "evaluated",
+      "config": "{\"threshold_256\": 3}",
+      "calibration_rmse": 0.03839193117999572,
+      "calibration_sparsity": 0.3775889376218323,
+      "heldout_rmse": 0.038867556410522336,
+      "heldout_sparsity": 0.363372802734375,
+      "search_feasible": true,
+      "independently_qualified": true,
+      "critic_layer": "kernel",
+      "critique_applied": true,
+      "xm_collapses_to_fixed_nm": null,
+      "area_um2": 74779.51599996084,
+      "power_mw": 23.3000778,
+      "frequency_mhz": 300,
+      "latency_ns": 73.33333333333334,
+      "energy_nj": 1.708672372,
+      "energy_efficiency_queries_per_joule": 585249704.0316163,
+      "energy_efficiency_dense_equivalent_tops_per_w": 0.05618397158703518,
+      "slack_ns": 0.07215206,
+      "hold_slack_ns": 0.00315911,
+      "route_drc_violations": 0
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "round": 2,
+      "status": "evaluated",
+      "config": "{\"threshold_256\": 2}",
+      "calibration_rmse": 0.02407117346551637,
+      "calibration_sparsity": 0.3153935185185185,
+      "heldout_rmse": 0.02399677929837984,
+      "heldout_sparsity": 0.3032684326171875,
+      "search_feasible": true,
+      "independently_qualified": null,
+      "critic_layer": "compiler",
+      "critique_applied": true,
+      "xm_collapses_to_fixed_nm": null,
+      "area_um2": 81281.88599996526,
+      "power_mw": 25.675957999999998,
+      "frequency_mhz": 300,
+      "latency_ns": 140.0,
+      "energy_nj": 3.59463412,
+      "energy_efficiency_queries_per_joule": 278192429.77641356,
+      "energy_efficiency_dense_equivalent_tops_per_w": 0.0267064732585357,
+      "slack_ns": 1.10246301,
+      "hold_slack_ns": 0.0059999,
+      "route_drc_violations": 0
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "round": 3,
+      "status": "failed",
+      "config": "{\"threshold_256\": 2}",
+      "calibration_rmse": 0.02407117346551637,
+      "calibration_sparsity": 0.3153935185185185,
+      "heldout_rmse": 0.02399677929837984,
+      "heldout_sparsity": 0.3032684326171875,
+      "search_feasible": null,
+      "independently_qualified": null,
+      "critic_layer": null,
+      "critique_applied": false,
+      "xm_collapses_to_fixed_nm": null,
+      "area_um2": null,
+      "power_mw": null,
+      "frequency_mhz": null,
+      "latency_ns": null,
+      "energy_nj": null,
+      "energy_efficiency_queries_per_joule": null,
+      "energy_efficiency_dense_equivalent_tops_per_w": null,
+      "slack_ns": null,
+      "hold_slack_ns": null,
+      "route_drc_violations": null
+    }
+  ]
+}

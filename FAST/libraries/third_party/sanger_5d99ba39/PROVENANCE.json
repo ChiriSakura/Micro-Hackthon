@@ -1,0 +1,45 @@
+{
+  "repository": "https://github.com/hatsu3/Sanger",
+  "commit": "5d99ba390ed9a81e138271a7776058b45938859a",
+  "license": "No LICENSE file declared in pinned upstream; retained for local research reference, no license inferred.",
+  "local_directory": "libraries/third_party/sanger_5d99ba39",
+  "files": {
+    "README.md": {
+      "sha256": "09dd7ee0dea9c8342548664f850cc431c8a94078984129367f42c415e1630d24",
+      "bytes": 6728
+    },
+    "hardware/build.sbt": {
+      "sha256": "6f0a2ab361e69a2676135d66d52544f80f1921b2a5583bfb4678ca6af089b692",
+      "bytes": 796
+    },
+    "hardware/src/main/scala/exp_unit/exp_unit.scala": {
+      "sha256": "29a41821e3d7dd6bf4bb26023cdbed828f7df5eb474931edf816422ac79588b3",
+      "bytes": 2553
+    },
+    "hardware/src/main/scala/pe_row/mask.scala": {
+      "sha256": "db53fb239a02d641ab03cd36e763c51fc8c929692ad8dc779f011b92c8bf4a5d",
+      "bytes": 3320
+    },
+    "hardware/src/main/scala/pe_row/pack.scala": {
+      "sha256": "ad3ee1f52d7764fb17ab42e4a2200e07a5f6c0a52b0b402b08eb6fa24198babd",
+      "bytes": 3053
+    },
+    "hardware/src/main/scala/pe_row/pe_row.scala": {
+      "sha256": "b015c2e19f583e0b0e784a506af7151f1d3e8de9fd72b024b85043243d666d6a",
+      "bytes": 7183
+    },
+    "hardware/src/test/scala/pe_row/mask_test.scala": {
+      "sha256": "3903e9ee3803cb832bceeb4703b727cc10c0f48dc90b5adf7c4d375f45283386",
+      "bytes": 2186
+    },
+    "hardware/src/test/scala/pe_row/pack_test.scala": {
+      "sha256": "d2c388c2df845a24b60cc4f3342dd265e14558c3b2ff11fc4a0d2f9e6abc99bc",
+      "bytes": 1296
+    },
+    "hardware/src/test/scala/pe_row/pe_row_test.scala": {
+      "sha256": "01d1d5e30b55fdb5daf5e69a32dab8a7eabe0e25bd9bc42b14a19fe7703f089b",
+      "bytes": 4067
+    }
+  },
+  "upstream_files_modified": false
+}

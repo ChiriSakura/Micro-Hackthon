@@ -1,0 +1,66 @@
+{
+  "algorithm": "dynax_xm_row",
+  "status": "critic_stopped",
+  "constraints": {
+    "max_quality_loss": 0.15,
+    "max_area_um2": 200000,
+    "frequency_mhz": 100
+  },
+  "agent_calls": {
+    "kernel": 1,
+    "compiler": 7,
+    "critic": 2,
+    "uarch": 13,
+    "uarch_assembly": 2,
+    "compiler_diagnosis": 2
+  },
+  "reference_integrity": true,
+  "pareto_rounds": [
+    2
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "status": "evaluated",
+      "ppa_backend": "hammer_openroad",
+      "complete": true,
+      "feasible": true,
+      "cases": 100,
+      "cycles": 26.0,
+      "frequency_mhz": 100,
+      "latency_ns": 260.0,
+      "area_um2": 37813.49599999643,
+      "power_mw": 4.01534094,
+      "energy_nj": 1.0439886444,
+      "energy_efficiency_queries_per_joule": 957864824.836978,
+      "slack_ns": 5.80800819,
+      "hold_slack_ns": 0.00817429,
+      "route_drc_violations": 0,
+      "quality_loss": 0.13973321024672453,
+      "critic_layer": "uarch",
+      "critique_applied": true
+    },
+    {
+      "round": 2,
+      "status": "evaluated",
+      "ppa_backend": "hammer_openroad",
+      "complete": true,
+      "feasible": true,
+      "cases": 100,
+      "cycles": 17.0,
+      "frequency_mhz": 100,
+      "latency_ns": 170.0,
+      "area_um2": 34272.76999999964,
+      "power_mw": 3.4166022700000003,
+      "energy_nj": 0.5808223859,
+      "energy_efficiency_queries_per_joule": 1721696725.6702287,
+      "slack_ns": 5.98842907,
+      "hold_slack_ns": 0.00933106,
+      "route_drc_violations": 0,
+      "quality_loss": 0.13973321024672453,
+      "critic_layer": "stop",
+      "critique_applied": false
+    }
+  ],
+  "scope": "Measured points from this run only; not a controlled ablation or global optimum"
+}

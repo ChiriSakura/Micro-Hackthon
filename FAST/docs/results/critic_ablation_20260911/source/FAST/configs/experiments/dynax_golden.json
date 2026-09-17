@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "experiment_id": "dynax-golden-v1",
+  "candidate_id": "x8-m64-seq64",
+  "model": "hf-internal-testing/tiny-random-LlamaForCausalLM",
+  "dataset": "wikitext-2-raw-v1",
+  "sequence_length": 64,
+  "sparsity_x": 8,
+  "sparsity_m": 64,
+  "epsilon": 0.01,
+  "seed": 20260903,
+  "budget": {
+    "max_candidates": 1,
+    "max_evaluations": 1,
+    "max_wall_seconds": 1800,
+    "max_cloud_usd": 0.0
+  }
+}

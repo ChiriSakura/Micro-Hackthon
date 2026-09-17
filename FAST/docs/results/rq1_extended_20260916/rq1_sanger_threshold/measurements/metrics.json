@@ -1,0 +1,87 @@
+{
+  "algorithm": "rq1_sanger_threshold",
+  "status": "failed",
+  "constraints": {
+    "max_quality_loss": 0.05,
+    "max_area_um2": 200000,
+    "frequency_mhz": 300
+  },
+  "agent_calls": {
+    "kernel": 2,
+    "compiler": 42,
+    "critic": 2,
+    "uarch": 47,
+    "uarch_assembly": 6,
+    "compiler_diagnosis": 14
+  },
+  "reference_integrity": true,
+  "pareto_rounds": [
+    1
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "status": "evaluated",
+      "ppa_backend": "hammer_openroad",
+      "complete": true,
+      "feasible": true,
+      "cases": 100,
+      "cycles": 22.0,
+      "frequency_mhz": 300,
+      "latency_ns": 73.33333333333334,
+      "area_um2": 74779.51599996084,
+      "power_mw": 23.3000778,
+      "energy_nj": 1.708672372,
+      "energy_efficiency_queries_per_joule": 585249704.0316163,
+      "slack_ns": 0.07215206,
+      "hold_slack_ns": 0.00315911,
+      "route_drc_violations": 0,
+      "quality_loss": 0.03839193117999572,
+      "critic_layer": "kernel",
+      "critique_applied": true
+    },
+    {
+      "round": 2,
+      "status": "evaluated",
+      "ppa_backend": "hammer_openroad",
+      "complete": true,
+      "feasible": true,
+      "cases": 100,
+      "cycles": 42.0,
+      "frequency_mhz": 300,
+      "latency_ns": 140.0,
+      "area_um2": 81281.88599996526,
+      "power_mw": 25.675957999999998,
+      "energy_nj": 3.59463412,
+      "energy_efficiency_queries_per_joule": 278192429.77641356,
+      "slack_ns": 1.10246301,
+      "hold_slack_ns": 0.0059999,
+      "route_drc_violations": 0,
+      "quality_loss": 0.02407117346551637,
+      "critic_layer": "compiler",
+      "critique_applied": true
+    },
+    {
+      "round": 3,
+      "status": "failed",
+      "ppa_backend": null,
+      "complete": null,
+      "feasible": null,
+      "cases": null,
+      "cycles": null,
+      "frequency_mhz": null,
+      "latency_ns": null,
+      "area_um2": null,
+      "power_mw": null,
+      "energy_nj": null,
+      "energy_efficiency_queries_per_joule": null,
+      "slack_ns": null,
+      "hold_slack_ns": null,
+      "route_drc_violations": null,
+      "quality_loss": null,
+      "critic_layer": null,
+      "critique_applied": false
+    }
+  ],
+  "scope": "Measured points from this run only; not a controlled ablation or global optimum"
+}

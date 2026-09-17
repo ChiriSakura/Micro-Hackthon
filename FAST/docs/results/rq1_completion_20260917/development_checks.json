@@ -1,0 +1,74 @@
+{
+  "scope": "Framework tests only; not hardware evidence",
+  "tests": [
+    {
+      "suite": "test_fullstack_recovery + test_fullstack_generation + test_fullstack_parallel + test_rq1_reports",
+      "result": "Initial regression run had one zero-call reporting failure; corrected; targeted retest included in recovery_tests.xml"
+    },
+    {
+      "suite": "test_fullstack_resume",
+      "result": "5 passed: interrupted PPA recovery, immutable originals, constraint/hash rejection, PPA failure to Critic, absent-summary finalizer"
+    },
+    {
+      "suite": "test_fullstack_behavior",
+      "result": "21 passed after guarding absent diagnostic-only outputs; golden math unchanged"
+    },
+    {
+      "suite": "repair_policy",
+      "result": "Initial local run had two missing-tclsh environment failures; actual Tcl tests rerun through existing OpenROAD container."
+    }
+  ],
+  "final_verification": {
+    "recovery_behavior_and_critic_off": {
+      "tests": 27,
+      "passed": 27,
+      "xml": "recovery_tests.xml"
+    },
+    "tool_timeout_process_group": {
+      "tests": 1,
+      "passed": 1,
+      "xml": "timeout_tests.xml"
+    },
+    "completion_report": {
+      "tests": 8,
+      "passed": 8,
+      "xml": "report_tests.xml"
+    },
+    "repair_policy_resume_timeout": {
+      "tests": 9,
+      "passed": 9,
+      "xml": "repair_policy_tests.xml"
+    },
+    "checkpoint_policy_resume_timeout": {
+      "tests": 11,
+      "passed": 11,
+      "xml": "checkpoint_repair_tests.xml"
+    },
+    "resume_decisions_and_report": {
+      "tests": 10,
+      "passed": 10,
+      "xml": "resume_decision_tests.xml"
+    },
+    "sta_feedback_and_physical_hooks": {
+      "tests": 7,
+      "passed": 7,
+      "xml": "sta_feedback_tests.xml",
+      "additional_real_data_check": "sta_feedback_parser_real_replay.json"
+    },
+    "critic_source_context_and_generation": {
+      "tests": 53,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 53,
+      "xml": "critic_source_context_tests.xml",
+      "scope": "Follow-up framework v5 only; not measured in current cohort"
+    },
+    "consolidated_reporting": {
+      "tests": 14,
+      "passed": 14,
+      "xml": "consolidated_report_tests.xml",
+      "scope": "Report identity, unchanged original rounds, separately qualified assisted follow-up, and matching historical CSV qualification"
+    }
+  }
+}

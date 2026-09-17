@@ -1,0 +1,20 @@
+{
+  "utc": "2026-09-17T06:00:01.207408+00:00",
+  "job_id": "17911305",
+  "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_sanger_r5_policy_recovery.sh",
+  "script_sha256": "1a7ba6b7f6d6c6be0adf4bf4d5b836499083ca6fe14d385f6381b91e210f665e",
+  "old_post_retained": "17910798",
+  "original_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_sanger_threshold",
+  "new_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_policy_v2_20260917/rq1_sanger_threshold",
+  "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_completion_policy_v2_20260917",
+  "policy": "no-clone-buffer",
+  "candidate_budget": 5,
+  "same_candidate_round": 5,
+  "note": "Explicit physical-tool compatibility retry; no sixth design. Original post job started during planning and is retained, with distinct output paths.",
+  "discarded_launch": {
+    "step": "17909362.6",
+    "reason": "Preparation guard detected old post already running; attempted step found no script and exited127; no design work executed"
+  },
+  "superseded_utc": "2026-09-17T06:07:54.332084+00:00",
+  "superseded_reason": "4-thread checkpoint reload with original placement padding and default repair moves completed successfully, preserving stronger optimization than no-clone-buffer. Incomplete conservative-policy attempt retained, not counted as functional failure."
+}

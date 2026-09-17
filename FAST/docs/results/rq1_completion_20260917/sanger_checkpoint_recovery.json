@@ -1,0 +1,14 @@
+{
+  "utc": "2026-09-17T06:16:30.320648+00:00",
+  "job_id": "17911508",
+  "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_sanger_r5_checkpoint_recovery.sh",
+  "script_sha256": "42a4771867dab01a1f0f303ea4eee41d59499a8bc6a9ac6fbf1a4959517fe221",
+  "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/rq1_completion_checkpoint_v3_20260917",
+  "original_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_sanger_threshold",
+  "new_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold",
+  "policy": "default",
+  "max_candidates": 5,
+  "same_candidate_round": 5,
+  "superseded_policy_job": "17911305",
+  "reason": "Default 4-thread repair succeeded on reloaded original checkpoint; preserve full optimization rather than skip clone/buffer moves"
+}

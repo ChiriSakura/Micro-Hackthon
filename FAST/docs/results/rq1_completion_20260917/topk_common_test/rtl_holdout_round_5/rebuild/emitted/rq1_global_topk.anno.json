@@ -1,0 +1,10 @@
+[
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/topk_common_test/rtl_holdout_round_5/rebuild/emitted"
+  }
+]

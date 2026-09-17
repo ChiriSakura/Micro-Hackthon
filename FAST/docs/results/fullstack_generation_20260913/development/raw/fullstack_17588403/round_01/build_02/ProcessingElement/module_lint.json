@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ProcessingElement/module_lint.log",
+  "diagnostics": "- V e r i l a t i o n   R e p o r t: Verilator 5.052 2026-09-05 rev v5.052\n- Verilator: Built from 0.030 MB sources in 2 modules, into 0.019 MB in 3 C++ files needing 0.000 MB\n- Verilator: Walltime 0.056 s (elab=0.011, cvt=0.025, bld=0.000); cpu 0.006 s on 1 threads; allocated 18.000 MB\n",
+  "wall_seconds": 0.59937509521842,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "verilator",
+    "--lint-only",
+    "--Wall",
+    "-Wno-fatal",
+    "--top-module",
+    "ProcessingElement",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_02/ProcessingElement/emitted/ProcessingElement.v"
+  ]
+}

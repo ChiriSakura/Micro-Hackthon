@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/module_lint.log",
+  "diagnostics": "- V e r i l a t i o n   R e p o r t: Verilator 5.052 2026-09-05 rev v5.052\n- Verilator: Built from 0.050 MB sources in 2 modules, into 0.078 MB in 3 C++ files needing 0.000 MB\n- Verilator: Walltime 0.061 s (elab=0.011, cvt=0.026, bld=0.000); cpu 0.016 s on 1 threads; allocated 20.000 MB\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/emitted/SelectAccumulate.v:109:14: Bits of signal are not used: '_b0_ranks_0_T'[2]\n                                                                                                                                                                                           : ... note: In instance 'SelectAccumulate'\n  109 |   wire [2:0] _b0_ranks_0_T = {{1'd0}, _GEN_4};  \n      |              ^~~~~~~~~~~~~\n                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.052\n                       ... Use \"/* verilator lint_off UNUSEDSIGNAL */\" and lint_on around source to disable this message.\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/emitted/SelectAccumulate.v:118:14: Bits of signal are not used: '_b0_ranks_1_T'[2]\n                                                                                                                                                                                           : ... note: In instance 'SelectAccumulate'\n  118 |   wire [2:0] _b0_ranks_1_T = {{1'd0}, _GEN_7};  \n      |              ^~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/emitted/SelectAccumulate.v:127:14: Bits of signal are not used: '_b0_ranks_2_T'[2]\n                                                                                                                                                                                           : ... note: In instance 'SelectAccumulate'\n  127 |   wire [2:0] _b0_ranks_2_T = {{1'd0}, _GEN_10};  \n      |              ^~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/emitted/SelectAccumulate.v:136:14: Bits of signal are not used: '_b0_ranks_3_T'[2]\n                                                                                                                                                                                           : ... note: In instance 'SelectAccumulate'\n  136 |   wire [2:0] _b0_ranks_3_T = {{1'd0}, _GEN_13};  \n      |              ^~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/emitted/SelectAccumulate.v:145:14: Bits of signal are not used: '_b1_ranks_0_T'[2]\n                                                                                                                                                                                           : ... note: In instance 'SelectAccumulate'\n  145 |   wire [2:0] _b1_ranks_0_T = {{1'd0}, _GEN_16};  \n      |              ^~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/emitted/SelectAccumulate.v:154:14: Bits of signal are not used: '_b1_ranks_1_T'[2]\n                                                                                                                                                                                           : ... note: In instance 'SelectAccumulate'\n  154 |   wire [2:0] _b1_ranks_1_T = {{1'd0}, _GEN_19};  \n      |              ^~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/emitted/SelectAccumulate.v:163:14: Bits of signal are not used: '_b1_ranks_2_T'[2]\n                                                                                                                                                                                           : ... note: In instance 'SelectAccumulate'\n  163 |   wire [2:0] _b1_ranks_2_T = {{1'd0}, _GEN_22};  \n      |              ^~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/emitted/SelectAccumulate.v:172:14: Bits of signal are not used: '_b1_ranks_3_T'[2]\n                                                                                                                                                                                           : ... note: In instance 'SelectAccumulate'\n  172 |   wire [2:0] _b1_ranks_3_T = {{1'd0}, _GEN_25};  \n      |              ^~~~~~~~~~~~~\n",
+  "wall_seconds": 0.5824636956676841,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "verilator",
+    "--lint-only",
+    "--Wall",
+    "-Wno-fatal",
+    "--top-module",
+    "SelectAccumulate",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/emitted/SelectAccumulate.v"
+  ],
+  "elaboration": {
+    "passed": true,
+    "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/chisel_elaboration.log",
+    "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+    "wall_seconds": 5.036639723926783,
+    "command": [
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+      "run",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/SelectAccumulate.scala",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/FASTGeneratedElaborate.scala",
+      "--workspace",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/scala_build",
+      "--server=false",
+      "--main-class",
+      "FASTGeneratedElaborate",
+      "--",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/emitted"
+    ],
+    "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/emitted/SelectAccumulate.v",
+    "elaborated_sha256": "1b4adf61fd30097799c32eed997c2331662d7fd28dcb563f8e0ac450c477aeeb"
+  },
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/emitted/SelectAccumulate.v",
+  "scope": "structure and frozen Compiler functional vectors; not independent algorithm equivalence",
+  "functional": {
+    "passed": true,
+    "stage": "simulation",
+    "simulation": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/functional/e2e_sim.log",
+      "diagnostics": "FAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_PASS cases=4\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/functional/trusted_testbench.sv:506: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 765ps; walltime 0.001 s; speed 872.886 ns/s\n- Verilator: cpu 0.000 s on 1 threads; allocated 3 MB\n",
+      "wall_seconds": 0.4202035404741764,
+      "command": [
+        "apptainer",
+        "exec",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_01/recovered_design/SelectAccumulate/fresh_check/functional/obj_dir/VFASTTestbench"
+      ]
+    },
+    "cases": 4,
+    "expected_cases": 4,
+    "testbench_sha256": "ad4511161d686e12f4d4840aee28c2edf8b6e93c45d3607e87cab4d60ace048d",
+    "coverage": "Compiler-authored module scenarios; cycle marker is a case counter, not performance evidence"
+  },
+  "test_oracle": "computed executable behavior contract"
+}

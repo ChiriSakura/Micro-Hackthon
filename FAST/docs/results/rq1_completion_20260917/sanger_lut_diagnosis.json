@@ -1,0 +1,41 @@
+{
+  "scope": "Read-only diagnosis of old failed generated RTL; no RTL or golden modified",
+  "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_03/build_05/ExpStage/ExpStage.scala",
+  "sha256": "a16b718655396482681d56472fa8b89cf9d59a43c32e787fb1cc297183292c2f",
+  "declared_comment_entries": 256,
+  "actual_literal_entries": 240,
+  "failing_transaction_max_score": 201,
+  "failing_transaction_lane5_score": -78,
+  "mathematical_delta": 279,
+  "clamped_index": 255,
+  "frozen_expected_lane5": 0,
+  "simulator_actual_lane5": 65535,
+  "emitted_mux_evidence": "addr[7:0] has cases 1..239; default value 65535. Address 255 has no matching entry.",
+  "root_cause": "LUT transcription errors (wrong length and some wrong values), coupled with incorrect diagnosis using current instead of captured transaction inputs.",
+  "existing_entries_match_contract": false,
+  "missing_expected_entries": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "existing_entry_mismatches": [
+    {
+      "index": 188,
+      "rtl": 0,
+      "contract": 1
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "block_nm_assisted_A1",
+    "algorithm": "rq1_block_nm",
+    "label": "A1",
+    "evidence_class": "assisted_repair",
+    "report": "../block_nm_timing_repair_20260917/RESULTS.md",
+    "record": "../block_nm_timing_repair_20260917/accepted_record.json",
+    "post": "../block_nm_timing_repair_20260917/validation/results.json",
+    "verification": "../block_nm_timing_repair_20260917/validation/archive_verification.json",
+    "sha256": {
+      "record": "15e40dd6d5138a625aadf9b5d5ee20b94492f6833830999b0a79c05bf067b62f",
+      "post": "ae37750cc4104099e4cde75625e4177851913c9c09c6f197f145a63fc4b82604",
+      "verification": "ec4d74c97b96eaddee5d55d94621860c2e756c1f52b151a8f1a9288b24f2e4fd"
+    }
+  }
+]

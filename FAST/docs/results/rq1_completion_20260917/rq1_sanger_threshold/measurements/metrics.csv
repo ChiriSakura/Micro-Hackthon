@@ -1,0 +1,6 @@
+round,status,ppa_backend,complete,feasible,cases,cycles,frequency_mhz,latency_ns,area_um2,power_mw,energy_nj,energy_efficiency_queries_per_joule,slack_ns,hold_slack_ns,route_drc_violations,quality_loss,critic_layer,critique_applied
+1,evaluated,hammer_openroad,True,True,100,22.0,300,73.33333333333334,74779.51599996084,23.3000778,1.708672372,585249704.0316163,0.07215206,0.00315911,0,0.03839193117999572,kernel,True
+2,evaluated,hammer_openroad,True,True,100,42.0,300,140.0,81281.88599996526,25.675957999999998,3.59463412,278192429.77641356,1.10246301,0.0059999,0,0.02407117346551637,compiler,True
+3,failed,,,,,,,,,,,,,,,,kernel,True
+4,evaluated,hammer_openroad,True,False,100,14.0,300,46.66666666666667,64421.20999999158,17.6763162,0.8248947560000001,1212275860.3159308,-2.59888577,0.00906766,3,0.00968334698849058,compiler,True
+5,ppa_failed,hammer_openroad,False,False,100,21.0,,,,,,,,,,,stop,False

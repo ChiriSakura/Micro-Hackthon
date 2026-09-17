@@ -1,0 +1,15 @@
+% Requires \usepackage{graphicx}. Copy the PDF to the corresponding paper path.
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/agentflow/fast_agentflow.pdf}
+  \caption{Overview of \textsc{FAST}. The Kernel Agent selects an algorithm
+  configuration from measured profiles. The Compiler Agent plans module
+  interfaces and tests and binds read-only references to isolated UArch tasks.
+  Accepted modules are assembled and validated against an independent algorithm
+  golden before physical evaluation. Local failures trigger bounded repair or
+  compiler diagnosis. Complete PPA evidence enables the Critic to select Kernel,
+  Compiler, or UArch re-entry. On termination, feasible nondominated designs are
+  retained in the latency--energy-efficiency space. Module dispatch is
+  dependency-aware and serial by default.}
+  \label{fig:fast-agentflow}
+\end{figure*}

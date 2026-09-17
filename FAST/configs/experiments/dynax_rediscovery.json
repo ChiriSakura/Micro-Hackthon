@@ -1,0 +1,25 @@
+{
+  "task": {
+    "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+    "dataset": "wikitext-2-raw-v1", "sequence_length": 512, "head_dim": 64,
+    "epsilon": 0.05, "data_seed": 20260903, "max_samples": 2,
+    "dtype": "float32", "capture_layer": 10, "capture_head": 0
+  },
+  "kernel_space": {
+    "block_ms": [32, 64], "xm_high": [8, 16, 32], "xm_low": [4, 8],
+    "threshold_pairs": [[0.75, 0.05], [0.75, 0.2], [1.0, 0.1], [1.5, 0.05], [1.5, 0.2]]
+  },
+  "hardware_space": {
+    "tile_q": [32, 64], "tile_k": [32, 64], "tile_d": [32, 64],
+    "parallelism": [4, 8, 16], "double_buffer": [false, true],
+    "num_rows": [16, 32], "pe_per_row": [4, 8], "reg_width": [16, 32],
+    "queue_depth": [0, 2, 4], "bank_count": [8, 16, 32], "divider_stages": [4, 8, 12],
+    "sram_bytes": [65536, 131072, 262144]
+  },
+  "constraints": {
+    "max_pe": 256, "max_sram_bytes": 524288, "max_area_um2": 4000000,
+    "target_mhz": 350, "max_power_mw": null, "data_widths": [16]
+  },
+  "budgets": {"kernel": 4, "kernel_batch": 2, "hardware_per_kernel": 8,
+              "hardware_batch": 4, "repair_hardware": 4, "wall_seconds": 5400}
+}

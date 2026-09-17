@@ -1,0 +1,2853 @@
+{
+  "name": "NormalizationUnit",
+  "purpose": "Computes the final normalized result. It calculates the denominator D (sum of selected exponentials) and numerator N (sum of selected weighted values), then performs the final scaled division (N*16)/D.",
+  "ports": [
+    {
+      "name": "clock",
+      "direction": "input",
+      "width": 1
+    },
+    {
+      "name": "reset",
+      "direction": "input",
+      "width": 1
+    },
+    {
+      "name": "valid_in",
+      "direction": "input",
+      "width": 1
+    },
+    {
+      "name": "keep_mask_in",
+      "direction": "input",
+      "width": 16
+    },
+    {
+      "name": "exponentials_in",
+      "direction": "input",
+      "width": 256
+    },
+    {
+      "name": "v_in",
+      "direction": "input",
+      "width": 128
+    },
+    {
+      "name": "result_out",
+      "direction": "output",
+      "width": 16
+    },
+    {
+      "name": "valid_out",
+      "direction": "output",
+      "width": 1
+    }
+  ],
+  "dependencies": [],
+  "implementation": "This module is a 41-stage pipeline. It computes D and N in parallel. For D (u20), it uses a 4-stage adder tree on the input 'exponentials_in', masked by 'keep_mask_in'. For N (s28), it first multiplies each exponential 'e_i' (u16) by its corresponding value 'v_i' (s8) in a 2-stage pipelined multiplier array, producing 16 signed 24-bit products. Then, a 4-stage masked adder tree sums the products selected by 'keep_mask_in'. The D path is delayed to align with the N path. The resulting N is shifted left by 4 (multiplied by 16) to produce a signed 32-bit numerator. This and the 20-bit D are fed to a pipelined divider. The divider is adapted from the 'pipelined_divider' reference, configured for a 32-bit signed numerator and a 32-bit denominator (D is zero-extended), with a latency of 33 cycles. The 32-bit quotient is truncated to 16 bits for the final 'result_out'.",
+  "reference_ids": [
+    "pipelined_divider"
+  ],
+  "design_prompt": "Design a pipelined Chisel RawModule 'NormalizationUnit' with a latency of 41 cycles. It receives a 16-bit 'keep_mask_in', 16 exponentials (256-bit 'exponentials_in'), and 16 values (128-bit 'v_in'). It must compute D = sum(e[i] for selected i) and N = sum(e[i]*v[i] for selected i). Use masked adder trees for these summations. The 'e[i]*v[i]' products are u16 * s8 -> s24. The final sums are D (u20) and N (s28). Then, compute 'result = trunc_toward_zero((N*16)/D)'. The division should be implemented using a pipelined divider adapted from the 'pipelined_divider' reference. Configure the divider for a 32-bit signed numerator and a 32-bit denominator (the 20-bit unsigned D must be zero-extended), with 33 pipeline stages. The final result is a signed 16-bit value. Propagate a valid signal through the pipeline. The reference testbench tb_divider.cpp shows how to handle streaming valid signals and latency.",
+  "tests": [
+    {
+      "name": "behavior_isolated_0",
+      "steps": [
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "result_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "result_out": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "behavior_isolated_1",
+      "steps": [
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "result_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 65535,
+            "exponentials_in": 1766874025136433896750911497805568136923323180981774075523881651146915841,
+            "v_in": 21345817372864405881847059188222722561
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 136
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "result_out": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "behavior_isolated_2",
+      "steps": [
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "result_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 43690,
+            "exponentials_in": 3533667170432847510277228450018670694030500215976656085157860321611874303,
+            "v_in": 320270990202665973124521174155042619135
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 65392
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "result_out": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "behavior_stream",
+      "steps": [
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "result_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 65535,
+            "exponentials_in": 1766874025136433896750911497805568136923323180981774075523881651146915841,
+            "v_in": 21345817372864405881847059188222722561
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 43690,
+            "exponentials_in": 3533667170432847510277228450018670694030500215976656085157860321611874303,
+            "v_in": 320270990202665973124521174155042619135
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 1609,
+            "exponentials_in": 23605121785222801105264196445145149423301273745633411102421058260267975025060,
+            "v_in": 128086392455971070442135698297459782250
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 11286,
+            "exponentials_in": 25379684212061305923137919709114018929901727412738122632903910889733049361951,
+            "v_in": 99829754364537907470093051084391715383
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 51926,
+            "exponentials_in": 22323678046854345324693416662543488804467849003523428186461206708795307932118,
+            "v_in": 135831285363708096187895293353329130573
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 40052,
+            "exponentials_in": 13667786019928914550451013908523662350058005504477717563478510928046709312553,
+            "v_in": 216802709995523581085210719476650035030
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 25442,
+            "exponentials_in": 55080734829829678414521802011229250081219803168187137639468001553171277918784,
+            "v_in": 174236059331992249156428335075650083409
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 48811,
+            "exponentials_in": 12971017956642439342999698654807414263709122192022878845047752947127340301523,
+            "v_in": 261180739453808012180678450763392260978
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 33391,
+            "exponentials_in": 1295312508541355867989622785272308325712824000892151351859534858226914855617,
+            "v_in": 151712307946896274203305592656027744160
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 5910,
+            "exponentials_in": 79816644209706431475494094312881128374986525526599388261422974644571606983538,
+            "v_in": 171312443324049067962682668370240599700
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 29745,
+            "exponentials_in": 94864807259766012710375825709533020639151669449204261740369179224511844154291,
+            "v_in": 227330174580115658925746612924070904249
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 55689,
+            "exponentials_in": 103679274178793124535841276223798531740772521140091888919712001598656653468155,
+            "v_in": 136549469526546327460017182112158150457
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 58141,
+            "exponentials_in": 75509281559245687598737896755356284041900987556777584508672183376416203281987,
+            "v_in": 11482975441118222322994769175580437392
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 63239,
+            "exponentials_in": 22997157520259271580111007625930269415481192622989807560050339900868601561,
+            "v_in": 96725384798316743922543801036962965651
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 65535,
+            "exponentials_in": 57896928055670665928733867960092856710703453994410772906766553944782138277888,
+            "v_in": 170808403787765189503184116671632670848
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 0,
+            "exponentials_in": 57895161181645529494837117048595051142566530671229791132691030063130991362047,
+            "v_in": 169473963133173273960190490760135540607
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 65535,
+            "exponentials_in": 57895161181645529494837117048595051142566530671229791132691030063130991362047,
+            "v_in": 169473963133173273960190490760135540607
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 0,
+            "exponentials_in": 57896928055670665928733867960092856710703453994410772906766553944782138277888,
+            "v_in": 170808403787765189503184116671632670848
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 0,
+            "exponentials_in": 57896928055670665928733867960092856710703453994410772906766553944782138277888,
+            "v_in": 169473963133173273960190490760135540607
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 65535,
+            "exponentials_in": 57895161181645529494837117048595051142566530671229791132691030063130991362047,
+            "v_in": 170808403787765189503184116671632670848
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 0,
+            "exponentials_in": 57895161181645529494837117048595051142566530671229791132691030063130991362047,
+            "v_in": 170808403787765189503184116671632670848
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "keep_mask_in": 65535,
+            "exponentials_in": 57896928055670665928733867960092856710703453994410772906766553944782138277888,
+            "v_in": 169473963133173273960190490760135540607
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 136
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 65392
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 65406
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 65048
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 835
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 65052
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 65156
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 65131
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 509
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 65218
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 315
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 65506
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 64204
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 64786
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 63488
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 2032
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 63488
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "result_out": 2032
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "keep_mask_in": 0,
+            "exponentials_in": 0,
+            "v_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "result_out": 0
+          }
+        }
+      ]
+    }
+  ],
+  "behavior": {
+    "test_generation_version": 2,
+    "latency": 41,
+    "reset": "reset",
+    "valid_input": "valid_in",
+    "valid_output": "valid_out",
+    "let": {
+      "m0": "lane(keep_mask_in,0,1)",
+      "m1": "lane(keep_mask_in,1,1)",
+      "m2": "lane(keep_mask_in,2,1)",
+      "m3": "lane(keep_mask_in,3,1)",
+      "m4": "lane(keep_mask_in,4,1)",
+      "m5": "lane(keep_mask_in,5,1)",
+      "m6": "lane(keep_mask_in,6,1)",
+      "m7": "lane(keep_mask_in,7,1)",
+      "m8": "lane(keep_mask_in,8,1)",
+      "m9": "lane(keep_mask_in,9,1)",
+      "m10": "lane(keep_mask_in,10,1)",
+      "m11": "lane(keep_mask_in,11,1)",
+      "m12": "lane(keep_mask_in,12,1)",
+      "m13": "lane(keep_mask_in,13,1)",
+      "m14": "lane(keep_mask_in,14,1)",
+      "m15": "lane(keep_mask_in,15,1)",
+      "e0": "lane(exponentials_in,0,16)",
+      "e1": "lane(exponentials_in,1,16)",
+      "e2": "lane(exponentials_in,2,16)",
+      "e3": "lane(exponentials_in,3,16)",
+      "e4": "lane(exponentials_in,4,16)",
+      "e5": "lane(exponentials_in,5,16)",
+      "e6": "lane(exponentials_in,6,16)",
+      "e7": "lane(exponentials_in,7,16)",
+      "e8": "lane(exponentials_in,8,16)",
+      "e9": "lane(exponentials_in,9,16)",
+      "e10": "lane(exponentials_in,10,16)",
+      "e11": "lane(exponentials_in,11,16)",
+      "e12": "lane(exponentials_in,12,16)",
+      "e13": "lane(exponentials_in,13,16)",
+      "e14": "lane(exponentials_in,14,16)",
+      "e15": "lane(exponentials_in,15,16)",
+      "v0": "signed(lane(v_in,0,8),8)",
+      "v1": "signed(lane(v_in,1,8),8)",
+      "v2": "signed(lane(v_in,2,8),8)",
+      "v3": "signed(lane(v_in,3,8),8)",
+      "v4": "signed(lane(v_in,4,8),8)",
+      "v5": "signed(lane(v_in,5,8),8)",
+      "v6": "signed(lane(v_in,6,8),8)",
+      "v7": "signed(lane(v_in,7,8),8)",
+      "v8": "signed(lane(v_in,8,8),8)",
+      "v9": "signed(lane(v_in,9,8),8)",
+      "v10": "signed(lane(v_in,10,8),8)",
+      "v11": "signed(lane(v_in,11,8),8)",
+      "v12": "signed(lane(v_in,12,8),8)",
+      "v13": "signed(lane(v_in,13,8),8)",
+      "v14": "signed(lane(v_in,14,8),8)",
+      "v15": "signed(lane(v_in,15,8),8)",
+      "d_sum": "(e0 if m0==1 else 0) + (e1 if m1==1 else 0) + (e2 if m2==1 else 0) + (e3 if m3==1 else 0) + (e4 if m4==1 else 0) + (e5 if m5==1 else 0) + (e6 if m6==1 else 0) + (e7 if m7==1 else 0) + (e8 if m8==1 else 0) + (e9 if m9==1 else 0) + (e10 if m10==1 else 0) + (e11 if m11==1 else 0) + (e12 if m12==1 else 0) + (e13 if m13==1 else 0) + (e14 if m14==1 else 0) + (e15 if m15==1 else 0)",
+      "n_sum": "(signed(e0,24)*v0 if m0==1 else 0) + (signed(e1,24)*v1 if m1==1 else 0) + (signed(e2,24)*v2 if m2==1 else 0) + (signed(e3,24)*v3 if m3==1 else 0) + (signed(e4,24)*v4 if m4==1 else 0) + (signed(e5,24)*v5 if m5==1 else 0) + (signed(e6,24)*v6 if m6==1 else 0) + (signed(e7,24)*v7 if m7==1 else 0) + (signed(e8,24)*v8 if m8==1 else 0) + (signed(e9,24)*v9 if m9==1 else 0) + (signed(e10,24)*v10 if m10==1 else 0) + (signed(e11,24)*v11 if m11==1 else 0) + (signed(e12,24)*v12 if m12==1 else 0) + (signed(e13,24)*v13 if m13==1 else 0) + (signed(e14,24)*v14 if m14==1 else 0) + (signed(e15,24)*v15 if m15==1 else 0)"
+    },
+    "outputs": {
+      "result_out": "trunc_div(n_sum * 16, d_sum)"
+    },
+    "vectors": [
+      {
+        "keep_mask_in": 0,
+        "exponentials_in": 0,
+        "v_in": 0
+      },
+      {
+        "keep_mask_in": "0xFFFF",
+        "exponentials_in": "pack(16, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)",
+        "v_in": "spack(8, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)"
+      },
+      {
+        "keep_mask_in": "0xAAAA",
+        "exponentials_in": "pack(16, 65535,1,65535,1,65535,1,65535,1,65535,1,65535,1,65535,1,65535,1)",
+        "v_in": "spack(8, -1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16)"
+      }
+    ]
+  },
+  "linked_reference_ids": []
+}

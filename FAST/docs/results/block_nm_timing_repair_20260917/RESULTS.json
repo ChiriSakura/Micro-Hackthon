@@ -1,0 +1,423 @@
+{
+  "scope": "Externally diagnosed FAST assembly UArch repair; original RQ1 five-round record remains unchanged.",
+  "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm",
+  "status": "assisted_repair_complete",
+  "qualified": true,
+  "checks": {
+    "original_record_unchanged": true,
+    "original_top_unchanged": true,
+    "accepted_children_unchanged": true,
+    "config_unchanged": true,
+    "plan_unchanged": true,
+    "archive_verified": true,
+    "independently_qualified": true,
+    "critic_called_with_measured_result": true
+  },
+  "before": {
+    "frequency_mhz": 300,
+    "area_um2": 42292.93599999565,
+    "power_mw": 13.7061542,
+    "latency_ns": 233.33333333333334,
+    "energy_nj": 3.198102646666667,
+    "energy_efficiency_queries_per_joule": 312685398.3383818,
+    "slack_ns": -1.85258663,
+    "hold_slack_ns": -2.837e-05,
+    "route_drc_violations": 0
+  },
+  "after": {
+    "frequency_mhz": 300,
+    "area_um2": 41780.88599999517,
+    "power_mw": 13.4159094,
+    "latency_ns": 233.33333333333334,
+    "energy_nj": 3.13037886,
+    "energy_efficiency_queries_per_joule": 319450151.15518636,
+    "slack_ns": 0.43733039,
+    "hold_slack_ns": 0.00664113,
+    "route_drc_violations": 0
+  },
+  "heldout": {
+    "config": {
+      "n": 7
+    },
+    "quality_loss": 0.033320809848209114,
+    "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+    "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+    "dense_fixedpoint_relative_rmse": 0.0010348432013711632,
+    "squared_error_sum": 2821749.5371025433,
+    "dense_squared_output_sum": 2541483918.814936,
+    "sparsity": 0.125,
+    "fully_dense_query_fraction": 0.0,
+    "active_keys_histogram": {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 8192,
+      "15": 0,
+      "16": 0
+    },
+    "samples": 8192,
+    "seed": 2026091801,
+    "includes_shared_boundary_cases": false,
+    "workload_sha256": "b8a0ed265cc4b24bad5253a4317a446abaa6c1d3e00c67042a1c0d079fa3c7b1"
+  },
+  "independent_checks": {
+    "gates": {
+      "returncode": 0,
+      "passed": true,
+      "summary": {
+        "passed": true,
+        "verification": {
+          "passed": true,
+          "stage": "simulation",
+          "simulation": {
+            "passed": true,
+            "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/gates_round_1/e2e_sim.log",
+            "diagnostics": "FAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/gates_round_1/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 71ns; walltime 0.082 s; speed 864.664 ns/s\n- Verilator: cpu 0.081 s on 1 threads; allocated 5 MB\n",
+            "timed_out": false,
+            "returncode": 0,
+            "wall_seconds": 0.6295125520118745,
+            "command": [
+              "apptainer",
+              "exec",
+              "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+              "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/gates_round_1/obj_dir/VFASTTestbench"
+            ]
+          },
+          "cases": 100,
+          "expected_cases": 100,
+          "mean_cycles": 70.0,
+          "min_cycles": 70,
+          "max_cycles": 70,
+          "testbench_sha256": "f0eecd5ed8caa171b93a722f62a3a591f9594f5a9846301ce8f2d971bb930594",
+          "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+        },
+        "physical_measurement": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/result.json",
+        "routed_sha256": "6e3a9a45df9daf314759e2437d070d7c6614fb1adfe3d89975b54aac0a1fcfc4",
+        "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+        "llm_calls": 0,
+        "scope": "zero-delay functional gate-level E2E on routed netlist; not SDF timing simulation"
+      }
+    },
+    "rtl_holdout": {
+      "returncode": 0,
+      "passed": true,
+      "summary": {
+        "passed": true,
+        "llm_calls": 0,
+        "baseline": {
+          "passed": true,
+          "stage": "evaluation",
+          "evaluation": {
+            "complete": true,
+            "feasible": false,
+            "synthesis": {
+              "success": true,
+              "top_module": "Rq1BlockNmTop",
+              "technology": "nangate45",
+              "cell_area_um2": 47912.718,
+              "cell_count": 32284,
+              "cell_histogram": {
+                "FixedPointDivPipelined": 1,
+                "AND2_X1": 1988,
+                "AND3_X1": 125,
+                "AND4_X1": 111,
+                "AOI211_X1": 765,
+                "AOI21_X1": 2601,
+                "AOI221_X1": 321,
+                "AOI222_X1": 13,
+                "AOI22_X1": 695,
+                "INV_X1": 2258,
+                "MUX2_X1": 626,
+                "NAND2_X1": 3972,
+                "NAND3_X1": 693,
+                "NAND4_X1": 786,
+                "NOR2_X1": 4537,
+                "NOR3_X1": 685,
+                "OAI211_X1": 681,
+                "OAI21_X1": 2887,
+                "OAI221_X1": 313,
+                "OAI222_X1": 14,
+                "OAI22_X1": 436,
+                "OR2_X1": 409,
+                "OR3_X1": 158,
+                "XNOR2_X1": 1415,
+                "XOR2_X1": 1006,
+                "DFF_X1": 3920,
+                "NOR4_X1": 700,
+                "OAI33_X1": 50,
+                "OR4_X1": 119,
+                "DividerWrapper": 1,
+                "FindMin8": 2,
+                "Rq1BlockNmTop": 1
+              },
+              "netlist_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/mapped.v",
+              "wall_seconds": 50.73508954048157,
+              "log_uri": "file:///scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/yosys_Rq1BlockNmTop.log",
+              "error": null
+            },
+            "verification": {
+              "passed": true,
+              "stage": "simulation",
+              "simulation": {
+                "passed": true,
+                "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/e2e_sim.log",
+                "diagnostics": "FAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 71ns; walltime 0.006 s; speed 11.818 us/s\n- Verilator: cpu 0.005 s on 1 threads; allocated 4 MB\n",
+                "timed_out": false,
+                "returncode": 0,
+                "wall_seconds": 0.5812603730009869,
+                "command": [
+                  "apptainer",
+                  "exec",
+                  "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                  "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/obj_dir/VFASTTestbench"
+                ]
+              },
+              "cases": 100,
+              "expected_cases": 100,
+              "mean_cycles": 70.0,
+              "min_cycles": 70,
+              "max_cycles": 70,
+              "testbench_sha256": "f0eecd5ed8caa171b93a722f62a3a591f9594f5a9846301ce8f2d971bb930594",
+              "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+            },
+            "design_sha256": "50de94ba547fdee2a0ea5cb5867e469235ad4b449b61617ba16a720dc7e39f6b",
+            "scope": "entire generated top and all instantiated modules, memories mapped to flops",
+            "power_method": "OpenSTA uniform-activity estimate, pre-layout Nangate45",
+            "activity": 0.1,
+            "ppa_backend": "yosys_opensta",
+            "timing": {
+              "success": true,
+              "top_module": "Rq1BlockNmTop",
+              "technology": "nangate45",
+              "clock_period_ns": 3.3333333333333335,
+              "critical_path_ns": 6.8402,
+              "slack_ns": -3.5617,
+              "activity": 0.1,
+              "worst_stage_ns": 6.0797,
+              "worst_stage_cell": "INV_X1",
+              "timing_credible": false,
+              "internal_power_w": 0.009418248,
+              "switching_power_w": 0.002192682,
+              "leakage_power_w": 0.001003274,
+              "total_power_w": 0.01261421,
+              "wall_seconds": 2.1871514320373535,
+              "log_uri": "file:///scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/sta_Rq1BlockNmTop.log",
+              "error": "时序不可信：单级 INV_X1 报出 6.080 ns，而 45nm 标准单元约 0.02-0.1 ns。这条路径由未插缓冲的高扇出主导，要等布局布线才有意义。面积与功耗不受影响。"
+            },
+            "area_um2": 47912.718,
+            "power_mw": 12.61421,
+            "frequency_mhz": 300,
+            "max_frequency_mhz": null,
+            "slack_ns": -3.5617,
+            "latency_ns": 233.33333333333334,
+            "energy_nj": 2.943315666666667,
+            "quality_loss": 0.03358657986150424,
+            "energy_efficiency_queries_per_joule": 339752888.6639976,
+            "efficiency_scope": "one verified query; energy = modeled average power times single-query latency",
+            "dense_equivalent_ops_per_query": 96,
+            "energy_efficiency_dense_equivalent_tops_per_w": 0.03261627731174377
+          },
+          "original_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm",
+          "original_round": 1,
+          "llm_calls": 0,
+          "task": {
+            "algorithm": "rq1_block_nm",
+            "prompt": "Generate a complete sparse softmax decode-row system from signed Q/K/V to result AND selected mask under the exact supplied algorithm contract. Optimize the latency-energy-efficiency Pareto frontier subject to quality, area and 300 MHz timing constraints. Read and assign relevant immutable hardware AND golden test references. Compiler chooses modules, scheduling, numeric widths and pipeline depths; UArch generates each implementation, then a separate assembly implements the full system. Prefer compatible native library reuse with linked_reference_ids and thin generated adapters; inspect integrated bundles if useful. Reuse must preserve exact contract math. Start from a correct compact implementation; one-query-per-cycle throughput is not required. All algorithm parameters are chosen by Kernel from measured profiles and can be revisited by Critic. No manually supplied system plan or previous generated RTL. The expanded catalog contains official Sanger mask/packing/sparse-PE references, FLOW/FlexCiM N:M operand distribution, SpAtten real TopK/QuickSelect and a signed bitonic network. In the library-reading phase inspect the relevant domain references and associated tests, then select compatible pieces or translate their design into fresh modules. Respect compatibility metadata; never use TopKDummy, approximate arithmetic in place of the exact LUT, or native-link reference-only code. This experiment requests five design rounds, not early stopping after the first feasible point.\nThis is a separately recorded, externally diagnosed assembly repair. The previous accepted implementation and system plan are supplied intentionally. Preserve the algorithm contract, configuration and accepted child interfaces.",
+            "constraints": {
+              "max_quality_loss": 0.05,
+              "max_area_um2": 200000,
+              "frequency_mhz": 300
+            },
+            "max_loops": 1,
+            "compiler_attempts": 5,
+            "module_attempts": 5,
+            "seed": 17,
+            "kernel_profile_budget": 64,
+            "activity": 0.1,
+            "hdl": "chisel",
+            "template_read_budget": 3,
+            "module_workers": 1,
+            "assembly_attempts": 5,
+            "ppa_backend": "yosys_opensta",
+            "dense_equivalent_ops_per_query": 96,
+            "min_loops": 1,
+            "reuse_verified_modules": true,
+            "continue_after_build_failure": true,
+            "quality_validation_seeds": [],
+            "quality_validation_samples": 4096,
+            "quality_margin": 0.0
+          },
+          "purpose": "artifact revalidation, not another autonomous optimization run"
+        },
+        "holdout": [
+          {
+            "seed": 101,
+            "passed": true,
+            "stage": "simulation",
+            "simulation": {
+              "passed": true,
+              "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_101/e2e_sim.log",
+              "diagnostics": "FAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_101/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 71ns; walltime 0.006 s; speed 11.358 us/s\n- Verilator: cpu 0.005 s on 1 threads; allocated 4 MB\n",
+              "timed_out": false,
+              "returncode": 0,
+              "wall_seconds": 0.5810159939865116,
+              "command": [
+                "apptainer",
+                "exec",
+                "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_101/obj_dir/VFASTTestbench"
+              ]
+            },
+            "cases": 100,
+            "expected_cases": 100,
+            "mean_cycles": 70.0,
+            "min_cycles": 70,
+            "max_cycles": 70,
+            "testbench_sha256": "0626424902b65aab8cef49d1f575e00113a503ee92720ff1b7784d9ddb494ae1",
+            "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+          },
+          {
+            "seed": 211,
+            "passed": true,
+            "stage": "simulation",
+            "simulation": {
+              "passed": true,
+              "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_211/e2e_sim.log",
+              "diagnostics": "FAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_211/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 71ns; walltime 0.006 s; speed 11.909 us/s\n- Verilator: cpu 0.005 s on 1 threads; allocated 4 MB\n",
+              "timed_out": false,
+              "returncode": 0,
+              "wall_seconds": 0.5296424890111666,
+              "command": [
+                "apptainer",
+                "exec",
+                "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_211/obj_dir/VFASTTestbench"
+              ]
+            },
+            "cases": 100,
+            "expected_cases": 100,
+            "mean_cycles": 70.0,
+            "min_cycles": 70,
+            "max_cycles": 70,
+            "testbench_sha256": "4e33c4fac5658bcc11f9c002ae9aac8358f716de0d6f139057a8d024f677f220",
+            "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+          },
+          {
+            "seed": 307,
+            "passed": true,
+            "stage": "simulation",
+            "simulation": {
+              "passed": true,
+              "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_307/e2e_sim.log",
+              "diagnostics": "FAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_307/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 71ns; walltime 0.006 s; speed 11.515 us/s\n- Verilator: cpu 0.006 s on 1 threads; allocated 4 MB\n",
+              "timed_out": false,
+              "returncode": 0,
+              "wall_seconds": 0.5825506459950702,
+              "command": [
+                "apptainer",
+                "exec",
+                "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_307/obj_dir/VFASTTestbench"
+              ]
+            },
+            "cases": 100,
+            "expected_cases": 100,
+            "mean_cycles": 70.0,
+            "min_cycles": 70,
+            "max_cycles": 70,
+            "testbench_sha256": "bb6337407934ff71048ddd9ade8da0d14ba9bf2dc0d702e6fa6d33a602743290",
+            "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+          },
+          {
+            "seed": 401,
+            "passed": true,
+            "stage": "simulation",
+            "simulation": {
+              "passed": true,
+              "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_401/e2e_sim.log",
+              "diagnostics": "FAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_401/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 71ns; walltime 0.006 s; speed 11.902 us/s\n- Verilator: cpu 0.005 s on 1 threads; allocated 4 MB\n",
+              "timed_out": false,
+              "returncode": 0,
+              "wall_seconds": 0.5769380559941055,
+              "command": [
+                "apptainer",
+                "exec",
+                "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_401/obj_dir/VFASTTestbench"
+              ]
+            },
+            "cases": 100,
+            "expected_cases": 100,
+            "mean_cycles": 70.0,
+            "min_cycles": 70,
+            "max_cycles": 70,
+            "testbench_sha256": "4bf59da65978887ea7052c15ab86fd875e851645fbefe37dc35f6f7b5f3c7b36",
+            "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+          },
+          {
+            "seed": 503,
+            "passed": true,
+            "stage": "simulation",
+            "simulation": {
+              "passed": true,
+              "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_503/e2e_sim.log",
+              "diagnostics": "FAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_503/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 71ns; walltime 0.006 s; speed 11.638 us/s\n- Verilator: cpu 0.005 s on 1 threads; allocated 4 MB\n",
+              "timed_out": false,
+              "returncode": 0,
+              "wall_seconds": 0.5272955500113312,
+              "command": [
+                "apptainer",
+                "exec",
+                "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_503/obj_dir/VFASTTestbench"
+              ]
+            },
+            "cases": 100,
+            "expected_cases": 100,
+            "mean_cycles": 70.0,
+            "min_cycles": 70,
+            "max_cycles": 70,
+            "testbench_sha256": "f558283c69acca864471247b9a5d1eb47621b6cba5eb85d0fc9b8742f5e74feb",
+            "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+          }
+        ],
+        "rtl_sha256": "50de94ba547fdee2a0ea5cb5867e469235ad4b449b61617ba16a720dc7e39f6b",
+        "holdout_case_executions": 500,
+        "scope": "fresh elaboration/E2E/PPA revalidation plus extra reference seeds; boundary vectors may repeat across seeds"
+      }
+    }
+  },
+  "critic": {
+    "layer": "stop",
+    "reason": "The assisted repair was successful. The design meets all constraints, including timing (slack +0.437 ns), area (41.8k um^2 < 200k um^2), and quality (0.0336 < 0.05). The critical path violation from the previous design, caused by a serial reduction chain, was resolved by implementing a balanced comparator tree for the max-score calculation. Since a feasible point has been established and the experiment's loop budget (max_loops=1) is exhausted, the process concludes.",
+    "evidence": [
+      "evaluation.feasible",
+      "evaluation.slack_ns",
+      "evaluation.area_um2",
+      "evaluation.quality_loss"
+    ],
+    "instructions": "Stop. A feasible design point that meets all constraints has been successfully generated and measured. The timing violation has been fixed. No further action is required for this task."
+  },
+  "token_totals": {
+    "prompt_token_count": 89544,
+    "candidates_token_count": 5378,
+    "thoughts_token_count": 6398,
+    "total_token_count": 101320
+  },
+  "source_hashes": {
+    "round_01/build_01/FindMin8/FindMin8.scala": "cbf797570df71e0b03549ab99297be2888eaf7de15df35f1c26078a2e03a9af8",
+    "round_01/build_01/DividerWrapper/DividerWrapper.scala": "ec66a2cc2549c47689e2b88523734dbffbf96cab7627e61238cd621a02211690",
+    "round_01/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala": "53221e3f5e99f8b39ab291642ccae8bb69da653bcede37175eed2b3852619784"
+  }
+}

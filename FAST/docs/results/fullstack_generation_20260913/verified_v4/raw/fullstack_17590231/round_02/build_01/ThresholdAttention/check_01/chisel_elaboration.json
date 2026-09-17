@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/ThresholdAttention/check_01/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/ScoreAndWeightUnit as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+  "wall_seconds": 5.659814125858247,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/ScoreAndWeightUnit/ScoreAndWeightUnit.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/Divider15by11/Divider15by11.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/ThresholdAttention/ThresholdAttention.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/ThresholdAttention/check_01/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/ThresholdAttention/check_01/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/ThresholdAttention/check_01/emitted"
+  ],
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_02/build_01/ThresholdAttention/check_01/emitted/ThresholdAttention.v",
+  "elaborated_sha256": "978cbe48857fe5e87a1b60bd097c8cd1cbeb32ff4a1ebaac016af7f54daf24d0"
+}

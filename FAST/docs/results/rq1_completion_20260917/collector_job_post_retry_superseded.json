@@ -1,0 +1,13 @@
+{
+  "job_id": "17910250",
+  "dependencies": [
+    "17910249",
+    "17909363",
+    "17909365",
+    "17909366",
+    "17909367"
+  ],
+  "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1-completion-report-v2.slurm",
+  "supersedes": "17909949",
+  "reason": "DynaX post-validation resubmitted without dependency after original remained eligible/pending about 19 min"
+}

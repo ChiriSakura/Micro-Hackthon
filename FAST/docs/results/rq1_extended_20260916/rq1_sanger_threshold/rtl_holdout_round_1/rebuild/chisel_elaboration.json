@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/references as the project root directory for this run.\nwarning: 2 deprecations (since Chisel 3.6); re-run with -deprecation for details\nwarning: 10 feature warnings; re-run with -feature for details\n2 warnings\n",
+  "wall_seconds": 11.370518380776048,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/references/006.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/ScoreArray.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/MaxExpAndThreshold.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/Accumulator.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/Normalizer.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/SangerThresholdTop.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/emitted"
+  ],
+  "elaborated_verilog": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/emitted/SangerThresholdTop.v",
+  "elaborated_sha256": "d6d3150eb41a0c2c541f4ef87139fede969a32718236fc6f2464c9fef3b209b0"
+}

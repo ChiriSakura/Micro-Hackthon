@@ -1,0 +1,10 @@
+{
+  "module": "ScoreWeightGen",
+  "source_sha256": "2ef27b7bb77949f1b85d0808aaa51fb620b5366b90c6e4ca63def155070e3606",
+  "original_source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17705068/round_01/build_03/ScoreWeightGen/ScoreWeightGen.scala",
+  "role": "recovered unchanged agent-generated source",
+  "language": "chisel",
+  "reference_ids": [],
+  "linked_reference_ids": [],
+  "scope": "externally selected composition; fresh checks required"
+}

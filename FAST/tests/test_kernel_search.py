@@ -212,7 +212,7 @@ def test_the_llm_may_not_re_measure_what_is_already_known():
 
 
 def test_a_fenced_reply_is_still_parsed():
-    space = KernelSearchSpace(max_sequence_length=512)
+    space = KernelSearchSpace(algorithm="topk", max_sequence_length=512)
     llm = ScriptedLLM('Sure!\n```json\n[{"label": "topk:64", "rationale": ["unmeasured"]}]\n```')
     proposer = LLMProposer(llm, model_name="scripted")
 
@@ -345,21 +345,33 @@ def test_the_winner_reaches_the_compiler_carrying_its_profile():
                 KernelMeasurement(**{**m.__dict__, "profile": profile}) for m in measured
             ), baseline
 
-    template = TemplateRecord("t", "sha256:t", "memory://t", True)
+    # planner 现在要在真注册表里查模板做可行性检查，所以用真的 id。
+    template = TemplateRecord("repe_array", "sha256:t", "memory://t", True)
     flow = FiveAgentFlow(
-        KernelAgent(ProfiledAdapter()), CompilerAgent(), UArchAgent((template,)),
+        KernelAgent(ProfiledAdapter()),
+        CompilerAgent(allow_unverified=True),
+        UArchAgent((template,)),
         EvaluatorAgent(DeterministicEvaluationAdapter()), CriticAgent(),
     )
 
-    search, report = flow.search_then_build(_spec(budget=2), template_id="t", batch=2)
+    search, report = flow.search_then_build(
+        _spec(budget=2), template_id="repe_array", batch=2
+    )
 
     assert report is not None
+    # profile 一路带到规划里，这是它存在的理由。
     assert report.kernel.profile is profile
-    # A load imbalance of 4.0 must narrow the lanes, not widen them.
-    assert report.compiler.parallelism < 16
-    assert any("load_imbalance=4.000" in line for line in report.compiler.rationale)
-    # Concentrated columns are worth staging once.
-    assert report.compiler.data_layout == "blocked-qkd-broadcast"
+    # 报的是 tile 内的量（规划真正用的那个），同时也把全局量列出来对照。
+    assert any("tile_load_imbalance=4.0000" in line for line in report.compiler.rationale)
+    assert any("global_load_imbalance=4.0000" in line for line in report.compiler.rationale)
+    # 列质量集中时，那些列会被 tile 里每一行重复读，值得只搬一次。
+    assert "broadcast" in report.compiler.data_layout
+    # 不均衡度 4.0 意味着利用率明显低于 1，规划要如实反映而不是假装满载。
+    assert report.compiler.predicted_utilization < 1.0
+
+    # 注：旧版本在这里断言「不均衡就窄化 lane」。那是个没有测量支撑的启发式
+    # ——实测显示对付不均衡的手段是**工作队列**（`queue_depth` 的实测曲线），
+    # 窄化 lane 只是少干活。这条断言随那个启发式一起去掉了。
 
 
 def test_a_search_that_finds_nothing_inside_epsilon_builds_nothing():
@@ -382,19 +394,26 @@ def test_a_search_that_finds_nothing_inside_epsilon_builds_nothing():
     assert report is None
 
 
-def test_the_compiler_says_so_when_it_has_no_profile_to_schedule_from():
+def test_the_planner_still_produces_a_plan_without_a_kernel_profile():
+    """没有 profile 时利用率退回一个保守常数，规划照样要出得来。
+
+    「模型没有说法」和「模型说错了」是两件事——退回值必须是保守的，而且
+    要能在 rationale 里看出来它是退回来的。
+    """
     from fast.agents import CompilerAgent
-    from fast.schemas.models import KernelResult
+    from fast.schemas.models import KernelResult, Status as S
 
     kernel = KernelResult(
-        status=Status.PASSED, baseline_metric=10.0, candidate_metric=10.1,
+        status=S.PASSED, baseline_metric=10.0, candidate_metric=10.1,
         metric_name="ppl", quality_loss=0.01, actual_sparsity=0.86,
         index_entropy=0.9, block_occupancy=0.42, trace_uri="x", profile=None,
     )
 
-    schedule = CompilerAgent().run(kernel)
+    plan = CompilerAgent(allow_unverified=True).plan(kernel, sequence_length=512)
 
-    assert any("no kernel profile" in line for line in schedule.rationale)
+    assert plan.status is S.PASSED
+    assert plan.num_rows > 0 and plan.pe_per_row > 0
+    assert plan.predicted_clock_ns is not None
 
 
 def test_a_search_records_measurements_and_rejections_to_the_shared_db(tmp_path):

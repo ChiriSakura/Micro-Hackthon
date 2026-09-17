@@ -1,0 +1,70 @@
+import chisel3._
+import chisel3.util._
+
+class Divider15by11 extends RawModule {
+  val clock = IO(Input(Clock()))
+  val reset = IO(Input(Bool()))
+  val start = IO(Input(Bool()))
+  val dividend = IO(Input(UInt(15.W)))
+  val divisor = IO(Input(UInt(11.W)))
+  val quotient = IO(Output(UInt(15.W)))
+  val valid_out = IO(Output(Bool()))
+
+  val sIdle :: sBusy :: sDone :: Nil = Enum(3)
+
+  withClockAndReset(clock, reset) {
+    val state = RegInit(sIdle)
+
+    // Internal Registers
+    val dividend_reg = RegInit(0.U(15.W))
+    val divisor_reg = RegInit(0.U(11.W))
+    val rem_reg = RegInit(0.U(11.W))
+    val quotient_reg = RegInit(0.U(15.W))
+    val count_reg = RegInit(0.U(4.W))
+
+    // FSM Logic
+    switch(state) {
+      is(sIdle) {
+        when(start) {
+          dividend_reg := dividend
+          divisor_reg := divisor
+          rem_reg := 0.U
+          quotient_reg := 0.U
+          count_reg := 14.U
+          state := sBusy
+        }
+      }
+      is(sBusy) {
+        // 1. Form 12-bit intermediate value by shifting remainder and appending dividend MSB
+        val next_rem_val = (rem_reg << 1) | dividend_reg(14)
+
+        // 2. Shift dividend register left
+        dividend_reg := dividend_reg << 1
+
+        // 3. Trial subtraction
+        when(next_rem_val >= divisor_reg) {
+          // 4. If successful, commit subtraction and set quotient bit to 1
+          rem_reg := next_rem_val - divisor_reg
+          quotient_reg := (quotient_reg << 1) | 1.U
+        } .otherwise {
+          // 5. Otherwise, update remainder without subtraction and set quotient bit to 0
+          rem_reg := next_rem_val(10, 0)
+          quotient_reg := quotient_reg << 1
+        }
+
+        // 6. Decrement counter and check for completion
+        count_reg := count_reg - 1.U
+        when(count_reg === 0.U) {
+          state := sDone
+        }
+      }
+      is(sDone) {
+        state := sIdle
+      }
+    }
+  }
+
+  // Output assignments
+  quotient := quotient_reg
+  valid_out := state === sDone
+}

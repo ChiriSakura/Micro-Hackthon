@@ -1,0 +1,10 @@
+{
+  "module": "DynaX_XM_Row",
+  "source_sha256": "76f09686c409162ddc5148b23d66e9813ff2ffb9fce7fd321e2fd128b5907dc2",
+  "original_source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17705068/round_01/build_02/DynaX_XM_Row/attempt_03.scala.txt",
+  "role": "recovered unchanged agent-generated source",
+  "language": "chisel",
+  "reference_ids": [],
+  "linked_reference_ids": [],
+  "scope": "externally selected composition; fresh checks required"
+}

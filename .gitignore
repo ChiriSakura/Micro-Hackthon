@@ -42,3 +42,21 @@ FAST/checkpoints/
 # machine-specific even though it stores no credentials of its own.
 FAST/configs/chia/fast-gcp.yaml
 FAST/configs/chia/fast-gcp-head.yaml
+
+# Large experiment evidence archives remain local; hashes are versioned.
+/FAST/docs/results/block_nm_timing_repair_20260917/validation/artifacts.tar.gz
+/FAST/docs/results/critic_ablation_20260911/rtl_netlists.tar.gz
+/FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz
+/FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz
+/FAST/docs/results/dynax_recovery_20260916/first_feasible_build.tar.gz
+/FAST/docs/results/dynax_recovery_20260916/rq1_dynax_xm/artifacts.tar.gz
+/FAST/docs/results/fullstack_extensions_20260913/evidence.tar.gz
+/FAST/docs/results/rq1_20260915/rq1_dynax_xm/artifacts.tar.gz
+/FAST/docs/results/rq1_20260915/rq1_global_topk/artifacts.tar.gz
+/FAST/docs/results/rq1_completion_20260917/dynax_baseline/artifacts.tar.gz
+/FAST/docs/results/rq1_completion_20260917/rq1_block_nm_sta_retry/artifacts.tar.gz
+/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/artifacts.tar.gz
+/FAST/docs/results/rq1_completion_20260917/rq1_sanger_threshold/artifacts.tar.gz
+/FAST/docs/results/rq1_completion_20260917/rq1_sanger_threshold_checkpoint_retry/artifacts.tar.gz
+/FAST/docs/results/rq1_completion_20260917/topk_common_test/artifacts.tar.gz
+/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/artifacts.tar.gz

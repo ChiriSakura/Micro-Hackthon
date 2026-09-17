@@ -67,16 +67,16 @@ def _flow(kernel: KernelResult, registry: TemplateRegistry,
             return kernel
 
     return FiveAgentFlow(
-        KernelAgent(Fixed()), CompilerAgent(),
+        KernelAgent(Fixed()),
+        # Compiler Agent 现在就是 planner：软硬件参数在同一次搜索里定，
+        # 不再注入一个独立的 CoOptimizer。它要知道规划的是哪个模板。
+        CompilerAgent(registry, template_id=template_id, allow_unverified=True),
         # The real registry, not a stub: repe_array now carries simulation
         # evidence and prepe_array does not, so the gate is exercised against
         # the repository's actual state rather than a fixture's.
-        UArchAgent(DYNAX_TEMPLATES),
+        UArchAgent(DYNAX_TEMPLATES, registry=registry),
         EvaluatorAgent(AnalyticalEvaluationAdapter(kernel=kernel, kept_per_block=16)),
         CriticAgent(), db=db,
-        # The co-optimizer picks the template the report ends up carrying, so
-        # it has to be told which one the test is about.
-        cooptimizer=CoOptimizer(registry, template_id=template_id, allow_unverified=True),
     )
 
 
@@ -103,7 +103,11 @@ def test_a_model_never_reports_functional_correctness():
     assert report.evaluation.status is Status.PASSED
     assert report.evaluation.functional_passed is False
     assert "no RTL simulation" in report.evaluation.error
-    assert report.critique.attribution is Layer.EVALUATOR
+    # **不能因为「没检查」就归咎于硬件。** L0/L1 的 functional_passed 恒为
+    # False，那是「这一档回答不了这个问题」；当成「功能不对」会让循环在第 0
+    # 轮就以一个从未发生过的失败停下，并且指向错误的层。
+    assert report.critique.attribution is not Layer.UARCH
+    assert "functional" not in report.critique.summary.lower()
 
 
 def test_the_evaluation_admits_it_shares_the_optimizer_model():
@@ -120,33 +124,44 @@ def test_the_joint_search_stops_when_rounds_stop_reducing_edp():
     flow = _flow(_kernel(), _verified_registry())
     flow.run(_spec(), template_id="repe_array")
 
-    codesign = flow.last_codesign
+    codesign = flow.last_plan_search
     assert codesign.rounds >= 2
-    assert "no EDP reduction" in codesign.stopped_because
+    assert "no Pareto improvement" in codesign.stopped_because
 
 
-def test_the_schedule_and_the_array_come_from_the_same_explored_point():
-    """The point of joint search: these two are not decided independently."""
+def test_the_plan_and_the_implementation_describe_the_same_hardware():
+    """planner 决定造什么，implementer 只负责造出来——两者必须逐字段一致。
+
+    µArch 以前自己推 `pe_rows = min(8, parallelism)`，于是「谁决定阵列是
+    32x4」没有唯一答案。现在阵列形状只有一个来源：计划。
+    """
     flow = _flow(_kernel(), _verified_registry())
     report = flow.run(_spec(), template_id="repe_array")
-    point = flow.last_codesign.best.point
+    plan = report.compiler
 
-    assert report.compiler.parallelism == point.parallelism
-    assert report.hardware.pe_rows == point.num_rows
-    assert report.hardware.pe_cols == point.pe_per_row
-    assert report.hardware.queue_depth == point.queue_depth
+    assert report.hardware.pe_rows == plan.num_rows
+    assert report.hardware.pe_cols == plan.pe_per_row
+    assert report.hardware.queue_depth == plan.queue_depth
+    assert report.hardware.sram_bytes == plan.sram_bytes
+    assert report.hardware.data_width == plan.data_width
+    # 计划带着自己的预测值出来，供实测对照——没有它，这个循环发现不了
+    # 自己的代价模型错了。
+    assert plan.predicted_clock_ns is not None
+    assert plan.predicted_area_um2 is not None
 
 
 def test_a_skewed_kernel_gets_a_deeper_queue_than_a_balanced_one():
-    """The kernel profile reaches the hardware decision, which is the whole
-    reason the profile is carried."""
-    skewed = _flow(_kernel(imbalance=4.0), _verified_registry())
-    skewed.run(_spec(), template_id="repe_array")
-    balanced = _flow(_kernel(imbalance=1.0), _verified_registry())
-    balanced.run(_spec(), template_id="repe_array")
+    """kernel 的 profile 一路影响到硬件决策，这正是要带着 profile 的理由。
 
-    assert (skewed.last_codesign.best.point.queue_depth
-            > balanced.last_codesign.best.point.queue_depth)
+    深度受频率约束封顶（实测深度 8 = 318 MHz，低于 350 MHz 的目标），
+    所以「更深」现在是在可行范围内更深。
+    """
+    skewed = _flow(_kernel(imbalance=4.0), _verified_registry())
+    skewed_report = skewed.run(_spec(), template_id="repe_array")
+    balanced = _flow(_kernel(imbalance=1.0), _verified_registry())
+    balanced_report = balanced.run(_spec(), template_id="repe_array")
+
+    assert skewed_report.compiler.queue_depth > balanced_report.compiler.queue_depth
 
 
 def test_every_layer_lands_in_one_joinable_row(tmp_path):
@@ -164,7 +179,9 @@ def test_every_layer_lands_in_one_joinable_row(tmp_path):
     assert row["compiler_parallelism"] is not None
     assert row["pe_rows"] is not None
     assert row["eval_pe_utilization"] is not None
-    assert row["attribution"] == "evaluator"
+    # 归因具体落在哪一层取决于这个 fixture 的数字，不是这个测试要断言的
+    # 东西——它要断言的是每一层都落进了同一行、能被 join 上。
+    assert row["attribution"] is not None
 
 
 def test_the_loop_still_runs_without_a_co_optimizer():

@@ -22,6 +22,6 @@ export HF_HOME="$ROOT/cache/hf" TRANSFORMERS_OFFLINE=0
 cd "$REPO/DynaX"
 "$ROOT/env/dynax-py312/bin/python" -u capture_attention_tile.py \
     --layer "${TILE_LAYER:-10}" --head "${TILE_HEAD:-0}" \
-    --tile-q 4 --tile-k 32 --head-dim 8 --kept 8 \
+    --tile-q ${TILE_Q:-4} --tile-k ${TILE_K:-32} --head-dim ${TILE_HEADDIM:-8} --kept ${TILE_KEPT:-8} \
     --out "$OUT/tile.json"
 echo "退出码 $?"

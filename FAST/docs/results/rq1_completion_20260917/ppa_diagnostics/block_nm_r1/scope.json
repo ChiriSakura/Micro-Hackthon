@@ -1,0 +1,11 @@
+{
+  "scope": "Read-only replay of final routed database and extracted parasitics. No RTL changes or agent feedback.",
+  "original_result": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_01/ppa_retry_01/hammer/result.json",
+  "original_artifacts": {
+    "hammer/par-rundir/routed.def": "234151ed05e7fe9b38facfca42b41791decb9d8781bd6e790bab7b9db2526299",
+    "hammer/par-rundir/routed.v": "853c64d141493bceb94a14a1b1902139a0ab78950f90c04442dfff526bc997d5",
+    "hammer/par-rundir/routed.odb": "30c51cab41ebdd3775b1262ed43a2231db1518c5aa97cfd84aa537c935e34332",
+    "hammer/par-rundir/Rq1BlockNmTop.par.spef": "f9a3f7867326891d7fae868d01ed55c06479b95fc7453dfd8673bb201214d0a5",
+    "hammer/par-rundir/Rq1BlockNmTop_route_drc.rpt": "df45d1771717ef0993b9ac69c08d1b09616c1ca3e7801f3215d0b22b660455a3"
+  }
+}

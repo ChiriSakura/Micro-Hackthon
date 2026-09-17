@@ -1,0 +1,2419 @@
+{
+  "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold",
+  "status": "failed",
+  "rounds": [
+    {
+      "round": 1,
+      "config": {
+        "threshold_256": 3
+      },
+      "calibration": {
+        "config": {
+          "threshold_256": 3
+        },
+        "quality_loss": 0.03839193117999572,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010057824013621622,
+        "squared_error_sum": 969417.0321110461,
+        "dense_squared_output_sum": 657704372.200548,
+        "sparsity": 0.3775889376218323,
+        "fully_dense_query_fraction": 0.09844054580896686,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 0,
+          "2": 5,
+          "3": 20,
+          "4": 46,
+          "5": 104,
+          "6": 135,
+          "7": 211,
+          "8": 248,
+          "9": 245,
+          "10": 216,
+          "11": 187,
+          "12": 137,
+          "13": 120,
+          "14": 108,
+          "15": 68,
+          "16": 202
+        },
+        "samples": 2052,
+        "seed": 20260915,
+        "includes_shared_boundary_cases": true,
+        "workload_sha256": "60517956d3f68a3bb09f8553e8549416807efb4bad8c7fcdb40eae8460b3694e"
+      },
+      "heldout": {
+        "config": {
+          "threshold_256": 3
+        },
+        "quality_loss": 0.038867556410522336,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010556113603441514,
+        "squared_error_sum": 1866705.6694551858,
+        "dense_squared_output_sum": 1235666780.7148442,
+        "sparsity": 0.363372802734375,
+        "fully_dense_query_fraction": 0.121826171875,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 1,
+          "2": 9,
+          "3": 28,
+          "4": 85,
+          "5": 193,
+          "6": 265,
+          "7": 390,
+          "8": 462,
+          "9": 474,
+          "10": 439,
+          "11": 381,
+          "12": 314,
+          "13": 233,
+          "14": 175,
+          "15": 148,
+          "16": 499
+        },
+        "samples": 4096,
+        "seed": 20260916,
+        "includes_shared_boundary_cases": false,
+        "workload_sha256": "d1ae69138f2824e724be7e1eb655d676c9945441b169e8867e1d8877065c389c"
+      },
+      "evaluation": {
+        "complete": true,
+        "feasible": true,
+        "verification": {
+          "passed": true,
+          "stage": "simulation",
+          "simulation": {
+            "passed": true,
+            "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/SangerThresholdTop/check_01/e2e_sim.log",
+            "diagnostics": "FAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/SangerThresholdTop/check_01/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 23ns; walltime 0.007 s; speed 3.464 us/s\n- Verilator: cpu 0.006 s on 1 threads; allocated 3 MB\n",
+            "wall_seconds": 0.40019688941538334,
+            "command": [
+              "apptainer",
+              "exec",
+              "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+              "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/SangerThresholdTop/check_01/obj_dir/VFASTTestbench"
+            ]
+          },
+          "cases": 100,
+          "expected_cases": 100,
+          "mean_cycles": 22.0,
+          "min_cycles": 22,
+          "max_cycles": 22,
+          "testbench_sha256": "2b25b39c4797de22e460eaf8272caf733c4ef128393f64144aea1cf13309c5e5",
+          "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+        },
+        "design_sha256": "36674bd173882066b77a82109e2b546e919d15c22cf96c7a52bf99c01ca91ff1",
+        "ppa_backend": "hammer_openroad",
+        "scope": "entire generated top, Nangate45 placement/CTS/detailed routing/OpenRCX",
+        "power_method": "OpenROAD post-route extracted-RC power estimate; uniform activity, not silicon measurement",
+        "activity": 0.1,
+        "gds_generated": false,
+        "driver_sha256": "9b370c6e51363a441abb05fd2e8ace3e480c5c0e1ea638fc3f035e21174796b7",
+        "physical_adapter_sha256": "bbc831c069e450514af9fc188001b33531fd442c7c9c48a0daa0b309c5da5196",
+        "routing_tool": "26Q1-2900-gdf79404cd8",
+        "pdk_sha256": {
+          "setRC.tcl": "521df813bf4da9d7400df33e3f680c9a328cc720830dbfca1188083741503fa5",
+          "rcx_patterns.rules": "2f65fafbe2c704b378563c53a680b93cef080c2799997019d43df7d1e5a563e9",
+          "lib/NangateOpenCellLibrary_typical.lib": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1"
+        },
+        "syn": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/syn.log",
+          "diagnostics": "ithout logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATE_X8\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFRS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFRS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFR_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFR_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFF_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFF_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLH_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLH_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLL_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLL_X2\".\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"TAPCELL_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X2\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X4\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X8\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X16\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X32\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"LOGIC0_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"LOGIC1_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFRS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFRS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFR_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFR_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFF_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFF_X2\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X1\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X2\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X4\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X8\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X16\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TINV_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"TLAT_X1\".\nABC: Library \"NangateOpenCellLibrary\" from \"/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib\" has 90 cells (35 skipped: 21 seq; 6 tri-state; 8 no func; 10 dont_use).  Time =     0.06 sec\nABC: Memory =   11.38 MB. Time =     0.06 sec\nABC: Warning: Detected 2 multi-output gates (for example, \"FA_X1\").\nABC: + read_constr -v /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/syn-rundir/SangerThresholdTop.mapped.sdc\nABC: + strash\nABC: + &get -n\nABC: + &fraig -x\nABC: + &put\nABC: + scorr\nABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\").\nABC: + dc2\nABC: + dretime\nABC: + retime -o -D 3333\nABC: + strash\nABC: + &get -n\nABC: + &dch -f\nABC: + &nf -D 3333\nABC: + &put\nABC: + buffer\nABC: + upsize -D 3333\nABC: Current delay (2914.77 ps) does not exceed the target delay (3333.00 ps). Upsizing is not performed.\nABC: + dnsize -D 3333\nABC: + stime -p\nABC: WireLoad = \"none\"  Gates =  42446 (  8.9 %)   Cap =  3.5 ff (  0.4 %)   Area =    46329.75 ( 97.3 %)   Delay =  2924.14 ps  (  0.2 %)\nABC: Path  0 --     943 : 0    3 pi        A =   0.00  Df =   0.0   -0.0 ps  S =   0.0 ps  Cin =  0.0 ff  Cout =   4.9 ff  Cmax =   0.0 ff  G =    0\nABC: Path  1 --   36620 : 4    4 NOR4_X1   A =   1.33  Df = 120.3 -108.1 ps  S =  82.0 ps  Cin =  1.6 ff  Cout =   5.9 ff  Cmax =  10.5 ff  G =  356\nABC: Path  2 --   36623 : 4    5 NAND4_X1  A =   1.33  Df = 189.8 -143.0 ps  S =  38.8 ps  Cin =  1.6 ff  Cout =   7.5 ff  Cmax =  56.0 ff  G =  459\nABC: Path  3 --   36625 : 4    5 OR4_X1    A =   1.60  Df = 326.2 -230.3 ps  S =  23.8 ps  Cin =  0.9 ff  Cout =   7.5 ff  Cmax =  60.6 ff  G =  815\nABC: Path  4 --   36627 : 4    5 OR4_X1    A =   1.60  Df = 457.9 -315.1 ps  S =  23.8 ps  Cin =  0.9 ff  Cout =   7.5 ff  Cmax =  60.6 ff  G =  815\nABC: Path  5 --   36629 : 4    5 OR4_X1    A =   1.60  Df = 591.2 -399.9 ps  S =  24.5 ps  Cin =  0.9 ff  Cout =   8.3 ff  Cmax =  60.6 ff  G =  892\nABC: Path  6 --   36638 : 4    3 NOR4_X1   A =   1.33  Df = 716.0 -503.4 ps  S =  82.4 ps  Cin =  1.6 ff  Cout =   5.9 ff  Cmax =  10.5 ff  G =  357\nABC: Path  7 --   36639 : 3    3 NAND3_X1  A =   1.06  Df = 752.9 -512.5 ps  S =  21.5 ps  Cin =  1.6 ff  Cout =   4.3 ff  Cmax =  58.4 ff  G =  257\nABC: Path  8 --   36640 : 3    5 AOI21_X1  A =   1.06  Df = 826.2 -552.8 ps  S =  60.1 ps  Cin =  1.6 ff  Cout =  10.0 ff  Cmax =  25.3 ff  G =  618\nABC: Path  9 --   36663 : 2    3 XNOR2_X1  A =   1.60  Df = 893.7 -567.0 ps  S =  33.3 ps  Cin =  2.3 ff  Cout =   4.8 ff  Cmax =  26.0 ff  G =  200\nABC: Path 10 --   36697 : 3    3 NOR3_X1   A =   1.06  Df = 972.7 -614.6 ps  S =  48.9 ps  Cin =  1.6 ff  Cout =   4.8 ff  Cmax =  16.0 ff  G =  301\nABC: Path 11 --   36698 : 3    4 NOR3_X1   A =   1.06  Df =1053.7  -55.8 ps  S =  57.7 ps  Cin =  1.6 ff  Cout =   6.1 ff  Cmax =  16.0 ff  G =  349\nABC: Path 12 --   36761 : 3    3 NOR3_X1   A =   1.06  Df =1072.5  -18.5 ps  S =  43.1 ps  Cin =  1.6 ff  Cout =   4.0 ff  Cmax =  16.0 ff  G =  254\nABC: Path 13 --   36762 : 4    2 OAI211_X1 A =   1.33  Df =1117.9  -26.5 ps  S =  27.9 ps  Cin =  1.6 ff  Cout =   3.3 ff  Cmax =  25.6 ff  G =  201\nABC: Path 14 --   36763 : 4    4 NOR4_X1   A =   1.33  Df =1212.1  -72.1 ps  S =  75.9 ps  Cin =  1.6 ff  Cout =   5.2 ff  Cmax =  10.5 ff  G =  318\nABC: Path 15 --   36764 : 4    2 NAND4_X1  A =   1.33  Df =1254.7  -85.7 ps  S =  23.6 ps  Cin =  1.6 ff  Cout =   3.2 ff  Cmax =  56.0 ff  G =  200\nABC: Path 16 --   36765 : 3    4 OAI21_X1  A =   1.06  Df =1314.3 -118.4 ps  S =  38.9 ps  Cin =  1.6 ff  Cout =   6.1 ff  Cmax =  26.1 ff  G =  359\nABC: Path 17 --   36766 : 4    5 NAND4_X1  A =   1.33  Df =1369.7 -131.0 ps  S =  33.7 ps  Cin =  1.6 ff  Cout =   7.4 ff  Cmax =  56.0 ff  G =  461\nABC: Path 18 --   36779 : 4    2 NOR4_X1   A =   1.33  Df =1469.9 -212.5 ps  S =  58.1 ps  Cin =  1.6 ff  Cout =   3.3 ff  Cmax =  10.5 ff  G =  201\nABC: Path 19 --   36780 : 3    2 AOI21_X1  A =   1.06  Df =1494.4 -188.5 ps  S =  28.9 ps  Cin =  1.6 ff  Cout =   3.3 ff  Cmax =  25.3 ff  G =  211\nABC: Path 20 --   36781 : 2    1 XOR2_X1   A =   1.60  Df =1552.1 -200.3 ps  S =  19.8 ps  Cin =  2.3 ff  Cout =   0.9 ff  Cmax =  25.3 ff  G =   40\nABC: Path 21 --   36794 : 3    3 MUX2_X1   A =   1.86  Df =1619.6 -206.6 ps  S =  19.0 ps  Cin =  1.2 ff  Cout =   5.6 ff  Cmax =  60.5 ff  G =  448\nABC: Path 22 --   36795 : 2    4 XOR2_X1   A =   1.60  Df =1684.4 -200.0 ps  S =  43.6 ps  Cin =  2.3 ff  Cout =   6.4 ff  Cmax =  25.3 ff  G =  269\nABC: Path 23 --   36801 : 2    3 OR2_X1    A =   1.06  Df =1737.9  -96.8 ps  S =  14.9 ps  Cin =  0.9 ff  Cout =   5.0 ff  Cmax =  60.6 ff  G =  520\nABC: Path 24 --   36851 : 4    1 NOR4_X1   A =   1.33  Df =1784.4 -132.3 ps  S =  41.9 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  10.5 ff  G =   99\nABC: Path 25 --   36892 : 3    1 AOI21_X1  A =   1.06  Df =1803.7 -124.0 ps  S =  21.4 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  25.3 ff  G =  102\nABC: Path 26 --   36934 : 3    3 OAI21_X1  A =   1.06  Df =1837.2  -33.2 ps  S =  32.8 ps  Cin =  1.6 ff  Cout =   4.8 ff  Cmax =  26.1 ff  G =  295\nABC: Path 27 --   36935 : 1   10 BUF_X1    A =   0.80  Df =1903.7  -48.7 ps  S =  42.6 ps  Cin =  0.9 ff  Cout =  17.4 ff  Cmax =  60.7 ff  G = 1830\nABC: Path 28 --   37057 : 3    4 MUX2_X1   A =   1.86  Df =1981.5  -55.7 ps  S =  20.1 ps  Cin =  1.2 ff  Cout =   6.8 ff  Cmax =  60.5 ff  G =  531\nABC: Path 29 --   37058 : 2    3 XNOR2_X1  A =   1.60  Df =2031.5  -54.1 ps  S =  33.4 ps  Cin =  2.3 ff  Cout =   4.9 ff  Cmax =  26.0 ff  G =  200\nABC: Path 30 --   37059 : 2    3 AND2_X1   A =   1.06  Df =2069.3  -47.4 ps  S =  14.1 ps  Cin =  0.9 ff  Cout =   4.2 ff  Cmax =  60.6 ff  G =  432\nABC: Path 31 --   37129 : 6    3 AOI222_X1 A =   2.13  Df =2177.8 -108.9 ps  S =  77.4 ps  Cin =  1.5 ff  Cout =   5.9 ff  Cmax =  13.0 ff  G =  362\nABC: Path 32 --   37142 : 5    3 OAI221_X1 A =   1.60  Df =2228.7  -66.9 ps  S =  55.5 ps  Cin =  1.6 ff  Cout =   5.9 ff  Cmax =  22.2 ff  G =  358\nABC: Path 33 --   37152 : 4    3 AOI211_X1 A =   1.33  Df =2313.6 -117.3 ps  S =  66.6 ps  Cin =  1.6 ff  Cout =   5.8 ff  Cmax =  14.5 ff  G =  364\nABC: Path 34 --   37164 : 3    1 NOR3_X1   A =   1.06  Df =2329.9  -81.2 ps  S =  26.7 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  16.0 ff  G =   99\nABC: Path 35 --   37166 : 4    2 AOI211_X1 A =   1.33  Df =2416.0 -145.5 ps  S =  54.8 ps  Cin =  1.6 ff  Cout =   4.2 ff  Cmax =  14.5 ff  G =  261\nABC: Path 36 --   37171 : 4    2 OAI22_X1  A =   1.33  Df =2453.3 -125.6 ps  S =  42.1 ps  Cin =  1.6 ff  Cout =   4.2 ff  Cmax =  23.2 ff  G =  256\nABC: Path 37 --   37177 : 3    3 AOI21_X1  A =   1.06  Df =2504.8 -144.7 ps  S =  41.1 ps  Cin =  1.6 ff  Cout =   5.9 ff  Cmax =  25.3 ff  G =  365\nABC: Path 38 --   37200 : 2    1 NOR2_X1   A =   0.80  Df =2518.9 -126.7 ps  S =  16.1 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  26.7 ff  G =  100\nABC: Path 39 --   37206 : 4    2 AOI211_X1 A =   1.33  Df =2607.3 -195.6 ps  S =  55.1 ps  Cin =  1.6 ff  Cout =   4.2 ff  Cmax =  14.5 ff  G =  262\nABC: Path 40 --   37210 : 2    2 NOR2_X1   A =   0.80  Df =2625.8 -177.0 ps  S =  23.1 ps  Cin =  1.6 ff  Cout =   3.2 ff  Cmax =  26.7 ff  G =  197\nABC: Path 41 --   37212 : 3    3 OAI21_X1  A =   1.06  Df =2671.5 -198.4 ps  S =  33.3 ps  Cin =  1.6 ff  Cout =   4.9 ff  Cmax =  26.1 ff  G =  299\nABC: Path 42 --   37218 : 2    2 NAND2_X1  A =   0.80  Df =2696.1 -199.6 ps  S =  15.2 ps  Cin =  1.6 ff  Cout =   4.0 ff  Cmax =  59.4 ff  G =  251\nABC: Path 43 --   37231 : 5    2 AOI221_X1 A =   1.60  Df =2775.5 -254.3 ps  S =  48.0 ps  Cin =  1.6 ff  Cout =   2.6 ff  Cmax =  13.8 ff  G =  160\nABC: Path 44 --   37232 : 2    4 NAND2_X1  A =   0.80  Df =2808.9 -252.8 ps  S =  22.2 ps  Cin =  1.6 ff  Cout =   7.4 ff  Cmax =  59.4 ff  G =  438\nABC: Path 45 --   37250 : 3    2 NOR3_X1   A =   1.06  Df =2863.1 -291.7 ps  S =  42.1 ps  Cin =  1.6 ff  Cout =   3.9 ff  Cmax =  16.0 ff  G =  241\nABC: Path 46 --   37253 : 2    1 XOR2_X1   A =   1.60  Df =2915.6 -293.0 ps  S =  23.2 ps  Cin =  2.3 ff  Cout =   1.7 ff  Cmax =  25.3 ff  G =   69\nABC: Path 47 --   37254 : 2    1 NOR2_X1   A =   0.80  Df =2924.1 -281.5 ps  S =  12.4 ps  Cin =  1.6 ff  Cout =   0.0 ff  Cmax =  26.7 ff  G =    0\nABC: Start-point = pi942 (\\accumulator.N_out [2]).  End-point = po2298 ($auto$rtlil.cc:2669:MuxGate$425569).\nABC: + write_blif /tmp/fast-rq1-17874651/yosys-abc-xIz66e/output.blif\n\n10.1.2. Re-integrating ABC results.\nABC RESULTS:         OAI222_X1 cells:       32\nABC RESULTS:          OAI33_X1 cells:       82\nABC RESULTS:            OR4_X1 cells:      112\nABC RESULTS:            OR3_X1 cells:      541\nABC RESULTS:           AND4_X1 cells:      133\nABC RESULTS:           NOR4_X1 cells:      679\nABC RESULTS:          NAND4_X1 cells:      789\nABC RESULTS:           XOR2_X1 cells:     2602\nABC RESULTS:         AOI222_X1 cells:       24\nABC RESULTS:           AND3_X1 cells:      674\nABC RESULTS:          XNOR2_X1 cells:     3681\nABC RESULTS:         OAI211_X1 cells:      462\nABC RESULTS:          NAND3_X1 cells:     1222\nABC RESULTS:           MUX2_X1 cells:      649\nABC RESULTS:         AOI211_X1 cells:      971\nABC RESULTS:          NAND2_X1 cells:     5274\nABC RESULTS:            OR2_X1 cells:     1009\nABC RESULTS:          AOI22_X1 cells:      716\nABC RESULTS:         AOI221_X1 cells:      256\nABC RESULTS:         CLKBUF_X1 cells:      129\nABC RESULTS:          OAI22_X1 cells:      629\nABC RESULTS:         OAI221_X1 cells:      289\nABC RESULTS:            BUF_X1 cells:      875\nABC RESULTS:          OAI21_X1 cells:     3738\nABC RESULTS:          AOI21_X1 cells:     4586\nABC RESULTS:           NOR3_X1 cells:     1050\nABC RESULTS:            INV_X1 cells:     2789\nABC RESULTS:           AND2_X1 cells:     2673\nABC RESULTS:           NOR2_X1 cells:     5780\nABC RESULTS:        internal signals:    78379\nABC RESULTS:           input signals:     5123\nABC RESULTS:          output signals:     4336\nRemoving temp directory.\n(hammer) setundef -zero\n\n11. Executing SETUNDEF pass (replace undef values with defined constants).\n(hammer) splitnets\n\n12. Executing SPLITNETS pass (splitting up multi-bit signals).\n(hammer) opt_clean -purge\n\n13. Executing OPT_CLEAN pass (remove unused cells and wires).\nFinding unused cells or wires in module \\SangerThresholdTop..\nRemoved 0 unused cells and 91792 unused wires.\n(hammer) hilomap -singleton\n<suppressed ~5332 debug messages>\n\n14. Executing HILOMAP pass (mapping to constant drivers).\n(hammer) tee -o /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/syn-rundir/SangerThresholdTop.synth_check.rpt check\n\n15. Executing CHECK pass (checking for obvious problems).\n(hammer) tee -o /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/syn-rundir/SangerThresholdTop.synth_stat.txt stat -top SangerThresholdTop -liberty /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib\nChecking module SangerThresholdTop...\nFound and reported 0 problems.\n\n16. Printing statistics.\ncheck -assert\n\n=== SangerThresholdTop ===\n\n   Number of wires:              53494\n   Number of wire bits:          53785\n   Number of public wires:        5544\n   Number of public wire bits:    5835\n   Number of memories:               0\n   Number of memory bits:            0\n   Number of processes:              0\n   Number of cells:              47982\n     AND2_X1                      2673\n     AND3_X1                       674\n     AND4_X1                       133\n     AOI211_X1                     971\n     AOI21_X1                     4586\n     AOI221_X1                     256\n     AOI222_X1                      24\n     AOI22_X1                      716\n     BUF_X1                        875\n     CLKBUF_X1                     129\n     DFF_X1                       5536\n     INV_X1                       2789\n     MUX2_X1                       649\n     NAND2_X1                     5274\n     NAND3_X1                     1222\n     NAND4_X1                      789\n     NOR2_X1                      5780\n     NOR3_X1                      1050\n     NOR4_X1                       679\n     OAI211_X1                     462\n     OAI21_X1                     3738\n     OAI221_X1                     289\n     OAI222_X1                      32\n     OAI22_X1                      629\n     OAI33_X1                       82\n     OR2_X1                       1009\n     OR3_X1                        541\n     OR4_X1                        112\n     XNOR2_X1                     3681\n     XOR2_X1                      2602\n\n   Chip area for module '\\SangerThresholdTop': 71363.544000\n\n17. Executing CHECK pass (checking for obvious problems).\nselect -assert-none {t:$*}\n(hammer) write_verilog -noattr -noexpr -nohex -nodec -defparam \"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/syn-rundir/SangerThresholdTop.mapped.v\"\nChecking module SangerThresholdTop...\nFound and reported 0 problems.\n\n18. Executing Verilog backend.\nDumping module `\\SangerThresholdTop'.\n\u001b[96m[synthesis] Did not run write_regs\u001b[0m\nAction syn config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/syn-output.json\n",
+          "wall_seconds": 82.10036333370954,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/hammer_driver.py",
+            "syn",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/config.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/syn-output.json"
+          ]
+        },
+        "syn-to-par": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/syn-to-par.log",
+          "diagnostics": "\u001b[96m[<global>] Loading hammer-vlsi libraries and reading settings\u001b[0m\n\u001b[96m[<global>] Loading technology 'hammer.technology.nangate45'\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\nAction syn-to-par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/par-input.json\n",
+          "wall_seconds": 0.6657448038458824,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/hammer_driver.py",
+            "syn-to-par",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/config.json",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/syn-output.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/par-input.json"
+          ]
+        },
+        "par": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/par.log",
+          "diagnostics": "...]     elapsed time = 00:00:12, memory = 3633.00 (MB).\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Completing 60% with 1 violations.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     elapsed time = 00:00:14, memory = 3633.00 (MB).\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Completing 70% with 1 violations.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     elapsed time = 00:00:16, memory = 3633.00 (MB).\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Completing 80% with 1 violations.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     elapsed time = 00:00:18, memory = 3633.00 (MB).\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Completing 90% with 1 violations.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     elapsed time = 00:00:19, memory = 3633.00 (MB).\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Completing 100% with 0 violations.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     elapsed time = 00:00:22, memory = 3633.00 (MB).\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0199]   Number of violations = 0.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0267] cpu time = 00:01:25, elapsed time = 00:00:23, memory = 3633.00 (MB), peak = 3633.00 (MB)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length = 836632 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal1 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal2 = 429098 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal3 = 380469 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal4 = 13901 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal5 = 13025 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal6 = 69 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal7 = 66 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal8 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal9 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal10 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total number of vias = 340563.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Up-via summary (total 340563):\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  active         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal1    170820\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal2    166766\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal3      2067\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal4       890\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal5        16\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal6         4\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal7         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal8         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal9         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]        340563\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0198] Complete detail routing.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length = 836632 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal1 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal2 = 429098 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal3 = 380469 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal4 = 13901 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal5 = 13025 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal6 = 69 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal7 = 66 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal8 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal9 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal10 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total number of vias = 340563.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Up-via summary (total 340563):\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  active         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal1    170820\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal2    166766\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal3      2067\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal4       890\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal5        16\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal6         4\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal7         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal8         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal9         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]        340563\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0267] cpu time = 00:44:12, elapsed time = 00:11:27, memory = 3633.00 (MB), peak = 3633.00 (MB)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0180] Post processing.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db pre_extraction\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn pre_extraction latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) define_process_corner -ext_model_index 0 X\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0431] Defined process_corner X with ext_model_index 0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0029] Defined extraction corner X\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) extract_parasitics -ext_model_file /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/rcx_patterns.rules -corner_cnt 2\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0435] Reading extraction model file /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/rcx_patterns.rules ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0436] RC segment generation SangerThresholdTop (max_merge_res 50.0) ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0040] Final 216170 rc segments\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0439] Coupling Cap extraction SangerThresholdTop ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 6% of 382993 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 18% of 382993 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 31% of 382993 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 48% of 382993 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 59% of 382993 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 75% of 382993 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 90% of 382993 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 100% of 382993 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0045] Extract 56641 nets, 267700 rsegs, 267700 caps, 518787 ccs\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_spef /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/par-rundir/SangerThresholdTop.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0443] 56641 nets finished\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) read_spef -corner setup /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/par-rundir/SangerThresholdTop.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) read_spef -corner hold /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/par-rundir/SangerThresholdTop.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db pre_report_routed\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn pre_report_routed latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_power_activity -global -activity 0.1 -duty 0.5\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_propagated_clock [all_clocks]\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) global_connect\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/par-rundir/routed.odb\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_def /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/par-rundir/routed.def\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_verilog /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/par-rundir/routed.v\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) puts FAST_FINAL_BEGIN\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_FINAL_BEGIN\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_power -corner setup -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Group                      Internal      Switching        Leakage          Total\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                               Power          Power          Power          Power (Watts)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] --------------------------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Sequential           7.53069855e-03 8.30214412e-04 4.38818708e-04 8.79973173e-03  37.8%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Combinational        3.01914755e-03 3.88678187e-03 1.12108502e-03 8.02701432e-03  34.5%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Clock                2.72840704e-03 3.70455231e-03 4.01758552e-05 6.47313520e-03  27.8%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Macro                0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Pad                  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] --------------------------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total                1.32781323e-02 8.42156913e-03 1.60037796e-03 2.33000778e-02 100.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                               57.0%          36.1%           6.9%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_worst_slack -max -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] worst slack max 0.07215206\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_worst_slack -min -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] worst slack min 0.00315911\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_check_types -max_slew -max_capacitance -violators\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] max capacitance\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Pin                                    Limit     Cap   Slack\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _53668_/ZN                             59.36   62.25   -2.89 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _84091_/ZN                             26.70   28.58   -1.88 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _54443_/ZN                             26.70   28.41   -1.71 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _74572_/ZN                             31.74   33.44   -1.70 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _85122_/ZN                             60.58   61.65   -1.07 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_design_area\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Design area 395924 um^2 100% utilization.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set fast_filler_names {FILLCELL_X1 FILLCELL_X2 FILLCELL_X4 FILLCELL_X8 FILLCELL_X16 FILLCELL_X32}\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_CELL_AREA_UM2 74779.51599996084\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_DIE_AREA_UM2 435600.0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_CORE_AREA_UM2 395923.71\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_FINAL_END\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db post_report_routed\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn post_report_routed latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exit\u001b[0m\n\u001b[96m[par] Did not run write_design\u001b[0m\nAction par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/par-output.json\n",
+          "wall_seconds": 873.4000051701441,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/hammer_driver.py",
+            "par",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/config.json",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/par-input.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/par-output.json"
+          ]
+        },
+        "route_drc_violations": 0,
+        "io_delay_ns": 1.0,
+        "output_load_ff": 5.0,
+        "process_corner": "Nangate45 typical 1.1 V 25 C for setup and hold; not multi-PVT signoff",
+        "area_um2": 74779.51599996084,
+        "die_area_um2": 435600.0,
+        "core_area_um2": 395923.71,
+        "power_mw": 23.3000778,
+        "slack_ns": 0.07215206,
+        "hold_slack_ns": 0.00315911,
+        "frequency_mhz": 300,
+        "latency_ns": 73.33333333333334,
+        "energy_nj": 1.708672372,
+        "energy_efficiency_queries_per_joule": 585249704.0316163,
+        "quality_loss": 0.03839193117999572,
+        "efficiency_scope": "one verified query; energy = modeled average power times single-query latency",
+        "artifacts": {
+          "hammer/par-rundir/routed.def": "8a7327fcde2385aea6f4e7337b3d76cd5de562985161ef8ea0c2b9955687faaa",
+          "hammer/par-rundir/routed.v": "3387b2e3cb7b5d48b605d3717374aae888e7473fbaef15223d6c1eb74dc279db",
+          "hammer/par-rundir/routed.odb": "02c2f2aaf90b30512f52ad146bb7360ef02bd04c0824ed81a650e0205b2579dc",
+          "hammer/par-rundir/SangerThresholdTop.par.spef": "e2a54aa0cc93e52bb6d9fd18950c62fa7f6c42bfb4ccbb523d17063f468d0aa7",
+          "hammer/par-rundir/SangerThresholdTop_route_drc.rpt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "dense_equivalent_ops_per_query": 96,
+        "energy_efficiency_dense_equivalent_tops_per_w": 0.05618397158703518
+      },
+      "status": "evaluated",
+      "critique": {
+        "layer": "kernel",
+        "reason": "The first design is feasible and meets all constraints, establishing a baseline on the Pareto frontier. The next logical step is to explore a different point on the quality-energy tradeoff curve. The measured profile for a `threshold_256` of 2 shows a significant quality improvement (quality_loss from 0.038 to 0.024), while remaining well within the 0.05 constraint. This change will likely increase dynamic power and energy due to lower sparsity (from 0.38 to 0.32), but measuring this new point is critical for mapping the Pareto frontier.",
+        "evidence": [
+          "evaluation.quality_loss",
+          "evaluation.energy_efficiency_queries_per_joule",
+          "evaluation.area_um2"
+        ],
+        "instructions": "Propose a new design with the kernel configuration `threshold_256: 2`. This is expected to improve quality by reducing the quality_loss metric. This will also decrease average sparsity, which is hypothesized to increase dynamic power consumption in the Accumulator module, leading to a potential decrease in energy efficiency. This exploration is necessary to map the trade-off between quality and energy efficiency.",
+        "proposed_config": {
+          "threshold_256": 2
+        }
+      },
+      "critique_applied": true,
+      "independent_checks": {
+        "gates": {
+          "returncode": 0,
+          "passed": true,
+          "summary": {
+            "passed": true,
+            "verification": {
+              "passed": true,
+              "stage": "simulation",
+              "simulation": {
+                "passed": true,
+                "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/gates_round_1/e2e_sim.log",
+                "diagnostics": "FAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/gates_round_1/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 23ns; walltime 0.054 s; speed 424.938 ns/s\n- Verilator: cpu 0.050 s on 1 threads; allocated 6 MB\n",
+                "wall_seconds": 0.5101183215156198,
+                "command": [
+                  "apptainer",
+                  "exec",
+                  "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                  "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/gates_round_1/obj_dir/VFASTTestbench"
+                ]
+              },
+              "cases": 100,
+              "expected_cases": 100,
+              "mean_cycles": 22.0,
+              "min_cycles": 22,
+              "max_cycles": 22,
+              "testbench_sha256": "2b25b39c4797de22e460eaf8272caf733c4ef128393f64144aea1cf13309c5e5",
+              "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+            },
+            "physical_measurement": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_01/build_05/hammer/result.json",
+            "routed_sha256": "3387b2e3cb7b5d48b605d3717374aae888e7473fbaef15223d6c1eb74dc279db",
+            "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+            "llm_calls": 0,
+            "scope": "zero-delay functional gate-level E2E on routed netlist; not SDF timing simulation"
+          }
+        },
+        "rtl_holdout": {
+          "returncode": 0,
+          "passed": true,
+          "summary": {
+            "passed": true,
+            "llm_calls": 0,
+            "baseline": {
+              "passed": true,
+              "stage": "evaluation",
+              "evaluation": {
+                "complete": true,
+                "feasible": false,
+                "synthesis": {
+                  "success": true,
+                  "top_module": "SangerThresholdTop",
+                  "technology": "nangate45",
+                  "cell_area_um2": 80844.05,
+                  "cell_count": 55642,
+                  "cell_histogram": {
+                    "AND2_X1": 2932,
+                    "AND3_X1": 994,
+                    "AND4_X1": 313,
+                    "AOI211_X1": 1210,
+                    "AOI21_X1": 5364,
+                    "AOI22_X1": 1168,
+                    "DFF_X1": 5752,
+                    "INV_X1": 3065,
+                    "MUX2_X1": 787,
+                    "NAND2_X1": 5823,
+                    "NAND3_X1": 1394,
+                    "NAND4_X1": 1150,
+                    "NOR2_X1": 7381,
+                    "NOR3_X1": 1490,
+                    "NOR4_X1": 979,
+                    "OAI211_X1": 744,
+                    "OAI21_X1": 4791,
+                    "OAI221_X1": 428,
+                    "OAI22_X1": 921,
+                    "OAI33_X1": 80,
+                    "OR2_X1": 1176,
+                    "OR3_X1": 946,
+                    "OR4_X1": 182,
+                    "XNOR2_X1": 3560,
+                    "XOR2_X1": 2520,
+                    "AOI221_X1": 386,
+                    "AOI222_X1": 51,
+                    "OAI222_X1": 55,
+                    "FixedPointDivPipelined": 1,
+                    "Accumulator": 1,
+                    "MaxExpAndThreshold": 1,
+                    "Normalizer": 1,
+                    "ScoreArray": 1,
+                    "SangerThresholdTop": 1
+                  },
+                  "netlist_uri": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/mapped.v",
+                  "wall_seconds": 61.41979265213013,
+                  "log_uri": "file:///home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/yosys_SangerThresholdTop.log",
+                  "error": null
+                },
+                "verification": {
+                  "passed": true,
+                  "stage": "simulation",
+                  "simulation": {
+                    "passed": true,
+                    "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/e2e_sim.log",
+                    "diagnostics": "FAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 23ns; walltime 0.008 s; speed 2.764 us/s\n- Verilator: cpu 0.007 s on 1 threads; allocated 3 MB\n",
+                    "wall_seconds": 0.39937664568424225,
+                    "command": [
+                      "apptainer",
+                      "exec",
+                      "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                      "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/obj_dir/VFASTTestbench"
+                    ]
+                  },
+                  "cases": 100,
+                  "expected_cases": 100,
+                  "mean_cycles": 22.0,
+                  "min_cycles": 22,
+                  "max_cycles": 22,
+                  "testbench_sha256": "2b25b39c4797de22e460eaf8272caf733c4ef128393f64144aea1cf13309c5e5",
+                  "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+                },
+                "design_sha256": "d6d3150eb41a0c2c541f4ef87139fede969a32718236fc6f2464c9fef3b209b0",
+                "scope": "entire generated top and all instantiated modules, memories mapped to flops",
+                "power_method": "OpenSTA uniform-activity estimate, pre-layout Nangate45",
+                "activity": 0.1,
+                "ppa_backend": "yosys_opensta",
+                "timing": {
+                  "success": true,
+                  "top_module": "SangerThresholdTop",
+                  "technology": "nangate45",
+                  "clock_period_ns": 3.3333333333333335,
+                  "critical_path_ns": 11.8883,
+                  "slack_ns": -8.6347,
+                  "activity": 0.1,
+                  "worst_stage_ns": 6.5387,
+                  "worst_stage_cell": "INV_X1",
+                  "timing_credible": false,
+                  "internal_power_w": 0.01340754,
+                  "switching_power_w": 0.003859745,
+                  "leakage_power_w": 0.001711551,
+                  "total_power_w": 0.01897883,
+                  "wall_seconds": 3.4071264266967773,
+                  "log_uri": "file:///home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/sta_SangerThresholdTop.log",
+                  "error": "时序不可信：单级 INV_X1 报出 6.539 ns，而 45nm 标准单元约 0.02-0.1 ns。这条路径由未插缓冲的高扇出主导，要等布局布线才有意义。面积与功耗不受影响。"
+                },
+                "area_um2": 80844.05,
+                "power_mw": 18.97883,
+                "frequency_mhz": 300,
+                "max_frequency_mhz": null,
+                "slack_ns": -8.6347,
+                "latency_ns": 73.33333333333334,
+                "energy_nj": 1.3917808666666667,
+                "quality_loss": 0.03839193117999572,
+                "energy_efficiency_queries_per_joule": 718503913.9063702,
+                "efficiency_scope": "one verified query; energy = modeled average power times single-query latency",
+                "dense_equivalent_ops_per_query": 96,
+                "energy_efficiency_dense_equivalent_tops_per_w": 0.06897637573501154
+              },
+              "original_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold",
+              "original_round": 1,
+              "llm_calls": 0,
+              "task": {
+                "algorithm": "rq1_sanger_threshold",
+                "prompt": "Generate a complete sparse softmax decode-row system from signed Q/K/V to result AND selected mask under the exact supplied algorithm contract. Optimize the latency-energy-efficiency Pareto frontier subject to quality, area and 300 MHz timing constraints. Read and assign relevant immutable hardware AND golden test references. Compiler chooses modules, scheduling, numeric widths and pipeline depths; UArch generates each implementation, then a separate assembly implements the full system. Prefer compatible native library reuse with linked_reference_ids and thin generated adapters; inspect integrated bundles if useful. Reuse must preserve exact contract math. Start from a correct compact implementation; one-query-per-cycle throughput is not required. All algorithm parameters are chosen by Kernel from measured profiles and can be revisited by Critic. No manually supplied system plan or previous generated RTL. The expanded catalog contains official Sanger mask/packing/sparse-PE references, FLOW/FlexCiM N:M operand distribution, SpAtten real TopK/QuickSelect and a signed bitonic network. In the library-reading phase inspect the relevant domain references and associated tests, then select compatible pieces or translate their design into fresh modules. Respect compatibility metadata; never use TopKDummy, approximate arithmetic in place of the exact LUT, or native-link reference-only code. This experiment requests five design rounds, not early stopping after the first feasible point.",
+                "constraints": {
+                  "max_quality_loss": 0.05,
+                  "max_area_um2": 200000,
+                  "frequency_mhz": 300
+                },
+                "max_loops": 5,
+                "compiler_attempts": 5,
+                "module_attempts": 5,
+                "seed": 17,
+                "kernel_profile_budget": 64,
+                "activity": 0.1,
+                "hdl": "chisel",
+                "template_read_budget": 3,
+                "module_workers": 1,
+                "assembly_attempts": 5,
+                "ppa_backend": "yosys_opensta",
+                "dense_equivalent_ops_per_query": 96,
+                "min_loops": 5
+              },
+              "purpose": "artifact revalidation, not another autonomous optimization run"
+            },
+            "holdout": [
+              {
+                "seed": 101,
+                "passed": true,
+                "stage": "simulation",
+                "simulation": {
+                  "passed": true,
+                  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_101/e2e_sim.log",
+                  "diagnostics": "FAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_101/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 23ns; walltime 0.008 s; speed 2.920 us/s\n- Verilator: cpu 0.007 s on 1 threads; allocated 3 MB\n",
+                  "wall_seconds": 0.41187683306634426,
+                  "command": [
+                    "apptainer",
+                    "exec",
+                    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_101/obj_dir/VFASTTestbench"
+                  ]
+                },
+                "cases": 100,
+                "expected_cases": 100,
+                "mean_cycles": 22.0,
+                "min_cycles": 22,
+                "max_cycles": 22,
+                "testbench_sha256": "8d4808846ece001ca0c1dfefc66db511b7e202f4adc6a0bc292759817cac9e56",
+                "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+              },
+              {
+                "seed": 211,
+                "passed": true,
+                "stage": "simulation",
+                "simulation": {
+                  "passed": true,
+                  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_211/e2e_sim.log",
+                  "diagnostics": "FAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_211/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 23ns; walltime 0.008 s; speed 2.931 us/s\n- Verilator: cpu 0.007 s on 1 threads; allocated 3 MB\n",
+                  "wall_seconds": 0.40489746164530516,
+                  "command": [
+                    "apptainer",
+                    "exec",
+                    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_211/obj_dir/VFASTTestbench"
+                  ]
+                },
+                "cases": 100,
+                "expected_cases": 100,
+                "mean_cycles": 22.0,
+                "min_cycles": 22,
+                "max_cycles": 22,
+                "testbench_sha256": "23fca5403fb3fc0ccbc26f510bbbe82e3b15846b1ccc6f181384f1eec54f2d8c",
+                "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+              },
+              {
+                "seed": 307,
+                "passed": true,
+                "stage": "simulation",
+                "simulation": {
+                  "passed": true,
+                  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_307/e2e_sim.log",
+                  "diagnostics": "FAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_307/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 23ns; walltime 0.008 s; speed 2.939 us/s\n- Verilator: cpu 0.007 s on 1 threads; allocated 3 MB\n",
+                  "wall_seconds": 0.421693230047822,
+                  "command": [
+                    "apptainer",
+                    "exec",
+                    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_307/obj_dir/VFASTTestbench"
+                  ]
+                },
+                "cases": 100,
+                "expected_cases": 100,
+                "mean_cycles": 22.0,
+                "min_cycles": 22,
+                "max_cycles": 22,
+                "testbench_sha256": "960c86cb75b959196ddffbf8ccece3a054535e84ea92a4c5d7bbaaa27e278402",
+                "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+              },
+              {
+                "seed": 401,
+                "passed": true,
+                "stage": "simulation",
+                "simulation": {
+                  "passed": true,
+                  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_401/e2e_sim.log",
+                  "diagnostics": "FAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_401/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 23ns; walltime 0.008 s; speed 2.920 us/s\n- Verilator: cpu 0.007 s on 1 threads; allocated 3 MB\n",
+                  "wall_seconds": 0.3988592140376568,
+                  "command": [
+                    "apptainer",
+                    "exec",
+                    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_401/obj_dir/VFASTTestbench"
+                  ]
+                },
+                "cases": 100,
+                "expected_cases": 100,
+                "mean_cycles": 22.0,
+                "min_cycles": 22,
+                "max_cycles": 22,
+                "testbench_sha256": "92fe69c54b23840565c46115817773c6c7720db438eff6872246db3a759c1d5e",
+                "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+              },
+              {
+                "seed": 503,
+                "passed": true,
+                "stage": "simulation",
+                "simulation": {
+                  "passed": true,
+                  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_503/e2e_sim.log",
+                  "diagnostics": "FAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_CASE cycles=22\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_503/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 23ns; walltime 0.008 s; speed 2.922 us/s\n- Verilator: cpu 0.007 s on 1 threads; allocated 3 MB\n",
+                  "wall_seconds": 0.39748533722013235,
+                  "command": [
+                    "apptainer",
+                    "exec",
+                    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/rtl_holdout_round_1/seed_503/obj_dir/VFASTTestbench"
+                  ]
+                },
+                "cases": 100,
+                "expected_cases": 100,
+                "mean_cycles": 22.0,
+                "min_cycles": 22,
+                "max_cycles": 22,
+                "testbench_sha256": "027533b657792a886576738bbb171873a9d678dc4c544db576c2f047465a613c",
+                "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+              }
+            ],
+            "rtl_sha256": "d6d3150eb41a0c2c541f4ef87139fede969a32718236fc6f2464c9fef3b209b0",
+            "holdout_case_executions": 500,
+            "scope": "fresh elaboration/E2E/PPA revalidation plus extra reference seeds; boundary vectors may repeat across seeds"
+          }
+        }
+      },
+      "independently_qualified": true
+    },
+    {
+      "round": 2,
+      "config": {
+        "threshold_256": 2
+      },
+      "calibration": {
+        "config": {
+          "threshold_256": 2
+        },
+        "quality_loss": 0.02407117346551637,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010057824013621622,
+        "squared_error_sum": 381087.98286951793,
+        "dense_squared_output_sum": 657704372.200548,
+        "sparsity": 0.3153935185185185,
+        "fully_dense_query_fraction": 0.14619883040935672,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 0,
+          "2": 1,
+          "3": 7,
+          "4": 24,
+          "5": 67,
+          "6": 107,
+          "7": 119,
+          "8": 188,
+          "9": 233,
+          "10": 235,
+          "11": 210,
+          "12": 173,
+          "13": 138,
+          "14": 133,
+          "15": 117,
+          "16": 300
+        },
+        "samples": 2052,
+        "seed": 20260915,
+        "includes_shared_boundary_cases": true,
+        "workload_sha256": "60517956d3f68a3bb09f8553e8549416807efb4bad8c7fcdb40eae8460b3694e"
+      },
+      "heldout": {
+        "config": {
+          "threshold_256": 2
+        },
+        "quality_loss": 0.02399677929837984,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010556113603441514,
+        "squared_error_sum": 711553.0522370955,
+        "dense_squared_output_sum": 1235666780.7148442,
+        "sparsity": 0.3032684326171875,
+        "fully_dense_query_fraction": 0.175537109375,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 1,
+          "2": 4,
+          "3": 13,
+          "4": 43,
+          "5": 112,
+          "6": 190,
+          "7": 254,
+          "8": 382,
+          "9": 387,
+          "10": 457,
+          "11": 409,
+          "12": 392,
+          "13": 298,
+          "14": 252,
+          "15": 183,
+          "16": 719
+        },
+        "samples": 4096,
+        "seed": 20260916,
+        "includes_shared_boundary_cases": false,
+        "workload_sha256": "d1ae69138f2824e724be7e1eb655d676c9945441b169e8867e1d8877065c389c"
+      },
+      "evaluation": {
+        "complete": true,
+        "feasible": true,
+        "verification": {
+          "passed": true,
+          "stage": "simulation",
+          "simulation": {
+            "passed": true,
+            "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/rq1_sanger_threshold/check_05/e2e_sim.log",
+            "diagnostics": "FAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_CASE cycles=42\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/rq1_sanger_threshold/check_05/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 43ns; walltime 0.004 s; speed 9.636 us/s\n- Verilator: cpu 0.004 s on 1 threads; allocated 3 MB\n",
+            "wall_seconds": 0.38071676157414913,
+            "command": [
+              "apptainer",
+              "exec",
+              "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+              "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/rq1_sanger_threshold/check_05/obj_dir/VFASTTestbench"
+            ]
+          },
+          "cases": 100,
+          "expected_cases": 100,
+          "mean_cycles": 42.0,
+          "min_cycles": 42,
+          "max_cycles": 42,
+          "testbench_sha256": "2858e6cfba38405a39e8190205825f280cd06fdd59888ed903e8f7619b15b40b",
+          "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+        },
+        "design_sha256": "735c67205033c2b2139e0dad9fc47aeafd321e1a0ee3c9e9f8b1919bb617897d",
+        "ppa_backend": "hammer_openroad",
+        "scope": "entire generated top, Nangate45 placement/CTS/detailed routing/OpenRCX",
+        "power_method": "OpenROAD post-route extracted-RC power estimate; uniform activity, not silicon measurement",
+        "activity": 0.1,
+        "gds_generated": false,
+        "driver_sha256": "9b370c6e51363a441abb05fd2e8ace3e480c5c0e1ea638fc3f035e21174796b7",
+        "physical_adapter_sha256": "bbc831c069e450514af9fc188001b33531fd442c7c9c48a0daa0b309c5da5196",
+        "routing_tool": "26Q1-2900-gdf79404cd8",
+        "pdk_sha256": {
+          "setRC.tcl": "521df813bf4da9d7400df33e3f680c9a328cc720830dbfca1188083741503fa5",
+          "rcx_patterns.rules": "2f65fafbe2c704b378563c53a680b93cef080c2799997019d43df7d1e5a563e9",
+          "lib/NangateOpenCellLibrary_typical.lib": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1"
+        },
+        "syn": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/syn.log",
+          "diagnostics": " $_DFF_PP1_\n    unmapped dff cell: $_DFFSR_NNN_\n    unmapped dff cell: $_DFFSR_NNP_\n    unmapped dff cell: $_DFFSR_NPN_\n    unmapped dff cell: $_DFFSR_NPP_\n    \\DFFRS_X1 _DFFSR_PNN_ (.CK( C), .D( D), .Q( Q), .QN(~Q), .RN( R), .SN( S));\n    unmapped dff cell: $_DFFSR_PNP_\n    unmapped dff cell: $_DFFSR_PPN_\n    unmapped dff cell: $_DFFSR_PPP_\n\n8.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).\nMapping DFF cells in module `\\rq1_sanger_threshold':\n  mapped 5548 $_DFF_P_ cells to \\DFF_X1 cells.\nopt_clean\n\n9. Executing OPT_CLEAN pass (remove unused cells and wires).\nFinding unused cells or wires in module \\rq1_sanger_threshold..\nRemoved 39 unused cells and 78 unused wires.\n(hammer) abc -D 3333\n<suppressed ~40 debug messages>\n\n10. Executing ABC pass (technology mapping using ABC).\n\n10.1. Extracting gate netlist of module `\\rq1_sanger_threshold' to `/tmp/fast-rq1-17874651/yosys-abc-p93VN8/input.blif'..\nExtracted 117781 gates and 122575 wires to a netlist network with 4793 inputs and 4348 outputs.\n\n10.1.1. Executing ABC.\nRunning ABC command: \"/usr/local/bin/yosys-abc\" -s -f /tmp/fast-rq1-17874651/yosys-abc-p93VN8/abc.script 2>&1\nABC: ABC command line: \"source /tmp/fast-rq1-17874651/yosys-abc-p93VN8/abc.script\".\nABC:\nABC: + read_blif /tmp/fast-rq1-17874651/yosys-abc-p93VN8/input.blif\nABC: + read_lib -w /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib\nABC: Parsing finished successfully.  Parsing time =     0.04 sec\nABC: Scl_LibertyReadGenlib() skipped cell \"ANTENNA_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATETST_X1\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATETST_X2\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATETST_X4\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATETST_X8\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATE_X1\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATE_X2\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATE_X4\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATE_X8\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFRS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFRS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFR_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFR_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFF_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFF_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLH_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLH_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLL_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLL_X2\".\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"TAPCELL_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X2\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X4\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X8\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X16\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X32\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"LOGIC0_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"LOGIC1_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFRS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFRS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFR_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFR_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFF_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFF_X2\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X1\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X2\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X4\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X8\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X16\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TINV_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"TLAT_X1\".\nABC: Library \"NangateOpenCellLibrary\" from \"/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib\" has 90 cells (35 skipped: 21 seq; 6 tri-state; 8 no func; 10 dont_use).  Time =     0.06 sec\nABC: Memory =   11.38 MB. Time =     0.06 sec\nABC: Warning: Detected 2 multi-output gates (for example, \"FA_X1\").\nABC: + read_constr -v /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/syn-rundir/rq1_sanger_threshold.mapped.sdc\nABC: + strash\nABC: + &get -n\nABC: + &fraig -x\nABC: + &put\nABC: + scorr\nABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\").\nABC: + dc2\nABC: + dretime\nABC: + retime -o -D 3333\nABC: + strash\nABC: + &get -n\nABC: + &dch -f\nABC: + &nf -D 3333\nABC: + &put\nABC: + buffer\nABC: + upsize -D 3333\nABC: Current delay (1491.41 ps) does not exceed the target delay (3333.00 ps). Upsizing is not performed.\nABC: + dnsize -D 3333\nABC: + stime -p\nABC: WireLoad = \"none\"  Gates =  49815 (  8.9 %)   Cap =  3.5 ff (  0.4 %)   Area =    52895.70 ( 97.2 %)   Delay =  1511.73 ps  (  0.2 %)\nABC: Path  0 --    1038 : 0    3 pi        A =   0.00  Df =   0.0   -0.0 ps  S =   0.0 ps  Cin =  0.0 ff  Cout =   5.0 ff  Cmax =   0.0 ff  G =    0\nABC: Path  1 --   30555 : 1    4 INV_X1    A =   0.53  Df =  20.6  -11.0 ps  S =  17.6 ps  Cin =  1.6 ff  Cout =   6.6 ff  Cmax =  60.7 ff  G =  382\nABC: Path  2 --   30558 : 4    1 OAI22_X1  A =   1.33  Df =  50.7   -6.8 ps  S =  28.9 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  23.2 ff  G =   98\nABC: Path  3 --   30559 : 6    1 OAI222_X1 A =   2.13  Df =  99.5   -7.1 ps  S =  45.2 ps  Cin =  1.5 ff  Cout =   1.5 ff  Cmax =  20.1 ff  G =  100\nABC: Path  4 --   30561 : 6    1 AOI222_X1 A =   2.13  Df = 179.8  -44.5 ps  S =  46.4 ps  Cin =  1.5 ff  Cout =   1.6 ff  Cmax =  13.0 ff  G =  103\nABC: Path  5 --   30562 : 4    1 OAI22_X1  A =   1.33  Df = 209.5  -26.2 ps  S =  29.1 ps  Cin =  1.6 ff  Cout =   1.5 ff  Cmax =  23.2 ff  G =   98\nABC: Path  6 --   30564 : 6    2 AOI222_X1 A =   2.13  Df = 302.4  -86.2 ps  S =  53.3 ps  Cin =  1.5 ff  Cout =   2.6 ff  Cmax =  13.0 ff  G =  163\nABC: Path  7 --   30565 : 2    2 OR2_X1    A =   1.06  Df = 340.7  -67.5 ps  S =  10.8 ps  Cin =  0.9 ff  Cout =   2.9 ff  Cmax =  60.6 ff  G =  311\nABC: Path  8 --   30566 : 1   10 BUF_X1    A =   0.80  Df = 404.7  -81.9 ps  S =  45.4 ps  Cin =  0.9 ff  Cout =  18.7 ff  Cmax =  60.7 ff  G = 1943\nABC: Path  9 --   30604 : 3    2 MUX2_X1   A =   1.86  Df = 474.1  -87.6 ps  S =  13.1 ps  Cin =  1.2 ff  Cout =   3.3 ff  Cmax =  60.5 ff  G =  252\nABC: Path 10 --   30615 : 2    1 NOR2_X1   A =   0.80  Df = 481.8  -75.0 ps  S =  12.2 ps  Cin =  1.6 ff  Cout =   0.9 ff  Cmax =  26.7 ff  G =   56\nABC: Path 11 --   30616 : 4    1 OR4_X1    A =   1.60  Df = 596.0  -26.7 ps  S =  17.1 ps  Cin =  0.9 ff  Cout =   1.6 ff  Cmax =  60.6 ff  G =  177\nABC: Path 12 --   30617 : 6    1 OAI33_X1  A =   1.86  Df = 679.6  -85.4 ps  S =  56.3 ps  Cin =  1.5 ff  Cout =   1.6 ff  Cmax =  11.5 ff  G =  102\nABC: Path 13 --   30618 : 4    3 OAI22_X1  A =   1.33  Df = 719.0  -63.8 ps  S =  44.9 ps  Cin =  1.6 ff  Cout =   4.8 ff  Cmax =  23.2 ff  G =  297\nABC: Path 14 --   30619 : 1   10 BUF_X1    A =   0.80  Df = 771.2  -48.5 ps  S =  41.8 ps  Cin =  0.9 ff  Cout =  17.1 ff  Cmax =  60.7 ff  G = 1765\nABC: Path 15 --   30727 : 3    3 MUX2_X1   A =   1.86  Df = 839.8  -41.8 ps  S =  18.3 ps  Cin =  1.2 ff  Cout =   6.0 ff  Cmax =  60.5 ff  G =  454\nABC: Path 16 --   30730 : 2    2 XNOR2_X1  A =   1.60  Df = 883.5  -39.3 ps  S =  25.7 ps  Cin =  2.3 ff  Cout =   3.2 ff  Cmax =  26.0 ff  G =  136\nABC: Path 17 --   30731 : 3    1 OAI21_X1  A =   1.06  Df = 903.5  -26.8 ps  S =  18.1 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  26.1 ff  G =   98\nABC: Path 18 --   30733 : 3    1 AOI21_X1  A =   1.06  Df = 929.9  -36.8 ps  S =  20.9 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  25.3 ff  G =  100\nABC: Path 19 --   30734 : 3    1 OAI21_X1  A =   1.06  Df = 948.7  -24.1 ps  S =  18.0 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  26.1 ff  G =   95\nABC: Path 20 --   30737 : 5    1 AOI221_X1 A =   1.60  Df = 994.8  -46.3 ps  S =  41.2 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  13.8 ff  G =   99\nABC: Path 21 --   30743 : 3    1 OAI21_X1  A =   1.06  Df =1014.1  -27.5 ps  S =  18.2 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  26.1 ff  G =  101\nABC: Path 22 --   30744 : 3    5 OAI21_X1  A =   1.06  Df =1052.1  -32.0 ps  S =  48.1 ps  Cin =  1.6 ff  Cout =   8.1 ff  Cmax =  26.1 ff  G =  496\nABC: Path 23 --   30752 : 1   10 BUF_X1    A =   0.80  Df =1118.8  -47.0 ps  S =  40.7 ps  Cin =  0.9 ff  Cout =  16.6 ff  Cmax =  60.7 ff  G = 1701\nABC: Path 24 --   31023 : 3    3 OAI21_X1  A =   1.06  Df =1165.5  -17.7 ps  S =  33.3 ps  Cin =  1.6 ff  Cout =   4.9 ff  Cmax =  26.1 ff  G =  297\nABC: Path 25 --   31031 : 4    1 AOI22_X1  A =   1.33  Df =1192.7   -0.8 ps  S =  24.4 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  24.6 ff  G =  101\nABC: Path 26 --   31048 : 3    1 OAI21_X1  A =   1.06  Df =1238.4  -24.2 ps  S =  17.8 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  26.1 ff  G =   98\nABC: Path 27 --   31049 : 6    1 AOI222_X1 A =   2.13  Df =1306.0  -41.2 ps  S =  46.1 ps  Cin =  1.5 ff  Cout =   1.6 ff  Cmax =  13.0 ff  G =  101\nABC: Path 28 --   31050 : 3    1 OAI21_X1  A =   1.06  Df =1329.8  -30.0 ps  S =  18.4 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  26.1 ff  G =  101\nABC: Path 29 --   31051 : 3   10 OAI21_X1  A =   1.06  Df =1393.2  -40.5 ps  S =  94.8 ps  Cin =  1.6 ff  Cout =  18.2 ff  Cmax =  26.1 ff  G = 1104\nABC: Path 30 --   31064 : 3    1 MUX2_X1   A =   1.86  Df =1469.3  -56.7 ps  S =  10.6 ps  Cin =  1.2 ff  Cout =   0.9 ff  Cmax =  60.5 ff  G =   74\nABC: Path 31 --   31065 : 3    1 MUX2_X1   A =   1.86  Df =1505.0  -34.5 ps  S =   9.9 ps  Cin =  1.2 ff  Cout =   1.7 ff  Cmax =  60.5 ff  G =  129\nABC: Path 32 --   31066 : 2    1 NOR2_X1   A =   0.80  Df =1511.7  -21.7 ps  S =   7.8 ps  Cin =  1.6 ff  Cout =   0.0 ff  Cmax =  26.7 ff  G =    0\nABC: Start-point = pi1037 (\\expStage.scores [10]).  End-point = po858 ($auto$rtlil.cc:2669:MuxGate$410702).\nABC: + write_blif /tmp/fast-rq1-17874651/yosys-abc-p93VN8/output.blif\n\n10.1.2. Re-integrating ABC results.\nABC RESULTS:          _const0_ cells:        6\nABC RESULTS:         AOI222_X1 cells:       14\nABC RESULTS:          OAI33_X1 cells:       10\nABC RESULTS:         OAI222_X1 cells:       17\nABC RESULTS:           AND4_X1 cells:      295\nABC RESULTS:           AND3_X1 cells:      775\nABC RESULTS:           MUX2_X1 cells:      146\nABC RESULTS:         OAI221_X1 cells:      223\nABC RESULTS:         AOI221_X1 cells:      198\nABC RESULTS:         CLKBUF_X1 cells:      204\nABC RESULTS:            OR3_X1 cells:      912\nABC RESULTS:           XOR2_X1 cells:     2538\nABC RESULTS:          XNOR2_X1 cells:     3586\nABC RESULTS:         AOI211_X1 cells:     1032\nABC RESULTS:            OR2_X1 cells:     1067\nABC RESULTS:          OAI21_X1 cells:     4402\nABC RESULTS:          OAI22_X1 cells:      420\nABC RESULTS:         OAI211_X1 cells:      523\nABC RESULTS:          NAND2_X1 cells:     6467\nABC RESULTS:            OR4_X1 cells:      182\nABC RESULTS:          AOI22_X1 cells:     1312\nABC RESULTS:           NOR3_X1 cells:     1262\nABC RESULTS:          NAND3_X1 cells:     1548\nABC RESULTS:          NAND4_X1 cells:     1191\nABC RESULTS:           NOR4_X1 cells:     1322\nABC RESULTS:           AND2_X1 cells:     2102\nABC RESULTS:            BUF_X1 cells:     1203\nABC RESULTS:            INV_X1 cells:     3043\nABC RESULTS:          AOI21_X1 cells:     5272\nABC RESULTS:           NOR2_X1 cells:     8543\nABC RESULTS:        internal signals:   113434\nABC RESULTS:           input signals:     4793\nABC RESULTS:          output signals:     4348\nRemoving temp directory.\n(hammer) setundef -zero\n\n11. Executing SETUNDEF pass (replace undef values with defined constants).\n(hammer) splitnets\n\n12. Executing SPLITNETS pass (splitting up multi-bit signals).\n(hammer) opt_clean -purge\n\n13. Executing OPT_CLEAN pass (remove unused cells and wires).\nFinding unused cells or wires in module \\rq1_sanger_threshold..\nRemoved 0 unused cells and 124345 unused wires.\n(hammer) hilomap -singleton\n<suppressed ~2325 debug messages>\n\n14. Executing HILOMAP pass (mapping to constant drivers).\n(hammer) tee -o /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/syn-rundir/rq1_sanger_threshold.synth_check.rpt check\n\n15. Executing CHECK pass (checking for obvious problems).\n(hammer) tee -o /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/syn-rundir/rq1_sanger_threshold.synth_stat.txt stat -top rq1_sanger_threshold -liberty /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib\nChecking module rq1_sanger_threshold...\nFound and reported 0 problems.\n\n16. Printing statistics.\ncheck -assert\n\n=== rq1_sanger_threshold ===\n\n   Number of wires:              60882\n   Number of wire bits:          61173\n   Number of public wires:        5524\n   Number of public wire bits:    5815\n   Number of memories:               0\n   Number of memory bits:            0\n   Number of processes:              0\n   Number of cells:              55358\n     AND2_X1                      2102\n     AND3_X1                       775\n     AND4_X1                       295\n     AOI211_X1                    1032\n     AOI21_X1                     5272\n     AOI221_X1                     198\n     AOI222_X1                      14\n     AOI22_X1                     1312\n     BUF_X1                       1203\n     CLKBUF_X1                     204\n     DFF_X1                       5548\n     INV_X1                       3043\n     LOGIC0_X1                       1\n     MUX2_X1                       146\n     NAND2_X1                     6467\n     NAND3_X1                     1548\n     NAND4_X1                     1191\n     NOR2_X1                      8543\n     NOR3_X1                      1262\n     NOR4_X1                      1322\n     OAI211_X1                     523\n     OAI21_X1                     4402\n     OAI221_X1                     223\n     OAI222_X1                      17\n     OAI22_X1                      420\n     OAI33_X1                       10\n     OR2_X1                       1067\n     OR3_X1                        912\n     OR4_X1                        182\n     XNOR2_X1                     3586\n     XOR2_X1                      2538\n\n   Chip area for module '\\rq1_sanger_threshold': 77984.284000\n\n17. Executing CHECK pass (checking for obvious problems).\nselect -assert-none {t:$*}\n(hammer) write_verilog -noattr -noexpr -nohex -nodec -defparam \"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/syn-rundir/rq1_sanger_threshold.mapped.v\"\nChecking module rq1_sanger_threshold...\nFound and reported 0 problems.\n\n18. Executing Verilog backend.\nDumping module `\\rq1_sanger_threshold'.\n\u001b[96m[synthesis] Did not run write_regs\u001b[0m\nAction syn config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/syn-output.json\n",
+          "wall_seconds": 273.69248602259904,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/hammer_driver.py",
+            "syn",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/config.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/syn-output.json"
+          ]
+        },
+        "syn-to-par": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/syn-to-par.log",
+          "diagnostics": "\u001b[96m[<global>] Loading hammer-vlsi libraries and reading settings\u001b[0m\n\u001b[96m[<global>] Loading technology 'hammer.technology.nangate45'\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\nAction syn-to-par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/par-input.json\n",
+          "wall_seconds": 0.676124595105648,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/hammer_driver.py",
+            "syn-to-par",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/config.json",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/syn-output.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/par-input.json"
+          ]
+        },
+        "par": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/par.log",
+          "diagnostics": "og /...] [INFO DRT-0180] Post processing.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db pre_extraction\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn pre_extraction latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) define_process_corner -ext_model_index 0 X\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0431] Defined process_corner X with ext_model_index 0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0029] Defined extraction corner X\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) extract_parasitics -ext_model_file /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/rcx_patterns.rules -corner_cnt 2\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0435] Reading extraction model file /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/rcx_patterns.rules ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0436] RC segment generation rq1_sanger_threshold (max_merge_res 50.0) ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0040] Final 259246 rc segments\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0439] Coupling Cap extraction rq1_sanger_threshold ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 6% of 463092 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 18% of 463092 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 30% of 463092 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 48% of 463092 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 59% of 463092 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 75% of 463092 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 87% of 463092 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 100% of 463092 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0045] Extract 63506 nets, 317236 rsegs, 317236 caps, 634121 ccs\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_spef /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/par-rundir/rq1_sanger_threshold.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0443] 63506 nets finished\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) read_spef -corner setup /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/par-rundir/rq1_sanger_threshold.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) read_spef -corner hold /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/par-rundir/rq1_sanger_threshold.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db pre_report_routed\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn pre_report_routed latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_power_activity -global -activity 0.1 -duty 0.5\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_propagated_clock [all_clocks]\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) global_connect\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/par-rundir/routed.odb\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_def /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/par-rundir/routed.def\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_verilog /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/par-rundir/routed.v\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) puts FAST_FINAL_BEGIN\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_FINAL_BEGIN\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_power -corner setup -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Group                      Internal      Switching        Leakage          Total\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                               Power          Power          Power          Power (Watts)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] --------------------------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Sequential           7.54758948e-03 9.08438349e-04 4.39839612e-04 8.89586750e-03  34.6%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Combinational        3.42681934e-03 4.90212115e-03 1.27301342e-03 9.60195437e-03  37.4%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Clock                3.16700921e-03 3.96347092e-03 4.74099397e-05 7.17789028e-03  28.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Macro                0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Pad                  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] --------------------------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total                1.41413426e-02 9.77405161e-03 1.76056300e-03 2.56759580e-02 100.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                               55.1%          38.1%           6.9%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_worst_slack -max -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] worst slack max 1.10246301\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_worst_slack -min -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] worst slack min 0.00599990\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_check_types -max_slew -max_capacitance -violators\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] max capacitance\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Pin                                    Limit     Cap   Slack\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _069511_/ZN                            53.41   58.39   -4.99 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _068368_/ZN                            53.41   56.85   -3.45 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _075743_/ZN                            31.74   35.17   -3.43 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _074443_/ZN                            31.74   35.08   -3.34 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _066276_/ZN                            53.41   56.41   -3.01 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _066288_/ZN                            31.74   34.67   -2.93 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _062195_/ZN                            53.41   56.19   -2.79 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _070500_/ZN                            53.41   56.08   -2.68 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _065322_/ZN                            26.70   29.33   -2.62 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _066361_/ZN                            26.05   28.68   -2.62 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _064263_/ZN                            31.74   34.28   -2.54 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _064384_/ZN                            59.36   61.89   -2.53 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _069324_/ZN                            59.36   61.82   -2.47 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _065419_/ZN                            59.36   61.72   -2.36 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _060167_/ZN                            53.41   55.42   -2.01 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _069363_/ZN                            16.02   17.99   -1.97 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _060183_/ZN                            31.74   33.56   -1.82 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _070476_/ZN                            26.70   28.42   -1.71 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _073438_/ZN                            31.74   33.41   -1.67 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _070385_/ZN                            26.70   28.35   -1.65 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _065466_/ZN                            26.70   28.30   -1.60 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _062204_/ZN                            53.41   54.92   -1.52 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _065592_/ZN                            26.70   28.21   -1.51 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _060162_/ZN                            31.74   33.23   -1.49 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _060308_/ZN                            53.41   54.89   -1.49 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _073469_/ZN                            59.36   60.84   -1.49 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _071445_/ZN                            26.05   27.53   -1.47 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _066308_/ZN                            26.70   28.17   -1.47 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _062339_/ZN                            26.70   28.16   -1.46 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _061239_/ZN                            59.36   60.74   -1.39 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _072552_/ZN                            59.36   60.70   -1.35 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _070291_/ZN                            26.70   28.04   -1.34 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _073662_/ZN                            26.70   28.00   -1.30 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _072490_/ZN                            59.36   60.61   -1.26 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _106062_/Q                             60.73   61.96   -1.23 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _071304_/ZN                            59.36   60.50   -1.14 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _073466_/ZN                            26.70   27.77   -1.06 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _063286_/ZN                            14.50   15.55   -1.05 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _063332_/ZN                            26.70   27.73   -1.03 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _064173_/ZN                            31.74   32.75   -1.01 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_design_area\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Design area 395924 um^2 100% utilization.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set fast_filler_names {FILLCELL_X1 FILLCELL_X2 FILLCELL_X4 FILLCELL_X8 FILLCELL_X16 FILLCELL_X32}\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_CELL_AREA_UM2 81281.88599996526\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_DIE_AREA_UM2 435600.0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_CORE_AREA_UM2 395923.71\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_FINAL_END\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db post_report_routed\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn post_report_routed latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exit\u001b[0m\n\u001b[96m[par] Did not run write_design\u001b[0m\nAction par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/par-output.json\n",
+          "wall_seconds": 1280.744016979821,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/hammer_driver.py",
+            "par",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/config.json",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/par-input.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_sanger_threshold/round_02/build_02/hammer/par-output.json"
+          ]
+        },
+        "route_drc_violations": 0,
+        "io_delay_ns": 1.0,
+        "output_load_ff": 5.0,
+        "process_corner": "Nangate45 typical 1.1 V 25 C for setup and hold; not multi-PVT signoff",
+        "area_um2": 81281.88599996526,
+        "die_area_um2": 435600.0,
+        "core_area_um2": 395923.71,
+        "power_mw": 25.675957999999998,
+        "slack_ns": 1.10246301,
+        "hold_slack_ns": 0.0059999,
+        "frequency_mhz": 300,
+        "latency_ns": 140.0,
+        "energy_nj": 3.59463412,
+        "energy_efficiency_queries_per_joule": 278192429.77641356,
+        "quality_loss": 0.02407117346551637,
+        "efficiency_scope": "one verified query; energy = modeled average power times single-query latency",
+        "artifacts": {
+          "hammer/par-rundir/routed.def": "ff7a66629fdb779ab3aa12adf61b713a009b5e9ea908bdadabc9bd4112e63e09",
+          "hammer/par-rundir/routed.v": "3996a6e6227dcf2575215c12f8dd1b66d48bed031e67dfef1d7d4353468a098d",
+          "hammer/par-rundir/routed.odb": "3b61bcb35bbf528b6bb25ddc4fd18f47b154466e9a484b66b692a5d7096a308f",
+          "hammer/par-rundir/rq1_sanger_threshold.par.spef": "5798bbbe9aa3c17a37d45cefd890d770f1a5608cc4c7ab2406a8a5224e5612a0",
+          "hammer/par-rundir/rq1_sanger_threshold_route_drc.rpt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "dense_equivalent_ops_per_query": 96,
+        "energy_efficiency_dense_equivalent_tops_per_w": 0.0267064732585357
+      },
+      "status": "evaluated",
+      "critique": {
+        "layer": "compiler",
+        "reason": "The current design (Round 2) shows a severe regression in latency (42 vs 22 cycles) and energy efficiency (278M vs 585M queries/Joule) compared to the previous design (Round 1), despite an improvement in quality. The root cause is a change in the system pipeline structure, specifically the `Normalizer` module's latency increasing from 8 to 33 cycles. This makes the current design Pareto-dominated by the Round 1 design. The intervention aims to recover the superior PPA of the Round 1 architecture.",
+        "evidence": [
+          "evaluation.latency_ns",
+          "evaluation.energy_efficiency_queries_per_joule",
+          "evaluation.area_um2"
+        ],
+        "instructions": "Revise the system plan to reduce the overall pipeline latency. The primary target for latency reduction is the `Normalizer` module, which increased from 8 cycles in Round 1 to 33 cycles in the current design. Propose a new pipeline schedule with a total latency closer to the 22 cycles achieved in Round 1, for example by configuring the `FixedPointDivPipelined` with fewer stages (e.g., 8 stages). This is expected to significantly improve latency and energy efficiency, restoring the PPA performance of the previous round's architecture."
+      },
+      "critique_applied": true
+    },
+    {
+      "round": 3,
+      "config": {
+        "threshold_256": 2
+      },
+      "calibration": {
+        "config": {
+          "threshold_256": 2
+        },
+        "quality_loss": 0.02407117346551637,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010057824013621622,
+        "squared_error_sum": 381087.98286951793,
+        "dense_squared_output_sum": 657704372.200548,
+        "sparsity": 0.3153935185185185,
+        "fully_dense_query_fraction": 0.14619883040935672,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 0,
+          "2": 1,
+          "3": 7,
+          "4": 24,
+          "5": 67,
+          "6": 107,
+          "7": 119,
+          "8": 188,
+          "9": 233,
+          "10": 235,
+          "11": 210,
+          "12": 173,
+          "13": 138,
+          "14": 133,
+          "15": 117,
+          "16": 300
+        },
+        "samples": 2052,
+        "seed": 20260915,
+        "includes_shared_boundary_cases": true,
+        "workload_sha256": "60517956d3f68a3bb09f8553e8549416807efb4bad8c7fcdb40eae8460b3694e"
+      },
+      "heldout": {
+        "config": {
+          "threshold_256": 2
+        },
+        "quality_loss": 0.02399677929837984,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010556113603441514,
+        "squared_error_sum": 711553.0522370955,
+        "dense_squared_output_sum": 1235666780.7148442,
+        "sparsity": 0.3032684326171875,
+        "fully_dense_query_fraction": 0.175537109375,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 1,
+          "2": 4,
+          "3": 13,
+          "4": 43,
+          "5": 112,
+          "6": 190,
+          "7": 254,
+          "8": 382,
+          "9": 387,
+          "10": 457,
+          "11": 409,
+          "12": 392,
+          "13": 298,
+          "14": 252,
+          "15": 183,
+          "16": 719
+        },
+        "samples": 4096,
+        "seed": 20260916,
+        "includes_shared_boundary_cases": false,
+        "workload_sha256": "d1ae69138f2824e724be7e1eb655d676c9945441b169e8867e1d8877065c389c"
+      },
+      "evaluation": null,
+      "status": "failed",
+      "critique": null,
+      "critique_applied": false
+    }
+  ],
+  "qualified_pareto_rounds": [
+    1
+  ],
+  "algorithm": "rq1_sanger_threshold",
+  "error": "RuntimeError: Compiler/UArch build budget exhausted; see compiler_feedback.json",
+  "agent_calls": {
+    "kernel": 2,
+    "compiler": 42,
+    "critic": 2,
+    "uarch": 47,
+    "uarch_assembly": 6,
+    "compiler_diagnosis": 14
+  },
+  "search_pareto_rounds": [
+    1
+  ],
+  "call_costs": [
+    {
+      "path": "agent_calls/compiler/0001.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 41.695098638534546,
+      "usage": {
+        "prompt_token_count": 16267,
+        "candidates_token_count": 36,
+        "thoughts_token_count": 4050,
+        "cached_content_token_count": null,
+        "total_token_count": 20353
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0002.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 172.5325849056244,
+      "usage": {
+        "prompt_token_count": 28960,
+        "candidates_token_count": 10090,
+        "thoughts_token_count": 11250,
+        "cached_content_token_count": null,
+        "total_token_count": 50300
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0003.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 182.60180759429932,
+      "usage": {
+        "prompt_token_count": 38825,
+        "candidates_token_count": 11534,
+        "thoughts_token_count": 12102,
+        "cached_content_token_count": null,
+        "total_token_count": 62461
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0004.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 139.9217607975006,
+      "usage": {
+        "prompt_token_count": 39726,
+        "candidates_token_count": 10884,
+        "thoughts_token_count": 6422,
+        "cached_content_token_count": null,
+        "total_token_count": 57032
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0005.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 166.95337009429932,
+      "usage": {
+        "prompt_token_count": 38999,
+        "candidates_token_count": 11160,
+        "thoughts_token_count": 9796,
+        "cached_content_token_count": null,
+        "total_token_count": 59955
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0006.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 136.57004189491272,
+      "usage": {
+        "prompt_token_count": 39468,
+        "candidates_token_count": 11535,
+        "thoughts_token_count": 6245,
+        "cached_content_token_count": null,
+        "total_token_count": 57248
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0007.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 30.72989535331726,
+      "usage": {
+        "prompt_token_count": 16868,
+        "candidates_token_count": 49,
+        "thoughts_token_count": 3117,
+        "cached_content_token_count": null,
+        "total_token_count": 20034
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0008.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 185.42611026763916,
+      "usage": {
+        "prompt_token_count": 32058,
+        "candidates_token_count": 12425,
+        "thoughts_token_count": 10201,
+        "cached_content_token_count": null,
+        "total_token_count": 54684
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0009.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 163.04940509796143,
+      "usage": {
+        "prompt_token_count": 43350,
+        "candidates_token_count": 11732,
+        "thoughts_token_count": 9477,
+        "cached_content_token_count": null,
+        "total_token_count": 64559
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0010.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 225.61014080047607,
+      "usage": {
+        "prompt_token_count": 42759,
+        "candidates_token_count": 12139,
+        "thoughts_token_count": 19372,
+        "cached_content_token_count": null,
+        "total_token_count": 74270
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0011.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 152.4763913154602,
+      "usage": {
+        "prompt_token_count": 43351,
+        "candidates_token_count": 12006,
+        "thoughts_token_count": 7802,
+        "cached_content_token_count": null,
+        "total_token_count": 63159
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0012.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 131.28574585914612,
+      "usage": {
+        "prompt_token_count": 43305,
+        "candidates_token_count": 11222,
+        "thoughts_token_count": 5987,
+        "cached_content_token_count": null,
+        "total_token_count": 60514
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0013.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 31.213800191879272,
+      "usage": {
+        "prompt_token_count": 17326,
+        "candidates_token_count": 50,
+        "thoughts_token_count": 3250,
+        "cached_content_token_count": null,
+        "total_token_count": 20626
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0014.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 185.20916724205017,
+      "usage": {
+        "prompt_token_count": 32516,
+        "candidates_token_count": 9951,
+        "thoughts_token_count": 13164,
+        "cached_content_token_count": null,
+        "total_token_count": 55631
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0015.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 122.38472628593445,
+      "usage": {
+        "prompt_token_count": 42158,
+        "candidates_token_count": 11089,
+        "thoughts_token_count": 6695,
+        "cached_content_token_count": null,
+        "total_token_count": 59942
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0016.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 139.99237298965454,
+      "usage": {
+        "prompt_token_count": 42673,
+        "candidates_token_count": 9732,
+        "thoughts_token_count": 8103,
+        "cached_content_token_count": null,
+        "total_token_count": 60508
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0017.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 29.88886332511902,
+      "usage": {
+        "prompt_token_count": 82704,
+        "candidates_token_count": 50,
+        "thoughts_token_count": 2583,
+        "cached_content_token_count": null,
+        "total_token_count": 85337
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0018.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 135.29559636116028,
+      "usage": {
+        "prompt_token_count": 97894,
+        "candidates_token_count": 10587,
+        "thoughts_token_count": 7922,
+        "cached_content_token_count": null,
+        "total_token_count": 116403
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0019.json",
+      "role": "compiler",
+      "success": false,
+      "wall_seconds": 65.16006374359131,
+      "usage": null,
+      "error": "ValueError: compiler LLM failed: ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}"
+    },
+    {
+      "path": "agent_calls/compiler/0020.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 113.30036330223083,
+      "usage": {
+        "prompt_token_count": 119522,
+        "candidates_token_count": 50,
+        "thoughts_token_count": 3203,
+        "cached_content_token_count": null,
+        "total_token_count": 122775
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0021.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 298.1814796924591,
+      "usage": {
+        "prompt_token_count": 134625,
+        "candidates_token_count": 16031,
+        "thoughts_token_count": 10877,
+        "cached_content_token_count": null,
+        "total_token_count": 161533
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0022.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 85.0808629989624,
+      "usage": {
+        "prompt_token_count": 147659,
+        "candidates_token_count": 10593,
+        "thoughts_token_count": 3621,
+        "cached_content_token_count": null,
+        "total_token_count": 161873
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0023.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 42.27115178108215,
+      "usage": {
+        "prompt_token_count": 16323,
+        "candidates_token_count": 48,
+        "thoughts_token_count": 4156,
+        "cached_content_token_count": null,
+        "total_token_count": 20527
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0024.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 321.20206236839294,
+      "usage": {
+        "prompt_token_count": 30773,
+        "candidates_token_count": 11010,
+        "thoughts_token_count": 27994,
+        "cached_content_token_count": null,
+        "total_token_count": 69777
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0025.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 168.0854525566101,
+      "usage": {
+        "prompt_token_count": 40797,
+        "candidates_token_count": 11158,
+        "thoughts_token_count": 11067,
+        "cached_content_token_count": null,
+        "total_token_count": 63022
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0026.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 138.96438193321228,
+      "usage": {
+        "prompt_token_count": 40956,
+        "candidates_token_count": 10965,
+        "thoughts_token_count": 7513,
+        "cached_content_token_count": null,
+        "total_token_count": 59434
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0027.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 181.58771562576294,
+      "usage": {
+        "prompt_token_count": 40895,
+        "candidates_token_count": 10898,
+        "thoughts_token_count": 11062,
+        "cached_content_token_count": null,
+        "total_token_count": 62855
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0028.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 45.92578911781311,
+      "usage": {
+        "prompt_token_count": 95272,
+        "candidates_token_count": 47,
+        "thoughts_token_count": 2099,
+        "cached_content_token_count": null,
+        "total_token_count": 97418
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0029.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 223.16973638534546,
+      "usage": {
+        "prompt_token_count": 109722,
+        "candidates_token_count": 10975,
+        "thoughts_token_count": 16382,
+        "cached_content_token_count": null,
+        "total_token_count": 137079
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0030.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 248.8637249469757,
+      "usage": {
+        "prompt_token_count": 119537,
+        "candidates_token_count": 11114,
+        "thoughts_token_count": 15437,
+        "cached_content_token_count": null,
+        "total_token_count": 146088
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0031.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 202.1051516532898,
+      "usage": {
+        "prompt_token_count": 119793,
+        "candidates_token_count": 11102,
+        "thoughts_token_count": 11084,
+        "cached_content_token_count": null,
+        "total_token_count": 141979
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0032.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 26.404744386672974,
+      "usage": {
+        "prompt_token_count": 53390,
+        "candidates_token_count": 33,
+        "thoughts_token_count": 2335,
+        "cached_content_token_count": null,
+        "total_token_count": 55758
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0033.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 123.6682116985321,
+      "usage": {
+        "prompt_token_count": 67840,
+        "candidates_token_count": 11028,
+        "thoughts_token_count": 5808,
+        "cached_content_token_count": null,
+        "total_token_count": 84676
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0034.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 35.35110068321228,
+      "usage": {
+        "prompt_token_count": 85254,
+        "candidates_token_count": 50,
+        "thoughts_token_count": 2764,
+        "cached_content_token_count": null,
+        "total_token_count": 88068
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0035.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 164.05001282691956,
+      "usage": {
+        "prompt_token_count": 100444,
+        "candidates_token_count": 12741,
+        "thoughts_token_count": 8131,
+        "cached_content_token_count": null,
+        "total_token_count": 121316
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0036.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 149.82294082641602,
+      "usage": {
+        "prompt_token_count": 114306,
+        "candidates_token_count": 10989,
+        "thoughts_token_count": 5872,
+        "cached_content_token_count": null,
+        "total_token_count": 131167
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0037.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 89.15083837509155,
+      "usage": {
+        "prompt_token_count": 131256,
+        "candidates_token_count": 35,
+        "thoughts_token_count": 3400,
+        "cached_content_token_count": null,
+        "total_token_count": 134691
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0038.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 162.0953230857849,
+      "usage": {
+        "prompt_token_count": 146446,
+        "candidates_token_count": 10977,
+        "thoughts_token_count": 5509,
+        "cached_content_token_count": null,
+        "total_token_count": 162932
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0039.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 37.294198751449585,
+      "usage": {
+        "prompt_token_count": 177454,
+        "candidates_token_count": 32,
+        "thoughts_token_count": 1993,
+        "cached_content_token_count": null,
+        "total_token_count": 179479
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0040.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 176.24529266357422,
+      "usage": {
+        "prompt_token_count": 191904,
+        "candidates_token_count": 10965,
+        "thoughts_token_count": 7648,
+        "cached_content_token_count": null,
+        "total_token_count": 210517
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0041.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 40.332826375961304,
+      "usage": {
+        "prompt_token_count": 224223,
+        "candidates_token_count": 50,
+        "thoughts_token_count": 3119,
+        "cached_content_token_count": null,
+        "total_token_count": 227392
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0042.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 130.99733352661133,
+      "usage": {
+        "prompt_token_count": 239413,
+        "candidates_token_count": 11008,
+        "thoughts_token_count": 6251,
+        "cached_content_token_count": null,
+        "total_token_count": 256672
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/critic/0001.json",
+      "role": "critic",
+      "success": true,
+      "wall_seconds": 41.057952642440796,
+      "usage": {
+        "prompt_token_count": 62530,
+        "candidates_token_count": 300,
+        "thoughts_token_count": 3644,
+        "cached_content_token_count": null,
+        "total_token_count": 66474
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/critic/0002.json",
+      "role": "critic",
+      "success": true,
+      "wall_seconds": 31.606569290161133,
+      "usage": {
+        "prompt_token_count": 124920,
+        "candidates_token_count": 283,
+        "thoughts_token_count": 3087,
+        "cached_content_token_count": null,
+        "total_token_count": 128290
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/kernel/0001.json",
+      "role": "kernel",
+      "success": true,
+      "wall_seconds": 24.556680917739868,
+      "usage": {
+        "prompt_token_count": 6727,
+        "candidates_token_count": 279,
+        "thoughts_token_count": 1693,
+        "cached_content_token_count": null,
+        "total_token_count": 8699
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/kernel/0002.json",
+      "role": "kernel",
+      "success": true,
+      "wall_seconds": 15.152263164520264,
+      "usage": {
+        "prompt_token_count": 6992,
+        "candidates_token_count": 177,
+        "thoughts_token_count": 1432,
+        "cached_content_token_count": null,
+        "total_token_count": 8601
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/Accumulator/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 178.292094707489,
+      "usage": {
+        "prompt_token_count": 28035,
+        "candidates_token_count": 2062,
+        "thoughts_token_count": 20044,
+        "cached_content_token_count": null,
+        "total_token_count": 50141
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/MaxExpAndThreshold/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 167.6459460258484,
+      "usage": {
+        "prompt_token_count": 28074,
+        "candidates_token_count": 3457,
+        "thoughts_token_count": 19252,
+        "cached_content_token_count": null,
+        "total_token_count": 50783
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/MaxExpAndThreshold/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 130.89943838119507,
+      "usage": {
+        "prompt_token_count": 32004,
+        "candidates_token_count": 3531,
+        "thoughts_token_count": 14647,
+        "cached_content_token_count": null,
+        "total_token_count": 50182
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/MaxExpAndThreshold/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 112.0866687297821,
+      "usage": {
+        "prompt_token_count": 41126,
+        "candidates_token_count": 3697,
+        "thoughts_token_count": 10222,
+        "cached_content_token_count": null,
+        "total_token_count": 55045
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/Normalizer/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 108.12193465232849,
+      "usage": {
+        "prompt_token_count": 24815,
+        "candidates_token_count": 264,
+        "thoughts_token_count": 12289,
+        "cached_content_token_count": null,
+        "total_token_count": 37368
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/ScoreArray/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 69.18473672866821,
+      "usage": {
+        "prompt_token_count": 23005,
+        "candidates_token_count": 866,
+        "thoughts_token_count": 6264,
+        "cached_content_token_count": null,
+        "total_token_count": 30135
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/ScoreArray/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 67.49758744239807,
+      "usage": {
+        "prompt_token_count": 26492,
+        "candidates_token_count": 827,
+        "thoughts_token_count": 7582,
+        "cached_content_token_count": null,
+        "total_token_count": 34901
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 98.02740454673767,
+      "usage": {
+        "prompt_token_count": 36109,
+        "candidates_token_count": 634,
+        "thoughts_token_count": 10319,
+        "cached_content_token_count": null,
+        "total_token_count": 47062
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 156.2416718006134,
+      "usage": {
+        "prompt_token_count": 24870,
+        "candidates_token_count": 563,
+        "thoughts_token_count": 20221,
+        "cached_content_token_count": null,
+        "total_token_count": 45654
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_04/Accumulator/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 127.91303324699402,
+      "usage": {
+        "prompt_token_count": 30114,
+        "candidates_token_count": 2066,
+        "thoughts_token_count": 15279,
+        "cached_content_token_count": null,
+        "total_token_count": 47459
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_04/Accumulator/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 152.27893781661987,
+      "usage": {
+        "prompt_token_count": 34346,
+        "candidates_token_count": 1944,
+        "thoughts_token_count": 18125,
+        "cached_content_token_count": null,
+        "total_token_count": 54415
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_04/MaxExpAndThreshold/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 185.35019636154175,
+      "usage": {
+        "prompt_token_count": 31741,
+        "candidates_token_count": 3450,
+        "thoughts_token_count": 22683,
+        "cached_content_token_count": null,
+        "total_token_count": 57874
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_04/MaxExpAndThreshold/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 133.38090181350708,
+      "usage": {
+        "prompt_token_count": 35682,
+        "candidates_token_count": 3581,
+        "thoughts_token_count": 15111,
+        "cached_content_token_count": null,
+        "total_token_count": 54374
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_04/MaxExpAndThreshold/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 76.85698056221008,
+      "usage": {
+        "prompt_token_count": 44650,
+        "candidates_token_count": 3715,
+        "thoughts_token_count": 7840,
+        "cached_content_token_count": null,
+        "total_token_count": 56205
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_04/Normalizer/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 38.6522171497345,
+      "usage": {
+        "prompt_token_count": 25929,
+        "candidates_token_count": 287,
+        "thoughts_token_count": 4539,
+        "cached_content_token_count": null,
+        "total_token_count": 30755
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_04/ScoreArray/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 44.437716245651245,
+      "usage": {
+        "prompt_token_count": 23838,
+        "candidates_token_count": 970,
+        "thoughts_token_count": 4827,
+        "cached_content_token_count": null,
+        "total_token_count": 29635
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_04/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 57.95216703414917,
+      "usage": {
+        "prompt_token_count": 39735,
+        "candidates_token_count": 523,
+        "thoughts_token_count": 6192,
+        "cached_content_token_count": null,
+        "total_token_count": 46450
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_04/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 32.51041555404663,
+      "usage": {
+        "prompt_token_count": 26040,
+        "candidates_token_count": 498,
+        "thoughts_token_count": 3012,
+        "cached_content_token_count": null,
+        "total_token_count": 29550
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_05/Accumulator/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 111.08186769485474,
+      "usage": {
+        "prompt_token_count": 30110,
+        "candidates_token_count": 2333,
+        "thoughts_token_count": 12818,
+        "cached_content_token_count": null,
+        "total_token_count": 45261
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_05/MaxExpAndThreshold/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 143.81654715538025,
+      "usage": {
+        "prompt_token_count": 31760,
+        "candidates_token_count": 3504,
+        "thoughts_token_count": 16045,
+        "cached_content_token_count": null,
+        "total_token_count": 51309
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_05/Normalizer/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 68.07358145713806,
+      "usage": {
+        "prompt_token_count": 25893,
+        "candidates_token_count": 830,
+        "thoughts_token_count": 7055,
+        "cached_content_token_count": null,
+        "total_token_count": 33778
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_05/SangerThresholdTop/uarch_assembly/0001.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 120.51151609420776,
+      "usage": {
+        "prompt_token_count": 37498,
+        "candidates_token_count": 1839,
+        "thoughts_token_count": 11907,
+        "cached_content_token_count": null,
+        "total_token_count": 51244
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_05/ScoreArray/uarch/0001.json",
+      "role": "uarch",
+      "success": false,
+      "wall_seconds": 25.622578144073486,
+      "usage": null,
+      "error": "ValueError: uarch LLM failed: ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}"
+    },
+    {
+      "path": "agent_calls/round_01/build_05/ScoreArray/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 36.78152894973755,
+      "usage": {
+        "prompt_token_count": 24052,
+        "candidates_token_count": 1037,
+        "thoughts_token_count": 2987,
+        "cached_content_token_count": null,
+        "total_token_count": 28076
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/ScoreGen/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 68.82866024971008,
+      "usage": {
+        "prompt_token_count": 22984,
+        "candidates_token_count": 906,
+        "thoughts_token_count": 7098,
+        "cached_content_token_count": null,
+        "total_token_count": 30988
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/ScoreGen/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 147.39287328720093,
+      "usage": {
+        "prompt_token_count": 26410,
+        "candidates_token_count": 1593,
+        "thoughts_token_count": 15462,
+        "cached_content_token_count": null,
+        "total_token_count": 43465
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/Accum/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 67.55366945266724,
+      "usage": {
+        "prompt_token_count": 27879,
+        "candidates_token_count": 1118,
+        "thoughts_token_count": 6766,
+        "cached_content_token_count": null,
+        "total_token_count": 35763
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/ExpStage/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 91.46066808700562,
+      "usage": {
+        "prompt_token_count": 25154,
+        "candidates_token_count": 2061,
+        "thoughts_token_count": 9400,
+        "cached_content_token_count": null,
+        "total_token_count": 36615
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/ExpStage/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 56.38259792327881,
+      "usage": {
+        "prompt_token_count": 27673,
+        "candidates_token_count": 2079,
+        "thoughts_token_count": 4481,
+        "cached_content_token_count": null,
+        "total_token_count": 34233
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/ExpStage/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 90.10561156272888,
+      "usage": {
+        "prompt_token_count": 35863,
+        "candidates_token_count": 2180,
+        "thoughts_token_count": 6040,
+        "cached_content_token_count": null,
+        "total_token_count": 44083
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/ExpStage/uarch/0004.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 76.38037061691284,
+      "usage": {
+        "prompt_token_count": 38359,
+        "candidates_token_count": 2219,
+        "thoughts_token_count": 6539,
+        "cached_content_token_count": null,
+        "total_token_count": 47117
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/ExpStage/uarch/0005.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 66.07615256309509,
+      "usage": {
+        "prompt_token_count": 43315,
+        "candidates_token_count": 2199,
+        "thoughts_token_count": 5671,
+        "cached_content_token_count": null,
+        "total_token_count": 51185
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/Normalizer/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 62.85610914230347,
+      "usage": {
+        "prompt_token_count": 29697,
+        "candidates_token_count": 1102,
+        "thoughts_token_count": 5884,
+        "cached_content_token_count": 14324,
+        "total_token_count": 36683
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/ScoreGen/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 56.42957901954651,
+      "usage": {
+        "prompt_token_count": 27603,
+        "candidates_token_count": 944,
+        "thoughts_token_count": 5533,
+        "cached_content_token_count": null,
+        "total_token_count": 34080
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/ScoreGen/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 64.35538387298584,
+      "usage": {
+        "prompt_token_count": 31251,
+        "candidates_token_count": 1012,
+        "thoughts_token_count": 6181,
+        "cached_content_token_count": null,
+        "total_token_count": 38444
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/Threshold/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 74.23321652412415,
+      "usage": {
+        "prompt_token_count": 24734,
+        "candidates_token_count": 1162,
+        "thoughts_token_count": 7686,
+        "cached_content_token_count": null,
+        "total_token_count": 33582
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 141.40877413749695,
+      "usage": {
+        "prompt_token_count": 32267,
+        "candidates_token_count": 626,
+        "thoughts_token_count": 15202,
+        "cached_content_token_count": null,
+        "total_token_count": 48095
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 61.97489857673645,
+      "usage": {
+        "prompt_token_count": 28002,
+        "candidates_token_count": 385,
+        "thoughts_token_count": 6179,
+        "cached_content_token_count": null,
+        "total_token_count": 34566
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/compiler_diagnosis/0003.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 158.07311344146729,
+      "usage": {
+        "prompt_token_count": 29920,
+        "candidates_token_count": 458,
+        "thoughts_token_count": 17365,
+        "cached_content_token_count": null,
+        "total_token_count": 47743
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/compiler_diagnosis/0004.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 84.07944416999817,
+      "usage": {
+        "prompt_token_count": 26852,
+        "candidates_token_count": 438,
+        "thoughts_token_count": 8524,
+        "cached_content_token_count": null,
+        "total_token_count": 35814
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/compiler_diagnosis/0005.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 33.331339836120605,
+      "usage": {
+        "prompt_token_count": 25050,
+        "candidates_token_count": 426,
+        "thoughts_token_count": 3159,
+        "cached_content_token_count": null,
+        "total_token_count": 28635
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/compiler_diagnosis/0006.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 392.6197235584259,
+      "usage": {
+        "prompt_token_count": 29772,
+        "candidates_token_count": 1081,
+        "thoughts_token_count": 46079,
+        "cached_content_token_count": null,
+        "total_token_count": 76932
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/compiler_diagnosis/0007.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 191.10546851158142,
+      "usage": {
+        "prompt_token_count": 30499,
+        "candidates_token_count": 639,
+        "thoughts_token_count": 20398,
+        "cached_content_token_count": null,
+        "total_token_count": 51536
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/rq1_sanger_threshold/uarch_assembly/0001.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 87.96326422691345,
+      "usage": {
+        "prompt_token_count": 42488,
+        "candidates_token_count": 1665,
+        "thoughts_token_count": 7865,
+        "cached_content_token_count": null,
+        "total_token_count": 52018
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/rq1_sanger_threshold/uarch_assembly/0002.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 86.69417214393616,
+      "usage": {
+        "prompt_token_count": 48607,
+        "candidates_token_count": 1655,
+        "thoughts_token_count": 8876,
+        "cached_content_token_count": null,
+        "total_token_count": 59138
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/rq1_sanger_threshold/uarch_assembly/0003.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 80.61311984062195,
+      "usage": {
+        "prompt_token_count": 52099,
+        "candidates_token_count": 1611,
+        "thoughts_token_count": 7389,
+        "cached_content_token_count": null,
+        "total_token_count": 61099
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/rq1_sanger_threshold/uarch_assembly/0004.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 150.85341215133667,
+      "usage": {
+        "prompt_token_count": 60908,
+        "candidates_token_count": 1490,
+        "thoughts_token_count": 14734,
+        "cached_content_token_count": null,
+        "total_token_count": 77132
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/rq1_sanger_threshold/uarch_assembly/0005.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 60.48817276954651,
+      "usage": {
+        "prompt_token_count": 68645,
+        "candidates_token_count": 1720,
+        "thoughts_token_count": 5888,
+        "cached_content_token_count": null,
+        "total_token_count": 76253
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_01/ExpStage/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 112.0135428905487,
+      "usage": {
+        "prompt_token_count": 27248,
+        "candidates_token_count": 2188,
+        "thoughts_token_count": 11595,
+        "cached_content_token_count": null,
+        "total_token_count": 41031
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_01/ExpStage/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 100.51446437835693,
+      "usage": {
+        "prompt_token_count": 32077,
+        "candidates_token_count": 406,
+        "thoughts_token_count": 11303,
+        "cached_content_token_count": null,
+        "total_token_count": 43786
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_01/ScoreGen/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 48.59310340881348,
+      "usage": {
+        "prompt_token_count": 24193,
+        "candidates_token_count": 881,
+        "thoughts_token_count": 4538,
+        "cached_content_token_count": null,
+        "total_token_count": 29612
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_01/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 85.54047107696533,
+      "usage": {
+        "prompt_token_count": 27579,
+        "candidates_token_count": 518,
+        "thoughts_token_count": 8522,
+        "cached_content_token_count": null,
+        "total_token_count": 36619
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_02/ExpStage/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 103.18840146064758,
+      "usage": {
+        "prompt_token_count": 28205,
+        "candidates_token_count": 3623,
+        "thoughts_token_count": 8786,
+        "cached_content_token_count": null,
+        "total_token_count": 40614
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_02/ExpStage/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 85.64020490646362,
+      "usage": {
+        "prompt_token_count": 37367,
+        "candidates_token_count": 3976,
+        "thoughts_token_count": 7717,
+        "cached_content_token_count": null,
+        "total_token_count": 49060
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_02/ScoreGen/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 77.9771933555603,
+      "usage": {
+        "prompt_token_count": 24091,
+        "candidates_token_count": 755,
+        "thoughts_token_count": 9569,
+        "cached_content_token_count": null,
+        "total_token_count": 34415
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_03/ExpStage/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 131.08340096473694,
+      "usage": {
+        "prompt_token_count": 36601,
+        "candidates_token_count": 3930,
+        "thoughts_token_count": 12381,
+        "cached_content_token_count": null,
+        "total_token_count": 52912
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_03/ExpStage/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 107.66907358169556,
+      "usage": {
+        "prompt_token_count": 45985,
+        "candidates_token_count": 636,
+        "thoughts_token_count": 12758,
+        "cached_content_token_count": null,
+        "total_token_count": 59379
+      },
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "path": "agent_calls/round_03/build_03/ExpStage/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 95.97251033782959,
+      "usage": {
+        "prompt_token_count": 46637,
+        "candidates_token_count": 3898,
+        "thoughts_token_count": 9044,
+        "cached_content_token_count": null,
+        "total_token_count": 59579
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_03/ScoreGen/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 71.41770362854004,
+      "usage": {
+        "prompt_token_count": 23862,
+        "candidates_token_count": 877,
+        "thoughts_token_count": 7853,
+        "cached_content_token_count": null,
+        "total_token_count": 32592
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_03/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 101.72009897232056,
+      "usage": {
+        "prompt_token_count": 36148,
+        "candidates_token_count": 658,
+        "thoughts_token_count": 11190,
+        "cached_content_token_count": null,
+        "total_token_count": 47996
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/ExpStage/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 83.10577845573425,
+      "usage": {
+        "prompt_token_count": 36669,
+        "candidates_token_count": 2824,
+        "thoughts_token_count": 8189,
+        "cached_content_token_count": null,
+        "total_token_count": 47682
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/ExpStage/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 136.68768978118896,
+      "usage": {
+        "prompt_token_count": 39837,
+        "candidates_token_count": 3882,
+        "thoughts_token_count": 14700,
+        "cached_content_token_count": null,
+        "total_token_count": 58419
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/ScoreGen/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 80.36303901672363,
+      "usage": {
+        "prompt_token_count": 24019,
+        "candidates_token_count": 1242,
+        "thoughts_token_count": 9371,
+        "cached_content_token_count": null,
+        "total_token_count": 34632
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 176.07137417793274,
+      "usage": {
+        "prompt_token_count": 45594,
+        "candidates_token_count": 560,
+        "thoughts_token_count": 19977,
+        "cached_content_token_count": null,
+        "total_token_count": 66131
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_05/ExpStage/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 85.26657557487488,
+      "usage": {
+        "prompt_token_count": 37295,
+        "candidates_token_count": 3927,
+        "thoughts_token_count": 6542,
+        "cached_content_token_count": null,
+        "total_token_count": 47764
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_05/ExpStage/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 91.4373185634613,
+      "usage": {
+        "prompt_token_count": 43814,
+        "candidates_token_count": 3860,
+        "thoughts_token_count": 7402,
+        "cached_content_token_count": null,
+        "total_token_count": 55076
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_05/ScoreGen/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 110.91673183441162,
+      "usage": {
+        "prompt_token_count": 24147,
+        "candidates_token_count": 1204,
+        "thoughts_token_count": 12923,
+        "cached_content_token_count": null,
+        "total_token_count": 38274
+      },
+      "error": null
+    }
+  ],
+  "token_totals": {
+    "prompt_token_count": 5671497,
+    "candidates_token_count": 442301,
+    "thoughts_token_count": 1046738,
+    "total_token_count": 7160536
+  },
+  "calls_missing_usage": 2
+}

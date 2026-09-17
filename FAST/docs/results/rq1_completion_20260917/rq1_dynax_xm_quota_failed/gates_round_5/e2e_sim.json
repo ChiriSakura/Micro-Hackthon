@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/gates_round_5/e2e_sim.log",
+  "diagnostics": "FAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/gates_round_5/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 57ns; walltime 0.173 s; speed 329.184 ns/s\n- Verilator: cpu 0.135 s on 1 threads; allocated 7 MB\n",
+  "timed_out": false,
+  "returncode": 0,
+  "wall_seconds": 0.5760647379938746,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/gates_round_5/obj_dir/VFASTTestbench"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "algorithms": {
+    "threshold_attention": {
+      "source": "algorithms/threshold_attention.py",
+      "factory": "ThresholdAttention"
+    }
+  },
+  "hardware_templates": {
+    "register_stage": "hardware/register_stage.v",
+    "dynax_exp_reference": "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+    "chisel_carry_and_clock": "hardware/ArithmeticStage.scala"
+  }
+}

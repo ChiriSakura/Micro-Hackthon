@@ -1,0 +1,1467 @@
+{
+  "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_v3_20260916/rq1_dynax_xm",
+  "status": "aborted_without_summary",
+  "rounds": [],
+  "qualified_pareto_rounds": [],
+  "call_costs": [
+    {
+      "path": "agent_calls/compiler/0001.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 25.341376066207886,
+      "usage": {
+        "prompt_token_count": 18582,
+        "candidates_token_count": 52,
+        "thoughts_token_count": 2640,
+        "cached_content_token_count": null,
+        "total_token_count": 21274
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0002.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 281.9388687610626,
+      "usage": {
+        "prompt_token_count": 138365,
+        "candidates_token_count": 15504,
+        "thoughts_token_count": 14360,
+        "cached_content_token_count": null,
+        "total_token_count": 168229
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0003.json",
+      "role": "compiler",
+      "success": false,
+      "wall_seconds": 67.65455079078674,
+      "usage": null,
+      "error": "ValueError: compiler LLM failed: ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}"
+    },
+    {
+      "path": "agent_calls/compiler/0004.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 274.81322622299194,
+      "usage": {
+        "prompt_token_count": 152780,
+        "candidates_token_count": 15491,
+        "thoughts_token_count": 12879,
+        "cached_content_token_count": null,
+        "total_token_count": 181150
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0005.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 201.63410210609436,
+      "usage": {
+        "prompt_token_count": 152903,
+        "candidates_token_count": 12552,
+        "thoughts_token_count": 10104,
+        "cached_content_token_count": null,
+        "total_token_count": 175559
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0006.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 165.4829204082489,
+      "usage": {
+        "prompt_token_count": 154910,
+        "candidates_token_count": 12694,
+        "thoughts_token_count": 6340,
+        "cached_content_token_count": null,
+        "total_token_count": 173944
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0007.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 26.757779598236084,
+      "usage": {
+        "prompt_token_count": 18619,
+        "candidates_token_count": 52,
+        "thoughts_token_count": 2749,
+        "cached_content_token_count": null,
+        "total_token_count": 21420
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0008.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 451.31643986701965,
+      "usage": {
+        "prompt_token_count": 138402,
+        "candidates_token_count": 13838,
+        "thoughts_token_count": 10494,
+        "cached_content_token_count": null,
+        "total_token_count": 162734
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0009.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 314.48012113571167,
+      "usage": {
+        "prompt_token_count": 151243,
+        "candidates_token_count": 19221,
+        "thoughts_token_count": 16790,
+        "cached_content_token_count": null,
+        "total_token_count": 187254
+      },
+      "error": "JSONDecodeError: Expecting ',' delimiter: line 161 column 176 (char 8978)"
+    },
+    {
+      "path": "agent_calls/compiler/0010.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 242.44968938827515,
+      "usage": {
+        "prompt_token_count": 151267,
+        "candidates_token_count": 16694,
+        "thoughts_token_count": 12541,
+        "cached_content_token_count": null,
+        "total_token_count": 180502
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0011.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 196.62834763526917,
+      "usage": {
+        "prompt_token_count": 154168,
+        "candidates_token_count": 16400,
+        "thoughts_token_count": 6634,
+        "cached_content_token_count": null,
+        "total_token_count": 177202
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0012.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 190.35209608078003,
+      "usage": {
+        "prompt_token_count": 174956,
+        "candidates_token_count": 16707,
+        "thoughts_token_count": 4512,
+        "cached_content_token_count": null,
+        "total_token_count": 196175
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0013.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 28.91177201271057,
+      "usage": {
+        "prompt_token_count": 112882,
+        "candidates_token_count": 49,
+        "thoughts_token_count": 2462,
+        "cached_content_token_count": null,
+        "total_token_count": 115393
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0014.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 184.05550622940063,
+      "usage": {
+        "prompt_token_count": 176338,
+        "candidates_token_count": 11241,
+        "thoughts_token_count": 12355,
+        "cached_content_token_count": null,
+        "total_token_count": 199934
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0015.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 119.1756534576416,
+      "usage": {
+        "prompt_token_count": 191397,
+        "candidates_token_count": 11285,
+        "thoughts_token_count": 5086,
+        "cached_content_token_count": null,
+        "total_token_count": 207768
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0016.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 24.60031747817993,
+      "usage": {
+        "prompt_token_count": 161971,
+        "candidates_token_count": 52,
+        "thoughts_token_count": 1634,
+        "cached_content_token_count": null,
+        "total_token_count": 163657
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0017.json",
+      "role": "compiler",
+      "success": false,
+      "wall_seconds": 194.98630499839783,
+      "usage": null,
+      "error": "ValueError: compiler LLM failed: ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}"
+    },
+    {
+      "path": "agent_calls/compiler/0018.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 309.4526090621948,
+      "usage": {
+        "prompt_token_count": 281841,
+        "candidates_token_count": 12873,
+        "thoughts_token_count": 17578,
+        "cached_content_token_count": null,
+        "total_token_count": 312292
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0019.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 203.03259754180908,
+      "usage": {
+        "prompt_token_count": 314876,
+        "candidates_token_count": 12419,
+        "thoughts_token_count": 9693,
+        "cached_content_token_count": null,
+        "total_token_count": 336988
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0020.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 48.05813455581665,
+      "usage": {
+        "prompt_token_count": 218379,
+        "candidates_token_count": 52,
+        "thoughts_token_count": 3802,
+        "cached_content_token_count": null,
+        "total_token_count": 222233
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0021.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 170.4843134880066,
+      "usage": {
+        "prompt_token_count": 338162,
+        "candidates_token_count": 13077,
+        "thoughts_token_count": 9947,
+        "cached_content_token_count": null,
+        "total_token_count": 361186
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0022.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 148.26238489151,
+      "usage": {
+        "prompt_token_count": 371456,
+        "candidates_token_count": 12572,
+        "thoughts_token_count": 7553,
+        "cached_content_token_count": null,
+        "total_token_count": 391581
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0023.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 73.16189289093018,
+      "usage": {
+        "prompt_token_count": 275714,
+        "candidates_token_count": 37,
+        "thoughts_token_count": 3744,
+        "cached_content_token_count": null,
+        "total_token_count": 279495
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0024.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 212.3322515487671,
+      "usage": {
+        "prompt_token_count": 395497,
+        "candidates_token_count": 12624,
+        "thoughts_token_count": 13957,
+        "cached_content_token_count": null,
+        "total_token_count": 422078
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0025.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 140.1118884086609,
+      "usage": {
+        "prompt_token_count": 428394,
+        "candidates_token_count": 12624,
+        "thoughts_token_count": 5945,
+        "cached_content_token_count": null,
+        "total_token_count": 446963
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0026.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 21.683656454086304,
+      "usage": {
+        "prompt_token_count": 71206,
+        "candidates_token_count": 36,
+        "thoughts_token_count": 1774,
+        "cached_content_token_count": null,
+        "total_token_count": 73016
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0027.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 190.38605904579163,
+      "usage": {
+        "prompt_token_count": 123071,
+        "candidates_token_count": 12649,
+        "thoughts_token_count": 9964,
+        "cached_content_token_count": null,
+        "total_token_count": 145684
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0028.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 189.92193579673767,
+      "usage": {
+        "prompt_token_count": 134811,
+        "candidates_token_count": 12629,
+        "thoughts_token_count": 11405,
+        "cached_content_token_count": null,
+        "total_token_count": 158845
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0029.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 23.003705978393555,
+      "usage": {
+        "prompt_token_count": 27273,
+        "candidates_token_count": 52,
+        "thoughts_token_count": 2216,
+        "cached_content_token_count": null,
+        "total_token_count": 29541
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0030.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 196.02595686912537,
+      "usage": {
+        "prompt_token_count": 147056,
+        "candidates_token_count": 12452,
+        "thoughts_token_count": 9949,
+        "cached_content_token_count": null,
+        "total_token_count": 169457
+      },
+      "error": "JSONDecodeError: Expecting ',' delimiter: line 148 column 176 (char 9022)"
+    },
+    {
+      "path": "agent_calls/compiler/0031.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 192.57559633255005,
+      "usage": {
+        "prompt_token_count": 147079,
+        "candidates_token_count": 14054,
+        "thoughts_token_count": 7527,
+        "cached_content_token_count": null,
+        "total_token_count": 168660
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0032.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 202.49465894699097,
+      "usage": {
+        "prompt_token_count": 160050,
+        "candidates_token_count": 14169,
+        "thoughts_token_count": 7739,
+        "cached_content_token_count": null,
+        "total_token_count": 181958
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0033.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 227.6583194732666,
+      "usage": {
+        "prompt_token_count": 164953,
+        "candidates_token_count": 18158,
+        "thoughts_token_count": 10179,
+        "cached_content_token_count": null,
+        "total_token_count": 193290
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0034.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 191.5744230747223,
+      "usage": {
+        "prompt_token_count": 182154,
+        "candidates_token_count": 18141,
+        "thoughts_token_count": 6959,
+        "cached_content_token_count": null,
+        "total_token_count": 207254
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/critic/0001.json",
+      "role": "critic",
+      "success": true,
+      "wall_seconds": 45.00911808013916,
+      "usage": {
+        "prompt_token_count": 125348,
+        "candidates_token_count": 362,
+        "thoughts_token_count": 3648,
+        "cached_content_token_count": null,
+        "total_token_count": 129358
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/critic/0002.json",
+      "role": "critic",
+      "success": true,
+      "wall_seconds": 52.42409372329712,
+      "usage": {
+        "prompt_token_count": 195789,
+        "candidates_token_count": 389,
+        "thoughts_token_count": 4187,
+        "cached_content_token_count": null,
+        "total_token_count": 200365
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/critic/0003.json",
+      "role": "critic",
+      "success": true,
+      "wall_seconds": 28.1798415184021,
+      "usage": {
+        "prompt_token_count": 216391,
+        "candidates_token_count": 302,
+        "thoughts_token_count": 2062,
+        "cached_content_token_count": null,
+        "total_token_count": 218755
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/critic/0004.json",
+      "role": "critic",
+      "success": true,
+      "wall_seconds": 74.09968376159668,
+      "usage": {
+        "prompt_token_count": 276934,
+        "candidates_token_count": 319,
+        "thoughts_token_count": 2647,
+        "cached_content_token_count": null,
+        "total_token_count": 279900
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/kernel/0001.json",
+      "role": "kernel",
+      "success": true,
+      "wall_seconds": 37.187596559524536,
+      "usage": {
+        "prompt_token_count": 55175,
+        "candidates_token_count": 239,
+        "thoughts_token_count": 3967,
+        "cached_content_token_count": null,
+        "total_token_count": 59381
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/kernel/0002.json",
+      "role": "kernel",
+      "success": true,
+      "wall_seconds": 15.94861626625061,
+      "usage": {
+        "prompt_token_count": 55521,
+        "candidates_token_count": 222,
+        "thoughts_token_count": 1434,
+        "cached_content_token_count": null,
+        "total_token_count": 57177
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/kernel/0003.json",
+      "role": "kernel",
+      "success": true,
+      "wall_seconds": 16.29425835609436,
+      "usage": {
+        "prompt_token_count": 55451,
+        "candidates_token_count": 183,
+        "thoughts_token_count": 1211,
+        "cached_content_token_count": null,
+        "total_token_count": 56845
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/NormalizationUnit_Adapter/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 20.907102346420288,
+      "usage": {
+        "prompt_token_count": 69497,
+        "candidates_token_count": 485,
+        "thoughts_token_count": 1679,
+        "cached_content_token_count": null,
+        "total_token_count": 71661
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/ScoreAndExpUnit_Adapter/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 21.90506601333618,
+      "usage": {
+        "prompt_token_count": 49709,
+        "candidates_token_count": 474,
+        "thoughts_token_count": 2003,
+        "cached_content_token_count": null,
+        "total_token_count": 52186
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 219.65685939788818,
+      "usage": {
+        "prompt_token_count": 43097,
+        "candidates_token_count": 4124,
+        "thoughts_token_count": 24397,
+        "cached_content_token_count": null,
+        "total_token_count": 71618
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/SelectionUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 208.1681637763977,
+      "usage": {
+        "prompt_token_count": 49006,
+        "candidates_token_count": 3252,
+        "thoughts_token_count": 24299,
+        "cached_content_token_count": null,
+        "total_token_count": 76557
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/SelectionUnit/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 154.16828632354736,
+      "usage": {
+        "prompt_token_count": 54873,
+        "candidates_token_count": 3416,
+        "thoughts_token_count": 16367,
+        "cached_content_token_count": null,
+        "total_token_count": 74656
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/SelectionUnit/uarch/0004.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 295.6369607448578,
+      "usage": {
+        "prompt_token_count": 58025,
+        "candidates_token_count": 3319,
+        "thoughts_token_count": 20894,
+        "cached_content_token_count": null,
+        "total_token_count": 82238
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 193.30024671554565,
+      "usage": {
+        "prompt_token_count": 47553,
+        "candidates_token_count": 856,
+        "thoughts_token_count": 22608,
+        "cached_content_token_count": null,
+        "total_token_count": 71017
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 42.42602205276489,
+      "usage": {
+        "prompt_token_count": 46925,
+        "candidates_token_count": 413,
+        "thoughts_token_count": 3687,
+        "cached_content_token_count": null,
+        "total_token_count": 51025
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/rq1_dynax_xm_Top/uarch_assembly/0001.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 104.5925235748291,
+      "usage": {
+        "prompt_token_count": 37358,
+        "candidates_token_count": 1448,
+        "thoughts_token_count": 11373,
+        "cached_content_token_count": null,
+        "total_token_count": 50179
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 123.13283967971802,
+      "usage": {
+        "prompt_token_count": 46434,
+        "candidates_token_count": 2873,
+        "thoughts_token_count": 12294,
+        "cached_content_token_count": null,
+        "total_token_count": 61601
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/SelectionUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 157.8685119152069,
+      "usage": {
+        "prompt_token_count": 51203,
+        "candidates_token_count": 3491,
+        "thoughts_token_count": 16771,
+        "cached_content_token_count": null,
+        "total_token_count": 71465
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/SelectionUnit/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 75.19548606872559,
+      "usage": {
+        "prompt_token_count": 57072,
+        "candidates_token_count": 3472,
+        "thoughts_token_count": 5705,
+        "cached_content_token_count": null,
+        "total_token_count": 66249
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/SelectionUnit/uarch/0004.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 124.64397382736206,
+      "usage": {
+        "prompt_token_count": 63116,
+        "candidates_token_count": 3864,
+        "thoughts_token_count": 14485,
+        "cached_content_token_count": null,
+        "total_token_count": 81465
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 332.79910135269165,
+      "usage": {
+        "prompt_token_count": 51103,
+        "candidates_token_count": 643,
+        "thoughts_token_count": 46078,
+        "cached_content_token_count": null,
+        "total_token_count": 97824
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 191.52288722991943,
+      "usage": {
+        "prompt_token_count": 52118,
+        "candidates_token_count": 1030,
+        "thoughts_token_count": 23163,
+        "cached_content_token_count": null,
+        "total_token_count": 76311
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/rq1_dynax_xm_Top/uarch_assembly/0001.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 46.806265115737915,
+      "usage": {
+        "prompt_token_count": 38853,
+        "candidates_token_count": 1384,
+        "thoughts_token_count": 5171,
+        "cached_content_token_count": null,
+        "total_token_count": 45408
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_01/DynaX_SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 246.56846523284912,
+      "usage": {
+        "prompt_token_count": 72839,
+        "candidates_token_count": 332,
+        "thoughts_token_count": 24330,
+        "cached_content_token_count": null,
+        "total_token_count": 97501
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_01/ScoreAndExpUnit_Adapter/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 20.297625303268433,
+      "usage": {
+        "prompt_token_count": 52920,
+        "candidates_token_count": 500,
+        "thoughts_token_count": 1895,
+        "cached_content_token_count": null,
+        "total_token_count": 55315
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_01/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 66.48126029968262,
+      "usage": {
+        "prompt_token_count": 72914,
+        "candidates_token_count": 483,
+        "thoughts_token_count": 6584,
+        "cached_content_token_count": null,
+        "total_token_count": 79981
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_02/DynaX_SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 254.8278045654297,
+      "usage": {
+        "prompt_token_count": 59942,
+        "candidates_token_count": 3941,
+        "thoughts_token_count": 28875,
+        "cached_content_token_count": null,
+        "total_token_count": 92758
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_02/DynaX_SelectionUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 251.20270562171936,
+      "usage": {
+        "prompt_token_count": 64134,
+        "candidates_token_count": 3680,
+        "thoughts_token_count": 28029,
+        "cached_content_token_count": null,
+        "total_token_count": 95843
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_02/DynaX_SelectionUnit/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 156.1506371498108,
+      "usage": {
+        "prompt_token_count": 72984,
+        "candidates_token_count": 4096,
+        "thoughts_token_count": 18664,
+        "cached_content_token_count": null,
+        "total_token_count": 95744
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_02/DynaX_SelectionUnit/uarch/0004.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 122.27313423156738,
+      "usage": {
+        "prompt_token_count": 81474,
+        "candidates_token_count": 4649,
+        "thoughts_token_count": 10043,
+        "cached_content_token_count": null,
+        "total_token_count": 96166
+      },
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "path": "agent_calls/round_03/build_02/DynaX_SelectionUnit/uarch/0005.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 214.69700860977173,
+      "usage": {
+        "prompt_token_count": 81480,
+        "candidates_token_count": 4279,
+        "thoughts_token_count": 21151,
+        "cached_content_token_count": null,
+        "total_token_count": 106910
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_02/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 100.21271538734436,
+      "usage": {
+        "prompt_token_count": 67350,
+        "candidates_token_count": 883,
+        "thoughts_token_count": 10770,
+        "cached_content_token_count": null,
+        "total_token_count": 79003
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_02/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 226.54040431976318,
+      "usage": {
+        "prompt_token_count": 68862,
+        "candidates_token_count": 722,
+        "thoughts_token_count": 24924,
+        "cached_content_token_count": null,
+        "total_token_count": 94508
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_02/compiler_diagnosis/0003.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 43.01725101470947,
+      "usage": {
+        "prompt_token_count": 60078,
+        "candidates_token_count": 700,
+        "thoughts_token_count": 3677,
+        "cached_content_token_count": null,
+        "total_token_count": 64455
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_03/DynaX_SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 237.07521080970764,
+      "usage": {
+        "prompt_token_count": 71628,
+        "candidates_token_count": 4317,
+        "thoughts_token_count": 24279,
+        "cached_content_token_count": null,
+        "total_token_count": 100224
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_03/DynaX_SelectionUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 238.44471263885498,
+      "usage": {
+        "prompt_token_count": 80914,
+        "candidates_token_count": 4476,
+        "thoughts_token_count": 19869,
+        "cached_content_token_count": null,
+        "total_token_count": 105259
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/DynaX_SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 194.37487196922302,
+      "usage": {
+        "prompt_token_count": 72049,
+        "candidates_token_count": 4005,
+        "thoughts_token_count": 22722,
+        "cached_content_token_count": null,
+        "total_token_count": 98776
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/DynaX_SelectionUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 170.32609677314758,
+      "usage": {
+        "prompt_token_count": 80594,
+        "candidates_token_count": 4216,
+        "thoughts_token_count": 18191,
+        "cached_content_token_count": null,
+        "total_token_count": 103001
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/DynaX_SelectionUnit/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 261.8158366680145,
+      "usage": {
+        "prompt_token_count": 89821,
+        "candidates_token_count": 4073,
+        "thoughts_token_count": 25257,
+        "cached_content_token_count": null,
+        "total_token_count": 119151
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/DynaX_SelectionUnit/uarch/0004.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 201.80793976783752,
+      "usage": {
+        "prompt_token_count": 98711,
+        "candidates_token_count": 4041,
+        "thoughts_token_count": 19442,
+        "cached_content_token_count": null,
+        "total_token_count": 122194
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/NormalizationUnit_Adapter/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 40.86435890197754,
+      "usage": {
+        "prompt_token_count": 69201,
+        "candidates_token_count": 494,
+        "thoughts_token_count": 1346,
+        "cached_content_token_count": null,
+        "total_token_count": 71041
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/Rq1DynaXm/uarch_assembly/0001.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 87.26452684402466,
+      "usage": {
+        "prompt_token_count": 40352,
+        "candidates_token_count": 1662,
+        "thoughts_token_count": 9501,
+        "cached_content_token_count": null,
+        "total_token_count": 51515
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/Rq1DynaXm/uarch_assembly/0002.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 78.07358288764954,
+      "usage": {
+        "prompt_token_count": 49625,
+        "candidates_token_count": 1722,
+        "thoughts_token_count": 8427,
+        "cached_content_token_count": null,
+        "total_token_count": 59774
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/Rq1DynaXm/uarch_assembly/0003.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 129.27377009391785,
+      "usage": {
+        "prompt_token_count": 58351,
+        "candidates_token_count": 1801,
+        "thoughts_token_count": 14467,
+        "cached_content_token_count": null,
+        "total_token_count": 74619
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/Rq1DynaXm/uarch_assembly/0004.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 123.43482995033264,
+      "usage": {
+        "prompt_token_count": 68564,
+        "candidates_token_count": 1984,
+        "thoughts_token_count": 11595,
+        "cached_content_token_count": null,
+        "total_token_count": 82143
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/Rq1DynaXm/uarch_assembly/0005.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 123.84204506874084,
+      "usage": {
+        "prompt_token_count": 76136,
+        "candidates_token_count": 1643,
+        "thoughts_token_count": 12524,
+        "cached_content_token_count": null,
+        "total_token_count": 90303
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 114.03874826431274,
+      "usage": {
+        "prompt_token_count": 80269,
+        "candidates_token_count": 449,
+        "thoughts_token_count": 10931,
+        "cached_content_token_count": null,
+        "total_token_count": 91649
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 142.80052590370178,
+      "usage": {
+        "prompt_token_count": 80486,
+        "candidates_token_count": 733,
+        "thoughts_token_count": 11968,
+        "cached_content_token_count": null,
+        "total_token_count": 93187
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/compiler_diagnosis/0003.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 92.50760197639465,
+      "usage": {
+        "prompt_token_count": 31770,
+        "candidates_token_count": 596,
+        "thoughts_token_count": 11319,
+        "cached_content_token_count": null,
+        "total_token_count": 43685
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/compiler_diagnosis/0004.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 245.0251681804657,
+      "usage": {
+        "prompt_token_count": 32393,
+        "candidates_token_count": 549,
+        "thoughts_token_count": 27920,
+        "cached_content_token_count": null,
+        "total_token_count": 60862
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/compiler_diagnosis/0005.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 357.9822573661804,
+      "usage": {
+        "prompt_token_count": 32591,
+        "candidates_token_count": 1793,
+        "thoughts_token_count": 46079,
+        "cached_content_token_count": null,
+        "total_token_count": 80463
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_04/compiler_diagnosis/0006.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 79.07511377334595,
+      "usage": {
+        "prompt_token_count": 33638,
+        "candidates_token_count": 554,
+        "thoughts_token_count": 9201,
+        "cached_content_token_count": null,
+        "total_token_count": 43393
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_05/Rq1DynaXm/uarch_assembly/0001.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 115.37560820579529,
+      "usage": {
+        "prompt_token_count": 49323,
+        "candidates_token_count": 1567,
+        "thoughts_token_count": 13334,
+        "cached_content_token_count": null,
+        "total_token_count": 64224
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_05/Rq1DynaXm/uarch_assembly/0002.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 153.1631805896759,
+      "usage": {
+        "prompt_token_count": 58505,
+        "candidates_token_count": 1527,
+        "thoughts_token_count": 15375,
+        "cached_content_token_count": null,
+        "total_token_count": 75407
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_05/Rq1DynaXm/uarch_assembly/0003.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 78.46562695503235,
+      "usage": {
+        "prompt_token_count": 67206,
+        "candidates_token_count": 1417,
+        "thoughts_token_count": 8790,
+        "cached_content_token_count": null,
+        "total_token_count": 77413
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_05/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 216.11711525917053,
+      "usage": {
+        "prompt_token_count": 40796,
+        "candidates_token_count": 491,
+        "thoughts_token_count": 23798,
+        "cached_content_token_count": null,
+        "total_token_count": 65085
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_05/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 64.36507654190063,
+      "usage": {
+        "prompt_token_count": 41122,
+        "candidates_token_count": 566,
+        "thoughts_token_count": 6361,
+        "cached_content_token_count": null,
+        "total_token_count": 48049
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_03/build_05/compiler_diagnosis/0003.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 84.5705156326294,
+      "usage": {
+        "prompt_token_count": 41301,
+        "candidates_token_count": 775,
+        "thoughts_token_count": 8695,
+        "cached_content_token_count": null,
+        "total_token_count": 50771
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_04/build_01/NormalizationUnit_Adapter/uarch/0001.json",
+      "role": "uarch",
+      "success": false,
+      "wall_seconds": 8.215083599090576,
+      "usage": null,
+      "error": "ValueError: uarch LLM failed: ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}"
+    },
+    {
+      "path": "agent_calls/round_04/build_01/NormalizationUnit_Adapter/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 48.70162868499756,
+      "usage": {
+        "prompt_token_count": 70170,
+        "candidates_token_count": 519,
+        "thoughts_token_count": 2188,
+        "cached_content_token_count": null,
+        "total_token_count": 72877
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_04/build_01/SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 214.8828363418579,
+      "usage": {
+        "prompt_token_count": 47165,
+        "candidates_token_count": 3652,
+        "thoughts_token_count": 22475,
+        "cached_content_token_count": null,
+        "total_token_count": 73292
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_04/build_01/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 122.29034423828125,
+      "usage": {
+        "prompt_token_count": 32090,
+        "candidates_token_count": 579,
+        "thoughts_token_count": 13617,
+        "cached_content_token_count": null,
+        "total_token_count": 46286
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_04/build_01/rq1_dynax_xm_Top/uarch_assembly/0001.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 40.724151849746704,
+      "usage": {
+        "prompt_token_count": 38372,
+        "candidates_token_count": 1192,
+        "thoughts_token_count": 3292,
+        "cached_content_token_count": null,
+        "total_token_count": 42856
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_04/build_01/rq1_dynax_xm_Top/uarch_assembly/0002.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 62.277716398239136,
+      "usage": {
+        "prompt_token_count": 47237,
+        "candidates_token_count": 1377,
+        "thoughts_token_count": 6238,
+        "cached_content_token_count": null,
+        "total_token_count": 54852
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_05/build_01/DynaX_SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 159.73097944259644,
+      "usage": {
+        "prompt_token_count": 57169,
+        "candidates_token_count": 2846,
+        "thoughts_token_count": 16029,
+        "cached_content_token_count": null,
+        "total_token_count": 76044
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_05/build_01/DynaX_SelectionUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 149.04951548576355,
+      "usage": {
+        "prompt_token_count": 60552,
+        "candidates_token_count": 2561,
+        "thoughts_token_count": 14048,
+        "cached_content_token_count": null,
+        "total_token_count": 77161
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_05/build_01/DynaX_SelectionUnit/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 129.40342378616333,
+      "usage": {
+        "prompt_token_count": 68268,
+        "candidates_token_count": 2483,
+        "thoughts_token_count": 15250,
+        "cached_content_token_count": null,
+        "total_token_count": 86001
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_05/build_01/NormalizationUnit_rq1/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 25.913339853286743,
+      "usage": {
+        "prompt_token_count": 74515,
+        "candidates_token_count": 506,
+        "thoughts_token_count": 2665,
+        "cached_content_token_count": null,
+        "total_token_count": 77686
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_05/build_01/Rq1DynaXm/uarch_assembly/0001.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 87.49716711044312,
+      "usage": {
+        "prompt_token_count": 42133,
+        "candidates_token_count": 1367,
+        "thoughts_token_count": 8986,
+        "cached_content_token_count": null,
+        "total_token_count": 52486
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_05/build_01/ScoreAndExpUnit_rq1/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 18.2816264629364,
+      "usage": {
+        "prompt_token_count": 54840,
+        "candidates_token_count": 491,
+        "thoughts_token_count": 1368,
+        "cached_content_token_count": null,
+        "total_token_count": 56699
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_05/build_01/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 34.16962456703186,
+      "usage": {
+        "prompt_token_count": 63761,
+        "candidates_token_count": 564,
+        "thoughts_token_count": 2874,
+        "cached_content_token_count": null,
+        "total_token_count": 67199
+      },
+      "error": null
+    }
+  ],
+  "token_totals": {
+    "prompt_token_count": 10483901,
+    "candidates_token_count": 464863,
+    "thoughts_token_count": 1201004,
+    "total_token_count": 12149768
+  },
+  "calls_missing_usage": 3
+}

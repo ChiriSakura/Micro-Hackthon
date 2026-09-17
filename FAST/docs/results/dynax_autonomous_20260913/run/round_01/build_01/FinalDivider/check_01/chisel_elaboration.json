@@ -1,0 +1,20 @@
+{
+  "passed": false,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/FinalDivider/check_01/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/references as the project root directory for this run.\nwarning: 2 deprecations (since Chisel 3.6); re-run with -deprecation for details\nwarning: 10 feature warnings; re-run with -feature for details\n2 warnings\nException in thread \"main\" chisel3.package$ChiselException: Error: No implicit clock.\n\tat ... ()\n\tat FinalDivider.$anonfun$divider$1(FinalDivider.scala:16)\n\tat chisel3.internal.plugin.package$.autoNameRecursively(package.scala:33)\n\tat FinalDivider.<init>(FinalDivider.scala:16)\n\tat FASTGeneratedElaborate$.$anonfun$new$1(FASTGeneratedElaborate.scala:7)\n\tat ... ()\n\tat ... (Stack trace trimmed to user code only. Rerun with --full-stacktrace to see the full stack trace)\n",
+  "wall_seconds": 4.577016053721309,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/references/004.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/FinalDivider/FinalDivider.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/FinalDivider/check_01/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/FinalDivider/check_01/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/FinalDivider/check_01/emitted"
+  ]
+}

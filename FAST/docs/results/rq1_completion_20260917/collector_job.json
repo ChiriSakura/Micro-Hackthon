@@ -1,0 +1,14 @@
+{
+  "job_id": "17911306",
+  "dependencies": [
+    "17909362",
+    "17910797",
+    "17911305",
+    "17910798",
+    "17909366",
+    "17909367"
+  ],
+  "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1-completion-report-v5.slurm",
+  "supersedes": "17910799",
+  "reason": "Include Sanger R5 explicit tool-compatibility retry; keep original default-policy baseline validation"
+}

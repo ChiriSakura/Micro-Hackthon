@@ -1,0 +1,61 @@
+{
+  "id": "threshold_attention",
+  "semantics": "One query q[2], four keys k[4][2], four scalar values v[4], all unsigned 4-bit. score[i]=sum(q[d]*k[i][d]); weight[i]=score[i] if score[i]>=threshold else 0; result=floor(sum(weight[i]*v[i])/sum(weight[i])), or 0 if denominator=0. No softmax, no signed math. This is an integration workload, not DynaX.",
+  "config_space": {
+    "threshold": [
+      0,
+      64,
+      128,
+      192
+    ]
+  },
+  "numeric_bounds": {
+    "score": 450,
+    "weight_sum": 1800,
+    "weighted_value_sum": 27000,
+    "result": 15
+  },
+  "ports": [
+    {
+      "name": "clock",
+      "direction": "input",
+      "width": 1
+    },
+    {
+      "name": "reset",
+      "direction": "input",
+      "width": 1
+    },
+    {
+      "name": "start",
+      "direction": "input",
+      "width": 1
+    },
+    {
+      "name": "q",
+      "direction": "input",
+      "width": 8
+    },
+    {
+      "name": "k",
+      "direction": "input",
+      "width": 32
+    },
+    {
+      "name": "v",
+      "direction": "input",
+      "width": 16
+    },
+    {
+      "name": "done",
+      "direction": "output",
+      "width": 1
+    },
+    {
+      "name": "result",
+      "direction": "output",
+      "width": 4
+    }
+  ],
+  "protocol": "Synchronous active-high reset. Accept start on a rising edge while idle. Inputs held stable until done. done must pulse high for one cycle, within 128 cycles after acceptance; result valid with done. Support repeated transactions without reset. Pack q[d] at bits 4*d +:4, k[i][d] at 4*(2*i+d) +:4, v[i] at 4*i +:4. Measure latency from the start acceptance edge (completion on that edge counts as 1)."
+}

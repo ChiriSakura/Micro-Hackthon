@@ -1,0 +1,121 @@
+{
+  "scope": "BlockScheduler, 32 rows x 8 PE, M=32; not full attention",
+  "design_id": "ccf78b4ca4993ed9068a7c44e9d645031015db224fc85584ae20e128a8305d3a",
+  "design_sha256": "34bfae3daf1c0e6ec87f1187ee506160d8ecb710f1796d8593a76202bc1b4d04",
+  "selected_algorithm": {
+    "label": "xm:16:8:32:0.75:0.05",
+    "family": "xm",
+    "block_m": 32,
+    "kept_high": 16,
+    "kept_low": 8,
+    "threshold_0": 0.75,
+    "threshold_1": 0.05
+  },
+  "complete_captured_task": true,
+  "workload_source_sha256": "02cdf29e0c96e3de2c18b926d075fb84a54140b1ae93abb90a11599735bfba47",
+  "workload_slice_sha256": "fd5e11f36087de3be7ba828a7dfe9b2ff1bee946ded7018ebd08732efe9173d1",
+  "source": {
+    "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+    "dataset": "wiki",
+    "layer": 10,
+    "seq_len": 512,
+    "seed": 20260903,
+    "head": 0,
+    "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+  },
+  "trace_slice": [
+    0,
+    136
+  ],
+  "not_a_heldout_model": true,
+  "fixed_frequency_mhz": 350.0,
+  "sources": {
+    "FAST/hardware/chisel/Elaborate.scala": "e5180cc7db1fe33c73fb7334a09ff8e42c4f2a16f8a8e8175e285d7d8adbd967",
+    "FAST/hardware/chisel/src/main/scala/attention_tile.scala": "e77f1f9f370f03380eccb4af14685b014c9d90da290d0c6cbcc83687f4a43298",
+    "FAST/hardware/chisel/src/main/scala/attention_tile_system.scala": "72efecaef3a77c6fd63f1c1da6195279d16f9319c003e779b524064c6d971244",
+    "FAST/hardware/chisel/src/main/scala/attention_tile_top.scala": "ce8815f1856a5ac258ef17154fafbbb5225c89fabd3c26e10a1b35c4194e7c53",
+    "FAST/hardware/chisel/src/main/scala/execute_unit/key_feeder.scala": "497aa40bcce085c4f0bb9dea9b169831cb010a527907d5060eeca84826797c9d",
+    "FAST/hardware/chisel/src/main/scala/execute_unit/repe.scala": "d694fc01d8352008c56cfa7d29d72959a69a366f15b3b25e031024e2eff445a9",
+    "FAST/hardware/chisel/src/main/scala/execute_unit/repe_array.scala": "1e1a501ff1b2eb147b0ba388918190fc06c409f742068454af5b8d76c4721215",
+    "FAST/hardware/chisel/src/main/scala/execute_unit/repe_row.scala": "73db4c2312be27805a2c54428a1d975485c89b93f23271df1104a01c1ca1a352",
+    "FAST/hardware/chisel/src/main/scala/execute_unit/sram.scala": "d23602c53d9b3ea95e5bd5ac303b152ed2fa9bf260b9b2bcfb4645d28e74cb69",
+    "FAST/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala": "45e788edd06864e12c38cb40d4746a128177e26fa74c53e721e333e4fd4ced74",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/block_tier.scala": "bb5006c94f149fe7e3b5baf642a027bf86b0420e87ca2cb0cecd28cd9ba2d916",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/divider.scala": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala": "49396ee98ca68d61b1cd49e63aa697be041cecd48721a3a770b4e2d72c5fb9d2",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala": "3cf7e3b7877b363cc69aa3076f5aaa8990c858f4d2063088bf82140e644e452d",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala": "dc57bc8281a0f42070a4954de96df30d66dcede2c966493837e005ad905676f0",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala": "62b543bc76a83b73d4a13fc6752dc544ecd14da252a04fd9420fd4752b059810",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/topk.scala": "09196842ec6bef512088f1eaf4a3112053e64f36cd5b7220de1b6191fe020cec",
+    "FAST/hardware/tb/tb_block_scheduler.cpp": "9eff39302eff6267f9fa4a9100b0c3d56322f792ace8ce860c272ca125a3485a",
+    "FAST/hardware/tb/gen_ports.py": "da98b85415b5574406d5670522bd1bbd1f13eafbbd2e2139ebd65212b78d6395"
+  },
+  "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+  "results": [
+    {
+      "depth": 2,
+      "passed": true,
+      "frequency_feasible": false,
+      "wall_seconds": 26.198133788071573,
+      "metrics": {
+        "queue_depth": 2.0,
+        "rows": 32.0,
+        "pe": 8.0,
+        "imbalance": 1.329141,
+        "row_util": 0.858381,
+        "pe_util": 0.858381,
+        "cycles": 220.0,
+        "area_um2": 41951.658,
+        "cells": 16832.0,
+        "estimated_power_mw": 8.168453000000001,
+        "assumed_activity": 0.0213,
+        "critical_path_ns": 2.8915,
+        "sta_period_ns": 2.857142857142857,
+        "slack_ns": -0.0701,
+        "max_frequency_mhz": 341.6183927342648
+      },
+      "stages": [
+        {
+          "stage": "elaborate",
+          "passed": true,
+          "diagnostics": "ok",
+          "metrics": {}
+        },
+        {
+          "stage": "simulate",
+          "passed": true,
+          "diagnostics": "queue_depth=2 rows=32 pe=8 tiles=136\n  cycles_active=220  row_utilisation=0.8584  pe_utilisation=0.8584\n  pass_imbalance=1.3291  model_says=0.9011  measured_row=0.8584\nMEASURE queue_depth=2 rows=32 pe=8 imbalance=1.329141 row_util=0.858381 pe_util=0.858381 cycles=220\nPASSED: 0 处判据失败",
+          "metrics": {
+            "queue_depth": 2.0,
+            "rows": 32.0,
+            "pe": 8.0,
+            "imbalance": 1.329141,
+            "row_util": 0.858381,
+            "pe_util": 0.858381,
+            "cycles": 220.0
+          }
+        },
+        {
+          "stage": "synthesize",
+          "passed": true,
+          "diagnostics": "ok: area_um2=41,951.658, cells=16,832.000, estimated_power_mw=8.168, assumed_activity=0.021, critical_path_ns=2.892, sta_period_ns=2.857, slack_ns=-0.070, max_frequency_mhz=341.618",
+          "metrics": {
+            "area_um2": 41951.658,
+            "cells": 16832.0,
+            "estimated_power_mw": 8.168453000000001,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.8915,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": -0.0701,
+            "max_frequency_mhz": 341.6183927342648
+          }
+        }
+      ],
+      "latency_s": null
+    }
+  ],
+  "energy_j": null,
+  "energy_reason": "no workload-activity power measurement",
+  "sources_unchanged": true
+}

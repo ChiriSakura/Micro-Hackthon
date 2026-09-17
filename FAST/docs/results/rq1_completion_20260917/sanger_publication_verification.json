@@ -1,0 +1,12 @@
+{
+  "utc": "2026-09-17T07:21:41.214583+00:00",
+  "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_checkpoint_v3_20260917/rq1_sanger_threshold",
+  "published": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_sanger_threshold_checkpoint_retry",
+  "checked_files": 332,
+  "bytes": 310685627,
+  "all_publication_hashes_match": true,
+  "mismatched": [],
+  "run_archive_verified": true,
+  "run_archive_file_count": 1813,
+  "run_archive_sha256": "f39865f8387652027db08e049653a68cb07d440dbf78ed898c6b33bf29ca306f"
+}

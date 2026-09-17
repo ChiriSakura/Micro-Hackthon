@@ -1,0 +1,1636 @@
+{
+  "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm",
+  "status": "failed",
+  "rounds": [
+    {
+      "round": 1,
+      "config": {
+        "n1": 7,
+        "n2": 6,
+        "t0_quarters": 4,
+        "t1_quarters": 0
+      },
+      "calibration": {
+        "config": {
+          "n1": 7,
+          "n2": 6,
+          "t0_quarters": 4,
+          "t1_quarters": 0
+        },
+        "quality_loss": 0.04474579932352966,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010057824013621622,
+        "squared_error_sum": 1316846.852566876,
+        "dense_squared_output_sum": 657704372.200548,
+        "sparsity": 0.18771320662768032,
+        "fully_dense_query_fraction": 0.0,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 7,
+          "13": 2045,
+          "14": 0,
+          "15": 0,
+          "16": 0
+        },
+        "samples": 2052,
+        "seed": 20260915,
+        "includes_shared_boundary_cases": true,
+        "workload_sha256": "60517956d3f68a3bb09f8553e8549416807efb4bad8c7fcdb40eae8460b3694e"
+      },
+      "heldout": {
+        "config": {
+          "n1": 7,
+          "n2": 6,
+          "t0_quarters": 4,
+          "t1_quarters": 0
+        },
+        "quality_loss": 0.05261845557273465,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010556113603441514,
+        "squared_error_sum": 3421192.92258189,
+        "dense_squared_output_sum": 1235666780.7148442,
+        "sparsity": 0.187713623046875,
+        "fully_dense_query_fraction": 0.0,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 14,
+          "13": 4082,
+          "14": 0,
+          "15": 0,
+          "16": 0
+        },
+        "samples": 4096,
+        "seed": 20260916,
+        "includes_shared_boundary_cases": false,
+        "workload_sha256": "d1ae69138f2824e724be7e1eb655d676c9945441b169e8867e1d8877065c389c"
+      },
+      "evaluation": {
+        "complete": true,
+        "feasible": true,
+        "verification": {
+          "passed": true,
+          "stage": "simulation",
+          "simulation": {
+            "passed": true,
+            "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/rq1_dynax_xm_top/check_01/e2e_sim.log",
+            "diagnostics": "FAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/rq1_dynax_xm_top/check_01/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 61ns; walltime 0.011 s; speed 5.580 us/s\n- Verilator: cpu 0.010 s on 1 threads; allocated 3 MB\n",
+            "wall_seconds": 0.43306730687618256,
+            "command": [
+              "apptainer",
+              "exec",
+              "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+              "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/rq1_dynax_xm_top/check_01/obj_dir/VFASTTestbench"
+            ]
+          },
+          "cases": 100,
+          "expected_cases": 100,
+          "mean_cycles": 60.0,
+          "min_cycles": 60,
+          "max_cycles": 60,
+          "testbench_sha256": "5b0f5925b3806679b172f234efc4bc0efd07da029265690391d1725fe35a9a7b",
+          "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+        },
+        "design_sha256": "92d996df2b9783bc303f39a6d0df6aebac66cf8cc947fe0d637f91d1eb0ffe53",
+        "ppa_backend": "hammer_openroad",
+        "scope": "entire generated top, Nangate45 placement/CTS/detailed routing/OpenRCX",
+        "power_method": "OpenROAD post-route extracted-RC power estimate; uniform activity, not silicon measurement",
+        "activity": 0.1,
+        "gds_generated": false,
+        "driver_sha256": "9b370c6e51363a441abb05fd2e8ace3e480c5c0e1ea638fc3f035e21174796b7",
+        "physical_adapter_sha256": "bbc831c069e450514af9fc188001b33531fd442c7c9c48a0daa0b309c5da5196",
+        "routing_tool": "26Q1-2900-gdf79404cd8",
+        "pdk_sha256": {
+          "setRC.tcl": "521df813bf4da9d7400df33e3f680c9a328cc720830dbfca1188083741503fa5",
+          "rcx_patterns.rules": "2f65fafbe2c704b378563c53a680b93cef080c2799997019d43df7d1e5a563e9",
+          "lib/NangateOpenCellLibrary_typical.lib": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1"
+        },
+        "syn": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/syn.log",
+          "diagnostics": " 'SDFFR_X2' - skipping.\nWarning: Found unsupported expression 'SE*SI+D*!SE' in pin attribute of cell 'SDFFS_X1' - skipping.\nWarning: Found unsupported expression 'SE*SI+D*!SE' in pin attribute of cell 'SDFFS_X2' - skipping.\nWarning: Found unsupported expression 'SE*SI+D*!SE' in pin attribute of cell 'SDFF_X1' - skipping.\nWarning: Found unsupported expression 'SE*SI+D*!SE' in pin attribute of cell 'SDFF_X2' - skipping.\n  final dff cell mappings:\n    unmapped dff cell: $_DFF_N_\n    \\DFF_X1 _DFF_P_ (.CK( C), .D( D), .Q( Q), .QN(~Q));\n    unmapped dff cell: $_DFF_NN0_\n    unmapped dff cell: $_DFF_NN1_\n    unmapped dff cell: $_DFF_NP0_\n    unmapped dff cell: $_DFF_NP1_\n    \\DFFR_X1 _DFF_PN0_ (.CK( C), .D( D), .Q( Q), .QN(~Q), .RN( R));\n    \\DFFS_X1 _DFF_PN1_ (.CK( C), .D( D), .Q( Q), .QN(~Q), .SN( R));\n    unmapped dff cell: $_DFF_PP0_\n    unmapped dff cell: $_DFF_PP1_\n    unmapped dff cell: $_DFFSR_NNN_\n    unmapped dff cell: $_DFFSR_NNP_\n    unmapped dff cell: $_DFFSR_NPN_\n    unmapped dff cell: $_DFFSR_NPP_\n    \\DFFRS_X1 _DFFSR_PNN_ (.CK( C), .D( D), .Q( Q), .QN(~Q), .RN( R), .SN( S));\n    unmapped dff cell: $_DFFSR_PNP_\n    unmapped dff cell: $_DFFSR_PPN_\n    unmapped dff cell: $_DFFSR_PPP_\n\n8.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).\nMapping DFF cells in module `\\rq1_dynax_xm_top':\n  mapped 13623 $_DFF_P_ cells to \\DFF_X1 cells.\nopt_clean\n\n9. Executing OPT_CLEAN pass (remove unused cells and wires).\nFinding unused cells or wires in module \\rq1_dynax_xm_top..\nRemoved 65 unused cells and 130 unused wires.\n(hammer) abc -D 3333\n<suppressed ~66 debug messages>\n\n10. Executing ABC pass (technology mapping using ABC).\n\n10.1. Extracting gate netlist of module `\\rq1_dynax_xm_top' to `/tmp/fast-rq1-17868425/yosys-abc-NEco9b/input.blif'..\nExtracted 86557 gates and 100497 wires to a netlist network with 13938 inputs and 13640 outputs.\n\n10.1.1. Executing ABC.\nRunning ABC command: \"/usr/local/bin/yosys-abc\" -s -f /tmp/fast-rq1-17868425/yosys-abc-NEco9b/abc.script 2>&1\nABC: ABC command line: \"source /tmp/fast-rq1-17868425/yosys-abc-NEco9b/abc.script\".\nABC:\nABC: + read_blif /tmp/fast-rq1-17868425/yosys-abc-NEco9b/input.blif\nABC: + read_lib -w /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib\nABC: Parsing finished successfully.  Parsing time =     0.05 sec\nABC: Scl_LibertyReadGenlib() skipped cell \"ANTENNA_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATETST_X1\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATETST_X2\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATETST_X4\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATETST_X8\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATE_X1\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATE_X2\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATE_X4\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATE_X8\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFRS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFRS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFR_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFR_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFF_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFF_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLH_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLH_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLL_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLL_X2\".\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"TAPCELL_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X2\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X4\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X8\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X16\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X32\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"LOGIC0_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"LOGIC1_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFRS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFRS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFR_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFR_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFF_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFF_X2\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X1\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X2\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X4\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X8\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X16\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TINV_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"TLAT_X1\".\nABC: Library \"NangateOpenCellLibrary\" from \"/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib\" has 90 cells (35 skipped: 21 seq; 6 tri-state; 8 no func; 10 dont_use).  Time =     0.08 sec\nABC: Memory =   11.38 MB. Time =     0.08 sec\nABC: Warning: Detected 2 multi-output gates (for example, \"FA_X1\").\nABC: + read_constr -v /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/syn-rundir/rq1_dynax_xm_top.mapped.sdc\nABC: + strash\nABC: + &get -n\nABC: + &fraig -x\nABC: + &put\nABC: + scorr\nABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\").\nABC: + dc2\nABC: + dretime\nABC: + retime -o -D 3333\nABC: + strash\nABC: + &get -n\nABC: + &dch -f\nABC: + &nf -D 3333\nABC: + &put\nABC: + buffer\nABC: + upsize -D 3333\nABC: Current delay (1293.34 ps) does not exceed the target delay (3333.00 ps). Upsizing is not performed.\nABC: + dnsize -D 3333\nABC: + stime -p\nABC: WireLoad = \"none\"  Gates =  54086 ( 11.4 %)   Cap =  2.8 ff (  0.5 %)   Area =    57779.72 ( 96.3 %)   Delay =  1287.84 ps  (  0.2 %)\nABC: Path  0 --     951 : 0    2 pi        A =   0.00  Df =   0.0   -0.0 ps  S =   0.0 ps  Cin =  0.0 ff  Cout =   3.9 ff  Cmax =   0.0 ff  G =    0\nABC: Path  1 --   51958 : 2    3 XOR2_X1   A =   1.60  Df =  62.3   -4.8 ps  S =  40.0 ps  Cin =  2.3 ff  Cout =   5.6 ff  Cmax =  25.3 ff  G =  233\nABC: Path  2 --   52081 : 2    1 NOR2_X1   A =   0.80  Df =  83.0   -9.9 ps  S =  15.3 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  26.7 ff  G =   99\nABC: Path  3 --   52082 : 3    2 AOI21_X1  A =   1.06  Df = 125.9  -25.0 ps  S =  33.3 ps  Cin =  1.6 ff  Cout =   4.2 ff  Cmax =  25.3 ff  G =  261\nABC: Path  4 --   52087 : 2    1 NOR2_X1   A =   0.80  Df = 139.2   -9.7 ps  S =  15.3 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  26.7 ff  G =   99\nABC: Path  5 --   52089 : 3    2 AOI21_X1  A =   1.06  Df = 192.1  -44.9 ps  S =  33.4 ps  Cin =  1.6 ff  Cout =   4.2 ff  Cmax =  25.3 ff  G =  258\nABC: Path  6 --   52094 : 3    2 OAI21_X1  A =   1.06  Df = 217.8  -30.9 ps  S =  29.3 ps  Cin =  1.6 ff  Cout =   4.1 ff  Cmax =  26.1 ff  G =  254\nABC: Path  7 --   52098 : 1    1 INV_X1    A =   0.53  Df = 233.2  -37.2 ps  S =   8.3 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  60.7 ff  G =   96\nABC: Path  8 --   52099 : 3    3 OAI21_X1  A =   1.06  Df = 256.4   -9.1 ps  S =  36.5 ps  Cin =  1.6 ff  Cout =   5.6 ff  Cmax =  26.1 ff  G =  347\nABC: Path  9 --   52106 : 4    1 OAI211_X1 A =   1.33  Df = 286.0  -16.0 ps  S =  17.6 ps  Cin =  1.6 ff  Cout =   1.0 ff  Cmax =  25.6 ff  G =   60\nABC: Path 10 --   52107 : 2    2 AND2_X1   A =   1.06  Df = 326.8  -19.0 ps  S =  13.8 ps  Cin =  0.9 ff  Cout =   4.2 ff  Cmax =  60.6 ff  G =  440\nABC: Path 11 --   52113 : 3    4 OAI21_X1  A =   1.06  Df = 363.8  -10.7 ps  S =  45.0 ps  Cin =  1.6 ff  Cout =   7.4 ff  Cmax =  26.1 ff  G =  453\nABC: Path 12 --   52139 : 5    3 AOI221_X1 A =   1.60  Df = 459.7  -52.3 ps  S =  71.5 ps  Cin =  1.6 ff  Cout =   5.9 ff  Cmax =  13.8 ff  G =  363\nABC: Path 13 --   52161 : 2    1 NOR2_X1   A =   0.80  Df = 473.1  -31.3 ps  S =  17.5 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  26.7 ff  G =   98\nABC: Path 14 --   52165 : 4    2 NOR4_X1   A =   1.33  Df = 566.9 -107.4 ps  S =  66.5 ps  Cin =  1.6 ff  Cout =   4.2 ff  Cmax =  10.5 ff  G =  261\nABC: Path 15 --   52169 : 2    1 NOR2_X1   A =   0.80  Df = 580.7  -92.6 ps  S =  15.5 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  26.7 ff  G =   99\nABC: Path 16 --   52170 : 3    2 AOI21_X1  A =   1.06  Df = 635.9 -130.2 ps  S =  33.5 ps  Cin =  1.6 ff  Cout =   4.3 ff  Cmax =  25.3 ff  G =  257\nABC: Path 17 --   52175 : 3    2 AOI21_X1  A =   1.06  Df = 661.0 -110.6 ps  S =  33.5 ps  Cin =  1.6 ff  Cout =   4.3 ff  Cmax =  25.3 ff  G =  257\nABC: Path 18 --   52180 : 3    2 AOI21_X1  A =   1.06  Df = 706.6 -131.1 ps  S =  33.5 ps  Cin =  1.6 ff  Cout =   4.3 ff  Cmax =  25.3 ff  G =  257\nABC: Path 19 --   52185 : 3    2 AOI21_X1  A =   1.06  Df = 728.0 -114.8 ps  S =  25.8 ps  Cin =  1.6 ff  Cout =   2.6 ff  Cmax =  25.3 ff  G =  160\nABC: Path 20 --   52187 : 2    4 OR2_X1    A =   1.06  Df = 788.1 -132.8 ps  S =  18.0 ps  Cin =  0.9 ff  Cout =   6.5 ff  Cmax =  60.6 ff  G =  716\nABC: Path 21 --   52193 : 3    4 OR3_X1    A =   1.33  Df = 882.2 -184.4 ps  S =  18.5 ps  Cin =  0.9 ff  Cout =   6.5 ff  Cmax =  60.6 ff  G =  719\nABC: Path 22 --   52198 : 3    4 OR3_X1    A =   1.33  Df = 978.1 -237.6 ps  S =  18.5 ps  Cin =  0.9 ff  Cout =   6.5 ff  Cmax =  60.6 ff  G =  719\nABC: Path 23 --   52203 : 3    4 OR3_X1    A =   1.33  Df =1073.9 -290.8 ps  S =  18.5 ps  Cin =  0.9 ff  Cout =   6.5 ff  Cmax =  60.6 ff  G =  719\nABC: Path 24 --   52208 : 3    4 OR3_X1    A =   1.33  Df =1171.3 -343.7 ps  S =  19.9 ps  Cin =  0.9 ff  Cout =   7.3 ff  Cmax =  60.6 ff  G =  800\nABC: Path 25 --   52216 : 3    2 NOR3_X1   A =   1.06  Df =1236.8 -393.3 ps  S =  38.1 ps  Cin =  1.6 ff  Cout =   3.3 ff  Cmax =  16.0 ff  G =  196\nABC: Path 26 --   52217 : 3    1 OAI21_X1  A =   1.06  Df =1255.7 -385.7 ps  S =  18.0 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  26.1 ff  G =  100\nABC: Path 27 --   52218 : 3    1 AOI21_X1  A =   1.06  Df =1287.8  -38.4 ps  S =  13.5 ps  Cin =  1.6 ff  Cout =   0.0 ff  Cmax =  25.3 ff  G =    0\nABC: Start-point = pi950 (\\normalization_unit.REG_21_divisor [1]).  End-point = po7228 ($auto$rtlil.cc:2669:MuxGate$374891).\nABC: + write_blif /tmp/fast-rq1-17868425/yosys-abc-NEco9b/output.blif\n\n10.1.2. Re-integrating ABC results.\nABC RESULTS:          _const0_ cells:        6\nABC RESULTS:          OAI33_X1 cells:       30\nABC RESULTS:         OAI222_X1 cells:       17\nABC RESULTS:            OR4_X1 cells:      120\nABC RESULTS:           NOR4_X1 cells:      658\nABC RESULTS:         AOI222_X1 cells:       24\nABC RESULTS:         OAI221_X1 cells:      256\nABC RESULTS:            BUF_X1 cells:     1735\nABC RESULTS:         OAI211_X1 cells:      495\nABC RESULTS:         CLKBUF_X1 cells:      191\nABC RESULTS:         AOI221_X1 cells:      282\nABC RESULTS:         AOI211_X1 cells:     1317\nABC RESULTS:          NAND4_X1 cells:      843\nABC RESULTS:          OAI22_X1 cells:      692\nABC RESULTS:           MUX2_X1 cells:      891\nABC RESULTS:          NAND3_X1 cells:     1001\nABC RESULTS:            INV_X1 cells:     4261\nABC RESULTS:          AOI22_X1 cells:     1383\nABC RESULTS:           AND4_X1 cells:      523\nABC RESULTS:            OR3_X1 cells:      739\nABC RESULTS:           XOR2_X1 cells:     2650\nABC RESULTS:          AOI21_X1 cells:     4883\nABC RESULTS:          NAND2_X1 cells:     5022\nABC RESULTS:          OAI21_X1 cells:     4769\nABC RESULTS:          XNOR2_X1 cells:     2933\nABC RESULTS:           NOR2_X1 cells:     6743\nABC RESULTS:           AND3_X1 cells:      528\nABC RESULTS:           NOR3_X1 cells:     1018\nABC RESULTS:            OR2_X1 cells:      773\nABC RESULTS:           AND2_X1 cells:     9303\nABC RESULTS:        internal signals:    72919\nABC RESULTS:           input signals:    13938\nABC RESULTS:          output signals:    13640\nRemoving temp directory.\n(hammer) setundef -zero\n\n11. Executing SETUNDEF pass (replace undef values with defined constants).\n(hammer) splitnets\n\n12. Executing SPLITNETS pass (splitting up multi-bit signals).\n(hammer) opt_clean -purge\n\n13. Executing OPT_CLEAN pass (remove unused cells and wires).\nFinding unused cells or wires in module \\rq1_dynax_xm_top..\nRemoved 0 unused cells and 105702 unused wires.\n(hammer) hilomap -singleton\n<suppressed ~7135 debug messages>\n\n14. Executing HILOMAP pass (mapping to constant drivers).\n(hammer) tee -o /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/syn-rundir/rq1_dynax_xm_top.synth_check.rpt check\n\n15. Executing CHECK pass (checking for obvious problems).\n(hammer) tee -o /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/syn-rundir/rq1_dynax_xm_top.synth_stat.txt stat -top rq1_dynax_xm_top -liberty /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib\nChecking module rq1_dynax_xm_top...\nFound and reported 0 problems.\n\n16. Printing statistics.\ncheck -assert\n\n=== rq1_dynax_xm_top ===\n\n   Number of wires:              81303\n   Number of wire bits:          81594\n   Number of public wires:       13616\n   Number of public wire bits:   13907\n   Number of memories:               0\n   Number of memory bits:            0\n   Number of processes:              0\n   Number of cells:              67704\n     AND2_X1                      9303\n     AND3_X1                       528\n     AND4_X1                       523\n     AOI211_X1                    1317\n     AOI21_X1                     4883\n     AOI221_X1                     282\n     AOI222_X1                      24\n     AOI22_X1                     1383\n     BUF_X1                       1735\n     CLKBUF_X1                     191\n     DFF_X1                      13623\n     INV_X1                       4261\n     LOGIC0_X1                       1\n     MUX2_X1                       891\n     NAND2_X1                     5022\n     NAND3_X1                     1001\n     NAND4_X1                      843\n     NOR2_X1                      6743\n     NOR3_X1                      1018\n     NOR4_X1                       658\n     OAI211_X1                     495\n     OAI21_X1                     4769\n     OAI221_X1                     256\n     OAI222_X1                      17\n     OAI22_X1                      692\n     OAI33_X1                       30\n     OR2_X1                        773\n     OR3_X1                        739\n     OR4_X1                        120\n     XNOR2_X1                     2933\n     XOR2_X1                      2650\n\n   Chip area for module '\\rq1_dynax_xm_top': 119383.460000\n\n17. Executing CHECK pass (checking for obvious problems).\nselect -assert-none {t:$*}\n(hammer) write_verilog -noattr -noexpr -nohex -nodec -defparam \"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/syn-rundir/rq1_dynax_xm_top.mapped.v\"\nChecking module rq1_dynax_xm_top...\nFound and reported 0 problems.\n\n18. Executing Verilog backend.\nDumping module `\\rq1_dynax_xm_top'.\n\u001b[96m[synthesis] Did not run write_regs\u001b[0m\nAction syn config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/syn-output.json\n",
+          "wall_seconds": 167.59087582305074,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/hammer_driver.py",
+            "syn",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/config.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/syn-output.json"
+          ]
+        },
+        "syn-to-par": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/syn-to-par.log",
+          "diagnostics": "\u001b[96m[<global>] Loading hammer-vlsi libraries and reading settings\u001b[0m\n\u001b[96m[<global>] Loading technology 'hammer.technology.nangate45'\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\nAction syn-to-par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/par-input.json\n",
+          "wall_seconds": 0.7110142549499869,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/hammer_driver.py",
+            "syn-to-par",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/config.json",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/syn-output.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/par-input.json"
+          ]
+        },
+        "par": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/par.log",
+          "diagnostics": "0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Completing 70% with 1 violations.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     elapsed time = 00:00:40, memory = 4971.86 (MB).\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Completing 80% with 1 violations.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     elapsed time = 00:00:45, memory = 4971.86 (MB).\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Completing 90% with 1 violations.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     elapsed time = 00:00:47, memory = 4971.86 (MB).\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     Completing 100% with 0 violations.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]     elapsed time = 00:00:53, memory = 4971.86 (MB).\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0199]   Number of violations = 0.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0267] cpu time = 00:03:21, elapsed time = 00:00:53, memory = 4971.86 (MB), peak = 4971.86 (MB)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length = 1010594 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal1 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal2 = 519653 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal3 = 458253 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal4 = 17964 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal5 = 13090 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal6 = 1248 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal7 = 191 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal8 = 192 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal9 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal10 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total number of vias = 454749.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Up-via summary (total 454749):\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  active         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal1    235998\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal2    215246\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal3      2222\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal4      1218\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal5        55\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal6         8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal7         2\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal8         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal9         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]        454749\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0198] Complete detail routing.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length = 1010594 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal1 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal2 = 519653 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal3 = 458253 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal4 = 17964 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal5 = 13090 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal6 = 1248 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal7 = 191 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal8 = 192 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal9 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal10 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total number of vias = 454749.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Up-via summary (total 454749):\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  active         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal1    235998\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal2    215246\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal3      2222\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal4      1218\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal5        55\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal6         8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal7         2\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal8         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal9         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]        454749\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0267] cpu time = 02:05:03, elapsed time = 00:32:24, memory = 4972.86 (MB), peak = 4972.86 (MB)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0180] Post processing.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db pre_extraction\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn pre_extraction latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) define_process_corner -ext_model_index 0 X\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0431] Defined process_corner X with ext_model_index 0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0029] Defined extraction corner X\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) extract_parasitics -ext_model_file /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/rcx_patterns.rules -corner_cnt 2\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0435] Reading extraction model file /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/rcx_patterns.rules ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0436] RC segment generation rq1_dynax_xm_top (max_merge_res 50.0) ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0040] Final 284139 rc segments\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0439] Coupling Cap extraction rq1_dynax_xm_top ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 9% of 497070 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 20% of 497070 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 32% of 497070 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 49% of 497070 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 60% of 497070 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 72% of 497070 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 83% of 497070 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 100% of 497070 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0045] Extract 86659 nets, 357240 rsegs, 357240 caps, 635928 ccs\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_spef /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/par-rundir/rq1_dynax_xm_top.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0443] 86659 nets finished\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) read_spef -corner setup /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/par-rundir/rq1_dynax_xm_top.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) read_spef -corner hold /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/par-rundir/rq1_dynax_xm_top.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db pre_report_routed\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn pre_report_routed latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_power_activity -global -activity 0.1 -duty 0.5\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_propagated_clock [all_clocks]\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) global_connect\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/par-rundir/routed.odb\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_def /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/par-rundir/routed.def\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_verilog /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/par-rundir/routed.v\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) puts FAST_FINAL_BEGIN\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_FINAL_BEGIN\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_power -corner setup -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Group                      Internal      Switching        Leakage          Total\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                               Power          Power          Power          Power (Watts)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] --------------------------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Sequential           1.85110234e-02 1.18436513e-03 1.07878877e-03 2.07741763e-02  45.5%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Combinational        3.91248427e-03 4.46400885e-03 1.41072413e-03 9.78721678e-03  21.5%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Clock                6.23831386e-03 8.72143265e-03 1.04322135e-04 1.50640691e-02  33.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Macro                0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Pad                  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] --------------------------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total                2.86614262e-02 1.43696563e-02 2.59454199e-03 4.56256233e-02 100.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                               62.8%          31.5%           5.7%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_worst_slack -max -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] worst slack max 0.58731490\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_worst_slack -min -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] worst slack min 0.00566144\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_check_types -max_slew -max_capacitance -violators\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] max capacitance\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Pin                                    Limit     Cap   Slack\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _072427_/ZN                            59.36   64.00   -4.64 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _075456_/ZN                            59.36   62.34   -2.99 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _074366_/ZN                            60.58   62.47   -1.89 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _072902_/ZN                            26.70   28.46   -1.76 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _131251_/Q                             60.73   62.44   -1.71 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _084963_/ZN                            26.70   28.35   -1.64 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _072690_/ZN                            26.70   28.09   -1.39 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_design_area\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Design area 395924 um^2 100% utilization.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set fast_filler_names {FILLCELL_X1 FILLCELL_X2 FILLCELL_X4 FILLCELL_X8 FILLCELL_X16 FILLCELL_X32}\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_CELL_AREA_UM2 125672.76399991395\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_DIE_AREA_UM2 435600.0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_CORE_AREA_UM2 395923.71\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_FINAL_END\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db post_report_routed\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn post_report_routed latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exit\u001b[0m\n\u001b[96m[par] Did not run write_design\u001b[0m\nAction par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/par-output.json\n",
+          "wall_seconds": 2290.5716138025746,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/hammer_driver.py",
+            "par",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/config.json",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/par-input.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/par-output.json"
+          ]
+        },
+        "route_drc_violations": 0,
+        "io_delay_ns": 1.0,
+        "output_load_ff": 5.0,
+        "process_corner": "Nangate45 typical 1.1 V 25 C for setup and hold; not multi-PVT signoff",
+        "area_um2": 125672.76399991395,
+        "die_area_um2": 435600.0,
+        "core_area_um2": 395923.71,
+        "power_mw": 45.6256233,
+        "slack_ns": 0.5873149,
+        "hold_slack_ns": 0.00566144,
+        "frequency_mhz": 300,
+        "latency_ns": 200.0,
+        "energy_nj": 9.12512466,
+        "energy_efficiency_queries_per_joule": 109587543.97991972,
+        "quality_loss": 0.04474579932352966,
+        "efficiency_scope": "one verified query; energy = modeled average power times single-query latency",
+        "artifacts": {
+          "hammer/par-rundir/routed.def": "105114177290b37ff0790910bc8074c563e06542acfa263791ab00904349ba50",
+          "hammer/par-rundir/routed.v": "a2f217b2e74298e7f812a41ebf3a51e478cd6775dc633eb10b3e8cf988df6ca2",
+          "hammer/par-rundir/routed.odb": "97bdb489f55beb3ff3a02d87623cdd284f77e0c1f7c519f4c6194c069e5367f4",
+          "hammer/par-rundir/rq1_dynax_xm_top.par.spef": "261d7902729f81fc646cdc07edc67f0950cb86a312f3d52a8817c31d76d5e838",
+          "hammer/par-rundir/rq1_dynax_xm_top_route_drc.rpt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "dense_equivalent_ops_per_query": 96,
+        "energy_efficiency_dense_equivalent_tops_per_w": 0.010520404222072292
+      },
+      "status": "evaluated",
+      "critique": {
+        "layer": "compiler",
+        "reason": "The current design's energy efficiency is limited by its high latency of 60 cycles. The physical evaluation shows a cell area of 125.7k um^2, which is only 63% of the 200k um^2 constraint, leaving substantial area budget. The majority of the latency (41 of 60 cycles) is in the NormalizationUnit, due to a conservative 33-cycle pipelined divider. A compiler-level change to enforce a much shorter latency contract on this module will force a trade-off of the available area budget for a significant reduction in latency, leading to a direct and substantial improvement in energy efficiency (queries/Joule).",
+        "evidence": [
+          "evaluation.verification.mean_cycles",
+          "evaluation.area_um2",
+          "evaluation.energy_efficiency_queries_per_joule"
+        ],
+        "instructions": "Revise the system plan to reduce the latency of the `NormalizationUnit` module from 41 cycles to 20 cycles or less. This will require the uarch stage to implement a faster divider, utilizing the available area budget. The expected effect is a reduction in total system latency to ~40 cycles, a proportional decrease in energy per query, and a significant increase in `energy_efficiency_queries_per_joule`."
+      },
+      "critique_applied": true,
+      "independent_checks": {
+        "gates": {
+          "returncode": 0,
+          "passed": true,
+          "summary": {
+            "passed": true,
+            "verification": {
+              "passed": true,
+              "stage": "simulation",
+              "simulation": {
+                "passed": true,
+                "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/gates_round_1/e2e_sim.log",
+                "diagnostics": "FAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/gates_round_1/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 61ns; walltime 0.241 s; speed 253.538 ns/s\n- Verilator: cpu 0.235 s on 1 threads; allocated 6 MB\n",
+                "wall_seconds": 0.652615743689239,
+                "command": [
+                  "apptainer",
+                  "exec",
+                  "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                  "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/gates_round_1/obj_dir/VFASTTestbench"
+                ]
+              },
+              "cases": 100,
+              "expected_cases": 100,
+              "mean_cycles": 60.0,
+              "min_cycles": 60,
+              "max_cycles": 60,
+              "testbench_sha256": "5b0f5925b3806679b172f234efc4bc0efd07da029265690391d1725fe35a9a7b",
+              "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+            },
+            "physical_measurement": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm/round_01/build_03/hammer/result.json",
+            "routed_sha256": "a2f217b2e74298e7f812a41ebf3a51e478cd6775dc633eb10b3e8cf988df6ca2",
+            "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+            "llm_calls": 0,
+            "scope": "zero-delay functional gate-level E2E on routed netlist; not SDF timing simulation"
+          }
+        },
+        "rtl_holdout": {
+          "returncode": 0,
+          "passed": true,
+          "summary": {
+            "passed": true,
+            "llm_calls": 0,
+            "baseline": {
+              "passed": true,
+              "stage": "evaluation",
+              "evaluation": {
+                "complete": true,
+                "feasible": false,
+                "synthesis": {
+                  "success": true,
+                  "top_module": "rq1_dynax_xm_top",
+                  "technology": "nangate45",
+                  "cell_area_um2": 122365.586,
+                  "cell_count": 72670,
+                  "cell_histogram": {
+                    "AND2_X1": 5445,
+                    "AND3_X1": 645,
+                    "AND4_X1": 483,
+                    "AOI211_X1": 1386,
+                    "AOI21_X1": 5536,
+                    "AOI221_X1": 359,
+                    "AOI22_X1": 1537,
+                    "DFF_X1": 13623,
+                    "INV_X1": 7867,
+                    "MUX2_X1": 879,
+                    "NAND2_X1": 5451,
+                    "NAND3_X1": 1122,
+                    "NAND4_X1": 982,
+                    "NOR2_X1": 10922,
+                    "NOR3_X1": 1273,
+                    "NOR4_X1": 872,
+                    "OAI211_X1": 634,
+                    "OAI21_X1": 5070,
+                    "OAI221_X1": 383,
+                    "OAI222_X1": 15,
+                    "OAI22_X1": 834,
+                    "OAI33_X1": 53,
+                    "OR2_X1": 911,
+                    "OR3_X1": 675,
+                    "OR4_X1": 127,
+                    "XNOR2_X1": 3039,
+                    "XOR2_X1": 2521,
+                    "AOI222_X1": 26,
+                    "NormalizationUnit": 1,
+                    "ScoreAndExpUnit": 1,
+                    "SelectionUnit": 1,
+                    "rq1_dynax_xm_top": 1
+                  },
+                  "netlist_uri": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/mapped.v",
+                  "wall_seconds": 95.57765531539917,
+                  "log_uri": "file:///home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/yosys_rq1_dynax_xm_top.log",
+                  "error": null
+                },
+                "verification": {
+                  "passed": true,
+                  "stage": "simulation",
+                  "simulation": {
+                    "passed": true,
+                    "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/e2e_sim.log",
+                    "diagnostics": "FAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 61ns; walltime 0.009 s; speed 6.686 us/s\n- Verilator: cpu 0.008 s on 1 threads; allocated 3 MB\n",
+                    "wall_seconds": 0.43448906019330025,
+                    "command": [
+                      "apptainer",
+                      "exec",
+                      "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                      "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/obj_dir/VFASTTestbench"
+                    ]
+                  },
+                  "cases": 100,
+                  "expected_cases": 100,
+                  "mean_cycles": 60.0,
+                  "min_cycles": 60,
+                  "max_cycles": 60,
+                  "testbench_sha256": "5b0f5925b3806679b172f234efc4bc0efd07da029265690391d1725fe35a9a7b",
+                  "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+                },
+                "design_sha256": "9ad2596005aa74d5d0a3e037dbd83b61531208200f4c6f8c8974e6afb45710bf",
+                "scope": "entire generated top and all instantiated modules, memories mapped to flops",
+                "power_method": "OpenSTA uniform-activity estimate, pre-layout Nangate45",
+                "activity": 0.1,
+                "ppa_backend": "yosys_opensta",
+                "timing": {
+                  "success": true,
+                  "top_module": "rq1_dynax_xm_top",
+                  "technology": "nangate45",
+                  "clock_period_ns": 3.3333333333333335,
+                  "critical_path_ns": 14.0706,
+                  "slack_ns": -10.8096,
+                  "activity": 0.1,
+                  "worst_stage_ns": 8.6909,
+                  "worst_stage_cell": "INV_X1",
+                  "timing_credible": false,
+                  "internal_power_w": 0.02907503,
+                  "switching_power_w": 0.004181068,
+                  "leakage_power_w": 0.002500588,
+                  "total_power_w": 0.03575669,
+                  "wall_seconds": 3.746135950088501,
+                  "log_uri": "file:///home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/rebuild/sta_rq1_dynax_xm_top.log",
+                  "error": "时序不可信：单级 INV_X1 报出 8.691 ns，而 45nm 标准单元约 0.02-0.1 ns。这条路径由未插缓冲的高扇出主导，要等布局布线才有意义。面积与功耗不受影响。"
+                },
+                "area_um2": 122365.586,
+                "power_mw": 35.75669,
+                "frequency_mhz": 300,
+                "max_frequency_mhz": null,
+                "slack_ns": -10.8096,
+                "latency_ns": 200.0,
+                "energy_nj": 7.151338,
+                "quality_loss": 0.04474579932352966,
+                "energy_efficiency_queries_per_joule": 139833972.32797554,
+                "efficiency_scope": "one verified query; energy = modeled average power times single-query latency",
+                "dense_equivalent_ops_per_query": 96,
+                "energy_efficiency_dense_equivalent_tops_per_w": 0.013424061343485652
+              },
+              "original_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_dynax_xm",
+              "original_round": 1,
+              "llm_calls": 0,
+              "task": {
+                "algorithm": "rq1_dynax_xm",
+                "prompt": "Generate a complete sparse softmax decode-row system from signed Q/K/V to result AND selected mask under the exact supplied algorithm contract. Optimize the latency-energy-efficiency Pareto frontier subject to quality, area and 300 MHz timing constraints. Read and assign relevant immutable hardware AND golden test references. Compiler chooses modules, scheduling, numeric widths and pipeline depths; UArch generates each implementation, then a separate assembly implements the full system. Prefer compatible native library reuse with linked_reference_ids and thin generated adapters; inspect integrated bundles if useful. Reuse must preserve exact contract math. Start from a correct compact implementation; one-query-per-cycle throughput is not required. All algorithm parameters are chosen by Kernel from measured profiles and can be revisited by Critic. No manually supplied system plan or previous generated RTL.",
+                "constraints": {
+                  "max_quality_loss": 0.05,
+                  "max_area_um2": 200000,
+                  "frequency_mhz": 300
+                },
+                "max_loops": 5,
+                "compiler_attempts": 3,
+                "module_attempts": 5,
+                "seed": 17,
+                "kernel_profile_budget": 64,
+                "activity": 0.1,
+                "hdl": "chisel",
+                "template_read_budget": 2,
+                "module_workers": 1,
+                "assembly_attempts": 5,
+                "ppa_backend": "yosys_opensta",
+                "dense_equivalent_ops_per_query": 96
+              },
+              "purpose": "artifact revalidation, not another autonomous optimization run"
+            },
+            "holdout": [
+              {
+                "seed": 101,
+                "passed": true,
+                "stage": "simulation",
+                "simulation": {
+                  "passed": true,
+                  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_101/e2e_sim.log",
+                  "diagnostics": "FAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_101/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 61ns; walltime 0.009 s; speed 6.759 us/s\n- Verilator: cpu 0.008 s on 1 threads; allocated 3 MB\n",
+                  "wall_seconds": 0.40295584872365,
+                  "command": [
+                    "apptainer",
+                    "exec",
+                    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_101/obj_dir/VFASTTestbench"
+                  ]
+                },
+                "cases": 100,
+                "expected_cases": 100,
+                "mean_cycles": 60.0,
+                "min_cycles": 60,
+                "max_cycles": 60,
+                "testbench_sha256": "3e4c88c18b3503f1ab71355df0468f3864d7d85e7aaa7cd87bb6135464df3e78",
+                "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+              },
+              {
+                "seed": 211,
+                "passed": true,
+                "stage": "simulation",
+                "simulation": {
+                  "passed": true,
+                  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_211/e2e_sim.log",
+                  "diagnostics": "FAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_211/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 61ns; walltime 0.009 s; speed 6.772 us/s\n- Verilator: cpu 0.008 s on 1 threads; allocated 3 MB\n",
+                  "wall_seconds": 0.41486504953354597,
+                  "command": [
+                    "apptainer",
+                    "exec",
+                    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_211/obj_dir/VFASTTestbench"
+                  ]
+                },
+                "cases": 100,
+                "expected_cases": 100,
+                "mean_cycles": 60.0,
+                "min_cycles": 60,
+                "max_cycles": 60,
+                "testbench_sha256": "35c77276f952b9c33bfe307492d7c37baf02e6c3cc81839f43ccf818017607b2",
+                "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+              },
+              {
+                "seed": 307,
+                "passed": true,
+                "stage": "simulation",
+                "simulation": {
+                  "passed": true,
+                  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_307/e2e_sim.log",
+                  "diagnostics": "FAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_307/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 61ns; walltime 0.009 s; speed 6.600 us/s\n- Verilator: cpu 0.008 s on 1 threads; allocated 3 MB\n",
+                  "wall_seconds": 0.4011707529425621,
+                  "command": [
+                    "apptainer",
+                    "exec",
+                    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_307/obj_dir/VFASTTestbench"
+                  ]
+                },
+                "cases": 100,
+                "expected_cases": 100,
+                "mean_cycles": 60.0,
+                "min_cycles": 60,
+                "max_cycles": 60,
+                "testbench_sha256": "93bb2c30a01db04549b884e7f43c09c4a25df524b625b44e52a61e565c8a493f",
+                "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+              },
+              {
+                "seed": 401,
+                "passed": true,
+                "stage": "simulation",
+                "simulation": {
+                  "passed": true,
+                  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_401/e2e_sim.log",
+                  "diagnostics": "FAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_401/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 61ns; walltime 0.009 s; speed 7.164 us/s\n- Verilator: cpu 0.008 s on 1 threads; allocated 3 MB\n",
+                  "wall_seconds": 0.4270080095157027,
+                  "command": [
+                    "apptainer",
+                    "exec",
+                    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_401/obj_dir/VFASTTestbench"
+                  ]
+                },
+                "cases": 100,
+                "expected_cases": 100,
+                "mean_cycles": 60.0,
+                "min_cycles": 60,
+                "max_cycles": 60,
+                "testbench_sha256": "460b7e0c5d5a0dda6e144e81c46138bb5a8e21882e784955eee7989c314cc399",
+                "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+              },
+              {
+                "seed": 503,
+                "passed": true,
+                "stage": "simulation",
+                "simulation": {
+                  "passed": true,
+                  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_503/e2e_sim.log",
+                  "diagnostics": "FAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_CASE cycles=60\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_503/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 61ns; walltime 0.009 s; speed 7.149 us/s\n- Verilator: cpu 0.008 s on 1 threads; allocated 3 MB\n",
+                  "wall_seconds": 0.44482169300317764,
+                  "command": [
+                    "apptainer",
+                    "exec",
+                    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+                    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_dynax_xm/rtl_holdout_round_1/seed_503/obj_dir/VFASTTestbench"
+                  ]
+                },
+                "cases": 100,
+                "expected_cases": 100,
+                "mean_cycles": 60.0,
+                "min_cycles": 60,
+                "max_cycles": 60,
+                "testbench_sha256": "3a94a630816afdbd3c02a8d76013acff20d4c8e04c31fc7c3e7738ce71aba1e9",
+                "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+              }
+            ],
+            "rtl_sha256": "9ad2596005aa74d5d0a3e037dbd83b61531208200f4c6f8c8974e6afb45710bf",
+            "holdout_case_executions": 500,
+            "scope": "fresh elaboration/E2E/PPA revalidation plus extra reference seeds; boundary vectors may repeat across seeds"
+          }
+        }
+      },
+      "independently_qualified": false
+    },
+    {
+      "round": 2,
+      "config": {
+        "n1": 7,
+        "n2": 6,
+        "t0_quarters": 4,
+        "t1_quarters": 0
+      },
+      "calibration": {
+        "config": {
+          "n1": 7,
+          "n2": 6,
+          "t0_quarters": 4,
+          "t1_quarters": 0
+        },
+        "quality_loss": 0.04474579932352966,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010057824013621622,
+        "squared_error_sum": 1316846.852566876,
+        "dense_squared_output_sum": 657704372.200548,
+        "sparsity": 0.18771320662768032,
+        "fully_dense_query_fraction": 0.0,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 7,
+          "13": 2045,
+          "14": 0,
+          "15": 0,
+          "16": 0
+        },
+        "samples": 2052,
+        "seed": 20260915,
+        "includes_shared_boundary_cases": true,
+        "workload_sha256": "60517956d3f68a3bb09f8553e8549416807efb4bad8c7fcdb40eae8460b3694e"
+      },
+      "heldout": {
+        "config": {
+          "n1": 7,
+          "n2": 6,
+          "t0_quarters": 4,
+          "t1_quarters": 0
+        },
+        "quality_loss": 0.05261845557273465,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010556113603441514,
+        "squared_error_sum": 3421192.92258189,
+        "dense_squared_output_sum": 1235666780.7148442,
+        "sparsity": 0.187713623046875,
+        "fully_dense_query_fraction": 0.0,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 14,
+          "13": 4082,
+          "14": 0,
+          "15": 0,
+          "16": 0
+        },
+        "samples": 4096,
+        "seed": 20260916,
+        "includes_shared_boundary_cases": false,
+        "workload_sha256": "d1ae69138f2824e724be7e1eb655d676c9945441b169e8867e1d8877065c389c"
+      },
+      "evaluation": null,
+      "status": "failed",
+      "critique": null,
+      "critique_applied": false
+    }
+  ],
+  "qualified_pareto_rounds": [],
+  "algorithm": "rq1_dynax_xm",
+  "error": "RuntimeError: Compiler/UArch build budget exhausted; see compiler_feedback.json",
+  "agent_calls": {
+    "kernel": 1,
+    "compiler": 18,
+    "critic": 1,
+    "uarch": 36,
+    "uarch_assembly": 1,
+    "compiler_diagnosis": 14
+  },
+  "search_pareto_rounds": [
+    1
+  ],
+  "call_costs": [
+    {
+      "path": "agent_calls/compiler/0001.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 48.44349384307861,
+      "usage": {
+        "prompt_token_count": 12737,
+        "candidates_token_count": 39,
+        "thoughts_token_count": 5098,
+        "cached_content_token_count": null,
+        "total_token_count": 17874
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0002.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 300.63895559310913,
+      "usage": {
+        "prompt_token_count": 95034,
+        "candidates_token_count": 9295,
+        "thoughts_token_count": 17061,
+        "cached_content_token_count": null,
+        "total_token_count": 121390
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0003.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 196.27330780029297,
+      "usage": {
+        "prompt_token_count": 103625,
+        "candidates_token_count": 10027,
+        "thoughts_token_count": 10397,
+        "cached_content_token_count": null,
+        "total_token_count": 124049
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0004.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 251.31183004379272,
+      "usage": {
+        "prompt_token_count": 108513,
+        "candidates_token_count": 11436,
+        "thoughts_token_count": 17953,
+        "cached_content_token_count": null,
+        "total_token_count": 137902
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0005.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 37.33886528015137,
+      "usage": {
+        "prompt_token_count": 100690,
+        "candidates_token_count": 36,
+        "thoughts_token_count": 3069,
+        "cached_content_token_count": null,
+        "total_token_count": 103795
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0006.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 158.25883555412292,
+      "usage": {
+        "prompt_token_count": 123174,
+        "candidates_token_count": 11649,
+        "thoughts_token_count": 10152,
+        "cached_content_token_count": null,
+        "total_token_count": 144975
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0007.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 39.928932189941406,
+      "usage": {
+        "prompt_token_count": 156581,
+        "candidates_token_count": 25,
+        "thoughts_token_count": 3133,
+        "cached_content_token_count": null,
+        "total_token_count": 159739
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0008.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 160.21534752845764,
+      "usage": {
+        "prompt_token_count": 247457,
+        "candidates_token_count": 11723,
+        "thoughts_token_count": 5887,
+        "cached_content_token_count": null,
+        "total_token_count": 265067
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0009.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 156.895982503891,
+      "usage": {
+        "prompt_token_count": 262610,
+        "candidates_token_count": 11723,
+        "thoughts_token_count": 5203,
+        "cached_content_token_count": null,
+        "total_token_count": 279536
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0010.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 25.443588495254517,
+      "usage": {
+        "prompt_token_count": 55251,
+        "candidates_token_count": 26,
+        "thoughts_token_count": 2526,
+        "cached_content_token_count": null,
+        "total_token_count": 57803
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0011.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 149.37260127067566,
+      "usage": {
+        "prompt_token_count": 134467,
+        "candidates_token_count": 11931,
+        "thoughts_token_count": 7119,
+        "cached_content_token_count": null,
+        "total_token_count": 153517
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0012.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 124.84590268135071,
+      "usage": {
+        "prompt_token_count": 161475,
+        "candidates_token_count": 11931,
+        "thoughts_token_count": 3948,
+        "cached_content_token_count": null,
+        "total_token_count": 177354
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0013.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 85.99364447593689,
+      "usage": {
+        "prompt_token_count": 100211,
+        "candidates_token_count": 39,
+        "thoughts_token_count": 6291,
+        "cached_content_token_count": null,
+        "total_token_count": 106541
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0014.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 170.74859762191772,
+      "usage": {
+        "prompt_token_count": 179427,
+        "candidates_token_count": 11946,
+        "thoughts_token_count": 7135,
+        "cached_content_token_count": null,
+        "total_token_count": 198508
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0015.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 125.90577983856201,
+      "usage": {
+        "prompt_token_count": 206450,
+        "candidates_token_count": 11946,
+        "thoughts_token_count": 5940,
+        "cached_content_token_count": null,
+        "total_token_count": 224336
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0016.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 44.270161628723145,
+      "usage": {
+        "prompt_token_count": 149319,
+        "candidates_token_count": 39,
+        "thoughts_token_count": 2955,
+        "cached_content_token_count": null,
+        "total_token_count": 152313
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0017.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 157.78444075584412,
+      "usage": {
+        "prompt_token_count": 228535,
+        "candidates_token_count": 12014,
+        "thoughts_token_count": 5651,
+        "cached_content_token_count": null,
+        "total_token_count": 246200
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0018.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 187.52469444274902,
+      "usage": {
+        "prompt_token_count": 255626,
+        "candidates_token_count": 12174,
+        "thoughts_token_count": 9135,
+        "cached_content_token_count": null,
+        "total_token_count": 276935
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/critic/0001.json",
+      "role": "critic",
+      "success": true,
+      "wall_seconds": 56.35583257675171,
+      "usage": {
+        "prompt_token_count": 87614,
+        "candidates_token_count": 311,
+        "thoughts_token_count": 4253,
+        "cached_content_token_count": null,
+        "total_token_count": 92178
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/kernel/0001.json",
+      "role": "kernel",
+      "success": true,
+      "wall_seconds": 48.33015704154968,
+      "usage": {
+        "prompt_token_count": 20415,
+        "candidates_token_count": 267,
+        "thoughts_token_count": 4500,
+        "cached_content_token_count": null,
+        "total_token_count": 25182
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/ScoreAndExpUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 184.2511694431305,
+      "usage": {
+        "prompt_token_count": 27629,
+        "candidates_token_count": 2864,
+        "thoughts_token_count": 21834,
+        "cached_content_token_count": null,
+        "total_token_count": 52327
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 182.32657599449158,
+      "usage": {
+        "prompt_token_count": 31572,
+        "candidates_token_count": 258,
+        "thoughts_token_count": 21800,
+        "cached_content_token_count": null,
+        "total_token_count": 53630
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 55.81698203086853,
+      "usage": {
+        "prompt_token_count": 31538,
+        "candidates_token_count": 593,
+        "thoughts_token_count": 6624,
+        "cached_content_token_count": null,
+        "total_token_count": 38755
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/NormalizationUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 178.36156749725342,
+      "usage": {
+        "prompt_token_count": 41788,
+        "candidates_token_count": 2606,
+        "thoughts_token_count": 20060,
+        "cached_content_token_count": null,
+        "total_token_count": 64454
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/NormalizationUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 154.42177319526672,
+      "usage": {
+        "prompt_token_count": 44920,
+        "candidates_token_count": 2521,
+        "thoughts_token_count": 17294,
+        "cached_content_token_count": null,
+        "total_token_count": 64735
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/NormalizationUnit/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 101.43245577812195,
+      "usage": {
+        "prompt_token_count": 47985,
+        "candidates_token_count": 3260,
+        "thoughts_token_count": 11642,
+        "cached_content_token_count": null,
+        "total_token_count": 62887
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/NormalizationUnit/uarch/0004.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 137.29385900497437,
+      "usage": {
+        "prompt_token_count": 52053,
+        "candidates_token_count": 3069,
+        "thoughts_token_count": 11490,
+        "cached_content_token_count": null,
+        "total_token_count": 66612
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/NormalizationUnit/uarch/0005.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 94.95696878433228,
+      "usage": {
+        "prompt_token_count": 55338,
+        "candidates_token_count": 3092,
+        "thoughts_token_count": 10300,
+        "cached_content_token_count": null,
+        "total_token_count": 68730
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/ScoreAndExpUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 176.57020926475525,
+      "usage": {
+        "prompt_token_count": 30097,
+        "candidates_token_count": 4655,
+        "thoughts_token_count": 17868,
+        "cached_content_token_count": null,
+        "total_token_count": 52620
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 186.54099369049072,
+      "usage": {
+        "prompt_token_count": 32535,
+        "candidates_token_count": 2582,
+        "thoughts_token_count": 20051,
+        "cached_content_token_count": null,
+        "total_token_count": 55168
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/SelectionUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 152.24405884742737,
+      "usage": {
+        "prompt_token_count": 43039,
+        "candidates_token_count": 2872,
+        "thoughts_token_count": 15965,
+        "cached_content_token_count": null,
+        "total_token_count": 61876
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 27.38738751411438,
+      "usage": {
+        "prompt_token_count": 44040,
+        "candidates_token_count": 271,
+        "thoughts_token_count": 2901,
+        "cached_content_token_count": null,
+        "total_token_count": 47212
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 107.20108771324158,
+      "usage": {
+        "prompt_token_count": 44901,
+        "candidates_token_count": 908,
+        "thoughts_token_count": 12332,
+        "cached_content_token_count": null,
+        "total_token_count": 58141
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/compiler_diagnosis/0003.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 155.33954405784607,
+      "usage": {
+        "prompt_token_count": 45677,
+        "candidates_token_count": 614,
+        "thoughts_token_count": 17985,
+        "cached_content_token_count": null,
+        "total_token_count": 64276
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/NormalizationUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 175.6675226688385,
+      "usage": {
+        "prompt_token_count": 45596,
+        "candidates_token_count": 3140,
+        "thoughts_token_count": 18369,
+        "cached_content_token_count": null,
+        "total_token_count": 67105
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/ScoreAndExpUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 162.52227449417114,
+      "usage": {
+        "prompt_token_count": 32200,
+        "candidates_token_count": 4258,
+        "thoughts_token_count": 16043,
+        "cached_content_token_count": null,
+        "total_token_count": 52501
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 164.4783000946045,
+      "usage": {
+        "prompt_token_count": 51744,
+        "candidates_token_count": 3124,
+        "thoughts_token_count": 17309,
+        "cached_content_token_count": null,
+        "total_token_count": 72177
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/SelectionUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 93.61801624298096,
+      "usage": {
+        "prompt_token_count": 56806,
+        "candidates_token_count": 2882,
+        "thoughts_token_count": 8802,
+        "cached_content_token_count": null,
+        "total_token_count": 68490
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/SelectionUnit/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 76.73794174194336,
+      "usage": {
+        "prompt_token_count": 62779,
+        "candidates_token_count": 2828,
+        "thoughts_token_count": 6733,
+        "cached_content_token_count": null,
+        "total_token_count": 72340
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 62.36702299118042,
+      "usage": {
+        "prompt_token_count": 56409,
+        "candidates_token_count": 768,
+        "thoughts_token_count": 6165,
+        "cached_content_token_count": null,
+        "total_token_count": 63342
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/rq1_dynax_xm_top/uarch_assembly/0001.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 132.78120851516724,
+      "usage": {
+        "prompt_token_count": 114158,
+        "candidates_token_count": 1536,
+        "thoughts_token_count": 11141,
+        "cached_content_token_count": null,
+        "total_token_count": 126835
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/NormalizationUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 200.01664400100708,
+      "usage": {
+        "prompt_token_count": 39915,
+        "candidates_token_count": 2567,
+        "thoughts_token_count": 21993,
+        "cached_content_token_count": null,
+        "total_token_count": 64475
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/NormalizationUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 158.44221949577332,
+      "usage": {
+        "prompt_token_count": 42998,
+        "candidates_token_count": 2602,
+        "thoughts_token_count": 15488,
+        "cached_content_token_count": null,
+        "total_token_count": 61088
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/NormalizationUnit/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 105.78932213783264,
+      "usage": {
+        "prompt_token_count": 46576,
+        "candidates_token_count": 2682,
+        "thoughts_token_count": 8059,
+        "cached_content_token_count": null,
+        "total_token_count": 57317
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/NormalizationUnit/uarch/0004.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 145.49361515045166,
+      "usage": {
+        "prompt_token_count": 49638,
+        "candidates_token_count": 2614,
+        "thoughts_token_count": 14374,
+        "cached_content_token_count": null,
+        "total_token_count": 66626
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/NormalizationUnit/uarch/0005.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 135.57183265686035,
+      "usage": {
+        "prompt_token_count": 52853,
+        "candidates_token_count": 2980,
+        "thoughts_token_count": 12956,
+        "cached_content_token_count": null,
+        "total_token_count": 68789
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/ScoreAndExpUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 157.49461388587952,
+      "usage": {
+        "prompt_token_count": 32146,
+        "candidates_token_count": 4282,
+        "thoughts_token_count": 15691,
+        "cached_content_token_count": null,
+        "total_token_count": 52119
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 164.22649097442627,
+      "usage": {
+        "prompt_token_count": 51287,
+        "candidates_token_count": 2991,
+        "thoughts_token_count": 17633,
+        "cached_content_token_count": null,
+        "total_token_count": 71911
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/SelectionUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 187.57602643966675,
+      "usage": {
+        "prompt_token_count": 56390,
+        "candidates_token_count": 3060,
+        "thoughts_token_count": 20642,
+        "cached_content_token_count": null,
+        "total_token_count": 80092
+      },
+      "error": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+    },
+    {
+      "path": "agent_calls/round_02/build_01/SelectionUnit/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 162.33123064041138,
+      "usage": {
+        "prompt_token_count": 56839,
+        "candidates_token_count": 2842,
+        "thoughts_token_count": 16838,
+        "cached_content_token_count": null,
+        "total_token_count": 76519
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 184.5731770992279,
+      "usage": {
+        "prompt_token_count": 50747,
+        "candidates_token_count": 443,
+        "thoughts_token_count": 20820,
+        "cached_content_token_count": null,
+        "total_token_count": 72010
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 63.627285957336426,
+      "usage": {
+        "prompt_token_count": 42469,
+        "candidates_token_count": 482,
+        "thoughts_token_count": 6234,
+        "cached_content_token_count": null,
+        "total_token_count": 49185
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/compiler_diagnosis/0003.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 206.9323992729187,
+      "usage": {
+        "prompt_token_count": 42938,
+        "candidates_token_count": 408,
+        "thoughts_token_count": 20965,
+        "cached_content_token_count": 40899,
+        "total_token_count": 64311
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_01/compiler_diagnosis/0004.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 153.51838541030884,
+      "usage": {
+        "prompt_token_count": 42875,
+        "candidates_token_count": 485,
+        "thoughts_token_count": 15860,
+        "cached_content_token_count": null,
+        "total_token_count": 59220
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/NormalizationUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 184.20287656784058,
+      "usage": {
+        "prompt_token_count": 43501,
+        "candidates_token_count": 2807,
+        "thoughts_token_count": 19227,
+        "cached_content_token_count": null,
+        "total_token_count": 65535
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/NormalizationUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 120.41872596740723,
+      "usage": {
+        "prompt_token_count": 46838,
+        "candidates_token_count": 2867,
+        "thoughts_token_count": 11460,
+        "cached_content_token_count": null,
+        "total_token_count": 61165
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/NormalizationUnit/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 173.2293450832367,
+      "usage": {
+        "prompt_token_count": 50625,
+        "candidates_token_count": 2981,
+        "thoughts_token_count": 18680,
+        "cached_content_token_count": null,
+        "total_token_count": 72286
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/NormalizationUnit/uarch/0004.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 133.25720691680908,
+      "usage": {
+        "prompt_token_count": 53716,
+        "candidates_token_count": 3027,
+        "thoughts_token_count": 14132,
+        "cached_content_token_count": null,
+        "total_token_count": 70875
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/NormalizationUnit/uarch/0005.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 105.22521805763245,
+      "usage": {
+        "prompt_token_count": 57689,
+        "candidates_token_count": 3200,
+        "thoughts_token_count": 10885,
+        "cached_content_token_count": null,
+        "total_token_count": 71774
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/ScoreAndExpUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 146.41837096214294,
+      "usage": {
+        "prompt_token_count": 32254,
+        "candidates_token_count": 2834,
+        "thoughts_token_count": 15005,
+        "cached_content_token_count": null,
+        "total_token_count": 50093
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 197.32557249069214,
+      "usage": {
+        "prompt_token_count": 51270,
+        "candidates_token_count": 2865,
+        "thoughts_token_count": 21170,
+        "cached_content_token_count": null,
+        "total_token_count": 75305
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 81.7328131198883,
+      "usage": {
+        "prompt_token_count": 46294,
+        "candidates_token_count": 453,
+        "thoughts_token_count": 8608,
+        "cached_content_token_count": null,
+        "total_token_count": 55355
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_02/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": false,
+      "wall_seconds": 24.439682483673096,
+      "usage": null,
+      "error": "ValueError: compiler_diagnosis LLM failed: ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}"
+    },
+    {
+      "path": "agent_calls/round_02/build_02/compiler_diagnosis/0003.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 92.61376237869263,
+      "usage": {
+        "prompt_token_count": 46450,
+        "candidates_token_count": 482,
+        "thoughts_token_count": 9832,
+        "cached_content_token_count": null,
+        "total_token_count": 56764
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_03/ScoreAndExpUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 124.53153157234192,
+      "usage": {
+        "prompt_token_count": 31045,
+        "candidates_token_count": 2801,
+        "thoughts_token_count": 13989,
+        "cached_content_token_count": null,
+        "total_token_count": 47835
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_03/SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 127.79118919372559,
+      "usage": {
+        "prompt_token_count": 51548,
+        "candidates_token_count": 2457,
+        "thoughts_token_count": 16884,
+        "cached_content_token_count": null,
+        "total_token_count": 70889
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_03/SelectionUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 88.84887290000916,
+      "usage": {
+        "prompt_token_count": 54355,
+        "candidates_token_count": 2706,
+        "thoughts_token_count": 8973,
+        "cached_content_token_count": null,
+        "total_token_count": 66034
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_03/SelectionUnit/uarch/0003.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 84.11213779449463,
+      "usage": {
+        "prompt_token_count": 58125,
+        "candidates_token_count": 2675,
+        "thoughts_token_count": 8889,
+        "cached_content_token_count": null,
+        "total_token_count": 69689
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_03/SelectionUnit/uarch/0004.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 60.82110524177551,
+      "usage": {
+        "prompt_token_count": 63131,
+        "candidates_token_count": 2743,
+        "thoughts_token_count": 5335,
+        "cached_content_token_count": null,
+        "total_token_count": 71209
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_03/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 54.190659046173096,
+      "usage": {
+        "prompt_token_count": 54160,
+        "candidates_token_count": 622,
+        "thoughts_token_count": 5460,
+        "cached_content_token_count": null,
+        "total_token_count": 60242
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_02/build_03/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 178.90206623077393,
+      "usage": {
+        "prompt_token_count": 56365,
+        "candidates_token_count": 834,
+        "thoughts_token_count": 20659,
+        "cached_content_token_count": null,
+        "total_token_count": 77858
+      },
+      "error": null
+    }
+  ],
+  "token_totals": {
+    "prompt_token_count": 5187052,
+    "candidates_token_count": 252070,
+    "thoughts_token_count": 846855,
+    "total_token_count": 6285977
+  },
+  "calls_missing_usage": 1
+}

@@ -1,0 +1,1151 @@
+{
+  "utc": "2026-09-17T08:05:08.927623+00:00",
+  "scope": "Final immutable records and accepted source hashes; includes failed candidates; does not isolate Critic causality.",
+  "transitions": [
+    {
+      "algorithm": "rq1_dynax_xm",
+      "rounds": [
+        {
+          "round": 1,
+          "config": {
+            "n1": 8,
+            "n2": 7,
+            "t0_quarters": 2,
+            "t1_quarters": 0
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/round_01/result.json",
+          "record_sha256_at_audit": "4240b5c0f566b4635479beed03ea3bb83025f9c0506eb18b9b20e814632cceff",
+          "sources": [
+            {
+              "path": "round_01/build_01/ScoreAndExpUnit_Adapter/ScoreAndExpUnit_Adapter.scala",
+              "sha256": "511836a14ca8ba3c52a7db14ef6cb957080aed97f1fb14a438670b205b8c1830",
+              "verified": true
+            },
+            {
+              "path": "round_01/build_01/SelectionUnit/SelectionUnit.scala",
+              "sha256": "0132270c7efddf017f2bc09736e87be6c33ed6d522167246888725c93294d452",
+              "verified": true
+            },
+            {
+              "path": "round_01/build_01/NormalizationUnit_Adapter/NormalizationUnit_Adapter.scala",
+              "sha256": "9bc03676b136d136c4a596a903466b57e2cf64240489d0e879589b1f6a4ece13",
+              "verified": true
+            },
+            {
+              "path": "round_01/build_01/rq1_dynax_xm_Top/rq1_dynax_xm_Top.scala",
+              "sha256": "647eefd8fbc992afb9489912d5d59ed97e21b4f26320e76c39e95105eb1641f4",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreAndExpUnit_Adapter",
+              "latency": 7,
+              "linked_reference_ids": [
+                "verified_rq1_score_exp"
+              ]
+            },
+            {
+              "name": "SelectionUnit",
+              "latency": 12,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "NormalizationUnit_Adapter",
+              "latency": 41,
+              "linked_reference_ids": [
+                "verified_rq1_normalization"
+              ]
+            },
+            {
+              "name": "rq1_dynax_xm_Top",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "uarch",
+          "critic_reason": "The initial design is feasible and meets all constraints, establishing a valid Pareto point. It has a total latency of 60 cycles and a positive timing slack of 0.32ns. The largest latency contributor is the immutable NormalizationUnit (41 cycles). The second largest is the generated SelectionUnit (12 cycles). To improve energy efficiency, this intervention targets a reduction in the SelectionUnit's latency by creating a more aggressive pipeline. The existing timing slack suggests that combining logic stages within the SelectionUnit is likely to succeed while still meeting the 300MHz clock target, directly reducing overall latency and energy per query.",
+          "verification_passed": true,
+          "cycles": 60.0,
+          "ppa_complete": true,
+          "feasible": true
+        },
+        {
+          "round": 2,
+          "config": {
+            "n1": 8,
+            "n2": 7,
+            "t0_quarters": 2,
+            "t1_quarters": 0
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/round_02/result.json",
+          "record_sha256_at_audit": "3dfb46a2ca59b2768020e122ef210802e2d92d47ae291a771b2a5bf4ac18571d",
+          "sources": [
+            {
+              "path": "round_02/build_01/ScoreAndExpUnit_Adapter/ScoreAndExpUnit_Adapter.scala",
+              "sha256": "511836a14ca8ba3c52a7db14ef6cb957080aed97f1fb14a438670b205b8c1830",
+              "verified": true
+            },
+            {
+              "path": "round_02/build_01/SelectionUnit/SelectionUnit.scala",
+              "sha256": "92dd0405a9e65890db0b5994729c635a4ae20286ba7406abd34bcb5bfaec29d7",
+              "verified": true
+            },
+            {
+              "path": "round_02/build_01/NormalizationUnit_Adapter/NormalizationUnit_Adapter.scala",
+              "sha256": "9bc03676b136d136c4a596a903466b57e2cf64240489d0e879589b1f6a4ece13",
+              "verified": true
+            },
+            {
+              "path": "round_02/build_01/rq1_dynax_xm_Top/rq1_dynax_xm_Top.scala",
+              "sha256": "6a883618ffa28e272657a6715d86bf7414973fe04a5bce54c47690ce3d453308",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreAndExpUnit_Adapter",
+              "latency": 7,
+              "linked_reference_ids": [
+                "verified_rq1_score_exp"
+              ]
+            },
+            {
+              "name": "SelectionUnit",
+              "latency": 12,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "NormalizationUnit_Adapter",
+              "latency": 41,
+              "linked_reference_ids": [
+                "verified_rq1_normalization"
+              ]
+            },
+            {
+              "name": "rq1_dynax_xm_Top",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "kernel",
+          "critic_reason": "The current design is infeasible, failing to meet the 300MHz timing constraint (slack: -0.073ns). This regression occurred after a microarchitectural change intended to reduce latency. Instead of attempting another risky, targeted uarch change, this intervention proposes a cross-layer optimization at the kernel level. The current configuration (n1=8, n2=7) provides extremely high quality (0.24% loss) but very low sparsity (1.6%). There is significant quality margin available to trade for PPA improvements. By selecting a pre-profiled configuration with higher sparsity, we anticipate a reduction in switching activity and power, particularly in the large NormalizationUnit. This power reduction can also alleviate routing congestion and timing pressure, likely resolving the timing failure and leading to a new, feasible, and more energy-efficient Pareto point.",
+          "verification_passed": true,
+          "cycles": 60.0,
+          "ppa_complete": true,
+          "feasible": false
+        },
+        {
+          "round": 3,
+          "config": {
+            "n1": 7,
+            "n2": 4,
+            "t0_quarters": 2,
+            "t1_quarters": 0
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/round_03/result.json",
+          "record_sha256_at_audit": "c991b577e2783af745f8637dce01883cb5ea948898e015646eed0b63ce425022",
+          "sources": [],
+          "modules": [],
+          "critic_layer": "compiler",
+          "critic_reason": "The previous attempt (design_attempt 3) to change the kernel configuration failed due to repeated build failures within the `SelectionUnit` module, as detailed in the `failed_candidate` feedback. The root cause is a defective compiler plan for this module, involving incorrect sorter logic and conflicting tie-breaking rules. The system has rolled back to the feasible but less efficient Round 1 design. To unblock further optimization and fix this latent bug, the most effective intervention is to instruct the compiler to correct its internal plan for the `SelectionUnit` module, while preserving the definitions of the other verified modules.",
+          "verification_passed": null,
+          "cycles": null,
+          "ppa_complete": null,
+          "feasible": null
+        },
+        {
+          "round": 4,
+          "config": {
+            "n1": 8,
+            "n2": 7,
+            "t0_quarters": 2,
+            "t1_quarters": 0
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/round_04/result.json",
+          "record_sha256_at_audit": "8ca4861eeda688549d23bdc2e772e82f988f1bc8aa388c50a77da16a817f65a9",
+          "sources": [
+            {
+              "path": "round_04/build_01/ScoreAndExpUnit_Adapter/ScoreAndExpUnit_Adapter.scala",
+              "sha256": "511836a14ca8ba3c52a7db14ef6cb957080aed97f1fb14a438670b205b8c1830",
+              "verified": true
+            },
+            {
+              "path": "round_04/build_01/SelectionUnit/SelectionUnit.scala",
+              "sha256": "27f98fbdf1aabb2b79aeb0b48194a706de1983bdc767a0f3dffd0ab687cf4760",
+              "verified": true
+            },
+            {
+              "path": "round_04/build_01/NormalizationUnit_Adapter/NormalizationUnit_Adapter.scala",
+              "sha256": "9bc03676b136d136c4a596a903466b57e2cf64240489d0e879589b1f6a4ece13",
+              "verified": true
+            },
+            {
+              "path": "round_04/build_01/rq1_dynax_xm_Top/rq1_dynax_xm_Top.scala",
+              "sha256": "3cb4711900ee2124c2677d367c5021f5daa198c00fff6202e3354181ac00556f",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreAndExpUnit_Adapter",
+              "latency": 7,
+              "linked_reference_ids": [
+                "verified_rq1_score_exp"
+              ]
+            },
+            {
+              "name": "SelectionUnit",
+              "latency": 12,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "NormalizationUnit_Adapter",
+              "latency": 41,
+              "linked_reference_ids": [
+                "verified_rq1_normalization"
+              ]
+            },
+            {
+              "name": "rq1_dynax_xm_Top",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "kernel",
+          "critic_reason": "The current design is a feasible baseline with very high quality (0.24% loss) and low sparsity (1.6%). A previously attempted kernel change to improve efficiency failed due to a now-fixed compiler bug in the `SelectionUnit`. We can now retry a kernel change to trade the significant available quality margin for better energy efficiency. The proposed configuration increases sparsity by over 10x, which is expected to substantially reduce dynamic power in the normalization stage and improve the energy_efficiency_queries_per_joule Pareto point.",
+          "verification_passed": true,
+          "cycles": 60.0,
+          "ppa_complete": true,
+          "feasible": true
+        },
+        {
+          "round": 5,
+          "config": {
+            "n1": 7,
+            "n2": 4,
+            "t0_quarters": 2,
+            "t1_quarters": 0
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/round_05/result.json",
+          "record_sha256_at_audit": "adad905af78d26e21dc9ecd3df7828a388f57f68ff66d259cdbbf9723a39cdd5",
+          "sources": [
+            {
+              "path": "round_05/build_01/ScoreAndExpUnit_rq1/ScoreAndExpUnit_rq1.scala",
+              "sha256": "119ab7f07f3b42e8743b7afc9a2403a5b69b42296d275d550c7331c473d8df16",
+              "verified": true
+            },
+            {
+              "path": "round_05/build_01/DynaX_SelectionUnit/DynaX_SelectionUnit.scala",
+              "sha256": "6f91ce5a63a9a8de8ad76f9163611af0de600ea7e127c9404ecbb967f3d5611f",
+              "verified": true
+            },
+            {
+              "path": "round_05/build_01/NormalizationUnit_rq1/NormalizationUnit_rq1.scala",
+              "sha256": "9c2cb9bdc985d4c5aeffb163b19ee9fca4891ec6b229bfe6ae70428c1e4382e8",
+              "verified": true
+            },
+            {
+              "path": "round_05/build_01/Rq1DynaXm/Rq1DynaXm.scala",
+              "sha256": "d32a5993597acd3acdcfc67fe8b538e0d65e22b70491bfa8fbd310ef0dcd03e6",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreAndExpUnit_rq1",
+              "latency": 7,
+              "linked_reference_ids": [
+                "verified_rq1_score_exp"
+              ]
+            },
+            {
+              "name": "DynaX_SelectionUnit",
+              "latency": 7,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "NormalizationUnit_rq1",
+              "latency": 41,
+              "linked_reference_ids": [
+                "verified_rq1_normalization"
+              ]
+            },
+            {
+              "name": "Rq1DynaXm",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "uarch",
+          "critic_reason": "The current design is feasible with a healthy timing slack of 0.406 ns and represents a new Pareto-optimal point. The `DynaX_SelectionUnit` contributes 7 cycles to the total 56-cycle latency. To further improve energy efficiency, this intervention targets reducing the latency of this module. By combining logic from adjacent pipeline stages, we can attempt to reduce its latency to 6 cycles. This would decrease the total system latency to 55 cycles, directly improving both latency and energy_efficiency_queries_per_joule. This is a bounded microarchitectural change that preserves the module's interface and functionality.",
+          "verification_passed": true,
+          "cycles": 56.0,
+          "ppa_complete": true,
+          "feasible": true
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_block_nm",
+      "rounds": [
+        {
+          "round": 1,
+          "config": {
+            "n": 7
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_01/result.json",
+          "record_sha256_at_audit": "883e132498a6f8c427336810cb47834bd391482ae2145cf13c59620cd3c86c7e",
+          "sources": [
+            {
+              "path": "round_01/build_01/FindMin8/FindMin8.scala",
+              "sha256": "cbf797570df71e0b03549ab99297be2888eaf7de15df35f1c26078a2e03a9af8",
+              "verified": true
+            },
+            {
+              "path": "round_01/build_01/DividerWrapper/DividerWrapper.scala",
+              "sha256": "ec66a2cc2549c47689e2b88523734dbffbf96cab7627e61238cd621a02211690",
+              "verified": true
+            },
+            {
+              "path": "round_01/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala",
+              "sha256": "ca1a5d81dbb7741682fdcfd3f47bee893f2a233a3485a6a5517acead32e2a4e7",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "FindMin8",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "DividerWrapper",
+              "latency": 33,
+              "linked_reference_ids": [
+                "pipelined_divider"
+              ]
+            },
+            {
+              "name": "Rq1BlockNmTop",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "compiler",
+          "critic_reason": "The current design is functionally correct and meets area constraints, but fails timing with a large negative slack of -3.1 ns at the target 300 MHz frequency. The root cause is an excessively long combinational path in the `FINALIZE_EXP` state of the `Rq1BlockNmTop` module. This single cycle attempts to find the max score across 16 values, calculate 16 deltas, perform 16 parallel table lookups, and compute the keep mask using two `FindMin8` comparator trees. This logic is too complex to execute in a single 3.33 ns cycle.",
+          "verification_passed": true,
+          "cycles": 68.0,
+          "ppa_complete": true,
+          "feasible": false
+        },
+        {
+          "round": 2,
+          "config": {
+            "n": 7
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_02/result.json",
+          "record_sha256_at_audit": "f26700d5e878c2722975c6b0c815a76661933c0eb93f49302833f257183f5d76",
+          "sources": [
+            {
+              "path": "round_02/build_01/FindMin8/FindMin8.scala",
+              "sha256": "cbf797570df71e0b03549ab99297be2888eaf7de15df35f1c26078a2e03a9af8",
+              "verified": true
+            },
+            {
+              "path": "round_02/build_01/DividerWrapper/DividerWrapper.scala",
+              "sha256": "ec66a2cc2549c47689e2b88523734dbffbf96cab7627e61238cd621a02211690",
+              "verified": true
+            },
+            {
+              "path": "round_02/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala",
+              "sha256": "28321b20afd5bb14c7a4b8b27d66c5c9ea15ec144762e4b568ed7d70514df385",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "FindMin8",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "DividerWrapper",
+              "latency": 33,
+              "linked_reference_ids": [
+                "pipelined_divider"
+              ]
+            },
+            {
+              "name": "Rq1BlockNmTop",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "compiler",
+          "critic_reason": "The current design is functionally correct and meets area/quality constraints, but fails the 300 MHz timing constraint with a negative slack of -1.816 ns. The previous compiler intervention successfully pipelined the design and improved slack from -3.1 ns, but it was insufficient. The remaining critical path is likely within the `Rq1BlockNmTop` module's `PIPE_S1_MAX_MASK` state, which computes the 16-input max score and the 16-bit keep_mask in parallel. This concentration of deep combinational logic still violates the timing budget.",
+          "verification_passed": true,
+          "cycles": 69.0,
+          "ppa_complete": true,
+          "feasible": false
+        },
+        {
+          "round": 3,
+          "config": {
+            "n": 7
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_03/result.json",
+          "record_sha256_at_audit": "130d3201cae038bfe95717b182231fe098815670f9937a1cacd310aa134bb336",
+          "sources": [
+            {
+              "path": "round_03/build_01/FindMin8/FindMin8.scala",
+              "sha256": "cbf797570df71e0b03549ab99297be2888eaf7de15df35f1c26078a2e03a9af8",
+              "verified": true
+            },
+            {
+              "path": "round_03/build_01/DividerWrapper/DividerWrapper.scala",
+              "sha256": "ec66a2cc2549c47689e2b88523734dbffbf96cab7627e61238cd621a02211690",
+              "verified": true
+            },
+            {
+              "path": "round_03/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala",
+              "sha256": "e7a1a3bb7a9b6452504117b8e7c1f2d91c85e581e7af41721dc93c76e9d2dc07",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "FindMin8",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "DividerWrapper",
+              "latency": 33,
+              "linked_reference_ids": [
+                "pipelined_divider"
+              ]
+            },
+            {
+              "name": "Rq1BlockNmTop",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "uarch",
+          "critic_reason": "The design is functionally correct but fails the 300 MHz timing constraint with a slack of -1.804 ns. Pipelining interventions in rounds 2 and 3 improved slack from an initial -3.1 ns but have now stalled, indicating the critical path has moved. The current bottleneck is likely the single-cycle multiplication (`16-bit * 8-bit`) and 28-bit accumulation within the `ACCUMULATE` state of the `Rq1BlockNmTop` module.",
+          "verification_passed": true,
+          "cycles": 70.0,
+          "ppa_complete": true,
+          "feasible": false
+        },
+        {
+          "round": 4,
+          "config": {
+            "n": 7
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_04/result.json",
+          "record_sha256_at_audit": "8cbebb7236a023700d0a87bd199f6288999136783c813383079e705e6ce6c01d",
+          "sources": [
+            {
+              "path": "round_04/build_01/FindMin8/FindMin8.scala",
+              "sha256": "cbf797570df71e0b03549ab99297be2888eaf7de15df35f1c26078a2e03a9af8",
+              "verified": true
+            },
+            {
+              "path": "round_04/build_01/DividerWrapper/DividerWrapper.scala",
+              "sha256": "ec66a2cc2549c47689e2b88523734dbffbf96cab7627e61238cd621a02211690",
+              "verified": true
+            },
+            {
+              "path": "round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala",
+              "sha256": "a4b444e2647216486c450a6523f23500677fa06d78c4444afaa4297adcd0d098",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "FindMin8",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "DividerWrapper",
+              "latency": 33,
+              "linked_reference_ids": [
+                "pipelined_divider"
+              ]
+            },
+            {
+              "name": "Rq1BlockNmTop",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "uarch",
+          "critic_reason": "The design fails timing with a large negative slack of -1.677 ns. The post-route timing report shows a critical path with over 50 logic levels, which is inconsistent with the heavily pipelined system plan. The path starts from logic associated with the `PIPE_S2_MASK` stage and ends at the `h_reg` register, which should be computed in the preceding `PIPE_S1_MAX` stage. This backward-in-pipeline combinational path indicates a severe flaw in the RTL implementation where the intended pipeline separation between these two stages is not present. Previous interventions have failed to address this root cause.",
+          "verification_passed": true,
+          "cycles": 86.0,
+          "ppa_complete": true,
+          "feasible": false
+        },
+        {
+          "round": 5,
+          "config": {
+            "n": 7
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/result.json",
+          "record_sha256_at_audit": "56fbe0a3e7914dd71679d33e45687f15d39cb7a0e5fbea0921d69e5c124281f2",
+          "sources": [
+            {
+              "path": "round_05/build_01/FindMin8/FindMin8.scala",
+              "sha256": "cbf797570df71e0b03549ab99297be2888eaf7de15df35f1c26078a2e03a9af8",
+              "verified": true
+            },
+            {
+              "path": "round_05/build_01/DividerWrapper/DividerWrapper.scala",
+              "sha256": "ec66a2cc2549c47689e2b88523734dbffbf96cab7627e61238cd621a02211690",
+              "verified": true
+            },
+            {
+              "path": "round_05/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala",
+              "sha256": "38224fe8a58848c3e0acd5be928ec9c314e1a1ed76408d255406bffb218fc311",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "FindMin8",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "DividerWrapper",
+              "latency": 33,
+              "linked_reference_ids": [
+                "pipelined_divider"
+              ]
+            },
+            {
+              "name": "Rq1BlockNmTop",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "uarch",
+          "critic_reason": "The design fails timing with a large negative slack of -1.853 ns. The post-route timing report shows a critical path with an extremely high number of logic levels. The path starts from a register related to the score inputs of the `FindMin8` module and ends at the `h_reg` (max score register). This indicates a combinational path exists between the logic for the `PIPE_S2_MASK` state and the `PIPE_S1_MAX` state, which violates the intended pipeline structure described in the system plan. This issue was identified in the previous round but has not been successfully fixed.",
+          "verification_passed": true,
+          "cycles": 70.0,
+          "ppa_complete": true,
+          "feasible": false
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_sanger_threshold",
+      "rounds": [
+        {
+          "round": 1,
+          "config": {
+            "threshold_256": 3
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_01/result.json",
+          "record_sha256_at_audit": "19c88b3c8f317f5554b6430e4db7ccb3df73e2eb107235a966da1abf12e27379",
+          "sources": [
+            {
+              "path": "round_01/build_05/ScoreArray/ScoreArray.scala",
+              "sha256": "7d45e7f313cee01503c7f0436db637550d52014b7226402e1e18121cea4b49ad",
+              "verified": true
+            },
+            {
+              "path": "round_01/build_05/MaxExpAndThreshold/MaxExpAndThreshold.scala",
+              "sha256": "7c6945741516b07dcba53cd66f5343f23e4d09fc287362d2cdf246157d3073c7",
+              "verified": true
+            },
+            {
+              "path": "round_01/build_05/Accumulator/Accumulator.scala",
+              "sha256": "fd0cf33ffd6f7e9eaa8cc63d2f319f2cf36bcc4b953b5f31a586cc0edf0d911b",
+              "verified": true
+            },
+            {
+              "path": "round_01/build_05/Normalizer/Normalizer.scala",
+              "sha256": "3802372a4c6048111f8836b5dfdf9eff5ee0e6538e0f7c791bc5158e46bdc7ce",
+              "verified": true
+            },
+            {
+              "path": "round_01/build_05/SangerThresholdTop/SangerThresholdTop.scala",
+              "sha256": "2c1a37da969215e877cd0ed45bf6382dc7ffe27ebdcb2efb4706da68a2bee0cf",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreArray",
+              "latency": 1,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "MaxExpAndThreshold",
+              "latency": 7,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "Accumulator",
+              "latency": 5,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "Normalizer",
+              "latency": 8,
+              "linked_reference_ids": [
+                "pipelined_divider"
+              ]
+            },
+            {
+              "name": "SangerThresholdTop",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "kernel",
+          "critic_reason": "The first design is feasible and meets all constraints, establishing a baseline on the Pareto frontier. The next logical step is to explore a different point on the quality-energy tradeoff curve. The measured profile for a `threshold_256` of 2 shows a significant quality improvement (quality_loss from 0.038 to 0.024), while remaining well within the 0.05 constraint. This change will likely increase dynamic power and energy due to lower sparsity (from 0.38 to 0.32), but measuring this new point is critical for mapping the Pareto frontier.",
+          "verification_passed": true,
+          "cycles": 22.0,
+          "ppa_complete": true,
+          "feasible": true
+        },
+        {
+          "round": 2,
+          "config": {
+            "threshold_256": 2
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_02/result.json",
+          "record_sha256_at_audit": "5e8c322d27fe9382e6be8b69f418fa0ec30b9e828b204f57a4fa21cc04dd73f8",
+          "sources": [
+            {
+              "path": "round_02/build_02/ScoreGen/ScoreGen.scala",
+              "sha256": "62746cf2c791b9bb20dd84e440053da7af3923d464e99c324d8c0338c86b1f6e",
+              "verified": true
+            },
+            {
+              "path": "round_02/build_02/ExpStage/ExpStage.scala",
+              "sha256": "7c669de584ba498d4ecd0c5d4d07b51030a7b7203099a1f64035f4628eed08f9",
+              "verified": true
+            },
+            {
+              "path": "round_02/build_02/Threshold/Threshold.scala",
+              "sha256": "6827327fb9446e185cf2c2d58448ef5f55d3a7b62068870d482c8e952c712cea",
+              "verified": true
+            },
+            {
+              "path": "round_02/build_02/Accum/Accum.scala",
+              "sha256": "5f6c311492c6ffd3049628903eb0a5eccb64f9720bf307714639869f3084d5a4",
+              "verified": true
+            },
+            {
+              "path": "round_02/build_02/Normalizer/Normalizer.scala",
+              "sha256": "4a30b5b8a696656ff2bb29516e66b15ed5907867d1c30aea45e7158efb1187c7",
+              "verified": true
+            },
+            {
+              "path": "round_02/build_02/rq1_sanger_threshold/rq1_sanger_threshold.scala",
+              "sha256": "f02f53944a0d9e4aca1b0de18fe902eb292809c43eb319cdd0b31311b9a5a0ce",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreGen",
+              "latency": 1,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "ExpStage",
+              "latency": 2,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "Threshold",
+              "latency": 2,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "Accum",
+              "latency": 2,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "Normalizer",
+              "latency": 33,
+              "linked_reference_ids": [
+                "pipelined_divider"
+              ]
+            },
+            {
+              "name": "rq1_sanger_threshold",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "compiler",
+          "critic_reason": "The current design (Round 2) shows a severe regression in latency (42 vs 22 cycles) and energy efficiency (278M vs 585M queries/Joule) compared to the previous design (Round 1), despite an improvement in quality. The root cause is a change in the system pipeline structure, specifically the `Normalizer` module's latency increasing from 8 to 33 cycles. This makes the current design Pareto-dominated by the Round 1 design. The intervention aims to recover the superior PPA of the Round 1 architecture.",
+          "verification_passed": true,
+          "cycles": 42.0,
+          "ppa_complete": true,
+          "feasible": true
+        },
+        {
+          "round": 3,
+          "config": {
+            "threshold_256": 2
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_03/result.json",
+          "record_sha256_at_audit": "018b99f8922e635426eacf90825a71d23426eb1bf9303cfac017163160b0c6b3",
+          "sources": [],
+          "modules": [],
+          "critic_layer": "kernel",
+          "critic_reason": "The previous round's attempt to build a low-latency design for the `threshold_256: 2` configuration failed due to exhausting the module build budget. The failure analysis points to a persistent test vector issue in the `ExpStage` module, not a fundamental architectural flaw. To make forward progress and explore a different point on the Pareto frontier while the toolchain issue is implicitly addressed, this intervention proposes a new kernel configuration. According to `measured_config_profiles`, `threshold_256: 1` offers the highest quality (loss=0.0096) and is a valid, unexplored point. This allows the system to gather data on a new design point rather than retrying a build that has repeatedly failed due to non-RTL issues.",
+          "verification_passed": null,
+          "cycles": null,
+          "ppa_complete": null,
+          "feasible": null
+        },
+        {
+          "round": 4,
+          "config": {
+            "threshold_256": 1
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_04/result.json",
+          "record_sha256_at_audit": "9b2f878ec0da3c0ce5e09a7ae0494e8aa1941d9d3020c6f77b4c79b5dbb32f91",
+          "sources": [
+            {
+              "path": "round_04/build_02/ScoreCalculator/ScoreCalculator.scala",
+              "sha256": "e665dcec0aa41b2fe3083f91bf7c70b363c162b9f03458a876b00bc7b54b37e7",
+              "verified": true
+            },
+            {
+              "path": "round_04/build_02/SoftmaxUnit/SoftmaxUnit.scala",
+              "sha256": "852eec6fa05b11b56d5c6f925029a9ab484fd0c4cba7eb672c03cb8c6e7f66f4",
+              "verified": true
+            },
+            {
+              "path": "round_04/build_02/SelectionAndAccumulation/SelectionAndAccumulation.scala",
+              "sha256": "982fdcd92585a3a3a9deba0df3916bedf40fbedac0bdd6a40a1b39c7f8dc0b39",
+              "verified": true
+            },
+            {
+              "path": "round_04/build_02/Normalizer/Normalizer.scala",
+              "sha256": "f7f0e1901c91ca4333b24f83871eaa6aca811b24e8d7ef9d622ff8eb262c3f86",
+              "verified": true
+            },
+            {
+              "path": "round_04/build_02/rq1_sanger_threshold_top/rq1_sanger_threshold_top.scala",
+              "sha256": "0bfc0c047ab62639f8a3a91efb6288a4f2d2c241417b6236807ac33ee00c8f5a",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreCalculator",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "SoftmaxUnit",
+              "latency": 3,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "SelectionAndAccumulation",
+              "latency": 2,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "Normalizer",
+              "latency": 8,
+              "linked_reference_ids": [
+                "pipelined_divider"
+              ]
+            },
+            {
+              "name": "rq1_sanger_threshold_top",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "compiler",
+          "critic_reason": "The current design for config threshold_256=1 fails to meet the 300 MHz timing constraint, with a large negative slack of -2.59888577 ns. This is caused by an overly aggressive pipeline schedule with a total latency of only 14 cycles. This short latency, particularly the 3-cycle SoftmaxUnit and 2-cycle SelectionAndAccumulation modules, creates combinational paths that are too long. The goal is to achieve a feasible design for this high-quality configuration by relaxing the latency constraint.",
+          "verification_passed": true,
+          "cycles": 14.0,
+          "ppa_complete": true,
+          "feasible": false
+        },
+        {
+          "round": 5,
+          "config": {
+            "threshold_256": 1
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/result.json",
+          "record_sha256_at_audit": "97b26857ebf99454363d4676e4bca506e7e919366e890d50d006e9b9c44cc202",
+          "sources": [
+            {
+              "path": "round_05/build_01/ScoreCalculator/ScoreCalculator.scala",
+              "sha256": "e665dcec0aa41b2fe3083f91bf7c70b363c162b9f03458a876b00bc7b54b37e7",
+              "verified": true
+            },
+            {
+              "path": "round_05/build_01/SoftmaxUnit/SoftmaxUnit.scala",
+              "sha256": "3debd4362f24d6b914e1571d9324c49eedde1cf089477d8e27b4881a022e4ca9",
+              "verified": true
+            },
+            {
+              "path": "round_05/build_01/SelectionAndAccumulation/SelectionAndAccumulation.scala",
+              "sha256": "e5f775b589cf7029803f424f28f14fb9fd2f080129dfd35dc966f243122c912c",
+              "verified": true
+            },
+            {
+              "path": "round_05/build_01/Normalizer/Normalizer.scala",
+              "sha256": "f7f0e1901c91ca4333b24f83871eaa6aca811b24e8d7ef9d622ff8eb262c3f86",
+              "verified": true
+            },
+            {
+              "path": "round_05/build_01/rq1_sanger_threshold_top/rq1_sanger_threshold_top.scala",
+              "sha256": "1a129202fbd49f53630751460f2f7784e2f493afd45d7578ee30ffc14224f666",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreCalculator",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "SoftmaxUnit",
+              "latency": 7,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "SelectionAndAccumulation",
+              "latency": 5,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "Normalizer",
+              "latency": 8,
+              "linked_reference_ids": [
+                "pipelined_divider"
+              ]
+            },
+            {
+              "name": "rq1_sanger_threshold_top",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "stop",
+          "critic_reason": "The exploration has reached its `min_loops` budget of 5 rounds. The only feasible design found is from Round 1 (config threshold_256: 3), which establishes the current Pareto frontier. Subsequent attempts to improve quality by targeting lower thresholds (1 and 2) have consistently failed. Round 2 produced a Pareto-dominated point with excessive latency (140ns). Round 3 failed during module build. Round 4 failed timing (-2.6ns slack) with an aggressive pipeline. The most recent attempt (Round 5) fixed the timing issue by deepening the pipeline, but the initial P&R run crashed, and the recovery run produced a design with DRC violations, rendering it infeasible. Given the repeated failures and tool instability on higher-quality configurations, further attempts are unlikely to yield a Pareto-superior design.",
+          "verification_passed": true,
+          "cycles": 21.0,
+          "ppa_complete": true,
+          "feasible": false
+        }
+      ]
+    },
+    {
+      "algorithm": "rq1_global_topk",
+      "rounds": [
+        {
+          "round": 1,
+          "config": {
+            "k": 14
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/result.json",
+          "record_sha256_at_audit": "9483a538a8757ac35ef78269fdaeba65223a9a39417034caf2721fd5411660ee",
+          "sources": [
+            {
+              "path": "round_01/build_02/ScoreCalculator/ScoreCalculator.scala",
+              "sha256": "9b87a83afc7683ce9e1a9f12f87317b8b017086f3fbf4e0c07a31310aa22d609",
+              "verified": true
+            },
+            {
+              "path": "round_01/build_02/ExpAndProd/ExpAndProd.scala",
+              "sha256": "3f6276b624fda713ba30fb41a4b873b7db14c2f17ccc9dc60afc8c1c69ac01cb",
+              "verified": true
+            },
+            {
+              "path": "round_01/build_02/Normalizer/Normalizer.scala",
+              "sha256": "e5f4905919b1dde84768ea1c824fb82c311223cf79a41da49c510fe78d8101f3",
+              "verified": true
+            },
+            {
+              "path": "round_01/build_02/Rq1GlobalTopk/Rq1GlobalTopk.scala",
+              "sha256": "9e268849b80a92bca8123002160dffa1d8f1d7b9bf7e771a20dc737ecddb1a20",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreCalculator",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "ExpAndProd",
+              "latency": 2,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "Normalizer",
+              "latency": 33,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "Rq1GlobalTopk",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "kernel",
+          "critic_reason": "The current design with k=14 is feasible and meets all constraints, including a quality_loss of 0.0288 which is well below the 0.05 maximum. However, the measured configuration profiles show that k=15 provides even better quality (quality_loss of 0.0184) while still being comfortably within the constraint. The architectural change to support k=15 (finding one minimum score to discard instead of two) simplifies the selection logic in the top-level FSM. This simplification is expected to yield a small reduction in cell area and power. Since the overall latency is dominated by fixed-latency loops and the divider, it is expected to remain at 85 cycles. A reduction in power at the same latency will directly improve energy efficiency, pushing this design to a better Pareto point.",
+          "verification_passed": true,
+          "cycles": 85.0,
+          "ppa_complete": true,
+          "feasible": true
+        },
+        {
+          "round": 2,
+          "config": {
+            "k": 15
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/result.json",
+          "record_sha256_at_audit": "da3aab92df07dca6b085cbeaae9b22b1bbc318373d12fb73ea72d9dbab49d6be",
+          "sources": [
+            {
+              "path": "round_02/build_02/ScoreCalculator/ScoreCalculator.scala",
+              "sha256": "b7e4d500e5f55367c5aef654bd5570bb5005fa629b7c1f69a78c68fa753f9e71",
+              "verified": true
+            },
+            {
+              "path": "round_02/build_02/ExpLut/ExpLut.scala",
+              "sha256": "affd5001a7cfc778634be411da54a1b82fe6f377f84101bf9a66a90f32d3281e",
+              "verified": true
+            },
+            {
+              "path": "round_02/build_02/FinalDivider/FinalDivider.scala",
+              "sha256": "398f85dff34b1ba6ab9042d7dec8e5c6a7acb3c405584b11ec75e5053a6eab3f",
+              "verified": true
+            },
+            {
+              "path": "round_02/build_02/rq1_global_topk/rq1_global_topk.scala",
+              "sha256": "8af0d51236e6967399ef175a7e6ed339ea3dd0e24b77b0b17de5188110e553b5",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreCalculator",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "ExpLut",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "FinalDivider",
+              "latency": 32,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "rq1_global_topk",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "uarch",
+          "critic_reason": "The current design is Pareto-optimal for the explored kernel configurations, but its latency of 83 cycles is dominated by the 32-cycle radix-2 divider. The area (24090 um2) and power (8.46 mW) are very low, leaving significant budget. A microarchitectural change to the divider can trade some of this budget for a large latency reduction. This explores a different point on the energy-latency-area Pareto frontier.",
+          "verification_passed": true,
+          "cycles": 83.0,
+          "ppa_complete": true,
+          "feasible": true
+        },
+        {
+          "round": 3,
+          "config": {
+            "k": 15
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_03/result.json",
+          "record_sha256_at_audit": "cb8a08881a6cd225a097dcbcd9123afbcc4941f82c92e513f2ba083bdc046862",
+          "sources": [
+            {
+              "path": "round_03/build_01/ScoreCalculator/ScoreCalculator.scala",
+              "sha256": "b136455ef7b3a53ba5b2cdd93a86cc04b850573074a299077cfd71e720f25c08",
+              "verified": true
+            },
+            {
+              "path": "round_03/build_01/ExpLut/ExpLut.scala",
+              "sha256": "affd5001a7cfc778634be411da54a1b82fe6f377f84101bf9a66a90f32d3281e",
+              "verified": true
+            },
+            {
+              "path": "round_03/build_01/FinalDivider/FinalDivider.scala",
+              "sha256": "8f74e834b163c72d0b54d96aa20b55c078ee11e07ac508f20ba2d6bf7baaa5d7",
+              "verified": true
+            },
+            {
+              "path": "round_03/build_01/rq1_global_topk/rq1_global_topk.scala",
+              "sha256": "8af0d51236e6967399ef175a7e6ed339ea3dd0e24b77b0b17de5188110e553b5",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreCalculator",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "ExpLut",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "FinalDivider",
+              "latency": 32,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "rq1_global_topk",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "compiler",
+          "critic_reason": "The current design's latency of 83 cycles is dominated by the 32-cycle, radix-2 `FinalDivider`. A previous attempt to replace this with a faster divider at the uarch layer was correctly blocked because the compiler's contract for that module specifies a fixed 32-cycle latency. To achieve a latency reduction, the compiler must first be instructed to change this contract. The design has ample area (24108.91 um2 vs 200000 um2 max) and power budget, which can be traded for a significant latency reduction, thus improving the energy-latency Pareto point.",
+          "verification_passed": true,
+          "cycles": 83.0,
+          "ppa_complete": true,
+          "feasible": true
+        },
+        {
+          "round": 4,
+          "config": {
+            "k": 15
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/result.json",
+          "record_sha256_at_audit": "0e07f177d4d247c42a28ce9ae5cb0f608e3770dd24deb9a07dafe3dcc65b4fa2",
+          "sources": [
+            {
+              "path": "round_04/build_01/ScoreCalculator/ScoreCalculator.scala",
+              "sha256": "386d8ddbae6ac17431c28c4c8fbfb8bdee0116869a76357c8222558cf52ef04e",
+              "verified": true
+            },
+            {
+              "path": "round_04/build_01/ExpLut/ExpLut.scala",
+              "sha256": "affd5001a7cfc778634be411da54a1b82fe6f377f84101bf9a66a90f32d3281e",
+              "verified": true
+            },
+            {
+              "path": "round_04/build_01/FinalDivider/FinalDivider.scala",
+              "sha256": "19327fa64759c5f756ec4cdc888f6563074e7fa390cd73086c28e9683bcdb7b6",
+              "verified": true
+            },
+            {
+              "path": "round_04/build_01/rq1_global_topk/rq1_global_topk.scala",
+              "sha256": "728356f309c438bc1c08f79d4031cb218e7df528a7e8eab65785f5cfe0d90d20",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreCalculator",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "ExpLut",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "FinalDivider",
+              "latency": 16,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "rq1_global_topk",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "compiler",
+          "critic_reason": "The previous compiler change successfully reduced latency from 83 to 67 cycles by specifying a faster 16-cycle radix-4 divider, yielding a 45% improvement in energy efficiency. However, the resulting physical design is infeasible due to 2 routing DRC violations. This suggests the new, more complex divider logic, while meeting timing, creates minor routability issues. The best intervention is to slightly relax the divider's latency constraint, giving the physical design tools more flexibility to resolve the DRCs and secure a new, feasible Pareto point.",
+          "verification_passed": true,
+          "cycles": 67.0,
+          "ppa_complete": true,
+          "feasible": false
+        },
+        {
+          "round": 5,
+          "config": {
+            "k": 15
+          },
+          "source_record": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/result.json",
+          "record_sha256_at_audit": "a7400d2449a7688a73c3e59678aebcda0b9767dcae2d93f161e769bd714e80b4",
+          "sources": [
+            {
+              "path": "round_05/build_01/ScoreCalculator/ScoreCalculator.scala",
+              "sha256": "386d8ddbae6ac17431c28c4c8fbfb8bdee0116869a76357c8222558cf52ef04e",
+              "verified": true
+            },
+            {
+              "path": "round_05/build_01/ExpLut/ExpLut.scala",
+              "sha256": "affd5001a7cfc778634be411da54a1b82fe6f377f84101bf9a66a90f32d3281e",
+              "verified": true
+            },
+            {
+              "path": "round_05/build_01/FinalDivider/FinalDivider.scala",
+              "sha256": "a3052df70595f53f7b1234354785b033794a84a09f3a7f70411a5f4177231c6a",
+              "verified": true
+            },
+            {
+              "path": "round_05/build_01/rq1_global_topk/rq1_global_topk.scala",
+              "sha256": "d7c046d6a65792bc55a8b5db595f89004ddf660a11956c8e4eef6ac2f470c0a0",
+              "verified": true
+            }
+          ],
+          "modules": [
+            {
+              "name": "ScoreCalculator",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "ExpLut",
+              "latency": 0,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "FinalDivider",
+              "latency": 18,
+              "linked_reference_ids": []
+            },
+            {
+              "name": "rq1_global_topk",
+              "latency": null,
+              "linked_reference_ids": []
+            }
+          ],
+          "critic_layer": "stop",
+          "critic_reason": "The current design from Round 5 is the best feasible point achieved, establishing a new Pareto-optimal result with an energy efficiency of 697 M queries/Joule. It successfully resolved the DRC violations from the previous round by slightly increasing divider latency (16 to 18 cycles), which also led to unexpected but beneficial reductions in area (19155 um2) and power (6.23 mW). The quality_loss (0.0184) is excellent for the optimal kernel configuration (k=15). With no remaining rounds, further aggressive architectural changes are high-risk and unnecessary. The current design is a successful conclusion to the optimization process.",
+          "verification_passed": true,
+          "cycles": 69.0,
+          "ppa_complete": true,
+          "feasible": true
+        }
+      ]
+    }
+  ]
+}

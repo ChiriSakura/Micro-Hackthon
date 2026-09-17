@@ -1,0 +1,10 @@
+{
+  "module": "SelectAccumulate",
+  "source_sha256": "e01a5ef25ed63f2f3e611991c641ca1895f2a64ce6e162b3f4b14ab4b5b14451",
+  "original_source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17705068/round_01/build_02/SelectAccumulate/SelectAccumulate.scala",
+  "role": "recovered unchanged agent-generated source",
+  "language": "chisel",
+  "reference_ids": [],
+  "linked_reference_ids": [],
+  "scope": "externally selected composition; fresh checks required"
+}

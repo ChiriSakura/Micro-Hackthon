@@ -1,0 +1,19 @@
+{
+  "ScoreUnit": [],
+  "AggregationUnit": [],
+  "UnsignedDivider": [
+    {
+      "id": "pipelined_divider",
+      "description": "FAST radix-2 restoring divider, full-width numerator processing, tunable pipeline depth and valid propagation; adapt fixed-point signed interface to target semantics.",
+      "tags": [
+        "chisel",
+        "division",
+        "normalization",
+        "pipeline"
+      ],
+      "language": "chisel",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+    }
+  ],
+  "ThresholdAttention": []
+}

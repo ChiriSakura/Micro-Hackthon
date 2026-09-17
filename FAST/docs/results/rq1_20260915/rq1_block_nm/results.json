@@ -1,0 +1,411 @@
+{
+  "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_block_nm",
+  "status": "failed",
+  "rounds": [
+    {
+      "round": 1,
+      "config": {
+        "n": 7
+      },
+      "calibration": {
+        "config": {
+          "n": 7
+        },
+        "quality_loss": 0.03358657986150424,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010057824013621622,
+        "squared_error_sum": 741928.9067832113,
+        "dense_squared_output_sum": 657704372.200548,
+        "sparsity": 0.125,
+        "fully_dense_query_fraction": 0.0,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 2052,
+          "15": 0,
+          "16": 0
+        },
+        "samples": 2052,
+        "seed": 20260915,
+        "includes_shared_boundary_cases": true,
+        "workload_sha256": "60517956d3f68a3bb09f8553e8549416807efb4bad8c7fcdb40eae8460b3694e"
+      },
+      "heldout": {
+        "config": {
+          "n": 7
+        },
+        "quality_loss": 0.03775422390872124,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010556113603441514,
+        "squared_error_sum": 1761296.4741871953,
+        "dense_squared_output_sum": 1235666780.7148442,
+        "sparsity": 0.125,
+        "fully_dense_query_fraction": 0.0,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 4096,
+          "15": 0,
+          "16": 0
+        },
+        "samples": 4096,
+        "seed": 20260916,
+        "includes_shared_boundary_cases": false,
+        "workload_sha256": "d1ae69138f2824e724be7e1eb655d676c9945441b169e8867e1d8877065c389c"
+      },
+      "evaluation": null,
+      "status": "failed",
+      "critique": null,
+      "critique_applied": false
+    }
+  ],
+  "qualified_pareto_rounds": [],
+  "algorithm": "rq1_block_nm",
+  "error": "RuntimeError: Compiler/UArch build budget exhausted; see compiler_feedback.json",
+  "agent_calls": {
+    "kernel": 1,
+    "compiler": 12,
+    "critic": 0,
+    "uarch": 7,
+    "uarch_assembly": 0,
+    "compiler_diagnosis": 2
+  },
+  "search_pareto_rounds": [],
+  "call_costs": [
+    {
+      "path": "agent_calls/compiler/0001.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 50.76062893867493,
+      "usage": {
+        "prompt_token_count": 12561,
+        "candidates_token_count": 26,
+        "thoughts_token_count": 4102,
+        "cached_content_token_count": null,
+        "total_token_count": 16689
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0002.json",
+      "role": "compiler",
+      "success": false,
+      "wall_seconds": 66.49545311927795,
+      "usage": null,
+      "error": "ValueError: compiler LLM failed: ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}"
+    },
+    {
+      "path": "agent_calls/compiler/0003.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 252.36738228797913,
+      "usage": {
+        "prompt_token_count": 94945,
+        "candidates_token_count": 9991,
+        "thoughts_token_count": 11573,
+        "cached_content_token_count": null,
+        "total_token_count": 116509
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0004.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 253.0018608570099,
+      "usage": {
+        "prompt_token_count": 104940,
+        "candidates_token_count": 14558,
+        "thoughts_token_count": 12429,
+        "cached_content_token_count": null,
+        "total_token_count": 131927
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0005.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 206.05798816680908,
+      "usage": {
+        "prompt_token_count": 108752,
+        "candidates_token_count": 14629,
+        "thoughts_token_count": 9224,
+        "cached_content_token_count": 94188,
+        "total_token_count": 132605
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0006.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 138.79046487808228,
+      "usage": {
+        "prompt_token_count": 128740,
+        "candidates_token_count": 14629,
+        "thoughts_token_count": 4367,
+        "cached_content_token_count": null,
+        "total_token_count": 147736
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0007.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 48.382131576538086,
+      "usage": {
+        "prompt_token_count": 85308,
+        "candidates_token_count": 26,
+        "thoughts_token_count": 4527,
+        "cached_content_token_count": null,
+        "total_token_count": 89861
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0008.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 131.66056656837463,
+      "usage": {
+        "prompt_token_count": 164524,
+        "candidates_token_count": 14625,
+        "thoughts_token_count": 4242,
+        "cached_content_token_count": null,
+        "total_token_count": 183391
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0009.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 145.32447171211243,
+      "usage": {
+        "prompt_token_count": 193942,
+        "candidates_token_count": 14816,
+        "thoughts_token_count": 5705,
+        "cached_content_token_count": null,
+        "total_token_count": 214463
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0010.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 59.6287841796875,
+      "usage": {
+        "prompt_token_count": 126005,
+        "candidates_token_count": 36,
+        "thoughts_token_count": 3722,
+        "cached_content_token_count": null,
+        "total_token_count": 129763
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0011.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 217.89487648010254,
+      "usage": {
+        "prompt_token_count": 148489,
+        "candidates_token_count": 14915,
+        "thoughts_token_count": 12484,
+        "cached_content_token_count": null,
+        "total_token_count": 175888
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0012.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 155.19153094291687,
+      "usage": {
+        "prompt_token_count": 234923,
+        "candidates_token_count": 14945,
+        "thoughts_token_count": 5280,
+        "cached_content_token_count": 12286,
+        "total_token_count": 255148
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/kernel/0001.json",
+      "role": "kernel",
+      "success": true,
+      "wall_seconds": 17.065378189086914,
+      "usage": {
+        "prompt_token_count": 5432,
+        "candidates_token_count": 169,
+        "thoughts_token_count": 1198,
+        "cached_content_token_count": null,
+        "total_token_count": 6799
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/ScoreCalculator/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 101.83533143997192,
+      "usage": {
+        "prompt_token_count": 25460,
+        "candidates_token_count": 296,
+        "thoughts_token_count": 11834,
+        "cached_content_token_count": null,
+        "total_token_count": 37590
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 20.803821325302124,
+      "usage": {
+        "prompt_token_count": 25502,
+        "candidates_token_count": 521,
+        "thoughts_token_count": 2118,
+        "cached_content_token_count": null,
+        "total_token_count": 28141
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/ScoreCalculator/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 33.48343873023987,
+      "usage": {
+        "prompt_token_count": 26531,
+        "candidates_token_count": 774,
+        "thoughts_token_count": 3264,
+        "cached_content_token_count": null,
+        "total_token_count": 30569
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_02/ScoreCalculator/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 74.11691665649414,
+      "usage": {
+        "prompt_token_count": 29991,
+        "candidates_token_count": 1078,
+        "thoughts_token_count": 8440,
+        "cached_content_token_count": null,
+        "total_token_count": 39509
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/ExponentialUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 69.21082496643066,
+      "usage": {
+        "prompt_token_count": 26887,
+        "candidates_token_count": 2108,
+        "thoughts_token_count": 6699,
+        "cached_content_token_count": null,
+        "total_token_count": 35694
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/ExponentialUnit/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 62.30450415611267,
+      "usage": {
+        "prompt_token_count": 34331,
+        "candidates_token_count": 2141,
+        "thoughts_token_count": 5432,
+        "cached_content_token_count": null,
+        "total_token_count": 41904
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/ScoreCalculator/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 57.241148233413696,
+      "usage": {
+        "prompt_token_count": 29615,
+        "candidates_token_count": 783,
+        "thoughts_token_count": 6487,
+        "cached_content_token_count": null,
+        "total_token_count": 36885
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/SelectionUnit/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 99.1816394329071,
+      "usage": {
+        "prompt_token_count": 51088,
+        "candidates_token_count": 197,
+        "thoughts_token_count": 11705,
+        "cached_content_token_count": null,
+        "total_token_count": 62990
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_03/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 54.86255979537964,
+      "usage": {
+        "prompt_token_count": 50922,
+        "candidates_token_count": 508,
+        "thoughts_token_count": 5874,
+        "cached_content_token_count": null,
+        "total_token_count": 57304
+      },
+      "error": null
+    }
+  ],
+  "token_totals": {
+    "prompt_token_count": 1708888,
+    "candidates_token_count": 121771,
+    "thoughts_token_count": 140706,
+    "total_token_count": 1971365
+  },
+  "calls_missing_usage": 1
+}

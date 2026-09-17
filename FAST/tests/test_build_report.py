@@ -9,7 +9,7 @@ from pathlib import Path
 import pytest
 
 SPEC = importlib.util.spec_from_file_location(
-    "build_report", Path(__file__).resolve().parents[1] / "scripts" / "build_report.py"
+    "build_report", Path(__file__).resolve().parents[1] / "scripts" / "legacy" / "build_report.py"
 )
 build_report = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(build_report)

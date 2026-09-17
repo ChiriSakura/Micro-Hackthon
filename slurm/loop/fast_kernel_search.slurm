@@ -25,18 +25,23 @@ export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-8}
 export GCP_PROJECT=${GCP_PROJECT:-project-842e7b1d-4f04-40b2-9b0}
 export GCP_LOCATION=${GCP_LOCATION:-us-central1}
 
+# 算法是**输入**，不是搜索维度：Agent 探索的是这个算法的配置。
+# DynaX 自己的是 xm（动态 X:M）。要比较算法就每个跑一次这条流水线——
+# 那是一次对照实验，不是一次搜索。
+ALGORITHM=${FAST_ALGORITHM:-xm}
 PROPOSER=${FAST_PROPOSER:-sweep}
 BUDGET=${FAST_BUDGET:-8}
 BATCH=${FAST_BATCH:-4}
-RUN_DIR="$ROOT/runs/kernel_search_${PROPOSER}_${SLURM_JOB_ID}"
+RUN_DIR="$ROOT/runs/kernel_search_${ALGORITHM}_${PROPOSER}_${SLURM_JOB_ID}"
 
 # The FAST env drives the search; DynaX measurements run in DynaX's own env.
 source "$ROOT/env/fast-py312/bin/activate"
 cd "$REPO/FAST"
-echo "node=$(hostname) proposer=$PROPOSER budget=$BUDGET batch=$BATCH"
+echo "node=$(hostname) 算法=$ALGORITHM proposer=$PROPOSER budget=$BUDGET batch=$BATCH"
 
 python -m fast.cli_kernel \
     --run-dir "$RUN_DIR" \
+    --algorithm "$ALGORITHM" \
     --proposer "$PROPOSER" \
     --budget "$BUDGET" \
     --batch "$BATCH" \

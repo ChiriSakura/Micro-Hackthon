@@ -1,0 +1,74 @@
+[
+  {
+    "algorithm": "rq1_dynax_xm",
+    "job_id": "17909360",
+    "post_job_id": "17909362",
+    "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm",
+    "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm",
+    "origin": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_v3_20260916/rq1_dynax_xm",
+    "superseded_post_job_id": "17909361",
+    "post_execution": "overlapping 1-CPU SLURM step in existing N:M allocation",
+    "superseded_post_job_ids": [
+      "17909361",
+      "17910249"
+    ],
+    "published_output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm",
+    "post_step_id": "17909362.3"
+  },
+  {
+    "algorithm": "rq1_block_nm",
+    "job_id": "17912008",
+    "post_job_id": "17912008",
+    "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm",
+    "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_sta_v4_20260917/rq1_block_nm",
+    "origin": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm",
+    "published_output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_block_nm_sta_retry",
+    "superseded_post_job_id": "17909363",
+    "previous_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm",
+    "previous_output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_block_nm",
+    "previous_post_job_id": "17910797",
+    "original_job_id": "17909362",
+    "execution": "Same R4 PPA with measured timing feedback, then R5 and independent finalizer",
+    "post_guard_job_id": "17912912"
+  },
+  {
+    "algorithm": "rq1_sanger_threshold",
+    "job_id": "17911508",
+    "post_job_id": "17911508",
+    "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold",
+    "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_checkpoint_v3_20260917/rq1_sanger_threshold",
+    "origin": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_sanger_threshold",
+    "published_output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_sanger_threshold_checkpoint_retry",
+    "superseded_post_job_id": "17909365",
+    "original_job_id": "17909364",
+    "previous_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_sanger_threshold",
+    "previous_post_job_id": "17910798",
+    "previous_output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_sanger_threshold",
+    "execution": "Same R5 default-policy PPA with bounded checkpoint recovery, then independent finalizer",
+    "superseded_policy_job_id": "17911305"
+  },
+  {
+    "algorithm": "rq1_dynax_xm",
+    "job_id": "17909366",
+    "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_recovery_v3_20260916/rq1_dynax_xm",
+    "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm",
+    "role": "independent_validation_only",
+    "published_output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm",
+    "post_step_id": "17909362.3"
+  },
+  {
+    "algorithm": "rq1_global_topk",
+    "job_id": "17909367",
+    "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk",
+    "output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/topk_common_test",
+    "role": "independent_validation_only"
+  },
+  {
+    "algorithm": "sanger_before_policy_validation",
+    "job_id": "17910798",
+    "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_sanger_threshold",
+    "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_sanger_threshold",
+    "published_output": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_sanger_threshold",
+    "role": "Original default-policy baseline validation retained"
+  }
+]

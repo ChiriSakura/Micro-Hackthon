@@ -1,0 +1,27 @@
+--- original_R5.scala
++++ assisted_repair.scala
+@@ -88,6 +88,8 @@
+     divider.numer_in := 0.S(32.W)
+     divider.denom_in := 0.U(20.W)
+ 
++    def signedMax(a: SInt, b: SInt): SInt = Mux(a > b, a, b)
++
+     // FSM logic
+     switch(state) {
+       is(sIdle) {
+@@ -118,7 +120,14 @@
+       }
+ 
+       is(sPipeS1Max) {
+-        h_reg := scores_reg.reduce((a, b) => Mux(a > b, a, b))
++        // Balanced reduction tree to find the maximum score, fixing timing violation.
++        // The previous implementation's use of .reduce() created a long serial chain.
++        val l1_max = Seq.tabulate(8)(i => signedMax(scores_reg(2 * i), scores_reg(2 * i + 1)))
++        val l2_max = Seq.tabulate(4)(i => signedMax(l1_max(2 * i), l1_max(2 * i + 1)))
++        val l3_max = Seq.tabulate(2)(i => signedMax(l2_max(2 * i), l2_max(2 * i + 1)))
++        val final_max = signedMax(l3_max(0), l3_max(1))
++
++        h_reg := final_max
+         state := sPipeS2Mask
+       }
+ 

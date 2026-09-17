@@ -1,0 +1,226 @@
+{
+  "build": 1,
+  "plan": {
+    "top": "ThresholdAttention",
+    "modules": [
+      {
+        "name": "ScoreLane",
+        "purpose": "Calculates the attention score for a single key-query pair: score = q[0]*k[0] + q[1]*k[1].",
+        "ports": [
+          {
+            "name": "q0_in",
+            "direction": "input",
+            "width": 4
+          },
+          {
+            "name": "q1_in",
+            "direction": "input",
+            "width": 4
+          },
+          {
+            "name": "k0_in",
+            "direction": "input",
+            "width": 4
+          },
+          {
+            "name": "k1_in",
+            "direction": "input",
+            "width": 4
+          },
+          {
+            "name": "score_out",
+            "direction": "output",
+            "width": 9
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This module is purely combinational. It contains two 4x4-bit unsigned multipliers to compute `prod0 = q0_in * k0_in` and `prod1 = q1_in * k1_in`. The 8-bit results are then added together using a 9-bit adder to produce the `score_out`. The maximum score is 15*15 + 15*15 = 450, which fits in 9 bits."
+      },
+      {
+        "name": "WeightLane",
+        "purpose": "Applies the threshold to the score to get the weight, and computes the weighted value (weight * v).",
+        "ports": [
+          {
+            "name": "score_in",
+            "direction": "input",
+            "width": 9
+          },
+          {
+            "name": "v_in",
+            "direction": "input",
+            "width": 4
+          },
+          {
+            "name": "weight_out",
+            "direction": "output",
+            "width": 9
+          },
+          {
+            "name": "wv_out",
+            "direction": "output",
+            "width": 13
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This module is purely combinational. It has a local parameter `THRESHOLD` set to 64. It compares `score_in` with `THRESHOLD`. If `score_in` is greater than or equal to `THRESHOLD`, `weight_out` is assigned `score_in`; otherwise, it is assigned 0. This 9-bit `weight_out` is then multiplied by the 4-bit `v_in` using a 9x4-bit unsigned multiplier to produce the 13-bit `wv_out`. The maximum product is 450 * 15 = 6750, which fits in 13 bits."
+      },
+      {
+        "name": "Aggregator",
+        "purpose": "Sums the weights and weighted values from all four attention lanes.",
+        "ports": [
+          {
+            "name": "w_in_0",
+            "direction": "input",
+            "width": 9
+          },
+          {
+            "name": "w_in_1",
+            "direction": "input",
+            "width": 9
+          },
+          {
+            "name": "w_in_2",
+            "direction": "input",
+            "width": 9
+          },
+          {
+            "name": "w_in_3",
+            "direction": "input",
+            "width": 9
+          },
+          {
+            "name": "wv_in_0",
+            "direction": "input",
+            "width": 13
+          },
+          {
+            "name": "wv_in_1",
+            "direction": "input",
+            "width": 13
+          },
+          {
+            "name": "wv_in_2",
+            "direction": "input",
+            "width": 13
+          },
+          {
+            "name": "wv_in_3",
+            "direction": "input",
+            "width": 13
+          },
+          {
+            "name": "sum_w_out",
+            "direction": "output",
+            "width": 11
+          },
+          {
+            "name": "sum_wv_out",
+            "direction": "output",
+            "width": 15
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This module is purely combinational and implements two parallel 4-input adder trees. For the weights, it first calculates `w_in_0 + w_in_1` and `w_in_2 + w_in_3` (10-bit intermediate sums), then adds these two sums to get the final 11-bit `sum_w_out`. A similar two-level tree is used for the weighted values, producing 14-bit intermediate sums and a final 15-bit `sum_wv_out`."
+      },
+      {
+        "name": "Divider_15_11_4",
+        "purpose": "Performs 15-bit by 11-bit unsigned division to produce a 4-bit quotient. Handles division by zero.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "start_in",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "dividend_in",
+            "direction": "input",
+            "width": 15
+          },
+          {
+            "name": "divisor_in",
+            "direction": "input",
+            "width": 11
+          },
+          {
+            "name": "quotient_out",
+            "direction": "output",
+            "width": 4
+          },
+          {
+            "name": "done_out",
+            "direction": "output",
+            "width": 1
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This is a sequential restoring divider controlled by a 3-state FSM (IDLE, CALC, DONE_S) and a 2-bit down-counter. \n- **IDLE:** On `start_in`, it latches `dividend_in` into a 15-bit `remainder_reg` and `divisor_in` into an 11-bit `divisor_reg`. If `divisor_in` is zero, it sets `quotient_out` to 0 and goes to `DONE_S`. Otherwise, it initializes a `quotient_reg` to 0, sets the counter to 3, and moves to `CALC`.\n- **CALC:** This state persists for 4 cycles. In each cycle, it calculates `shifted_divisor = divisor_reg << count`. It subtracts this from `remainder_reg`. If the result is not negative, the subtraction is committed to `remainder_reg` and the corresponding bit `quotient_reg[count]` is set to 1. The counter is decremented. After 4 iterations, it moves to `DONE_S`.\n- **DONE_S:** `done_out` is asserted for one cycle. The module then returns to `IDLE`. The total latency is 6 cycles from `start_in` to `done_out` assertion."
+      },
+      {
+        "name": "ThresholdAttention",
+        "purpose": "Top-level module that orchestrates the threshold attention computation. It manages dataflow through a pipeline, controls module interactions, and interfaces with the external system.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "start",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "q",
+            "direction": "input",
+            "width": 8
+          },
+          {
+            "name": "k",
+            "direction": "input",
+            "width": 32
+          },
+          {
+            "name": "v",
+            "direction": "input",
+            "width": 16
+          },
+          {
+            "name": "done",
+            "direction": "output",
+            "width": 1
+          },
+          {
+            "name": "result",
+            "direction": "output",
+            "width": 4
+          }
+        ],
+        "dependencies": [
+          "ScoreLane",
+          "WeightLane",
+          "Aggregator",
+          "Divider_15_11_4"
+        ],
+        "implementation": "The module uses a 6-state FSM (IDLE, S1_SCORE, S2_WEIGHT, S3_AGG, S4_DIV_WAIT, S5_DONE) to control a 5-stage pipeline. \n1. **State/Cycle 0 (IDLE):** Waits for a high `start` signal. On `start`, it latches the `q`, `k`, `v` inputs into internal registers (`q_reg`, `k_reg`, `v_reg`) and transitions to `S1_SCORE`.\n2. **State/Cycle 1 (S1_SCORE):** The latched inputs are unpacked and fed to four parallel `ScoreLane` instances. The 9-bit score outputs are registered in `score_reg[3:0]`. The FSM transitions to `S2_WEIGHT`.\n3. **State/Cycle 2 (S2_WEIGHT):** The `score_reg` values and corresponding `v` values from `v_reg` are fed to four parallel `WeightLane` instances. The outputs (`weight` and `weighted_value`) are registered in `weight_reg[3:0]` and `wv_reg[3:0]`. The FSM transitions to `S3_AGG`.\n4. **State/Cycle 3 (S3_AGG):** The `weight_reg` and `wv_reg` arrays are fed to the `Aggregator` module. The summed outputs are registered in `sum_w_reg` and `sum_wv_reg`. The FSM transitions to `S4_DIV_WAIT` and asserts a one-cycle `div_start` signal.\n5. **State/Cycle 4-9 (S4_DIV_WAIT):** The module waits for the `div_done` signal from the `Divider_15_11_4` instance. The divider computes for 6 cycles. \n6. **State/Cycle 10 (S5_DONE):** On `div_done`, the FSM latches the divider's `quotient_out` into `final_result_reg`, asserts the top-level `done` signal, and transitions to `IDLE`. The `result` output is combinationally driven by `final_result_reg`. The `done` signal is high for one cycle. The total latency is 10 cycles from start acceptance to done assertion."
+      }
+    ],
+    "rationale": "The design implements a pipelined, parallel architecture for the threshold attention algorithm. This approach is chosen for its efficiency in balancing latency, throughput, and area. \n- **Decomposition and Parallelism:** The computation is decomposed into four main modules: `ScoreLane`, `WeightLane`, `Aggregator`, and `Divider_15_11_4`. Since the calculations for the four keys are independent, four parallel instances of `ScoreLane` and `WeightLane` are used to process them simultaneously, maximizing performance.\n- **Pipelining:** A five-stage pipeline is employed to meet the 100MHz frequency constraint. The stages are: 1) Input Latching, 2) Score Calculation, 3) Weighting & Value Multiplication, 4) Aggregation, and 5) Division. Each of the first four stages completes in a single clock cycle, breaking down the critical path. \n- **Divider Design:** The division operation (`15-bit / 11-bit`) is the most complex part. A custom sequential restoring divider (`Divider_15_11_4`) is implemented. It leverages the specific constraint that the output quotient is only 4 bits wide. This allows for a simple and area-efficient implementation that completes in 6 cycles (1 for start, 4 for calculation, 1 for done signaling), which is significantly more resource-friendly than a full combinational divider.\n- **Scheduling and Latency:** The deterministic pipeline results in a total latency of 11 cycles from `start` assertion to `done` assertion. This is well within the 128-cycle budget. The control logic is managed by a simple finite state machine in the top module.\n- **Numeric Precision:** All datapath widths are carefully selected based on the `numeric_bounds` provided in the algorithm contract to prevent overflow without wasting area. For example, scores are 9 bits, the sum of weights is 11 bits, and the sum of weighted values is 15 bits.\n- **Configuration:** The attention `threshold` is fixed at 64, as specified in the task configuration. This is implemented as a hardcoded parameter within the `WeightLane` module.",
+    "language": "verilog"
+  },
+  "error": "Whole-system verification failed: {'passed': False, 'stage': 'simulation', 'simulation': {'passed': False, 'log': '/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588404/round_01/build_01/e2e_sim.log', 'diagnostics': 'FAST_CASE cycles=5\\n[146] %Fatal: trusted_testbench.sv:15: Assertion failed in FASTTestbench.run_case: mismatch case 1 actual=0 expected=15\\n%Error: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588404/round_01/build_01/trusted_testbench.sv:15: Verilog $stop\\nAborting...\\n', 'wall_seconds': 0.40659425128251314, 'command': ['apptainer', 'exec', '/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif', '/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588404/round_01/build_01/obj_dir/VFASTTestbench']}, 'cases': 1, 'expected_cases': 100, 'mean_cycles': 5.0, 'min_cycles': 5, 'max_cycles': 5, 'testbench_sha256': '72f8f5bace119ba7a405ff72ec5850ad1ec0436d43b6446610dfed9a4c6d4c66', 'coverage': '100 integer-reference queries, threshold boundaries, all-zero/max, repeated transactions, mid-run reset'}"
+}

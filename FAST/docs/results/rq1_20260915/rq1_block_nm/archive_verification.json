@@ -1,0 +1,821 @@
+{
+  "passed": true,
+  "archive_sha256": "10ecd6249bd83644a49d53d57260d7cb2d69ce23e01e22d23e34e7b46f1ad00d",
+  "file_count": 191,
+  "uncompressed_bytes": 11630741,
+  "archive_bytes": 2119821,
+  "manifest": {
+    "version": 1,
+    "inputs": {
+      "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_block_nm"
+    },
+    "files": {
+      "run/algorithm_contract.json": {
+        "sha256": "e42d9835e42791db4bf872d5823eca958e2c001aa24946c5f6f2ca4fcde8468d",
+        "bytes": 6179
+      },
+      "run/events.json": {
+        "sha256": "4cdb99336e17a30025625d83eacc1978ab462d598a71415cea5e0ba78742d109",
+        "bytes": 508355
+      },
+      "run/kernel_survey.json": {
+        "sha256": "5da9493eb7fc4657f0ef0780380c90ce9a0860877241b0467b5f7b4a98f1b1a9",
+        "bytes": 4210
+      },
+      "run/library_manifest.json": {
+        "sha256": "41d90b3f8f7f8436714e899e0b9cc6f636e2fd132af6b92c2e71c4389271173f",
+        "bytes": 57616
+      },
+      "run/run_metadata.json": {
+        "sha256": "eb68e2632d3924de3742b1c0fbde020d956f7e59d8e252900b41b5affc6683a0",
+        "bytes": 2982
+      },
+      "run/summary.json": {
+        "sha256": "30c1f97d13353a8330cff48ce116ee48684a7026cbf8544ee51af1f84e8aa77b",
+        "bytes": 1902
+      },
+      "run/task.json": {
+        "sha256": "2f5561318871982924cc9e189921248b8733c155275f297b05b4dce530fe5d33",
+        "bytes": 1380
+      },
+      "run/agent_calls/compiler/0001.json": {
+        "sha256": "dbe664228d331d45b7722568f2f64807740581e896a9c7b99e138392a7e8b98d",
+        "bytes": 31576
+      },
+      "run/agent_calls/compiler/0002.json": {
+        "sha256": "aa4db99c7402fe1222446d87d02049ce56fe3a7c831bcd6f5f38ce82a399c124",
+        "bytes": 289368
+      },
+      "run/agent_calls/compiler/0003.json": {
+        "sha256": "cf138988ef4d23efe5d5a4940628286d1123660adc9156861daaf5c2f1d9bda9",
+        "bytes": 315864
+      },
+      "run/agent_calls/compiler/0004.json": {
+        "sha256": "7b4156dafde7a20b384f523e619c7b96a750a1f7d4bbe1ec07e7a9e213d7bc04",
+        "bytes": 352107
+      },
+      "run/agent_calls/compiler/0005.json": {
+        "sha256": "62f0875aa68ff637f401a4f25361f5aecc61e263cd74c6ad56287e25559f4626",
+        "bytes": 358157
+      },
+      "run/agent_calls/compiler/0006.json": {
+        "sha256": "87120d778589d668fb16d8f850fe3b139349883cf7f00543c7af847ee3d98d72",
+        "bytes": 423008
+      },
+      "run/agent_calls/compiler/0007.json": {
+        "sha256": "c5fc03124536e86ecd51115eea0822339f3e3fba55453734217a97bce30aa4d3",
+        "bytes": 190768
+      },
+      "run/agent_calls/compiler/0008.json": {
+        "sha256": "9af8971370822054401639231676e5a51cfa1df32bfaaac28c23ca6e70f94202",
+        "bytes": 477224
+      },
+      "run/agent_calls/compiler/0009.json": {
+        "sha256": "3807bdf5a340a672089e48f62ed4f59ed000c23f6477fe3945452ad487288bdf",
+        "bytes": 560283
+      },
+      "run/agent_calls/compiler/0010.json": {
+        "sha256": "9db7bf89b960a55bb3412b4a7754fa61cc735fa7e60fff8fd44a6718fb55bee7",
+        "bytes": 280367
+      },
+      "run/agent_calls/compiler/0011.json": {
+        "sha256": "b11bca0eeefb7c0dd5da960a896c5227052cfb6f5bc172cad20b73337389c774",
+        "bytes": 393863
+      },
+      "run/agent_calls/compiler/0012.json": {
+        "sha256": "b89c4c47f8ef173898b22ec76ebbddbb7387ae3349c9dcbbf8669b43996b1c15",
+        "bytes": 651058
+      },
+      "run/agent_calls/kernel/0001.json": {
+        "sha256": "4872cf1d462eb3ad5e32c54acc28cfefa2f092ceca98d28fd292990ee3f2b43d",
+        "bytes": 11159
+      },
+      "run/agent_calls/round_01/build_01/ScoreCalculator/uarch/0001.json": {
+        "sha256": "19d964705d7735c78bb80e61b535f35ee03fd64b8e1e96a0da7f33a6d05db674",
+        "bytes": 58410
+      },
+      "run/agent_calls/round_01/build_01/compiler_diagnosis/0001.json": {
+        "sha256": "b623538c5ae5592104bf8efc03b2d8469b46b55540e80de90d3f195d5e2f79df",
+        "bytes": 58242
+      },
+      "run/agent_calls/round_01/build_02/ScoreCalculator/uarch/0001.json": {
+        "sha256": "5bcccf2675d21292307c772edec93773c136a3c9edc077fc2f7c8353d7a3ca36",
+        "bytes": 63451
+      },
+      "run/agent_calls/round_01/build_02/ScoreCalculator/uarch/0002.json": {
+        "sha256": "e430c81908ad20e067747784025675080abb6bffe45890c1adcc9228c2e6e9bc",
+        "bytes": 71626
+      },
+      "run/agent_calls/round_01/build_03/ExponentialUnit/uarch/0001.json": {
+        "sha256": "81d81bd13133eddea8066781259b745e5b95179b9a53fea0184e4be0954c45f2",
+        "bytes": 64272
+      },
+      "run/agent_calls/round_01/build_03/ExponentialUnit/uarch/0002.json": {
+        "sha256": "01a75449e3ad925d081944c35899f0f3969057a1bbd7723195077eabd7a3f7f5",
+        "bytes": 81964
+      },
+      "run/agent_calls/round_01/build_03/ScoreCalculator/uarch/0001.json": {
+        "sha256": "414eb2aa0a266d6c8f4b82f2f9a2add8756e4b3b825dca7f654264eef77ef9a5",
+        "bytes": 69408
+      },
+      "run/agent_calls/round_01/build_03/SelectionUnit/uarch/0001.json": {
+        "sha256": "290da2e1fadd08fe0b7e992cec885b5fdc1141d8f53669782f6ed51f053b854f",
+        "bytes": 131155
+      },
+      "run/agent_calls/round_01/build_03/compiler_diagnosis/0001.json": {
+        "sha256": "e687697e96530a47b42afe467b0b4a2f8b5716671f7377a6296a7959bde2fb45",
+        "bytes": 130942
+      },
+      "run/references/000.py": {
+        "sha256": "1529dd73851f465ce2831f38a47f297366a28bd99cc55ac56a2cba542183501d",
+        "bytes": 10737
+      },
+      "run/references/004.v": {
+        "sha256": "ffdae2d491debe7b24fcff7e3241a683de945aeed7c349f802925c407868b5cf",
+        "bytes": 527
+      },
+      "run/references/005.scala": {
+        "sha256": "a5146cd539f756ad8dedfce2a6378b2c55342b8489c1df5e78e2e246757ebc06",
+        "bytes": 599
+      },
+      "run/references/006.scala": {
+        "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1",
+        "bytes": 6016
+      },
+      "run/references/007.scala": {
+        "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa",
+        "bytes": 5916
+      },
+      "run/references/008.scala": {
+        "sha256": "09196842ec6bef512088f1eaf4a3112053e64f36cd5b7220de1b6191fe020cec",
+        "bytes": 4628
+      },
+      "run/references/009.scala": {
+        "sha256": "d23602c53d9b3ea95e5bd5ac303b152ed2fa9bf260b9b2bcfb4645d28e74cb69",
+        "bytes": 2191
+      },
+      "run/references/010.scala": {
+        "sha256": "497aa40bcce085c4f0bb9dea9b169831cb010a527907d5060eeca84826797c9d",
+        "bytes": 10651
+      },
+      "run/references/011.scala": {
+        "sha256": "d694fc01d8352008c56cfa7d29d72959a69a366f15b3b25e031024e2eff445a9",
+        "bytes": 3167
+      },
+      "run/references/012.scala": {
+        "sha256": "3cf7e3b7877b363cc69aa3076f5aaa8990c858f4d2063088bf82140e644e452d",
+        "bytes": 14076
+      },
+      "run/references/013.scala": {
+        "sha256": "49396ee98ca68d61b1cd49e63aa697be041cecd48721a3a770b4e2d72c5fb9d2",
+        "bytes": 5441
+      },
+      "run/references/014.scala": {
+        "sha256": "45e788edd06864e12c38cb40d4746a128177e26fa74c53e721e333e4fd4ced74",
+        "bytes": 14598
+      },
+      "run/references/015.scala": {
+        "sha256": "62b543bc76a83b73d4a13fc6752dc544ecd14da252a04fd9420fd4752b059810",
+        "bytes": 1960
+      },
+      "run/references/016.scala": {
+        "sha256": "e77f1f9f370f03380eccb4af14685b014c9d90da290d0c6cbcc83687f4a43298",
+        "bytes": 11656
+      },
+      "run/references/017.scala": {
+        "sha256": "ce8815f1856a5ac258ef17154fafbbb5225c89fabd3c26e10a1b35c4194e7c53",
+        "bytes": 13354
+      },
+      "run/references/018.scala": {
+        "sha256": "72efecaef3a77c6fd63f1c1da6195279d16f9319c003e779b524064c6d971244",
+        "bytes": 15573
+      },
+      "run/references/019.cpp": {
+        "sha256": "9f010b9d13a5e345002ab43883b812e0c665671194d7b70456af3bb000a6eec3",
+        "bytes": 4676
+      },
+      "run/references/020.py": {
+        "sha256": "bda248421e2c52119566c2982d322227d4c9a8c38bd1a056f2e962d28bfc26c4",
+        "bytes": 3008
+      },
+      "run/references/021.cpp": {
+        "sha256": "645f2bad989fd7a3357e653c0cdb1745269112050079cd38eb44d17af4b738f8",
+        "bytes": 2913
+      },
+      "run/references/022.py": {
+        "sha256": "18de3dcd0fae0a6e83c27a27dbc10c3b961839a2dced7c4a68973f314ef6c1c5",
+        "bytes": 3184
+      },
+      "run/references/023.cpp": {
+        "sha256": "9fae733701e109db831819fbdc16a527a48cfc0c93dc8be334d7adc818c1d203",
+        "bytes": 6550
+      },
+      "run/references/024.py": {
+        "sha256": "126f5e0d27517738b5516ab53dd7e4fbdfb5cbcd3e340c965f3d1d2ba75d1eff",
+        "bytes": 37047
+      },
+      "run/references/025.cpp": {
+        "sha256": "ddf8f8196c4f47bdeb983d5dcb5e97a67c73354d72e3e21a1dd9b401c6cf6d7c",
+        "bytes": 3908
+      },
+      "run/references/026.cpp": {
+        "sha256": "74a382a0335326b63631424596111d912365441b225fa114f66a32516bf30d4f",
+        "bytes": 10419
+      },
+      "run/references/028.cpp": {
+        "sha256": "638f264211fae515486970712e75192355b895214b92c49dd1be65291f8133f2",
+        "bytes": 5209
+      },
+      "run/references/029.py": {
+        "sha256": "313b7948794d67d77caf8e78bea3255d33dcdafb9ae94ff2a1ad95af64a628db",
+        "bytes": 24953
+      },
+      "run/references/031.cpp": {
+        "sha256": "3d08d85afe8603f8d26b060c5f3076c2882807cfd5bbefffcad4781d68bf0ef5",
+        "bytes": 4195
+      },
+      "run/references/032.py": {
+        "sha256": "6237ab787dd0871059dc006f0aa6e8d49eaea2aea941bad78f29031e18c7ad54",
+        "bytes": 2865
+      },
+      "run/references/033.cpp": {
+        "sha256": "9eff39302eff6267f9fa4a9100b0c3d56322f792ace8ce860c272ca125a3485a",
+        "bytes": 16186
+      },
+      "run/references/034.cpp": {
+        "sha256": "ec8895002b158f30c1812d2b9437393e9218d75b6941796e6d15cf98a66a8cdf",
+        "bytes": 3103
+      },
+      "run/references/040.scala": {
+        "sha256": "1e1a501ff1b2eb147b0ba388918190fc06c409f742068454af5b8d76c4721215",
+        "bytes": 1434
+      },
+      "run/references/041.scala": {
+        "sha256": "73db4c2312be27805a2c54428a1d975485c89b93f23271df1104a01c1ca1a352",
+        "bytes": 1746
+      },
+      "run/references/045.scala": {
+        "sha256": "bb5006c94f149fe7e3b5baf642a027bf86b0420e87ca2cb0cecd28cd9ba2d916",
+        "bytes": 3925
+      },
+      "run/references/049.scala": {
+        "sha256": "dc57bc8281a0f42070a4954de96df30d66dcede2c966493837e005ad905676f0",
+        "bytes": 10325
+      },
+      "run/references/052.cpp": {
+        "sha256": "29d1a2fe2ac9858fc0d0e6d9b9a717366c1699a00d45d44161ad1ad4c642126c",
+        "bytes": 25864
+      },
+      "run/references/053.h": {
+        "sha256": "55604883315e75cdb3763b8192afe10aea4e4eb0b91b92b78027590d19028e85",
+        "bytes": 6638
+      },
+      "run/references/054.h": {
+        "sha256": "2d4a4eba6fe92e7baa96d5aff3596d28dcb42652389e90d25f609a02bd5d777a",
+        "bytes": 2510
+      },
+      "run/references/074.cpp": {
+        "sha256": "74ab38f8c53a531a2578800cdd1edb2fb7d2f4a6fb75c67ebae1b99a7386a860",
+        "bytes": 8804
+      },
+      "run/references/096.cpp": {
+        "sha256": "8c29d3b0e048be66962fb6949fffa4ae088cf2b0320e6087904a0b9fda66c1e9",
+        "bytes": 9231
+      },
+      "run/round_01/result.json": {
+        "sha256": "7d46fde4a6dd7b8b46a0da3c51528b56c3e5f8e33e912f1f542b2de757aca239",
+        "bytes": 1154
+      },
+      "run/round_01/build_01/compiler_feedback.json": {
+        "sha256": "e9463c751f75f6bf1ae5422de0c749130609cb0f5bcdbebb5c693ab97061097f",
+        "bytes": 141670
+      },
+      "run/round_01/build_01/compiler_reference_reads.json": {
+        "sha256": "cbb8aa3eb09ecf55ce1ac92f94100cbaeb7e6dff53a38bbe2c161aba46dd6dc9",
+        "bytes": 10183
+      },
+      "run/round_01/build_01/reference_bindings.json": {
+        "sha256": "a914ae6c9d2d3f6bd1e63d45a22362b19bcf6bcd3850a520308f4a26c83a4d1e",
+        "bytes": 2953
+      },
+      "run/round_01/build_01/system_plan.json": {
+        "sha256": "7f87220cd77dfe399a65f1f79e56e1c0a275b8081bf3ada649e08c226edfa383",
+        "bytes": 129389
+      },
+      "run/round_01/build_01/ExponentialUnit/job.json": {
+        "sha256": "ac26e443fa222dff68c3ab1db07904415250cdb02614e1edca4b944eac3cd177",
+        "bytes": 67769
+      },
+      "run/round_01/build_01/NormalizationUnit/job.json": {
+        "sha256": "4c2a0e3f2ff97a2ef98008cbdd33028a055411a56fc686fb3e9c21d6df914fe3",
+        "bytes": 113180
+      },
+      "run/round_01/build_01/Rq1BlockNm/job.json": {
+        "sha256": "93bdd2d1b6eaddb6f9a2693e804f546021f7ad46d09283c1263995ca933fc7b0",
+        "bytes": 49790
+      },
+      "run/round_01/build_01/ScoreCalculator/failure.json": {
+        "sha256": "2ebc444d9a69d8e9b596495aabd862efe19194f23ac5605c36057b65d1aed58e",
+        "bytes": 2675
+      },
+      "run/round_01/build_01/ScoreCalculator/job.json": {
+        "sha256": "69460456f18d30bfa58aed5a3cb088936ae895a905b15f8e03f39e8f25ed5fea",
+        "bytes": 66545
+      },
+      "run/round_01/build_01/ScoreCalculator/linked_library_sources.json": {
+        "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+        "bytes": 3
+      },
+      "run/round_01/build_01/ScoreCalculator/replan_review_01.json": {
+        "sha256": "05af058a17a89cd1657e73a202a925afbefb02b9edaaaa11f705aae01f149a9e",
+        "bytes": 1606
+      },
+      "run/round_01/build_01/SelectionUnit/job.json": {
+        "sha256": "df899c95145a6a227a59eaa7d432a4e5c143fe0381660393be7391151c69d884",
+        "bytes": 145269
+      },
+      "run/round_01/build_02/compiler_feedback.json": {
+        "sha256": "050bfbfb642a0e03c8b33b39a9b174bbe2a009c176eb7185aa464bb100cba639",
+        "bytes": 151867
+      },
+      "run/round_01/build_02/compiler_reference_reads.json": {
+        "sha256": "207cb08cfece9cd8c50650a801459792739d6443a205452650de0f60cb63db89",
+        "bytes": 8633
+      },
+      "run/round_01/build_02/reference_bindings.json": {
+        "sha256": "ca48f35ff91dbdcf9f8e18c066525ff0b5b38a47cfa8485cb6429cd7b9fe6493",
+        "bytes": 8253
+      },
+      "run/round_01/build_02/system_plan.json": {
+        "sha256": "e8ab9f18f6ba6684a58d685ed23f302094d12f38abb5b184ac45093d7b5b0bfa",
+        "bytes": 130348
+      },
+      "run/round_01/build_02/ExponentialUnit/job.json": {
+        "sha256": "d0764760c7a3e13bbd2b9ab39adacc523be08e523980b594b441b9517eab6a12",
+        "bytes": 68732
+      },
+      "run/round_01/build_02/NormalizationUnit/job.json": {
+        "sha256": "c65df2b918973373b8218c1f79065ca821ee996ce405ed9ac9e41c8b8d1c7e53",
+        "bytes": 114235
+      },
+      "run/round_01/build_02/Rq1BlockNm/job.json": {
+        "sha256": "2e318e4291a7feb59c2c94475a4e76a7b8e6a7ce24c472ec2b6b7542b929dc70",
+        "bytes": 276721
+      },
+      "run/round_01/build_02/ScoreCalculator/ScoreCalculator.scala": {
+        "sha256": "4c78e63fdbcba166e01a8ab3ffc92a202a58d1dbbb5c3de5db4e06992d55f8fd",
+        "bytes": 1485
+      },
+      "run/round_01/build_02/ScoreCalculator/attempt_01.scala.txt": {
+        "sha256": "78a22c228562d19c0b9e3d16197275cc6596f33d1be2c451e41f8b09ab716ba2",
+        "bytes": 1235
+      },
+      "run/round_01/build_02/ScoreCalculator/attempt_02.scala.txt": {
+        "sha256": "4c78e63fdbcba166e01a8ab3ffc92a202a58d1dbbb5c3de5db4e06992d55f8fd",
+        "bytes": 1485
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01.json": {
+        "sha256": "3de0dd7b31064ec752b4d352426574e4c690f91bebd43837ccae1a54d22faf28",
+        "bytes": 4184
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02.json": {
+        "sha256": "38ca2a24c516ccdc664737ac606a706555477409b380915f0cf57dd8377ac2c6",
+        "bytes": 4185
+      },
+      "run/round_01/build_02/ScoreCalculator/failure.json": {
+        "sha256": "15b89f00c674c11b4215b7258c6a53d0d2d1037ad85d83d0c9cc76eb9648e4f4",
+        "bytes": 20306
+      },
+      "run/round_01/build_02/ScoreCalculator/job.json": {
+        "sha256": "2a2e504a2a0aa3a95e5d7bb4bef02bf6b26dcb2f3e9139bacba18cdfd69615d8",
+        "bytes": 70365
+      },
+      "run/round_01/build_02/ScoreCalculator/linked_library_sources.json": {
+        "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+        "bytes": 3
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/FASTGeneratedElaborate.scala": {
+        "sha256": "08d8df133f7c7a4607dd0e7ddc7a270c704f883fcb79d7795bb91cabc4d9741d",
+        "bytes": 379
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/chisel_elaboration.json": {
+        "sha256": "358a43a26add57d60a351c483ded99198cd68d97a090f35d73dd4f4b8c518f46",
+        "bytes": 1521
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/chisel_elaboration.log": {
+        "sha256": "29a27f8a9b731f9f2e6527795f0221a5169c605b4dd076e135e0aa134f87e243",
+        "bytes": 261
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/module_lint.json": {
+        "sha256": "2ba8d4fbe4353f1fefb3260f2c80a77023bb2d9d030ecb7b5bae82cd5c95456d",
+        "bytes": 903
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/module_lint.log": {
+        "sha256": "3aab4cc8331f798676ce18f0b047044a733fe81b77a16207d568886242927018",
+        "bytes": 288
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/emitted/ScoreCalculator.anno.json": {
+        "sha256": "82326a7e49f624b6b8d1596e94115f1a56156f1cc04b10313f15ae0c1c80595b",
+        "bytes": 302
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/emitted/ScoreCalculator.fir": {
+        "sha256": "62e879df9db91ea14a6ee3e13dfd05ac8e2618a55b5c8720393bea959fb1ab6a",
+        "bytes": 46292
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/emitted/ScoreCalculator.v": {
+        "sha256": "d3cace676765e3f52b5be0ee43adf59229c364b41747ed2449e4ef4563ef8326",
+        "bytes": 24402
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/functional/e2e_build.json": {
+        "sha256": "e7545026a8e3c60edaf211c1077ccaa0bcda5adba2385b3709891db0919a731b",
+        "bytes": 4557
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/functional/e2e_build.log": {
+        "sha256": "b41ab0da35fc8b2f4ecd66f344e6fb857d07f8775ddf2e5c400872b14f8ce725",
+        "bytes": 3577
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/functional/e2e_sim.json": {
+        "sha256": "0d6e1a0c182e685586e7e9d28499565f40b4c834381b5cd32c675727b1c33442",
+        "bytes": 991
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/functional/e2e_sim.log": {
+        "sha256": "fc50b714eaae4cbd6eb7d5f582ec4115472e2077fe5d5b1db5dea9c9c4ecab30",
+        "bytes": 467
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/functional/trusted_testbench.sv": {
+        "sha256": "d15f9f9ed90e9d1a59d1375a84849890954d363578f66ebf74af0685a213ee23",
+        "bytes": 14726
+      },
+      "run/round_01/build_02/ScoreCalculator/check_01/functional/trusted_vectors.json": {
+        "sha256": "3137da24270a6f60faadd6b5fa3038674be6d6a0b4030eef44c1d7f3821c71ba",
+        "bytes": 12467
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/FASTGeneratedElaborate.scala": {
+        "sha256": "08d8df133f7c7a4607dd0e7ddc7a270c704f883fcb79d7795bb91cabc4d9741d",
+        "bytes": 379
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/chisel_elaboration.json": {
+        "sha256": "0a14b0ad60acd5067eaa8f70ddcffe76ee6e85e515d25d71967efe19ed88bb45",
+        "bytes": 1523
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/chisel_elaboration.log": {
+        "sha256": "29a27f8a9b731f9f2e6527795f0221a5169c605b4dd076e135e0aa134f87e243",
+        "bytes": 261
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/module_lint.json": {
+        "sha256": "bd19e48ec4bce4375294a764a83619f2c698cd757ab3c25bbcd989bbdfc9c2fe",
+        "bytes": 903
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/module_lint.log": {
+        "sha256": "03d082c97cc81bb378b02ffe8236e09f1322dde7244acb1cfd1af8d350d4f1d0",
+        "bytes": 288
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/emitted/ScoreCalculator.anno.json": {
+        "sha256": "dea32a2e89317680a9d36482963f4e23260d472aa7e699748c666c581415f630",
+        "bytes": 302
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/emitted/ScoreCalculator.fir": {
+        "sha256": "75e32e1cb6bb064c48d3035761c0ed11f18849306f634cfdd254ec400046cf4d",
+        "bytes": 38850
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/emitted/ScoreCalculator.v": {
+        "sha256": "242d34e2e9113aa990469d196d1bd6371517b3af0b40cc2f3af13457a333454e",
+        "bytes": 24191
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/functional/e2e_build.json": {
+        "sha256": "a870def06ab35ddd60eefc9693a2a13a789e03d778aceb37cbcb9f935d909431",
+        "bytes": 4558
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/functional/e2e_build.log": {
+        "sha256": "26b8783e27207403f23277ce27945731a658250fea6229d609520b810d76981d",
+        "bytes": 3577
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/functional/e2e_sim.json": {
+        "sha256": "843725602ac728779852bb8abb146d57393b179ed054c34702be1e3c5876ed23",
+        "bytes": 990
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/functional/e2e_sim.log": {
+        "sha256": "2d3b1836fd7fda97d9abb6da4ca97cdfc421d489695ca419bc3e30b07fb0da14",
+        "bytes": 467
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/functional/trusted_testbench.sv": {
+        "sha256": "d15f9f9ed90e9d1a59d1375a84849890954d363578f66ebf74af0685a213ee23",
+        "bytes": 14726
+      },
+      "run/round_01/build_02/ScoreCalculator/check_02/functional/trusted_vectors.json": {
+        "sha256": "3137da24270a6f60faadd6b5fa3038674be6d6a0b4030eef44c1d7f3821c71ba",
+        "bytes": 12467
+      },
+      "run/round_01/build_02/SelectionUnit/job.json": {
+        "sha256": "334078a2e85cb43fe1d7fb046225d393b8095a1f323ec344cbd2f3369c155aee",
+        "bytes": 146525
+      },
+      "run/round_01/build_03/compiler_feedback.json": {
+        "sha256": "110e6aac02bf8838aab582f2325223dc4c672f32af1a5600742d110df8f51c35",
+        "bytes": 146980
+      },
+      "run/round_01/build_03/compiler_reference_reads.json": {
+        "sha256": "7cc8ed61e504521f58258659a226d2cdfe62d1068555deb2bb5c49e2e4f27ea6",
+        "bytes": 8633
+      },
+      "run/round_01/build_03/reference_bindings.json": {
+        "sha256": "ca48f35ff91dbdcf9f8e18c066525ff0b5b38a47cfa8485cb6429cd7b9fe6493",
+        "bytes": 8253
+      },
+      "run/round_01/build_03/system_plan.json": {
+        "sha256": "b0d3489c98e27f7708a998f7bef04092e9d7bebcdb925300e5ababe392d5c0de",
+        "bytes": 130587
+      },
+      "run/round_01/build_03/ExponentialUnit/ExponentialUnit.scala": {
+        "sha256": "cca04a0e6db4e35fc6c7dc32f93420e33fc9af59fcee83036d0e90a51d696844",
+        "bytes": 2992
+      },
+      "run/round_01/build_03/ExponentialUnit/attempt_01.scala.txt": {
+        "sha256": "519cd6e18bfd2bdc52525487874f5bd883165b7430046d48c51b0acc70daa5b8",
+        "bytes": 2727
+      },
+      "run/round_01/build_03/ExponentialUnit/attempt_02.scala.txt": {
+        "sha256": "cca04a0e6db4e35fc6c7dc32f93420e33fc9af59fcee83036d0e90a51d696844",
+        "bytes": 2992
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01.json": {
+        "sha256": "442e81cd535eeb8fa0d8c53e51be2f5ad4f0cc8b20996f3469f66364c9d4d885",
+        "bytes": 13159
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02.json": {
+        "sha256": "c304ce769b1091183db05ce33c0376ea426f364ed3cbf5ab7190848e3cd4eabf",
+        "bytes": 4171
+      },
+      "run/round_01/build_03/ExponentialUnit/implementation.json": {
+        "sha256": "8885d45e77e76190cd628daff7a4e023c34673220c7e6be5068f736fc51f3a84",
+        "bytes": 1159
+      },
+      "run/round_01/build_03/ExponentialUnit/job.json": {
+        "sha256": "84eebb73127b14618fa5f832fd4b37c0e858809faaf2fe984a7da7e372970d63",
+        "bytes": 68971
+      },
+      "run/round_01/build_03/ExponentialUnit/linked_library_sources.json": {
+        "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+        "bytes": 3
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/FASTGeneratedElaborate.scala": {
+        "sha256": "486d7b43fcd2107ef2548d49def6b7dbc2967c2a081bbd1b8e688a0be27f4371",
+        "bytes": 379
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/chisel_elaboration.json": {
+        "sha256": "4bd8b59de61f7191aed1927f9001d1004eb646b8cb9d89da5120ee0896b88a5e",
+        "bytes": 1520
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/chisel_elaboration.log": {
+        "sha256": "73a95dbff30090848edeb352ab7efeeda3b16d308359b83bf521c31c91bf1e79",
+        "bytes": 261
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/module_lint.json": {
+        "sha256": "83ab3fb8e169adf8c0d10d1a9a9c3d88ed4c99702b5ae446300995cb70a66719",
+        "bytes": 9814
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/module_lint.log": {
+        "sha256": "7f64f60b103c878d8ae295adab7b320ecffefe34031015d5199b306351328367",
+        "bytes": 9131
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/emitted/ExponentialUnit.anno.json": {
+        "sha256": "1bf690007dec3d6c08da1e90b0b6f2f24abb3f407f82db71e1126ad1488f4ef6",
+        "bytes": 302
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/emitted/ExponentialUnit.fir": {
+        "sha256": "2cfc9e65d863bfb95d68acc977a0dcbe4935c28977211a48885089f0a541fcd8",
+        "bytes": 98626
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/emitted/ExponentialUnit.v": {
+        "sha256": "057675a5072e4f21a4f502eac1ea25005a3483f42b50f9c9fcf35f1cd0c9d3f4",
+        "bytes": 1135737
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/functional/e2e_build.json": {
+        "sha256": "0986ce6723eda04c98c236e091975c6c351f0591cd766dc64c4f5b00c4a321a9",
+        "bytes": 9895
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/functional/e2e_build.log": {
+        "sha256": "7d666825d4901a7d40bb46e5258ceebdb0d88e96c7de632ebb11ffed1f0c9733",
+        "bytes": 8907
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/functional/e2e_sim.json": {
+        "sha256": "de2998b83e04dcb3a6bc2a6dd388e3ec17cb04d25a07788898d06c1dcfc817c9",
+        "bytes": 1056
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/functional/e2e_sim.log": {
+        "sha256": "74a05ab3d37695eb2d05fc43703eac82a01c97922a1d88047f5b271c8f5f270b",
+        "bytes": 532
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/functional/trusted_testbench.sv": {
+        "sha256": "67c8fea92725fb6d08b3cd3c6ce8c456bccd2761e9dae76d18c43955edf7c73b",
+        "bytes": 15179
+      },
+      "run/round_01/build_03/ExponentialUnit/check_01/functional/trusted_vectors.json": {
+        "sha256": "ba1dba4452533add53ea4ad410111843ae1908bd7f843be7b204dbd571c894e2",
+        "bytes": 11698
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/FASTGeneratedElaborate.scala": {
+        "sha256": "486d7b43fcd2107ef2548d49def6b7dbc2967c2a081bbd1b8e688a0be27f4371",
+        "bytes": 379
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/chisel_elaboration.json": {
+        "sha256": "c7df60cc4284360e9475921c2351af44265ca6d7bfe20e9b18ac3518029e44d3",
+        "bytes": 1522
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/chisel_elaboration.log": {
+        "sha256": "73a95dbff30090848edeb352ab7efeeda3b16d308359b83bf521c31c91bf1e79",
+        "bytes": 261
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/module_lint.json": {
+        "sha256": "40d13080b255ac5eb41c42add6fcb859a127a56fc45e86976f933c0bcb3a087f",
+        "bytes": 903
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/module_lint.log": {
+        "sha256": "a507265899589120fa4020e0625c8c822844b88e8c06e2cd465ce81ae3ad0cb5",
+        "bytes": 288
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/emitted/ExponentialUnit.anno.json": {
+        "sha256": "cd6e1d125cdd9ca31854787a93b12060b38fabe94beaac38b040d1369c223e34",
+        "bytes": 302
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/emitted/ExponentialUnit.fir": {
+        "sha256": "695c9fa1368bee78467fb37dacbac2876996af783fc46b0ecf924eac8bed40cc",
+        "bytes": 104942
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/emitted/ExponentialUnit.v": {
+        "sha256": "b69439466d094a9632e2e0eae0fcbba6c7e78a6461a627d6b79d6ec0421dedef",
+        "bytes": 1136157
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/functional/e2e_build.json": {
+        "sha256": "9214243b9e0c572187fb7550b470f3ed4fe883cb18bde0a43523ebe6aab8b5a1",
+        "bytes": 9896
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/functional/e2e_build.log": {
+        "sha256": "f8164cb26403b3fe532f4da003918fadfdbe52740d4487cd514461232f145781",
+        "bytes": 8907
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/functional/e2e_sim.json": {
+        "sha256": "ae33354137ce22780408fbe00f0a8551b81eced76f911fe3518094d4688277a4",
+        "bytes": 979
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/functional/e2e_sim.log": {
+        "sha256": "affcd006f8a0f20e504fb289cd9de9774911a953d48cf8366a6b0aa29083cf65",
+        "bytes": 454
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/functional/trusted_testbench.sv": {
+        "sha256": "67c8fea92725fb6d08b3cd3c6ce8c456bccd2761e9dae76d18c43955edf7c73b",
+        "bytes": 15179
+      },
+      "run/round_01/build_03/ExponentialUnit/check_02/functional/trusted_vectors.json": {
+        "sha256": "ba1dba4452533add53ea4ad410111843ae1908bd7f843be7b204dbd571c894e2",
+        "bytes": 11698
+      },
+      "run/round_01/build_03/NormalizationUnit/job.json": {
+        "sha256": "c489c753bb5564b4d4dd13adc484d9bdc71a6f2f012586e19aea30c464cb892a",
+        "bytes": 114834
+      },
+      "run/round_01/build_03/Rq1BlockNm/job.json": {
+        "sha256": "78cf62b4ed678d4a75430db8ace118a646ba1890ffde8967099da34ef393c2cc",
+        "bytes": 276869
+      },
+      "run/round_01/build_03/ScoreCalculator/ScoreCalculator.scala": {
+        "sha256": "aea95d348caf8c4d614a85c0861948971a14b594506a2fdb7d615565e899bc7e",
+        "bytes": 1196
+      },
+      "run/round_01/build_03/ScoreCalculator/attempt_01.scala.txt": {
+        "sha256": "aea95d348caf8c4d614a85c0861948971a14b594506a2fdb7d615565e899bc7e",
+        "bytes": 1196
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01.json": {
+        "sha256": "6b9b27b36097057fd9905d3200b7a5ff57d13575d5d8250a7e4e07e411b99730",
+        "bytes": 4171
+      },
+      "run/round_01/build_03/ScoreCalculator/implementation.json": {
+        "sha256": "9a59f0b9495a6bb7dc49be5365a19c416c3cce81ffe97c00da0d39b2c957c07c",
+        "bytes": 1404
+      },
+      "run/round_01/build_03/ScoreCalculator/job.json": {
+        "sha256": "6f3949dd03f87f30a05b4c8e5ed8e207b4aec6f662c9f47513c4e396e146f2c2",
+        "bytes": 78866
+      },
+      "run/round_01/build_03/ScoreCalculator/linked_library_sources.json": {
+        "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+        "bytes": 3
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/FASTGeneratedElaborate.scala": {
+        "sha256": "08d8df133f7c7a4607dd0e7ddc7a270c704f883fcb79d7795bb91cabc4d9741d",
+        "bytes": 379
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/chisel_elaboration.json": {
+        "sha256": "7025c7173326dcb5e9b7200281a5565ac09e9e8e948d7edd74836ff8340036cc",
+        "bytes": 1522
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/chisel_elaboration.log": {
+        "sha256": "5f7def0921af63c10b4b9a07c3b8252b4d49390f99ceb79706c099cce084676c",
+        "bytes": 261
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/module_lint.json": {
+        "sha256": "717fa7791e8d5ad1e48b3b020efa0bff75911a1abf3e9479486f3f001ff822c5",
+        "bytes": 903
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/module_lint.log": {
+        "sha256": "300dcf75a4501251fcf47c1b4c4a647082814a198eb1cad4bec78e73453902bf",
+        "bytes": 288
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/emitted/ScoreCalculator.anno.json": {
+        "sha256": "b2f5c1e2ec100210e1dfc9e92985711cebcb4658390cf6450eb135946edad1bd",
+        "bytes": 302
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/emitted/ScoreCalculator.fir": {
+        "sha256": "de307603006cac5465746193903ef3e21f07e239a217a445312d5841b82151f2",
+        "bytes": 32381
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/emitted/ScoreCalculator.v": {
+        "sha256": "88496726d1d2e02e71baf97ecffee672bb28734f6b48823398a2307e7d4c5799",
+        "bytes": 20446
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/functional/e2e_build.json": {
+        "sha256": "6b5fa2a85b6c30a39e1b4a81770a83d42e1b0e16f9f4c95468fad23029326fdc",
+        "bytes": 4557
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/functional/e2e_build.log": {
+        "sha256": "b3d8b45b372374b25f98049659d149ca776dce73c3ed1e26574cd1b2f40add2b",
+        "bytes": 3577
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/functional/e2e_sim.json": {
+        "sha256": "739c1162f1ca015355501a6126d8c8f671e0bf5b0915896854618e03cb6e7e43",
+        "bytes": 979
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/functional/e2e_sim.log": {
+        "sha256": "8182e0c6eaa91d691bb584a6161a3d503395ed290da475c786c84c38cd64083c",
+        "bytes": 454
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/functional/trusted_testbench.sv": {
+        "sha256": "d15f9f9ed90e9d1a59d1375a84849890954d363578f66ebf74af0685a213ee23",
+        "bytes": 14726
+      },
+      "run/round_01/build_03/ScoreCalculator/check_01/functional/trusted_vectors.json": {
+        "sha256": "3137da24270a6f60faadd6b5fa3038674be6d6a0b4030eef44c1d7f3821c71ba",
+        "bytes": 12467
+      },
+      "run/round_01/build_03/SelectionUnit/failure.json": {
+        "sha256": "16ad33675039a2c904f23e4b04972fa108e967359023f336110b69ca435f3e2c",
+        "bytes": 2641
+      },
+      "run/round_01/build_03/SelectionUnit/job.json": {
+        "sha256": "f1edeb2a650355a28b1bc59f69a46f1197096b367aa7470c7e316b87285ed419",
+        "bytes": 146792
+      },
+      "run/round_01/build_03/SelectionUnit/linked_library_sources.json": {
+        "sha256": "4b33b2805f30664feef1ecece0d2f72d4b1e98db1cfdfe52fc5ff13c6234aa98",
+        "bytes": 173
+      },
+      "run/round_01/build_03/SelectionUnit/replan_review_01.json": {
+        "sha256": "9fed1922ca8dadb7ee51efbdb82216cb18cdcc29894a79e405902cb31a582eb7",
+        "bytes": 1781
+      }
+    },
+    "excluded": [
+      {
+        "path": "run/round_01/build_02/ScoreCalculator/check_01/scala_build",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "run/round_01/build_02/ScoreCalculator/check_01/functional/obj_dir",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "run/round_01/build_02/ScoreCalculator/check_02/scala_build",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "run/round_01/build_02/ScoreCalculator/check_02/functional/obj_dir",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "run/round_01/build_03/ExponentialUnit/check_01/scala_build",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "run/round_01/build_03/ExponentialUnit/check_01/functional/obj_dir",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "run/round_01/build_03/ExponentialUnit/check_02/scala_build",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "run/round_01/build_03/ExponentialUnit/check_02/functional/obj_dir",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "run/round_01/build_03/ScoreCalculator/check_01/scala_build",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "run/round_01/build_03/ScoreCalculator/check_01/functional/obj_dir",
+        "reason": "rebuildable compiler/simulator cache"
+      }
+    ]
+  }
+}

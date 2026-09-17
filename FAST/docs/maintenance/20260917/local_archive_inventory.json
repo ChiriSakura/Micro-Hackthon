@@ -1,0 +1,102 @@
+{
+  "scope": "Large raw experiment archives excluded from Git; generated designs, reports, metrics, verification manifests and small source archives remain versioned.",
+  "archives": [
+    {
+      "path": "FAST/docs/results/block_nm_timing_repair_20260917/validation/artifacts.tar.gz",
+      "bytes": 40061547,
+      "sha256": "c116775cd4bf8c6b84eceee26ee16ea34a71d859b72a66c72475c7745933b418",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/critic_ablation_20260911/rtl_netlists.tar.gz",
+      "bytes": 12679159,
+      "sha256": "30d491a15426f8942edb2d57ab6014baed99af91eb95112cf984e1f02b01371f",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/dynax_autonomous_20260913/artifacts.tar.gz",
+      "bytes": 83311152,
+      "sha256": "1638131c268edb257a284156097fde7885eae3eca2a24cc2758c7035ea2e42bb",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/dynax_fast_recovery_20260913/artifacts.tar.gz",
+      "bytes": 88690571,
+      "sha256": "3bc2a0e13a96633de1755b00101a36afb87a4571e0bb8bc0677272cc8a4ce703",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/dynax_recovery_20260916/first_feasible_build.tar.gz",
+      "bytes": 81385033,
+      "sha256": "594b0031a7ddbced9d776d75d648270925d1507274c3278589af5b4bbfe729c6",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/dynax_recovery_20260916/rq1_dynax_xm/artifacts.tar.gz",
+      "bytes": 256696321,
+      "sha256": "de246c866821652a1e01103f45b7530d52eb190d38023c6fa2767cc2e9458424",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/fullstack_extensions_20260913/evidence.tar.gz",
+      "bytes": 75547964,
+      "sha256": "24230c1eeab76531fa5314e910dc1088eb4b98e3ee9b3b84b66ac2e389b29595",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/rq1_20260915/rq1_dynax_xm/artifacts.tar.gz",
+      "bytes": 80785272,
+      "sha256": "830a419f9f9c0c05e469d50c34ce78f4c7401ccd13cbefa0da94d663e2048a07",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/rq1_20260915/rq1_global_topk/artifacts.tar.gz",
+      "bytes": 104411805,
+      "sha256": "d1b169a7c4dc9b8ca3561ef30066faf9287190cf2c8ced2dc03e0da95e01c19d",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/rq1_completion_20260917/dynax_baseline/artifacts.tar.gz",
+      "bytes": 259214210,
+      "sha256": "9c2ad6e282666db15ac7c9fefb9f50e16cfffc20e91baaee714f1cec83df63e7",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/rq1_completion_20260917/rq1_block_nm_sta_retry/artifacts.tar.gz",
+      "bytes": 222781258,
+      "sha256": "00751452ba1d6c027dc9b090b03fc1fa59b6d8cede7837b7503e821327749440",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/artifacts.tar.gz",
+      "bytes": 338826894,
+      "sha256": "692e6f3e994a5bd40ed139a07c9355555c6d1f7e5d20bd1660164ecd35ec3a92",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/rq1_completion_20260917/rq1_sanger_threshold/artifacts.tar.gz",
+      "bytes": 211780735,
+      "sha256": "b3bfcf309735efd6725a76005d9da0ae04d8bbe85c836c4a9437a1f54d925d8d",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/rq1_completion_20260917/rq1_sanger_threshold_checkpoint_retry/artifacts.tar.gz",
+      "bytes": 294678521,
+      "sha256": "f39865f8387652027db08e049653a68cb07d440dbf78ed898c6b33bf29ca306f",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/rq1_completion_20260917/topk_common_test/artifacts.tar.gz",
+      "bytes": 105446381,
+      "sha256": "5ecf2f96a3caf09c728cf84ce60720f7f0694d9d486d426afb241ff29ebf7779",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    },
+    {
+      "path": "FAST/docs/results/rq1_extended_20260916/rq1_sanger_threshold/artifacts.tar.gz",
+      "bytes": 136152791,
+      "sha256": "4624966e99cf3c31def554aec7dab1e6869b6b947aba708066f5bf87eef92dc7",
+      "storage": "Retained in the local workspace; binary not uploaded by git push"
+    }
+  ],
+  "total_bytes": 2392449614
+}

@@ -1,0 +1,18 @@
+{
+  "module": "FinalDivider",
+  "role": "uarch",
+  "language": "chisel",
+  "source_sha256": "f836030c665f97ed44dd8264eac818f36501a1b217a178a71dfb38a50c40229a",
+  "linked_reference_ids": [
+    "pipelined_divider"
+  ],
+  "linked_library_sha256": {
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/references/004.scala": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+  },
+  "reference_ids": [
+    "pipelined_divider"
+  ],
+  "rationale": "This module, `FinalDivider`, is a thin adapter for the linked library module `predict_unit.FixedPointDivPipelined`. The implementation corrects the defect from the `previous_failed_attempt`, which failed due to an `Error: No implicit clock` when instantiating a `Module` inside a `RawModule`. The fix is to wrap the `Module` instantiation within a `withClockAndReset(clock, reset)` block, explicitly providing the clock and reset context.\n\nThe adapter implements the required operation `trunc_div(numer_in * 16, denom_in)` by correctly preparing the inputs for the divider core. The 27-bit signed `numer_in` is scaled by 16 via a left shift, resulting in a 31-bit `SInt`. The 19-bit unsigned `denom_in` is zero-extended to 31 bits to be correctly interpreted as a positive `SInt`. These values are then cast to the `FixedPoint` type expected by the divider. The 31-bit signed result from the divider is truncated to the lower 16 bits to produce the final output, matching the `trunc_toward_zero` behavior specified. The `valid` signal is passed through, resulting in an 18-cycle latency as configured by the `stages` parameter.",
+  "critic_request": null,
+  "scope": "Agent explanation; module planner-vector checks and independent E2E are separate evidence"
+}

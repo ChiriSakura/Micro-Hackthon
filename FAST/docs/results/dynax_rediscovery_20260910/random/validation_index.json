@@ -1,0 +1,28 @@
+[
+  {
+    "design_id": "01dc8fd3fa78a5395d7502612f583bc0eaf01fd6848cea0a17eaca9c022952dd",
+    "stages": [
+      {
+        "stage": "capture",
+        "exit_code": 0
+      },
+      {
+        "stage": "validate",
+        "exit_code": 1
+      }
+    ]
+  },
+  {
+    "design_id": "bc98ca9385c2dbac2b92e63603e225418c26b403fab7f4640343dbdc45de63ea",
+    "stages": [
+      {
+        "stage": "capture",
+        "exit_code": 0
+      },
+      {
+        "stage": "validate",
+        "exit_code": 0
+      }
+    ]
+  }
+]

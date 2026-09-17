@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "distinct_files_checked": 80,
+  "manifest_sha256": "dfd5e378297eab60e3981f3e5de2be1f1b92bc10ed862a8c84bdc6a552752eea",
+  "scope": "read-only audit after round 1 PPA; round 2 may still be running"
+}

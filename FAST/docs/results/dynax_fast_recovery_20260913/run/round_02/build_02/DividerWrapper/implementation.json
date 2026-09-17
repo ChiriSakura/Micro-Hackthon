@@ -1,0 +1,28 @@
+{
+  "module": "DividerWrapper",
+  "role": "uarch",
+  "language": "chisel",
+  "source_sha256": "9d6fc4a371c7edebb0b2b3ec1231f00188f7f46c6c994da1741b2bef7a5f51d8",
+  "linked_reference_ids": [
+    "pipelined_divider"
+  ],
+  "linked_library_sha256": {
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/references/004.scala": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+  },
+  "reference_ids": [
+    "pipelined_divider"
+  ],
+  "rationale": "This module is a thin adapter for the linked native library module `predict_unit.FixedPointDivPipelined`. It instantiates the divider with `bitWidth=32`, `point=0`, and `stages=8`. This configuration directly implements the critic's instruction to reduce pipeline depth from 16 to 8 stages, which decreases latency from 16 to 8 cycles and improves overall system energy efficiency. The adapter logic correctly prepares the inputs as specified by the algorithm contract: the 28-bit signed numerator `N_in` is scaled by 16 via a left shift (`<< 4`), and the 19-bit unsigned denominator `D_in` is zero-extended to 32 bits. These are then cast to the `FixedPoint` type required by the child module. The child's `out_valid` is propagated directly, and the 32-bit `quotient` output is truncated to 16 bits for the final `result_out`. The implementation correctly matches the behavior and latency specified in the planner tests.",
+  "critic_request": {
+    "layer": "compiler",
+    "reason": "The current design has a very large positive timing slack of 5.19 ns on a 10 ns clock period, indicating it is significantly over-pipelined for the target frequency. The 16-stage pipelined divider contributes 16 cycles to the total 27-cycle latency. Reducing the number of divider pipeline stages will directly reduce overall latency and thus improve energy_efficiency_queries_per_joule, trading the unused timing slack for a faster result. This change requires revising the system's pipeline schedule, as the top-level FSM and inter-module delay paths depend on the divider's latency.",
+    "evidence": [
+      "evaluation.slack_ns",
+      "evaluation.latency_ns",
+      "evaluation.energy_efficiency_queries_per_joule",
+      "evaluation.area_um2"
+    ],
+    "instructions": "Revise the system plan. For the `DividerWrapper` module, modify its design prompt to request an implementation with `stages=8` instead of `stages=16`. Re-assemble the `DynaX_XM_Row` top-level to correctly connect the modules, adjusting its internal FSM and delay paths to account for the new `DividerWrapper` latency of 8 cycles. This is expected to reduce total latency from 27 to approximately 19 cycles, significantly improving energy efficiency."
+  },
+  "scope": "Agent explanation; module planner-vector checks and independent E2E are separate evidence"
+}

@@ -1,0 +1,78 @@
+{
+  "space_size": 4,
+  "profile_budget": 16,
+  "profiles": [
+    {
+      "config": {
+        "threshold": 0
+      },
+      "quality_loss": 0.0,
+      "quality_metric": "mean absolute output error / 15 vs threshold=0",
+      "quality_scope": "260 deterministic synthetic profiling queries; not model perplexity",
+      "sparsity": 0.0163461538461539,
+      "active_keys_histogram": {
+        "0": 1,
+        "1": 0,
+        "2": 2,
+        "3": 9,
+        "4": 248
+      },
+      "samples": 260,
+      "seed": 17
+    },
+    {
+      "config": {
+        "threshold": 64
+      },
+      "quality_loss": 0.07025641025641026,
+      "quality_metric": "mean absolute output error / 15 vs threshold=0",
+      "quality_scope": "260 deterministic synthetic profiling queries; not model perplexity",
+      "sparsity": 0.31634615384615383,
+      "active_keys_histogram": {
+        "0": 20,
+        "1": 27,
+        "2": 47,
+        "3": 74,
+        "4": 92
+      },
+      "samples": 260,
+      "seed": 17
+    },
+    {
+      "config": {
+        "threshold": 128
+      },
+      "quality_loss": 0.21,
+      "quality_metric": "mean absolute output error / 15 vs threshold=0",
+      "quality_scope": "260 deterministic synthetic profiling queries; not model perplexity",
+      "sparsity": 0.6384615384615384,
+      "active_keys_histogram": {
+        "0": 84,
+        "1": 55,
+        "2": 59,
+        "3": 45,
+        "4": 17
+      },
+      "samples": 260,
+      "seed": 17
+    },
+    {
+      "config": {
+        "threshold": 192
+      },
+      "quality_loss": 0.34076923076923077,
+      "quality_metric": "mean absolute output error / 15 vs threshold=0",
+      "quality_scope": "260 deterministic synthetic profiling queries; not model perplexity",
+      "sparsity": 0.8519230769230769,
+      "active_keys_histogram": {
+        "0": 162,
+        "1": 57,
+        "2": 28,
+        "3": 11,
+        "4": 2
+      },
+      "samples": 260,
+      "seed": 17
+    }
+  ]
+}

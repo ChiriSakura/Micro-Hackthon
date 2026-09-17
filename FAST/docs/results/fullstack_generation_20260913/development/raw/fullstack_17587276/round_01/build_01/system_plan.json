@@ -1,0 +1,153 @@
+{
+  "top": "threshold_attention",
+  "modules": [
+    {
+      "name": "ProcessingLane",
+      "purpose": "Calculates the score, weight, and weighted value for a single key-value pair. It is instantiated four times for parallelism.",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "p_valid_in",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "q_in",
+          "direction": "input",
+          "width": 8
+        },
+        {
+          "name": "k_in",
+          "direction": "input",
+          "width": 8
+        },
+        {
+          "name": "v_in",
+          "direction": "input",
+          "width": 4
+        },
+        {
+          "name": "p_valid_out",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "name": "weight_out",
+          "direction": "output",
+          "width": 9
+        },
+        {
+          "name": "weighted_v_out",
+          "direction": "output",
+          "width": 13
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This module is a 2-stage pipeline. The `p_valid_in` signal propagates through the pipeline to generate `p_valid_out` with a 2-cycle latency.\n\n**Stage 1: Score Calculation**\n- Unpacks `q_in` and `k_in` into 4-bit components: `q0`, `q1`, `k0`, `k1`.\n- Calculates two products: `prod0 = q0 * k0` (4x4->8 bits) and `prod1 = q1 * k1` (4x4->8 bits).\n- Calculates the score: `score = prod0 + prod1` (8+8->9 bits).\n- The computed `score` and the input `v_in` are registered.\n\n**Stage 2: Weighting and Multiplication**\n- A `THRESHOLD` parameter is defined as `9'd64`.\n- The registered score is compared to the threshold: `weight = (score_reg >= THRESHOLD) ? score_reg : 9'd0`.\n- The weighted value is calculated: `weighted_v = weight * v_reg` (9x4->13 bits).\n- The final `weight_out` and `weighted_v_out` are the outputs of this stage.\n\nThe critical path is one 4x4 multiply and an 8-bit add in stage 1, and a 9x4 multiply in stage 2, both of which easily meet the 10ns clock period."
+    },
+    {
+      "name": "ReductionDivider",
+      "purpose": "Sums the weights and weighted values from all four lanes and performs the final integer division to produce the result.",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "start_calc",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "weights_in",
+          "direction": "input",
+          "width": 36
+        },
+        {
+          "name": "weighted_vs_in",
+          "direction": "input",
+          "width": 52
+        },
+        {
+          "name": "result_out",
+          "direction": "output",
+          "width": 4
+        },
+        {
+          "name": "calc_done",
+          "direction": "output",
+          "width": 1
+        }
+      ],
+      "dependencies": [],
+      "implementation": "This module is controlled by a state machine with states IDLE, SUM, DIV_SETUP, DIV_ITER, and DIV_DONE. Total latency is 18 cycles.\n\n**State: IDLE**\n- Waits for `start_calc` to go high.\n\n**State: SUM (1 cycle)**\n- On `start_calc`, it unpacks the 36-bit `weights_in` and 52-bit `weighted_vs_in` into four 9-bit weights and four 13-bit weighted values.\n- Two parallel 2-level adder trees combinationally compute `weight_sum` (11 bits) and `weighted_v_sum` (15 bits).\n- The sums are registered at the end of the cycle.\n\n**State: DIV_SETUP (1 cycle)**\n- Initializes a 15-iteration restoring integer divider.\n- The registered `weighted_v_sum` is loaded into the quotient register `Q` (15 bits) and `weight_sum` into the divisor register `M` (padded to 15 bits). The remainder register `A` (16 bits) is cleared.\n- A 5-bit counter is loaded with 15.\n- If `weight_sum` is zero, the result is set to 0 and the state transitions directly to DIV_DONE.\n\n**State: DIV_ITER (15 cycles)**\n- The divider performs one iteration per cycle for 15 cycles.\n- Each step consists of a left shift of `{A, Q}`, a subtraction `A = A - M`, and a conditional restoration of `A` based on its sign, which also determines the new LSB of `Q`.\n\n**State: DIV_DONE (1 cycle)**\n- The final quotient is in `Q`. The lower 4 bits are driven to `result_out`.\n- `calc_done` is asserted for one cycle.\n- The FSM returns to IDLE."
+    },
+    {
+      "name": "threshold_attention",
+      "purpose": "Top-level module that orchestrates the threshold attention computation, handles I/O, and manages the overall control flow.",
+      "ports": [
+        {
+          "name": "clock",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "reset",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "start",
+          "direction": "input",
+          "width": 1
+        },
+        {
+          "name": "q",
+          "direction": "input",
+          "width": 8
+        },
+        {
+          "name": "k",
+          "direction": "input",
+          "width": 32
+        },
+        {
+          "name": "v",
+          "direction": "input",
+          "width": 16
+        },
+        {
+          "name": "done",
+          "direction": "output",
+          "width": 1
+        },
+        {
+          "name": "result",
+          "direction": "output",
+          "width": 4
+        }
+      ],
+      "dependencies": [
+        "ProcessingLane",
+        "ReductionDivider"
+      ],
+      "implementation": "The top module uses a 2-state FSM (IDLE, BUSY). On a `start` pulse in IDLE, it latches the `q`, `k`, and `v` inputs into registers and transitions to BUSY. The latched inputs are then unpacked and fed to four parallel `ProcessingLane` instances. A 3-stage pipeline register chain, triggered by the initial `start`, generates the `p_valid_in` for the lanes and the `start_calc` for the `ReductionDivider` at the correct cycles. The outputs from the four lanes (`weight_out`, `weighted_v_out`) are registered and then concatenated to be fed into the `ReductionDivider`. When the `ReductionDivider` signals completion via its `calc_done` port, the FSM asserts the top-level `done` signal for one cycle, updates the `result` output register, and transitions back to IDLE. Total latency is 22 cycles.\n\n**Connections:**\n- A `genvar i` loop instantiates four `ProcessingLane` modules.\n- `lane[i].q_in` <= `q_reg` (broadcast).\n- `lane[i].k_in` <= `k_reg[4*(2*i+1)+3 : 4*(2*i)]` (8 bits per lane).\n- `lane[i].v_in` <= `v_reg[4*i+3 : 4*i]` (4 bits per lane).\n- A 3-bit shift register `pipe_valid` propagates the start signal: `pipe_valid[0]` drives `p_valid_in` for the lanes, and `pipe_valid[2]` drives `start_calc` for the reducer.\n- The `weight_out` and `weighted_v_out` from each lane are registered and then concatenated into `all_weights` (36 bits) and `all_weighted_vs` (52 bits) to connect to the `ReductionDivider` inputs."
+    }
+  ],
+  "rationale": "The design implements the `threshold_attention` algorithm using a pipelined architecture to meet the 100MHz frequency target. The core computation is parallelized across four identical `ProcessingLane` modules, each handling one key/value pair. This promotes modularity and reuse. A dedicated `ReductionDivider` module performs the final aggregation and division.\n\n- **Decomposition:** The system is broken into three main modules:\n  1. `threshold_attention` (Top): Manages control flow (FSM), I/O, and instantiates the child modules.\n  2. `ProcessingLane`: A reusable, two-stage pipelined module that calculates the score, applies the threshold to get the weight, and computes the weighted value for a single key. Four are instantiated for parallelism.\n  3. `ReductionDivider`: A multi-cycle module that first sums the outputs of the four lanes using combinational adder trees and then performs the final `15-bit / 11-bit` division using an area-efficient 17-cycle restoring division algorithm.\n\n- **Dataflow & Scheduling:** The overall architecture is a feed-forward pipeline followed by a multi-cycle functional unit. The total latency is approximately 22 cycles, well within the 128-cycle limit.\n  1. **C0:** `start` is asserted. Top FSM latches inputs and begins computation.\n  2. **C1-C2:** The four `ProcessingLane` modules compute in parallel. Each is a 2-stage pipeline, calculating score in the first stage and weight/weighted-value in the second.\n  3. **C3:** The `ReductionDivider` latches the lane outputs and computes the two required sums (`weight_sum`, `weighted_value_sum`) in one cycle using two-level adder trees.\n  4. **C4-C20:** The `ReductionDivider` performs the integer division over 17 cycles (1 for setup, 15 for iterations, 1 for completion).\n  5. **C21:** The final result is ready. The top module asserts `done` for one cycle.\n\n- **Buffer Organization:** Pipeline registers are used between all major stages to break critical paths. Input data (`q`, `k`, `v`) is latched at the beginning of the transaction. The `ProcessingLane` outputs are buffered before being fed to the `ReductionDivider`.\n\n- **Numeric Widths:** All internal datapaths have been sized based on the `numeric_bounds` to prevent overflow. Scores are 9 bits, `weighted_value_sum` is 15 bits, and `weight_sum` is 11 bits. The `threshold` value of 64 is hardcoded as a constant."
+}

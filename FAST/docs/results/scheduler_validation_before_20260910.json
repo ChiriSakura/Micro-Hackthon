@@ -1,0 +1,110 @@
+{
+  "scope": "BlockScheduler, 32 rows x 4 PE; not full attention",
+  "workload_source_sha256": "b89f6de3ae0917978a30375aef0b7a9926c7ea19573ae7b601a533bbafcadec0",
+  "workload_slice_sha256": "74d5b2422662326a4123ec3d6b6062af5aa66fbd281ec29904233538c9d4eb9d",
+  "source": {
+    "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+    "dataset": "wiki",
+    "layer": 10,
+    "seq_len": 512,
+    "seed": 20260903
+  },
+  "trace_slice": [
+    256,
+    384
+  ],
+  "not_a_heldout_model": true,
+  "fixed_frequency_mhz": 350.0,
+  "sources": {
+    "FAST/hardware/chisel/Elaborate.scala": "a8d44ee9e740707a361b23ef66759ffea05a9b9428ac005eb8c7f4f0c233010d",
+    "FAST/hardware/chisel/src/main/scala/attention_tile.scala": "f6b47eddb6a499b4051ff3bebd6d9ace642cad319a0bec25445b816abcd66d18",
+    "FAST/hardware/chisel/src/main/scala/attention_tile_top.scala": "b5c19211cd319ea070a1099694af889855674e14e460a98e3962fe7dddee4b05",
+    "FAST/hardware/chisel/src/main/scala/execute_unit/key_feeder.scala": "497aa40bcce085c4f0bb9dea9b169831cb010a527907d5060eeca84826797c9d",
+    "FAST/hardware/chisel/src/main/scala/execute_unit/repe.scala": "d694fc01d8352008c56cfa7d29d72959a69a366f15b3b25e031024e2eff445a9",
+    "FAST/hardware/chisel/src/main/scala/execute_unit/repe_array.scala": "1e1a501ff1b2eb147b0ba388918190fc06c409f742068454af5b8d76c4721215",
+    "FAST/hardware/chisel/src/main/scala/execute_unit/repe_row.scala": "73db4c2312be27805a2c54428a1d975485c89b93f23271df1104a01c1ca1a352",
+    "FAST/hardware/chisel/src/main/scala/execute_unit/sram.scala": "d23602c53d9b3ea95e5bd5ac303b152ed2fa9bf260b9b2bcfb4645d28e74cb69",
+    "FAST/hardware/chisel/src/main/scala/exp_unit/exp_unit.scala": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala": "f60697657ecb271e880fcf57674e89e2003ac520b23ebecf40ae3c09a7585e7d",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/divider.scala": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala": "49396ee98ca68d61b1cd49e63aa697be041cecd48721a3a770b4e2d72c5fb9d2",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala": "49c38f5a9134f63097623c19ba25001a6c3cd4fe0edf9a9b065bb6738f9c3550",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala": "dc57bc8281a0f42070a4954de96df30d66dcede2c966493837e005ad905676f0",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala": "62b543bc76a83b73d4a13fc6752dc544ecd14da252a04fd9420fd4752b059810",
+    "FAST/hardware/chisel/src/main/scala/predict_unit/topk.scala": "09196842ec6bef512088f1eaf4a3112053e64f36cd5b7220de1b6191fe020cec",
+    "FAST/hardware/tb/tb_block_scheduler.cpp": "954b79bdf5b1a470bb183c6cea51ef77ab8783a52e4e97656d54e833af16ab02",
+    "FAST/hardware/tb/gen_ports.py": "da98b85415b5574406d5670522bd1bbd1f13eafbbd2e2139ebd65212b78d6395"
+  },
+  "liberty_sha256": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1",
+  "results": [
+    {
+      "depth": 0,
+      "passed": false,
+      "frequency_feasible": false,
+      "wall_seconds": 20.67601343523711,
+      "metrics": {},
+      "stages": [
+        {
+          "stage": "elaborate",
+          "passed": true,
+          "diagnostics": "ok",
+          "metrics": {}
+        },
+        {
+          "stage": "simulate",
+          "passed": false,
+          "diagnostics": "[tool-error] exit=1\nFAIL 停止后计数器还在动（空转 64 拍）——还有工作在飞，采样时刻早了\nFAIL 全部工作已计入、空转 64 拍之后 drained 仍未拉高——这个输出自己不对\nFAIL 工作量不守恒：硬件数到 32428 个 PE·拍，输入里有 35592 个保留列\nFAIL 行 0 有 30 趟没入队（共 311 趟）——仿真提前结束了\nqueue_depth=0 rows=32 pe=4 tiles=128\n  cycles_active=50822  row_utilisation=0.0050  pe_utilisation=0.0050\n  pass_imbalance=1.5752  model_says=0.6348  measured_row=0.0050\nMEASURE queue_depth=0 rows=32 pe=4 imbalance=1.575185 row_util=0.004985 pe_util=0.004985 cycles=50822\nFAIL 深度 0 的利用率 0.0050 偏离 1/imbalance=0.6348 达 99.2%\n     （深度 0 应当是严格锁步；对不上说明屏障没起作用）\nFAIL 达到周期上限 50760，队列没排空\nFAILED: 6 处判据失败",
+          "metrics": {}
+        }
+      ],
+      "latency_s": null
+    },
+    {
+      "depth": 2,
+      "passed": false,
+      "frequency_feasible": false,
+      "wall_seconds": 16.66956475842744,
+      "metrics": {},
+      "stages": [
+        {
+          "stage": "elaborate",
+          "passed": true,
+          "diagnostics": "ok",
+          "metrics": {}
+        },
+        {
+          "stage": "simulate",
+          "passed": false,
+          "diagnostics": "[tool-error] exit=1\nFAIL 停止后计数器还在动（空转 64 拍）——还有工作在飞，采样时刻早了\nFAIL 全部工作已计入、空转 64 拍之后 drained 仍未拉高——这个输出自己不对\nFAIL 工作量不守恒：硬件数到 34600 个 PE·拍，输入里有 35592 个保留列\nFAIL 行 1 有 23 趟没入队（共 325 趟）——仿真提前结束了\nqueue_depth=2 rows=32 pe=4 tiles=128\n  cycles_active=50822  row_utilisation=0.0053  pe_utilisation=0.0053\n  pass_imbalance=1.5752  model_says=0.8391  measured_row=0.0053\nMEASURE queue_depth=2 rows=32 pe=4 imbalance=1.575185 row_util=0.005319 pe_util=0.005319 cycles=50822\nFAIL 达到周期上限 50760，队列没排空\nFAILED: 5 处判据失败",
+          "metrics": {}
+        }
+      ],
+      "latency_s": null
+    },
+    {
+      "depth": 4,
+      "passed": false,
+      "frequency_feasible": false,
+      "wall_seconds": 16.407542903907597,
+      "metrics": {},
+      "stages": [
+        {
+          "stage": "elaborate",
+          "passed": true,
+          "diagnostics": "ok",
+          "metrics": {}
+        },
+        {
+          "stage": "simulate",
+          "passed": false,
+          "diagnostics": "[tool-error] exit=1\nFAIL 停止后计数器还在动（空转 64 拍）——还有工作在飞，采样时刻早了\nFAIL 全部工作已计入、空转 64 拍之后 drained 仍未拉高——这个输出自己不对\nFAIL 工作量不守恒：硬件数到 34908 个 PE·拍，输入里有 35592 个保留列\nFAIL 行 5 有 2 趟没入队（共 317 趟）——仿真提前结束了\nqueue_depth=4 rows=32 pe=4 tiles=128\n  cycles_active=50822  row_utilisation=0.0054  pe_utilisation=0.0054\n  pass_imbalance=1.5752  model_says=0.8968  measured_row=0.0054\nMEASURE queue_depth=4 rows=32 pe=4 imbalance=1.575185 row_util=0.005366 pe_util=0.005366 cycles=50822\nFAIL 达到周期上限 50760，队列没排空\nFAILED: 5 处判据失败",
+          "metrics": {}
+        }
+      ],
+      "latency_s": null
+    }
+  ],
+  "energy_j": null,
+  "energy_reason": "no workload-activity power measurement",
+  "sources_unchanged": true
+}

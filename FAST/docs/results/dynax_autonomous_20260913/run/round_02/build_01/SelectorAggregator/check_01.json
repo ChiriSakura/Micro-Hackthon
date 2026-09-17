@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/module_lint.log",
+  "diagnostics": "- V e r i l a t i o n   R e p o r t: Verilator 5.052 2026-09-05 rev v5.052\n- Verilator: Built from 0.039 MB sources in 2 modules, into 0.099 MB in 3 C++ files needing 0.000 MB\n- Verilator: Walltime 0.058 s (elab=0.011, cvt=0.027, bld=0.000); cpu 0.014 s on 1 threads; allocated 19.000 MB\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/emitted/SelectorAggregator.v:150:15: Bits of signal are not used: '_D_out_T_6'[22:19]\n                                                                                                                                                                                 : ... note: In instance 'SelectorAggregator'\n  150 |   wire [22:0] _D_out_T_6 = _D_out_T_5 + _GEN_14;  \n      |               ^~~~~~~~~~\n                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.052\n                       ... Use \"/* verilator lint_off UNUSEDSIGNAL */\" and lint_on around source to disable this message.\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/emitted/SelectorAggregator.v:163:15: Bits of signal are not used: '_N_out_T_6'[31:27]\n                                                                                                                                                                                 : ... note: In instance 'SelectorAggregator'\n  163 |   wire [31:0] _N_out_T_6 = $signed(_N_out_T_5) + $signed(_GEN_20);  \n      |               ^~~~~~~~~~\n",
+  "wall_seconds": 0.6231166822835803,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "verilator",
+    "--lint-only",
+    "--Wall",
+    "-Wno-fatal",
+    "--top-module",
+    "SelectorAggregator",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/emitted/SelectorAggregator.v"
+  ],
+  "elaboration": {
+    "passed": true,
+    "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/chisel_elaboration.log",
+    "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+    "wall_seconds": 5.331267420202494,
+    "command": [
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+      "run",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/SelectorAggregator.scala",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/FASTGeneratedElaborate.scala",
+      "--workspace",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/scala_build",
+      "--server=false",
+      "--main-class",
+      "FASTGeneratedElaborate",
+      "--",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/emitted"
+    ],
+    "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/emitted/SelectorAggregator.v",
+    "elaborated_sha256": "1b95c00b8cdfe9829ab96115749bdd9d0c7b16fd784f511193cda8ae471a4cc4"
+  },
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/emitted/SelectorAggregator.v",
+  "scope": "structure and frozen Compiler functional vectors; not independent algorithm equivalence",
+  "functional": {
+    "passed": true,
+    "stage": "simulation",
+    "simulation": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/functional/e2e_sim.log",
+      "diagnostics": "FAST_CASE cycles=1\nFAST_PASS cases=1\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/functional/trusted_testbench.sv:173: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 115ps; walltime 0.001 s; speed 139.013 ns/s\n- Verilator: cpu 0.000 s on 1 threads; allocated 3 MB\n",
+      "wall_seconds": 0.4377735173329711,
+      "command": [
+        "apptainer",
+        "exec",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_01/SelectorAggregator/check_01/functional/obj_dir/VFASTTestbench"
+      ]
+    },
+    "cases": 1,
+    "expected_cases": 1,
+    "testbench_sha256": "cdf16ee60a39b149ac7a30551236ce987e723a5e0acaec1fffc1a94e69e5ad5c",
+    "coverage": "Compiler-authored module scenarios; cycle marker is a case counter, not performance evidence"
+  },
+  "test_oracle": "computed executable behavior contract"
+}

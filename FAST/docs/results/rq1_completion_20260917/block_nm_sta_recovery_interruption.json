@@ -1,0 +1,8 @@
+{
+  "utc": "2026-09-17T06:49:14.721888+00:00",
+  "original_job": "17909362",
+  "cancelled_post": "17910797",
+  "cancelled_collector": "17911817",
+  "saved_round": 4,
+  "reason": "Generic STA endpoint/net feedback added after observed ungrounded bottleneck attribution. Preserve accepted R4 RTL and original measurements; resume same candidate and finish R5 within max5. No manual generated-RTL edits."
+}

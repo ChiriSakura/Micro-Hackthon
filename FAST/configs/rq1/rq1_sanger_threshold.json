@@ -1,0 +1,21 @@
+{
+  "algorithm": "rq1_sanger_threshold",
+  "prompt": "Generate a complete sparse softmax decode-row system from signed Q/K/V to result AND selected mask under the exact supplied algorithm contract. Optimize the latency-energy-efficiency Pareto frontier subject to quality, area and 300 MHz timing constraints. Read and assign relevant immutable hardware AND golden test references. Compiler chooses modules, scheduling, numeric widths and pipeline depths; UArch generates each implementation, then a separate assembly implements the full system. Prefer compatible native library reuse with linked_reference_ids and thin generated adapters; inspect integrated bundles if useful. Reuse must preserve exact contract math. Start from a correct compact implementation; one-query-per-cycle throughput is not required. All algorithm parameters are chosen by Kernel from measured profiles and can be revisited by Critic. No manually supplied system plan or previous generated RTL.",
+  "constraints": {
+    "max_quality_loss": 0.05,
+    "max_area_um2": 200000,
+    "frequency_mhz": 300
+  },
+  "max_loops": 5,
+  "compiler_attempts": 3,
+  "module_attempts": 5,
+  "seed": 17,
+  "kernel_profile_budget": 64,
+  "activity": 0.1,
+  "hdl": "chisel",
+  "template_read_budget": 2,
+  "module_workers": 1,
+  "assembly_attempts": 5,
+  "ppa_backend": "hammer_openroad",
+  "dense_equivalent_ops_per_query": 96
+}

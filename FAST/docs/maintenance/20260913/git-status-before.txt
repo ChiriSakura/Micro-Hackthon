@@ -1,0 +1,190 @@
+ M DynaX/capture_attention_tile.py
+ M DynaX/models/utils/sparse_attention.py
+ M DynaX/models/utils/sparsity_stats.py
+ M DynaX/run_eval_matrix.py
+ M FAST/README.md
+ M FAST/fast/adapters/analytical.py
+ M FAST/fast/adapters/base.py
+ M FAST/fast/adapters/deterministic.py
+ M FAST/fast/adapters/dynax.py
+ M FAST/fast/adapters/synthesis.py
+ M FAST/fast/adapters/timing.py
+ M FAST/fast/adapters/verilator.py
+ M FAST/fast/agents/codesign.py
+ M FAST/fast/agents/compiler.py
+ M FAST/fast/agents/cooptimizer.py
+ M FAST/fast/agents/critic.py
+ M FAST/fast/agents/evaluator.py
+ M FAST/fast/agents/kernel.py
+ M FAST/fast/agents/llm_backends.py
+ M FAST/fast/agents/proposers.py
+ M FAST/fast/agents/templates.py
+ M FAST/fast/agents/uarch.py
+ M FAST/fast/cli_kernel.py
+ M FAST/fast/orchestrator/flow.py
+ M FAST/fast/schemas/models.py
+ M FAST/fast/storage/experiment_db.py
+ M FAST/hardware/README.md
+ M FAST/hardware/chisel/Elaborate.scala
+ M FAST/hardware/chisel/src/main/scala/attention_tile.scala
+ M FAST/hardware/chisel/src/main/scala/execute_unit/repe.scala
+ M FAST/hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala
+ M FAST/hardware/golden/fixedpoint.py
+ M FAST/hardware/tb/drivers.h
+ M FAST/hardware/tb/gen_ports.py
+ M FAST/hardware/tb/tb_attention_tile.cpp
+ M FAST/pyproject.toml
+ M FAST/scripts/synthesize_modules.py
+ M FAST/tests/test_closed_loop.py
+ M FAST/tests/test_cooptimizer.py
+ M FAST/tests/test_divider_dimension.py
+ M FAST/tests/test_kernel_search.py
+ M FAST/tests/test_synthesis_adapter.py
+ M FAST/tests/test_timing_adapter.py
+ M README.md
+ M slurm/kernel/dynax_capture_tile.slurm
+ M slurm/loop/fast_kernel_search.slurm
+ M slurm/rtl/fast_attention_tile.slurm
+ M slurm/rtl/fast_rtl_elaborate_all.slurm
+ M slurm/rtl/fast_rtl_verify.slurm
+ M slurm/rtl/fast_rtl_verify_all.slurm
+ M slurm/rtl/fast_rtl_verify_paper.slurm
+ M slurm/rtl/fast_synthesis.slurm
+?? DynaX/capture_row_workload.py
+?? DynaX/tests/test_threshold_search.py
+?? FAST/configs/experiments/dynax_rediscovery.json
+?? FAST/configs/fullstack/
+?? FAST/docs/STATUS.md
+?? FAST/docs/agent-architecture.md
+?? FAST/docs/cleanup-2026-09-11.md
+?? FAST/docs/critic-integration.md
+?? FAST/docs/dynax-autonomous.md
+?? FAST/docs/dynax-rediscovery.md
+?? FAST/docs/energy-latency-hackathon.md
+?? FAST/docs/fullstack-generation.md
+?? FAST/docs/kernel-agent.md
+?? FAST/docs/presentation-outline-20260913.md
+?? FAST/docs/quick-reading-20260913.md
+?? FAST/docs/research-review-2026-09-09.md
+?? FAST/docs/results/critic_ablation_20260911/
+?? FAST/docs/results/critic_audit_20260911/
+?? FAST/docs/results/critic_integration_20260911/
+?? FAST/docs/results/dynax_autonomous_20260913/
+?? FAST/docs/results/dynax_fast_recovery_20260913/
+?? FAST/docs/results/dynax_rediscovery_20260910/
+?? FAST/docs/results/final_experiment_20260911/
+?? FAST/docs/results/fullstack_e2e_20260913/
+?? FAST/docs/results/fullstack_extensions_20260913/
+?? FAST/docs/results/fullstack_generation_20260913/
+?? FAST/docs/results/parallel_uarch_20260913/
+?? FAST/docs/results/scheduler_validation_after_20260910.json
+?? FAST/docs/results/scheduler_validation_before_20260910.json
+?? FAST/docs/results/superseded/
+?? FAST/fast/adapters/vcd_activity.py
+?? FAST/fast/agents/llm_critic.py
+?? FAST/fast/agents/llm_models.py
+?? FAST/fast/agents/module_dialogue.py
+?? FAST/fast/agents/pareto.py
+?? FAST/fast/agents/plan_proposers.py
+?? FAST/fast/agents/rediscovery.py
+?? FAST/fast/agents/rediscovery_critic.py
+?? FAST/fast/agents/rtl_gate.py
+?? FAST/fast/agents/rtl_mutation.py
+?? FAST/fast/experiments/
+?? FAST/fast/fullstack/
+?? FAST/fast/schemas/contract.py
+?? FAST/fast/schemas/conversions.py
+?? FAST/fast/schemas/tier_thresholds.py
+?? FAST/figures/pareto_energy_latency_20260910.pdf
+?? FAST/figures/pareto_energy_latency_20260910.png
+?? FAST/hardware/chisel/src/main/scala/attention_tile_system.scala
+?? FAST/hardware/chisel/src/main/scala/attention_tile_top.scala
+?? FAST/hardware/chisel/src/main/scala/execute_unit/key_feeder.scala
+?? FAST/hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala
+?? FAST/hardware/chisel/src/main/scala/predict_unit/block_tier.scala
+?? FAST/hardware/golden/gen_gather_stimulus.py
+?? FAST/hardware/golden/gen_workload_stimulus.py
+?? FAST/hardware/tb/tb_attention_tile_system.cpp
+?? FAST/hardware/tb/tb_attention_tile_top.cpp
+?? FAST/hardware/tb/tb_block_scheduler.cpp
+?? FAST/hardware/tb/tb_key_feeder.cpp
+?? FAST/libraries/
+?? FAST/scripts/README.md
+?? FAST/scripts/analyze_critic_ablation.py
+?? FAST/scripts/archive_critic_ablation.py
+?? FAST/scripts/audit_dynax_xm_contract.py
+?? FAST/scripts/design_ppa.py
+?? FAST/scripts/fetch_nangate45_srams.py
+?? FAST/scripts/plot_pareto_benchmark.py
+?? FAST/scripts/prepare_critic_ablation.py
+?? FAST/scripts/refine_rediscovery.py
+?? FAST/scripts/repair_generated_assembly.py
+?? FAST/scripts/report_critic_ablation.py
+?? FAST/scripts/report_fullstack_generation.py
+?? FAST/scripts/report_generation_comparison.py
+?? FAST/scripts/revalidate_generated_design.py
+?? FAST/scripts/run_codesign.py
+?? FAST/scripts/run_critic_ablation.py
+?? FAST/scripts/run_dynax_rediscovery.py
+?? FAST/scripts/run_final_inventory.py
+?? FAST/scripts/run_pareto_benchmark.py
+?? FAST/scripts/select_confirmed_candidate.py
+?? FAST/scripts/summarize_final_experiment.py
+?? FAST/scripts/validate_pareto_scheduler.py
+?? FAST/scripts/verify_generated_holdout.py
+?? FAST/scripts/verify_module_gates.py
+?? FAST/scripts/verify_routed_design.py
+?? FAST/tests/test_agent_defaults.py
+?? FAST/tests/test_algorithm_is_an_input.py
+?? FAST/tests/test_calibration_provenance.py
+?? FAST/tests/test_capture_identity.py
+?? FAST/tests/test_constrained_objective.py
+?? FAST/tests/test_convergence.py
+?? FAST/tests/test_critic_ablation.py
+?? FAST/tests/test_dynax_rediscovery.py
+?? FAST/tests/test_dynax_xm_row_contract.py
+?? FAST/tests/test_energy_pareto.py
+?? FAST/tests/test_fidelity_ladder.py
+?? FAST/tests/test_final_experiment_contracts.py
+?? FAST/tests/test_fullstack_behavior.py
+?? FAST/tests/test_fullstack_generation.py
+?? FAST/tests/test_fullstack_parallel.py
+?? FAST/tests/test_fullstack_reference_tests.py
+?? FAST/tests/test_layered_reentry.py
+?? FAST/tests/test_measured_clock_feedback.py
+?? FAST/tests/test_objective_spec.py
+?? FAST/tests/test_pareto_experiment.py
+?? FAST/tests/test_plan_intervention.py
+?? FAST/tests/test_planner_loop.py
+?? FAST/tests/test_rediscovery_critic.py
+?? FAST/tests/test_rediscovery_refinement.py
+?? FAST/tests/test_schema_conversions.py
+?? FAST/tests/test_search_space.py
+?? FAST/tests/test_shared_board.py
+?? FAST/tests/test_tier_thresholds.py
+?? FAST/tests/test_uarch_mutation_wiring.py
+?? FAST/tests/test_utilisation_switch.py
+?? FAST/tests/test_vcd_activity.py
+?? FAST/tests/test_work_conservation.py
+?? slurm/kernel/dynax_capture_workload.slurm
+?? slurm/loop/fast_dynax_rediscovery.slurm
+?? slurm/loop/fast_dynax_refine.slurm
+?? slurm/rtl/fast_activity_power.slurm
+?? slurm/rtl/fast_bcast_probe.slurm
+?? slurm/rtl/fast_block_scheduler_sweep.slurm
+?? slurm/rtl/fast_broadcast_fanout.slurm
+?? slurm/rtl/fast_codesign_l2.slurm
+?? slurm/rtl/fast_design_ppa.slurm
+?? slurm/rtl/fast_elaborate_plan.slurm
+?? slurm/rtl/fast_hammer_syn.slurm
+?? slurm/rtl/fast_key_feeder_sweep.slurm
+?? slurm/rtl/fast_module_dialogue.slurm
+?? slurm/rtl/fast_mutation_symptom.slurm
+?? slurm/rtl/fast_pareto_validate.slurm
+?? slurm/rtl/fast_power_recalibrate.slurm
+?? slurm/rtl/fast_rtl_gate_check.slurm
+?? slurm/rtl/fast_synth_sweep.slurm
+?? slurm/rtl/fast_system_verify.slurm
+?? slurm/rtl/fast_tier_elab.slurm
+?? slurm/rtl/fast_tile_top.slurm
+?? slurm/rtl/fast_tile_top_verify.slurm

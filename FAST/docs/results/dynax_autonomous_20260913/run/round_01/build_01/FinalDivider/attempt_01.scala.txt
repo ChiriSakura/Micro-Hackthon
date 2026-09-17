@@ -1,0 +1,48 @@
+import chisel3._
+import chisel3.util._
+import predict_unit.FixedPointDivPipelined
+
+class FinalDivider extends RawModule {
+  val clock = IO(Input(Clock()))
+  val reset = IO(Input(Bool()))
+  val valid_in = IO(Input(Bool()))
+  val numer_in = IO(Input(UInt(27.W)))
+  val denom_in = IO(Input(UInt(19.W)))
+  val valid_out = IO(Output(Bool()))
+  val quot_out = IO(Output(UInt(16.W)))
+
+  // Instantiate the pipelined divider from the linked library reference.
+  // Configuration is set according to the design prompt.
+  val divider = Module(new FixedPointDivPipelined(
+    bitWidth = 31,
+    point = 0, // Integer division
+    stages = 18
+  ))
+
+  // Connect clock, reset, and valid signals directly.
+  divider.clock := clock
+  divider.reset := reset
+  divider.io.in_valid := valid_in
+
+  // Prepare and connect the numerator.
+  // The operation is `numer_in * 16`, which is a left shift by 4.
+  // The input is a 27-bit signed value. Shifting it left by 4 results
+  // in a 31-bit signed value, which matches the divider's bitWidth.
+  val scaled_numer = (numer_in.asSInt << 4).asSInt
+  divider.io.numerator := scaled_numer.asFixedPoint(0.BP)
+
+  // Prepare and connect the denominator.
+  // The input is a 19-bit unsigned value. It must be zero-extended to the
+  // divider's 31-bit width to be correctly interpreted as a positive number.
+  val extended_denom = denom_in.zext
+  divider.io.denominator := extended_denom.asSInt.asFixedPoint(0.BP)
+
+  // Connect the outputs.
+  valid_out := divider.io.out_valid
+
+  // The divider's output is 31-bit signed. The final result must be truncated
+  // to 16 bits. The library module already implements truncation towards zero,
+  // so slicing the lower 16 bits of the result is sufficient.
+  val result_sint = divider.io.quotient.asSInt
+  quot_out := result_sint(15, 0).asUInt
+}

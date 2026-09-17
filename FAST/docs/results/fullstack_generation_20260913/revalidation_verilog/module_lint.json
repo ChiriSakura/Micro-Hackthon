@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_revalidation_v2/module_lint.log",
+  "diagnostics": "- V e r i l a t i o n   R e p o r t: Verilator 5.052 2026-09-05 rev v5.052\n- Verilator: Built from 0.089 MB sources in 4 modules, into 0.051 MB in 3 C++ files needing 0.000 MB\n- Verilator: Walltime 0.076 s (elab=0.015, cvt=0.023, bld=0.000); cpu 0.013 s on 1 threads; allocated 18.000 MB\n%Warning-ASCRANGE: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_revalidation_v2/threshold_attention.v:57:10: Ascending bit range vector: left < right of bit range: [0:3]\n                                                                                                                       : ... note: In instance 'threshold_attention'\n   57 |     wire [0:3] lane_p_valid_out;\n      |          ^\n                   ... For warning description see https://verilator.org/warn/ASCRANGE?v=5.052\n                   ... Use \"/* verilator lint_off ASCRANGE */\" and lint_on around source to disable this message.\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_revalidation_v2/threshold_attention.v:57:16: Signal is not used: 'lane_p_valid_out'\n                                                                                                                           : ... note: In instance 'threshold_attention'\n   57 |     wire [0:3] lane_p_valid_out;\n      |                ^~~~~~~~~~~~~~~~\n                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.052\n                       ... Use \"/* verilator lint_off UNUSEDSIGNAL */\" and lint_on around source to disable this message.\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_revalidation_v2/ReductionDivider.v:86:16: Bits of signal are not used: 'div_A'[15]\n                                                                                                                        : ... note: In instance 'threshold_attention.reducer_inst'\n   86 |     reg [15:0] div_A;  \n      |                ^~~~~\n",
+  "wall_seconds": 0.6546067064628005,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "verilator",
+    "--lint-only",
+    "--Wall",
+    "-Wno-fatal",
+    "--top-module",
+    "threshold_attention",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_revalidation_v2/ProcessingLane.v",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_revalidation_v2/ReductionDivider.v",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_revalidation_v2/threshold_attention.v"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "module": "ScoreWeightProcessor",
+  "role": "uarch",
+  "language": "chisel",
+  "source_sha256": "ba0a56b3c79dce8932be2cb01d01a2b28a7b7b5476dbd0aab243230af9aa46f5",
+  "linked_reference_ids": [],
+  "linked_library_sha256": {},
+  "reference_ids": [
+    "dynax_exp_reference"
+  ],
+  "rationale": "The implementation creates a 3-stage pipelined module, `ScoreWeightProcessor`, as specified in the design prompt.\n- **Stage 0:** Computes 8 dot-product scores in parallel. It unpacks the 4-bit signed query and key components and performs the `q[0]*k[i][0] + q[1]*k[i][1]` operation for each of the 8 keys. A widening adder (`+&`) is used to prevent overflow, producing 9-bit signed scores. The results are registered, enabled by `valid_in`.\n- **Stage 1:** Takes the registered scores, finds the maximum score (`h`) using a comparator tree, and then computes the 8 non-negative deltas (`h - s[i]`). The scores and deltas are passed to the next pipeline stage.\n- **Stage 2:** Uses the 8 registered deltas as addresses for parallel lookups into a 256x16-bit ROM, which contains the pre-computed exponential values.\n- **Output Stage:** The final scores and the looked-up weights are registered one last time before being driven to the outputs, ensuring they are stable and aligned with the `valid_out` signal. `valid_out` is a 3-cycle delayed version of `valid_in`.\n- **ROM Initialization:** As per the `compiler_prompt`, the exponential lookup table ROM is initialized directly from the `exp_table_packed_hex` string provided in the algorithm contract. This is done by parsing the `BigInt` hexadecimal string into a `VecInit` of 256 16-bit values, ensuring the hardware precisely matches the authoritative numerical specification.",
+  "critic_request": {
+    "layer": "uarch",
+    "reason": "The current design's energy efficiency is limited by its 26-cycle latency, with the 18-stage pipelined divider being the dominant contributor. The post-route evaluation shows significant timing slack (5.8ns) and area slack (37813 um^2 used vs 200000 um^2 budget), indicating the design is not physically constrained. This presents a clear opportunity to trade this abundant slack for a direct reduction in latency.",
+    "evidence": [
+      "evaluation.latency_ns",
+      "evaluation.slack_ns",
+      "evaluation.area_um2",
+      "evaluation.energy_efficiency_queries_per_joule"
+    ],
+    "instructions": "Modify the `FinalDivider` module's implementation. Re-configure the instantiated `predict_unit.FixedPointDivPipelined` core to use fewer pipeline stages by changing the `stages` parameter from 18 to a smaller value, such as 9. This is expected to reduce total system latency from 26 cycles to approximately 17 cycles. While the divider's area and per-cycle power will likely increase, the substantial reduction in execution time should lead to a net decrease in the total energy per query, thereby increasing the `energy_efficiency_queries_per_joule`."
+  },
+  "scope": "Agent explanation; module planner-vector checks and independent E2E are separate evidence"
+}

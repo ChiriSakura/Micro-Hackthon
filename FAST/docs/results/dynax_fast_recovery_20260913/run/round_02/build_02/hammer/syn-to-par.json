@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/syn-to-par.log",
+  "diagnostics": "\u001b[96m[<global>] Loading hammer-vlsi libraries and reading settings\u001b[0m\n\u001b[96m[<global>] Loading technology 'hammer.technology.nangate45'\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\nAction syn-to-par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-input.json\n",
+  "wall_seconds": 0.7611992256715894,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/hammer_driver.py",
+    "syn-to-par",
+    "-p",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/config.json",
+    "-p",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/syn-output.json",
+    "--obj_dir",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer",
+    "-o",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/hammer/par-input.json"
+  ]
+}

@@ -1,0 +1,457 @@
+{
+  "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm",
+  "status": "ppa_failed",
+  "rounds": [
+    {
+      "round": 1,
+      "config": {
+        "n": 7
+      },
+      "calibration": {
+        "config": {
+          "n": 7
+        },
+        "quality_loss": 0.03358657986150424,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010057824013621622,
+        "squared_error_sum": 741928.9067832113,
+        "dense_squared_output_sum": 657704372.200548,
+        "sparsity": 0.125,
+        "fully_dense_query_fraction": 0.0,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 2052,
+          "15": 0,
+          "16": 0
+        },
+        "samples": 2052,
+        "seed": 20260915,
+        "includes_shared_boundary_cases": true,
+        "workload_sha256": "60517956d3f68a3bb09f8553e8549416807efb4bad8c7fcdb40eae8460b3694e"
+      },
+      "heldout": {
+        "config": {
+          "n": 7
+        },
+        "quality_loss": 0.03775422390872124,
+        "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+        "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+        "dense_fixedpoint_relative_rmse": 0.0010556113603441514,
+        "squared_error_sum": 1761296.4741871953,
+        "dense_squared_output_sum": 1235666780.7148442,
+        "sparsity": 0.125,
+        "fully_dense_query_fraction": 0.0,
+        "active_keys_histogram": {
+          "0": 0,
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0,
+          "8": 0,
+          "9": 0,
+          "10": 0,
+          "11": 0,
+          "12": 0,
+          "13": 0,
+          "14": 4096,
+          "15": 0,
+          "16": 0
+        },
+        "samples": 4096,
+        "seed": 20260916,
+        "includes_shared_boundary_cases": false,
+        "workload_sha256": "d1ae69138f2824e724be7e1eb655d676c9945441b169e8867e1d8877065c389c"
+      },
+      "evaluation": {
+        "complete": false,
+        "feasible": false,
+        "verification": {
+          "passed": true,
+          "stage": "simulation",
+          "simulation": {
+            "passed": true,
+            "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/check_05/e2e_sim.log",
+            "diagnostics": "FAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_CASE cycles=68\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/check_05/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 69ns; walltime 0.007 s; speed 10.504 us/s\n- Verilator: cpu 0.006 s on 1 threads; allocated 3 MB\n",
+            "wall_seconds": 0.38379922322928905,
+            "command": [
+              "apptainer",
+              "exec",
+              "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+              "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/check_05/obj_dir/VFASTTestbench"
+            ]
+          },
+          "cases": 100,
+          "expected_cases": 100,
+          "mean_cycles": 68.0,
+          "min_cycles": 68,
+          "max_cycles": 68,
+          "testbench_sha256": "f0eecd5ed8caa171b93a722f62a3a591f9594f5a9846301ce8f2d971bb930594",
+          "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+        },
+        "design_sha256": "d414cdb6f5b443202b20d19864eff9b3f7054af88d18836ea6d58b9e1ee45a66",
+        "ppa_backend": "hammer_openroad",
+        "scope": "entire generated top, Nangate45 placement/CTS/detailed routing/OpenRCX",
+        "power_method": "OpenROAD post-route extracted-RC power estimate; uniform activity, not silicon measurement",
+        "activity": 0.1,
+        "gds_generated": false,
+        "driver_sha256": "9b370c6e51363a441abb05fd2e8ace3e480c5c0e1ea638fc3f035e21174796b7",
+        "physical_adapter_sha256": "bbc831c069e450514af9fc188001b33531fd442c7c9c48a0daa0b309c5da5196",
+        "routing_tool": "26Q1-2900-gdf79404cd8",
+        "pdk_sha256": {
+          "setRC.tcl": "521df813bf4da9d7400df33e3f680c9a328cc720830dbfca1188083741503fa5",
+          "rcx_patterns.rules": "2f65fafbe2c704b378563c53a680b93cef080c2799997019d43df7d1e5a563e9",
+          "lib/NangateOpenCellLibrary_typical.lib": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1"
+        },
+        "syn": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/syn.log",
+          "diagnostics": "X1 A =   1.60  Df =3487.2   -7.5 ps  S =  41.2 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  13.8 ff  G =   99\nABC: Path 76 --    7246 : 3    1 OAI21_X1  A =   1.06  Df =3526.7  -22.6 ps  S =  25.1 ps  Cin =  1.6 ff  Cout =   3.0 ff  Cmax =  26.1 ff  G =  188\nABC: Path 77 --    7249 : 4    1 AOI22_X2  A =   2.39  Df =3556.7   -1.5 ps  S =  32.1 ps  Cin =  3.1 ff  Cout =   6.5 ff  Cmax =  49.1 ff  G =  207\nABC: Path 78 --    7250 : 3    7 OAI21_X4  A =   3.46  Df =3598.9  -15.4 ps  S =  26.3 ps  Cin =  6.1 ff  Cout =  13.6 ff  Cmax = 104.1 ff  G =  216\nABC: Path 79 --    7261 : 2   10 NAND2_X4  A =   2.39  Df =3622.2  -14.1 ps  S =  16.9 ps  Cin =  5.9 ff  Cout =  17.7 ff  Cmax = 237.4 ff  G =  291\nABC: Path 80 --    7293 : 3    2 MUX2_X1   A =   1.86  Df =3689.8  -17.3 ps  S =  17.6 ps  Cin =  1.2 ff  Cout =   5.8 ff  Cmax =  60.5 ff  G =  452\nABC: Path 81 --    7294 : 2    1 XOR2_X1   A =   1.60  Df =3746.6  -27.3 ps  S =  21.3 ps  Cin =  2.3 ff  Cout =   1.6 ff  Cmax =  25.3 ff  G =   69\nABC: Path 82 --    7296 : 5    1 AOI221_X1 A =   1.60  Df =3824.4  -39.7 ps  S =  41.2 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  13.8 ff  G =   99\nABC: Path 83 --    7298 : 3    1 OAI21_X1  A =   1.06  Df =3843.7  -26.8 ps  S =  19.1 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  26.1 ff  G =   99\nABC: Path 84 --    7301 : 4    1 AOI22_X1  A =   1.33  Df =3894.2  -52.4 ps  S =  31.4 ps  Cin =  1.6 ff  Cout =   3.2 ff  Cmax =  24.6 ff  G =  184\nABC: Path 85 --    7303 : 4    1 OAI22_X2  A =   2.39  Df =3921.7  -31.0 ps  S =  38.2 ps  Cin =  3.1 ff  Cout =   6.7 ff  Cmax =  46.3 ff  G =  198\nABC: Path 86 --    7304 : 3    6 AOI21_X4  A =   3.46  Df =3960.1  -46.8 ps  S =  26.6 ps  Cin =  6.0 ff  Cout =  11.0 ff  Cmax = 101.0 ff  G =  174\nABC: Path 87 --    7305 : 2    2 OR2_X4    A =   2.39  Df =3987.4  -26.4 ps  S =   7.8 ps  Cin =  3.2 ff  Cout =   4.4 ff  Cmax = 242.3 ff  G =  129\nABC: Path 88 --    7306 : 1   10 BUF_X4    A =   1.86  Df =4015.7  -25.8 ps  S =  14.2 ps  Cin =  3.2 ff  Cout =  19.6 ff  Cmax = 242.3 ff  G =  587\nABC: Path 89 --    7321 : 3    1 MUX2_X1   A =   1.86  Df =4067.2  -20.2 ps  S =   9.9 ps  Cin =  1.2 ff  Cout =   1.7 ff  Cmax =  60.5 ff  G =  129\nABC: Path 90 --    7322 : 2    1 NOR2_X1   A =   0.80  Df =4076.4   -1.0 ps  S =  15.4 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  26.7 ff  G =  100\nABC: Path 91 --    7340 : 5    1 AOI221_X1 A =   1.60  Df =4145.1  -20.9 ps  S =  41.2 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  13.8 ff  G =   99\nABC: Path 92 --    7342 : 3    1 OAI21_X1  A =   1.06  Df =4164.5   -8.0 ps  S =  19.1 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  26.1 ff  G =   99\nABC: Path 93 --    7345 : 4    1 AOI22_X1  A =   1.33  Df =4215.8  -33.0 ps  S =  32.2 ps  Cin =  1.6 ff  Cout =   3.3 ff  Cmax =  24.6 ff  G =  210\nABC: Path 94 --    7346 : 3    7 OAI21_X2  A =   1.86  Df =4245.3  -13.2 ps  S =  32.0 ps  Cin =  3.1 ff  Cout =   9.3 ff  Cmax =  52.1 ff  G =  290\nABC: Path 95 --    7348 : 2    7 NAND2_X1  A =   0.80  Df =4291.0  -15.5 ps  S =  34.9 ps  Cin =  1.6 ff  Cout =  12.9 ff  Cmax =  59.4 ff  G =  792\nABC: Path 96 --    7379 : 3    1 MUX2_X1   A =   1.86  Df =4351.6  -15.9 ps  S =   9.7 ps  Cin =  1.2 ff  Cout =   1.7 ff  Cmax =  60.5 ff  G =  124\nABC: Path 97 --    7381 : 4    1 OAI22_X1  A =   1.33  Df =4373.2   -3.2 ps  S =  29.1 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  23.2 ff  G =  102\nABC: Path 98 --    7383 : 6    1 OAI222_X1 A =   2.13  Df =4443.1  -26.1 ps  S =  45.7 ps  Cin =  1.5 ff  Cout =   1.6 ff  Cmax =  20.1 ff  G =  100\nABC: Path 99 --    7385 : 3    1 AOI21_X1  A =   1.06  Df =4472.9  -36.7 ps  S =  21.3 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  25.3 ff  G =  100\nABC: Path100 --    7388 : 3    1 OAI21_X1  A =   1.06  Df =4492.6  -20.2 ps  S =  25.0 ps  Cin =  1.6 ff  Cout =   3.1 ff  Cmax =  26.1 ff  G =  186\nABC: Path101 --    7390 : 3    1 AOI21_X2  A =   1.86  Df =4519.1  -30.2 ps  S =  20.8 ps  Cin =  3.1 ff  Cout =   3.2 ff  Cmax =  50.7 ff  G =   94\nABC: Path102 --    7394 : 4    3 OAI22_X2  A =   2.39  Df =4545.2   -7.3 ps  S =  39.5 ps  Cin =  3.1 ff  Cout =   7.2 ff  Cmax =  46.3 ff  G =  222\nABC: Path103 --    7395 : 1   10 BUF_X4    A =   1.86  Df =4577.4   -5.1 ps  S =  13.4 ps  Cin =  3.2 ff  Cout =  17.6 ff  Cmax = 242.3 ff  G =  527\nABC: Path104 --    7423 : 3    4 MUX2_X1   A =   1.86  Df =4643.5   -8.3 ps  S =  17.9 ps  Cin =  1.2 ff  Cout =   6.0 ff  Cmax =  60.5 ff  G =  460\nABC: Path105 --    7424 : 4    2 OAI211_X1 A =   1.33  Df =4671.5   -5.3 ps  S =  24.8 ps  Cin =  1.6 ff  Cout =   2.6 ff  Cmax =  25.6 ff  G =  160\nABC: Path106 --    7425 : 3    1 AND3_X1   A =   1.33  Df =4717.4  -12.9 ps  S =  10.2 ps  Cin =  0.9 ff  Cout =   1.6 ff  Cmax =  60.4 ff  G =  168\nABC: Path107 --    7429 : 4    1 OAI211_X1 A =   1.33  Df =4735.4   -2.9 ps  S =  20.3 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  25.6 ff  G =   99\nABC: Path108 --    7431 : 3    1 AOI21_X1  A =   1.06  Df =4770.3  -18.3 ps  S =  28.1 ps  Cin =  1.6 ff  Cout =   3.1 ff  Cmax =  25.3 ff  G =  186\nABC: Path109 --    7434 : 3    1 OAI21_X2  A =   1.86  Df =4791.8   -4.5 ps  S =  25.3 ps  Cin =  3.1 ff  Cout =   6.4 ff  Cmax =  52.1 ff  G =  194\nABC: Path110 --    7436 : 3    3 AOI21_X4  A =   3.46  Df =4823.1  -16.9 ps  S =  24.9 ps  Cin =  6.0 ff  Cout =   9.5 ff  Cmax = 101.0 ff  G =  148\nABC: Path111 --    7440 : 3    5 OAI21_X4  A =   3.46  Df =4844.1   -1.3 ps  S =  25.1 ps  Cin =  6.1 ff  Cout =  12.6 ff  Cmax = 104.1 ff  G =  196\nABC: Path112 --    7480 : 3    1 MUX2_X1   A =   1.86  Df =4906.5   -2.0 ps  S =  12.7 ps  Cin =  1.2 ff  Cout =   3.4 ff  Cmax =  60.5 ff  G =  258\nABC: Path113 --    7481 : 1   10 BUF_X4    A =   1.86  Df =4941.3   -0.4 ps  S =  20.4 ps  Cin =  3.2 ff  Cout =  30.6 ff  Cmax = 242.3 ff  G =  910\nABC: Path114 --   12810 : 2    2 XNOR2_X1  A =   1.60  Df =5005.5   -7.7 ps  S =  47.7 ps  Cin =  2.3 ff  Cout =   8.0 ff  Cmax =  26.0 ff  G =  329\nABC: Path115 --   12815 : 3    2 AOI21_X2  A =   1.86  Df =5045.0   -9.1 ps  S =  25.9 ps  Cin =  3.1 ff  Cout =   4.9 ff  Cmax =  50.7 ff  G =  149\nABC: Path116 --   12816 : 3    2 OAI21_X1  A =   1.06  Df =5078.5   -9.4 ps  S =  25.7 ps  Cin =  1.6 ff  Cout =   3.3 ff  Cmax =  26.1 ff  G =  197\nABC: Path117 --   12836 : 3    2 AOI21_X1  A =   1.06  Df =5110.2  -10.3 ps  S =  29.1 ps  Cin =  1.6 ff  Cout =   3.3 ff  Cmax =  25.3 ff  G =  201\nABC: Path118 --   12847 : 3    1 OAI21_X1  A =   1.06  Df =5127.9   -0.5 ps  S =  18.2 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  26.1 ff  G =   98\nABC: Path119 --   12848 : 3    2 AOI21_X1  A =   1.06  Df =5177.1  -25.7 ps  S =  37.4 ps  Cin =  1.6 ff  Cout =   5.1 ff  Cmax =  25.3 ff  G =  308\nABC: Path120 --   12906 : 3    2 OAI21_X1  A =   1.06  Df =5198.9   -8.4 ps  S =  22.6 ps  Cin =  1.6 ff  Cout =   2.6 ff  Cmax =  26.1 ff  G =  159\nABC: Path121 --   12907 : 1   10 BUF_X1    A =   0.80  Df =5252.6   -5.0 ps  S =  40.4 ps  Cin =  0.9 ff  Cout =  16.5 ff  Cmax =  60.7 ff  G = 1694\nABC: Path122 --   12989 : 4    9 NAND4_X1  A =   1.33  Df =5342.6  -34.6 ps  S =  57.6 ps  Cin =  1.6 ff  Cout =  14.9 ff  Cmax =  56.0 ff  G =  915\nABC: Path123 --   18403 : 2    2 NOR2_X1   A =   0.80  Df =5392.2  -67.7 ps  S =  24.2 ps  Cin =  1.6 ff  Cout =   2.6 ff  Cmax =  26.7 ff  G =  157\nABC: Path124 --   18749 : 3    1 OR3_X1    A =   1.33  Df =5472.3  -73.0 ps  S =  12.1 ps  Cin =  0.9 ff  Cout =   0.9 ff  Cmax =  60.6 ff  G =  101\nABC: Path125 --   18750 : 4    1 OR4_X1    A =   1.60  Df =5512.8  -16.6 ps  S =  16.1 ps  Cin =  0.9 ff  Cout =   0.9 ff  Cmax =  60.6 ff  G =  100\nABC: Path126 --   18758 : 4    1 OR4_X1    A =   1.60  Df =5616.1  -45.9 ps  S =  17.2 ps  Cin =  0.9 ff  Cout =   1.7 ff  Cmax =  60.6 ff  G =  186\nABC: Path127 --   18759 : 3    1 OR3_X2    A =   1.60  Df =5691.9  -96.4 ps  S =  11.4 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax = 121.2 ff  G =   97\nABC: Path128 --   18761 : 3    1 OAI21_X1  A =   1.06  Df =5710.7  -96.9 ps  S =  11.0 ps  Cin =  1.6 ff  Cout =   0.0 ff  Cmax =  26.1 ff  G =    0\nABC: Start-point = pi19 (\\_find_min_lo_scores_in_T_8 [9]).  End-point = po626 ($auto$rtlil.cc:2669:MuxGate$314448).\nABC: + write_blif /tmp/fast-rq1-17874649/yosys-abc-pRaQpr/output.blif\n\n10.1.2. Re-integrating ABC results.\nABC RESULTS:            INV_X2 cells:        2\nABC RESULTS:         AOI221_X2 cells:        1\nABC RESULTS:            INV_X8 cells:        2\nABC RESULTS:          NAND3_X2 cells:        1\nABC RESULTS:         OAI221_X2 cells:        2\nABC RESULTS:          AOI22_X2 cells:        1\nABC RESULTS:          NAND2_X4 cells:        1\nABC RESULTS:            OR2_X4 cells:        2\nABC RESULTS:           XOR2_X2 cells:        1\nABC RESULTS:          OAI21_X4 cells:        3\nABC RESULTS:         AOI211_X4 cells:        1\nABC RESULTS:            BUF_X8 cells:        2\nABC RESULTS:          NAND4_X2 cells:        1\nABC RESULTS:          OAI22_X2 cells:        8\nABC RESULTS:         CLKBUF_X2 cells:        1\nABC RESULTS:          AOI21_X4 cells:        6\nABC RESULTS:            BUF_X4 cells:       26\nABC RESULTS:         CLKBUF_X3 cells:        1\nABC RESULTS:            OR2_X2 cells:        5\nABC RESULTS:         OAI211_X2 cells:        3\nABC RESULTS:          XNOR2_X2 cells:       13\nABC RESULTS:         AOI211_X2 cells:       13\nABC RESULTS:          OAI21_X2 cells:       15\nABC RESULTS:           NOR3_X4 cells:        1\nABC RESULTS:           NOR4_X2 cells:       18\nABC RESULTS:          NAND2_X2 cells:        9\nABC RESULTS:           AND2_X2 cells:        1\nABC RESULTS:          AOI21_X2 cells:       41\nABC RESULTS:            OR3_X2 cells:        6\nABC RESULTS:            OR4_X2 cells:        4\nABC RESULTS:           NOR3_X2 cells:       13\nABC RESULTS:           NOR2_X2 cells:       15\nABC RESULTS:            BUF_X2 cells:       78\nABC RESULTS:         AOI222_X1 cells:       29\nABC RESULTS:          _const0_ cells:       20\nABC RESULTS:         OAI222_X1 cells:       20\nABC RESULTS:          OAI33_X1 cells:       40\nABC RESULTS:         AOI221_X1 cells:      257\nABC RESULTS:           AND4_X1 cells:      107\nABC RESULTS:           MUX2_X1 cells:      542\nABC RESULTS:         CLKBUF_X1 cells:      207\nABC RESULTS:          NAND3_X1 cells:      755\nABC RESULTS:           XOR2_X1 cells:      758\nABC RESULTS:            OR2_X1 cells:      530\nABC RESULTS:         OAI221_X1 cells:      216\nABC RESULTS:         OAI211_X1 cells:      709\nABC RESULTS:          AOI22_X1 cells:      731\nABC RESULTS:          XNOR2_X1 cells:     1128\nABC RESULTS:          OAI21_X1 cells:     2379\nABC RESULTS:            OR3_X1 cells:      217\nABC RESULTS:           NOR3_X1 cells:      778\nABC RESULTS:          OAI22_X1 cells:      551\nABC RESULTS:         AOI211_X1 cells:      820\nABC RESULTS:            INV_X1 cells:     1510\nABC RESULTS:          NAND2_X1 cells:     3252\nABC RESULTS:           NOR4_X1 cells:      730\nABC RESULTS:          NAND4_X1 cells:      867\nABC RESULTS:            OR4_X1 cells:      187\nABC RESULTS:           NOR2_X1 cells:     3767\nABC RESULTS:           AND3_X1 cells:      136\nABC RESULTS:          AOI21_X1 cells:     2316\nABC RESULTS:            BUF_X1 cells:     1065\nABC RESULTS:           AND2_X1 cells:     1140\nABC RESULTS:        internal signals:    61739\nABC RESULTS:           input signals:     3681\nABC RESULTS:          output signals:     3019\nRemoving temp directory.\n(hammer) setundef -zero\n\n11. Executing SETUNDEF pass (replace undef values with defined constants).\n(hammer) splitnets\n\n12. Executing SPLITNETS pass (splitting up multi-bit signals).\n(hammer) opt_clean -purge\n\n13. Executing OPT_CLEAN pass (remove unused cells and wires).\nFinding unused cells or wires in module \\Rq1BlockNmTop..\nRemoved 0 unused cells and 73473 unused wires.\n(hammer) hilomap -singleton\n<suppressed ~5431 debug messages>\n\n14. Executing HILOMAP pass (mapping to constant drivers).\n(hammer) tee -o /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/syn-rundir/Rq1BlockNmTop.synth_check.rpt check\n\n15. Executing CHECK pass (checking for obvious problems).\n(hammer) tee -o /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/syn-rundir/Rq1BlockNmTop.synth_stat.txt stat -top Rq1BlockNmTop -liberty /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib\nChecking module Rq1BlockNmTop...\nFound and reported 0 problems.\n\n16. Printing statistics.\ncheck -assert\n\n=== Rq1BlockNmTop ===\n\n   Number of wires:              32054\n   Number of wire bits:          32345\n   Number of public wires:        2995\n   Number of public wire bits:    3286\n   Number of memories:               0\n   Number of memory bits:            0\n   Number of processes:              0\n   Number of cells:              29060\n     AND2_X1                      1140\n     AND2_X2                         1\n     AND3_X1                       136\n     AND4_X1                       107\n     AOI211_X1                     820\n     AOI211_X2                      13\n     AOI211_X4                       1\n     AOI21_X1                     2316\n     AOI21_X2                       41\n     AOI21_X4                        6\n     AOI221_X1                     257\n     AOI221_X2                       1\n     AOI222_X1                      29\n     AOI22_X1                      731\n     AOI22_X2                        1\n     BUF_X1                       1065\n     BUF_X2                         78\n     BUF_X4                         26\n     BUF_X8                          2\n     CLKBUF_X1                     207\n     CLKBUF_X2                       1\n     CLKBUF_X3                       1\n     DFF_X1                       3018\n     INV_X1                       1510\n     INV_X2                          2\n     INV_X8                          2\n     LOGIC0_X1                       1\n     MUX2_X1                       542\n     NAND2_X1                     3252\n     NAND2_X2                        9\n     NAND2_X4                        1\n     NAND3_X1                      755\n     NAND3_X2                        1\n     NAND4_X1                      867\n     NAND4_X2                        1\n     NOR2_X1                      3767\n     NOR2_X2                        15\n     NOR3_X1                       778\n     NOR3_X2                        13\n     NOR3_X4                         1\n     NOR4_X1                       730\n     NOR4_X2                        18\n     OAI211_X1                     709\n     OAI211_X2                       3\n     OAI21_X1                     2379\n     OAI21_X2                       15\n     OAI21_X4                        3\n     OAI221_X1                     216\n     OAI221_X2                       2\n     OAI222_X1                      20\n     OAI22_X1                      551\n     OAI22_X2                        8\n     OAI33_X1                       40\n     OR2_X1                        530\n     OR2_X2                          5\n     OR2_X4                          2\n     OR3_X1                        217\n     OR3_X2                          6\n     OR4_X1                        187\n     OR4_X2                          4\n     XNOR2_X1                     1128\n     XNOR2_X2                       13\n     XOR2_X1                       758\n     XOR2_X2                         1\n\n   Chip area for module '\\Rq1BlockNmTop': 41755.616000\n\n17. Executing CHECK pass (checking for obvious problems).\nselect -assert-none {t:$*}\n(hammer) write_verilog -noattr -noexpr -nohex -nodec -defparam \"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/syn-rundir/Rq1BlockNmTop.mapped.v\"\nChecking module Rq1BlockNmTop...\nFound and reported 0 problems.\n\n18. Executing Verilog backend.\nDumping module `\\Rq1BlockNmTop'.\n\u001b[96m[synthesis] Did not run write_regs\u001b[0m\nAction syn config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/syn-output.json\n",
+          "wall_seconds": 129.05372087843716,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/hammer_driver.py",
+            "syn",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/config.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/syn-output.json"
+          ]
+        },
+        "syn-to-par": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/syn-to-par.log",
+          "diagnostics": "\u001b[96m[<global>] Loading hammer-vlsi libraries and reading settings\u001b[0m\n\u001b[96m[<global>] Loading technology 'hammer.technology.nangate45'\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\nAction syn-to-par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/par-input.json\n",
+          "wall_seconds": 0.7816380327567458,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/hammer_driver.py",
+            "syn-to-par",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/config.json",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/syn-output.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/par-input.json"
+          ]
+        },
+        "par": {
+          "passed": false,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/par.log",
+          "diagnostics": "Tool timeout after 3600s: Command '['/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python', '/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/hammer_driver.py', 'par', '-p', '/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/config.json', '-p', '/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/par-input.json', '--obj_dir', '/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer', '-o', '/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/par-output.json']' timed out after 3600 seconds",
+          "wall_seconds": 3600.2193699283525,
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/hammer_driver.py",
+            "par",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/config.json",
+            "-p",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/par-input.json",
+            "--obj_dir",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer",
+            "-o",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_v2_20260916/rq1_block_nm/round_01/build_01/hammer/par-output.json"
+          ]
+        },
+        "error": "Hammer par failed"
+      },
+      "status": "ppa_failed",
+      "critique": null,
+      "critique_applied": false
+    }
+  ],
+  "qualified_pareto_rounds": [],
+  "algorithm": "rq1_block_nm",
+  "error": null,
+  "agent_calls": {
+    "kernel": 1,
+    "compiler": 5,
+    "critic": 0,
+    "uarch": 3,
+    "uarch_assembly": 5,
+    "compiler_diagnosis": 4
+  },
+  "search_pareto_rounds": [],
+  "call_costs": [
+    {
+      "path": "agent_calls/compiler/0001.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 67.78174042701721,
+      "usage": {
+        "prompt_token_count": 16176,
+        "candidates_token_count": 45,
+        "thoughts_token_count": 4895,
+        "cached_content_token_count": null,
+        "total_token_count": 21116
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0002.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 154.79767107963562,
+      "usage": {
+        "prompt_token_count": 118881,
+        "candidates_token_count": 4618,
+        "thoughts_token_count": 11610,
+        "cached_content_token_count": null,
+        "total_token_count": 135109
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0003.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 97.05218982696533,
+      "usage": {
+        "prompt_token_count": 122998,
+        "candidates_token_count": 4877,
+        "thoughts_token_count": 8071,
+        "cached_content_token_count": null,
+        "total_token_count": 135946
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0004.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 79.51169633865356,
+      "usage": {
+        "prompt_token_count": 123441,
+        "candidates_token_count": 4893,
+        "thoughts_token_count": 6253,
+        "cached_content_token_count": null,
+        "total_token_count": 134587
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/compiler/0005.json",
+      "role": "compiler",
+      "success": true,
+      "wall_seconds": 78.36230444908142,
+      "usage": {
+        "prompt_token_count": 127652,
+        "candidates_token_count": 4893,
+        "thoughts_token_count": 5679,
+        "cached_content_token_count": null,
+        "total_token_count": 138224
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/kernel/0001.json",
+      "role": "kernel",
+      "success": true,
+      "wall_seconds": 51.18728303909302,
+      "usage": {
+        "prompt_token_count": 5553,
+        "candidates_token_count": 164,
+        "thoughts_token_count": 1211,
+        "cached_content_token_count": null,
+        "total_token_count": 6928
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/DividerWrapper/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 39.08339333534241,
+      "usage": {
+        "prompt_token_count": 25842,
+        "candidates_token_count": 778,
+        "thoughts_token_count": 3150,
+        "cached_content_token_count": null,
+        "total_token_count": 29770
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/DividerWrapper/uarch/0002.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 43.83613967895508,
+      "usage": {
+        "prompt_token_count": 27121,
+        "candidates_token_count": 849,
+        "thoughts_token_count": 3982,
+        "cached_content_token_count": null,
+        "total_token_count": 31952
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/FindMin8/uarch/0001.json",
+      "role": "uarch",
+      "success": true,
+      "wall_seconds": 41.64856672286987,
+      "usage": {
+        "prompt_token_count": 16203,
+        "candidates_token_count": 953,
+        "thoughts_token_count": 3812,
+        "cached_content_token_count": null,
+        "total_token_count": 20968
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/Rq1BlockNmTop/uarch_assembly/0001.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 158.8737280368805,
+      "usage": {
+        "prompt_token_count": 20944,
+        "candidates_token_count": 3158,
+        "thoughts_token_count": 16536,
+        "cached_content_token_count": null,
+        "total_token_count": 40638
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/Rq1BlockNmTop/uarch_assembly/0002.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 108.78664469718933,
+      "usage": {
+        "prompt_token_count": 27052,
+        "candidates_token_count": 5280,
+        "thoughts_token_count": 10603,
+        "cached_content_token_count": null,
+        "total_token_count": 42935
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/Rq1BlockNmTop/uarch_assembly/0003.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 156.7060797214508,
+      "usage": {
+        "prompt_token_count": 33577,
+        "candidates_token_count": 4972,
+        "thoughts_token_count": 14578,
+        "cached_content_token_count": null,
+        "total_token_count": 53127
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/Rq1BlockNmTop/uarch_assembly/0004.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 138.04780387878418,
+      "usage": {
+        "prompt_token_count": 39594,
+        "candidates_token_count": 4962,
+        "thoughts_token_count": 14112,
+        "cached_content_token_count": null,
+        "total_token_count": 58668
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/Rq1BlockNmTop/uarch_assembly/0005.json",
+      "role": "uarch_assembly",
+      "success": true,
+      "wall_seconds": 160.32279682159424,
+      "usage": {
+        "prompt_token_count": 45227,
+        "candidates_token_count": 4951,
+        "thoughts_token_count": 16296,
+        "cached_content_token_count": null,
+        "total_token_count": 66474
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/compiler_diagnosis/0001.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 27.772575616836548,
+      "usage": {
+        "prompt_token_count": 17351,
+        "candidates_token_count": 430,
+        "thoughts_token_count": 2507,
+        "cached_content_token_count": null,
+        "total_token_count": 20288
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/compiler_diagnosis/0002.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 24.922508001327515,
+      "usage": {
+        "prompt_token_count": 18597,
+        "candidates_token_count": 415,
+        "thoughts_token_count": 2462,
+        "cached_content_token_count": null,
+        "total_token_count": 21474
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/compiler_diagnosis/0003.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 28.085707664489746,
+      "usage": {
+        "prompt_token_count": 17916,
+        "candidates_token_count": 548,
+        "thoughts_token_count": 2684,
+        "cached_content_token_count": null,
+        "total_token_count": 21148
+      },
+      "error": null
+    },
+    {
+      "path": "agent_calls/round_01/build_01/compiler_diagnosis/0004.json",
+      "role": "compiler_diagnosis",
+      "success": true,
+      "wall_seconds": 24.88814353942871,
+      "usage": {
+        "prompt_token_count": 17903,
+        "candidates_token_count": 443,
+        "thoughts_token_count": 2437,
+        "cached_content_token_count": null,
+        "total_token_count": 20783
+      },
+      "error": null
+    }
+  ],
+  "token_totals": {
+    "prompt_token_count": 822028,
+    "candidates_token_count": 47229,
+    "thoughts_token_count": 130878,
+    "total_token_count": 1000135
+  },
+  "calls_missing_usage": 0
+}

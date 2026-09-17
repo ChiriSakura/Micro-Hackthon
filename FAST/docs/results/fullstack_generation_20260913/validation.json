@@ -1,0 +1,10 @@
+{
+  "full_pytest": "464 passed in 105.18s (0:01:45)",
+  "v6_rounds": 2,
+  "v6_pareto_rounds": [
+    2
+  ],
+  "v6_reference_integrity": true,
+  "selected_design_revalidation_matches": true,
+  "compiler_protocol_check_passed": true
+}

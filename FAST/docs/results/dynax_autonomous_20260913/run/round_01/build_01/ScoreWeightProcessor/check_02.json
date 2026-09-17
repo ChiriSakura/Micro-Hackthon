@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/module_lint.log",
+  "diagnostics": "- V e r i l a t i o n   R e p o r t: Verilator 5.052 2026-09-05 rev v5.052\n- Verilator: Built from 0.170 MB sources in 2 modules, into 1.165 MB in 3 C++ files needing 0.000 MB\n- Verilator: Walltime 0.169 s (elab=0.033, cvt=0.085, bld=0.000); cpu 0.117 s on 1 threads; allocated 33.000 MB\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted/ScoreWeightProcessor.v:84:14: Bits of signal are not used: '_deltas_s1_0_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   84 |   wire [8:0] _deltas_s1_0_T_3 = $signed(h) - $signed(scores_s1_0);  \n      |              ^~~~~~~~~~~~~~~~\n                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.052\n                       ... Use \"/* verilator lint_off UNUSEDSIGNAL */\" and lint_on around source to disable this message.\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted/ScoreWeightProcessor.v:86:14: Bits of signal are not used: '_deltas_s1_1_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   86 |   wire [8:0] _deltas_s1_1_T_3 = $signed(h) - $signed(scores_s1_1);  \n      |              ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted/ScoreWeightProcessor.v:88:14: Bits of signal are not used: '_deltas_s1_2_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   88 |   wire [8:0] _deltas_s1_2_T_3 = $signed(h) - $signed(scores_s1_2);  \n      |              ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted/ScoreWeightProcessor.v:90:14: Bits of signal are not used: '_deltas_s1_3_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   90 |   wire [8:0] _deltas_s1_3_T_3 = $signed(h) - $signed(scores_s1_3);  \n      |              ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted/ScoreWeightProcessor.v:92:14: Bits of signal are not used: '_deltas_s1_4_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   92 |   wire [8:0] _deltas_s1_4_T_3 = $signed(h) - $signed(scores_s1_4);  \n      |              ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted/ScoreWeightProcessor.v:94:14: Bits of signal are not used: '_deltas_s1_5_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   94 |   wire [8:0] _deltas_s1_5_T_3 = $signed(h) - $signed(scores_s1_5);  \n      |              ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted/ScoreWeightProcessor.v:96:14: Bits of signal are not used: '_deltas_s1_6_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   96 |   wire [8:0] _deltas_s1_6_T_3 = $signed(h) - $signed(scores_s1_6);  \n      |              ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted/ScoreWeightProcessor.v:98:14: Bits of signal are not used: '_deltas_s1_7_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   98 |   wire [8:0] _deltas_s1_7_T_3 = $signed(h) - $signed(scores_s1_7);  \n      |              ^~~~~~~~~~~~~~~~\n",
+  "wall_seconds": 0.9869299679994583,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "verilator",
+    "--lint-only",
+    "--Wall",
+    "-Wno-fatal",
+    "--top-module",
+    "ScoreWeightProcessor",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted/ScoreWeightProcessor.v"
+  ],
+  "elaboration": {
+    "passed": true,
+    "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/chisel_elaboration.log",
+    "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+    "wall_seconds": 5.925353079102933,
+    "command": [
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+      "run",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/ScoreWeightProcessor.scala",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/FASTGeneratedElaborate.scala",
+      "--workspace",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/scala_build",
+      "--server=false",
+      "--main-class",
+      "FASTGeneratedElaborate",
+      "--",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted"
+    ],
+    "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted/ScoreWeightProcessor.v",
+    "elaborated_sha256": "83a2795156dd85593c7baa1b39d25605f652269c3ced2dbca2f7cb183c1e9d58"
+  },
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/emitted/ScoreWeightProcessor.v",
+  "scope": "structure and frozen Compiler functional vectors; not independent algorithm equivalence",
+  "functional": {
+    "passed": true,
+    "stage": "simulation",
+    "simulation": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/functional/e2e_sim.log",
+      "diagnostics": "FAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_PASS cases=4\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/functional/trusted_testbench.sv:405: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 705ps; walltime 0.001 s; speed 792.560 ns/s\n- Verilator: cpu 0.000 s on 1 threads; allocated 3 MB\n",
+      "wall_seconds": 0.3991890186443925,
+      "command": [
+        "apptainer",
+        "exec",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/ScoreWeightProcessor/check_02/functional/obj_dir/VFASTTestbench"
+      ]
+    },
+    "cases": 4,
+    "expected_cases": 4,
+    "testbench_sha256": "04967378434ae8776704636382f9c5a948fd45df6f0fbb21962d3fd1f72d6c84",
+    "coverage": "Compiler-authored module scenarios; cycle marker is a case counter, not performance evidence"
+  },
+  "test_oracle": "computed executable behavior contract"
+}

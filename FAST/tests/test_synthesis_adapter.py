@@ -197,7 +197,7 @@ def test_the_script_maps_flipflops_before_asking_abc_for_area(tmp_path):
 def test_repeated_synthesis_of_one_module_is_cached(tmp_path):
     adapter = _adapter(tmp_path)
     recorded = SynthesisResult(True, "X", "nangate45", 1.0, 1)
-    adapter._cache[(str(tmp_path / "x.v"), "X")] = recorded
+    adapter._cache[(str(tmp_path / "x.v"), "X", False)] = recorded
 
     assert adapter.synthesize(tmp_path / "x.v", "X") is recorded
 

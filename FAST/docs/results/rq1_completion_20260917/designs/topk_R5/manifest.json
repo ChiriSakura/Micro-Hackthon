@@ -1,0 +1,38 @@
+{
+  "scope": "original_trajectory",
+  "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk",
+  "round": 5,
+  "record_sha256": "a7400d2449a7688a73c3e59678aebcda0b9767dcae2d93f161e769bd714e80b4",
+  "files": [
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/ScoreCalculator/ScoreCalculator.scala",
+      "exported": "generated/ScoreCalculator.scala",
+      "sha256": "386d8ddbae6ac17431c28c4c8fbfb8bdee0116869a76357c8222558cf52ef04e",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/ExpLut/ExpLut.scala",
+      "exported": "generated/ExpLut.scala",
+      "sha256": "affd5001a7cfc778634be411da54a1b82fe6f377f84101bf9a66a90f32d3281e",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/FinalDivider/FinalDivider.scala",
+      "exported": "generated/FinalDivider.scala",
+      "sha256": "a3052df70595f53f7b1234354785b033794a84a09f3a7f70411a5f4177231c6a",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/rq1_global_topk/rq1_global_topk.scala",
+      "exported": "generated/rq1_global_topk.scala",
+      "sha256": "d7c046d6a65792bc55a8b5db595f89004ddf660a11956c8e4eef6ac2f470c0a0",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/rq1_global_topk/check_02/emitted/rq1_global_topk.v",
+      "exported": "rtl/rq1_global_topk.v",
+      "sha256": "3357744554a633433926319f548161cce3f53906f85eb7f58561805483d0501d",
+      "kind": "rtl_sources"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+FIRRTL version 1.2.0
+circuit Summer :
+  module Summer :
+    input weights_in : UInt<36> @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 4:22]
+    input weighted_vs_in : UInt<52> @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 5:26]
+    output sum_w_out : UInt<11> @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 6:21]
+    output sum_wv_out : UInt<15> @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 7:22]
+
+    node w0 = bits(weights_in, 8, 0) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 10:22]
+    node w1 = bits(weights_in, 17, 9) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 11:22]
+    node w2 = bits(weights_in, 26, 18) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 12:22]
+    node w3 = bits(weights_in, 35, 27) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 13:22]
+    node wv0 = bits(weighted_vs_in, 12, 0) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 16:27]
+    node wv1 = bits(weighted_vs_in, 25, 13) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 17:27]
+    node wv2 = bits(weighted_vs_in, 38, 26) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 18:27]
+    node wv3 = bits(weighted_vs_in, 51, 39) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 19:27]
+    node _sum_w_01_T = add(w0, w1) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 23:21]
+    node sum_w_01 = tail(_sum_w_01_T, 1) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 23:21]
+    node _sum_w_23_T = add(w2, w3) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 24:21]
+    node sum_w_23 = tail(_sum_w_23_T, 1) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 24:21]
+    node _sum_w_out_T = add(sum_w_01, sum_w_23) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 27:25]
+    node _sum_w_out_T_1 = tail(_sum_w_out_T, 1) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 27:25]
+    sum_w_out <= _sum_w_out_T_1 @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 27:13]
+    node _sum_wv_01_T = add(wv0, wv1) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 31:23]
+    node sum_wv_01 = tail(_sum_wv_01_T, 1) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 31:23]
+    node _sum_wv_23_T = add(wv2, wv3) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 32:23]
+    node sum_wv_23 = tail(_sum_wv_23_T, 1) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 32:23]
+    node _sum_wv_out_T = add(sum_wv_01, sum_wv_23) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 35:27]
+    node _sum_wv_out_T_1 = tail(_sum_wv_out_T, 1) @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 35:27]
+    sum_wv_out <= _sum_wv_out_T_1 @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala 35:14]
+

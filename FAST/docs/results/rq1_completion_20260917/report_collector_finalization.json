@@ -1,0 +1,5 @@
+{
+  "utc": "2026-09-17T08:03:51.300753+00:00",
+  "cancelled_pending_job": "17912913",
+  "reason": "Collector used superseded v7 reporting bundle; final reports will be generated from newly frozen latest tools after all outputs are verified."
+}

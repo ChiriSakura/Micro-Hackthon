@@ -1,0 +1,187 @@
+[
+  {
+    "time_unix": 1789276754.683341,
+    "stage": "round_start",
+    "round": 1,
+    "reentry": "kernel"
+  },
+  {
+    "time_unix": 1789276754.7116637,
+    "stage": "kernel",
+    "attempt": 1
+  },
+  {
+    "time_unix": 1789276773.8570695,
+    "stage": "kernel_profile",
+    "choice": {
+      "config": {
+        "threshold": 64
+      },
+      "rationale": "The task constraint `max_quality_loss` is 0.15. Analyzing the measured profiles, `threshold: 128` (quality_loss=0.21) and `threshold: 192` (quality_loss=0.34) are eliminated as they exceed this constraint. The remaining legal configurations are `threshold: 0` (quality_loss=0.0, sparsity=0.016) and `threshold: 64` (quality_loss=0.07, sparsity=0.316). The prompt encourages exploring energy-latency tradeoffs. Higher sparsity reduces the number of active keys, which can lead to significant energy and latency savings in the hardware implementation. Since `threshold: 64` offers substantially higher sparsity while its quality loss is well within the allowed budget, it is the superior choice for co-designing an efficient accelerator."
+    },
+    "profile": {
+      "config": {
+        "threshold": 64
+      },
+      "quality_loss": 0.07025641025641026,
+      "quality_metric": "mean absolute output error / 15 vs threshold=0",
+      "quality_scope": "260 deterministic synthetic profiling queries; not model perplexity",
+      "sparsity": 0.31634615384615383,
+      "active_keys_histogram": {
+        "0": 20,
+        "1": 27,
+        "2": 47,
+        "3": 74,
+        "4": 92
+      },
+      "samples": 260,
+      "seed": 17
+    }
+  },
+  {
+    "time_unix": 1789276773.8702269,
+    "stage": "compiler",
+    "build": 1,
+    "round_dir": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590231/round_01"
+  },
+  {
+    "time_unix": 1789276899.1003923,
+    "stage": "uarch",
+    "module": "ScoreAndWeightUnit",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789276935.0796034,
+    "stage": "module_check",
+    "module": "ScoreAndWeightUnit",
+    "passed": true
+  },
+  {
+    "time_unix": 1789276935.0949683,
+    "stage": "uarch",
+    "module": "Divider15by11",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789277085.7229366,
+    "stage": "module_check",
+    "module": "Divider15by11",
+    "passed": false
+  },
+  {
+    "time_unix": 1789277085.7320442,
+    "stage": "uarch",
+    "module": "Divider15by11",
+    "attempt": 2,
+    "build": 1
+  },
+  {
+    "time_unix": 1789277171.8770843,
+    "stage": "module_check",
+    "module": "Divider15by11",
+    "passed": true
+  },
+  {
+    "time_unix": 1789277171.8901494,
+    "stage": "uarch",
+    "module": "ThresholdAttention",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789277280.479281,
+    "stage": "module_repair",
+    "module": "ThresholdAttention",
+    "error": "Return exactly the requested Chisel class"
+  },
+  {
+    "time_unix": 1789277280.4890368,
+    "stage": "uarch",
+    "module": "ThresholdAttention",
+    "attempt": 2,
+    "build": 1
+  },
+  {
+    "time_unix": 1789277369.9618406,
+    "stage": "module_check",
+    "module": "ThresholdAttention",
+    "passed": true
+  },
+  {
+    "time_unix": 1789277370.0108745,
+    "stage": "e2e",
+    "build": 1
+  },
+  {
+    "time_unix": 1789277380.5105288,
+    "stage": "ppa",
+    "round": 1
+  },
+  {
+    "time_unix": 1789277383.355122,
+    "stage": "critic",
+    "round": 1
+  },
+  {
+    "time_unix": 1789277407.4071777,
+    "stage": "round_start",
+    "round": 2,
+    "reentry": "uarch"
+  },
+  {
+    "time_unix": 1789277407.4329634,
+    "stage": "uarch",
+    "module": "ScoreAndWeightUnit",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789277434.263707,
+    "stage": "module_check",
+    "module": "ScoreAndWeightUnit",
+    "passed": true
+  },
+  {
+    "time_unix": 1789277434.2776062,
+    "stage": "uarch",
+    "module": "Divider15by11",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789277494.321269,
+    "stage": "module_check",
+    "module": "Divider15by11",
+    "passed": true
+  },
+  {
+    "time_unix": 1789277494.334837,
+    "stage": "uarch",
+    "module": "ThresholdAttention",
+    "attempt": 1,
+    "build": 1
+  },
+  {
+    "time_unix": 1789277572.477757,
+    "stage": "module_check",
+    "module": "ThresholdAttention",
+    "passed": true
+  },
+  {
+    "time_unix": 1789277572.524853,
+    "stage": "e2e",
+    "build": 1
+  },
+  {
+    "time_unix": 1789277582.487447,
+    "stage": "ppa",
+    "round": 2
+  },
+  {
+    "time_unix": 1789277585.6907568,
+    "stage": "critic",
+    "round": 2
+  }
+]

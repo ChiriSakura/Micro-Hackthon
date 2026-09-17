@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/rebuild/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/rebuild/references as the project root directory for this run.\nwarning: 2 deprecations (since Chisel 3.6); re-run with -deprecation for details\nwarning: 10 feature warnings; re-run with -feature for details\n2 warnings\n",
+  "wall_seconds": 10.543633876368403,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/rebuild/references/004.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/rebuild/ScoreWeightProcessor.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/rebuild/SelectorAggregator.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/rebuild/FinalDivider.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/rebuild/DynaX_XM_Row_Top.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/rebuild/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/rebuild/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/rebuild/emitted"
+  ],
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_v8_holdout_17711657/rebuild/emitted/DynaX_XM_Row_Top.v",
+  "elaborated_sha256": "af7806a95d2118646b2632187236ac70be846b73122040158ea073369692f7af"
+}

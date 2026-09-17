@@ -1,0 +1,10 @@
+{
+  "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm",
+  "output": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm",
+  "published": "/home/gz2522/Micro-Hackthon/FAST/docs/results/block_nm_timing_repair_20260917/validation",
+  "snapshot": "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/block_nm_timing_repair_v1_20260917",
+  "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917.slurm",
+  "job_id": "17920156",
+  "post_guard_job_id": "17920184",
+  "post_guard_completed": "17920184"
+}

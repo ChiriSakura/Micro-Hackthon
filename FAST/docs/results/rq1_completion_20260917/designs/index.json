@@ -1,0 +1,41 @@
+[
+  {
+    "name": "dynax_R5",
+    "evidence_class": "original_trajectory",
+    "config": {
+      "n1": 7,
+      "n2": 4,
+      "t0_quarters": 2,
+      "t1_quarters": 0
+    },
+    "top": "Rq1DynaXm",
+    "files": 7
+  },
+  {
+    "name": "topk_R5",
+    "evidence_class": "original_trajectory",
+    "config": {
+      "k": 15
+    },
+    "top": "rq1_global_topk",
+    "files": 5
+  },
+  {
+    "name": "sanger_R1",
+    "evidence_class": "original_trajectory",
+    "config": {
+      "threshold_256": 3
+    },
+    "top": "SangerThresholdTop",
+    "files": 7
+  },
+  {
+    "name": "block_nm_A1",
+    "evidence_class": "assisted_repair",
+    "config": {
+      "n": 7
+    },
+    "top": "Rq1BlockNmTop",
+    "files": 5
+  }
+]

@@ -38,6 +38,15 @@ OUT="$ROOT/runs/synth_${SLURM_JOB_ID}"
 export APPTAINER_TMPDIR=/tmp APPTAINER_CACHEDIR=/tmp/apptainer-cache
 export PATH=/share/apps/openjdk/21.0.3/bin:$ROOT/tools:$PATH
 export COURSIER_CACHE="$ROOT/cache/coursier" SCALA_CLI_HOME="$ROOT/cache/scala-cli"
+# 每个作业用自己的 .scala-build。
+#
+# 共享的后果撞到过三次：所有作业都从同一个仓库路径跑 `scala-cli run chisel`，
+# 于是并发提交时它们编译进**同一个** FAST/hardware/chisel/.scala-build。
+# 表现是随机一两个作业报 `FAIL: predict_unit/PrePEArray_1_2` 或干脆不产出
+# ELABORATE 行——看起来像 RTL 坏了，串行重跑就全过。
+export SCALA_BUILD_WS="${TMPDIR:-/tmp}/scala-build-${SLURM_JOB_ID:-$$}"
+mkdir -p "$SCALA_BUILD_WS"
+
 export TMPDIR=/tmp/fast-synth-$$
 mkdir -p "$TMPDIR" "$OUT" /tmp/apptainer-cache "$(dirname "$LIB")" "$ROOT/containers"
 
@@ -61,7 +70,7 @@ apptainer exec "$SIF" yosys -V 2>&1 | head -1
 
 echo; echo "=== 1. elaborate 全部目标 ==="
 cd "$REPO/FAST/hardware"
-scala-cli run chisel --server=false --main-class Elaborate -- ALL "$OUT/rtl" 2>&1 \
+scala-cli run chisel --workspace "$SCALA_BUILD_WS" --server=false --main-class Elaborate -- ALL "$OUT/rtl" 2>&1 \
     | grep -vE "^(Download|Downloaded|Compiling|Compiled)" | tail -5
 
 echo; echo "=== 2. 生成金标准激励（用于数出翻转率 alpha） ==="

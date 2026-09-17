@@ -1,0 +1,5 @@
+{
+  "job_id": "17868527",
+  "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_collect.slurm",
+  "supersedes_report_job": "17868450"
+}

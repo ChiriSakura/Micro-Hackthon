@@ -1,0 +1,38 @@
+{
+  "scope": "assisted_repair",
+  "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm",
+  "round": 1,
+  "record_sha256": "15e40dd6d5138a625aadf9b5d5ee20b94492f6833830999b0a79c05bf067b62f",
+  "files": [
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/FindMin8/FindMin8.scala",
+      "exported": "generated/FindMin8.scala",
+      "sha256": "cbf797570df71e0b03549ab99297be2888eaf7de15df35f1c26078a2e03a9af8",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/DividerWrapper/DividerWrapper.scala",
+      "exported": "generated/DividerWrapper.scala",
+      "sha256": "ec66a2cc2549c47689e2b88523734dbffbf96cab7627e61238cd621a02211690",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala",
+      "exported": "generated/Rq1BlockNmTop.scala",
+      "sha256": "53221e3f5e99f8b39ab291642ccae8bb69da653bcede37175eed2b3852619784",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/references/006.scala",
+      "exported": "linked_library/b3cfad736b31_006.scala",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1",
+      "kind": "linked_library"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/check_01/emitted/Rq1BlockNmTop.v",
+      "exported": "rtl/Rq1BlockNmTop.v",
+      "sha256": "4a241c1492f9465b834cf051809d65fdd9f16e832676bf540524630d1a630169",
+      "kind": "rtl_sources"
+    }
+  ]
+}

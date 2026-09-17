@@ -1,0 +1,19 @@
+{
+  "passed": false,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/check_01/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate as the project root directory for this run.\n/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/SelectAccumulate.scala:44: error: value asSInt is not a member of chisel3.Vec[chisel3.Bool]\ndid you mean asUInt?\n    val scores_p2 = VecInit(scores_p2_reg.asBools.grouped(9).map(VecInit(_).asSInt).toSeq)\n                                                                            ^\n/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/SelectAccumulate.scala:67: error: value asUInt is not a member of Nothing\n      b0_ranks(i) := rank_bits.foldLeft(0.U(2.W))((acc, bit) => acc + bit.asUInt)\n                                                                          ^\n/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/SelectAccumulate.scala:80: error: value asUInt is not a member of Nothing\n      b1_ranks(i) := rank_bits.foldLeft(0.U(2.W))((acc, bit) => acc + bit.asUInt)\n                                                                          ^\n/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/SelectAccumulate.scala:92: error: value asSInt is not a member of chisel3.Vec[chisel3.Bool]\ndid you mean asUInt?\n    val values_p3 = VecInit(values_p3_reg.asBools.grouped(8).map(VecInit(_).asSInt).toSeq)\n                                                                            ^\n/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/SelectAccumulate.scala:112: error: value widen is not a member of chisel3.UInt\n      masked_weights(i) := Mux(keep_mask_p4(i), weights_p4_vec(i), 0.U).widen(1)\n                                                                        ^\n/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/SelectAccumulate.scala:113: error: value widen is not a member of chisel3.SInt\n      masked_w_values(i) := Mux(keep_mask_p4(i), weighted_values_p4(i), 0.S).widen(3)\n                                                                             ^\n6 errors\nCompilation failed\n",
+  "wall_seconds": 2.982124298810959,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/SelectAccumulate.scala",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/check_01/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/check_01/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_fast_recovery_17709206/round_02/build_02/SelectAccumulate/check_01/emitted"
+  ]
+}

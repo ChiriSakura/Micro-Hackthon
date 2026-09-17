@@ -1,0 +1,971 @@
+{
+  "utc": "2026-09-17T20:34:26.139107+00:00",
+  "scope": "Completed RQ1 and Block N:M repair only; no library, generated design, raw log or unrelated project deletion.",
+  "verified_archives": [
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/dynax_baseline/artifacts.tar.gz",
+      "passed": true,
+      "archive_sha256": "9c2ad6e282666db15ac7c9fefb9f50e16cfffc20e91baaee714f1cec83df63e7",
+      "file_count": 1426
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_block_nm_sta_retry/artifacts.tar.gz",
+      "passed": true,
+      "archive_sha256": "00751452ba1d6c027dc9b090b03fc1fa59b6d8cede7837b7503e821327749440",
+      "file_count": 965
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/artifacts.tar.gz",
+      "passed": true,
+      "archive_sha256": "692e6f3e994a5bd40ed139a07c9355555c6d1f7e5d20bd1660164ecd35ec3a92",
+      "file_count": 1516
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_sanger_threshold/artifacts.tar.gz",
+      "passed": true,
+      "archive_sha256": "b3bfcf309735efd6725a76005d9da0ae04d8bbe85c836c4a9437a1f54d925d8d",
+      "file_count": 1718
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_sanger_threshold_checkpoint_retry/artifacts.tar.gz",
+      "passed": true,
+      "archive_sha256": "f39865f8387652027db08e049653a68cb07d440dbf78ed898c6b33bf29ca306f",
+      "file_count": 1813
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/topk_common_test/artifacts.tar.gz",
+      "passed": true,
+      "archive_sha256": "5ecf2f96a3caf09c728cf84ce60720f7f0694d9d486d426afb241ff29ebf7779",
+      "file_count": 1131
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/block_nm_timing_repair_20260917/validation/artifacts.tar.gz",
+      "passed": true,
+      "archive_sha256": "c116775cd4bf8c6b84eceee26ee16ea34a71d859b72a66c72475c7745933b418",
+      "file_count": 207
+    }
+  ],
+  "historical_generators_archive": "/home/gz2522/Micro-Hackthon/FAST/docs/history/rq1_consolidation_20260917/before_consolidation.tar.gz",
+  "removed": [
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/round_05/ppa_retry_01/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 156591899
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/gates_round_5/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 69,
+      "bytes": 220664984
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 156611984
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1915
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/rebuild/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 15,
+      "bytes": 193629
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/seed_101/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 156613120
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/seed_211/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 156613125
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/seed_307/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 156613128
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/seed_401/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 156613118
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/rtl_holdout_round_5/seed_503/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 156613129
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_04/ppa_retry_01/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 44,
+      "bytes": 153530605
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/DividerWrapper/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 2338098
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/DividerWrapper/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1278
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/DividerWrapper/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 11,
+      "bytes": 58790
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/FindMin8/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 918383
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/FindMin8/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1123
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/FindMin8/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 22875
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1564
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 4,
+      "bytes": 1787
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/check_02/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 44,
+      "bytes": 153539509
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/check_02/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1564
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/Rq1BlockNmTop/check_02/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 13,
+      "bytes": 132344
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_checkpoint_v3_20260917/rq1_sanger_threshold/round_05/ppa_retry_01/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 153568455
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_checkpoint_v3_20260917/rq1_sanger_threshold/gates_round_1/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 62,
+      "bytes": 204988998
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_checkpoint_v3_20260917/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 154822984
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_checkpoint_v3_20260917/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 2090
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_checkpoint_v3_20260917/rq1_sanger_threshold/rtl_holdout_round_1/rebuild/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 15,
+      "bytes": 175594
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_checkpoint_v3_20260917/rq1_sanger_threshold/rtl_holdout_round_1/seed_101/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 154824098
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_checkpoint_v3_20260917/rq1_sanger_threshold/rtl_holdout_round_1/seed_211/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 154824103
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_checkpoint_v3_20260917/rq1_sanger_threshold/rtl_holdout_round_1/seed_307/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 154824104
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_checkpoint_v3_20260917/rq1_sanger_threshold/rtl_holdout_round_1/seed_401/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 154824100
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_checkpoint_v3_20260917/rq1_sanger_threshold/rtl_holdout_round_1/seed_503/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 47,
+      "bytes": 154824106
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/ExpAndProd/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 1396420
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/ExpAndProd/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1075
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/ExpAndProd/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 29080
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/ExpAndProd/check_02/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 1354438
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/ExpAndProd/check_02/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1075
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/ExpAndProd/check_02/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 27814
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/Normalizer/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1075
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/Normalizer/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 4,
+      "bytes": 1343
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/Normalizer/check_02/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1075
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/Normalizer/check_02/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 4,
+      "bytes": 1343
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/Normalizer/check_03/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1075
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/Normalizer/check_03/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 9,
+      "bytes": 38410
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/Normalizer/check_04/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 2233528
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/Normalizer/check_04/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1075
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/Normalizer/check_04/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 9,
+      "bytes": 38652
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/Rq1GlobalTopk/check_01/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 44,
+      "bytes": 152154574
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/Rq1GlobalTopk/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1499
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/Rq1GlobalTopk/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 12,
+      "bytes": 127769
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/ScoreCalculator/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 853799
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/ScoreCalculator/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1105
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/ScoreCalculator/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 16420
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/ScoreCalculator/check_02/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 848186
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/ScoreCalculator/check_02/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1105
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_01/build_02/ScoreCalculator/check_02/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 16424
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_01/ExpLut/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 917534
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_01/ExpLut/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1051
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_01/ExpLut/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 20386
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_01/ScoreCalculator/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 849922
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_01/ScoreCalculator/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1105
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_01/ScoreCalculator/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 16868
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_01/ScoreCalculator/check_02/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1105
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_01/ScoreCalculator/check_02/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 4,
+      "bytes": 1363
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_01/ScoreCalculator/check_03/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 845352
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_01/ScoreCalculator/check_03/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1105
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_01/ScoreCalculator/check_03/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 16872
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/ExpLut/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 917538
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/ExpLut/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1051
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/ExpLut/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 20386
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/FinalDivider/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 2204388
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/FinalDivider/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1087
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/FinalDivider/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 9,
+      "bytes": 36569
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/FinalDivider/check_02/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 2199643
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/FinalDivider/check_02/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1087
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/FinalDivider/check_02/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 9,
+      "bytes": 38865
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/ScoreCalculator/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 845354
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/ScoreCalculator/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1105
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/ScoreCalculator/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 16872
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/rq1_global_topk/check_01/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 41,
+      "bytes": 151698500
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/rq1_global_topk/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1507
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_02/build_02/rq1_global_topk/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 12,
+      "bytes": 108841
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_03/build_01/ExpLut/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 917541
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_03/build_01/ExpLut/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1051
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_03/build_01/ExpLut/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 20386
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_03/build_01/FinalDivider/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 2195882
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_03/build_01/FinalDivider/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1087
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_03/build_01/FinalDivider/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 9,
+      "bytes": 38362
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_03/build_01/ScoreCalculator/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 845351
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_03/build_01/ScoreCalculator/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1105
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_03/build_01/ScoreCalculator/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 16873
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_03/build_01/rq1_global_topk/check_01/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 41,
+      "bytes": 151703689
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_03/build_01/rq1_global_topk/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1507
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_03/build_01/rq1_global_topk/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 12,
+      "bytes": 108339
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/ExpLut/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 917539
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/ExpLut/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1051
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/ExpLut/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 20386
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/FinalDivider/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 1663962
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/FinalDivider/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1087
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/FinalDivider/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 9,
+      "bytes": 44558
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/FinalDivider/check_02/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 1683219
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/FinalDivider/check_02/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1087
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/FinalDivider/check_02/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 9,
+      "bytes": 44487
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/ScoreCalculator/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 842502
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/ScoreCalculator/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1105
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/ScoreCalculator/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 16873
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/rq1_global_topk/check_01/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 41,
+      "bytes": 151549425
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/rq1_global_topk/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1507
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_04/build_01/rq1_global_topk/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 12,
+      "bytes": 114460
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/ExpLut/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 917538
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/ExpLut/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1051
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/ExpLut/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 20386
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/FinalDivider/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 1700299
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/FinalDivider/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1087
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/FinalDivider/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 9,
+      "bytes": 39177
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/FinalDivider/check_02/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 1753517
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/FinalDivider/check_02/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1087
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/FinalDivider/check_02/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 9,
+      "bytes": 40020
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/ScoreCalculator/check_01/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 842506
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/ScoreCalculator/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1105
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/ScoreCalculator/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 16873
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/rq1_global_topk/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1507
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/rq1_global_topk/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 4,
+      "bytes": 1750
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/rq1_global_topk/check_02/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 41,
+      "bytes": 151559659
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/rq1_global_topk/check_02/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1507
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_v1_20260915/rq1_global_topk/round_05/build_01/rq1_global_topk/check_02/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 12,
+      "bytes": 110151
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/DividerWrapper/fresh_check/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 2343366
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/DividerWrapper/fresh_check/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1314
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/DividerWrapper/fresh_check/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 11,
+      "bytes": 58868
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/FindMin8/fresh_check/functional/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 25,
+      "bytes": 919020
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/FindMin8/fresh_check/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1155
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/FindMin8/fresh_check/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 8,
+      "bytes": 22945
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/check_01/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 44,
+      "bytes": 153543005
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/check_01/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1596
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/check_01/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 13,
+      "bytes": 135387
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/gates_round_1/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 60,
+      "bytes": 182739947
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 44,
+      "bytes": 153540715
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/scala_build/.bsp",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 1,
+      "bytes": 1652
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/rebuild/scala_build/.scala-build",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 13,
+      "bytes": 135511
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_101/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 44,
+      "bytes": 153541839
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_211/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 44,
+      "bytes": 153541839
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_307/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 44,
+      "bytes": 153541852
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_401/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 44,
+      "bytes": 153541836
+    },
+    {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_validation_v1_20260917/rq1_block_nm/rtl_holdout_round_1/seed_503/obj_dir",
+      "reason": "Rebuildable cache in explicitly listed completed RQ1 run/output",
+      "files": 44,
+      "bytes": 153541845
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/report_tools",
+      "reason": "Superseded reporting generator; exact files preserved in before_consolidation.tar.gz",
+      "files": 3,
+      "bytes": 27784
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/report_tools_final",
+      "reason": "Superseded reporting generator; exact files preserved in before_consolidation.tar.gz",
+      "files": 67,
+      "bytes": 778981
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/report_tools_final_v2",
+      "reason": "Superseded reporting generator; exact files preserved in before_consolidation.tar.gz",
+      "files": 67,
+      "bytes": 779404
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/report_tools_v2",
+      "reason": "Superseded reporting generator; exact files preserved in before_consolidation.tar.gz",
+      "files": 3,
+      "bytes": 28846
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/report_tools_v3",
+      "reason": "Superseded reporting generator; exact files preserved in before_consolidation.tar.gz",
+      "files": 3,
+      "bytes": 30622
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/report_tools_v4",
+      "reason": "Superseded reporting generator; exact files preserved in before_consolidation.tar.gz",
+      "files": 3,
+      "bytes": 30853
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/report_tools_v5",
+      "reason": "Superseded reporting generator; exact files preserved in before_consolidation.tar.gz",
+      "files": 3,
+      "bytes": 32488
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/report_tools_v6",
+      "reason": "Superseded reporting generator; exact files preserved in before_consolidation.tar.gz",
+      "files": 3,
+      "bytes": 33210
+    },
+    {
+      "path": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/report_tools_v7",
+      "reason": "Superseded reporting generator; exact files preserved in before_consolidation.tar.gz",
+      "files": 3,
+      "bytes": 36062
+    }
+  ],
+  "files_removed": 2714,
+  "bytes_removed": 4967965981
+}

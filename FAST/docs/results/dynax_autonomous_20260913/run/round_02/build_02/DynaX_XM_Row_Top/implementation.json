@@ -1,0 +1,26 @@
+{
+  "module": "DynaX_XM_Row_Top",
+  "role": "uarch_assembly",
+  "language": "chisel",
+  "source_sha256": "34c54519adbc667923de78c051173cb819fcbac3a528b4084196f088a44ecc46",
+  "linked_reference_ids": [],
+  "linked_library_sha256": {
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/references/004.scala": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+  },
+  "reference_ids": [
+    "attention_tile_system_reference"
+  ],
+  "rationale": "The top-level module `DynaX_XM_Row_Top` integrates the three child modules: `ScoreWeightProcessor`, `SelectorAggregator`, and `FinalDivider`. A Finite State Machine (FSM) orchestrates the data flow, following the control structure pattern from the `attention_tile_system_reference`. The FSM uses seven states (`sIdle`, `sProcess`, `sWaitWeights`, `sAggregate`, `sDivStart`, `sWaitDivider`, `sDone`) to sequence the operations. Upon receiving a `start` signal, the module latches the `q`, `k`, and `v` inputs. It then triggers the 3-stage pipelined `ScoreWeightProcessor` and waits for its completion by monitoring the `valid_out` handshake signal. The outputs from the score processor are then registered and passed to the combinational `SelectorAggregator`. In the next state, the aggregator's outputs (Numerator `N`, Denominator `D`, and `keep_mask`) are registered to break the critical path. Following this, the FSM initiates the 9-stage pipelined `FinalDivider` with `N` and `D`, again waiting for the `valid_out` handshake. Once the division is complete, the final `result` is registered, and a single-cycle `done` pulse is asserted. This state-by-state progression with intermediate registers correctly pipelines the data through the system, respecting the specified latencies of each child module. The total latency is deterministic and approximately 19 cycles, well within system constraints.",
+  "critic_request": {
+    "layer": "uarch",
+    "reason": "The current design's energy efficiency is limited by its 26-cycle latency, with the 18-stage pipelined divider being the dominant contributor. The post-route evaluation shows significant timing slack (5.8ns) and area slack (37813 um^2 used vs 200000 um^2 budget), indicating the design is not physically constrained. This presents a clear opportunity to trade this abundant slack for a direct reduction in latency.",
+    "evidence": [
+      "evaluation.latency_ns",
+      "evaluation.slack_ns",
+      "evaluation.area_um2",
+      "evaluation.energy_efficiency_queries_per_joule"
+    ],
+    "instructions": "Modify the `FinalDivider` module's implementation. Re-configure the instantiated `predict_unit.FixedPointDivPipelined` core to use fewer pipeline stages by changing the `stages` parameter from 18 to a smaller value, such as 9. This is expected to reduce total system latency from 26 cycles to approximately 17 cycles. While the divider's area and per-cycle power will likely increase, the substantial reduction in execution time should lead to a net decrease in the total energy per query, thereby increasing the `energy_efficiency_queries_per_joule`."
+  },
+  "scope": "Agent explanation; module planner-vector checks and independent E2E are separate evidence"
+}

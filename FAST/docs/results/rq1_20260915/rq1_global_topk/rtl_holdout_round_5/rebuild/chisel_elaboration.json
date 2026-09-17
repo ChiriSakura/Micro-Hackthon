@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/rebuild/chisel_elaboration.log",
+  "diagnostics": "Warning: setting /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/rebuild as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+  "wall_seconds": 10.293772499077022,
+  "command": [
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+    "run",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/rebuild/ScoreCalculator.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/rebuild/ExpLut.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/rebuild/FinalDivider.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/rebuild/rq1_global_topk.scala",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/rebuild/FASTGeneratedElaborate.scala",
+    "--workspace",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/rebuild/scala_build",
+    "--server=false",
+    "--main-class",
+    "FASTGeneratedElaborate",
+    "--",
+    "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/rebuild/emitted"
+  ],
+  "elaborated_verilog": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_20260915/rq1_global_topk/rtl_holdout_round_5/rebuild/emitted/rq1_global_topk.v",
+  "elaborated_sha256": "3c2e396253d5cdb840651ab818128ec1e1d624ef1c5c63af6b00458821150eb7"
+}

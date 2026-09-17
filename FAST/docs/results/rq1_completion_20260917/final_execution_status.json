@@ -1,0 +1,16 @@
+{
+  "block_nm": {
+    "job_id": "17912008",
+    "scheduler_state": "FAILED",
+    "exit_code": "1:0",
+    "flow_status": "budget_exhausted",
+    "meaning": "No feasible design after five candidates; physical measurements, Critic and finalizer finished.",
+    "post_guard_job": "17912912",
+    "post_guard_state": "COMPLETED",
+    "post_guard_exit_code": "0:0"
+  },
+  "collector": {
+    "cancelled": "17912913",
+    "replacement": "Local final report generation using frozen latest reporting scripts"
+  }
+}

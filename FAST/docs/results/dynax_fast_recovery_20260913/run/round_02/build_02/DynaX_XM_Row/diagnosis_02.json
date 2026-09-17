@@ -1,0 +1,9 @@
+{
+  "action": "repair",
+  "reason": "The `keep_mask` output is incorrectly delayed due to a misuse of the `chisel3.util.ShiftRegister` enable signal. The enable is tied to the single-cycle `valid_out` from the `SelectAccumulate` module. This causes the shift register to shift only once, loading the correct `keep_mask` value into the first stage but never propagating it to the output. The output of the shift register therefore remains at its reset value of 0, causing the test failure where the mask is 0x00 instead of the expected 0x11.",
+  "evidence": [
+    "val keep_mask_delayed = ShiftRegister(select_accumulate.keep_mask_out, 9, select_accumulate.valid_out)",
+    "[216] %Fatal: trusted_testbench.sv:14: Assertion failed in FASTTestbench.run_case: case 0 result=-32 expected=-32 mask=00 expected_mask=11"
+  ],
+  "instructions": "In `DynaX_XM_Row.scala`, modify the line that creates the delayed keep mask. The `ShiftRegister`'s third argument (`en`) acts as a clock enable for the entire register chain, not just a load enable for the first stage. Since `select_accumulate.valid_out` is a single-cycle pulse, the data is captured but never shifted to the output. Remove this incorrect enable signal. The corrected line should be `val keep_mask_delayed = ShiftRegister(select_accumulate.keep_mask_out, 9)`. This will create a simple delay chain that shifts every cycle, correctly propagating the `keep_mask` value from the cycle it is valid to align with the final `result` and `done` signals."
+}

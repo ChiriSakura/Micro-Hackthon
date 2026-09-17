@@ -1,0 +1,2902 @@
+{
+  "round": 1,
+  "reentry": "assisted_assembly_repair",
+  "config": {
+    "n": 7
+  },
+  "profile": {
+    "config": {
+      "n": 7
+    },
+    "quality_loss": 0.03358657986150424,
+    "quality_metric": "sqrt(sum((sparse_fixed_output-dense_float_output)^2)/sum(dense_float_output^2))",
+    "quality_scope": "synthetic quantized decode rows; NOT downstream model accuracy",
+    "dense_fixedpoint_relative_rmse": 0.0010057824013621622,
+    "squared_error_sum": 741928.9067832113,
+    "dense_squared_output_sum": 657704372.200548,
+    "sparsity": 0.125,
+    "fully_dense_query_fraction": 0.0,
+    "active_keys_histogram": {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 2052,
+      "15": 0,
+      "16": 0
+    },
+    "samples": 2052,
+    "seed": 20260915,
+    "includes_shared_boundary_cases": true,
+    "workload_sha256": "60517956d3f68a3bb09f8553e8549416807efb4bad8c7fcdb40eae8460b3694e"
+  },
+  "system_plan": {
+    "top": "Rq1BlockNmTop",
+    "modules": [
+      {
+        "name": "FindMin8",
+        "purpose": "Finds the minimum of 8 signed scores, breaking ties by choosing the one with the largest original index. This is used to implement the 'keep top 7 of 8' selection by identifying the single element to discard.",
+        "ports": [
+          {
+            "name": "scores_in",
+            "direction": "input",
+            "width": 72
+          },
+          {
+            "name": "keep_mask_out",
+            "direction": "output",
+            "width": 8
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This is a purely combinational module. It unpacks the 72-bit `scores_in` input into eight 9-bit signed scores. The original indices (0-7) are implicit. A three-stage comparator tree finds the minimum (score, index) pair. The custom comparator logic for two pairs (s_a, i_a) and (s_b, i_b) will select (s_a, i_a) if `s_a < s_b` or if `s_a == s_b and i_a > i_b`. The output of the tree is the 3-bit index of the single score to be discarded. This index is then used to generate an 8-bit mask where all bits are '1' except for the bit at the discarded index, which is '0'.",
+        "reference_ids": [],
+        "design_prompt": "Generate a combinational Chisel module `FindMin8` that takes an input `scores_in` of 72 bits and produces an 8-bit output `keep_mask_out`. The input represents eight packed signed 9-bit scores. The module must identify the single minimum score among the eight. For tie-breaking, if two scores are equal, the one with the larger original index (from 7 down to 0) is considered the minimum. The output `keep_mask_out` should have a '0' at the position of the minimum score and '1's elsewhere. The implementation should be a comparator tree. No registers are allowed.",
+        "tests": [
+          {
+            "name": "behavior_combinational",
+            "steps": [
+              {
+                "inputs": {
+                  "scores_in": 739132885347721553930
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 254
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 92595066625405783120
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 127
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 92414216885903037450
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 127
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 369477777720651315250
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 251
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 462071084429515187300
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 127
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 923239686272253977650
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 191
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 3992475019210513963510
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 127
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 101277334762679703030
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 191
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 0
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 127
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 1060126600920943602371
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 223
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 1335412143605077507342
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 254
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 1310516986867474348721
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 251
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2179235229780836392343
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 254
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 4237814304488080613597
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 239
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 1926071958509886143429
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 239
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 877937393498242179392
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 254
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 3816403882866522905527
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 247
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 1940569762814518802660
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 253
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 3438324408222823163989
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 251
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2341908475532123281743
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 247
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2060943562362716706306
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 251
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2365803952279117758720
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 127
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2356562530590527454975
+                },
+                "cycles": 0,
+                "expected": {
+                  "keep_mask_out": 127
+                }
+              }
+            ]
+          }
+        ],
+        "behavior": {
+          "test_generation_version": 2,
+          "latency": 0,
+          "let": {
+            "s0": "signed(lane(scores_in, 0, 9), 9)",
+            "s1": "signed(lane(scores_in, 1, 9), 9)",
+            "s2": "signed(lane(scores_in, 2, 9), 9)",
+            "s3": "signed(lane(scores_in, 3, 9), 9)",
+            "s4": "signed(lane(scores_in, 4, 9), 9)",
+            "s5": "signed(lane(scores_in, 5, 9), 9)",
+            "s6": "signed(lane(scores_in, 6, 9), 9)",
+            "s7": "signed(lane(scores_in, 7, 9), 9)",
+            "is_le_10": "1 if s1 < s0 or (s1 == s0 and 1 > 0) else 0",
+            "min_s_10": "s1 if is_le_10 == 1 else s0",
+            "min_i_10": "1 if is_le_10 == 1 else 0",
+            "is_le_32": "1 if s3 < s2 or (s3 == s2 and 3 > 2) else 0",
+            "min_s_32": "s3 if is_le_32 == 1 else s2",
+            "min_i_32": "3 if is_le_32 == 1 else 2",
+            "is_le_54": "1 if s5 < s4 or (s5 == s4 and 5 > 4) else 0",
+            "min_s_54": "s5 if is_le_54 == 1 else s4",
+            "min_i_54": "5 if is_le_54 == 1 else 4",
+            "is_le_76": "1 if s7 < s6 or (s7 == s6 and 7 > 6) else 0",
+            "min_s_76": "s7 if is_le_76 == 1 else s6",
+            "min_i_76": "7 if is_le_76 == 1 else 6",
+            "is_le_32_10": "1 if min_s_32 < min_s_10 or (min_s_32 == min_s_10 and min_i_32 > min_i_10) else 0",
+            "min_s_32_10": "min_s_32 if is_le_32_10 == 1 else min_s_10",
+            "min_i_32_10": "min_i_32 if is_le_32_10 == 1 else min_i_10",
+            "is_le_76_54": "1 if min_s_76 < min_s_54 or (min_s_76 == min_s_54 and min_i_76 > min_i_54) else 0",
+            "min_s_76_54": "min_s_76 if is_le_76_54 == 1 else min_s_54",
+            "min_i_76_54": "min_i_76 if is_le_76_54 == 1 else min_i_54",
+            "is_le_final": "1 if min_s_76_54 < min_s_32_10 or (min_s_76_54 == min_s_32_10 and min_i_76_54 > min_i_32_10) else 0",
+            "min_idx": "min_i_76_54 if is_le_final == 1 else min_i_32_10"
+          },
+          "outputs": {
+            "keep_mask_out": "255 - (1 << min_idx)"
+          },
+          "vectors": [
+            {
+              "scores_in": "spack(9, 10, 20, 30, 40, 50, 60, 70, 80)"
+            },
+            {
+              "scores_in": "spack(9, 80, 70, 60, 50, 40, 30, 20, 10)"
+            },
+            {
+              "scores_in": "spack(9, 10, 10, 10, 10, 10, 10, 10, 10)"
+            },
+            {
+              "scores_in": "spack(9, 50, 60, 10, 80, 20, 70, 30, 40)"
+            },
+            {
+              "scores_in": "spack(9, 100, 50, 50, 50, 50, 50, 50, 50)"
+            },
+            {
+              "scores_in": "spack(9, 50, 50, 50, 50, 50, 50, 50, 100)"
+            },
+            {
+              "scores_in": "spack(9, -10, -20, -30, -40, -50, -60, -70, -80)"
+            },
+            {
+              "scores_in": "spack(9, -10, 10, -10, 10, -10, 10, -10, 10)"
+            },
+            {
+              "scores_in": "spack(9, 0, 0, 0, 0, 0, 0, 0, 0)"
+            }
+          ]
+        },
+        "linked_reference_ids": []
+      },
+      {
+        "name": "DividerWrapper",
+        "purpose": "A wrapper for the library's pipelined divider, configured to perform the final division step of the algorithm: a signed 32-bit numerator divided by an unsigned 20-bit denominator, producing a signed 16-bit result.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "valid_in",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "numer_in",
+            "direction": "input",
+            "width": 32
+          },
+          {
+            "name": "denom_in",
+            "direction": "input",
+            "width": 20
+          },
+          {
+            "name": "quotient_out",
+            "direction": "output",
+            "width": 16
+          },
+          {
+            "name": "valid_out",
+            "direction": "output",
+            "width": 1
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This module instantiates the `predict_unit.FixedPointDivPipelined` class from the `pipelined_divider` library reference. It is configured with `bitWidth=32`, `point=0`, and `stages=33`. This configuration performs a 32-bit integer division. The `numer_in` (s32) is connected to the divider's `numerator` input. The `denom_in` (u20) is zero-extended to 32 bits and connected to the `denominator` input; the divider treats this positive value correctly in its signed division. The `point=0` setting makes the divider perform integer division `numer/denom`. The `s33` result from the native divider's quotient port is then truncated to `s16` to produce the final `quotient_out`. The valid signal is passed through the pipeline, resulting in a latency of 33 cycles.",
+        "reference_ids": [
+          "pipelined_divider"
+        ],
+        "design_prompt": "Generate a Chisel module `DividerWrapper` that adapts the native `predict_unit.FixedPointDivPipelined` class. Your module must have the specified ports. Instantiate the native divider with `bitWidth=32`, `point=0`, and `stages=33`. Connect the inputs by casting `numer_in` (SInt) to the divider's `FixedPoint` numerator. The `denom_in` (UInt) must be zero-extended to 32 bits and then cast to a `FixedPoint` denominator. The divider's `FixedPoint` output should be converted back to a `SInt` and truncated to 16 bits to drive `quotient_out`. Propagate the valid signals correctly, accounting for the 33-cycle latency.",
+        "tests": [
+          {
+            "name": "behavior_isolated_0",
+            "steps": [
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quotient_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 0,
+                  "denom_in": 100
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quotient_out": 0
+                }
+              }
+            ]
+          },
+          {
+            "name": "behavior_isolated_1",
+            "steps": [
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quotient_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 1000,
+                  "denom_in": 10
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 100
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quotient_out": 0
+                }
+              }
+            ]
+          },
+          {
+            "name": "behavior_isolated_2",
+            "steps": [
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quotient_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 1003,
+                  "denom_in": 10
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 100
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quotient_out": 0
+                }
+              }
+            ]
+          },
+          {
+            "name": "behavior_stream",
+            "steps": [
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quotient_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 0,
+                  "denom_in": 100
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 1000,
+                  "denom_in": 10
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 1003,
+                  "denom_in": 10
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 4294966293,
+                  "denom_in": 10
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 1000,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 2147483647,
+                  "denom_in": 1
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 2147483648,
+                  "denom_in": 1
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 2147483647,
+                  "denom_in": 1048575
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 2147483648,
+                  "denom_in": 1048575
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 52734659,
+                  "denom_in": 235717
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 3281255694,
+                  "denom_in": 295394
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 2937174705,
+                  "denom_in": 290855
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 4081367803,
+                  "denom_in": 486124
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 599541520,
+                  "denom_in": 69448
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 2843984136,
+                  "denom_in": 286425
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 3145521415,
+                  "denom_in": 865222
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 2547265503,
+                  "denom_in": 247774
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 1730639091,
+                  "denom_in": 416279
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 884452691,
+                  "denom_in": 821957
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 4102178440,
+                  "denom_in": 441098
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 3109446303,
+                  "denom_in": 873123
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 100
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 100
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 65436
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 65535
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 2048
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 63488
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 223
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 62105
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 60868
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 65097
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 8632
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 60471
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 64208
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 58483
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 4157
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 1076
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 65099
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quotient_out": 64179
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quotient_out": 0
+                }
+              }
+            ]
+          }
+        ],
+        "behavior": {
+          "test_generation_version": 2,
+          "latency": 33,
+          "reset": "reset",
+          "valid_input": "valid_in",
+          "valid_output": "valid_out",
+          "let": {},
+          "outputs": {
+            "quotient_out": "trunc_div(signed(numer_in, 32), denom_in)"
+          },
+          "vectors": [
+            {
+              "numer_in": 0,
+              "denom_in": 100
+            },
+            {
+              "numer_in": 1000,
+              "denom_in": 10
+            },
+            {
+              "numer_in": 1003,
+              "denom_in": 10
+            },
+            {
+              "numer_in": "(-1003) & 0xffffffff",
+              "denom_in": 10
+            },
+            {
+              "numer_in": 1000,
+              "denom_in": 0
+            },
+            {
+              "numer_in": 2147483647,
+              "denom_in": 1
+            },
+            {
+              "numer_in": "(-2147483648) & 0xFFFFFFFF",
+              "denom_in": 1
+            },
+            {
+              "numer_in": 2147483647,
+              "denom_in": 1048575
+            },
+            {
+              "numer_in": "(-2147483648) & 0xFFFFFFFF",
+              "denom_in": 1048575
+            }
+          ]
+        },
+        "linked_reference_ids": [
+          "pipelined_divider"
+        ]
+      },
+      {
+        "name": "Rq1BlockNmTop",
+        "purpose": "Top-level module that orchestrates the entire rq1_block_nm computation. It contains the main control FSM, which is pipelined to meet timing constraints, input/intermediate registers, and the primary datapath elements for score calculation, exponentiation, and accumulation.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "start",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "q",
+            "direction": "input",
+            "width": 8
+          },
+          {
+            "name": "k",
+            "direction": "input",
+            "width": 128
+          },
+          {
+            "name": "v",
+            "direction": "input",
+            "width": 128
+          },
+          {
+            "name": "done",
+            "direction": "output",
+            "width": 1
+          },
+          {
+            "name": "result",
+            "direction": "output",
+            "width": 16
+          },
+          {
+            "name": "keep_mask",
+            "direction": "output",
+            "width": 16
+          }
+        ],
+        "dependencies": [
+          "FindMin8",
+          "DividerWrapper"
+        ],
+        "implementation": "The top module is built around a state machine with the following states: IDLE, CALC_SCORES, PIPE_S1_MAX, PIPE_S2_MASK, PIPE_S3_EXP, ACCUMULATE, DIV_START, DIV_WAIT, and DONE_PULSE. This FSM implements the critic's suggestion to break the critical path. On a `start` pulse, input `q`, `k`, and `v` are latched. The FSM then proceeds as follows:\n1. `CALC_SCORES` (16 cycles): A MAC unit computes one signed 9-bit score `s[i] = q[0]*k[i][0] + q[1]*k[i][1]` per cycle. The 16 scores are stored in a 16x9-bit register file `s_reg`.\n2. `PIPE_S1_MAX` (1 cycle): A 16-input comparator tree finds the maximum score `h` from `s_reg`. The result `h` is stored in `h_reg`.\n3. `PIPE_S2_MASK` (1 cycle): Two instantiated `FindMin8` modules operate in parallel on the two 8-key blocks in `s_reg` to compute the 16-bit `keep_mask`. The result is stored in `keep_mask_reg`.\n4. `PIPE_S3_EXP` (1 cycle): For each score `s[i]`, this stage calculates the delta `d[i] = h_reg - s_reg[i]` and uses `d[i]` to look up the 16-bit exponential value `e[i]` from a 256x16-bit ROM (initialized with `exp_table_packed_hex`). The 16 resulting `e[i]` values are stored in `e_reg`.\n5. `ACCUMULATE` (16 cycles): Over 16 cycles, the module iterates through the keys. If the corresponding bit in `keep_mask_reg` is set, it accumulates `e_reg[i]` into a 20-bit denominator `D` and `e_reg[i] * v_reg[i]` into a 28-bit signed numerator `N`.\n6. `DIV_START` (1 cycle): The final numerator `N_shifted = N << 4` (a 32-bit signed value) and denominator `D` (a 20-bit unsigned value) are passed to the `DividerWrapper` instance, and its `valid_in` is asserted.\n7. `DIV_WAIT` (32 cycles): The FSM waits for the pipelined divider to complete. The divider has a 33-cycle latency; this state waits for the cycle before the result is valid.\n8. `DONE_PULSE` (1 cycle): When the divider's `valid_out` is high, the 16-bit result is latched, `done` is asserted for one cycle, and the FSM returns to IDLE. Total latency is approximately 1+16+1+1+1+16+1+32+1 = 70 cycles.",
+        "reference_ids": [],
+        "design_prompt": "You are the top-level assembly UArch. The child modules FindMin8 and DividerWrapper are already complete and verified. Your task is to generate the Chisel code for the Rq1BlockNmTop module. This module must instantiate FindMin8 and DividerWrapper and connect them within a state-machine-controlled datapath that exactly implements the rq1_block_nm algorithm. The state machine and datapath must follow the pipelined implementation plan provided in the parent's `implementation` field, specifically using the states `IDLE`, `CALC_SCORES`, `PIPE_S1_MAX`, `PIPE_S2_MASK`, `PIPE_S3_EXP`, `ACCUMULATE`, `DIV_START`, `DIV_WAIT`, and `DONE_PULSE`. You must manage all intermediate data storage (registers for inputs, scores, max_score, keep_mask, exponential values, and accumulators) and generate the precise control signals for each component in each cycle. The exponential lookup table must be implemented as a ROM initialized from the `exp_table_packed_hex` in the algorithm contract. Ensure all port widths, signedness, and arithmetic operations (including the shifts for the final division) match the system plan precisely. The final `done` signal must be a single-cycle pulse. The total latency from `start` to `done` must be deterministic.",
+        "tests": [],
+        "behavior": null,
+        "linked_reference_ids": []
+      }
+    ],
+    "rationale": "The design addresses the timing failure reported by the critic by further pipelining the top-level FSM. The previous plan's single `PIPE_S1_MAX_MASK` stage, which computed the max score and keep mask in parallel, and the subsequent `PIPE_S2_EXP` stage, still contained too much combinational logic to meet the 300 MHz target. Following the critic's instruction, this logic is now split into three sequential single-cycle stages: `PIPE_S1_MAX` (finds max score `h`), `PIPE_S2_MASK` (computes `keep_mask`), and `PIPE_S3_EXP` (computes deltas and performs exponential lookups). This decomposition breaks the critical path by isolating the max-finding, mask generation, and exponentiation logic into separate pipeline stages, each with a shallower combinational depth. This change increases the total latency by one cycle to approximately 70 cycles, which is an acceptable trade-off to resolve the timing violation. The `FindMin8` and `DividerWrapper` modules from the previous plan are preserved unchanged as they are functionally correct and were not on the critical path.",
+    "language": "chisel"
+  },
+  "status": "evaluated",
+  "sources": {
+    "round_01/build_01/FindMin8/FindMin8.scala": "cbf797570df71e0b03549ab99297be2888eaf7de15df35f1c26078a2e03a9af8",
+    "round_01/build_01/DividerWrapper/DividerWrapper.scala": "ec66a2cc2549c47689e2b88523734dbffbf96cab7627e61238cd621a02211690",
+    "round_01/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala": "53221e3f5e99f8b39ab291642ccae8bb69da653bcede37175eed2b3852619784"
+  },
+  "rtl_sources": {
+    "round_01/build_01/Rq1BlockNmTop/check_01/emitted/Rq1BlockNmTop.v": "4a241c1492f9465b834cf051809d65fdd9f16e832676bf540524630d1a630169"
+  },
+  "implementations": {
+    "FindMin8": {
+      "module": "FindMin8",
+      "role": "uarch",
+      "language": "chisel",
+      "source_sha256": "cbf797570df71e0b03549ab99297be2888eaf7de15df35f1c26078a2e03a9af8",
+      "linked_reference_ids": [],
+      "linked_library_sha256": {},
+      "reference_ids": [],
+      "rationale": "Unchanged verified module contract and dependencies; fresh verification required",
+      "critic_request": {
+        "layer": "uarch",
+        "reason": "The design fails timing with a large negative slack of -1.677 ns. The post-route timing report shows a critical path with over 50 logic levels, which is inconsistent with the heavily pipelined system plan. The path starts from logic associated with the `PIPE_S2_MASK` stage and ends at the `h_reg` register, which should be computed in the preceding `PIPE_S1_MAX` stage. This backward-in-pipeline combinational path indicates a severe flaw in the RTL implementation where the intended pipeline separation between these two stages is not present. Previous interventions have failed to address this root cause.",
+        "evidence": [
+          "evaluation.slack_ns",
+          "evaluation.timing_diagnosis.report_excerpt",
+          "evaluation.timing_diagnosis.endpoint_mapping"
+        ],
+        "instructions": "Correct the microarchitecture of `Rq1BlockNmTop` to properly enforce the pipeline boundary between the `PIPE_S1_MAX` and `PIPE_S2_MASK` states. The logic for finding the max score (`h`) must be purely dependent on the score registers (`s_reg`) and must not have any combinational dependency on the logic that computes the `keep_mask`. Ensure that `h_reg` is registered at the end of the `PIPE_S1_MAX` cycle and that the `FindMin8` modules in the `PIPE_S2_MASK` cycle operate in a separate clock cycle without any combinational path back to the `h_reg` calculation. The current `system_plan` correctly describes this separation; the error is in the RTL implementation which must be fixed.",
+        "target_modules": [
+          "Rq1BlockNmTop"
+        ]
+      },
+      "reused_from": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_04/build_01/FindMin8/FindMin8.scala",
+      "measurements_reused": false,
+      "scope": "imported accepted child, freshly rebuilt and checked",
+      "original_source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/FindMin8/FindMin8.scala"
+    },
+    "DividerWrapper": {
+      "module": "DividerWrapper",
+      "role": "uarch",
+      "language": "chisel",
+      "source_sha256": "ec66a2cc2549c47689e2b88523734dbffbf96cab7627e61238cd621a02211690",
+      "linked_reference_ids": [
+        "pipelined_divider"
+      ],
+      "linked_library_sha256": {
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/references/006.scala": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+      },
+      "reference_ids": [
+        "pipelined_divider"
+      ],
+      "rationale": "Unchanged verified module contract and dependencies; fresh verification required",
+      "critic_request": {
+        "layer": "uarch",
+        "reason": "The design fails timing with a large negative slack of -1.677 ns. The post-route timing report shows a critical path with over 50 logic levels, which is inconsistent with the heavily pipelined system plan. The path starts from logic associated with the `PIPE_S2_MASK` stage and ends at the `h_reg` register, which should be computed in the preceding `PIPE_S1_MAX` stage. This backward-in-pipeline combinational path indicates a severe flaw in the RTL implementation where the intended pipeline separation between these two stages is not present. Previous interventions have failed to address this root cause.",
+        "evidence": [
+          "evaluation.slack_ns",
+          "evaluation.timing_diagnosis.report_excerpt",
+          "evaluation.timing_diagnosis.endpoint_mapping"
+        ],
+        "instructions": "Correct the microarchitecture of `Rq1BlockNmTop` to properly enforce the pipeline boundary between the `PIPE_S1_MAX` and `PIPE_S2_MASK` states. The logic for finding the max score (`h`) must be purely dependent on the score registers (`s_reg`) and must not have any combinational dependency on the logic that computes the `keep_mask`. Ensure that `h_reg` is registered at the end of the `PIPE_S1_MAX` cycle and that the `FindMin8` modules in the `PIPE_S2_MASK` cycle operate in a separate clock cycle without any combinational path back to the `h_reg` calculation. The current `system_plan` correctly describes this separation; the error is in the RTL implementation which must be fixed.",
+        "target_modules": [
+          "Rq1BlockNmTop"
+        ]
+      },
+      "reused_from": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_04/build_01/DividerWrapper/DividerWrapper.scala",
+      "measurements_reused": false,
+      "scope": "imported accepted child, freshly rebuilt and checked",
+      "original_source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_05/build_01/DividerWrapper/DividerWrapper.scala"
+    },
+    "Rq1BlockNmTop": {
+      "module": "Rq1BlockNmTop",
+      "role": "uarch_assembly",
+      "language": "chisel",
+      "source_sha256": "53221e3f5e99f8b39ab291642ccae8bb69da653bcede37175eed2b3852619784",
+      "linked_reference_ids": [],
+      "linked_library_sha256": {
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/references/006.scala": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+      },
+      "reference_ids": [],
+      "rationale": "This implementation corrects a timing violation identified in the previous version of `Rq1BlockNmTop`. The external diagnosis pinpointed a critical path in the `sPipeS1Max` state, caused by using `scores_reg.reduce(...)` to find the maximum score. This Scala collection method was synthesized into a long, left-associative chain of 15 serial comparators, which failed to meet the 300 MHz timing constraint.\n\nFollowing the critic's instructions, the fix replaces the `.reduce` call with an explicit, manually-balanced comparator tree. The new logic finds the maximum of 16 signed scores in four combinational levels: 16 inputs are reduced to 8 maxima, then 4, then 2, and finally to a single maximum value. This structure significantly shortens the critical path delay within the `sPipeS1Max` pipeline stage.\n\nThe rest of the module's logic, including the FSM structure, other pipeline stages, and connections to the child modules (`FindMin8`, `DividerWrapper`), remains unchanged. The overall functionality and latency of the module are preserved, and the change is specifically targeted to resolve the diagnosed setup time violation.",
+      "critic_request": {
+        "layer": "uarch",
+        "instructions": "Externally diagnosed timing repair of accepted RQ1 Block N:M round 5. This is a separate assisted experiment, not a sixth autonomous RQ1 round.\n\nEvidence: full post-route STA at 300 MHz has setup slack -1.85258663 ns. Critical endpoints are h_reg[1], h_reg[5], h_reg[2]. The startpoint Q net named _find_min_lo_scores_in_T_8 is an alias for packed scores_reg values in emitted Verilog, NOT a backward dependency from mask logic. Accepted Chisel computes h_reg := scores_reg.reduce((a, b) => Mux(a > b, a, b)); this left-associative reduction creates 15 serial signed comparison/mux levels. FindMin8 is already balanced and passed its tests.\n\nRepair the top maximum reduction using an explicitly balanced signed comparison tree: 16 inputs -> 8 pairwise maxima -> 4 -> 2 -> 1, four comparator levels. Do not rely on Seq.reduce to imply balanced hardware. Keep the existing state boundary and one-cycle maximum stage initially; no child interface or numeric contract change is needed. Keep accepted FindMin8 and DividerWrapper unchanged. Preserve the exact 256-entry exponential LUT, signed arithmetic, deterministic tie-breaks, bit packing, reset, input capture, done, result and keep_mask semantics. Preserve n=7 per block of 8 and the public system plan. Do not change frequency, timing exceptions, accuracy constraints, golden/testbench, reference library or power settings. Do not introduce false/multicycle paths. Explain the source change. Results must pass existing complete E2E and fresh Hammer place/CTS/route/extraction with setup/hold/DRC checks.\n",
+        "origin": "external diagnosis, not the original Critic"
+      },
+      "reused_from": null,
+      "measurements_reused": false,
+      "scope": "Agent explanation; module planner-vector checks and independent E2E are separate evidence"
+    }
+  },
+  "work": "round_01/build_01",
+  "verification": {
+    "passed": true,
+    "stage": "simulation",
+    "simulation": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/check_01/e2e_sim.log",
+      "diagnostics": "FAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/check_01/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 71ns; walltime 0.006 s; speed 12.016 us/s\n- Verilator: cpu 0.005 s on 1 threads; allocated 4 MB\n",
+      "timed_out": false,
+      "returncode": 0,
+      "wall_seconds": 0.42504671899951063,
+      "command": [
+        "apptainer",
+        "exec",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/check_01/obj_dir/VFASTTestbench"
+      ]
+    },
+    "cases": 100,
+    "expected_cases": 100,
+    "mean_cycles": 70.0,
+    "min_cycles": 70,
+    "max_cycles": 70,
+    "testbench_sha256": "f0eecd5ed8caa171b93a722f62a3a591f9594f5a9846301ce8f2d971bb930594",
+    "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+  },
+  "evaluation": {
+    "complete": true,
+    "feasible": true,
+    "verification": {
+      "passed": true,
+      "stage": "simulation",
+      "simulation": {
+        "passed": true,
+        "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/check_01/e2e_sim.log",
+        "diagnostics": "FAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_CASE cycles=70\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/check_01/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 71ns; walltime 0.006 s; speed 12.016 us/s\n- Verilator: cpu 0.005 s on 1 threads; allocated 4 MB\n",
+        "timed_out": false,
+        "returncode": 0,
+        "wall_seconds": 0.42504671899951063,
+        "command": [
+          "apptainer",
+          "exec",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/Rq1BlockNmTop/check_01/obj_dir/VFASTTestbench"
+        ]
+      },
+      "cases": 100,
+      "expected_cases": 100,
+      "mean_cycles": 70.0,
+      "min_cycles": 70,
+      "max_cycles": 70,
+      "testbench_sha256": "f0eecd5ed8caa171b93a722f62a3a591f9594f5a9846301ce8f2d971bb930594",
+      "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+    },
+    "design_sha256": "4a241c1492f9465b834cf051809d65fdd9f16e832676bf540524630d1a630169",
+    "setup_repair_policy": "default",
+    "ppa_backend": "hammer_openroad",
+    "scope": "entire generated top, Nangate45 placement/CTS/detailed routing/OpenRCX",
+    "power_method": "OpenROAD post-route extracted-RC power estimate; uniform activity, not silicon measurement",
+    "activity": 0.1,
+    "gds_generated": false,
+    "driver_sha256": "33c77f514ef54ea98afe80beb85952781f7008ac9d4fbf849e76e5551516d754",
+    "physical_adapter_sha256": "3576f8cbaa1bbab5b54b86da023d190d36907abdc2a6ebbdeefe1da43aa83b43",
+    "routing_tool": "26Q1-2900-gdf79404cd8",
+    "pdk_sha256": {
+      "setRC.tcl": "521df813bf4da9d7400df33e3f680c9a328cc720830dbfca1188083741503fa5",
+      "rcx_patterns.rules": "2f65fafbe2c704b378563c53a680b93cef080c2799997019d43df7d1e5a563e9",
+      "lib/NangateOpenCellLibrary_typical.lib": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1"
+    },
+    "active_stage": "par",
+    "syn": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/syn.log",
+      "diagnostics": "ATETST_X2\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATETST_X4\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATETST_X8\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATE_X1\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATE_X2\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATE_X4\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped cell \"CLKGATE_X8\" without logic function.\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFRS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFRS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFR_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFR_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFFS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFF_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DFF_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLH_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLH_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLL_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"DLL_X2\".\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"TAPCELL_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X2\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X4\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X8\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X16\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"FILLCELL_X32\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"LOGIC0_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped cell \"LOGIC1_X1\" due to dont_use attribute.\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFRS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFRS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFR_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFR_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFS_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFFS_X2\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFF_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFF_X2\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X1\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X2\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X4\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X8\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X16\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TINV_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"TLAT_X1\".\nABC: Library \"NangateOpenCellLibrary\" from \"/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib\" has 90 cells (35 skipped: 21 seq; 6 tri-state; 8 no func; 10 dont_use).  Time =     0.06 sec\nABC: Memory =   11.38 MB. Time =     0.06 sec\nABC: Warning: Detected 2 multi-output gates (for example, \"FA_X1\").\nABC: + read_constr -v /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/syn-rundir/Rq1BlockNmTop.mapped.sdc\nABC: + strash\nABC: + &get -n\nABC: + &fraig -x\nABC: + &put\nABC: + scorr\nABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\").\nABC: + dc2\nABC: + dretime\nABC: + retime -o -D 3333\nABC: + strash\nABC: + &get -n\nABC: + &dch -f\nABC: + &nf -D 3333\nABC: + &put\nABC: + buffer\nABC: + upsize -D 3333\nABC: Current delay (2049.92 ps) does not exceed the target delay (3333.00 ps). Upsizing is not performed.\nABC: + dnsize -D 3333\nABC: + stime -p\nABC: WireLoad = \"none\"  Gates =  25557 ( 11.0 %)   Cap =  3.5 ff (  0.8 %)   Area =    26936.76 ( 95.3 %)   Delay =  2109.93 ps  (  0.2 %)\nABC: Path  0 --       6 : 0    6 pi        A =   0.00  Df =   0.0   -0.0 ps  S =   0.0 ps  Cin =  0.0 ff  Cout =   9.3 ff  Cmax =   0.0 ff  G =    0\nABC: Path  1 --   11587 : 2    8 OR2_X1    A =   1.06  Df =  63.6  -18.6 ps  S =  29.4 ps  Cin =  0.9 ff  Cout =  11.6 ff  Cmax =  60.6 ff  G = 1268\nABC: Path  2 --   14991 : 3    5 NOR3_X1   A =   1.06  Df = 156.8  -87.6 ps  S =  62.8 ps  Cin =  1.6 ff  Cout =   6.8 ff  Cmax =  16.0 ff  G =  418\nABC: Path  3 --   14992 : 1   10 BUF_X1    A =   0.80  Df = 222.7 -105.7 ps  S =  38.7 ps  Cin =  0.9 ff  Cout =  15.7 ff  Cmax =  60.7 ff  G = 1615\nABC: Path  4 --   14993 : 1   10 BUF_X1    A =   0.80  Df = 286.0 -119.1 ps  S =  38.4 ps  Cin =  0.9 ff  Cout =  15.6 ff  Cmax =  60.7 ff  G = 1623\nABC: Path  5 --   15292 : 3    1 AOI21_X1  A =   1.06  Df = 304.5 -108.2 ps  S =  21.4 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  25.3 ff  G =   98\nABC: Path  6 --   15296 : 4    1 AOI211_X1 A =   1.33  Df = 343.4 -116.4 ps  S =  36.8 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  14.5 ff  G =  100\nABC: Path  7 --   15298 : 3    1 OAI21_X1  A =   1.06  Df = 361.8 -105.8 ps  S =  18.1 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  26.1 ff  G =   98\nABC: Path  8 --   15299 : 3    1 AOI21_X1  A =   1.06  Df = 388.7 -116.8 ps  S =  21.0 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  25.3 ff  G =   97\nABC: Path  9 --   15300 : 4    1 OAI211_X1 A =   1.33  Df = 410.1 -109.1 ps  S =  22.2 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  25.6 ff  G =   99\nABC: Path 10 --   15301 : 3    1 AOI21_X1  A =   1.06  Df = 444.5 -126.6 ps  S =  21.4 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  25.3 ff  G =   98\nABC: Path 11 --   15304 : 4    1 OAI22_X1  A =   1.33  Df = 466.1 -110.2 ps  S =  29.2 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  23.2 ff  G =   98\nABC: Path 12 --   15305 : 3    1 AOI21_X1  A =   1.06  Df = 494.3 -121.1 ps  S =  21.3 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  25.3 ff  G =   98\nABC: Path 13 --   15308 : 5    1 OAI221_X1 A =   1.60  Df = 524.2 -105.1 ps  S =  35.0 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  22.2 ff  G =   99\nABC: Path 14 --   15310 : 3   10 AOI21_X1  A =   1.06  Df = 633.8 -160.8 ps  S =  95.0 ps  Cin =  1.6 ff  Cout =  17.5 ff  Cmax =  25.3 ff  G = 1068\nABC: Path 15 --   15311 : 3    3 OAI21_X1  A =   1.06  Df = 670.4 -143.1 ps  S =  31.1 ps  Cin =  1.6 ff  Cout =   4.3 ff  Cmax =  26.1 ff  G =  256\nABC: Path 16 --   15312 : 3    2 AND3_X1   A =   1.33  Df = 717.0 -121.5 ps  S =  13.3 ps  Cin =  0.9 ff  Cout =   2.6 ff  Cmax =  60.4 ff  G =  269\nABC: Path 17 --   15314 : 4    4 OR4_X1    A =   1.60  Df = 839.4  -79.8 ps  S =  22.0 ps  Cin =  0.9 ff  Cout =   5.9 ff  Cmax =  60.6 ff  G =  637\nABC: Path 18 --   15317 : 3    2 AND3_X1   A =   1.33  Df = 880.3  -60.4 ps  S =  12.4 ps  Cin =  0.9 ff  Cout =   2.6 ff  Cmax =  60.4 ff  G =  272\nABC: Path 19 --   15320 : 3    4 OR3_X1    A =   1.33  Df = 965.6  -47.0 ps  S =  17.4 ps  Cin =  0.9 ff  Cout =   6.0 ff  Cmax =  60.6 ff  G =  631\nABC: Path 20 --   15322 : 3    2 AND3_X1   A =   1.33  Df =1006.6  -35.7 ps  S =  13.4 ps  Cin =  0.9 ff  Cout =   2.5 ff  Cmax =  60.4 ff  G =  274\nABC: Path 21 --   15323 : 3    4 OR3_X1    A =   1.33  Df =1095.9  -49.2 ps  S =  17.4 ps  Cin =  0.9 ff  Cout =   5.9 ff  Cmax =  60.6 ff  G =  626\nABC: Path 22 --   15339 : 2    1 NAND2_X1  A =   0.80  Df =1118.3  -54.9 ps  S =  12.7 ps  Cin =  1.6 ff  Cout =   2.2 ff  Cmax =  59.4 ff  G =  140\nABC: Path 23 --   15404 : 2    2 XOR2_X1   A =   1.60  Df =1174.9  -12.4 ps  S =  30.7 ps  Cin =  2.3 ff  Cout =   3.5 ff  Cmax =  25.3 ff  G =  147\nABC: Path 24 --   15405 : 2    3 XNOR2_X1  A =   1.60  Df =1228.7  -18.0 ps  S =  30.6 ps  Cin =  2.3 ff  Cout =   4.3 ff  Cmax =  26.0 ff  G =  173\nABC: Path 25 --   15416 : 3    3 OAI21_X1  A =   1.06  Df =1271.3  -33.1 ps  S =  30.2 ps  Cin =  1.6 ff  Cout =   4.3 ff  Cmax =  26.1 ff  G =  254\nABC: Path 26 --   15500 : 3    3 AOI21_X1  A =   1.06  Df =1296.0  -11.3 ps  S =  33.0 ps  Cin =  1.6 ff  Cout =   4.2 ff  Cmax =  25.3 ff  G =  258\nABC: Path 27 --   15590 : 3    3 OAI21_X1  A =   1.06  Df =1350.2  -34.2 ps  S =  36.4 ps  Cin =  1.6 ff  Cout =   5.6 ff  Cmax =  26.1 ff  G =  335\nABC: Path 28 --   15815 : 4    2 AOI211_X1 A =   1.33  Df =1373.3   -2.0 ps  S =  43.1 ps  Cin =  1.6 ff  Cout =   2.6 ff  Cmax =  14.5 ff  G =  158\nABC: Path 29 --   16114 : 6    1 OAI33_X1  A =   1.86  Df =1452.2  -47.3 ps  S =  56.8 ps  Cin =  1.5 ff  Cout =   1.7 ff  Cmax =  11.5 ff  G =   99\nABC: Path 30 --   16115 : 3    1 AOI21_X1  A =   1.06  Df =1473.0  -34.2 ps  S =  20.7 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  25.3 ff  G =   98\nABC: Path 31 --   16116 : 4    2 OAI211_X1 A =   1.33  Df =1516.9  -48.4 ps  S =  28.0 ps  Cin =  1.6 ff  Cout =   3.3 ff  Cmax =  25.6 ff  G =  200\nABC: Path 32 --   16118 : 3    3 NAND3_X1  A =   1.06  Df =1547.5  -48.6 ps  S =  17.5 ps  Cin =  1.6 ff  Cout =   4.3 ff  Cmax =  58.4 ff  G =  258\nABC: Path 33 --   16240 : 3    2 AND3_X1   A =   1.33  Df =1586.3  -39.3 ps  S =  12.1 ps  Cin =  0.9 ff  Cout =   2.6 ff  Cmax =  60.4 ff  G =  273\nABC: Path 34 --   16248 : 6    4 OAI33_X1  A =   1.86  Df =1696.8 -116.6 ps  S =  90.2 ps  Cin =  1.5 ff  Cout =   6.0 ff  Cmax =  11.5 ff  G =  357\nABC: Path 35 --   16336 : 3    2 AOI21_X1  A =   1.06  Df =1724.8 -100.9 ps  S =  28.8 ps  Cin =  1.6 ff  Cout =   3.2 ff  Cmax =  25.3 ff  G =  199\nABC: Path 36 --   16406 : 4    1 OAI211_X1 A =   1.33  Df =1758.1 -110.8 ps  S =  20.7 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  25.6 ff  G =  101\nABC: Path 37 --   16407 : 3    2 NAND3_X1  A =   1.06  Df =1785.0 -110.6 ps  S =  15.5 ps  Cin =  1.6 ff  Cout =   3.2 ff  Cmax =  58.4 ff  G =  197\nABC: Path 38 --   16463 : 4    4 OAI211_X1 A =   1.33  Df =1847.1 -136.3 ps  S =  43.5 ps  Cin =  1.6 ff  Cout =   6.6 ff  Cmax =  25.6 ff  G =  403\nABC: Path 39 --   16494 : 4    2 AOI211_X1 A =   1.33  Df =1873.5 -106.6 ps  S =  48.2 ps  Cin =  1.6 ff  Cout =   3.3 ff  Cmax =  14.5 ff  G =  202\nABC: Path 40 --   16501 : 6    3 OAI33_X1  A =   1.86  Df =1979.0 -169.6 ps  S =  81.7 ps  Cin =  1.5 ff  Cout =   4.9 ff  Cmax =  11.5 ff  G =  301\nABC: Path 41 --   16518 : 3    3 AOI21_X1  A =   1.06  Df =2010.1 -151.6 ps  S =  33.2 ps  Cin =  1.6 ff  Cout =   4.2 ff  Cmax =  25.3 ff  G =  258\nABC: Path 42 --   16536 : 3    1 OAI21_X1  A =   1.06  Df =2048.6 -166.4 ps  S =  21.1 ps  Cin =  1.6 ff  Cout =   2.2 ff  Cmax =  26.1 ff  G =  138\nABC: Path 43 --   16544 : 2    1 XNOR2_X1  A =   1.60  Df =2091.3 -170.0 ps  S =  18.5 ps  Cin =  2.3 ff  Cout =   1.7 ff  Cmax =  26.0 ff  G =   67\nABC: Path 44 --   16545 : 3    1 OAI21_X1  A =   1.06  Df =2109.9 -177.1 ps  S =  12.1 ps  Cin =  1.6 ff  Cout =   0.0 ff  Cmax =  26.1 ff  G =    0\nABC: Start-point = pi5 (\\_k1_T_1 [6]).  End-point = po574 ($auto$rtlil.cc:2669:MuxGate$314614).\nABC: + write_blif /tmp/fast-nm-repair-17920156/yosys-abc-m5I10i/output.blif\n\n10.1.2. Re-integrating ABC results.\nABC RESULTS:         AOI222_X1 cells:       14\nABC RESULTS:          _const0_ cells:       20\nABC RESULTS:         OAI222_X1 cells:       24\nABC RESULTS:           MUX2_X1 cells:      523\nABC RESULTS:          OAI33_X1 cells:       34\nABC RESULTS:           AND3_X1 cells:      100\nABC RESULTS:            OR4_X1 cells:      129\nABC RESULTS:         AOI221_X1 cells:      282\nABC RESULTS:         CLKBUF_X1 cells:      214\nABC RESULTS:            OR3_X1 cells:      183\nABC RESULTS:            OR2_X1 cells:      389\nABC RESULTS:          OAI22_X1 cells:      436\nABC RESULTS:          AOI22_X1 cells:      656\nABC RESULTS:         OAI221_X1 cells:      276\nABC RESULTS:          OAI21_X1 cells:     2334\nABC RESULTS:          AOI21_X1 cells:     2424\nABC RESULTS:           NOR3_X1 cells:      687\nABC RESULTS:            INV_X1 cells:     1694\nABC RESULTS:          NAND2_X1 cells:     3462\nABC RESULTS:         OAI211_X1 cells:      563\nABC RESULTS:           XOR2_X1 cells:      872\nABC RESULTS:         AOI211_X1 cells:      753\nABC RESULTS:           AND4_X1 cells:       86\nABC RESULTS:          NAND3_X1 cells:      677\nABC RESULTS:          XNOR2_X1 cells:     1043\nABC RESULTS:          NAND4_X1 cells:      691\nABC RESULTS:           NOR4_X1 cells:      764\nABC RESULTS:           NOR2_X1 cells:     4263\nABC RESULTS:            BUF_X1 cells:      900\nABC RESULTS:           AND2_X1 cells:     1064\nABC RESULTS:        internal signals:    62018\nABC RESULTS:           input signals:     3563\nABC RESULTS:          output signals:     3012\nRemoving temp directory.\n(hammer) setundef -zero\n\n11. Executing SETUNDEF pass (replace undef values with defined constants).\n(hammer) splitnets\n\n12. Executing SPLITNETS pass (splitting up multi-bit signals).\n(hammer) opt_clean -purge\n\n13. Executing OPT_CLEAN pass (remove unused cells and wires).\nFinding unused cells or wires in module \\Rq1BlockNmTop..\nRemoved 0 unused cells and 73628 unused wires.\n(hammer) hilomap -singleton\n<suppressed ~5431 debug messages>\n\n14. Executing HILOMAP pass (mapping to constant drivers).\n(hammer) tee -o /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/syn-rundir/Rq1BlockNmTop.synth_check.rpt check\n\n15. Executing CHECK pass (checking for obvious problems).\n(hammer) tee -o /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/syn-rundir/Rq1BlockNmTop.synth_stat.txt stat -top Rq1BlockNmTop -liberty /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib\nChecking module Rq1BlockNmTop...\nFound and reported 0 problems.\n\n16. Printing statistics.\ncheck -assert\n\n=== Rq1BlockNmTop ===\n\n   Number of wires:              31536\n   Number of wire bits:          31827\n   Number of public wires:        2988\n   Number of public wire bits:    3279\n   Number of memories:               0\n   Number of memory bits:            0\n   Number of processes:              0\n   Number of cells:              28549\n     AND2_X1                      1064\n     AND3_X1                       100\n     AND4_X1                        86\n     AOI211_X1                     753\n     AOI21_X1                     2424\n     AOI221_X1                     282\n     AOI222_X1                      14\n     AOI22_X1                      656\n     BUF_X1                        900\n     CLKBUF_X1                     214\n     DFF_X1                       3011\n     INV_X1                       1694\n     LOGIC0_X1                       1\n     MUX2_X1                       523\n     NAND2_X1                     3462\n     NAND3_X1                      677\n     NAND4_X1                      691\n     NOR2_X1                      4263\n     NOR3_X1                       687\n     NOR4_X1                       764\n     OAI211_X1                     563\n     OAI21_X1                     2334\n     OAI221_X1                     276\n     OAI222_X1                      24\n     OAI22_X1                      436\n     OAI33_X1                       34\n     OR2_X1                        389\n     OR3_X1                        183\n     OR4_X1                        129\n     XNOR2_X1                     1043\n     XOR2_X1                       872\n\n   Chip area for module '\\Rq1BlockNmTop': 40553.030000\n\n17. Executing CHECK pass (checking for obvious problems).\nselect -assert-none {t:$*}\n(hammer) write_verilog -noattr -noexpr -nohex -nodec -defparam \"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/syn-rundir/Rq1BlockNmTop.mapped.v\"\nChecking module Rq1BlockNmTop...\nFound and reported 0 problems.\n\n18. Executing Verilog backend.\nDumping module `\\Rq1BlockNmTop'.\n\u001b[96m[synthesis] Did not run write_regs\u001b[0m\nAction syn config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/syn-output.json\n",
+      "timed_out": false,
+      "returncode": 0,
+      "wall_seconds": 148.53542305799783,
+      "command": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/hammer_driver.py",
+        "syn",
+        "-p",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/config.json",
+        "--obj_dir",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer",
+        "-o",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/syn-output.json"
+      ]
+    },
+    "syn-to-par": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/syn-to-par.log",
+      "diagnostics": "\u001b[96m[<global>] Loading hammer-vlsi libraries and reading settings\u001b[0m\n\u001b[96m[<global>] Loading technology 'hammer.technology.nangate45'\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\nAction syn-to-par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/par-input.json\n",
+      "timed_out": false,
+      "returncode": 0,
+      "wall_seconds": 0.7843051999952877,
+      "command": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/hammer_driver.py",
+        "syn-to-par",
+        "-p",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/config.json",
+        "-p",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/syn-output.json",
+        "--obj_dir",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer",
+        "-o",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/par-input.json"
+      ]
+    },
+    "par": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/par.log",
+      "diagnostics": "oad -no_init -log /...]      2    4.41488791    0.01528465    0.02437817    1.57550502 ^ _37454_/ZN (NAND2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01528469    0.00008160    1.57558656 ^ _37455_/B (XOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      2    4.59704399    0.03452303    0.06099188    1.63657844 ^ _37455_/Z (XOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.03452313    0.00019995    1.63677847 ^ _37459_/A (XNOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      3    6.43454885    0.03960279    0.05684797    1.69362640 ^ _37459_/ZN (XNOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.03960285    0.00016220    1.69378865 ^ _37460_/B (XOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      1    2.70157576    0.02619248    0.05720991    1.75099850 ^ _37460_/Z (XOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02619248    0.00003997    1.75103843 ^ _37461_/B (XNOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      2    4.26545286    0.02991221    0.04915391    1.80019236 ^ _37461_/ZN (XNOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02991228    0.00016098    1.80035341 ^ _37462_/B (XNOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      2    4.41663074    0.03059674    0.05037782    1.85073113 ^ _37462_/ZN (XNOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.03059675    0.00005651    1.85078764 ^ _37463_/B (XOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      2    5.20978594    0.03726738    0.06786849    1.91865623 ^ _37463_/Z (XOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.03726755    0.00027445    1.91893065 ^ _37464_/B (XNOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      2    3.83341146    0.02798892    0.05054957    1.96948016 ^ _37464_/ZN (XNOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02798897    0.00013189    1.96961212 ^ _37465_/B (XOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      3    4.83206892    0.03556788    0.06544410    2.03505611 ^ _37465_/Z (XOR2_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.03556789    0.00004685    2.03510308 ^ _37472_/B1 (AOI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      3    4.44439840    0.01654895    0.02765876    2.06276178 v _37472_/ZN (AOI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01654899    0.00008571    2.06284761 v _37562_/B2 (OAI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      3    6.95630312    0.04157274    0.06133827    2.12418580 ^ _37562_/ZN (OAI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.04157315    0.00041323    2.12459898 ^ _37787_/C2 (AOI211_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      2    3.24484420    0.01709247    0.02648903    2.15108800 v _37787_/ZN (AOI211_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01709254    0.00012146    2.15120959 v _38086_/B2 (OAI33_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      1    3.11841011    0.06752905    0.09127477    2.24248433 ^ _38086_/ZN (OAI33_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.06752907    0.00020406    2.24268842 ^ _38087_/B2 (AOI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      1    2.25346351    0.01520372    0.02397105    2.26665926 v _38087_/ZN (AOI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01520375    0.00007705    2.26673651 v _38088_/C2 (OAI211_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      2    4.57946968    0.03322373    0.05131051    2.31804705 ^ _38088_/ZN (OAI211_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.03322392    0.00027289    2.31831980 ^ _38090_/A3 (NAND3_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      3    4.74582815    0.01899072    0.03412693    2.35244679 v _38090_/ZN (NAND3_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01899086    0.00017009    2.35261679 v _38212_/A2 (AND3_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      2    3.17370605    0.00803261    0.04110556    2.39372230 v _38212_/ZN (AND3_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.00803271    0.00010769    2.39383006 v _38220_/B2 (OAI33_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      4    7.61525154    0.10125366    0.12350032    2.51733041 ^ _38220_/ZN (OAI33_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.10125384    0.00045230    2.51778269 ^ _38308_/B2 (AOI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      2    3.67205167    0.02178805    0.03082090    2.54860353 v _38308_/ZN (AOI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02178815    0.00016120    2.54876494 v _38378_/C1 (OAI211_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      1    2.12101245    0.02296802    0.03674217    2.58550692 ^ _38378_/ZN (OAI211_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02296803    0.00007216    2.58557916 ^ _38379_/A3 (NAND3_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      2    3.82078743    0.01701197    0.02959699    2.61517620 v _38379_/ZN (NAND3_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01701204    0.00011546    2.61529160 v _38435_/C2 (OAI211_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      4    8.33706665    0.04993531    0.07117552    2.68646717 ^ _38435_/ZN (OAI211_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.04993580    0.00049294    2.68695998 ^ _38466_/C1 (AOI211_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      2    4.12001133    0.01987192    0.03054756    2.71750760 v _38466_/ZN (AOI211_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01987203    0.00016054    2.71766806 v _38473_/B2 (OAI33_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      3    5.72733402    0.08727690    0.11300495    2.83067322 ^ _38473_/ZN (OAI33_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.08727691    0.00016254    2.83083558 ^ _38484_/B1 (AOI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      1    1.84904671    0.02265281    0.02163936    2.85247493 v _38484_/ZN (AOI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02265282    0.00005884    2.85253382 v _38485_/A (OAI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      1    2.33372831    0.02157105    0.02833911    2.88087296 ^ _38485_/ZN (OAI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02157106    0.00008460    2.88095760 ^ _38487_/A (OAI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]      1    1.31638062    0.01779383    0.02054268    2.90150023 v _38487_/ZN (OAI21_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01779384    0.00003597    2.90153623 v _54737_/D (DFF_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                                                     2.90153623   data arrival time\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                                       3.33299994    3.33299994   clock clock (rise edge)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                                       0.21103695    3.54403687   clock network delay (propagated)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                                      -0.09999999    3.44403696   clock uncertainty\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                                       0.00000000    3.44403696   clock reconvergence pessimism\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                                                     3.44403696 ^ _54737_/CK (DFF_X1)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                                      -0.03871115    3.40532589   library setup time\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                                                     3.40532589   data required time\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------------------------------------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                                                     3.40532589   data required time\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                                                    -2.90153623   data arrival time\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------------------------------------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                                                     0.50378966   slack (MET)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) puts FAST_CRITICAL_PATHS_END\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_CRITICAL_PATHS_END\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_check_types -max_slew -max_capacitance -violators\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] max capacitance\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Pin                                    Limit     Cap   Slack\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _36097_/ZN                             53.41   57.55   -4.14 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _28758_/ZN                             59.36   62.09   -2.74 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _29538_/ZN                             26.70   29.21   -2.51 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _41755_/ZN                             26.70   28.93   -2.22 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _35072_/ZN                             53.41   55.53   -2.13 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _35306_/ZN                             26.70   28.70   -2.00 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _36176_/ZN                             53.41   55.27   -1.87 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _28564_/ZN                            120.85  122.64   -1.79 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _35305_/ZN                             26.70   28.36   -1.66 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _35061_/ZN                             53.41   54.95   -1.55 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _35771_/ZN                             26.70   28.25   -1.55 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _36164_/ZN                             59.36   60.88   -1.53 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _32625_/ZN                             59.36   60.74   -1.38 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _43293_/ZN                             26.70   27.93   -1.23 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _44382_/ZN                             26.70   27.93   -1.23 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _40545_/ZN                             26.70   27.93   -1.23 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _44422_/ZN                             59.36   60.53   -1.17 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _36321_/ZN                             26.02   27.17   -1.15 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _30131_/ZN                             26.70   27.85   -1.15 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _32517_/ZN                             26.70   27.84   -1.13 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _44504_/ZN                             26.70   27.80   -1.10 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _37060_/ZN                             22.16   23.23   -1.06 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_design_area\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Design area 395924 um^2 100% utilization.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set fast_filler_names {FILLCELL_X1 FILLCELL_X2 FILLCELL_X4 FILLCELL_X8 FILLCELL_X16 FILLCELL_X32}\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_CELL_AREA_UM2 41780.88599999517\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_DIE_AREA_UM2 435600.0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_CORE_AREA_UM2 395923.71\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_FINAL_END\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db post_report_routed\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn post_report_routed latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exit\u001b[0m\n\u001b[96m[par] Did not run write_design\u001b[0m\nAction par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/par-output.json\n",
+      "timed_out": false,
+      "returncode": 0,
+      "wall_seconds": 655.3010781339981,
+      "command": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/hammer_driver.py",
+        "par",
+        "-p",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/config.json",
+        "-p",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/par-input.json",
+        "--obj_dir",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer",
+        "-o",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/block_nm_timing_repair_v1_20260917/rq1_block_nm/round_01/build_01/hammer/par-output.json"
+      ]
+    },
+    "route_drc_violations": 0,
+    "io_delay_ns": 1.0,
+    "output_load_ff": 5.0,
+    "process_corner": "Nangate45 typical 1.1 V 25 C for setup and hold; not multi-PVT signoff",
+    "timing_diagnosis": {
+      "scope": "Post-route extracted-RC STA, setup corner; mapped endpoint nets are evidence, not automatic source-level attribution.",
+      "paths": [
+        {
+          "startpoint": "_54795_",
+          "endpoint": "_54739_",
+          "start_cell": "DFF_X1 _54795_ (.D(_00986_),\n    .CK(clknet_leaf_11_clock),\n    .Q(\\_k1_T_1[4] ),\n    .QN(_28052_));",
+          "end_cell": "DFF_X1 _54739_ (.D(_00930_),\n    .CK(clknet_leaf_23_clock),\n    .Q(\\_divider_numer_in_T[31] ),\n    .QN(_00018_));"
+        },
+        {
+          "startpoint": "_54795_",
+          "endpoint": "_54738_",
+          "start_cell": "DFF_X1 _54795_ (.D(_00986_),\n    .CK(clknet_leaf_11_clock),\n    .Q(\\_k1_T_1[4] ),\n    .QN(_28052_));",
+          "end_cell": "DFF_X1 _54738_ (.D(_00929_),\n    .CK(clknet_leaf_23_clock),\n    .Q(\\_divider_numer_in_T[30] ),\n    .QN(_00019_));"
+        },
+        {
+          "startpoint": "_54795_",
+          "endpoint": "_54737_",
+          "start_cell": "DFF_X1 _54795_ (.D(_00986_),\n    .CK(clknet_leaf_11_clock),\n    .Q(\\_k1_T_1[4] ),\n    .QN(_28052_));",
+          "end_cell": "DFF_X1 _54737_ (.D(_00928_),\n    .CK(clknet_leaf_23_clock),\n    .Q(\\_divider_numer_in_T[29] ),\n    .QN(_00021_));"
+        }
+      ],
+      "endpoint_mapping": "_54795_: DFF_X1 _54795_ (.D(_00986_),\n    .CK(clknet_leaf_11_clock),\n    .Q(\\_k1_T_1[4] ),\n    .QN(_28052_)); -> _54739_: DFF_X1 _54739_ (.D(_00930_),\n    .CK(clknet_leaf_23_clock),\n    .Q(\\_divider_numer_in_T[31] ),\n    .QN(_00018_));\n_54795_: DFF_X1 _54795_ (.D(_00986_),\n    .CK(clknet_leaf_11_clock),\n    .Q(\\_k1_T_1[4] ),\n    .QN(_28052_)); -> _54738_: DFF_X1 _54738_ (.D(_00929_),\n    .CK(clknet_leaf_23_clock),\n    .Q(\\_divider_numer_in_T[30] ),\n    .QN(_00019_));\n_54795_: DFF_X1 _54795_ (.D(_00986_),\n    .CK(clknet_leaf_11_clock),\n    .Q(\\_k1_T_1[4] ),\n    .QN(_28052_)); -> _54737_: DFF_X1 _54737_ (.D(_00928_),\n    .CK(clknet_leaf_23_clock),\n    .Q(\\_divider_numer_in_T[29] ),\n    .QN(_00021_));",
+      "report_excerpt": "\n[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_checks -sort_by_slack -path_delay max -corner setup -group_count 3 -digits 8 -fields {slew cap input nets fanout}\n[par] [Exec ...s/bin/openroad -no_init -log /...] [WARNING STA-0168] unknown field nets.\n[par] [Exec ...s/bin/openroad -no_init -log /...] [WARNING STA-0503] report_checks -group_count is deprecated. Use -group_path_count instead.\n[par] [Exec ...s/bin/openroad -no_init -log /...] Startpoint: _54795_ (rising edge-triggered flip-flop clocked by clock)\n[par] [Exec ...s/bin/openroad -no_init -log /...] Endpoint: _54739_ (rising edge-triggered flip-flop clocked by clock)\n[par] [Exec ...s/bin/openroad -no_init -log /...] Path Group: clock\n[par] [Exec ...s/bin/openroad -no_init -log /...] Path Type: max\n[par] [Exec ...s/bin/openroad -no_init -log /...] Corner: setup\n[par] [Exec ...s/bin/openroad -no_init -log /...] \n[par] [Exec ...s/bin/openroad -no_init -log /...] Fanout           Cap          Slew         Delay          Time   Description\n[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------------------------------------------------------------------------------------------\n[par] [Exec ...s/bin/openroad -no_init -log /...]                                       0.00000000    0.00000000   clock clock (rise edge)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                                       0.22069468    0.22069468   clock network delay (propagated)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01527399    0.00000000    0.22069468 ^ _54795_/CK (DFF_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]     14   55.70724106    0.12269118    0.21102639    0.43172106 ^ _54795_/Q (DFF_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.12327839    0.00890546    0.44062653 ^ _28549_/A1 (NAND2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      7   33.33758926    0.07310904    0.11889787    0.55952436 v _28549_/ZN (NAND2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.07310908    0.00020384    0.55972821 v _36915_/A1 (NOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      6   18.31248665    0.08957584    0.13552621    0.69525445 ^ _36915_/ZN (NOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.08959593    0.00232936    0.69758379 ^ wire669/A (BUF_X4)\n[par] [Exec ...s/bin/openroad -no_init -log /...]     11   27.09062386    0.01796611    0.04111100    0.73869479 ^ wire669/Z (BUF_X4)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01822833    0.00358208    0.74227685 ^ _37092_/A (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    1.79751086    0.02578103    0.01566486    0.75794172 v _37092_/ZN (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02578103    0.00004635    0.75798810 v _37094_/B2 (AOI221_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    6.35751057    0.07365273    0.12057905    0.87856716 ^ _37094_/ZN (AOI221_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.07365396    0.00100508    0.87957221 ^ _37096_/B1 (OAI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    5.97713900    0.02707931    0.03816603    0.91773826 v _37096_/ZN (OAI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02708268    0.00094286    0.91868109 v _37097_/B1 (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1   12.36159039    0.06908512    0.08725116    1.00593221 ^ _37097_/ZN (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.06908824    0.00142397    1.00735629 ^ _37098_/B1 (OAI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    2.13680673    0.01999099    0.02274625    1.03010249 v _37098_/ZN (OAI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01999101    0.00009259    1.03019512 v _37099_/B2 (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    5.67265320    0.04083193    0.05556789    1.08576298 ^ _37099_/ZN (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.04083295    0.00066336    1.08642626 ^ _37102_/B1 (OAI22_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    8.27336407    0.04178385    0.04207557    1.12850189 v _37102_/ZN (OAI22_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.04178856    0.00141565    1.12991750 v _37103_/C1 (AOI211_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    7.70590067    0.07786901    0.09735735    1.22727489 ^ _37103_/ZN (AOI211_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.07787149    0.00139777    1.22867262 ^ _37105_/B1 (OAI221_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    6.75151825    0.04369912    0.05568002    1.28435266 v _37105_/ZN (OAI221_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.04370122    0.00100375    1.28535640 v _37106_/B1 (AOI22_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      5   20.36721230    0.10728464    0.14704327    1.43239963 ^ _37106_/ZN (AOI22_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.10730010    0.00383316    1.43623281 ^ _37437_/A1 (NAND2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    2.93180394    0.02672534    0.02650269    1.46273553 v _37437_/ZN (NAND2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02672535    0.00005951    1.46279502 v _37452_/A2 (OR3_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    3.63827920    0.01539832    0.08825862    1.55105364 v _37452_/ZN (OR3_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01539833    0.00007316    1.55112684 v _37454_/A1 (NAND2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    4.41488791    0.01528465    0.02437817    1.57550502 ^ _37454_/ZN (NAND2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01528469    0.00008160    1.57558656 ^ _37455_/B (XOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    4.59704399    0.03452303    0.06099188    1.63657844 ^ _37455_/Z (XOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.03452313    0.00019995    1.63677847 ^ _37459_/A (XNOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      3    6.43454885    0.03960279    0.05684797    1.69362640 ^ _37459_/ZN (XNOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.03960285    0.00016220    1.69378865 ^ _37460_/B (XOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    2.70157576    0.02619248    0.05720991    1.75099850 ^ _37460_/Z (XOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02619248    0.00003997    1.75103843 ^ _37461_/B (XNOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    4.26545286    0.02991221    0.04915391    1.80019236 ^ _37461_/ZN (XNOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02991228    0.00016098    1.80035341 ^ _37462_/B (XNOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    4.41663074    0.03059674    0.05037782    1.85073113 ^ _37462_/ZN (XNOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.03059675    0.00005651    1.85078764 ^ _37463_/B (XOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    5.20978594    0.03726738    0.06786849    1.91865623 ^ _37463_/Z (XOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.03726755    0.00027445    1.91893065 ^ _37464_/B (XNOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    3.83341146    0.02798892    0.05054957    1.96948016 ^ _37464_/ZN (XNOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02798897    0.00013189    1.96961212 ^ _37465_/B (XOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      3    4.83206892    0.03556788    0.06544410    2.03505611 ^ _37465_/Z (XOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.03556789    0.00004685    2.03510308 ^ _37472_/B1 (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      3    4.44439840    0.01654895    0.02765876    2.06276178 v _37472_/ZN (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01654899    0.00008571    2.06284761 v _37562_/B2 (OAI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      3    6.95630312    0.04157274    0.06133827    2.12418580 ^ _37562_/ZN (OAI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.04157315    0.00041323    2.12459898 ^ _37787_/C2 (AOI211_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    3.24484420    0.01709247    0.02648903    2.15108800 v _37787_/ZN (AOI211_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01709254    0.00012146    2.15120959 v _38086_/B2 (OAI33_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    3.11841011    0.06752905    0.09127477    2.24248433 ^ _38086_/ZN (OAI33_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.06752907    0.00020406    2.24268842 ^ _38087_/B2 (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    2.25346351    0.01520372    0.02397105    2.26665926 v _38087_/ZN (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01520375    0.00007705    2.26673651 v _38088_/C2 (OAI211_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    4.57946968    0.03322373    0.05131051    2.31804705 ^ _38088_/ZN (OAI211_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.03322392    0.00027289    2.31831980 ^ _38090_/A3 (NAND3_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      3    4.74582815    0.01899072    0.03412693    2.35244679 v _38090_/ZN (NAND3_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01899086    0.00017009    2.35261679 v _38212_/A2 (AND3_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    3.17370605    0.00803261    0.04110556    2.39372230 v _38212_/ZN (AND3_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.00803271    0.00010769    2.39383006 v _38220_/B2 (OAI33_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      4    7.61525154    0.10125366    0.12350032    2.51733041 ^ _38220_/ZN (OAI33_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.10125384    0.00045230    2.51778269 ^ _38308_/B2 (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    3.67205167    0.02178805    0.03082090    2.54860353 v _38308_/ZN (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02178815    0.00016120    2.54876494 v _38378_/C1 (OAI211_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    2.12101245    0.02296802    0.03674217    2.58550692 ^ _38378_/ZN (OAI211_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02296803    0.00007216    2.58557916 ^ _38379_/A3 (NAND3_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    3.82078743    0.01701197    0.02959699    2.61517620 v _38379_/ZN (NAND3_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01701204    0.00011546    2.61529160 v _38435_/C2 (OAI211_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      4    8.33706665    0.04993531    0.07117552    2.68646717 ^ _38435_/ZN (OAI211_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.04993580    0.00049294    2.68695998 ^ _38466_/C1 (AOI211_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      2    4.12001133    0.01987192    0.03054756    2.71750760 v _38466_/ZN (AOI211_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.01987203    0.00016054    2.71766806 v _38473_/B2 (OAI33_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      3    5.72733402    0.08727690    0.11300495    2.83067322 ^ _38473_/ZN (OAI33_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.08727691    0.00014566    2.83081865 ^ _38490_/B2 (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      3    4.65126610    0.02128844    0.03393574    2.86475444 v _38490_/ZN (AOI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02128852    0.00013700    2.86489153 v _38508_/B2 (OAI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    3.04748344    0.02446728    0.04323364    2.90812516 ^ _38508_/ZN (OAI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02446734    0.00013989    2.90826511 ^ _38516_/A (XNOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    2.12940454    0.02039919    0.04342149    2.95168662 ^ _38516_/ZN (XNOR2_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02039920    0.00007705    2.95176363 ^ _38517_/B1 (OAI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]      1    1.21454060    0.02141465    0.01542744    2.96719098 v _38517_/ZN (OAI21_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                         0.02141465    0.00001865    2.96720958 v _54739_/D (DFF_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                                                     2.96720958   data arrival time\n[par] [Exec ...s/bin/openroad -no_init -log /...] \n[par] [Exec ...s/bin/openroad -no_init -log /...]                                       3.33299994    3.33299994   clock clock (rise edge)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                                       0.21171179    3.54471183   clock network delay (propagated)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                                      -0.09999999    3.44471169   clock uncertainty\n[par] [Exec ...s/bin/openroad -no_init -log /...]                                       0.00000000    3.44471169   clock reconvergence pessimism\n[par] [Exec ...s/bin/openroad -no_init -log /...]                                                     3.44471169 ^ _54739_/CK (DFF_X1)\n[par] [Exec ...s/bin/openroad -no_init -log /...]                                      -0.04017174    3.40454006   library setup time\n[par] [Exec ...s/bin/openroad -no_init -log /...]                                                     3.40454006   data required time\n[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------------------------------------------------------------------------------------------\n[par] [Exec ...s/bin/openroad -no_init -log /...]                                                     3.40454006   data required time\n[par] [Exec ...s/bin/openroad -no_init -log /...]                                                    -2.96720958   data arrival time\n[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------------------------------------------------------------------------------------------\n[par] [Exec ...s/bin/openroad -no_init -log /...]                                                     0.43733039   slack (MET)\n[par] [Exec ...s/bin/openroad -no_init -log /...] \n[par] [Exec ...s/bin/openroad -no_init -log /...] \n[par] [Exec ...s/bin/openroad -no_init -log /...] Startpoint: _54795_ (rising edge-triggered flip-flop clocked by clock)\n[par] [Exec ...s/bin/openroad -no_init -log /...] Endpoint: _54738_ (rising edge-triggered flip-flop clocked by clock)\n[par] [Exec ...s/bin/openroad -no_init -log /...] Path Group: clock\n[par] [Exec ...s/bin/openroad -no_init -log /...] Path Type: max\n[par] [Exec ...s/bin/openroad -no_init -log "
+    },
+    "area_um2": 41780.88599999517,
+    "die_area_um2": 435600.0,
+    "core_area_um2": 395923.71,
+    "power_mw": 13.4159094,
+    "slack_ns": 0.43733039,
+    "hold_slack_ns": 0.00664113,
+    "frequency_mhz": 300,
+    "latency_ns": 233.33333333333334,
+    "energy_nj": 3.13037886,
+    "energy_efficiency_queries_per_joule": 319450151.15518636,
+    "quality_loss": 0.03358657986150424,
+    "efficiency_scope": "one verified query; energy = modeled average power times single-query latency",
+    "artifacts": {
+      "hammer/par-rundir/routed.def": "6e107b5b4bf28a4b4ecc4269c743ca809ccfa31752c32c828ef7268ad7bd61b6",
+      "hammer/par-rundir/routed.v": "6e3a9a45df9daf314759e2437d070d7c6614fb1adfe3d89975b54aac0a1fcfc4",
+      "hammer/par-rundir/routed.odb": "2b916f3fec629f59e72dcbeb28eee389606aee3f7d8564299ad089f5b0bb0c4c",
+      "hammer/par-rundir/Rq1BlockNmTop.par.spef": "cfdd93c0d2904d0dddfaa1d1cdb1c61f8d2db494def280a203792ea15d91d70b",
+      "hammer/par-rundir/Rq1BlockNmTop_route_drc.rpt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "dense_equivalent_ops_per_query": 96,
+    "energy_efficiency_dense_equivalent_tops_per_w": 0.030667214510897895
+  },
+  "critique": {
+    "layer": "stop",
+    "reason": "The assisted repair was successful. The design meets all constraints, including timing (slack +0.437 ns), area (41.8k um^2 < 200k um^2), and quality (0.0336 < 0.05). The critical path violation from the previous design, caused by a serial reduction chain, was resolved by implementing a balanced comparator tree for the max-score calculation. Since a feasible point has been established and the experiment's loop budget (max_loops=1) is exhausted, the process concludes.",
+    "evidence": [
+      "evaluation.feasible",
+      "evaluation.slack_ns",
+      "evaluation.area_um2",
+      "evaluation.quality_loss"
+    ],
+    "instructions": "Stop. A feasible design point that meets all constraints has been successfully generated and measured. The timing violation has been fixed. No further action is required for this task."
+  },
+  "critique_applied": false
+}

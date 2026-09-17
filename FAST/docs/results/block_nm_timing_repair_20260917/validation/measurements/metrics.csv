@@ -1,0 +1,2 @@
+round,status,ppa_backend,complete,feasible,cases,cycles,frequency_mhz,latency_ns,area_um2,power_mw,energy_nj,energy_efficiency_queries_per_joule,slack_ns,hold_slack_ns,route_drc_violations,quality_loss,critic_layer,critique_applied
+1,evaluated,hammer_openroad,True,True,100,70.0,300,233.33333333333334,41780.88599999517,13.4159094,3.13037886,319450151.15518636,0.43733039,0.00664113,0,0.03358657986150424,stop,False

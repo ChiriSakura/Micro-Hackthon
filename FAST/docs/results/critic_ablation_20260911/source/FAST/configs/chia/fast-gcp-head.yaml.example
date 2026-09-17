@@ -1,0 +1,40 @@
+# FAST / GCP stage 1: one VM that is both the CHIA head and a worker.
+#
+# Why the head lives in GCP rather than on the Slurm login node: CHIA drives the
+# head over SSH, and the NYU login node's sshd refuses public-key authentication
+# (it offers only gssapi/password), so it cannot be a CHIA head. The login node
+# stays the *control* machine — it runs the chia CLI and SSHes outward.
+#
+# This stage provisions nothing by itself: create one small VM first, then point
+# HEAD_IP at its external address. Verify with:
+#   python FAST/scripts/gcp_preflight.py --config <this file>
+#   chia up --dry-run <this file>
+#
+# Required environment: HEAD_IP, FAST_SSH_USER, GCP_PRIVATE_KEY_PATH.
+# No project id, key or token belongs in this file.
+
+cluster_name: fast-gcp-head
+
+provider:
+    head_ip: ${HEAD_IP}
+
+auth:
+    ssh_user: ${FAST_SSH_USER}
+    ssh_private_key: ${GCP_PRIVATE_KEY_PATH}
+
+available_node_types:
+    fast_head:
+        resources: {"fast_head": 1, "fast_cpu": 2}
+        num_workers: 1
+        compatible_ips: ["${HEAD_IP}"]
+        worker_env_commands: ["source ~/fast-env/bin/activate"]
+
+head_env_commands: ["source ~/fast-env/bin/activate"]
+
+head_start_ray_commands:
+    - ray stop
+    - ray start --head --port=6379 --dashboard-agent-listen-port=0 --resources='{"fast_head":1,"fast_cpu":2}'
+
+worker_start_ray_commands:
+    - ray stop
+    - ray start --address=$RAY_HEAD_IP:6379 --dashboard-agent-listen-port=0

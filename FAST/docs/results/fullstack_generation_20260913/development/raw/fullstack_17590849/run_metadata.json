@@ -1,0 +1,21 @@
+{
+  "python": "3.12.9",
+  "code_sha256": {
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v5/fast/fullstack/__init__.py": "32113321986e16a597ec677cd47a19f056064c6de0e37561d2845fc89c6414d4",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v5/fast/fullstack/agents.py": "a7f204fda16968c9e6aaf3fded9f8ec0eeb8882efbf74f6fd673fd8af8e21e14",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v5/fast/fullstack/cli.py": "3f13621a70598df94a4c5aa24d426fd72338281d333e8e1008cd78bb4c1f3142",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v5/fast/fullstack/contracts.py": "81df7339ca728f2e93560a8140f710547f2576c024ad608cb4a95739dcb4a69e",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v5/fast/fullstack/flow.py": "8004e5fdb40638601ac41425d457c8c10c06cba1567c7f00b748259716061869",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v5/fast/fullstack/library.py": "53e99277e6b6388bb6514a652b0730a8cf01ff83f5b7146c44020b321a59fecf",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v5/fast/fullstack/tools.py": "ef4f603f1f4863f13d7ee33f688cc04e75359007b8c3b4cc4b88b45a27ce2b98",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v5/fast/agents/llm_backends.py": "6ffe9a68d37faffed6f557577af8b8151d960546d9b97e89597342393a12bd41",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v5/fast/adapters/synthesis.py": "bdfd30c68812327af36ed517d79fd5174bb22b8fb7d161a5a6acdb4617652097",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/fullstack_generation_v5/fast/adapters/timing.py": "d19956344abbe2a93e634a4a373ed89dd5ed9625d5903637163ff6bfd863eb97"
+  },
+  "llm_backend": "VertexDirect",
+  "model": "gemini-2.5-pro",
+  "project": "project-842e7b1d-4f04-40b2-9b0",
+  "location": "us-central1",
+  "temperature": 0.2,
+  "tool_root": "/scratch/gz2522/gz2522/tmp/micro-hackthon"
+}

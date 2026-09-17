@@ -1,0 +1,856 @@
+{
+  "vectors": [
+    {
+      "name": "behavior_isolated_0",
+      "steps": [
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "quot_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 0,
+            "denom_in": 100
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "quot_out": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "behavior_isolated_1",
+      "steps": [
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "quot_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 1000,
+            "denom_in": 10
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 1600
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "quot_out": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "behavior_isolated_2",
+      "steps": [
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "quot_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 67107840,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "quot_out": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "behavior_stream",
+      "steps": [
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "quot_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 0,
+            "denom_in": 100
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 1000,
+            "denom_in": 10
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 67107840,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 3295916,
+            "denom_in": 492388
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 30171838,
+            "denom_in": 411919
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 37810538,
+            "denom_in": 45370
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 37229562,
+            "denom_in": 117905
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 62223971,
+            "denom_in": 146372
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 1600
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 39567712,
+            "denom_in": 34724
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 16271833,
+            "denom_in": 143212
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 107
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 62054013,
+            "denom_in": 469500
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 1171
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 110748439,
+            "denom_in": 214883
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 13334
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 24994399,
+            "denom_in": 123887
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 5052
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 5467078,
+            "denom_in": 422519
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 6801
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 1,
+            "numer_in": 91679630,
+            "denom_in": 208139
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 18231
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 1817
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 2114
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 63789
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 3228
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 207
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 1,
+            "quot_out": 62267
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 0,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0
+          }
+        },
+        {
+          "inputs": {
+            "reset": 1,
+            "valid_in": 0,
+            "numer_in": 0,
+            "denom_in": 0
+          },
+          "cycles": 1,
+          "expected": {
+            "valid_out": 0,
+            "quot_out": 0
+          }
+        }
+      ]
+    }
+  ],
+  "expected_cases": 4,
+  "coverage": "Compiler-authored module scenarios; cycle marker is a case counter, not performance evidence"
+}

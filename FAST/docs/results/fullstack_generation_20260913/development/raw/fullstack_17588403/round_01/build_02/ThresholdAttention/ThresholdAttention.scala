@@ -1,0 +1,104 @@
+import chisel3._
+import chisel3.util._
+
+class ThresholdAttention extends RawModule {
+  val clock = IO(Input(Clock()))
+  val reset = IO(Input(Bool()))
+  val start = IO(Input(Bool()))
+  val q = IO(Input(UInt(8.W)))
+  val k = IO(Input(UInt(32.W)))
+  val v = IO(Input(UInt(16.W)))
+  val done = IO(Output(Bool()))
+  val result = IO(Output(UInt(4.W)))
+
+  val s_IDLE :: s_CALC_SCORES :: s_SUM :: s_DIV_START :: s_DIV_WAIT :: s_DONE_STATE :: Nil = Enum(6)
+
+  val pes = Seq.fill(4)(Module(new ProcessingElement))
+  val divider = Module(new Divider)
+
+  divider.clock := clock
+  divider.reset := reset
+
+  withClockAndReset(clock, reset) {
+    // Registers
+    val state_reg = RegInit(s_IDLE)
+    val q_reg = RegInit(0.U(8.W))
+    val k_reg = RegInit(0.U(32.W))
+    val v_reg = RegInit(0.U(16.W))
+    val pe_weights_reg = RegInit(VecInit(Seq.fill(4)(0.U(9.W))))
+    val pe_weighted_vs_reg = RegInit(VecInit(Seq.fill(4)(0.U(13.W))))
+    val sum_w_reg = RegInit(0.U(11.W))
+    val sum_wv_reg = RegInit(0.U(15.W))
+    val result_reg = RegInit(0.U(4.W))
+
+    // Combinational Logic for PE inputs
+    val q0 = q_reg(3, 0)
+    val q1 = q_reg(7, 4)
+    for (i <- 0 until 4) {
+      pes(i).q0 := q0
+      pes(i).q1 := q1
+      pes(i).k0 := k_reg(4 * (2 * i + 0) + 3, 4 * (2 * i + 0))
+      pes(i).k1 := k_reg(4 * (2 * i + 1) + 3, 4 * (2 * i + 1))
+      pes(i).v_in := v_reg(4 * i + 3, 4 * i)
+    }
+
+    // Combinational Logic for Adder Trees
+    val sum_w_stage1_0 = pe_weights_reg(0) + pe_weights_reg(1)
+    val sum_w_stage1_1 = pe_weights_reg(2) + pe_weights_reg(3)
+    val sum_w_comb = sum_w_stage1_0 + sum_w_stage1_1
+
+    val sum_wv_stage1_0 = pe_weighted_vs_reg(0) + pe_weighted_vs_reg(1)
+    val sum_wv_stage1_1 = pe_weighted_vs_reg(2) + pe_weighted_vs_reg(3)
+    val sum_wv_comb = sum_wv_stage1_0 + sum_wv_stage1_1
+
+    // Combinational Logic for Divider connections
+    divider.numer_in := sum_wv_reg
+    divider.denom_in := sum_w_reg
+    divider.start := (state_reg === s_DIV_START) && (sum_w_reg =/= 0.U)
+
+    // FSM state transitions and register updates
+    switch(state_reg) {
+      is(s_IDLE) {
+        when(start) {
+          q_reg := q
+          k_reg := k
+          v_reg := v
+          state_reg := s_CALC_SCORES
+        }
+      }
+      is(s_CALC_SCORES) {
+        for (i <- 0 until 4) {
+          pe_weights_reg(i) := pes(i).weight_out
+          pe_weighted_vs_reg(i) := pes(i).weighted_v_out
+        }
+        state_reg := s_SUM
+      }
+      is(s_SUM) {
+        sum_w_reg := sum_w_comb
+        sum_wv_reg := sum_wv_comb
+        state_reg := s_DIV_START
+      }
+      is(s_DIV_START) {
+        when(sum_w_reg === 0.U) {
+          result_reg := 0.U
+          state_reg := s_DONE_STATE
+        }.otherwise {
+          state_reg := s_DIV_WAIT
+        }
+      }
+      is(s_DIV_WAIT) {
+        when(divider.done) {
+          result_reg := divider.quotient_out
+          state_reg := s_DONE_STATE
+        }
+      }
+      is(s_DONE_STATE) {
+        state_reg := s_IDLE
+      }
+    }
+
+    // Combinational Logic for top-level outputs
+    done := state_reg === s_DONE_STATE
+    result := result_reg
+  }
+}

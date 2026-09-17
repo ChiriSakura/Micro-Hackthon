@@ -1,0 +1,50 @@
+{
+  "scope": "original_trajectory",
+  "run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm",
+  "round": 5,
+  "record_sha256": "adad905af78d26e21dc9ecd3df7828a388f57f68ff66d259cdbbf9723a39cdd5",
+  "files": [
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/round_05/build_01/ScoreAndExpUnit_rq1/ScoreAndExpUnit_rq1.scala",
+      "exported": "generated/ScoreAndExpUnit_rq1.scala",
+      "sha256": "119ab7f07f3b42e8743b7afc9a2403a5b69b42296d275d550c7331c473d8df16",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/references/025.scala",
+      "exported": "linked_library/cfca6f6c4f97_025.scala",
+      "sha256": "cfca6f6c4f974c247ab33f9c3c39aa41a1d37ee74411b8805cbdd45ca9cfa05f",
+      "kind": "linked_library"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/round_05/build_01/DynaX_SelectionUnit/DynaX_SelectionUnit.scala",
+      "exported": "generated/DynaX_SelectionUnit.scala",
+      "sha256": "6f91ce5a63a9a8de8ad76f9163611af0de600ea7e127c9404ecbb967f3d5611f",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/round_05/build_01/NormalizationUnit_rq1/NormalizationUnit_rq1.scala",
+      "exported": "generated/NormalizationUnit_rq1.scala",
+      "sha256": "9c2cb9bdc985d4c5aeffb163b19ee9fca4891ec6b229bfe6ae70428c1e4382e8",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/references/026.scala",
+      "exported": "linked_library/8c8c54a3724c_026.scala",
+      "sha256": "8c8c54a3724c7fcd343e6d7f6895915e222ff218ee5b9598f0aeb5d13a169678",
+      "kind": "linked_library"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/round_05/build_01/Rq1DynaXm/Rq1DynaXm.scala",
+      "exported": "generated/Rq1DynaXm.scala",
+      "sha256": "d32a5993597acd3acdcfc67fe8b538e0d65e22b70491bfa8fbd310ef0dcd03e6",
+      "kind": "sources"
+    },
+    {
+      "original": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_dynax_xm/round_05/build_01/Rq1DynaXm/check_01/emitted/Rq1DynaXm.v",
+      "exported": "rtl/Rq1DynaXm.v",
+      "sha256": "595c090237dcae14985573c054ce4ddd7eea4294bf98cdb4b20ed2079e368394",
+      "kind": "rtl_sources"
+    }
+  ]
+}

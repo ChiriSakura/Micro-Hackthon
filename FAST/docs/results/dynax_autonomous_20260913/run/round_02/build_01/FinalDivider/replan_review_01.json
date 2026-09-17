@@ -1,0 +1,9 @@
+{
+  "action": "replan",
+  "reason": "The uArch critic has requested a change in the `FinalDivider` module's latency from 18 to 9 cycles by re-configuring its child `FixedPointDivPipelined` divider. This is a valid performance optimization, but it constitutes a change to the module's behavioral contract. The existing frozen tests are specified for an 18-cycle latency and will fail with a 9-cycle implementation. A replan is required to update the behavioral contract, including latency and tests, for `FinalDivider` and propagate this timing change to the parent controller.",
+  "evidence": [
+    "critic.instructions: \"Modify the `FinalDivider` module's implementation. Re-configure the instantiated `predict_unit.FixedPointDivPipelined` core to use fewer pipeline stages by changing the `stages` parameter from 18 to a smaller value, such as 9.\"",
+    "failed_attempt.replan_reason: \"The critic directs changing the `FixedPointDivPipelined` stages from 18 to 9, which reduces this module's latency from 18 to 9 cycles. This contradicts the timing expectations of the frozen planner tests.\""
+  ],
+  "instructions": "Accept the critic's change. The planner must update the behavioral contract for `FinalDivider` to specify a latency of 9 cycles and regenerate its tests accordingly. The `DynaX_XM_Row_Top` module's FSM, which depends on this latency, must also be updated. For the next uArch attempt on `FinalDivider`, implement the module by instantiating `predict_unit.FixedPointDivPipelined` with the `stages` parameter set to 9. The arithmetic wiring for the numerator, denominator, and quotient from the previous implementation was correct and should be preserved."
+}

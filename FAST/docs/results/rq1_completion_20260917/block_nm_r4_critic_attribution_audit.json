@@ -1,0 +1,77 @@
+{
+  "scope": "Read-only source/STA audit; no manual RTL edits or additional advice injected into R5.",
+  "metrics": {
+    "area_um2": 42514.24799999581,
+    "power_mw": 13.874416199999999,
+    "latency_ns": 286.6666666666667,
+    "slack_ns": -1.67740512,
+    "hold_slack_ns": 0.0080512,
+    "route_drc_violations": 1
+  },
+  "measured_paths": [
+    {
+      "startpoint": "_54665_",
+      "endpoint": "_54814_",
+      "start_cell": "DFF_X2 _54665_ (.D(_00932_),\n    .CK(clknet_leaf_104_clock),\n    .Q(\\_find_min_lo_scores_in_T_8[0] ),\n    .QN(_28322_));",
+      "end_cell": "DFF_X2 _54814_ (.D(_01081_),\n    .CK(clknet_leaf_24_clock),\n    .Q(\\h_reg[5] ),\n    .QN(_28200_));"
+    },
+    {
+      "startpoint": "_54665_",
+      "endpoint": "_54810_",
+      "start_cell": "DFF_X2 _54665_ (.D(_00932_),\n    .CK(clknet_leaf_104_clock),\n    .Q(\\_find_min_lo_scores_in_T_8[0] ),\n    .QN(_28322_));",
+      "end_cell": "DFF_X2 _54810_ (.D(_01077_),\n    .CK(clknet_leaf_23_clock),\n    .Q(\\h_reg[1] ),\n    .QN(_28204_));"
+    },
+    {
+      "startpoint": "_54665_",
+      "endpoint": "_54811_",
+      "start_cell": "DFF_X2 _54665_ (.D(_00932_),\n    .CK(clknet_leaf_104_clock),\n    .Q(\\_find_min_lo_scores_in_T_8[0] ),\n    .QN(_28322_));",
+      "end_cell": "DFF_X2 _54811_ (.D(_01078_),\n    .CK(clknet_leaf_24_clock),\n    .Q(\\h_reg[2] ),\n    .QN(_28203_));"
+    }
+  ],
+  "critic": {
+    "layer": "uarch",
+    "reason": "The design fails timing with a large negative slack of -1.677 ns. The post-route timing report shows a critical path with over 50 logic levels, which is inconsistent with the heavily pipelined system plan. The path starts from logic associated with the `PIPE_S2_MASK` stage and ends at the `h_reg` register, which should be computed in the preceding `PIPE_S1_MAX` stage. This backward-in-pipeline combinational path indicates a severe flaw in the RTL implementation where the intended pipeline separation between these two stages is not present. Previous interventions have failed to address this root cause.",
+    "evidence": [
+      "evaluation.slack_ns",
+      "evaluation.timing_diagnosis.report_excerpt",
+      "evaluation.timing_diagnosis.endpoint_mapping"
+    ],
+    "instructions": "Correct the microarchitecture of `Rq1BlockNmTop` to properly enforce the pipeline boundary between the `PIPE_S1_MAX` and `PIPE_S2_MASK` states. The logic for finding the max score (`h`) must be purely dependent on the score registers (`s_reg`) and must not have any combinational dependency on the logic that computes the `keep_mask`. Ensure that `h_reg` is registered at the end of the `PIPE_S1_MAX` cycle and that the `FindMin8` modules in the `PIPE_S2_MASK` cycle operate in a separate clock cycle without any combinational path back to the `h_reg` calculation. The current `system_plan` correctly describes this separation; the error is in the RTL implementation which must be fixed.",
+    "target_modules": [
+      "Rq1BlockNmTop"
+    ]
+  },
+  "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala",
+  "source_sha256": "a4b444e2647216486c450a6523f23500677fa06d78c4444afaa4297adcd0d098",
+  "source_lines": [
+    {
+      "line": 129,
+      "text": "        val max_score = scores_reg.reduce((a, b) => Mux(a > b, a, b))"
+    },
+    {
+      "line": 130,
+      "text": "        h_reg := max_score"
+    },
+    {
+      "line": 135,
+      "text": "        find_min_lo.scores_in := Cat(scores_reg.slice(0, 8).reverse.map(_.asUInt))"
+    },
+    {
+      "line": 136,
+      "text": "        find_min_hi.scores_in := Cat(scores_reg.slice(8, 16).reverse.map(_.asUInt))"
+    },
+    {
+      "line": 137,
+      "text": "        keep_mask_reg := Cat(find_min_hi.keep_mask_out, find_min_lo.keep_mask_out)"
+    }
+  ],
+  "interpretation": "Source computes h_reg directly from scores_reg.reduce. FindMin reads the same score registers in the next state. A FindMin-prefixed mapped net name does not establish a backward dependency from mask logic to h_reg; the Critic inference is not supported by this source expression.",
+  "emitted_rtl_alias": [
+    {
+      "line": 2578,
+      "text": "  wire [71:0] _find_min_lo_scores_in_T_8 = {scores_reg_7,scores_reg_6,scores_reg_5,scores_reg_4,scores_reg_3,\n    scores_reg_2,scores_reg_1,scores_reg_0}; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 135:37]\n  wire [71:0] _find_min_hi_scores_in_T_8 = {scores_reg_15,scores_reg_14,scores_reg_13,scores_reg_12,scores_reg_11,"
+    }
+  ],
+  "emitted_max_chain_excerpt": "  wire [8:0] _max_score_T_1 = $signed(scores_reg_0) > $signed(scores_reg_1) ? $signed(scores_reg_0) : $signed(\n    scores_reg_1); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [8:0] _max_score_T_3 = $signed(_max_score_T_1) > $signed(scores_reg_2) ? $signed(_max_score_T_1) : $signed(\n    scores_reg_2); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [8:0] _max_score_T_5 = $signed(_max_score_T_3) > $signed(scores_reg_3) ? $signed(_max_score_T_3) : $signed(\n    scores_reg_3); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [8:0] _max_score_T_7 = $signed(_max_score_T_5) > $signed(scores_reg_4) ? $signed(_max_score_T_5) : $signed(\n    scores_reg_4); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [8:0] _max_score_T_9 = $signed(_max_score_T_7) > $signed(scores_reg_5) ? $signed(_max_score_T_7) : $signed(\n    scores_reg_5); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [8:0] _max_score_T_11 = $signed(_max_score_T_9) > $signed(scores_reg_6) ? $signed(_max_score_T_9) : $signed(\n    scores_reg_6); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [8:0] _max_score_T_13 = $signed(_max_score_T_11) > $signed(scores_reg_7) ? $signed(_max_score_T_11) : $signed(\n    scores_reg_7); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [8:0] _max_score_T_15 = $signed(_max_score_T_13) > $signed(scores_reg_8) ? $signed(_max_score_T_13) : $signed(\n    scores_reg_8); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [8:0] _max_score_T_17 = $signed(_max_score_T_15) > $signed(scores_reg_9) ? $signed(_max_score_T_15) : $signed(\n    scores_reg_9); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [8:0] _max_score_T_19 = $signed(_max_score_T_17) > $signed(scores_reg_10) ? $signed(_max_score_T_17) : $signed(\n    scores_reg_10); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [8:0] _max_score_T_21 = $signed(_max_score_T_19) > $signed(scores_reg_11) ? $signed(_max_score_T_19) : $signed(\n    scores_reg_11); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [8:0] _max_score_T_23 = $signed(_max_score_T_21) > $signed(scores_reg_12) ? $signed(_max_score_T_21) : $signed(\n    scores_reg_12); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [8:0] _max_score_T_25 = $signed(_max_score_T_23) > $signed(scores_reg_13) ? $signed(_max_score_T_23) : $signed(\n    scores_reg_13); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [8:0] _max_score_T_27 = $signed(_max_score_T_25) > $signed(scores_reg_14) ? $signed(_max_score_T_25) : $signed(\n    scores_reg_14); // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 129:56]\n  wire [71:0] _find_min_lo_scores_in_T_8 = {scores_reg_7,scores_reg_6,scores_reg_5,scores_reg_4,scores_reg_3,\n    scores_reg_2,scores_reg_1,scores_reg_0}; // @[scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_v1_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/Rq1BlockNmTop.scala 135:37]\n  wire [71:0] _find_min_hi_scores_in_T_8 = {scores_reg_15,scores_reg_14,scores_reg_13,scores_reg_12,scores_reg_11,",
+  "emitted_rtl": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_sta_v4_20260917/rq1_block_nm/round_04/build_01/Rq1BlockNmTop/check_01/emitted/Rq1BlockNmTop.v"
+}

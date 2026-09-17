@@ -1,0 +1,43 @@
+{
+  "algorithm": "rq1_block_nm",
+  "status": "failed",
+  "constraints": {
+    "max_quality_loss": 0.05,
+    "max_area_um2": 200000,
+    "frequency_mhz": 300
+  },
+  "agent_calls": {
+    "kernel": 1,
+    "compiler": 12,
+    "critic": 0,
+    "uarch": 7,
+    "uarch_assembly": 0,
+    "compiler_diagnosis": 2
+  },
+  "reference_integrity": true,
+  "pareto_rounds": [],
+  "rounds": [
+    {
+      "round": 1,
+      "status": "failed",
+      "ppa_backend": null,
+      "complete": null,
+      "feasible": null,
+      "cases": null,
+      "cycles": null,
+      "frequency_mhz": null,
+      "latency_ns": null,
+      "area_um2": null,
+      "power_mw": null,
+      "energy_nj": null,
+      "energy_efficiency_queries_per_joule": null,
+      "slack_ns": null,
+      "hold_slack_ns": null,
+      "route_drc_violations": null,
+      "quality_loss": null,
+      "critic_layer": null,
+      "critique_applied": false
+    }
+  ],
+  "scope": "Measured points from this run only; not a controlled ablation or global optimum"
+}

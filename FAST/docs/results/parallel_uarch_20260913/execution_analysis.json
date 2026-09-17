@@ -1,0 +1,175 @@
+{
+  "status": "failed",
+  "agent_calls": {
+    "kernel": 1,
+    "compiler": 5,
+    "critic": 0,
+    "uarch": 14,
+    "uarch_assembly": 0
+  },
+  "peak_concurrent_uarch_api_calls": 3,
+  "uarch_intervals": [
+    {
+      "job": "agent_calls/round_01/build_01/AggregationUnit/uarch/0001.json",
+      "start": 1789281094.4550774,
+      "end": 1789281188.2318046
+    },
+    {
+      "job": "agent_calls/round_01/build_01/AggregationUnit/uarch/0002.json",
+      "start": 1789281196.9062989,
+      "end": 1789281319.4514377
+    },
+    {
+      "job": "agent_calls/round_01/build_01/AggregationUnit/uarch/0003.json",
+      "start": 1789281327.783809,
+      "end": 1789281499.4726496
+    },
+    {
+      "job": "agent_calls/round_01/build_01/NormalizationUnit/uarch/0001.json",
+      "start": 1789281094.4677224,
+      "end": 1789281166.4371657
+    },
+    {
+      "job": "agent_calls/round_01/build_01/NormalizationUnit/uarch/0002.json",
+      "start": 1789281174.8869944,
+      "end": 1789281348.5200229
+    },
+    {
+      "job": "agent_calls/round_01/build_01/NormalizationUnit/uarch/0003.json",
+      "start": 1789281356.909627,
+      "end": 1789281500.9865823
+    },
+    {
+      "job": "agent_calls/round_01/build_01/ScoreCalculator/uarch/0001.json",
+      "start": 1789281094.439242,
+      "end": 1789281111.4226208
+    },
+    {
+      "job": "agent_calls/round_01/build_02/AggregationUnit/uarch/0001.json",
+      "start": 1789281632.8717244,
+      "end": 1789281708.8394089
+    },
+    {
+      "job": "agent_calls/round_01/build_02/AggregationUnit/uarch/0002.json",
+      "start": 1789281716.87837,
+      "end": 1789281845.199753
+    },
+    {
+      "job": "agent_calls/round_01/build_02/AggregationUnit/uarch/0003.json",
+      "start": 1789281853.4423048,
+      "end": 1789282009.1867187
+    },
+    {
+      "job": "agent_calls/round_01/build_02/NormalizationUnit/uarch/0001.json",
+      "start": 1789281632.8876002,
+      "end": 1789281695.803717
+    },
+    {
+      "job": "agent_calls/round_01/build_02/ScoreCalculator/uarch/0001.json",
+      "start": 1789281632.85731,
+      "end": 1789281649.9429832
+    },
+    {
+      "job": "agent_calls/round_01/build_02/ScoreCalculator/uarch/0002.json",
+      "start": 1789281657.8275018,
+      "end": 1789281713.7544136
+    },
+    {
+      "job": "agent_calls/round_01/build_02/ScoreCalculator/uarch/0003.json",
+      "start": 1789281713.801259,
+      "end": 1789281764.738206
+    }
+  ],
+  "module_checks": [
+    {
+      "module": "ScoreCalculator",
+      "passed": true,
+      "time_unix": 1789281119.331322
+    },
+    {
+      "module": "NormalizationUnit",
+      "passed": false,
+      "time_unix": 1789281174.8646455
+    },
+    {
+      "module": "AggregationUnit",
+      "passed": false,
+      "time_unix": 1789281196.8806012
+    },
+    {
+      "module": "AggregationUnit",
+      "passed": false,
+      "time_unix": 1789281327.7598202
+    },
+    {
+      "module": "NormalizationUnit",
+      "passed": false,
+      "time_unix": 1789281356.883304
+    },
+    {
+      "module": "AggregationUnit",
+      "passed": false,
+      "time_unix": 1789281501.7612002
+    },
+    {
+      "module": "NormalizationUnit",
+      "passed": false,
+      "time_unix": 1789281509.2081583
+    },
+    {
+      "module": "ScoreCalculator",
+      "passed": false,
+      "time_unix": 1789281657.8028278
+    },
+    {
+      "module": "NormalizationUnit",
+      "passed": true,
+      "time_unix": 1789281704.0757945
+    },
+    {
+      "module": "AggregationUnit",
+      "passed": false,
+      "time_unix": 1789281716.850476
+    },
+    {
+      "module": "ScoreCalculator",
+      "passed": false,
+      "time_unix": 1789281772.3475664
+    },
+    {
+      "module": "AggregationUnit",
+      "passed": false,
+      "time_unix": 1789281853.41647
+    },
+    {
+      "module": "AggregationUnit",
+      "passed": false,
+      "time_unix": 1789282017.331151
+    }
+  ],
+  "api_errors": [
+    {
+      "job": "agent_calls/round_01/build_02/ScoreCalculator/uarch/0002.json",
+      "error": "ValueError: uarch LLM failed: ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}"
+    }
+  ],
+  "accepted_modules": [
+    {
+      "time_unix": 1789281119.3575873,
+      "stage": "module_accepted",
+      "module": "ScoreCalculator",
+      "source_sha256": "c928d8da013ef9d5b9f6604ba4d8301e108988b7b936b4999d094f6b3f87f278"
+    },
+    {
+      "time_unix": 1789281704.1065123,
+      "stage": "module_accepted",
+      "module": "NormalizationUnit",
+      "source_sha256": "752ddee87e85af108b9135dc3e7caf17a37ca20b5b4baa5a1053926c4549a7c3"
+    }
+  ],
+  "assembly_started": false,
+  "e2e_started": false,
+  "ppa_started": false,
+  "library_intact": true,
+  "wall_seconds": 1160.6092565059662
+}

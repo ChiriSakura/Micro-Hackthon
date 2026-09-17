@@ -1,0 +1,201 @@
+{
+  "ScoreWeightProcessor": {
+    "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/ScoreWeightProcessor.scala",
+    "sha256": "fd5ac2344a63ad9fd63ae26e6bb8c34a6c5eff288354bfa651f1a389e90f09ac",
+    "gate": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/module_lint.log",
+      "diagnostics": "- V e r i l a t i o n   R e p o r t: Verilator 5.052 2026-09-05 rev v5.052\n- Verilator: Built from 0.175 MB sources in 2 modules, into 1.199 MB in 3 C++ files needing 0.000 MB\n- Verilator: Walltime 0.202 s (elab=0.039, cvt=0.104, bld=0.000); cpu 0.146 s on 1 threads; allocated 33.000 MB\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/emitted/ScoreWeightProcessor.v:84:14: Bits of signal are not used: '_deltas_s1_0_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   84 |   wire [8:0] _deltas_s1_0_T_3 = $signed(h) - $signed(scores_s1_0);  \n      |              ^~~~~~~~~~~~~~~~\n                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.052\n                       ... Use \"/* verilator lint_off UNUSEDSIGNAL */\" and lint_on around source to disable this message.\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/emitted/ScoreWeightProcessor.v:86:14: Bits of signal are not used: '_deltas_s1_1_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   86 |   wire [8:0] _deltas_s1_1_T_3 = $signed(h) - $signed(scores_s1_1);  \n      |              ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/emitted/ScoreWeightProcessor.v:88:14: Bits of signal are not used: '_deltas_s1_2_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   88 |   wire [8:0] _deltas_s1_2_T_3 = $signed(h) - $signed(scores_s1_2);  \n      |              ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/emitted/ScoreWeightProcessor.v:90:14: Bits of signal are not used: '_deltas_s1_3_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   90 |   wire [8:0] _deltas_s1_3_T_3 = $signed(h) - $signed(scores_s1_3);  \n      |              ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/emitted/ScoreWeightProcessor.v:92:14: Bits of signal are not used: '_deltas_s1_4_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   92 |   wire [8:0] _deltas_s1_4_T_3 = $signed(h) - $signed(scores_s1_4);  \n      |              ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/emitted/ScoreWeightProcessor.v:94:14: Bits of signal are not used: '_deltas_s1_5_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   94 |   wire [8:0] _deltas_s1_5_T_3 = $signed(h) - $signed(scores_s1_5);  \n      |              ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/emitted/ScoreWeightProcessor.v:96:14: Bits of signal are not used: '_deltas_s1_6_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   96 |   wire [8:0] _deltas_s1_6_T_3 = $signed(h) - $signed(scores_s1_6);  \n      |              ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/emitted/ScoreWeightProcessor.v:98:14: Bits of signal are not used: '_deltas_s1_7_T_3'[8]\n                                                                                                                                                                                    : ... note: In instance 'ScoreWeightProcessor'\n   98 |   wire [8:0] _deltas_s1_7_T_3 = $signed(h) - $signed(scores_s1_7);  \n      |              ^~~~~~~~~~~~~~~~\n",
+      "wall_seconds": 0.804431832395494,
+      "command": [
+        "apptainer",
+        "exec",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+        "verilator",
+        "--lint-only",
+        "--Wall",
+        "-Wno-fatal",
+        "--top-module",
+        "ScoreWeightProcessor",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/emitted/ScoreWeightProcessor.v"
+      ],
+      "elaboration": {
+        "passed": true,
+        "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/chisel_elaboration.log",
+        "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+        "wall_seconds": 6.137832008302212,
+        "command": [
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+          "run",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/ScoreWeightProcessor.scala",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/FASTGeneratedElaborate.scala",
+          "--workspace",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/scala_build",
+          "--server=false",
+          "--main-class",
+          "FASTGeneratedElaborate",
+          "--",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/emitted"
+        ],
+        "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/emitted/ScoreWeightProcessor.v",
+        "elaborated_sha256": "a4782474adb15495600cbd3afa7bc61aa9411ac10eabc17d603f0d845b3c9409"
+      },
+      "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/emitted/ScoreWeightProcessor.v",
+      "scope": "structure and frozen Compiler functional vectors; not independent algorithm equivalence",
+      "functional": {
+        "passed": true,
+        "stage": "simulation",
+        "simulation": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/functional/e2e_sim.log",
+          "diagnostics": "FAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_PASS cases=4\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/functional/trusted_testbench.sv:405: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 705ps; walltime 0.001 s; speed 694.060 ns/s\n- Verilator: cpu 0.000 s on 1 threads; allocated 3 MB\n",
+          "wall_seconds": 0.4346922989934683,
+          "command": [
+            "apptainer",
+            "exec",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/ScoreWeightProcessor/check_01/functional/obj_dir/VFASTTestbench"
+          ]
+        },
+        "cases": 4,
+        "expected_cases": 4,
+        "testbench_sha256": "04967378434ae8776704636382f9c5a948fd45df6f0fbb21962d3fd1f72d6c84",
+        "coverage": "Compiler-authored module scenarios; cycle marker is a case counter, not performance evidence"
+      },
+      "test_oracle": "computed executable behavior contract"
+    }
+  },
+  "SelectorAggregator": {
+    "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/SelectorAggregator.scala",
+    "sha256": "a89437e2402465f50b34e7016f7ed63c49fc13c018e346265e23510758b69154",
+    "gate": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/module_lint.log",
+      "diagnostics": "- V e r i l a t i o n   R e p o r t: Verilator 5.052 2026-09-05 rev v5.052\n- Verilator: Built from 0.039 MB sources in 2 modules, into 0.103 MB in 3 C++ files needing 0.000 MB\n- Verilator: Walltime 0.077 s (elab=0.015, cvt=0.036, bld=0.000); cpu 0.019 s on 1 threads; allocated 19.000 MB\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/emitted/SelectorAggregator.v:148:15: Bits of signal are not used: '_N_out_T_6'[31:27]\n                                                                                                                                                                                 : ... note: In instance 'SelectorAggregator'\n  148 |   wire [31:0] _N_out_T_6 = $signed(_N_out_T_5) + $signed(_GEN_12);  \n      |               ^~~~~~~~~~\n                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.052\n                       ... Use \"/* verilator lint_off UNUSEDSIGNAL */\" and lint_on around source to disable this message.\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/emitted/SelectorAggregator.v:161:15: Bits of signal are not used: '_D_out_T_6'[22:19]\n                                                                                                                                                                                 : ... note: In instance 'SelectorAggregator'\n  161 |   wire [22:0] _D_out_T_6 = _D_out_T_5 + _GEN_18;  \n      |               ^~~~~~~~~~\n",
+      "wall_seconds": 0.8681744653731585,
+      "command": [
+        "apptainer",
+        "exec",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+        "verilator",
+        "--lint-only",
+        "--Wall",
+        "-Wno-fatal",
+        "--top-module",
+        "SelectorAggregator",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/emitted/SelectorAggregator.v"
+      ],
+      "elaboration": {
+        "passed": true,
+        "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/chisel_elaboration.log",
+        "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+        "wall_seconds": 6.773764438927174,
+        "command": [
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+          "run",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/SelectorAggregator.scala",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/FASTGeneratedElaborate.scala",
+          "--workspace",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/scala_build",
+          "--server=false",
+          "--main-class",
+          "FASTGeneratedElaborate",
+          "--",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/emitted"
+        ],
+        "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/emitted/SelectorAggregator.v",
+        "elaborated_sha256": "8998de08055d4c5c5c8a82a72f75f32f32322c702080677a42189b8125fffbe1"
+      },
+      "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/emitted/SelectorAggregator.v",
+      "scope": "structure and frozen Compiler functional vectors; not independent algorithm equivalence",
+      "functional": {
+        "passed": true,
+        "stage": "simulation",
+        "simulation": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/functional/e2e_sim.log",
+          "diagnostics": "FAST_CASE cycles=1\nFAST_PASS cases=1\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/functional/trusted_testbench.sv:173: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 115ps; walltime 0.001 s; speed 92.678 ns/s\n- Verilator: cpu 0.000 s on 1 threads; allocated 3 MB\n",
+          "wall_seconds": 0.45703363977372646,
+          "command": [
+            "apptainer",
+            "exec",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/SelectorAggregator/check_03/functional/obj_dir/VFASTTestbench"
+          ]
+        },
+        "cases": 1,
+        "expected_cases": 1,
+        "testbench_sha256": "cdf16ee60a39b149ac7a30551236ce987e723a5e0acaec1fffc1a94e69e5ad5c",
+        "coverage": "Compiler-authored module scenarios; cycle marker is a case counter, not performance evidence"
+      },
+      "test_oracle": "computed executable behavior contract"
+    }
+  },
+  "FinalDivider": {
+    "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/FinalDivider.scala",
+    "sha256": "5493fd33ed3ac99a6c192009e38444d5a34a693b891b4df7c09146d14c35f0bb",
+    "gate": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/module_lint.log",
+      "diagnostics": "              ^~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:238:15: Bits of signal are not used: 'next_20_remainder'[31]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  238 |   wire [31:0] next_20_remainder = fits_20 ? trial_20[31:0] : shifted_20;  \n      |               ^~~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:239:15: Bits of signal are not used: 'next_20_quotient'[30]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  239 |   wire [30:0] next_20_quotient = {REG_4_quotient[29:0],fits_20};  \n      |               ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:242:15: Bits of signal are not used: 'trial_21'[32]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  242 |   wire [32:0] trial_21 = shifted_21 - _GEN_40;  \n      |               ^~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:244:15: Bits of signal are not used: 'next_21_remainder'[31]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  244 |   wire [31:0] next_21_remainder = fits_21 ? trial_21[31:0] : shifted_21;  \n      |               ^~~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:245:15: Bits of signal are not used: 'next_21_quotient'[30]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  245 |   wire [30:0] next_21_quotient = {next_20_quotient[29:0],fits_21};  \n      |               ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:248:15: Bits of signal are not used: 'trial_22'[32]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  248 |   wire [32:0] trial_22 = shifted_22 - _GEN_40;  \n      |               ^~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:250:15: Bits of signal are not used: 'next_22_remainder'[31]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  250 |   wire [31:0] next_22_remainder = fits_22 ? trial_22[31:0] : shifted_22;  \n      |               ^~~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:251:15: Bits of signal are not used: 'next_22_quotient'[30]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  251 |   wire [30:0] next_22_quotient = {next_21_quotient[29:0],fits_22};  \n      |               ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:254:15: Bits of signal are not used: 'trial_23'[32]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  254 |   wire [32:0] trial_23 = shifted_23 - _GEN_40;  \n      |               ^~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:258:14: Bits of signal are not used: 'REG_5_remainder'[31]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  258 |   reg [31:0] REG_5_remainder;  \n      |              ^~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:259:14: Bits of signal are not used: 'REG_5_quotient'[30]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  259 |   reg [30:0] REG_5_quotient;  \n      |              ^~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:267:15: Bits of signal are not used: 'trial_24'[32]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  267 |   wire [32:0] trial_24 = shifted_24 - _GEN_48;  \n      |               ^~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:269:15: Bits of signal are not used: 'next_24_remainder'[31]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  269 |   wire [31:0] next_24_remainder = fits_24 ? trial_24[31:0] : shifted_24;  \n      |               ^~~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:270:15: Bits of signal are not used: 'next_24_quotient'[30]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  270 |   wire [30:0] next_24_quotient = {REG_5_quotient[29:0],fits_24};  \n      |               ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:273:15: Bits of signal are not used: 'trial_25'[32]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  273 |   wire [32:0] trial_25 = shifted_25 - _GEN_48;  \n      |               ^~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:275:15: Bits of signal are not used: 'next_25_remainder'[31]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  275 |   wire [31:0] next_25_remainder = fits_25 ? trial_25[31:0] : shifted_25;  \n      |               ^~~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:276:15: Bits of signal are not used: 'next_25_quotient'[30]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  276 |   wire [30:0] next_25_quotient = {next_24_quotient[29:0],fits_25};  \n      |               ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:279:15: Bits of signal are not used: 'trial_26'[32]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  279 |   wire [32:0] trial_26 = shifted_26 - _GEN_48;  \n      |               ^~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:281:15: Bits of signal are not used: 'next_26_remainder'[31]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  281 |   wire [31:0] next_26_remainder = fits_26 ? trial_26[31:0] : shifted_26;  \n      |               ^~~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:282:15: Bits of signal are not used: 'next_26_quotient'[30]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  282 |   wire [30:0] next_26_quotient = {next_25_quotient[29:0],fits_26};  \n      |               ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:285:15: Bits of signal are not used: 'trial_27'[32]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  285 |   wire [32:0] trial_27 = shifted_27 - _GEN_48;  \n      |               ^~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:289:14: Bits of signal are not used: 'REG_6_remainder'[31]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  289 |   reg [31:0] REG_6_remainder;  \n      |              ^~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:290:14: Bits of signal are not used: 'REG_6_quotient'[30]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  290 |   reg [30:0] REG_6_quotient;  \n      |              ^~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:298:15: Bits of signal are not used: 'trial_28'[32]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  298 |   wire [32:0] trial_28 = shifted_28 - _GEN_56;  \n      |               ^~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:300:15: Bits of signal are not used: 'next_28_remainder'[31]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  300 |   wire [31:0] next_28_remainder = fits_28 ? trial_28[31:0] : shifted_28;  \n      |               ^~~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:301:15: Bits of signal are not used: 'next_28_quotient'[30]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  301 |   wire [30:0] next_28_quotient = {REG_6_quotient[29:0],fits_28};  \n      |               ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:304:15: Bits of signal are not used: 'trial_29'[32]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  304 |   wire [32:0] trial_29 = shifted_29 - _GEN_56;  \n      |               ^~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:306:15: Bits of signal are not used: 'next_29_remainder'[31]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  306 |   wire [31:0] next_29_remainder = fits_29 ? trial_29[31:0] : shifted_29;  \n      |               ^~~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:307:15: Bits of signal are not used: 'next_29_quotient'[30]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  307 |   wire [30:0] next_29_quotient = {next_28_quotient[29:0],fits_29};  \n      |               ^~~~~~~~~~~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v:308:15: Bits of signal are not used: 'next_29_dividend'[29:0]\n                                                                                                                                                                     : ... note: In instance 'FinalDivider.divider'\n  308 |   wire [30:0] next_29_dividend = {next_28_dividend[29:0],1'h0};  \n      |               ^~~~~~~~~~~~~~~~\n",
+      "wall_seconds": 0.7812366411089897,
+      "command": [
+        "apptainer",
+        "exec",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+        "verilator",
+        "--lint-only",
+        "--Wall",
+        "-Wno-fatal",
+        "--top-module",
+        "FinalDivider",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v"
+      ],
+      "elaboration": {
+        "passed": true,
+        "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/chisel_elaboration.log",
+        "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/references as the project root directory for this run.\nwarning: 2 deprecations (since Chisel 3.6); re-run with -deprecation for details\nwarning: 10 feature warnings; re-run with -feature for details\n2 warnings\n",
+        "wall_seconds": 6.675723070278764,
+        "command": [
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+          "run",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/references/004.scala",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/FinalDivider.scala",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/FASTGeneratedElaborate.scala",
+          "--workspace",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/scala_build",
+          "--server=false",
+          "--main-class",
+          "FASTGeneratedElaborate",
+          "--",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted"
+        ],
+        "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v",
+        "elaborated_sha256": "fcdd8fbcdfdd5dea6cebbc5ede26a68c4b05bd051b876cbdf3f70f9961df8aa8"
+      },
+      "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/emitted/FinalDivider.v",
+      "scope": "structure and frozen Compiler functional vectors; not independent algorithm equivalence",
+      "functional": {
+        "passed": true,
+        "stage": "simulation",
+        "simulation": {
+          "passed": true,
+          "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/functional/e2e_sim.log",
+          "diagnostics": "FAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_CASE cycles=1\nFAST_PASS cases=4\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/functional/trusted_testbench.sv:512: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 1ns; walltime 0.001 s; speed 870.248 ns/s\n- Verilator: cpu 0.000 s on 1 threads; allocated 3 MB\n",
+          "wall_seconds": 0.5370093388482928,
+          "command": [
+            "apptainer",
+            "exec",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_02/build_02/FinalDivider/check_01/functional/obj_dir/VFASTTestbench"
+          ]
+        },
+        "cases": 4,
+        "expected_cases": 4,
+        "testbench_sha256": "71e6f491534a9dad1c6348e4c6c4e99bb6632eed35a45fd8e5f9691df9d5217f",
+        "coverage": "Compiler-authored module scenarios; cycle marker is a case counter, not performance evidence"
+      },
+      "test_oracle": "computed executable behavior contract"
+    }
+  }
+}

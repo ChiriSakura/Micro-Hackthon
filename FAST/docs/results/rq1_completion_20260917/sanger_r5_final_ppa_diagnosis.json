@@ -1,0 +1,18 @@
+{
+  "scope": "Complete routed PPA; E2E and timing pass, final DRC fails, not an admissible Pareto point.",
+  "metrics": {
+    "complete": true,
+    "feasible": false,
+    "area_um2": 82930.28799997525,
+    "power_mw": 25.810403700000002,
+    "slack_ns": 0.00701195,
+    "hold_slack_ns": 0.00723388,
+    "route_drc_violations": 2,
+    "latency_ns": 70.0,
+    "energy_nj": 1.806728259,
+    "energy_efficiency_queries_per_joule": 553486665.7554173
+  },
+  "drc_report": "violation type: Cut Spacing\n\tsrcs: net:_027024_ net:net307\n\tbbox = (64.9500, 297.3950) - (65.0200, 297.4650) on Layer via1\nviolation type: Metal Spacing\n\tsrcs: net:_026797_ net:net322\n\tbbox = (81.4500, 283.4650) - (81.5050, 283.5000) on Layer metal1\n",
+  "retained_baseline_round": 1,
+  "original_round_2_note": "R2 is feasible but Pareto-dominated; final Critic calls R1 the only feasible design, which conflates feasibility and Pareto membership."
+}

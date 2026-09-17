@@ -1,0 +1,61 @@
+{
+  "design_id": "f5a3a7477e30c5ce91ff547ff23c69613e7c401244eeab086ad871e872e8148d",
+  "label": "xm:16:8:32:1.5:0.05",
+  "algorithm": {
+    "label": "xm:16:8:32:1.5:0.05",
+    "family": "xm",
+    "block_m": 32,
+    "kept_high": 16,
+    "kept_low": 8,
+    "threshold_0": 1.5,
+    "threshold_1": 0.05
+  },
+  "point": {
+    "tile_q": 64,
+    "tile_k": 64,
+    "tile_d": 64,
+    "parallelism": 16,
+    "double_buffer": true,
+    "num_rows": 32,
+    "pe_per_row": 8,
+    "reg_width": 16,
+    "data_width": 16,
+    "sram_bytes": 262144,
+    "queue_depth": 4,
+    "divider_stages": 12,
+    "bank_count": 32
+  },
+  "task": {
+    "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+    "dataset": "wikitext-2-raw-v1",
+    "sequence_length": 512,
+    "head_dim": 64,
+    "epsilon": 0.05,
+    "data_seed": 20260903,
+    "max_samples": 2,
+    "dtype": "float32",
+    "capture_layer": 10,
+    "capture_head": 0
+  },
+  "quality_loss": 0.03628796650278209,
+  "metrics": {
+    "cycles": 20940.151610220528,
+    "compute_cycles": 18482.040256152275,
+    "memory_slowdown": 1.133,
+    "memory_slowdown_source": "measured:xm",
+    "clock_period_ns": 2.76,
+    "max_frequency_mhz": 362.3188405797102,
+    "seconds": 5.7794818444208655e-05,
+    "pe_utilization": 0.9088980188286017,
+    "throughput": 8858925.657743027,
+    "dram_bytes": 13179130.181818182,
+    "area": 3052253.2208,
+    "power": 774.6788706705794,
+    "energy_j": 4.477242468297073e-05,
+    "energy_efficiency_tasks_per_j": 22335.1763296472,
+    "energy_scope": "partial-model:execute-array-dynamic+sram-leakage",
+    "edp": 2.5876141558593e-09
+  },
+  "analytical_violations": [],
+  "module_verified": false
+}

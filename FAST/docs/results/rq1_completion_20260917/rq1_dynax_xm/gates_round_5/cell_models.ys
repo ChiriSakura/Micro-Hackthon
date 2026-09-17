@@ -1,0 +1,2 @@
+read_liberty -ignore_miss_func /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib
+write_verilog -noattr /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_completion_validation_v2_20260917/rq1_dynax_xm/gates_round_5/liberty_cells.v

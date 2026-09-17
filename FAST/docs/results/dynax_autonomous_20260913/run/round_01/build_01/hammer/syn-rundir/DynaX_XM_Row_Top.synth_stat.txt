@@ -1,0 +1,47 @@
+
+16. Printing statistics.
+
+=== DynaX_XM_Row_Top ===
+
+   Number of wires:              30015
+   Number of wire bits:          30170
+   Number of public wires:        1889
+   Number of public wire bits:    2044
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              28126
+     AND2_X1                      1132
+     AND3_X1                       376
+     AND4_X1                       109
+     AOI211_X1                     619
+     AOI21_X1                     2145
+     AOI221_X1                     111
+     AOI222_X1                      13
+     AOI22_X1                      419
+     BUF_X1                        793
+     CLKBUF_X1                      46
+     DFF_X1                       1905
+     INV_X1                       1613
+     LOGIC0_X1                       1
+     MUX2_X1                       765
+     NAND2_X1                     3250
+     NAND3_X1                      979
+     NAND4_X1                      601
+     NOR2_X1                      4147
+     NOR3_X1                       851
+     NOR4_X1                       691
+     OAI211_X1                     291
+     OAI21_X1                     1913
+     OAI221_X1                     123
+     OAI222_X1                       6
+     OAI22_X1                      385
+     OAI33_X1                       52
+     OR2_X1                        629
+     OR3_X1                        384
+     OR4_X1                        109
+     XNOR2_X1                     2160
+     XOR2_X1                      1508
+
+   Chip area for module '\DynaX_XM_Row_Top': 37329.908000
+

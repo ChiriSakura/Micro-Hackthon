@@ -1,0 +1,61 @@
+{
+  "repository": "https://github.com/FLOW-open-project/FLOW",
+  "commit": "af604014799d9a0cdf3cb43ff332edeaac4682c1",
+  "license": "MIT",
+  "local_directory": "libraries/third_party/flexcim_af604014",
+  "files": {
+    "LICENSE": {
+      "sha256": "90d24b3d4692bda9681f875b552a48f0867ab0ed9b960883b51515d9f11a4737",
+      "bytes": 1074
+    },
+    "README.md": {
+      "sha256": "e31e02d0a871e43da385639d0bbb5508d9b50e005bb692f589c99b5ecc58e5b4",
+      "bytes": 7295
+    },
+    "hw/Makefile": {
+      "sha256": "e68c0768c73219a7caeece3509e50ea973513063237c3fcb1433fd3e93439a4f",
+      "bytes": 322
+    },
+    "hw/adder_tree.v": {
+      "sha256": "9c9fe88ccb6a1f0c254b83dbacdfa045d5fdc504559af7ea8dfc76be9ac08789",
+      "bytes": 2078
+    },
+    "hw/cim_cell.v": {
+      "sha256": "06095344f69f34100827369ed2ca718a5c85723348d1cdd2a984e1774afbe646",
+      "bytes": 1465
+    },
+    "hw/cim_column.v": {
+      "sha256": "e205b92e473e3f81d84cddc15f38ad0da79cf08ec25803bea41449a00907d279",
+      "bytes": 1589
+    },
+    "hw/cim_macro.v": {
+      "sha256": "267b178b8147a5c88c1dcdd50ac9a66e9fdf6437219fe337702c2d453b492578",
+      "bytes": 1621
+    },
+    "hw/cim_mem_cell.v": {
+      "sha256": "c11bd1e68507c676f9edfcaccd6b108edb652d021f32f11bc04e5502ba3ba6ea",
+      "bytes": 719
+    },
+    "hw/cim_sub_macro.v": {
+      "sha256": "a0fb031be760304d77f78c4e493d3d0519f0b2513568592b9dc24507c32390db",
+      "bytes": 2991
+    },
+    "hw/distribution.v": {
+      "sha256": "5c50d338d41a6132c71d205d0a41916d51b64d4850bf6161d19e01585216eb7d",
+      "bytes": 1793
+    },
+    "hw/flexcim.v": {
+      "sha256": "1ca8a3fc471f020e47ce6ff31d3c4d6f38d297ec3dab16097e12e1cf38190c63",
+      "bytes": 3177
+    },
+    "hw/merging.v": {
+      "sha256": "2796164af26b1fcd27349d4fc12d7b5c6aff64e0588f7ca184eacd737f7d723f",
+      "bytes": 2030
+    },
+    "hw/tests/test_distribution.py": {
+      "sha256": "22adf9d4dfd83d82c58b5e8e29b94e78fa736fbb7816474ee89f19296a185ebb",
+      "bytes": 3938
+    }
+  },
+  "upstream_files_modified": false
+}

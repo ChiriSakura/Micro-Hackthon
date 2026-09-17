@@ -1,0 +1,30 @@
+{
+  "scope": "externally orchestrated composition of unchanged agent-generated modules; NOT uninterrupted autonomous generation",
+  "original_run": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17705068",
+  "original_plan": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17705068/round_01/build_02/system_plan.json",
+  "source_edits": false,
+  "sources": {
+    "ScoreWeightGen": {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17705068/round_01/build_03/ScoreWeightGen/ScoreWeightGen.scala",
+      "sha256": "2ef27b7bb77949f1b85d0808aaa51fb620b5366b90c6e4ca63def155070e3606"
+    },
+    "SelectAccumulate": {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17705068/round_01/build_02/SelectAccumulate/SelectAccumulate.scala",
+      "sha256": "e01a5ef25ed63f2f3e611991c641ca1895f2a64ce6e162b3f4b14ab4b5b14451"
+    },
+    "DividerWrapper": {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17705068/round_01/build_02/DividerWrapper/DividerWrapper.scala",
+      "sha256": "49ac02a659c9c0d62dc5d204c59b7669c0f4fbc36bb16cc7bbb730d36385c1c5"
+    },
+    "DynaX_XM_Row": {
+      "path": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17705068/round_01/build_02/DynaX_XM_Row/attempt_03.scala.txt",
+      "sha256": "76f09686c409162ddc5148b23d66e9813ff2ffb9fce7fd321e2fd128b5907dc2"
+    }
+  },
+  "kernel_config_replayed": {
+    "t0_quarters": 5,
+    "t1_quarters": 1
+  },
+  "measurements_reused": false,
+  "ppa_and_critic": "standard FAST FullStackFlow.run"
+}

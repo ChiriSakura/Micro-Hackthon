@@ -1,0 +1,9 @@
+{
+  "scope": "Read-only diagnostic copies; CTS placement parasitics only, not final routed PPA. Not fed back to design agents.",
+  "results": {
+    "skip_clone_buffer_1thread_after_slack_ns": -0.30890003,
+    "default_1thread_after_slack_ns": 0.03962009,
+    "default_4threads_original_padding_after_slack_ns": 0.03962009
+  },
+  "preferred_recovery": "reload checkpoint with original default optimization; reapply IO timing/load and CTS padding; continue routing/extraction/verification"
+}

@@ -1,0 +1,1141 @@
+{
+  "parent_search_sha256": "66247a4c9a469e65bcfc9d65b6ff80a12b39baa9ce377056b8d58ceab4a1a981",
+  "algorithm": "xm:16:8:32:0.75:0.05",
+  "quality_loss": 0.03529660876991823,
+  "independent_feedback": [
+    {
+      "design_id": "3fd8ecc2f0ab1ef582603c8c153218b69194c3a76fdcbf74082a18855b7484fb",
+      "scope": "BlockScheduler, 32 rows x 8 PE, M=32; not full attention",
+      "metrics": {
+        "queue_depth": 4.0,
+        "rows": 32.0,
+        "pe": 8.0,
+        "imbalance": 1.329141,
+        "row_util": 0.874277,
+        "pe_util": 0.874277,
+        "cycles": 216.0,
+        "area_um2": 69011.04,
+        "cells": 26958.0,
+        "estimated_power_mw": 13.31611,
+        "assumed_activity": 0.0213,
+        "critical_path_ns": 3.051,
+        "sta_period_ns": 2.857142857142857,
+        "slack_ns": -0.2286,
+        "max_frequency_mhz": 324.07107341598686
+      },
+      "function_passed": true,
+      "frequency_feasible": false,
+      "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/prepared/main32/candidates/3fd8ecc2f0ab1ef582603c8c153218b69194c3a76fdcbf74082a18855b7484fb/rtl/validation.json"
+    }
+  ],
+  "budget": 5,
+  "method": "random",
+  "critic_mode": "off",
+  "ablation": "none",
+  "seed": 2,
+  "max_loops": 5,
+  "critic_reviews": [],
+  "parent_point": {
+    "tile_q": 64,
+    "tile_k": 64,
+    "tile_d": 64,
+    "parallelism": 16,
+    "double_buffer": true,
+    "num_rows": 32,
+    "pe_per_row": 8,
+    "reg_width": 32,
+    "data_width": 16,
+    "sram_bytes": 262144,
+    "queue_depth": 4,
+    "divider_stages": 12,
+    "bank_count": 32
+  },
+  "state": "finished",
+  "best_verified_design_id": "2ba6f8fd04ac903f1923aa081eab6957198a99778024b8e9b9d1c66fcbe64be2",
+  "llm_seed_supported": false,
+  "continue_after_success": true,
+  "llm_successful_batches": 0,
+  "fallback_batches": 0,
+  "calls": [],
+  "rejections": [],
+  "candidates": [
+    {
+      "design_id": "3e6b6f6d5824027b837f571e06a1eac8faca395fc0e58249d6a962fba40b3f01",
+      "label": "xm:16:8:32:0.75:0.05",
+      "algorithm": {
+        "label": "xm:16:8:32:0.75:0.05",
+        "family": "xm",
+        "block_m": 32,
+        "kept_high": 16,
+        "kept_low": 8,
+        "threshold_0": 0.75,
+        "threshold_1": 0.05
+      },
+      "point": {
+        "tile_q": 32,
+        "tile_k": 32,
+        "tile_d": 32,
+        "parallelism": 8,
+        "double_buffer": false,
+        "num_rows": 32,
+        "pe_per_row": 8,
+        "reg_width": 16,
+        "data_width": 16,
+        "sram_bytes": 262144,
+        "queue_depth": 4,
+        "divider_stages": 12,
+        "bank_count": 8
+      },
+      "task": {
+        "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+        "dataset": "wikitext-2-raw-v1",
+        "sequence_length": 512,
+        "head_dim": 64,
+        "epsilon": 0.05,
+        "data_seed": 20260903,
+        "max_samples": 32,
+        "dtype": "float32",
+        "capture_layer": 10,
+        "capture_head": 0
+      },
+      "quality_loss": 0.03529660876991823,
+      "metrics": {
+        "cycles": 46038.05804400029,
+        "compute_cycles": 21462.964123077058,
+        "memory_slowdown": 2.145,
+        "memory_slowdown_source": "measured:xm",
+        "clock_period_ns": 2.76,
+        "max_frequency_mhz": 362.3188405797102,
+        "seconds": 0.0001270650402014408,
+        "pe_utilization": 0.9176430492456304,
+        "throughput": 4029432.4795262953,
+        "dram_bytes": 13412708.545454545,
+        "area": 3043574.4208,
+        "power": 781.641314087401,
+        "energy_j": 9.931928499762262e-05,
+        "energy_efficiency_tasks_per_j": 10068.538049019753,
+        "energy_scope": "partial-model:execute-array-dynamic+sram-leakage",
+        "edp": 1.2620008941001274e-08
+      },
+      "analytical_violations": [],
+      "module_verified": false,
+      "parent_design_id": "3fd8ecc2f0ab1ef582603c8c153218b69194c3a76fdcbf74082a18855b7484fb",
+      "iteration": 0,
+      "proposal_seconds": 0.008085849694907665,
+      "critic_review_id": null,
+      "stages": [
+        {
+          "stage": "capture",
+          "state": "finished",
+          "command": null,
+          "trace_reuse": {
+            "cache_key": "6731d6487a97dc15bfd59bc7edd7be4763525a5757b481d93d426d6af4f4d4ce",
+            "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/prepared/workloads/main32.json",
+            "sha256": "02cdf29e0c96e3de2c18b926d075fb84a54140b1ae93abb90a11599735bfba47",
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6",
+            "hardware_result_reused": false
+          },
+          "exit_code": 0,
+          "wall_seconds": 0.026131093502044678
+        },
+        {
+          "stage": "validate",
+          "state": "finished",
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/fast-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/critic_ablation_20260911/FAST/scripts/validate_pareto_scheduler.py",
+            "--design",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/3e6b6f6d5824027b837f571e06a1eac8faca395fc0e58249d6a962fba40b3f01/design.json",
+            "--workload",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/3e6b6f6d5824027b837f571e06a1eac8faca395fc0e58249d6a962fba40b3f01/workload.json",
+            "--tile-offset",
+            "0",
+            "--tile-count",
+            "0",
+            "--out",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/3e6b6f6d5824027b837f571e06a1eac8faca395fc0e58249d6a962fba40b3f01/rtl",
+            "--frequency-mhz",
+            "350",
+            "--containers",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers",
+            "--liberty",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/nangate45/NangateOpenCellLibrary_typical.lib"
+          ],
+          "exit_code": 1,
+          "wall_seconds": 25.89497435465455
+        }
+      ],
+      "independent_observations": [
+        {
+          "design_id": "3e6b6f6d5824027b837f571e06a1eac8faca395fc0e58249d6a962fba40b3f01",
+          "scope": "BlockScheduler, 32 rows x 8 PE, M=32; not full attention",
+          "function_passed": true,
+          "frequency_feasible": false,
+          "metrics": {
+            "queue_depth": 4.0,
+            "rows": 32.0,
+            "pe": 8.0,
+            "imbalance": 1.329141,
+            "row_util": 0.874277,
+            "pe_util": 0.874277,
+            "cycles": 216.0,
+            "area_um2": 69011.04,
+            "cells": 26958.0,
+            "estimated_power_mw": 13.31611,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 3.051,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": -0.2286,
+            "max_frequency_mhz": 324.07107341598686
+          },
+          "latency_s": null,
+          "identity_ok": true,
+          "complete_captured_task": true,
+          "sources_unchanged": true,
+          "frequency_matches": true,
+          "source": {
+            "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+            "dataset": "wiki",
+            "layer": 10,
+            "seq_len": 512,
+            "seed": 20260903,
+            "head": 0,
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+          },
+          "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/3e6b6f6d5824027b837f571e06a1eac8faca395fc0e58249d6a962fba40b3f01/rtl/validation.json"
+        }
+      ],
+      "independent_results": [
+        {
+          "depth": 4,
+          "passed": true,
+          "frequency_feasible": false,
+          "wall_seconds": 25.439453500322998,
+          "metrics": {
+            "queue_depth": 4.0,
+            "rows": 32.0,
+            "pe": 8.0,
+            "imbalance": 1.329141,
+            "row_util": 0.874277,
+            "pe_util": 0.874277,
+            "cycles": 216.0,
+            "area_um2": 69011.04,
+            "cells": 26958.0,
+            "estimated_power_mw": 13.31611,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 3.051,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": -0.2286,
+            "max_frequency_mhz": 324.07107341598686
+          },
+          "stages": [
+            {
+              "stage": "elaborate",
+              "passed": true,
+              "diagnostics": "ok",
+              "metrics": {}
+            },
+            {
+              "stage": "simulate",
+              "passed": true,
+              "diagnostics": "queue_depth=4 rows=32 pe=8 tiles=136\n  cycles_active=216  row_utilisation=0.8743  pe_utilisation=0.8743\n  pass_imbalance=1.3291  model_says=0.9382  measured_row=0.8743\nMEASURE queue_depth=4 rows=32 pe=8 imbalance=1.329141 row_util=0.874277 pe_util=0.874277 cycles=216\nPASSED: 0 \u5904\u5224\u636e\u5931\u8d25",
+              "metrics": {
+                "queue_depth": 4.0,
+                "rows": 32.0,
+                "pe": 8.0,
+                "imbalance": 1.329141,
+                "row_util": 0.874277,
+                "pe_util": 0.874277,
+                "cycles": 216.0
+              }
+            },
+            {
+              "stage": "synthesize",
+              "passed": true,
+              "diagnostics": "ok: area_um2=69,011.040, cells=26,958.000, estimated_power_mw=13.316, assumed_activity=0.021, critical_path_ns=3.051, sta_period_ns=2.857, slack_ns=-0.229, max_frequency_mhz=324.071",
+              "metrics": {
+                "area_um2": 69011.04,
+                "cells": 26958.0,
+                "estimated_power_mw": 13.31611,
+                "assumed_activity": 0.0213,
+                "critical_path_ns": 3.051,
+                "sta_period_ns": 2.857142857142857,
+                "slack_ns": -0.2286,
+                "max_frequency_mhz": 324.07107341598686
+              }
+            }
+          ],
+          "latency_s": null
+        }
+      ],
+      "validation_sha256": "968fe9a61a6146c2cd4933b0e28eeb187acb33e58450c21b187603ef5d946914",
+      "wall_seconds": 25.972541281953454,
+      "state": "finished"
+    },
+    {
+      "design_id": "2ba6f8fd04ac903f1923aa081eab6957198a99778024b8e9b9d1c66fcbe64be2",
+      "label": "xm:16:8:32:0.75:0.05",
+      "algorithm": {
+        "label": "xm:16:8:32:0.75:0.05",
+        "family": "xm",
+        "block_m": 32,
+        "kept_high": 16,
+        "kept_low": 8,
+        "threshold_0": 0.75,
+        "threshold_1": 0.05
+      },
+      "point": {
+        "tile_q": 64,
+        "tile_k": 64,
+        "tile_d": 64,
+        "parallelism": 16,
+        "double_buffer": true,
+        "num_rows": 32,
+        "pe_per_row": 4,
+        "reg_width": 16,
+        "data_width": 16,
+        "sram_bytes": 131072,
+        "queue_depth": 2,
+        "divider_stages": 8,
+        "bank_count": 16
+      },
+      "task": {
+        "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+        "dataset": "wikitext-2-raw-v1",
+        "sequence_length": 512,
+        "head_dim": 64,
+        "epsilon": 0.05,
+        "data_seed": 20260903,
+        "max_samples": 32,
+        "dtype": "float32",
+        "capture_layer": 10,
+        "capture_head": 0
+      },
+      "quality_loss": 0.03529660876991823,
+      "metrics": {
+        "cycles": 72221.76763561816,
+        "compute_cycles": 47327.50172714165,
+        "memory_slowdown": 1.526,
+        "memory_slowdown_source": "measured:xm",
+        "clock_period_ns": 2.528,
+        "max_frequency_mhz": 395.56962025316454,
+        "seconds": 0.00018257662858284273,
+        "pe_utilization": 0.8323,
+        "throughput": 2804301.9743224364,
+        "dram_bytes": 13412708.545454545,
+        "area": 2056049.1807999997,
+        "power": 356.847296,
+        "energy_j": 6.515197622258374e-05,
+        "energy_efficiency_tasks_per_j": 15348.728587811713,
+        "energy_scope": "partial-model:execute-array-dynamic+sram-leakage",
+        "edp": 1.1895228164228872e-08
+      },
+      "analytical_violations": [],
+      "module_verified": true,
+      "parent_design_id": "3e6b6f6d5824027b837f571e06a1eac8faca395fc0e58249d6a962fba40b3f01",
+      "iteration": 1,
+      "proposal_seconds": 0.010276018641889095,
+      "critic_review_id": null,
+      "stages": [
+        {
+          "stage": "capture",
+          "state": "finished",
+          "command": null,
+          "trace_reuse": {
+            "cache_key": "6731d6487a97dc15bfd59bc7edd7be4763525a5757b481d93d426d6af4f4d4ce",
+            "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/prepared/workloads/main32.json",
+            "sha256": "02cdf29e0c96e3de2c18b926d075fb84a54140b1ae93abb90a11599735bfba47",
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6",
+            "hardware_result_reused": false
+          },
+          "exit_code": 0,
+          "wall_seconds": 0.027451437897980213
+        },
+        {
+          "stage": "validate",
+          "state": "finished",
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/fast-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/critic_ablation_20260911/FAST/scripts/validate_pareto_scheduler.py",
+            "--design",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/2ba6f8fd04ac903f1923aa081eab6957198a99778024b8e9b9d1c66fcbe64be2/design.json",
+            "--workload",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/2ba6f8fd04ac903f1923aa081eab6957198a99778024b8e9b9d1c66fcbe64be2/workload.json",
+            "--tile-offset",
+            "0",
+            "--tile-count",
+            "0",
+            "--out",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/2ba6f8fd04ac903f1923aa081eab6957198a99778024b8e9b9d1c66fcbe64be2/rtl",
+            "--frequency-mhz",
+            "350",
+            "--containers",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers",
+            "--liberty",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/nangate45/NangateOpenCellLibrary_typical.lib"
+          ],
+          "exit_code": 0,
+          "wall_seconds": 21.23535665869713
+        }
+      ],
+      "independent_observations": [
+        {
+          "design_id": "2ba6f8fd04ac903f1923aa081eab6957198a99778024b8e9b9d1c66fcbe64be2",
+          "scope": "BlockScheduler, 32 rows x 4 PE, M=32; not full attention",
+          "function_passed": true,
+          "frequency_feasible": true,
+          "metrics": {
+            "queue_depth": 2.0,
+            "rows": 32.0,
+            "pe": 4.0,
+            "imbalance": 1.329141,
+            "row_util": 0.858381,
+            "pe_util": 0.858381,
+            "cycles": 440.0,
+            "area_um2": 23463.86,
+            "cells": 9836.0,
+            "estimated_power_mw": 4.497775,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.5308,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": 0.2915,
+            "max_frequency_mhz": 389.76586207856565
+          },
+          "latency_s": 1.2571428571428571e-06,
+          "identity_ok": true,
+          "complete_captured_task": true,
+          "sources_unchanged": true,
+          "frequency_matches": true,
+          "source": {
+            "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+            "dataset": "wiki",
+            "layer": 10,
+            "seq_len": 512,
+            "seed": 20260903,
+            "head": 0,
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+          },
+          "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/2ba6f8fd04ac903f1923aa081eab6957198a99778024b8e9b9d1c66fcbe64be2/rtl/validation.json"
+        }
+      ],
+      "independent_results": [
+        {
+          "depth": 2,
+          "passed": true,
+          "frequency_feasible": true,
+          "wall_seconds": 20.803298107348382,
+          "metrics": {
+            "queue_depth": 2.0,
+            "rows": 32.0,
+            "pe": 4.0,
+            "imbalance": 1.329141,
+            "row_util": 0.858381,
+            "pe_util": 0.858381,
+            "cycles": 440.0,
+            "area_um2": 23463.86,
+            "cells": 9836.0,
+            "estimated_power_mw": 4.497775,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.5308,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": 0.2915,
+            "max_frequency_mhz": 389.76586207856565
+          },
+          "stages": [
+            {
+              "stage": "elaborate",
+              "passed": true,
+              "diagnostics": "ok",
+              "metrics": {}
+            },
+            {
+              "stage": "simulate",
+              "passed": true,
+              "diagnostics": "queue_depth=2 rows=32 pe=4 tiles=136\n  cycles_active=440  row_utilisation=0.8584  pe_utilisation=0.8584\n  pass_imbalance=1.3291  model_says=0.9011  measured_row=0.8584\nMEASURE queue_depth=2 rows=32 pe=4 imbalance=1.329141 row_util=0.858381 pe_util=0.858381 cycles=440\nPASSED: 0 \u5904\u5224\u636e\u5931\u8d25",
+              "metrics": {
+                "queue_depth": 2.0,
+                "rows": 32.0,
+                "pe": 4.0,
+                "imbalance": 1.329141,
+                "row_util": 0.858381,
+                "pe_util": 0.858381,
+                "cycles": 440.0
+              }
+            },
+            {
+              "stage": "synthesize",
+              "passed": true,
+              "diagnostics": "ok: area_um2=23,463.860, cells=9,836.000, estimated_power_mw=4.498, assumed_activity=0.021, critical_path_ns=2.531, sta_period_ns=2.857, slack_ns=0.291, max_frequency_mhz=389.766",
+              "metrics": {
+                "area_um2": 23463.86,
+                "cells": 9836.0,
+                "estimated_power_mw": 4.497775,
+                "assumed_activity": 0.0213,
+                "critical_path_ns": 2.5308,
+                "sta_period_ns": 2.857142857142857,
+                "slack_ns": 0.2915,
+                "max_frequency_mhz": 389.76586207856565
+              }
+            }
+          ],
+          "latency_s": 1.2571428571428571e-06
+        }
+      ],
+      "validation_sha256": "4bd89fed1c5b4ad3210bdc6a1d81f843e76bad565f71095d80864fa4adc854eb",
+      "scheduler_latency_s": 1.2571428571428571e-06,
+      "scheduler_uniform_activity_energy_j": 5.654345714285714e-09,
+      "wall_seconds": 21.32468741480261,
+      "state": "finished"
+    },
+    {
+      "design_id": "5758865ca902cc61d4e8921d9fcf7104b0009611a13a3774b5de9edef3cf36cc",
+      "label": "xm:16:8:32:0.75:0.05",
+      "algorithm": {
+        "label": "xm:16:8:32:0.75:0.05",
+        "family": "xm",
+        "block_m": 32,
+        "kept_high": 16,
+        "kept_low": 8,
+        "threshold_0": 0.75,
+        "threshold_1": 0.05
+      },
+      "point": {
+        "tile_q": 32,
+        "tile_k": 32,
+        "tile_d": 32,
+        "parallelism": 4,
+        "double_buffer": false,
+        "num_rows": 16,
+        "pe_per_row": 8,
+        "reg_width": 16,
+        "data_width": 16,
+        "sram_bytes": 131072,
+        "queue_depth": 0,
+        "divider_stages": 12,
+        "bank_count": 32
+      },
+      "task": {
+        "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+        "dataset": "wikitext-2-raw-v1",
+        "sequence_length": 512,
+        "head_dim": 64,
+        "epsilon": 0.05,
+        "data_seed": 20260903,
+        "max_samples": 32,
+        "dtype": "float32",
+        "capture_layer": 10,
+        "capture_head": 0
+      },
+      "quality_loss": 0.03529660876991823,
+      "metrics": {
+        "cycles": 60790.20458262795,
+        "compute_cycles": 53654.196454217075,
+        "memory_slowdown": 1.133,
+        "memory_slowdown_source": "measured:xm",
+        "clock_period_ns": 2.273,
+        "max_frequency_mhz": 439.94720633523974,
+        "seconds": 0.00013817613501631334,
+        "pe_utilization": 0.7341584124013845,
+        "throughput": 3705415.554860847,
+        "dram_bytes": 13412708.545454545,
+        "area": 1497299.6104,
+        "power": 317.7790928087431,
+        "energy_j": 4.3909486833302454e-05,
+        "energy_efficiency_tasks_per_j": 22774.121770003603,
+        "energy_scope": "partial-model:execute-array-dynamic+sram-leakage",
+        "edp": 6.067243181175433e-09
+      },
+      "analytical_violations": [],
+      "module_verified": true,
+      "parent_design_id": "2ba6f8fd04ac903f1923aa081eab6957198a99778024b8e9b9d1c66fcbe64be2",
+      "iteration": 2,
+      "proposal_seconds": 0.009224708192050457,
+      "critic_review_id": null,
+      "stages": [
+        {
+          "stage": "capture",
+          "state": "finished",
+          "command": null,
+          "trace_reuse": {
+            "cache_key": "4bda0b95b4b0fad5d2c0daf1b0f0f934c36a859fe42e33507ed1241327a6f330",
+            "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/prepared/workloads/confirm16.json",
+            "sha256": "9ed20dfb09db88386fc55978a41a564e4866f4a3fe475e6fce9dd40c47338538",
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6",
+            "hardware_result_reused": false
+          },
+          "exit_code": 0,
+          "wall_seconds": 0.02503816783428192
+        },
+        {
+          "stage": "validate",
+          "state": "finished",
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/fast-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/critic_ablation_20260911/FAST/scripts/validate_pareto_scheduler.py",
+            "--design",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/5758865ca902cc61d4e8921d9fcf7104b0009611a13a3774b5de9edef3cf36cc/design.json",
+            "--workload",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/5758865ca902cc61d4e8921d9fcf7104b0009611a13a3774b5de9edef3cf36cc/workload.json",
+            "--tile-offset",
+            "0",
+            "--tile-count",
+            "0",
+            "--out",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/5758865ca902cc61d4e8921d9fcf7104b0009611a13a3774b5de9edef3cf36cc/rtl",
+            "--frequency-mhz",
+            "350",
+            "--containers",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers",
+            "--liberty",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/nangate45/NangateOpenCellLibrary_typical.lib"
+          ],
+          "exit_code": 0,
+          "wall_seconds": 19.480311127379537
+        }
+      ],
+      "independent_observations": [
+        {
+          "design_id": "5758865ca902cc61d4e8921d9fcf7104b0009611a13a3774b5de9edef3cf36cc",
+          "scope": "BlockScheduler, 16 rows x 8 PE, M=32; not full attention",
+          "function_passed": true,
+          "frequency_feasible": true,
+          "metrics": {
+            "queue_depth": 0.0,
+            "rows": 16.0,
+            "pe": 8.0,
+            "imbalance": 1.265597,
+            "row_util": 0.790141,
+            "pe_util": 0.790141,
+            "cycles": 478.0,
+            "area_um2": 7374.318,
+            "cells": 3321.0,
+            "estimated_power_mw": 1.478434,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.364,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": 0.4585,
+            "max_frequency_mhz": 416.9024150561329
+          },
+          "latency_s": 1.3657142857142857e-06,
+          "identity_ok": true,
+          "complete_captured_task": true,
+          "sources_unchanged": true,
+          "frequency_matches": true,
+          "source": {
+            "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+            "dataset": "wiki",
+            "layer": 10,
+            "seq_len": 512,
+            "seed": 20260903,
+            "head": 0,
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+          },
+          "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/5758865ca902cc61d4e8921d9fcf7104b0009611a13a3774b5de9edef3cf36cc/rtl/validation.json"
+        }
+      ],
+      "independent_results": [
+        {
+          "depth": 0,
+          "passed": true,
+          "frequency_feasible": true,
+          "wall_seconds": 19.03074866719544,
+          "metrics": {
+            "queue_depth": 0.0,
+            "rows": 16.0,
+            "pe": 8.0,
+            "imbalance": 1.265597,
+            "row_util": 0.790141,
+            "pe_util": 0.790141,
+            "cycles": 478.0,
+            "area_um2": 7374.318,
+            "cells": 3321.0,
+            "estimated_power_mw": 1.478434,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.364,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": 0.4585,
+            "max_frequency_mhz": 416.9024150561329
+          },
+          "stages": [
+            {
+              "stage": "elaborate",
+              "passed": true,
+              "diagnostics": "ok",
+              "metrics": {}
+            },
+            {
+              "stage": "simulate",
+              "passed": true,
+              "diagnostics": "queue_depth=0 rows=16 pe=8 tiles=272\n  cycles_active=478  row_utilisation=0.7901  pe_utilisation=0.7901\n  pass_imbalance=1.2656  model_says=0.7901  measured_row=0.7901\nMEASURE queue_depth=0 rows=16 pe=8 imbalance=1.265597 row_util=0.790141 pe_util=0.790141 cycles=478\nPASSED: 0 \u5904\u5224\u636e\u5931\u8d25",
+              "metrics": {
+                "queue_depth": 0.0,
+                "rows": 16.0,
+                "pe": 8.0,
+                "imbalance": 1.265597,
+                "row_util": 0.790141,
+                "pe_util": 0.790141,
+                "cycles": 478.0
+              }
+            },
+            {
+              "stage": "synthesize",
+              "passed": true,
+              "diagnostics": "ok: area_um2=7,374.318, cells=3,321.000, estimated_power_mw=1.478, assumed_activity=0.021, critical_path_ns=2.364, sta_period_ns=2.857, slack_ns=0.459, max_frequency_mhz=416.902",
+              "metrics": {
+                "area_um2": 7374.318,
+                "cells": 3321.0,
+                "estimated_power_mw": 1.478434,
+                "assumed_activity": 0.0213,
+                "critical_path_ns": 2.364,
+                "sta_period_ns": 2.857142857142857,
+                "slack_ns": 0.4585,
+                "max_frequency_mhz": 416.9024150561329
+              }
+            }
+          ],
+          "latency_s": 1.3657142857142857e-06
+        }
+      ],
+      "validation_sha256": "64a41dde89096f0282c80878018be16beb38591dbc6c91bae0bb996a6924dc60",
+      "scheduler_latency_s": 1.3657142857142857e-06,
+      "scheduler_uniform_activity_energy_j": 2.0191184342857144e-09,
+      "wall_seconds": 19.556187794543803,
+      "state": "finished"
+    },
+    {
+      "design_id": "ccf78b4ca4993ed9068a7c44e9d645031015db224fc85584ae20e128a8305d3a",
+      "label": "xm:16:8:32:0.75:0.05",
+      "algorithm": {
+        "label": "xm:16:8:32:0.75:0.05",
+        "family": "xm",
+        "block_m": 32,
+        "kept_high": 16,
+        "kept_low": 8,
+        "threshold_0": 0.75,
+        "threshold_1": 0.05
+      },
+      "point": {
+        "tile_q": 64,
+        "tile_k": 64,
+        "tile_d": 64,
+        "parallelism": 16,
+        "double_buffer": true,
+        "num_rows": 32,
+        "pe_per_row": 8,
+        "reg_width": 16,
+        "data_width": 16,
+        "sram_bytes": 131072,
+        "queue_depth": 2,
+        "divider_stages": 12,
+        "bank_count": 32
+      },
+      "task": {
+        "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+        "dataset": "wikitext-2-raw-v1",
+        "sequence_length": 512,
+        "head_dim": 64,
+        "epsilon": 0.05,
+        "data_seed": 20260903,
+        "max_samples": 32,
+        "dtype": "float32",
+        "capture_layer": 10,
+        "capture_head": 0
+      },
+      "quality_loss": 0.03529660876991823,
+      "metrics": {
+        "cycles": 25652.68389043134,
+        "compute_cycles": 22641.380309295095,
+        "memory_slowdown": 1.133,
+        "memory_slowdown_source": "measured:xm",
+        "clock_period_ns": 2.528,
+        "max_frequency_mhz": 395.56962025316454,
+        "seconds": 6.484998487501043e-05,
+        "pe_utilization": 0.8698824707106907,
+        "throughput": 7895144.478241756,
+        "dram_bytes": 13412708.545454545,
+        "area": 2494389.9968,
+        "power": 718.0909398810235,
+        "energy_j": 4.65681865901664e-05,
+        "energy_efficiency_tasks_per_j": 21473.887501798614,
+        "energy_scope": "partial-model:execute-array-dynamic+sram-leakage",
+        "edp": 3.0199461960289546e-09
+      },
+      "analytical_violations": [],
+      "module_verified": false,
+      "parent_design_id": "5758865ca902cc61d4e8921d9fcf7104b0009611a13a3774b5de9edef3cf36cc",
+      "iteration": 3,
+      "proposal_seconds": 0.010558091104030609,
+      "critic_review_id": null,
+      "stages": [
+        {
+          "stage": "capture",
+          "state": "finished",
+          "command": null,
+          "trace_reuse": {
+            "cache_key": "6731d6487a97dc15bfd59bc7edd7be4763525a5757b481d93d426d6af4f4d4ce",
+            "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/prepared/workloads/main32.json",
+            "sha256": "02cdf29e0c96e3de2c18b926d075fb84a54140b1ae93abb90a11599735bfba47",
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6",
+            "hardware_result_reused": false
+          },
+          "exit_code": 0,
+          "wall_seconds": 0.024528125301003456
+        },
+        {
+          "stage": "validate",
+          "state": "finished",
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/fast-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/critic_ablation_20260911/FAST/scripts/validate_pareto_scheduler.py",
+            "--design",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/ccf78b4ca4993ed9068a7c44e9d645031015db224fc85584ae20e128a8305d3a/design.json",
+            "--workload",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/ccf78b4ca4993ed9068a7c44e9d645031015db224fc85584ae20e128a8305d3a/workload.json",
+            "--tile-offset",
+            "0",
+            "--tile-count",
+            "0",
+            "--out",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/ccf78b4ca4993ed9068a7c44e9d645031015db224fc85584ae20e128a8305d3a/rtl",
+            "--frequency-mhz",
+            "350",
+            "--containers",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers",
+            "--liberty",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/nangate45/NangateOpenCellLibrary_typical.lib"
+          ],
+          "exit_code": 1,
+          "wall_seconds": 26.702477833256125
+        }
+      ],
+      "independent_observations": [
+        {
+          "design_id": "ccf78b4ca4993ed9068a7c44e9d645031015db224fc85584ae20e128a8305d3a",
+          "scope": "BlockScheduler, 32 rows x 8 PE, M=32; not full attention",
+          "function_passed": true,
+          "frequency_feasible": false,
+          "metrics": {
+            "queue_depth": 2.0,
+            "rows": 32.0,
+            "pe": 8.0,
+            "imbalance": 1.329141,
+            "row_util": 0.858381,
+            "pe_util": 0.858381,
+            "cycles": 220.0,
+            "area_um2": 41951.658,
+            "cells": 16832.0,
+            "estimated_power_mw": 8.168453000000001,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.8915,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": -0.0701,
+            "max_frequency_mhz": 341.6183927342648
+          },
+          "latency_s": null,
+          "identity_ok": true,
+          "complete_captured_task": true,
+          "sources_unchanged": true,
+          "frequency_matches": true,
+          "source": {
+            "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+            "dataset": "wiki",
+            "layer": 10,
+            "seq_len": 512,
+            "seed": 20260903,
+            "head": 0,
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+          },
+          "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/ccf78b4ca4993ed9068a7c44e9d645031015db224fc85584ae20e128a8305d3a/rtl/validation.json"
+        }
+      ],
+      "independent_results": [
+        {
+          "depth": 2,
+          "passed": true,
+          "frequency_feasible": false,
+          "wall_seconds": 26.198133788071573,
+          "metrics": {
+            "queue_depth": 2.0,
+            "rows": 32.0,
+            "pe": 8.0,
+            "imbalance": 1.329141,
+            "row_util": 0.858381,
+            "pe_util": 0.858381,
+            "cycles": 220.0,
+            "area_um2": 41951.658,
+            "cells": 16832.0,
+            "estimated_power_mw": 8.168453000000001,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.8915,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": -0.0701,
+            "max_frequency_mhz": 341.6183927342648
+          },
+          "stages": [
+            {
+              "stage": "elaborate",
+              "passed": true,
+              "diagnostics": "ok",
+              "metrics": {}
+            },
+            {
+              "stage": "simulate",
+              "passed": true,
+              "diagnostics": "queue_depth=2 rows=32 pe=8 tiles=136\n  cycles_active=220  row_utilisation=0.8584  pe_utilisation=0.8584\n  pass_imbalance=1.3291  model_says=0.9011  measured_row=0.8584\nMEASURE queue_depth=2 rows=32 pe=8 imbalance=1.329141 row_util=0.858381 pe_util=0.858381 cycles=220\nPASSED: 0 \u5904\u5224\u636e\u5931\u8d25",
+              "metrics": {
+                "queue_depth": 2.0,
+                "rows": 32.0,
+                "pe": 8.0,
+                "imbalance": 1.329141,
+                "row_util": 0.858381,
+                "pe_util": 0.858381,
+                "cycles": 220.0
+              }
+            },
+            {
+              "stage": "synthesize",
+              "passed": true,
+              "diagnostics": "ok: area_um2=41,951.658, cells=16,832.000, estimated_power_mw=8.168, assumed_activity=0.021, critical_path_ns=2.892, sta_period_ns=2.857, slack_ns=-0.070, max_frequency_mhz=341.618",
+              "metrics": {
+                "area_um2": 41951.658,
+                "cells": 16832.0,
+                "estimated_power_mw": 8.168453000000001,
+                "assumed_activity": 0.0213,
+                "critical_path_ns": 2.8915,
+                "sta_period_ns": 2.857142857142857,
+                "slack_ns": -0.0701,
+                "max_frequency_mhz": 341.6183927342648
+              }
+            }
+          ],
+          "latency_s": null
+        }
+      ],
+      "validation_sha256": "02c407e081e7007433b6e35a3a9d38a2dea144e38ce9f8fd4737f0de69ecad51",
+      "wall_seconds": 26.7802325906232,
+      "state": "finished"
+    },
+    {
+      "design_id": "a2569ccef1757cf0df99f94dbc0af9338191fa533f180662bb3694419282600b",
+      "label": "xm:16:8:32:0.75:0.05",
+      "algorithm": {
+        "label": "xm:16:8:32:0.75:0.05",
+        "family": "xm",
+        "block_m": 32,
+        "kept_high": 16,
+        "kept_low": 8,
+        "threshold_0": 0.75,
+        "threshold_1": 0.05
+      },
+      "point": {
+        "tile_q": 64,
+        "tile_k": 32,
+        "tile_d": 64,
+        "parallelism": 16,
+        "double_buffer": false,
+        "num_rows": 32,
+        "pe_per_row": 8,
+        "reg_width": 32,
+        "data_width": 16,
+        "sram_bytes": 262144,
+        "queue_depth": 2,
+        "divider_stages": 12,
+        "bank_count": 32
+      },
+      "task": {
+        "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+        "dataset": "wikitext-2-raw-v1",
+        "sequence_length": 512,
+        "head_dim": 64,
+        "epsilon": 0.05,
+        "data_seed": 20260903,
+        "max_samples": 32,
+        "dtype": "float32",
+        "capture_layer": 10,
+        "capture_head": 0
+      },
+      "quality_loss": 0.03529660876991823,
+      "metrics": {
+        "cycles": 25652.68389043134,
+        "compute_cycles": 22641.380309295095,
+        "memory_slowdown": 1.133,
+        "memory_slowdown_source": "measured:xm",
+        "clock_period_ns": 2.528,
+        "max_frequency_mhz": 395.56962025316454,
+        "seconds": 6.484998487501043e-05,
+        "pe_utilization": 0.8698824707106907,
+        "throughput": 7895144.478241756,
+        "dram_bytes": 13412708.545454545,
+        "area": 3038163.9616,
+        "power": 743.6162518810235,
+        "energy_j": 4.822350268729632e-05,
+        "energy_efficiency_tasks_per_j": 20736.776556536475,
+        "energy_scope": "partial-model:execute-array-dynamic+sram-leakage",
+        "edp": 3.1272934198911912e-09
+      },
+      "analytical_violations": [],
+      "module_verified": false,
+      "parent_design_id": "ccf78b4ca4993ed9068a7c44e9d645031015db224fc85584ae20e128a8305d3a",
+      "iteration": 4,
+      "proposal_seconds": 0.010227557271718979,
+      "critic_review_id": null,
+      "stages": [
+        {
+          "stage": "capture",
+          "state": "finished",
+          "command": null,
+          "trace_reuse": {
+            "cache_key": "6731d6487a97dc15bfd59bc7edd7be4763525a5757b481d93d426d6af4f4d4ce",
+            "source": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/prepared/workloads/main32.json",
+            "sha256": "02cdf29e0c96e3de2c18b926d075fb84a54140b1ae93abb90a11599735bfba47",
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6",
+            "hardware_result_reused": false
+          },
+          "exit_code": 0,
+          "wall_seconds": 0.023107271641492844
+        },
+        {
+          "stage": "validate",
+          "state": "finished",
+          "command": [
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/fast-py312/bin/python",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/snapshots/critic_ablation_20260911/FAST/scripts/validate_pareto_scheduler.py",
+            "--design",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/a2569ccef1757cf0df99f94dbc0af9338191fa533f180662bb3694419282600b/design.json",
+            "--workload",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/a2569ccef1757cf0df99f94dbc0af9338191fa533f180662bb3694419282600b/workload.json",
+            "--tile-offset",
+            "0",
+            "--tile-count",
+            "0",
+            "--out",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/a2569ccef1757cf0df99f94dbc0af9338191fa533f180662bb3694419282600b/rtl",
+            "--frequency-mhz",
+            "350",
+            "--containers",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers",
+            "--liberty",
+            "/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/nangate45/NangateOpenCellLibrary_typical.lib"
+          ],
+          "exit_code": 1,
+          "wall_seconds": 25.40189723763615
+        }
+      ],
+      "independent_observations": [
+        {
+          "design_id": "a2569ccef1757cf0df99f94dbc0af9338191fa533f180662bb3694419282600b",
+          "scope": "BlockScheduler, 32 rows x 8 PE, M=32; not full attention",
+          "function_passed": true,
+          "frequency_feasible": false,
+          "metrics": {
+            "queue_depth": 2.0,
+            "rows": 32.0,
+            "pe": 8.0,
+            "imbalance": 1.329141,
+            "row_util": 0.858381,
+            "pe_util": 0.858381,
+            "cycles": 220.0,
+            "area_um2": 41951.658,
+            "cells": 16832.0,
+            "estimated_power_mw": 8.168453000000001,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.8915,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": -0.0701,
+            "max_frequency_mhz": 341.6183927342648
+          },
+          "latency_s": null,
+          "identity_ok": true,
+          "complete_captured_task": true,
+          "sources_unchanged": true,
+          "frequency_matches": true,
+          "source": {
+            "model": "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T",
+            "dataset": "wiki",
+            "layer": 10,
+            "seq_len": 512,
+            "seed": 20260903,
+            "head": 0,
+            "token_sha256": "72f72a42f8d647ef0db223e6b033d5cb32edc2e9cf91a95cf93eafe6710422e6"
+          },
+          "log_uri": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/critic_ablation_20260911/runs/main32_off_s2/a2569ccef1757cf0df99f94dbc0af9338191fa533f180662bb3694419282600b/rtl/validation.json"
+        }
+      ],
+      "independent_results": [
+        {
+          "depth": 2,
+          "passed": true,
+          "frequency_feasible": false,
+          "wall_seconds": 24.896228752098978,
+          "metrics": {
+            "queue_depth": 2.0,
+            "rows": 32.0,
+            "pe": 8.0,
+            "imbalance": 1.329141,
+            "row_util": 0.858381,
+            "pe_util": 0.858381,
+            "cycles": 220.0,
+            "area_um2": 41951.658,
+            "cells": 16832.0,
+            "estimated_power_mw": 8.168453000000001,
+            "assumed_activity": 0.0213,
+            "critical_path_ns": 2.8915,
+            "sta_period_ns": 2.857142857142857,
+            "slack_ns": -0.0701,
+            "max_frequency_mhz": 341.6183927342648
+          },
+          "stages": [
+            {
+              "stage": "elaborate",
+              "passed": true,
+              "diagnostics": "ok",
+              "metrics": {}
+            },
+            {
+              "stage": "simulate",
+              "passed": true,
+              "diagnostics": "queue_depth=2 rows=32 pe=8 tiles=136\n  cycles_active=220  row_utilisation=0.8584  pe_utilisation=0.8584\n  pass_imbalance=1.3291  model_says=0.9011  measured_row=0.8584\nMEASURE queue_depth=2 rows=32 pe=8 imbalance=1.329141 row_util=0.858381 pe_util=0.858381 cycles=220\nPASSED: 0 \u5904\u5224\u636e\u5931\u8d25",
+              "metrics": {
+                "queue_depth": 2.0,
+                "rows": 32.0,
+                "pe": 8.0,
+                "imbalance": 1.329141,
+                "row_util": 0.858381,
+                "pe_util": 0.858381,
+                "cycles": 220.0
+              }
+            },
+            {
+              "stage": "synthesize",
+              "passed": true,
+              "diagnostics": "ok: area_um2=41,951.658, cells=16,832.000, estimated_power_mw=8.168, assumed_activity=0.021, critical_path_ns=2.892, sta_period_ns=2.857, slack_ns=-0.070, max_frequency_mhz=341.618",
+              "metrics": {
+                "area_um2": 41951.658,
+                "cells": 16832.0,
+                "estimated_power_mw": 8.168453000000001,
+                "assumed_activity": 0.0213,
+                "critical_path_ns": 2.8915,
+                "sta_period_ns": 2.857142857142857,
+                "slack_ns": -0.0701,
+                "max_frequency_mhz": 341.6183927342648
+              }
+            }
+          ],
+          "latency_s": null
+        }
+      ],
+      "validation_sha256": "2dbc83e7f16e45df8c1c24c96bb3fcf98142921a1716aa81369f7e49318d3248",
+      "wall_seconds": 25.49761466588825,
+      "state": "finished"
+    }
+  ],
+  "evidence_scope": "scheduler functional/STA repair; not full-attention energy/PPA",
+  "critic_calls": [],
+  "wall_seconds": 119.20326525531709,
+  "api_calls": {},
+  "active_loop": 5,
+  "loops_completed": 5,
+  "evaluated": 5,
+  "budget_complete": true,
+  "stopped_because": "budget exhausted"
+}

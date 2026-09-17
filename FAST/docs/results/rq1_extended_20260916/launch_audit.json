@@ -1,0 +1,17 @@
+{
+  "updated_utc": "2026-09-16T01:57:57.033582+00:00",
+  "initial_submission": {
+    "partition": "cpu_short",
+    "time_limit": "08:00:00",
+    "accepted": false,
+    "reason": "partition cpu_short QoS has a 6h maximum; no job created"
+  },
+  "accepted_submission": {
+    "partition": "cs",
+    "time_limit": "08:00:00"
+  },
+  "main_jobs": {
+    "17874649": "JobId=17874649 JobName=rq1_block_nm-ext2\n   UserId=gz2522(4923790) GroupId=gz2522(4923790) MCS_label=N/A\n   Priority=11864 Nice=0 Account=torch_pr_674_tandon_advanced QOS=cpu48\n   JobState=PENDING Reason=Priority Dependency=(null)\n   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:00:00 TimeLimit=08:00:00 TimeMin=N/A\n   SubmitTime=2026-09-15T21:54:59 EligibleTime=2026-09-15T21:54:59\n   AccrueTime=2026-09-15T21:54:59\n   StartTime=Unknown EndTime=Unknown Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-09-15T21:57:56 Scheduler=Main\n   Partition=cs AllocNode:Sid=torch-login-a-1:3878142\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=\n   NumNodes=1 NumCPUs=4 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:1\n   ReqTRES=cpu=4,mem=24G,node=1,billing=4\n   AllocTRES=(null)\n   Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=*\n   MinCPUsNode=4 MinMemoryNode=24G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_block_nm-ext2.slurm\n   WorkDir=/home/gz2522/Micro-Hackthon/FAST\n   StdErr=/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/slurm/rq1_block_nm-ext2_17874649.err\n   StdIn=/dev/null\n   StdOut=/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/slurm/rq1_block_nm-ext2_17874649.out\n   GresEnforceBind=Yes\n   TresPerTask=cpu=4\n   \n\n",
+    "17874651": "JobId=17874651 JobName=rq1_sanger_threshold-ext2\n   UserId=gz2522(4923790) GroupId=gz2522(4923790) MCS_label=N/A\n   Priority=11864 Nice=0 Account=torch_pr_674_tandon_advanced QOS=cpu48\n   JobState=PENDING Reason=Priority Dependency=(null)\n   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0\n   RunTime=00:00:00 TimeLimit=08:00:00 TimeMin=N/A\n   SubmitTime=2026-09-15T21:55:00 EligibleTime=2026-09-15T21:55:00\n   AccrueTime=2026-09-15T21:55:00\n   StartTime=Unknown EndTime=Unknown Deadline=N/A\n   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-09-15T21:57:56 Scheduler=Main\n   Partition=cs AllocNode:Sid=torch-login-a-1:3878142\n   ReqNodeList=(null) ExcNodeList=(null)\n   NodeList=\n   NumNodes=1 NumCPUs=4 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:1\n   ReqTRES=cpu=4,mem=24G,node=1,billing=4\n   AllocTRES=(null)\n   Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=*\n   MinCPUsNode=4 MinMemoryNode=24G MinTmpDiskNode=0\n   Features=(null) DelayBoot=00:00:00\n   OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)\n   Command=/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_sanger_threshold-ext2.slurm\n   WorkDir=/home/gz2522/Micro-Hackthon/FAST\n   StdErr=/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/slurm/rq1_sanger_threshold-ext2_17874651.err\n   StdIn=/dev/null\n   StdOut=/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/slurm/rq1_sanger_threshold-ext2_17874651.out\n   GresEnforceBind=Yes\n   TresPerTask=cpu=4\n   \n\n"
+  }
+}

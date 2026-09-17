@@ -1,0 +1,249 @@
+{
+  "ScoreWeightProcessor": [
+    {
+      "id": "dynax_exp_reference",
+      "description": "FAST reconstruction of fixed-point exponential unit; this is not an original DynaX release module.",
+      "tags": [
+        "chisel",
+        "exponential",
+        "fixedpoint"
+      ],
+      "support_sources": [],
+      "native_library_symbols": {
+        "classes": [
+          "ExpUnitFixPoint",
+          "exp_unit.ExpUnitFixPoint"
+        ],
+        "packages": [
+          "exp_unit"
+        ]
+      },
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_exp.cpp",
+          "description": "Exponent fixed-point test driver.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "645f2bad989fd7a3357e653c0cdb1745269112050079cd38eb44d17af4b738f8"
+        },
+        {
+          "source": "../hardware/golden/exp_unit.py",
+          "description": "Fixed-point exponential numerical reference.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "18de3dcd0fae0a6e83c27a27dbc10c3b961839a2dced7c4a68973f314ef6c1c5"
+        }
+      ],
+      "language": "chisel",
+      "sha256": "4134eca7895eb9963fb3581ba5f0f90e2e133f80fef799dd3b89511fbad240aa"
+    }
+  ],
+  "SelectorAggregator": [
+    {
+      "id": "topk_selection",
+      "description": "Top-k value/index selection hardware with parameterized widths.",
+      "tags": [
+        "chisel",
+        "topk",
+        "sparse",
+        "selection"
+      ],
+      "support_sources": [],
+      "native_library_symbols": {
+        "classes": [
+          "TopFirst",
+          "TopK",
+          "TopStage",
+          "predict_unit.TopFirst",
+          "predict_unit.TopK",
+          "predict_unit.TopStage"
+        ],
+        "packages": [
+          "predict_unit"
+        ]
+      },
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_topk.cpp",
+          "description": "Selection order, indices and valid pulse sampling.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "9fae733701e109db831819fbdc16a527a48cfc0c93dc8be334d7adc818c1d203"
+        },
+        {
+          "source": "../hardware/golden/predict_unit.py",
+          "description": "TopK and prediction numeric/timing reference; inspect applicable functions.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "126f5e0d27517738b5516ab53dd7e4fbdfb5cbcd3e340c965f3d1d2ba75d1eff"
+        }
+      ],
+      "language": "chisel",
+      "sha256": "09196842ec6bef512088f1eaf4a3112053e64f36cd5b7220de1b6191fe020cec"
+    }
+  ],
+  "FinalDivider": [
+    {
+      "id": "pipelined_divider",
+      "description": "FAST radix-2 restoring divider, full-width numerator processing, tunable pipeline depth and valid propagation; adapt fixed-point signed interface to target semantics.",
+      "tags": [
+        "chisel",
+        "division",
+        "normalization",
+        "pipeline"
+      ],
+      "support_sources": [],
+      "native_library_symbols": {
+        "classes": [
+          "DivState",
+          "FixedPointDivPipelined",
+          "predict_unit.DivState",
+          "predict_unit.FixedPointDivPipelined"
+        ],
+        "packages": [
+          "predict_unit"
+        ]
+      },
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_divider.cpp",
+          "description": "Streaming valid/latency, signed Q8.8 quotient, divide-by-zero and wrap; adapt ports and unsigned semantics explicitly.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "9f010b9d13a5e345002ab43883b812e0c665671194d7b70456af3bb000a6eec3"
+        },
+        {
+          "source": "../hardware/golden/fixedpoint.py",
+          "description": "Signed wrap, rounded fixed-point multiply and truncation toward zero.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "bda248421e2c52119566c2982d322227d4c9a8c38bd1a056f2e962d28bfc26c4"
+        }
+      ],
+      "language": "chisel",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+    }
+  ],
+  "DynaX_XM_Row_Top": [
+    {
+      "id": "attention_tile_system_reference",
+      "description": "DynaX-derived system reference including selection, hardware indices, banked KeyFeeder and backpressure. Still single query row, external scores and block mass; system bench lacks final attention-value assertions. Use its actual architecture and protocols; fill missing QKV-to-score/mass path and independent E2E.",
+      "tags": [
+        "chisel",
+        "dynax",
+        "integrated-system",
+        "native-library",
+        "fsm",
+        "reference-bundle"
+      ],
+      "support_sources": [
+        "../hardware/chisel/src/main/scala/attention_tile.scala",
+        "../hardware/chisel/src/main/scala/attention_tile_top.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/key_feeder.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/repe.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/repe_array.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/repe_row.scala",
+        "../hardware/chisel/src/main/scala/execute_unit/sram.scala",
+        "../hardware/chisel/src/main/scala/exp_unit/exp_unit.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/block_scheduler.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/block_tier.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/divider.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/index_scheduler.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/prepe_1_2.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/prepe_1_4.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/psum_softmax.scala",
+        "../hardware/chisel/src/main/scala/predict_unit/topk.scala"
+      ],
+      "native_library_symbols": {
+        "classes": [
+          "AttentionTile",
+          "AttentionTileSystem",
+          "AttentionTileTop",
+          "BlockScheduler",
+          "BlockTierSelect",
+          "DivState",
+          "ExpUnitFixPoint",
+          "FixedPointDiv",
+          "FixedPointDivPipelined",
+          "IndexScheduler",
+          "KeyFeeder",
+          "PSumSoftmax",
+          "Pass",
+          "PrePEArray_1_2",
+          "PrePEArray_1_4",
+          "PrePE_1_2",
+          "PrePE_1_4",
+          "RePE",
+          "RePEArray",
+          "RePERow",
+          "SRAM",
+          "SRAMBank",
+          "TopFirst",
+          "TopK",
+          "TopStage",
+          "execute_unit.KeyFeeder",
+          "execute_unit.RePE",
+          "execute_unit.RePEArray",
+          "execute_unit.RePERow",
+          "execute_unit.SRAM",
+          "execute_unit.SRAMBank",
+          "exp_unit.ExpUnitFixPoint",
+          "predict_unit.BlockScheduler",
+          "predict_unit.BlockTierSelect",
+          "predict_unit.DivState",
+          "predict_unit.FixedPointDiv",
+          "predict_unit.FixedPointDivPipelined",
+          "predict_unit.IndexScheduler",
+          "predict_unit.PSumSoftmax",
+          "predict_unit.Pass",
+          "predict_unit.PrePEArray_1_2",
+          "predict_unit.PrePEArray_1_4",
+          "predict_unit.PrePE_1_2",
+          "predict_unit.PrePE_1_4",
+          "predict_unit.TopFirst",
+          "predict_unit.TopK",
+          "predict_unit.TopStage"
+        ],
+        "packages": [
+          "execute_unit",
+          "exp_unit",
+          "predict_unit"
+        ]
+      },
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_attention_tile_system.cpp",
+          "description": "Original integrated driver and actual acceptance criteria; inspect limitations.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "8c29d3b0e048be66962fb6949fffa4ae088cf2b0320e6087904a0b9fda66c1e9"
+        },
+        {
+          "source": "../hardware/tb/drivers.h",
+          "description": "Existing cycle/control/handshake drivers.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "55604883315e75cdb3763b8192afe10aea4e4eb0b91b92b78027590d19028e85"
+        },
+        {
+          "source": "../hardware/tb/golden.h",
+          "description": "Golden-data loader.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "2d4a4eba6fe92e7baa96d5aff3596d28dcb42652389e90d25f609a02bd5d777a"
+        },
+        {
+          "source": "../hardware/golden/fixedpoint.py",
+          "description": "Fixed-point arithmetic semantics.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "bda248421e2c52119566c2982d322227d4c9a8c38bd1a056f2e962d28bfc26c4"
+        },
+        {
+          "source": "../hardware/golden/execute_unit.py",
+          "description": "Execution datapath cycle model.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "313b7948794d67d77caf8e78bea3255d33dcdafb9ae94ff2a1ad95af64a628db"
+        },
+        {
+          "source": "../hardware/golden/predict_unit.py",
+          "description": "Prediction/selection cycle model.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "126f5e0d27517738b5516ab53dd7e4fbdfb5cbcd3e340c965f3d1d2ba75d1eff"
+        }
+      ],
+      "language": "chisel",
+      "sha256": "72efecaef3a77c6fd63f1c1da6195279d16f9319c003e779b524064c6d971244"
+    }
+  ]
+}

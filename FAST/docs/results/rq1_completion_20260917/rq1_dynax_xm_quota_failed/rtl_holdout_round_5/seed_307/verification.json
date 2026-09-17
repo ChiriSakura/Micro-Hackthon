@@ -1,0 +1,26 @@
+{
+  "seed": 307,
+  "passed": true,
+  "stage": "simulation",
+  "simulation": {
+    "passed": true,
+    "log": "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/rtl_holdout_round_5/seed_307/e2e_sim.log",
+    "diagnostics": "FAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_CASE cycles=56\nFAST_PASS cases=100\n- /home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/rtl_holdout_round_5/seed_307/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 57ns; walltime 0.008 s; speed 7.601 us/s\n- Verilator: cpu 0.007 s on 1 threads; allocated 4 MB\n",
+    "timed_out": false,
+    "returncode": 0,
+    "wall_seconds": 0.32672012600232847,
+    "command": [
+      "apptainer",
+      "exec",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+      "/home/gz2522/Micro-Hackthon/FAST/docs/results/rq1_completion_20260917/rq1_dynax_xm/rtl_holdout_round_5/seed_307/obj_dir/VFASTTestbench"
+    ]
+  },
+  "cases": 100,
+  "expected_cases": 100,
+  "mean_cycles": 56.0,
+  "min_cycles": 56,
+  "max_cycles": 56,
+  "testbench_sha256": "728074fd6d1cadbb4e66d9f7448643a98dd6602aa144823af1ab7efbf697a662",
+  "coverage": "signed Q/K/V, 16-key sparse row, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+}

@@ -1,0 +1,13 @@
+{
+  "job_id": "17910799",
+  "dependencies": [
+    "17909362",
+    "17910797",
+    "17910798",
+    "17909366",
+    "17909367"
+  ],
+  "script": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1-completion-report-v4.slurm",
+  "supersedes": "17910682",
+  "reason": "Independent validation workspaces on scratch after home quota failure; plots avoid overlapping round annotations"
+}

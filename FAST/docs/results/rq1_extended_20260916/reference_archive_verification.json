@@ -1,0 +1,185 @@
+{
+  "passed": true,
+  "archive_sha256": "cbbf3e38c7610c93be2026e65ba1c7e1aadd341eae1cad78477726562acff3c5",
+  "file_count": 36,
+  "uncompressed_bytes": 238363,
+  "archive_bytes": 29361,
+  "manifest": {
+    "version": 1,
+    "inputs": {
+      "probes": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/rq1_extended_probe_20260916"
+    },
+    "files": {
+      "probes/summary.json": {
+        "sha256": "37c64844526c077ae37a143fe2fef0344ac1e609c007aa8ed2a0e10654e08213",
+        "bytes": 21393
+      },
+      "probes/bitonic_signed8_pipeline_0/e2e_build.json": {
+        "sha256": "7545cc469ce14572af152bda3a3c17258d220b06e32efeb3811297101a29cfe8",
+        "bytes": 9419
+      },
+      "probes/bitonic_signed8_pipeline_0/e2e_build.log": {
+        "sha256": "25907a87075295c9d1864105c18ab2898c061d239d2fca41c9ff20f06ef615cc",
+        "bytes": 8223
+      },
+      "probes/bitonic_signed8_pipeline_0/e2e_sim.json": {
+        "sha256": "0db81f01e42ff0f0a5e04de92a568687a0288e071e57207628acfbfa05e7056d",
+        "bytes": 2812
+      },
+      "probes/bitonic_signed8_pipeline_0/e2e_sim.log": {
+        "sha256": "3b25d56aad86907bed0fa09829bc37fa84001b41f8c9240885cbd61f6d72517c",
+        "bytes": 2248
+      },
+      "probes/bitonic_signed8_pipeline_0/trusted_testbench.sv": {
+        "sha256": "21824cbadf565dd546114e0b2fe1b0413b11c91d5f736c8b3df2125c5c5fdb92",
+        "bytes": 13926
+      },
+      "probes/bitonic_signed8_pipeline_0/trusted_vectors.json": {
+        "sha256": "b7539028d99259650084a856f255a25ea5bbe1259068a01a8f685a03e37d992a",
+        "bytes": 72
+      },
+      "probes/bitonic_signed8_pipeline_1/e2e_build.json": {
+        "sha256": "30686082250a9717c2c77f6d9b927da00819f45ce8586a1159dc962dc36b6a3b",
+        "bytes": 9419
+      },
+      "probes/bitonic_signed8_pipeline_1/e2e_build.log": {
+        "sha256": "2ccb84d7127952503e0565a46e9c834a7fdedd88887c9f266c05cd93d3aa04d1",
+        "bytes": 8223
+      },
+      "probes/bitonic_signed8_pipeline_1/e2e_sim.json": {
+        "sha256": "82cc80f04ae2b16fd3d38698ef47b404da8b42c1ab07c2974aeabb6885bd63f0",
+        "bytes": 2814
+      },
+      "probes/bitonic_signed8_pipeline_1/e2e_sim.log": {
+        "sha256": "57f2bc923185f0a47d8d312cb54ec8aa1372e1f0c9a41d877ab88e532fc79e66",
+        "bytes": 2248
+      },
+      "probes/bitonic_signed8_pipeline_1/trusted_testbench.sv": {
+        "sha256": "3f58e2585186d9f9cec97e58597a426e5905435771e8abf3d9873becce2d882b",
+        "bytes": 17526
+      },
+      "probes/bitonic_signed8_pipeline_1/trusted_vectors.json": {
+        "sha256": "802af52635ebe7dc25dfd34bcd488f2db598f888e7417895fdc3d4c0fc16251f",
+        "bytes": 72
+      },
+      "probes/flexcim_distribution/e2e_build.json": {
+        "sha256": "56e6c6f87191cb532cd00b4f601814d9281119c9c655c337ab71bba743b52b04",
+        "bytes": 4333
+      },
+      "probes/flexcim_distribution/e2e_build.log": {
+        "sha256": "7ed536e9ec168c953449c7b4bbce0ee680dfba15ab3e8f3213aa047d3dfc19fc",
+        "bytes": 3509
+      },
+      "probes/flexcim_distribution/e2e_sim.json": {
+        "sha256": "993d68cfeec04a49b342260f509b273553e4291bb5772e9b81ed36cf4540fb4e",
+        "bytes": 2799
+      },
+      "probes/flexcim_distribution/e2e_sim.log": {
+        "sha256": "1f4682dcfdd8b53913ce8aaee53442e4fbc5ace7752978bbbcfb5b8c170afe2c",
+        "bytes": 2246
+      },
+      "probes/flexcim_distribution/trusted_testbench.sv": {
+        "sha256": "4551d381a0ae368589e911a4e1d6d7bb99aa69f67e5cede880cc0ef46819e232",
+        "bytes": 17130
+      },
+      "probes/flexcim_distribution/trusted_vectors.json": {
+        "sha256": "e35127bd648bec3db3c04acf7b5a5646353505a62d49f57785c1deb9e410cf9a",
+        "bytes": 66
+      },
+      "probes/flexcim_lint/lint.json": {
+        "sha256": "a717336cf1610a6775fa77f43c7e20614e461490f8165822262367192a7fc145",
+        "bytes": 3325
+      },
+      "probes/flexcim_lint/lint.log": {
+        "sha256": "771e650b098b71cfad5c4d086f05d7e01fc7a0694e175921b111499c0e0dad05",
+        "bytes": 2007
+      },
+      "probes/legacy_topk_8_7_latency/e2e_build.json": {
+        "sha256": "adc1addb66b21ebc8cc15aeccf602f5d23dcf8ab3e081c0c5613fc38b5985bbc",
+        "bytes": 11340
+      },
+      "probes/legacy_topk_8_7_latency/e2e_build.log": {
+        "sha256": "dca0f6225b1fb5d505470d9fa830844965fa35a173ce401fbc05477785bc6da2",
+        "bytes": 10430
+      },
+      "probes/legacy_topk_8_7_latency/e2e_sim.json": {
+        "sha256": "fde328314b61fd779bdb5e596433f041776af44b1e4337c44750220391d7f5a8",
+        "bytes": 943
+      },
+      "probes/legacy_topk_8_7_latency/e2e_sim.log": {
+        "sha256": "ff4adc30b5526b528a7469f73cbd6deb3398c2a5c8f6b66ebbdd3e49c137f2ac",
+        "bytes": 476
+      },
+      "probes/legacy_topk_8_7_latency/trusted_testbench.sv": {
+        "sha256": "dfe4b61914a5b4c6e5d176b04ab79ef65fc3f8c8c427776aee25c23d7c935c59",
+        "bytes": 1942
+      },
+      "probes/legacy_topk_8_7_latency/trusted_vectors.json": {
+        "sha256": "61b25d6304e415dc5452b9695eef0bb3b3f3b1402edf53dce54fec1fe7e20cd1",
+        "bytes": 67
+      },
+      "probes/legacy_topk_elaboration/Probe.scala": {
+        "sha256": "514ecddd86c48bb8e4d17f7ca5c5b9eafe194d1e62d6555933ef5b31e2c43dd5",
+        "bytes": 288
+      },
+      "probes/legacy_topk_elaboration/elaboration.json": {
+        "sha256": "b9b2eac78a39ae41050fce51a8b9150e88a5e6e3c7a96fc4579b65fb85333a1e",
+        "bytes": 1128
+      },
+      "probes/legacy_topk_elaboration/elaboration.log": {
+        "sha256": "82f3b3c09b045efeb3a8a65ac97af5618b8dbed91ac3840d9a11d412c9e61e34",
+        "bytes": 294
+      },
+      "probes/legacy_topk_elaboration/emitted/TopK.anno.json": {
+        "sha256": "7e8d880c1ba10e32a952bec5ebb66bc196f66c544bacd1bfef747d3db474aa19",
+        "bytes": 1302
+      },
+      "probes/legacy_topk_elaboration/emitted/TopK.fir": {
+        "sha256": "5734f501a1c87292415052d8a583a5e2f8aa933f20c8ad1a185e4ab56f816c94",
+        "bytes": 30863
+      },
+      "probes/legacy_topk_elaboration/emitted/TopK.v": {
+        "sha256": "e96410f92a9ba31a4c0f4355b0b79c5fc0fc9211db0f54ec604322a30c4f65f5",
+        "bytes": 35513
+      },
+      "probes/sanger_elaboration/Probe.scala": {
+        "sha256": "afbd0dc1cda3a81add4b4b1fc3e4ad6497dc987c72c8727dd6e6af8e3e829d27",
+        "bytes": 498
+      },
+      "probes/sanger_elaboration/elaboration.json": {
+        "sha256": "d04a70da6811a980e26a7c26e649e5b3ce9461393e389ab7b0f3c5964f650da8",
+        "bytes": 5371
+      },
+      "probes/sanger_elaboration/elaboration.log": {
+        "sha256": "f3e21803c7e2ff912a6d986a5127345f180e340bf33af08d8a24c5a91d606dff",
+        "bytes": 4098
+      }
+    },
+    "excluded": [
+      {
+        "path": "probes/bitonic_signed8_pipeline_0/obj_dir",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "probes/bitonic_signed8_pipeline_1/obj_dir",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "probes/flexcim_distribution/obj_dir",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "probes/legacy_topk_8_7_latency/obj_dir",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "probes/legacy_topk_elaboration/scala_build",
+        "reason": "rebuildable compiler/simulator cache"
+      },
+      {
+        "path": "probes/sanger_elaboration/scala_build",
+        "reason": "rebuildable compiler/simulator cache"
+      }
+    ]
+  }
+}

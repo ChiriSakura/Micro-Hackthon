@@ -1,0 +1,45 @@
+{
+  "ScoreWeightGen": [],
+  "SelectAccumulate": [],
+  "DividerWrapper": [
+    {
+      "id": "pipelined_divider",
+      "description": "FAST radix-2 restoring divider, full-width numerator processing, tunable pipeline depth and valid propagation; adapt fixed-point signed interface to target semantics.",
+      "tags": [
+        "chisel",
+        "division",
+        "normalization",
+        "pipeline"
+      ],
+      "support_sources": [],
+      "native_library_symbols": {
+        "classes": [
+          "DivState",
+          "FixedPointDivPipelined",
+          "predict_unit.DivState",
+          "predict_unit.FixedPointDivPipelined"
+        ],
+        "packages": [
+          "predict_unit"
+        ]
+      },
+      "test_references": [
+        {
+          "source": "../hardware/tb/tb_divider.cpp",
+          "description": "Streaming valid/latency, signed Q8.8 quotient, divide-by-zero and wrap; adapt ports and unsigned semantics explicitly.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "9f010b9d13a5e345002ab43883b812e0c665671194d7b70456af3bb000a6eec3"
+        },
+        {
+          "source": "../hardware/golden/fixedpoint.py",
+          "description": "Signed wrap, rounded fixed-point multiply and truncation toward zero.",
+          "usage": "reference_only_adapt_to_generated_contract",
+          "sha256": "bda248421e2c52119566c2982d322227d4c9a8c38bd1a056f2e962d28bfc26c4"
+        }
+      ],
+      "language": "chisel",
+      "sha256": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+    }
+  ],
+  "DynaX_XM_Row": []
+}

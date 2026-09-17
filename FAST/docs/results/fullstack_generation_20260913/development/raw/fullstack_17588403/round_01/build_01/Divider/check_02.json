@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Divider/module_lint.log",
+  "diagnostics": "- V e r i l a t i o n   R e p o r t: Verilator 5.052 2026-09-05 rev v5.052\n- Verilator: Built from 0.033 MB sources in 2 modules, into 0.026 MB in 3 C++ files needing 0.000 MB\n- Verilator: Walltime 0.058 s (elab=0.011, cvt=0.025, bld=0.000); cpu 0.009 s on 1 threads; allocated 18.000 MB\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Divider/emitted/Divider.v:29:15: Bits of signal are not used: 'p_next'[10:0]\n                                                                                                                                          : ... note: In instance 'Divider'\n   29 |   wire [11:0] p_next = p_reg[11] ? $signed(p_plus_d) : $signed(p_minus_d);  \n      |               ^~~~~~\n                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.052\n                       ... Use \"/* verilator lint_off UNUSEDSIGNAL */\" and lint_on around source to disable this message.\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Divider/emitted/Divider.v:41:15: Bits of signal are not used: '_GEN_16'[15]\n                                                                                                                                          : ... note: In instance 'Divider'\n   41 |   wire [15:0] _GEN_16 = 2'h0 == state_reg ? {{1'd0}, a_reg} : _GEN_10;  \n      |               ^~~~~~~\n%Warning-UNUSEDSIGNAL: /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Divider/emitted/Divider.v:42:14: Bits of signal are not used: '_GEN_18'[4]\n                                                                                                                                          : ... note: In instance 'Divider'\n   42 |   wire [4:0] _GEN_18 = 2'h0 == state_reg ? {{1'd0}, q_reg} : _GEN_12;  \n      |              ^~~~~~~\n",
+  "wall_seconds": 0.6900686305016279,
+  "command": [
+    "apptainer",
+    "exec",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+    "verilator",
+    "--lint-only",
+    "--Wall",
+    "-Wno-fatal",
+    "--top-module",
+    "Divider",
+    "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Divider/emitted/Divider.v"
+  ],
+  "elaboration": {
+    "passed": true,
+    "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Divider/chisel_elaboration.log",
+    "diagnostics": "Warning: setting /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/ScoreCalculatorBank as the project root directory for this run.\nwarning: 1 deprecation (since Chisel 3.6); re-run with -deprecation for details\n1 warning\n",
+    "wall_seconds": 5.337440257892013,
+    "command": [
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/tools/scala-cli",
+      "run",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/ScoreCalculatorBank/ScoreCalculatorBank.scala",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Summer/Summer.scala",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Divider/Divider.scala",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Divider/FASTGeneratedElaborate.scala",
+      "--workspace",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Divider/scala_build",
+      "--server=false",
+      "--main-class",
+      "FASTGeneratedElaborate",
+      "--",
+      "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Divider/emitted"
+    ],
+    "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Divider/emitted/Divider.v",
+    "elaborated_sha256": "cbef4c0edc2c243ceace12391d2878f928f19d451103bc91ba067cd1e2398b11"
+  },
+  "elaborated_verilog": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17588403/round_01/build_01/Divider/emitted/Divider.v"
+}

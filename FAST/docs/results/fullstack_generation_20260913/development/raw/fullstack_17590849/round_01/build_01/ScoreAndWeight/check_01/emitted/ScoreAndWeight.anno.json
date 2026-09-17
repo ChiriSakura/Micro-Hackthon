@@ -1,0 +1,18 @@
+[
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/fullstack_17590849/round_01/build_01/ScoreAndWeight/check_01/emitted"
+  },
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~ScoreAndWeight|ScoreAndWeight>weight",
+    "sources":[
+      "~ScoreAndWeight|ScoreAndWeight>q_vec",
+      "~ScoreAndWeight|ScoreAndWeight>k_vec"
+    ]
+  }
+]

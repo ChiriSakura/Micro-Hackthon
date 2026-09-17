@@ -1,0 +1,2880 @@
+{
+  "round": 1,
+  "reentry": "kernel",
+  "status": "evaluated",
+  "config": {
+    "t0_quarters": 6,
+    "t1_quarters": 2
+  },
+  "profile": {
+    "config": {
+      "t0_quarters": 6,
+      "t1_quarters": 2
+    },
+    "quality_loss": 0.13973321024672453,
+    "quality_metric": "mean absolute Q8 output error / 2048 versus floating dense attention on same quantized inputs",
+    "quality_scope": "260 synthetic decode-row queries; no model perplexity",
+    "sparsity": 0.75,
+    "active_keys_histogram": {
+      "0": 0,
+      "1": 0,
+      "2": 260,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0
+    },
+    "samples": 260,
+    "seed": 17
+  },
+  "system_plan": {
+    "top": "DynaX_XM_Row_Top",
+    "modules": [
+      {
+        "name": "ScoreWeightProcessor",
+        "purpose": "Calculates 8 scores from the query and keys, then finds the max score, computes deltas, and looks up the exponential weights from a table.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "valid_in",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "q_in",
+            "direction": "input",
+            "width": 8
+          },
+          {
+            "name": "k_in",
+            "direction": "input",
+            "width": 64
+          },
+          {
+            "name": "valid_out",
+            "direction": "output",
+            "width": 1
+          },
+          {
+            "name": "scores_out",
+            "direction": "output",
+            "width": 72
+          },
+          {
+            "name": "weights_out",
+            "direction": "output",
+            "width": 128
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This module is a 3-stage pipeline. All registers are reset to 0. `valid_out` is a registered and delayed version of `valid_in`.\n- Stage 0: Computes 8 scores in parallel. It unpacks `q_in` into two 4-bit signed values. For each of the 8 keys from `k_in`, it performs the dot product `s[i] = q[0]*k[i][0] + q[1]*k[i][1]`. Each product is 4sx4s->8s, and the sum is 9s. The 8 scores (9-bit each) are registered.\n- Stage 1: Finds the maximum score `h` from the 8 scores of the previous stage using a 3-level comparator tree. Then, it computes 8 deltas `d[i] = h - s[i]` in parallel. The deltas (8-bit unsigned) are registered.\n- Stage 2: Uses the 8 deltas as addresses into 8 parallel 256x16-bit ROMs. The ROMs are initialized with the `exp_table` from the algorithm contract. The 8 16-bit weight outputs are registered.",
+        "reference_ids": [
+          "dynax_exp_reference"
+        ],
+        "design_prompt": "Design a 3-stage pipelined module named `ScoreWeightProcessor`. It takes `q_in` (8-bit) and `k_in` (64-bit) and produces 8 scores (9-bit signed each) and 8 weights (16-bit unsigned each). Stage 0 computes the 8 dot-product scores. Stage 1 finds the max score and computes the 8 deltas. Stage 2 performs 8 parallel lookups into a ROM initialized with the provided `exp_table`. The module must have a `valid_in` to `valid_out` latency of 3 cycles. The `q` and `k` inputs are packed signed 4-bit values. The `exp_table` is provided in the algorithm contract as `exp_table_packed_hex`. Use this to initialize the ROMs. The `dynax_exp_reference` test `tb_exp.cpp` shows how to handle fixed-point inputs, but here the input is a simple integer index; adapt accordingly. No other tests apply directly.",
+        "tests": [
+          {
+            "name": "behavior_isolated_0",
+            "steps": [
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "scores_out": 0,
+                  "weights_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 0,
+                  "weights_out": 340282366920938463463374607431768211455
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "scores_out": 0,
+                  "weights_out": 0
+                }
+              }
+            ]
+          },
+          {
+            "name": "behavior_isolated_1",
+            "steps": [
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "scores_out": 0,
+                  "weights_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 16,
+                  "k_in": 1229782938247303441
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 9241421688590303745,
+                  "weights_out": 340282366920938463463374607431768211455
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "scores_out": 0,
+                  "weights_out": 0
+                }
+              }
+            ]
+          },
+          {
+            "name": "behavior_isolated_2",
+            "steps": [
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "scores_out": 0,
+                  "weights_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 136,
+                  "k_in": 9838263505978427528
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 1182901976139558879360,
+                  "weights_out": 340282366920938463463374607431768211455
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "scores_out": 0,
+                  "weights_out": 0
+                }
+              }
+            ]
+          },
+          {
+            "name": "behavior_stream",
+            "steps": [
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "scores_out": 0,
+                  "weights_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 16,
+                  "k_in": 1229782938247303441
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 136,
+                  "k_in": 9838263505978427528
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 0,
+                  "weights_out": 340282366920938463463374607431768211455
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 9241421688590303745,
+                  "weights_out": 340282366920938463463374607431768211455
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 6,
+                  "k_in": 9872921485067753974
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 1182901976139558879360,
+                  "weights_out": 340282366920938463463374607431768211455
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 71,
+                  "k_in": 12214818854605046828
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 69,
+                  "k_in": 9704267385038425620
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 4335325685101255961636,
+                  "weights_out": 2597834088257536558232919435763843071
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 4058103266969072982508,
+                  "weights_out": 228627998399658244807023462075794608
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 104,
+                  "k_in": 10940422033893253440
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 4712350583475190877208,
+                  "weights_out": 27929395709931647290298136030824393399
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 60,
+                  "k_in": 7433038300836677450
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 101,
+                  "k_in": 6093133167277354323
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 3826799413554146981912,
+                  "weights_out": 129847083598332681728333325382174559
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 4638960027912492277796,
+                  "weights_out": 19196059829788526210266269421065338879
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 186,
+                  "k_in": 17618722244719778127
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 469454243779355056685,
+                  "weights_out": 248949871280323034839603854174838032646
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 107,
+                  "k_in": 4001579002242687647
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 30,
+                  "k_in": 6557893407921752448
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 4547642867459809647602,
+                  "weights_out": 425890433009170674309145356735676528
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 4574648869603183179227,
+                  "weights_out": 23158264140919992088939114184096810238
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 104,
+                  "k_in": 6943577248329738020
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 147502000961878500856,
+                  "weights_out": 282098801165876489717295677373662835305
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 44,
+                  "k_in": 13462770687058978335
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 99,
+                  "k_in": 8893068527085053031
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 333158315311282473452,
+                  "weights_out": 67011783178666462086086043730199183750
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 137882839650526812166,
+                  "weights_out": 233871728078559929622492571142887533239
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 119,
+                  "k_in": 8608480567731124087
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 249372297257223217209,
+                  "weights_out": 52183037089078131632508134228318093311
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 136,
+                  "k_in": 8608480567731124087
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "q_in": 119,
+                  "k_in": 9838263505978427528
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 905659325481849767010,
+                  "weights_out": 340282366920938463463374607431768211455
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 3696568675436121498000,
+                  "weights_out": 340282366920938463463374607431768211455
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "scores_out": 3696568675436121498000,
+                  "weights_out": 340282366920938463463374607431768211455
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "q_in": 0,
+                  "k_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "scores_out": 0,
+                  "weights_out": 0
+                }
+              }
+            ]
+          }
+        ],
+        "behavior": {
+          "test_generation_version": 2,
+          "latency": 3,
+          "reset": "reset",
+          "valid_input": "valid_in",
+          "valid_output": "valid_out",
+          "let": {
+            "q0": "signed(lane(q_in, 0, 4), 4)",
+            "q1": "signed(lane(q_in, 1, 4), 4)",
+            "s0": "q0 * signed(lane(k_in, 0, 4), 4) + q1 * signed(lane(k_in, 1, 4), 4)",
+            "s1": "q0 * signed(lane(k_in, 2, 4), 4) + q1 * signed(lane(k_in, 3, 4), 4)",
+            "s2": "q0 * signed(lane(k_in, 4, 4), 4) + q1 * signed(lane(k_in, 5, 4), 4)",
+            "s3": "q0 * signed(lane(k_in, 6, 4), 4) + q1 * signed(lane(k_in, 7, 4), 4)",
+            "s4": "q0 * signed(lane(k_in, 8, 4), 4) + q1 * signed(lane(k_in, 9, 4), 4)",
+            "s5": "q0 * signed(lane(k_in, 10, 4), 4) + q1 * signed(lane(k_in, 11, 4), 4)",
+            "s6": "q0 * signed(lane(k_in, 12, 4), 4) + q1 * signed(lane(k_in, 13, 4), 4)",
+            "s7": "q0 * signed(lane(k_in, 14, 4), 4) + q1 * signed(lane(k_in, 15, 4), 4)",
+            "h": "max(s0, s1, s2, s3, s4, s5, s6, s7)",
+            "d0": "h - s0",
+            "d1": "h - s1",
+            "d2": "h - s2",
+            "d3": "h - s3",
+            "d4": "h - s4",
+            "d5": "h - s5",
+            "d6": "h - s6",
+            "d7": "h - s7",
+            "exp_table": "0x10001000100010001000100010001000100010001000100010001000100010001000100020002000200020002000200020002000300030003000300030004000400040004000500050005000600060006000700070008000800090009000a000a000b000c000d000d000e000f00100011001200130015001600170019001b001c001e00200022002400270029002c002f003200350038003c004000440048004d00520057005d0063006900700077007f0087008f009900a200ad00b800c400d100de00ec00fc010c011d012f01430158016e0186019f01ba01d601f402150237025c028202ac02d803070339036e03a703e30423046804b004fe055005a80605066906d2074307bb083b08c2095309ed0a910b3f0bf90cbf0d910e710f60105e116c128b13be1503165e17d019591afb1cb91e93208c22a524e1274229ca2c7c2f5b326935a9391f3cce40ba44e749584e13531c58785e2d64406ab7719978ed80b9890691dd9b45a549aff2bb4ac75fd43ae1eaf07cffff",
+            "e0": "lane(exp_table, d0, 16)",
+            "e1": "lane(exp_table, d1, 16)",
+            "e2": "lane(exp_table, d2, 16)",
+            "e3": "lane(exp_table, d3, 16)",
+            "e4": "lane(exp_table, d4, 16)",
+            "e5": "lane(exp_table, d5, 16)",
+            "e6": "lane(exp_table, d6, 16)",
+            "e7": "lane(exp_table, d7, 16)"
+          },
+          "outputs": {
+            "scores_out": "spack(9, s0, s1, s2, s3, s4, s5, s6, s7)",
+            "weights_out": "pack(16, e0, e1, e2, e3, e4, e5, e6, e7)"
+          },
+          "vectors": [
+            {
+              "q_in": 0,
+              "k_in": 0
+            },
+            {
+              "q_in": "0x10",
+              "k_in": "0x1111111111111111"
+            },
+            {
+              "q_in": "0x88",
+              "k_in": "0x8888888888888888"
+            }
+          ]
+        },
+        "linked_reference_ids": []
+      },
+      {
+        "name": "SelectorAggregator",
+        "purpose": "Performs X:M selection based on block mass, selects top-k keys within each block based on scores, and aggregates weights (D) and weighted values (N) for the selected keys.",
+        "ports": [
+          {
+            "name": "scores_in",
+            "direction": "input",
+            "width": 72
+          },
+          {
+            "name": "weights_in",
+            "direction": "input",
+            "width": 128
+          },
+          {
+            "name": "v_in",
+            "direction": "input",
+            "width": 64
+          },
+          {
+            "name": "N_out",
+            "direction": "output",
+            "width": 27
+          },
+          {
+            "name": "D_out",
+            "direction": "output",
+            "width": 19
+          },
+          {
+            "name": "keep_mask_out",
+            "direction": "output",
+            "width": 8
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This is a large combinational module. It first computes the sum of all weights `S` and the block sums `B[0]` and `B[1]` using adder trees. Then, it implements the X:M comparison logic: `8*B[b] > 6*S` and `8*B[b] < 2*S` for each block `b` to determine the number of keys to keep (`keep_count_0`, `keep_count_1`). For each block, a 4-input sorting network is used to find the top-k indices from the `scores_in`, respecting the tie-breaking rule (smaller original index wins). The `keep_mask` is generated based on the `keep_count` and the sorted indices. Finally, two masked adder trees compute `D` (sum of selected weights) and `N` (sum of selected `weight * v`). The `v` values are unpacked from `v_in`. The `topk_selection` reference is not directly linked as it's for streaming data, but its golden model `predict_unit.py` provides guidance on tie-breaking logic, which is implemented here from scratch as a sorting network.",
+        "reference_ids": [
+          "topk_selection"
+        ],
+        "design_prompt": "Design a combinational module `SelectorAggregator`. It takes 8 scores (9-bit signed), 8 weights (16-bit unsigned), and 8 values (8-bit signed) as input. It must implement the full X:M selection logic as specified in the algorithm contract, with `t0_quarters=6` and `t1_quarters=2`. This involves calculating total sum `S`, block sums `B`, comparing them to determine `keep_count` for each of the two 4-key blocks, and then selecting the top `keep_count` keys from each block. The selection must be based on the highest score, with ties broken by choosing the smaller original key index. The module outputs the final 8-bit `keep_mask`, the aggregated denominator `D` (19-bit unsigned), and numerator `N` (27-bit signed). The logic for Top-K selection should be implemented as two parallel 4-input sorting networks.",
+        "tests": [
+          {
+            "name": "behavior_combinational",
+            "steps": [
+              {
+                "inputs": {
+                  "scores_in": 0,
+                  "weights_in": 0,
+                  "v_in": 0
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 0,
+                  "D_out": 0,
+                  "keep_mask_out": 17
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 832268032761797027850,
+                  "weights_in": 519237608790628615950827202917171300,
+                  "v_in": 578437695752307201
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 900,
+                  "D_out": 200,
+                  "keep_mask_out": 66
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 92414216885903037450,
+                  "weights_in": 5192376089115175085634753784840191,
+                  "v_in": 5817028724849251574
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 130285628,
+                  "D_out": 131070,
+                  "keep_mask_out": 17
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 1060126600920943602371,
+                  "weights_in": 232706954871686115284115957884067773710,
+                  "v_in": 17529341237428043689
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 125400173,
+                  "D_out": 109659,
+                  "keep_mask_out": 132
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 1386080816752464336091,
+                  "weights_in": 225323637317621340801391407492785874185,
+                  "v_in": 1717602057517805535
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 133821596,
+                  "D_out": 85644,
+                  "keep_mask_out": 129
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 3217166507126298658634,
+                  "weights_in": 133370153580710099644062364362297359795,
+                  "v_in": 17618722244719778127
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 130567635,
+                  "D_out": 54676,
+                  "keep_mask_out": 68
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2060943562362716706306,
+                  "weights_in": 186264260839816408647488300986668489901,
+                  "v_in": 6557893407921752448
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 2016937,
+                  "D_out": 39851,
+                  "keep_mask_out": 66
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 3560018283594261377227,
+                  "weights_in": 74303733760430963450444476902571597532,
+                  "v_in": 3575198171100520934
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 133900435,
+                  "D_out": 77201,
+                  "keep_mask_out": 20
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2081139943103823679618,
+                  "weights_in": 114338293569247375291287316758650324661,
+                  "v_in": 10549662629399854333
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 134137720,
+                  "D_out": 19975,
+                  "keep_mask_out": 40
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 872440244337650762791,
+                  "weights_in": 325658187844897906898829496095350237744,
+                  "v_in": 7363428734141540959
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 4309908,
+                  "D_out": 87277,
+                  "keep_mask_out": 136
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 4281747461095540889748,
+                  "weights_in": 151315618562600960486996424322765924420,
+                  "v_in": 2177403935143796794
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 133513643,
+                  "D_out": 55191,
+                  "keep_mask_out": 68
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 3158102991311184397108,
+                  "weights_in": 290631415477676652337489445804254935783,
+                  "v_in": 1069128636030162772
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 131519123,
+                  "D_out": 48294,
+                  "keep_mask_out": 66
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 3520752496865994021896,
+                  "weights_in": 165180745847703466466928313815273528020,
+                  "v_in": 14158636256359457377
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 129815924,
+                  "D_out": 78022,
+                  "keep_mask_out": 24
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 4445389222298701627304,
+                  "weights_in": 32931121575128624150353897105136028644,
+                  "v_in": 5211573513435677716
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 1741282,
+                  "D_out": 42730,
+                  "keep_mask_out": 66
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 442595275106363491093,
+                  "weights_in": 301781378092472059421121106935502603622,
+                  "v_in": 15984205495533249911
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 3193569,
+                  "D_out": 61245,
+                  "keep_mask_out": 18
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2365803952279117758720,
+                  "weights_in": 170143779648513184874767057851898691584,
+                  "v_in": 9259542123273814144
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 125829120,
+                  "D_out": 65536,
+                  "keep_mask_out": 17
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2356562530590527454975,
+                  "weights_in": 170138587272425278588607549579869519871,
+                  "v_in": 9187201950435737471
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 8322818,
+                  "D_out": 65534,
+                  "keep_mask_out": 17
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2365803952279117758720,
+                  "weights_in": 170138587272425278588607549579869519871,
+                  "v_in": 9187201950435737471
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 8322818,
+                  "D_out": 65534,
+                  "keep_mask_out": 17
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2356562530590527454975,
+                  "weights_in": 170143779648513184874767057851898691584,
+                  "v_in": 9259542123273814144
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 125829120,
+                  "D_out": 65536,
+                  "keep_mask_out": 17
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2356562530590527454975,
+                  "weights_in": 170143779648513184874767057851898691584,
+                  "v_in": 9187201950435737471
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 8323072,
+                  "D_out": 65536,
+                  "keep_mask_out": 17
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2365803952279117758720,
+                  "weights_in": 170138587272425278588607549579869519871,
+                  "v_in": 9259542123273814144
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 125829376,
+                  "D_out": 65534,
+                  "keep_mask_out": 17
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2356562530590527454975,
+                  "weights_in": 170138587272425278588607549579869519871,
+                  "v_in": 9259542123273814144
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 125829376,
+                  "D_out": 65534,
+                  "keep_mask_out": 17
+                }
+              },
+              {
+                "inputs": {
+                  "scores_in": 2365803952279117758720,
+                  "weights_in": 170143779648513184874767057851898691584,
+                  "v_in": 9187201950435737471
+                },
+                "cycles": 0,
+                "expected": {
+                  "N_out": 8323072,
+                  "D_out": 65536,
+                  "keep_mask_out": 17
+                }
+              }
+            ]
+          }
+        ],
+        "behavior": {
+          "test_generation_version": 2,
+          "latency": 0,
+          "let": {
+            "s0": "signed(lane(scores_in, 0, 9), 9)",
+            "s1": "signed(lane(scores_in, 1, 9), 9)",
+            "s2": "signed(lane(scores_in, 2, 9), 9)",
+            "s3": "signed(lane(scores_in, 3, 9), 9)",
+            "s4": "signed(lane(scores_in, 4, 9), 9)",
+            "s5": "signed(lane(scores_in, 5, 9), 9)",
+            "s6": "signed(lane(scores_in, 6, 9), 9)",
+            "s7": "signed(lane(scores_in, 7, 9), 9)",
+            "e0": "lane(weights_in, 0, 16)",
+            "e1": "lane(weights_in, 1, 16)",
+            "e2": "lane(weights_in, 2, 16)",
+            "e3": "lane(weights_in, 3, 16)",
+            "e4": "lane(weights_in, 4, 16)",
+            "e5": "lane(weights_in, 5, 16)",
+            "e6": "lane(weights_in, 6, 16)",
+            "e7": "lane(weights_in, 7, 16)",
+            "v0": "signed(lane(v_in, 0, 8), 8)",
+            "v1": "signed(lane(v_in, 1, 8), 8)",
+            "v2": "signed(lane(v_in, 2, 8), 8)",
+            "v3": "signed(lane(v_in, 3, 8), 8)",
+            "v4": "signed(lane(v_in, 4, 8), 8)",
+            "v5": "signed(lane(v_in, 5, 8), 8)",
+            "v6": "signed(lane(v_in, 6, 8), 8)",
+            "v7": "signed(lane(v_in, 7, 8), 8)",
+            "B0": "e0 + e1 + e2 + e3",
+            "B1": "e4 + e5 + e6 + e7",
+            "S": "B0 + B1",
+            "keep_count_0": "2 if (B0*8) > (S*6) else 0 if (B0*8) < (S*2) else 1",
+            "keep_count_1": "2 if (B1*8) > (S*6) else 0 if (B1*8) < (S*2) else 1",
+            "b0_c01": "s0 > s1 or (s0 == s1 and 0 < 1)",
+            "b0_s01_s": "s0 if b0_c01 else s1",
+            "b0_s01_i": "0 if b0_c01 else 1",
+            "b0_s10_s": "s1 if b0_c01 else s0",
+            "b0_s10_i": "1 if b0_c01 else 0",
+            "b0_c23": "s2 > s3 or (s2 == s3 and 2 < 3)",
+            "b0_s23_s": "s2 if b0_c23 else s3",
+            "b0_s23_i": "2 if b0_c23 else 3",
+            "b0_s32_s": "s3 if b0_c23 else s2",
+            "b0_s32_i": "3 if b0_c23 else 2",
+            "b0_c02": "b0_s01_s > b0_s23_s or (b0_s01_s == b0_s23_s and b0_s01_i < b0_s23_i)",
+            "b0_s02_s": "b0_s01_s if b0_c02 else b0_s23_s",
+            "b0_s02_i": "b0_s01_i if b0_c02 else b0_s23_i",
+            "b0_s20_s": "b0_s23_s if b0_c02 else b0_s01_s",
+            "b0_s20_i": "b0_s23_i if b0_c02 else b0_s01_i",
+            "b0_c13": "b0_s10_s > b0_s32_s or (b0_s10_s == b0_s32_s and b0_s10_i < b0_s32_i)",
+            "b0_s13_s": "b0_s10_s if b0_c13 else b0_s32_s",
+            "b0_s13_i": "b0_s10_i if b0_c13 else b0_s32_i",
+            "b0_c12": "b0_s20_s > b0_s13_s or (b0_s20_s == b0_s13_s and b0_s20_i < b0_s13_i)",
+            "b0_s12_s": "b0_s20_s if b0_c12 else b0_s13_s",
+            "b0_s12_i": "b0_s20_i if b0_c12 else b0_s13_i",
+            "b0_top1_idx": "b0_s02_i",
+            "b0_top2_idx": "b0_s12_i",
+            "b1_c45": "s4 > s5 or (s4 == s5 and 4 < 5)",
+            "b1_s45_s": "s4 if b1_c45 else s5",
+            "b1_s45_i": "4 if b1_c45 else 5",
+            "b1_s54_s": "s5 if b1_c45 else s4",
+            "b1_s54_i": "5 if b1_c45 else 4",
+            "b1_c67": "s6 > s7 or (s6 == s7 and 6 < 7)",
+            "b1_s67_s": "s6 if b1_c67 else s7",
+            "b1_s67_i": "6 if b1_c67 else 7",
+            "b1_s76_s": "s7 if b1_c67 else s6",
+            "b1_s76_i": "7 if b1_c67 else 6",
+            "b1_c46": "b1_s45_s > b1_s67_s or (b1_s45_s == b1_s67_s and b1_s45_i < b1_s67_i)",
+            "b1_s46_s": "b1_s45_s if b1_c46 else b1_s67_s",
+            "b1_s46_i": "b1_s45_i if b1_c46 else b1_s67_i",
+            "b1_s64_s": "b1_s67_s if b1_c46 else b1_s45_s",
+            "b1_s64_i": "b1_s67_i if b1_c46 else b1_s45_i",
+            "b1_c57": "b1_s54_s > b1_s76_s or (b1_s54_s == b1_s76_s and b1_s54_i < b1_s76_i)",
+            "b1_s57_s": "b1_s54_s if b1_c57 else b1_s76_s",
+            "b1_s57_i": "b1_s54_i if b1_c57 else b1_s76_i",
+            "b1_c56": "b1_s64_s > b1_s57_s or (b1_s64_s == b1_s57_s and b1_s64_i < b1_s57_i)",
+            "b1_s56_s": "b1_s64_s if b1_c56 else b1_s57_s",
+            "b1_s56_i": "b1_s64_i if b1_c56 else b1_s57_i",
+            "b1_top1_idx": "b1_s46_i",
+            "b1_top2_idx": "b1_s56_i",
+            "k0": "1 if (keep_count_0 > 0 and b0_top1_idx == 0) or (keep_count_0 > 1 and b0_top2_idx == 0) else 0",
+            "k1": "1 if (keep_count_0 > 0 and b0_top1_idx == 1) or (keep_count_0 > 1 and b0_top2_idx == 1) else 0",
+            "k2": "1 if (keep_count_0 > 0 and b0_top1_idx == 2) or (keep_count_0 > 1 and b0_top2_idx == 2) else 0",
+            "k3": "1 if (keep_count_0 > 0 and b0_top1_idx == 3) or (keep_count_0 > 1 and b0_top2_idx == 3) else 0",
+            "k4": "1 if (keep_count_1 > 0 and b1_top1_idx == 4) or (keep_count_1 > 1 and b1_top2_idx == 4) else 0",
+            "k5": "1 if (keep_count_1 > 0 and b1_top1_idx == 5) or (keep_count_1 > 1 and b1_top2_idx == 5) else 0",
+            "k6": "1 if (keep_count_1 > 0 and b1_top1_idx == 6) or (keep_count_1 > 1 and b1_top2_idx == 6) else 0",
+            "k7": "1 if (keep_count_1 > 0 and b1_top1_idx == 7) or (keep_count_1 > 1 and b1_top2_idx == 7) else 0"
+          },
+          "outputs": {
+            "N_out": "(k0*e0*v0) + (k1*e1*v1) + (k2*e2*v2) + (k3*e3*v3) + (k4*e4*v4) + (k5*e5*v5) + (k6*e6*v6) + (k7*e7*v7)",
+            "D_out": "(k0*e0) + (k1*e1) + (k2*e2) + (k3*e3) + (k4*e4) + (k5*e5) + (k6*e6) + (k7*e7)",
+            "keep_mask_out": "k0 | (k1<<1) | (k2<<2) | (k3<<3) | (k4<<4) | (k5<<5) | (k6<<6) | (k7<<7)"
+          },
+          "vectors": [
+            {
+              "scores_in": 0,
+              "weights_in": 0,
+              "v_in": 0
+            },
+            {
+              "scores_in": "spack(9, 10,20,5,15, 100,80,120,90)",
+              "weights_in": "pack(16, 100,100,100,100, 100,100,100,100)",
+              "v_in": "spack(8, 1,2,3,4,5,6,7,8)"
+            },
+            {
+              "scores_in": "spack(9, 10,10,10,10, 10,10,10,10)",
+              "weights_in": "pack(16, 65535,1,1,1, 65535,1,1,1)",
+              "v_in": "spack(8, -10,20,-30,40,-50,60,-70,80)"
+            }
+          ]
+        },
+        "linked_reference_ids": []
+      },
+      {
+        "name": "FinalDivider",
+        "purpose": "Pipelined integer divider to compute the final result. It is an adapter for the `pipelined_divider` library reference.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "valid_in",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "numer_in",
+            "direction": "input",
+            "width": 27
+          },
+          {
+            "name": "denom_in",
+            "direction": "input",
+            "width": 19
+          },
+          {
+            "name": "valid_out",
+            "direction": "output",
+            "width": 1
+          },
+          {
+            "name": "quot_out",
+            "direction": "output",
+            "width": 16
+          }
+        ],
+        "dependencies": [],
+        "implementation": "This module is a thin adapter that instantiates `predict_unit.FixedPointDivPipelined`. It is configured for integer division by setting `point=0`. The `FixedPointDivPipelined` core expects inputs of the same width, so the adapter must extend its inputs to match the core's configured `bitWidth`. The core is configured with `bitWidth=31` to handle the 31-bit scaled numerator (`numer_in` shifted left by 4). The adapter sign-extends the 27-bit `numer_in` to 31 bits before the shift. It zero-extends the 19-bit `denom_in` to 31 bits. The core is configured with `stages=18` for a reasonable pipeline depth. The 31-bit result from the core is truncated to the final 16-bit `quot_out`. The `valid` and `reset` signals are passed through directly. The `pipelined_divider` reference test `tb_divider.cpp` confirms the signed division and latency behavior.",
+        "reference_ids": [
+          "pipelined_divider"
+        ],
+        "design_prompt": "Design an adapter module `FinalDivider` that instantiates `predict_unit.FixedPointDivPipelined` from the `pipelined_divider` reference. The adapter should perform the operation `trunc_div(numer_in * 16, denom_in)`. The input `numer_in` is 27-bit signed, and `denom_in` is 19-bit unsigned. The output `quot_out` is 16-bit signed. Configure the `FixedPointDivPipelined` instance with `bitWidth=31`, `point=0`, and `stages=18`. Connect the adapter's ports to the core, performing the necessary sign/zero extensions, the `*16` shift on the numerator, and truncating the final quotient. Propagate the valid and reset signals appropriately. The latency from `valid_in` to `valid_out` must be 18 cycles.",
+        "tests": [
+          {
+            "name": "behavior_isolated_0",
+            "steps": [
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quot_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 0,
+                  "denom_in": 100
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quot_out": 0
+                }
+              }
+            ]
+          },
+          {
+            "name": "behavior_isolated_1",
+            "steps": [
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quot_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 1000,
+                  "denom_in": 10
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 1600
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quot_out": 0
+                }
+              }
+            ]
+          },
+          {
+            "name": "behavior_isolated_2",
+            "steps": [
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quot_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 67107840,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quot_out": 0
+                }
+              }
+            ]
+          },
+          {
+            "name": "behavior_stream",
+            "steps": [
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quot_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 0,
+                  "denom_in": 100
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 1000,
+                  "denom_in": 10
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 67107840,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 3295916,
+                  "denom_in": 492388
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 30171838,
+                  "denom_in": 411919
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 37810538,
+                  "denom_in": 45370
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 37229562,
+                  "denom_in": 117905
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 62223971,
+                  "denom_in": 146372
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 39567712,
+                  "denom_in": 34724
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 16271833,
+                  "denom_in": 143212
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 62054013,
+                  "denom_in": 469500
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 110748439,
+                  "denom_in": 214883
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 24994399,
+                  "denom_in": 123887
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 5467078,
+                  "denom_in": 422519
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 1,
+                  "numer_in": 91679630,
+                  "denom_in": 208139
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 1600
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 107
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 1171
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 13334
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 5052
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 6801
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 18231
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 1817
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 2114
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 63789
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 3228
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 207
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 1,
+                  "quot_out": 62267
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 0,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0
+                }
+              },
+              {
+                "inputs": {
+                  "reset": 1,
+                  "valid_in": 0,
+                  "numer_in": 0,
+                  "denom_in": 0
+                },
+                "cycles": 1,
+                "expected": {
+                  "valid_out": 0,
+                  "quot_out": 0
+                }
+              }
+            ]
+          }
+        ],
+        "behavior": {
+          "test_generation_version": 2,
+          "latency": 18,
+          "reset": "reset",
+          "valid_input": "valid_in",
+          "valid_output": "valid_out",
+          "let": {},
+          "outputs": {
+            "quot_out": "trunc_div(signed(numer_in, 27) * 16, denom_in)"
+          },
+          "vectors": [
+            {
+              "numer_in": 0,
+              "denom_in": 100
+            },
+            {
+              "numer_in": 1000,
+              "denom_in": 10
+            },
+            {
+              "numer_in": 67107840,
+              "denom_in": 0
+            }
+          ]
+        },
+        "linked_reference_ids": [
+          "pipelined_divider"
+        ]
+      },
+      {
+        "name": "DynaX_XM_Row_Top",
+        "purpose": "Top-level module that integrates all sub-modules and implements the overall control logic using a finite state machine. It handles the `start`/`done` protocol and interfaces with the external world.",
+        "ports": [
+          {
+            "name": "clock",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "reset",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "start",
+            "direction": "input",
+            "width": 1
+          },
+          {
+            "name": "q",
+            "direction": "input",
+            "width": 8
+          },
+          {
+            "name": "k",
+            "direction": "input",
+            "width": 64
+          },
+          {
+            "name": "v",
+            "direction": "input",
+            "width": 64
+          },
+          {
+            "name": "done",
+            "direction": "output",
+            "width": 1
+          },
+          {
+            "name": "result",
+            "direction": "output",
+            "width": 16
+          },
+          {
+            "name": "keep_mask",
+            "direction": "output",
+            "width": 8
+          }
+        ],
+        "dependencies": [
+          "ScoreWeightProcessor",
+          "SelectorAggregator",
+          "FinalDivider"
+        ],
+        "implementation": "The top module contains a state machine to control the data flow through the child modules. The FSM has the following states: IDLE, PROCESS, WAIT_WEIGHTS, AGGREGATE, DIV_START, DIV_WAIT, and DONE. \n- On `start` while in IDLE, it latches the `q`, `k`, and `v` inputs and transitions to PROCESS.\n- In PROCESS, it asserts `valid_in` to the `ScoreWeightProcessor` for one cycle and moves to WAIT_WEIGHTS.\n- It waits in WAIT_WEIGHTS for 3 cycles until `ScoreWeightProcessor` produces valid outputs (`scores` and `weights`).\n- In AGGREGATE, the combinational `SelectorAggregator` computes `N`, `D`, and `keep_mask` from the scores, weights, and latched `v`. The `keep_mask` is latched. The FSM transitions to DIV_START.\n- In DIV_START, it asserts `valid_in` to the `FinalDivider` with `N` and `D` as inputs.\n- It waits in DIV_WAIT for the divider's latency (18 cycles) until `valid_out` is asserted.\n- In DONE, it latches the `result` from the divider, asserts the `done` signal for one cycle, and then returns to IDLE if `start` is low.",
+        "reference_ids": [
+          "attention_tile_system_reference"
+        ],
+        "design_prompt": "You are the top-level assembly agent. Your job is to instantiate the child modules (`ScoreWeightProcessor`, `SelectorAggregator`, `FinalDivider`) and connect them according to the plan. Implement a state machine with states IDLE, PROCESS, WAIT_WEIGHTS, AGGREGATE, DIV_START, DIV_WAIT, and DONE to sequence the operations. Latch inputs on `start`, manage the valid handshakes between pipelined modules, and produce the final `result` and `keep_mask` outputs with a one-cycle `done` pulse. The total latency should be approximately 25 cycles. Ensure all top-level ports match the algorithm contract exactly. The `attention_tile_system_reference` provides a template for a state machine controlling a multi-stage attention pipeline, which can be adapted for this specific module sequence and latency.",
+        "tests": [],
+        "behavior": null,
+        "linked_reference_ids": []
+      }
+    ],
+    "rationale": "The design is decomposed into three main computational modules and a top-level controller, following a structure inspired by the `attention_tile_system_reference`. This modular approach simplifies design and verification. The modules are: `ScoreWeightProcessor` (pipelined), `SelectorAggregator` (combinational), and `FinalDivider` (a pipelined adapter). A finite state machine in `DynaX_XM_Row_Top` orchestrates the data flow between these modules. `ScoreWeightProcessor` handles the initial score calculation and weight generation in a 3-stage pipeline. `SelectorAggregator` is a large combinational block that performs the complex X:M selection logic and computes the numerator (N) and denominator (D) for the final division. This includes two 4-input sorting networks to handle the Top-K selection with tie-breaking within each block. `FinalDivider` adapts the `pipelined_divider` library module for the required integer division. This decomposition balances module complexity and allows for a clear, sequential control flow, resulting in a predictable and modest overall latency of approximately 25 cycles, well within the system constraints.",
+    "language": "chisel"
+  },
+  "implementations": {
+    "ScoreWeightProcessor": {
+      "module": "ScoreWeightProcessor",
+      "role": "uarch",
+      "language": "chisel",
+      "source_sha256": "7e1842324b88a935768ec1302c90ed5a4421df5dcef3a067a3882e49e6efc279",
+      "linked_reference_ids": [],
+      "linked_library_sha256": {},
+      "reference_ids": [
+        "dynax_exp_reference"
+      ],
+      "rationale": "The previous attempt failed during Chisel elaboration with a `java.lang.StringIndexOutOfBoundsException`. The root cause was the method used to initialize the exponential lookup table (ROM). The code attempted to parse a single, very long hexadecimal string literal (1024 characters) to create the 256 ROM entries. The error message indicated that the string's length was unexpectedly truncated to 753 characters by a tool in the build chain, causing the `substring` operation to fail when accessing higher indices. The core arithmetic and pipeline logic of the previous attempt was otherwise correct.\n\nThis corrected implementation resolves the issue by changing the ROM initialization strategy. Instead of parsing a hex string, it initializes the `VecInit` for the `expTable` directly from a `Seq` of `UInt` literals. These integer literals are taken from the `exp_table` array provided in the algorithm contract. This approach is more robust, avoids the string manipulation that caused the failure, and is also more readable. The rest of the module's logic, including the 3-stage pipeline structure, score calculation, max-finding, delta computation, and register stages, remains the same as it correctly implements the specified behavior and latency.",
+      "critic_request": null,
+      "scope": "Agent explanation; module planner-vector checks and independent E2E are separate evidence"
+    },
+    "SelectorAggregator": {
+      "module": "SelectorAggregator",
+      "role": "uarch",
+      "language": "chisel",
+      "source_sha256": "118474ab9106badf6f5aadbeb71c1450ab4d89c72dc7bd39b640d44e2b8fc856",
+      "linked_reference_ids": [],
+      "linked_library_sha256": {},
+      "reference_ids": [
+        "topk_selection"
+      ],
+      "rationale": "This module implements the `SelectorAggregator` as a purely combinational circuit, as specified by its latency of 0. It directly translates the logic described in the `behavior` specification.\n\n1.  **Input Unpacking**: The packed `scores_in`, `weights_in`, and `v_in` are unpacked into `Vec`s of `SInt` and `UInt` with the correct widths (9-bit signed scores, 16-bit unsigned weights, 8-bit signed values).\n\n2.  **Summation**: Block sums (`B0`, `B1`) and the total sum (`S`) of weights are calculated using widening adders (`+&`) to prevent overflow, matching the specified bit widths (18 for `B`, 19 for `S`).\n\n3.  **X:M Selection**: The core X:M logic (`8*B[b] > 6*S` and `8*B[b] < 2*S`) is implemented using bit shifts and comparisons on sufficiently wide wires to determine `keep_count_0` and `keep_count_1` for the two blocks. The constants `t0_quarters=6` and `t1_quarters=2` are hardcoded as per the contract.\n\n4.  **Top-K Sorter**: Two parallel 4-input sorting networks are implemented to find the top-2 scores within each block. A `compareAndSwap` helper function encapsulates the comparison logic, which includes the specified tie-breaking rule: if scores are equal, the smaller original index wins. The structure of the sorter directly mirrors the `let` statements in the `behavior` spec, ensuring it produces the correct top-1 and top-2 indices for each block.\n\n5.  **Keep Mask Generation**: The `keep_mask` is generated by checking, for each original key index, whether it was selected by the sorting network and whether the block's `keep_count` is high enough to include it. The resulting boolean vector is then packed into the 8-bit `keep_mask_out`.\n\n6.  **Aggregation**: The final numerator `N_out` and denominator `D_out` are computed by summing the contributions of the selected keys. `Mux`es controlled by the `keep_mask` bits select the appropriate weights and `weight * value` products. Widening adders (`+&`) are used for the reduction to ensure the final sums fit into the specified 19-bit `D_out` and 27-bit `N_out` without truncation. The multiplication for `N` correctly uses `zext` on the unsigned weight before the signed multiplication with the value.",
+      "critic_request": null,
+      "scope": "Agent explanation; module planner-vector checks and independent E2E are separate evidence"
+    },
+    "FinalDivider": {
+      "module": "FinalDivider",
+      "role": "uarch",
+      "language": "chisel",
+      "source_sha256": "f836030c665f97ed44dd8264eac818f36501a1b217a178a71dfb38a50c40229a",
+      "linked_reference_ids": [
+        "pipelined_divider"
+      ],
+      "linked_library_sha256": {
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/references/004.scala": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+      },
+      "reference_ids": [
+        "pipelined_divider"
+      ],
+      "rationale": "This module, `FinalDivider`, is a thin adapter for the linked library module `predict_unit.FixedPointDivPipelined`. The implementation corrects the defect from the `previous_failed_attempt`, which failed due to an `Error: No implicit clock` when instantiating a `Module` inside a `RawModule`. The fix is to wrap the `Module` instantiation within a `withClockAndReset(clock, reset)` block, explicitly providing the clock and reset context.\n\nThe adapter implements the required operation `trunc_div(numer_in * 16, denom_in)` by correctly preparing the inputs for the divider core. The 27-bit signed `numer_in` is scaled by 16 via a left shift, resulting in a 31-bit `SInt`. The 19-bit unsigned `denom_in` is zero-extended to 31 bits to be correctly interpreted as a positive `SInt`. These values are then cast to the `FixedPoint` type expected by the divider. The 31-bit signed result from the divider is truncated to the lower 16 bits to produce the final output, matching the `trunc_toward_zero` behavior specified. The `valid` signal is passed through, resulting in an 18-cycle latency as configured by the `stages` parameter.",
+      "critic_request": null,
+      "scope": "Agent explanation; module planner-vector checks and independent E2E are separate evidence"
+    },
+    "DynaX_XM_Row_Top": {
+      "module": "DynaX_XM_Row_Top",
+      "role": "uarch_assembly",
+      "language": "chisel",
+      "source_sha256": "34c54519adbc667923de78c051173cb819fcbac3a528b4084196f088a44ecc46",
+      "linked_reference_ids": [],
+      "linked_library_sha256": {
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/references/004.scala": "b3cfad736b31a0b090de91a3ac4afdace79cefce6308c4e0a03e978b550b0de1"
+      },
+      "reference_ids": [
+        "attention_tile_system_reference"
+      ],
+      "rationale": "The `DynaX_XM_Row_Top` module integrates the three child modules (`ScoreWeightProcessor`, `SelectorAggregator`, `FinalDivider`) using a finite state machine (FSM) as specified in the system plan. The FSM orchestrates the flow of data through the pipeline, respecting the latency and handshake protocols of each child module. \n\n1.  **FSM States**: The FSM implements the exact states outlined in the plan: `IDLE`, `PROCESS`, `WAIT_WEIGHTS`, `AGGREGATE`, `DIV_START`, `WAIT_WAIT`, and `DONE`. This ensures a clear, sequential execution of the algorithm's computational stages.\n\n2.  **Input Latching**: Upon receiving a `start` signal in the `IDLE` state, the top-level inputs `q`, `k`, and `v` are latched into registers (`q_reg`, `k_reg`, `v_reg`). This ensures the inputs remain stable for the duration of the computation, as required by the protocol.\n\n3.  **Pipeline Handshaking**: The FSM uses the `valid_in`/`valid_out` signals of the pipelined children (`ScoreWeightProcessor` and `FinalDivider`) for handshaking. In state `sProcess`, `score_proc.valid_in` is asserted. The FSM then moves to `sWaitWeights` and waits for `score_proc.valid_out` to become high, which correctly handles the 3-cycle latency. A similar handshake is performed for the `FinalDivider` in states `sDivStart` and `sWaitDivider` to manage its 18-cycle latency. This event-driven approach is more robust than using fixed-cycle counters.\n\n4.  **Intermediate Data Handling**: The outputs of `ScoreWeightProcessor` (`scores_out`, `weights_out`) are valid for one cycle. They are latched into `scores_reg` and `weights_reg` before being used in the `sAggregate` state. The outputs of the combinational `SelectorAggregator` (`N_out`, `D_out`, `keep_mask_out`) are computed in the `sAggregate` state. Since these values are needed in a subsequent state (`sDivStart`) and the inputs to `SelectorAggregator` are transient, the outputs `N`, `D`, and `keep_mask` are latched into registers (`N_reg`, `D_reg`, `keep_mask_reg`). This is a standard pipelining technique to ensure data integrity between stages.\n\n5.  **Output Generation**: The final `keep_mask` is available after the `sAggregate` state. The final `result` is available after the `FinalDivider` completes. In the `sDone` state, the `result` is latched, and the `done` signal is asserted for a single cycle, fulfilling the output protocol. The FSM then returns to `IDLE` when `start` is de-asserted.\n\nThis implementation directly follows the control flow described in the design prompt and system plan, correctly instantiates and connects the verified child modules, and adheres to Chisel best practices and the specified coding style.",
+      "critic_request": null,
+      "scope": "Agent explanation; module planner-vector checks and independent E2E are separate evidence"
+    }
+  },
+  "sources": {
+    "round_01/build_01/ScoreWeightProcessor/ScoreWeightProcessor.scala": "7e1842324b88a935768ec1302c90ed5a4421df5dcef3a067a3882e49e6efc279",
+    "round_01/build_01/SelectorAggregator/SelectorAggregator.scala": "118474ab9106badf6f5aadbeb71c1450ab4d89c72dc7bd39b640d44e2b8fc856",
+    "round_01/build_01/FinalDivider/FinalDivider.scala": "f836030c665f97ed44dd8264eac818f36501a1b217a178a71dfb38a50c40229a",
+    "round_01/build_01/DynaX_XM_Row_Top/DynaX_XM_Row_Top.scala": "34c54519adbc667923de78c051173cb819fcbac3a528b4084196f088a44ecc46"
+  },
+  "rtl_sources": {
+    "round_01/build_01/DynaX_XM_Row_Top/check_01/emitted/DynaX_XM_Row_Top.v": "fecfe481c306b2c6ad697e38d78186a464116b2a654d473f56c230460d0a3659"
+  },
+  "evaluation": {
+    "complete": true,
+    "feasible": true,
+    "verification": {
+      "passed": true,
+      "stage": "simulation",
+      "simulation": {
+        "passed": true,
+        "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/DynaX_XM_Row_Top/check_01/e2e_sim.log",
+        "diagnostics": "FAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_CASE cycles=26\nFAST_PASS cases=100\n- /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/DynaX_XM_Row_Top/check_01/trusted_testbench.sv:120: Verilog $finish\n- S i m u l a t i o n   R e p o r t: Verilator 5.052 2026-09-05\n- Verilator: $finish at 27ns; walltime 0.003 s; speed 9.126 us/s\n- Verilator: cpu 0.002 s on 1 threads; allocated 3 MB\n",
+        "wall_seconds": 0.5212952699512243,
+        "command": [
+          "apptainer",
+          "exec",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/containers/verilator.sif",
+          "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/DynaX_XM_Row_Top/check_01/obj_dir/VFASTTestbench"
+        ]
+      },
+      "cases": 100,
+      "expected_cases": 100,
+      "mean_cycles": 26.0,
+      "min_cycles": 26,
+      "max_cycles": 26,
+      "testbench_sha256": "03fcbfe90658f6bb310fc2634090d1cb68ed5e6ff1511515a59e9b0b9d79551d",
+      "coverage": "signed Q/K/V, two X:M blocks, zero/ties/extremes, mask AND numeric output, repeated transactions and reset; bit-exact declared LUT contract"
+    },
+    "design_sha256": "fecfe481c306b2c6ad697e38d78186a464116b2a654d473f56c230460d0a3659",
+    "ppa_backend": "hammer_openroad",
+    "scope": "entire generated top, Nangate45 placement/CTS/detailed routing/OpenRCX",
+    "power_method": "OpenROAD post-route extracted-RC power estimate; uniform activity, not silicon measurement",
+    "activity": 0.1,
+    "gds_generated": false,
+    "driver_sha256": "9b370c6e51363a441abb05fd2e8ace3e480c5c0e1ea638fc3f035e21174796b7",
+    "physical_adapter_sha256": "3bcbe11a1475fdbeb6130e6a2df8923e46bbcba5f35cd3b9d2b558868c56b606",
+    "routing_tool": "26Q1-2900-gdf79404cd8",
+    "pdk_sha256": {
+      "setRC.tcl": "521df813bf4da9d7400df33e3f680c9a328cc720830dbfca1188083741503fa5",
+      "rcx_patterns.rules": "2f65fafbe2c704b378563c53a680b93cef080c2799997019d43df7d1e5a563e9",
+      "lib/NangateOpenCellLibrary_typical.lib": "8d540a4d4cf6d09d27c87ad067857a9c0c2eeb023ab7a56e058cd3113db4e9b1"
+    },
+    "syn": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/syn.log",
+      "diagnostics": " cell \"SDFF_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"SDFF_X2\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X1\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X2\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X4\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X8\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TBUF_X16\".\nABC: Scl_LibertyReadGenlib() skipped three-state cell \"TINV_X1\".\nABC: Scl_LibertyReadGenlib() skipped sequential cell \"TLAT_X1\".\nABC: Library \"NangateOpenCellLibrary\" from \"/scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib\" has 90 cells (35 skipped: 21 seq; 6 tri-state; 8 no func; 10 dont_use).  Time =     0.06 sec\nABC: Memory =   11.38 MB. Time =     0.06 sec\nABC: Warning: Detected 2 multi-output gates (for example, \"FA_X1\").\nABC: + read_constr -v /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/syn-rundir/DynaX_XM_Row_Top.mapped.sdc\nABC: + strash\nABC: + &get -n\nABC: + &fraig -x\nABC: + &put\nABC: + scorr\nABC: Warning: The network is combinational (run \"fraig\" or \"fraig_sweep\").\nABC: + dc2\nABC: + dretime\nABC: + retime -o -D 10000\nABC: + strash\nABC: + &get -n\nABC: + &dch -f\nABC: + &nf -D 10000\nABC: + &put\nABC: + buffer\nABC: + upsize -D 10000\nABC: Current delay (3095.31 ps) does not exceed the target delay (10000.00 ps). Upsizing is not performed.\nABC: + dnsize -D 10000\nABC: + stime -p\nABC: WireLoad = \"none\"  Gates =  26244 (  9.3 %)   Cap =  3.5 ff (  0.5 %)   Area =    28714.97 ( 96.5 %)   Delay =  3133.11 ps  (  0.9 %)\nABC: Path  0 --     276 : 0   10 pi        A =   0.00  Df =   0.0   -0.0 ps  S =   0.0 ps  Cin =  0.0 ff  Cout =  13.4 ff  Cmax =   0.0 ff  G =    0\nABC: Path  1 --    4733 : 2    4 OR2_X1    A =   1.06  Df =  55.5  -22.8 ps  S =  17.8 ps  Cin =  0.9 ff  Cout =   6.5 ff  Cmax =  60.6 ff  G =  710\nABC: Path  2 --    5302 : 4   10 NOR4_X1   A =   1.33  Df = 287.5 -222.7 ps  S = 176.5 ps  Cin =  1.6 ff  Cout =  15.8 ff  Cmax =  10.5 ff  G =  970\nABC: Path  3 --    5304 : 3    2 MUX2_X1   A =   1.86  Df = 353.2 -219.8 ps  S =  16.9 ps  Cin =  1.2 ff  Cout =   4.2 ff  Cmax =  60.5 ff  G =  327\nABC: Path  4 --    5325 : 2    2 XNOR2_X1  A =   1.60  Df = 400.3 -205.5 ps  S =  30.1 ps  Cin =  2.3 ff  Cout =   4.0 ff  Cmax =  26.0 ff  G =  169\nABC: Path  5 --    5326 : 2    2 XOR2_X1   A =   1.60  Df = 460.6 -168.5 ps  S =  30.9 ps  Cin =  2.3 ff  Cout =   3.5 ff  Cmax =  25.3 ff  G =  148\nABC: Path  6 --    5327 : 2    1 AND2_X1   A =   1.06  Df = 493.2 -140.1 ps  S =   8.7 ps  Cin =  0.9 ff  Cout =   1.6 ff  Cmax =  60.6 ff  G =  172\nABC: Path  7 --    5328 : 3    4 AOI21_X1  A =   1.06  Df = 552.2 -182.4 ps  S =  40.8 ps  Cin =  1.6 ff  Cout =   5.8 ff  Cmax =  25.3 ff  G =  355\nABC: Path  8 --    5331 : 2    2 XOR2_X1   A =   1.60  Df = 615.9 -189.4 ps  S =  32.8 ps  Cin =  2.3 ff  Cout =   3.9 ff  Cmax =  25.3 ff  G =  162\nABC: Path  9 --    5363 : 3    2 AOI21_X1  A =   1.06  Df = 641.5  -25.8 ps  S =  33.0 ps  Cin =  1.6 ff  Cout =   4.1 ff  Cmax =  25.3 ff  G =  259\nABC: Path 10 --    5364 : 3    1 OAI21_X1  A =   1.06  Df = 675.4  -38.3 ps  S =  18.3 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  26.1 ff  G =   98\nABC: Path 11 --    5365 : 3    2 AOI21_X1  A =   1.06  Df = 697.6  -15.5 ps  S =  33.0 ps  Cin =  1.6 ff  Cout =   4.1 ff  Cmax =  25.3 ff  G =  259\nABC: Path 12 --    5366 : 3    1 OAI21_X1  A =   1.06  Df = 730.0  -26.4 ps  S =  18.2 ps  Cin =  1.6 ff  Cout =   1.7 ff  Cmax =  26.1 ff  G =   98\nABC: Path 13 --    5367 : 3    2 AOI21_X1  A =   1.06  Df = 752.2   -3.6 ps  S =  33.0 ps  Cin =  1.6 ff  Cout =   4.1 ff  Cmax =  25.3 ff  G =  259\nABC: Path 14 --    5368 : 3    2 OAI21_X1  A =   1.06  Df = 797.7  -20.7 ps  S =  29.2 ps  Cin =  1.6 ff  Cout =   4.0 ff  Cmax =  26.1 ff  G =  249\nABC: Path 15 --    5369 : 3    4 AOI21_X1  A =   1.06  Df = 840.1  -10.2 ps  S =  48.3 ps  Cin =  1.6 ff  Cout =   7.4 ff  Cmax =  25.3 ff  G =  470\nABC: Path 16 --    5370 : 3    2 OR3_X1    A =   1.33  Df = 915.8  -35.2 ps  S =  14.0 ps  Cin =  0.9 ff  Cout =   2.6 ff  Cmax =  60.6 ff  G =  274\nABC: Path 17 --    5713 : 2    1 AND2_X1   A =   1.06  Df = 948.2  -34.3 ps  S =  10.5 ps  Cin =  0.9 ff  Cout =   2.6 ff  Cmax =  60.6 ff  G =  269\nABC: Path 18 --    5714 : 2    6 XNOR2_X1  A =   1.60  Df =1024.8  -55.4 ps  S =  59.9 ps  Cin =  2.3 ff  Cout =  10.6 ff  Cmax =  26.0 ff  G =  427\nABC: Path 19 --    5719 : 2    2 XNOR2_X1  A =   1.60  Df =1087.7  -57.6 ps  S =  29.2 ps  Cin =  2.3 ff  Cout =   3.9 ff  Cmax =  26.0 ff  G =  160\nABC: Path 20 --    5804 : 3    2 AOI21_X1  A =   1.06  Df =1131.3  -28.0 ps  S =  33.0 ps  Cin =  1.6 ff  Cout =   4.1 ff  Cmax =  25.3 ff  G =  259\nABC: Path 21 --    5805 : 3    2 OAI21_X1  A =   1.06  Df =1177.0  -17.3 ps  S =  30.5 ps  Cin =  1.6 ff  Cout =   4.3 ff  Cmax =  26.1 ff  G =  255\nABC: Path 22 --    5806 : 3    3 AOI21_X1  A =   1.06  Df =1218.1  -10.5 ps  S =  44.0 ps  Cin =  1.6 ff  Cout =   6.5 ff  Cmax =  25.3 ff  G =  412\nABC: Path 23 --    5807 : 3    2 OAI21_X1  A =   1.06  Df =1253.5   -4.9 ps  S =  28.7 ps  Cin =  1.6 ff  Cout =   3.9 ff  Cmax =  26.1 ff  G =  236\nABC: Path 24 --    5809 : 3    6 AOI21_X1  A =   1.06  Df =1324.5  -31.8 ps  S =  63.6 ps  Cin =  1.6 ff  Cout =  10.7 ff  Cmax =  25.3 ff  G =  672\nABC: Path 25 --    5878 : 2    4 XOR2_X1   A =   1.60  Df =1411.9  -49.3 ps  S =  50.0 ps  Cin =  2.3 ff  Cout =   7.2 ff  Cmax =  25.3 ff  G =  301\nABC: Path 26 --    6082 : 2    2 XOR2_X1   A =   1.60  Df =1476.6  -57.0 ps  S =  35.9 ps  Cin =  2.3 ff  Cout =   3.9 ff  Cmax =  25.3 ff  G =  162\nABC: Path 27 --    6132 : 3    3 AOI21_X1  A =   1.06  Df =1506.5  -23.2 ps  S =  39.4 ps  Cin =  1.6 ff  Cout =   5.5 ff  Cmax =  25.3 ff  G =  344\nABC: Path 28 --    6136 : 2    2 XOR2_X1   A =   1.60  Df =1562.8  -19.0 ps  S =  29.0 ps  Cin =  2.3 ff  Cout =   3.3 ff  Cmax =  25.3 ff  G =  135\nABC: Path 29 --    6138 : 6    4 AOI222_X1 A =   2.13  Df =1663.5  -66.1 ps  S =  83.1 ps  Cin =  1.5 ff  Cout =   6.7 ff  Cmax =  13.0 ff  G =  398\nABC: Path 30 --    6207 : 3    5 AOI21_X1  A =   1.06  Df =1706.0  -27.4 ps  S =  48.2 ps  Cin =  1.6 ff  Cout =   7.4 ff  Cmax =  25.3 ff  G =  455\nABC: Path 31 --    6229 : 6    6 OAI33_X1  A =   1.86  Df =1843.4 -114.0 ps  S = 108.0 ps  Cin =  1.5 ff  Cout =   8.3 ff  Cmax =  11.5 ff  G =  523\nABC: Path 32 --    6230 : 1   10 BUF_X1    A =   0.80  Df =1908.5 -126.7 ps  S =  35.7 ps  Cin =  0.9 ff  Cout =  14.2 ff  Cmax =  60.7 ff  G = 1486\nABC: Path 33 --    7207 : 3    2 NAND3_X1  A =   1.06  Df =1940.6 -133.5 ps  S =  19.4 ps  Cin =  1.6 ff  Cout =   3.9 ff  Cmax =  58.4 ff  G =  240\nABC: Path 34 --    7230 : 2    2 XOR2_X1   A =   1.60  Df =1998.9 -131.8 ps  S =  32.2 ps  Cin =  2.3 ff  Cout =   3.9 ff  Cmax =  25.3 ff  G =  166\nABC: Path 35 --    7253 : 2    1 XOR2_X1   A =   1.60  Df =2050.6 -132.3 ps  S =  22.6 ps  Cin =  2.3 ff  Cout =   1.7 ff  Cmax =  25.3 ff  G =   70\nABC: Path 36 --    7254 : 1    2 INV_X1    A =   0.53  Df =2070.0 -138.2 ps  S =  11.9 ps  Cin =  1.6 ff  Cout =   3.9 ff  Cmax =  60.7 ff  G =  230\nABC: Path 37 --    7348 : 2    2 XNOR2_X1  A =   1.60  Df =2113.7  -30.7 ps  S =  29.4 ps  Cin =  2.3 ff  Cout =   4.0 ff  Cmax =  26.0 ff  G =  171\nABC: Path 38 --    7349 : 2    2 XOR2_X1   A =   1.60  Df =2174.9  -33.7 ps  S =  29.9 ps  Cin =  2.3 ff  Cout =   3.3 ff  Cmax =  25.3 ff  G =  144\nABC: Path 39 --    7350 : 2    2 XOR2_X1   A =   1.60  Df =2233.0  -37.4 ps  S =  26.8 ps  Cin =  2.3 ff  Cout =   2.6 ff  Cmax =  25.3 ff  G =  108\nABC: Path 40 --    7354 : 3    1 OR3_X1    A =   1.33  Df =2311.7  -85.3 ps  S =  12.1 ps  Cin =  0.9 ff  Cout =   1.0 ff  Cmax =  60.6 ff  G =  104\nABC: Path 41 --    7355 : 2    2 AND2_X1   A =   1.06  Df =2348.3  -52.3 ps  S =  13.8 ps  Cin =  0.9 ff  Cout =   4.2 ff  Cmax =  60.6 ff  G =  442\nABC: Path 42 --    7356 : 2    2 XNOR2_X1  A =   1.60  Df =2391.6  -51.3 ps  S =  27.1 ps  Cin =  2.3 ff  Cout =   3.5 ff  Cmax =  26.0 ff  G =  145\nABC: Path 43 --    7357 : 2    3 XNOR2_X1  A =   1.60  Df =2443.7  -55.2 ps  S =  30.3 ps  Cin =  2.3 ff  Cout =   4.2 ff  Cmax =  26.0 ff  G =  171\nABC: Path 44 --    7366 : 3    3 OAI21_X1  A =   1.06  Df =2485.8  -13.1 ps  S =  30.1 ps  Cin =  1.6 ff  Cout =   4.2 ff  Cmax =  26.1 ff  G =  252\nABC: Path 45 --    7695 : 3    2 AOI21_X1  A =   1.06  Df =2516.8   -6.9 ps  S =  31.4 ps  Cin =  1.6 ff  Cout =   3.8 ff  Cmax =  25.3 ff  G =  240\nABC: Path 46 --    8064 : 3    2 OAI21_X1  A =   1.06  Df =2548.8   -8.3 ps  S =  22.7 ps  Cin =  1.6 ff  Cout =   2.6 ff  Cmax =  26.1 ff  G =  156\nABC: Path 47 --    8431 : 2    3 AND2_X1   A =   1.06  Df =2592.9  -16.5 ps  S =  15.5 ps  Cin =  0.9 ff  Cout =   5.0 ff  Cmax =  60.6 ff  G =  512\nABC: Path 48 --    9195 : 4    2 AOI211_X1 A =   1.33  Df =2628.9  -16.9 ps  S =  43.7 ps  Cin =  1.6 ff  Cout =   2.6 ff  Cmax =  14.5 ff  G =  163\nABC: Path 49 --    9197 : 2    3 NOR2_X1   A =   0.80  Df =2658.3   -7.7 ps  S =  30.3 ps  Cin =  1.6 ff  Cout =   4.9 ff  Cmax =  26.7 ff  G =  296\nABC: Path 50 --    9956 : 4    2 AOI211_X1 A =   1.33  Df =2705.3  -24.8 ps  S =  43.7 ps  Cin =  1.6 ff  Cout =   2.6 ff  Cmax =  14.5 ff  G =  163\nABC: Path 51 --    9958 : 2    3 NOR2_X1   A =   0.80  Df =2727.0   -0.2 ps  S =  30.3 ps  Cin =  1.6 ff  Cout =   4.9 ff  Cmax =  26.7 ff  G =  297\nABC: Path 52 --   10338 : 3    2 AOI21_X1  A =   1.06  Df =2768.8  -19.9 ps  S =  29.2 ps  Cin =  1.6 ff  Cout =   3.3 ff  Cmax =  25.3 ff  G =  199\nABC: Path 53 --   11442 : 4    3 AOI211_X1 A =   1.33  Df =2821.4  -25.8 ps  S =  60.5 ps  Cin =  1.6 ff  Cout =   5.0 ff  Cmax =  14.5 ff  G =  302\nABC: Path 54 --   12057 : 3    1 OAI21_X1  A =   1.06  Df =2841.3  -17.7 ps  S =  17.8 ps  Cin =  1.6 ff  Cout =   1.6 ff  Cmax =  26.1 ff  G =   99\nABC: Path 55 --   12058 : 3    3 OAI21_X1  A =   1.06  Df =2894.1  -44.9 ps  S =  34.5 ps  Cin =  1.6 ff  Cout =   5.2 ff  Cmax =  26.1 ff  G =  312\nABC: Path 56 --   12534 : 3    2 AND3_X1   A =   1.33  Df =2949.7  -61.4 ps  S =  14.0 ps  Cin =  0.9 ff  Cout =   3.3 ff  Cmax =  60.4 ff  G =  349\nABC: Path 57 --   12535 : 3    3 OAI21_X1  A =   1.06  Df =2973.8  -37.9 ps  S =  33.1 ps  Cin =  1.6 ff  Cout =   4.9 ff  Cmax =  26.1 ff  G =  301\nABC: Path 58 --   12726 : 4    2 OAI211_X1 A =   1.33  Df =3014.8  -47.1 ps  S =  24.9 ps  Cin =  1.6 ff  Cout =   2.6 ff  Cmax =  25.6 ff  G =  158\nABC: Path 59 --   12831 : 2    3 AND2_X1   A =   1.06  Df =3059.4  -53.3 ps  S =  15.5 ps  Cin =  0.9 ff  Cout =   4.9 ff  Cmax =  60.6 ff  G =  519\nABC: Path 60 --   12890 : 5    3 AOI221_X1 A =   1.60  Df =3092.3   -7.2 ps  S =  49.7 ps  Cin =  1.6 ff  Cout =   2.8 ff  Cmax =  13.8 ff  G =  169\nABC: Path 61 --   12891 : 2    1 OR2_X1    A =   1.06  Df =3133.1  -11.3 ps  S =   7.1 ps  Cin =  0.9 ff  Cout =   0.0 ff  Cmax =  60.6 ff  G =    0\nABC: Start-point = pi275 (\\state [4]).  End-point = po367 ($auto$rtlil.cc:2669:MuxGate$209423).\nABC: + write_blif /tmp/fast-dynax-auto-17708305/yosys-abc-eiVhfb/output.blif\n\n10.1.2. Re-integrating ABC results.\nABC RESULTS:          _const0_ cells:       24\nABC RESULTS:         OAI222_X1 cells:        6\nABC RESULTS:          OAI33_X1 cells:       52\nABC RESULTS:            OR4_X1 cells:      109\nABC RESULTS:           NOR4_X1 cells:      691\nABC RESULTS:         OAI221_X1 cells:      123\nABC RESULTS:         AOI211_X1 cells:      619\nABC RESULTS:            BUF_X1 cells:      793\nABC RESULTS:         AOI222_X1 cells:       13\nABC RESULTS:         AOI221_X1 cells:      111\nABC RESULTS:         CLKBUF_X1 cells:       46\nABC RESULTS:         OAI211_X1 cells:      291\nABC RESULTS:           AND4_X1 cells:      109\nABC RESULTS:          AOI22_X1 cells:      419\nABC RESULTS:            OR2_X1 cells:      629\nABC RESULTS:          OAI22_X1 cells:      385\nABC RESULTS:          NAND4_X1 cells:      601\nABC RESULTS:           AND3_X1 cells:      376\nABC RESULTS:           XOR2_X1 cells:     1508\nABC RESULTS:            OR3_X1 cells:      384\nABC RESULTS:            INV_X1 cells:     1613\nABC RESULTS:          OAI21_X1 cells:     1913\nABC RESULTS:           NOR3_X1 cells:      851\nABC RESULTS:           MUX2_X1 cells:      765\nABC RESULTS:          XNOR2_X1 cells:     2160\nABC RESULTS:          NAND3_X1 cells:      979\nABC RESULTS:          NAND2_X1 cells:     3250\nABC RESULTS:          AOI21_X1 cells:     2145\nABC RESULTS:           NOR2_X1 cells:     4147\nABC RESULTS:           AND2_X1 cells:     1132\nABC RESULTS:        internal signals:    59521\nABC RESULTS:           input signals:     2655\nABC RESULTS:          output signals:     1905\nRemoving temp directory.\n(hammer) setundef -zero\n\n11. Executing SETUNDEF pass (replace undef values with defined constants).\n(hammer) splitnets\n\n12. Executing SPLITNETS pass (splitting up multi-bit signals).\n(hammer) opt_clean -purge\n\n13. Executing OPT_CLEAN pass (remove unused cells and wires).\nFinding unused cells or wires in module \\DynaX_XM_Row_Top..\nRemoved 0 unused cells and 64859 unused wires.\n(hammer) hilomap -singleton\n<suppressed ~1153 debug messages>\n\n14. Executing HILOMAP pass (mapping to constant drivers).\n(hammer) tee -o /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/syn-rundir/DynaX_XM_Row_Top.synth_check.rpt check\n\n15. Executing CHECK pass (checking for obvious problems).\n(hammer) tee -o /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/syn-rundir/DynaX_XM_Row_Top.synth_stat.txt stat -top DynaX_XM_Row_Top -liberty /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/lib/NangateOpenCellLibrary_typical.lib\nChecking module DynaX_XM_Row_Top...\nFound and reported 0 problems.\n\n16. Printing statistics.\ncheck -assert\n\n=== DynaX_XM_Row_Top ===\n\n   Number of wires:              30015\n   Number of wire bits:          30170\n   Number of public wires:        1889\n   Number of public wire bits:    2044\n   Number of memories:               0\n   Number of memory bits:            0\n   Number of processes:              0\n   Number of cells:              28126\n     AND2_X1                      1132\n     AND3_X1                       376\n     AND4_X1                       109\n     AOI211_X1                     619\n     AOI21_X1                     2145\n     AOI221_X1                     111\n     AOI222_X1                      13\n     AOI22_X1                      419\n     BUF_X1                        793\n     CLKBUF_X1                      46\n     DFF_X1                       1905\n     INV_X1                       1613\n     LOGIC0_X1                       1\n     MUX2_X1                       765\n     NAND2_X1                     3250\n     NAND3_X1                      979\n     NAND4_X1                      601\n     NOR2_X1                      4147\n     NOR3_X1                       851\n     NOR4_X1                       691\n     OAI211_X1                     291\n     OAI21_X1                     1913\n     OAI221_X1                     123\n     OAI222_X1                       6\n     OAI22_X1                      385\n     OAI33_X1                       52\n     OR2_X1                        629\n     OR3_X1                        384\n     OR4_X1                        109\n     XNOR2_X1                     2160\n     XOR2_X1                      1508\n\n   Chip area for module '\\DynaX_XM_Row_Top': 37329.908000\n\n17. Executing CHECK pass (checking for obvious problems).\nselect -assert-none {t:$*}\n(hammer) write_verilog -noattr -noexpr -nohex -nodec -defparam \"/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/syn-rundir/DynaX_XM_Row_Top.mapped.v\"\nChecking module DynaX_XM_Row_Top...\nFound and reported 0 problems.\n\n18. Executing Verilog backend.\nDumping module `\\DynaX_XM_Row_Top'.\n\u001b[96m[synthesis] Did not run write_regs\u001b[0m\nAction syn config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/syn-output.json\n",
+      "wall_seconds": 94.35876911506057,
+      "command": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/hammer_driver.py",
+        "syn",
+        "-p",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/config.json",
+        "--obj_dir",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer",
+        "-o",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/syn-output.json"
+      ]
+    },
+    "syn-to-par": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/syn-to-par.log",
+      "diagnostics": "\u001b[96m[<global>] Loading hammer-vlsi libraries and reading settings\u001b[0m\n\u001b[96m[<global>] Loading technology 'hammer.technology.nangate45'\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\n\u001b[33m[<global>] Key technology.nangate45.install_dir does not have a default implementation\u001b[0m\nAction syn-to-par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-input.json\n",
+      "wall_seconds": 0.6639048289507627,
+      "command": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/hammer_driver.py",
+        "syn-to-par",
+        "-p",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/config.json",
+        "-p",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/syn-output.json",
+        "--obj_dir",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer",
+        "-o",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-input.json"
+      ]
+    },
+    "par": {
+      "passed": true,
+      "log": "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par.log",
+      "diagnostics": " 2559.25 (MB).\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0199]   Number of violations = 0.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0267] cpu time = 00:02:07, elapsed time = 00:00:35, memory = 2559.25 (MB), peak = 2639.92 (MB)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length = 511715 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal1 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal2 = 240130 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal3 = 251346 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal4 = 12202 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal5 = 7855 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal6 = 127 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal7 = 53 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal8 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal9 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal10 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total number of vias = 200799.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Up-via summary (total 200799):\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  active         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal1     97732\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal2    100517\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal3      2016\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal4       516\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal5        14\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal6         4\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal7         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal8         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal9         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]        200799\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0198] Complete detail routing.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length = 511715 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal1 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal2 = 240130 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal3 = 251346 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal4 = 12202 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal5 = 7855 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal6 = 127 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal7 = 53 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal8 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal9 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total wire length on LAYER metal10 = 0 um.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total number of vias = 200799.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Up-via summary (total 200799):\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  active         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal1     97732\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal2    100517\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal3      2016\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal4       516\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal5        14\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal6         4\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal7         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal8         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]  metal9         0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] -----------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]        200799\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0267] cpu time = 00:39:54, elapsed time = 00:10:31, memory = 2559.25 (MB), peak = 2639.92 (MB)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO DRT-0180] Post processing.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db pre_extraction\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn pre_extraction latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) define_process_corner -ext_model_index 0 X\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0431] Defined process_corner X with ext_model_index 0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0029] Defined extraction corner X\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) extract_parasitics -ext_model_file /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/rcx_patterns.rules -corner_cnt 2\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0435] Reading extraction model file /scratch/gz2522/gz2522/tmp/micro-hackthon/pdk/hammer45/rcx_patterns.rules ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0436] RC segment generation DynaX_XM_Row_Top (max_merge_res 50.0) ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0040] Final 127712 rc segments\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0439] Coupling Cap extraction DynaX_XM_Row_Top ...\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 16% of 228905 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 37% of 228905 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 48% of 228905 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 61% of 228905 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 78% of 228905 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 91% of 228905 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0442] 100% of 228905 wires extracted\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0045] Extract 30115 nets, 156535 rsegs, 156535 caps, 316636 ccs\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_spef /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/DynaX_XM_Row_Top.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] [INFO RCX-0443] 30115 nets finished\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) read_spef -corner setup /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/DynaX_XM_Row_Top.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) read_spef -corner hold /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/DynaX_XM_Row_Top.par.spef\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db pre_report_routed\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn pre_report_routed latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_power_activity -global -activity 0.1 -duty 0.5\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set_propagated_clock [all_clocks]\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) global_connect\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/routed.odb\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_def /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/routed.def\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_verilog /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-rundir/routed.v\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) puts FAST_FINAL_BEGIN\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_FINAL_BEGIN\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_power -corner setup -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Group                      Internal      Switching        Leakage          Total\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                               Power          Power          Power          Power (Watts)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] --------------------------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Sequential           8.63886031e-04 1.02296421e-04 1.50854146e-04 1.11703656e-03  27.8%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Combinational        5.85099799e-04 8.64968810e-04 6.66976674e-04 2.11704522e-03  52.7%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Clock                3.14627687e-04 4.51893720e-04 1.47555747e-05 7.81277020e-04  19.5%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Macro                0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Pad                  0.00000000e+00 0.00000000e+00 0.00000000e+00 0.00000000e+00   0.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] --------------------------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Total                1.76361436e-03 1.41915726e-03 8.32569436e-04 4.01534094e-03 100.0%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...]                               43.9%          35.3%          20.7%\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_worst_slack -max -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] worst slack max 5.80800819\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_worst_slack -min -digits 8\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] worst slack min 0.00817429\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_check_types -max_slew -max_capacitance -violators\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] max capacitance\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Pin                                    Limit     Cap   Slack\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] ------------------------------------------------------------\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _43338_/ZN                             59.36   62.88   -3.52 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _39569_/ZN                             26.70   28.60   -1.90 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _37818_/ZN                             26.70   28.55   -1.85 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _42327_/ZN                             26.70   28.37   -1.67 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _38572_/ZN                             26.70   28.25   -1.55 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _52182_/ZN                             26.02   27.42   -1.40 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _37704_/ZN                             59.36   60.68   -1.32 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _38688_/ZN                             59.36   60.54   -1.19 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _42290_/ZN                             10.47   11.59   -1.12 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _41491_/ZN                             26.70   27.75   -1.05 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _43315_/ZN                             26.70   27.72   -1.02 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] _49357_/ZN                             14.50   15.51   -1.01 (VIOLATED)\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] \u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) report_design_area\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] Design area 395924 um^2 100% utilization.\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) set fast_filler_names {FILLCELL_X1 FILLCELL_X2 FILLCELL_X4 FILLCELL_X8 FILLCELL_X16 FILLCELL_X32}\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_CELL_AREA_UM2 37813.49599999643\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_DIE_AREA_UM2 435600.0\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_CORE_AREA_UM2 395923.71\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] FAST_FINAL_END\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) write_db post_report_routed\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exec ln -sfn post_report_routed latest\u001b[0m\n\u001b[37m[par] [Exec ...s/bin/openroad -no_init -log /...] (hammer) exit\u001b[0m\n\u001b[96m[par] Did not run write_design\u001b[0m\nAction par config output written to /scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-output.json\n",
+      "wall_seconds": 749.4079375723377,
+      "command": [
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/env/hammer-py312/bin/python",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/hammer_driver.py",
+        "par",
+        "-p",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/config.json",
+        "-p",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-input.json",
+        "--obj_dir",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer",
+        "-o",
+        "/scratch/gz2522/gz2522/tmp/micro-hackthon/runs/dynax_autonomous_17708305/round_01/build_01/hammer/par-output.json"
+      ]
+    },
+    "route_drc_violations": 0,
+    "io_delay_ns": 1.0,
+    "output_load_ff": 5.0,
+    "process_corner": "Nangate45 typical 1.1 V 25 C for setup and hold; not multi-PVT signoff",
+    "area_um2": 37813.49599999643,
+    "die_area_um2": 435600.0,
+    "core_area_um2": 395923.71,
+    "power_mw": 4.01534094,
+    "slack_ns": 5.80800819,
+    "hold_slack_ns": 0.00817429,
+    "frequency_mhz": 100,
+    "latency_ns": 260.0,
+    "energy_nj": 1.0439886444,
+    "energy_efficiency_queries_per_joule": 957864824.836978,
+    "quality_loss": 0.13973321024672453,
+    "efficiency_scope": "one verified query; energy = modeled average power times single-query latency",
+    "artifacts": {
+      "hammer/par-rundir/routed.def": "a42993ffade3e9854d85b0fe5694799e597a0879b91d35a3f2f091dc5c252e46",
+      "hammer/par-rundir/routed.v": "252c65dc8dc8f085ecf0d49f91be73f20ff25ad55fc4951dddb576eb157ebfb6",
+      "hammer/par-rundir/routed.odb": "b28db562623c4ccfa3e1202e6e75a10103f9980c7272b807e3739ea9e0f5abe1",
+      "hammer/par-rundir/DynaX_XM_Row_Top.par.spef": "a48e763c500a24c65e5629bdb754920dcad69c40e17252f0a9ba99a05d1e1a2c",
+      "hammer/par-rundir/DynaX_XM_Row_Top_route_drc.rpt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "dense_equivalent_ops_per_query": 48,
+    "energy_efficiency_dense_equivalent_tops_per_w": 0.04597751159217495
+  },
+  "critique": {
+    "layer": "uarch",
+    "reason": "The current design's energy efficiency is limited by its 26-cycle latency, with the 18-stage pipelined divider being the dominant contributor. The post-route evaluation shows significant timing slack (5.8ns) and area slack (37813 um^2 used vs 200000 um^2 budget), indicating the design is not physically constrained. This presents a clear opportunity to trade this abundant slack for a direct reduction in latency.",
+    "evidence": [
+      "evaluation.latency_ns",
+      "evaluation.slack_ns",
+      "evaluation.area_um2",
+      "evaluation.energy_efficiency_queries_per_joule"
+    ],
+    "instructions": "Modify the `FinalDivider` module's implementation. Re-configure the instantiated `predict_unit.FixedPointDivPipelined` core to use fewer pipeline stages by changing the `stages` parameter from 18 to a smaller value, such as 9. This is expected to reduce total system latency from 26 cycles to approximately 17 cycles. While the divider's area and per-cycle power will likely increase, the substantial reduction in execution time should lead to a net decrease in the total energy per query, thereby increasing the `energy_efficiency_queries_per_joule`."
+  },
+  "critique_applied": true
+}
